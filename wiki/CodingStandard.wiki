@@ -1,0 +1,257 @@
+== BWAPI Coding Standard ==
+Code standards: Some people love them and some people hate them. When preparing an API for public consumption having a consistent style of code and a clean interface become even more important. Yada Yada, blah blah. :)
+
+Before I jump into the standard I want to say this here: *Remember we are in this together.* The code standard should exist to help us work together; not to make it more difficult. This document can always be amended as needed.
+
+=== Indentation, Tabs, and Spaces ===
+# Do not use tabs, use 3 spaces for indentation. Some good reasons for this are: code viewed in other editors will align correctly, code pasted online will align correctly, I use it at work and hate switching back and forth :)... In VS2005 you can set it to use 'spaces for tabs' in Tools->Options->TextEditor->C++->Tabs
+# Always indent each scope level.
+# Indent switch statments as follows:
+{{{
+switch (unitType)
+{
+case BW::UnitType::Probe:
+   {
+      // Probe stuff
+   }
+   break;
+case BW::UnitType::SCV:
+   {
+      // SCV stuff
+   }
+   break;
+default:
+   {
+      // All default stuff
+   }
+}
+}}}
+# Don't put parens() next to keywords, put a space between. Do put parens next to function names. Do not use parens in return statements when it's not neccessary. Do not put spaces directly inside of parens. Examples:
+{{{
+   if (condition)
+   {
+   }
+
+   while (condition)
+   {
+   }
+
+   strcpy(s, s1);
+
+   return 1;
+}}}
+=== Formatting ===
+# Use ANSI style braces, not K&R style. It is preferred (not required) to use braces for all branching statements (if/for/while/do/case), even if they are single line, to avoid a large variety of common mistakes. For example:
+{{{
+
+/// Bad
+if (playerIsInGame) {
+   MessagePlayer("Hi!");
+}
+
+/// Better
+if (playerIsInGame)
+   MessagePlayer("Hi!");
+
+/// Best
+if (playerIsInGame)
+{
+   MessagePlayer("Hi!");
+}
+}}}
+# In general try to have as few parameters as possible into functions and keep logical statements as short and simple as possible. However, iff any branching statements or paramater lists are complex or large, it is better to format them on multiple lines. For example:
+{{{
+// Bad
+if ( unitPosition.m_x < basePerimeter.GetLeftEdge() && unitPosition.m_x > basePerimeter.GetRightEdge() && unitPosition.m_y < basePerimeter.GetTopEdge() && unitPosition.m_y > basePerimeter.GetBottomEdge() )
+{
+   UnitHasBreachePerimeter(unitPosition);
+}
+
+// Good
+while
+   (
+      unitPosition.m_x < basePerimeter.GetLeftEdge() && 
+	  unitPosition.m_x > basePerimeter.GetRightEdge() && 
+	  unitPosition.m_y < basePerimeter.GetTopEdge() && 
+	  unitPosition.m_y > basePerimeter.GetBottomEdge()
+   )
+{
+   UnitHasBreachePerimeter(unitPosition);
+}
+
+// Bad
+int TooLazyToThinkOfAnImaginaryFunctionRightNow( u32 amountOfMyLazy, u32 timeTillIFallAsleep, BW::Unit* pUnitThatWillPutMeToSleep, u32 ohGodAnotherVariable, const std::string& thisFunctionIsHorrible );
+
+// Good (except for all the horrible names, since I am not feeling creative right now)
+int TooLazyToThinkOfAnImaginaryFunctionRightNow
+   (
+      u32 amountOfMyLazy, 
+	  u32 timeTillIFallAsleep, 
+	  BW::Unit* pUnitThatWillPutMeToSleep, 
+	  u32 ohGodAnotherVariable, 
+	  const std::string& thisFunctionIsHorrible 
+   );
+}}}
+# Format constructor initialize lists as follows (easiest addition/removal of members):
+{{{
+Player::Player()
+:m_unitCount(0)
+,m_pFirstUnit(NULL)
+,m_name("")
+,m_isWinner(false)
+{
+   // additional constructor code
+}
+}}}
+
+==== Names ====
+# All symbol names should try to capture meaning and also be as precise and short as possible. Favor full expression of meaning, unobscured by needless abbreviation. If you can not resolve the name to something short, direct, and fully expressing the purpose than it is likely the design should be rethought.
+# Exception: There are some abbreviation exceptions which are common: for example BW (Brood War). 
+# Exception: Since this project involves reverse-engineering the runtime of BW there are some design decisions out of our hand (such as the three-way union in the unit structure at +0xD0)
+==== Functions ====
+# Function names should be in CamelCase. IE: GetUnitType() or IsGoingToExplode()
+# Functions which directly access or set private data should follow the u32 GetVariable() const and void SetVariable( u32 variableValue) template.
+==== Variables ====
+# Variables should be in pascalCase. IE: unitType
+# Constant variables should use CamelCase. IE: SupplyLimit
+# Scope should be prepended for non-local and non-argument variables(m_ for member variables, g_ for global variables, s_ for static variables). IE: m_unitType or g_unitArrayOffset
+# Arguments used for returning values should post-pend _out or _inOut as appropriate. IE: unitName_inout
+# Avoid use of Hungarian notation. The one exception to this is 'p' for pointer variables, since it is convenient to tell at a glance if -> is needed.
+==== Classes/Structures ====
+# Use CamelCase for class names.
+# Do not use any underbars (_) in class names. If you wish to show that a name belongs to a certain domain, use a namespace. IE: ~~BW_Unit~~ instead use BW::Unit
+==== Enumerations ====
+# Enumeration values should be in CamelCase.
+# Enumeration values may contain underbars (_), but this should be used sparingly and only to group subsets of the enumeration. IE: Terran_SCV, Protoss_Probe
+# Enclose enumerations in a namespace with their name. For example:
+{{{
+namespace UnitTypes
+{
+   enum Enum : u16
+   {
+   };
+};
+}}}
+==== Pointers and References ====
+# The asterisk (*) and ampersand (&) symbols should be placed next to the variable type, as these are part of the type information. Be careful not to fall pray to the common bug caused by declaring multiple pointers on the same line without prepending an asterisk to each one. For example:
+{{{
+BW::Unit* pUnit; // Good
+const std::string& oldUnitName = unitName; // Good
+BW::Unit* pUnitBug1, pUnitBug2, pUnitBug3; // Avoid, probably not intended behavior: only pUnitBug1 is a pointer
+}}}
+==== Defines and Macros ====
+# Use constants and inline functions as much as possible rather than defines and macros.
+# Use all caps with underbar separators. IE: BOOST_ASSERT()
+==== Type Names ====
+# Typedefs of fundamental types should be used rather than native type names or windows type names. For example:
+{{{
+unsigned int mineralCount; // Bad
+DWORD mineralCount; // Bad
+u32 mineralCount; // Good. Less typing and more descriptive (an unsigned 32 bit number)
+}}}
+# Fundamental types should be lowercase. IE: u32, s16
+# When possible, make a specific type to describe a variable. For example: 
+{{{
+Milliseconds timeTillDeath = GetTimeTillDeath(); // Is better than...
+u32 timeTillDeathMS = GetTimeTillDeath(); // Is better than...
+u32 timeTillDeath = GetTimeTillDeath();
+}}}
+==== File Names ====
+# CamelCase and should reflect the name of the class/structure/enumeration they hold.
+# Should never hold multiple classes/structures/enumerations unless these are strongly related (generally declared within each other's scope)
+# *.h and *.cpp
+# Do not use *.inl files
+=== Reverse Engineering ===
+# Offset values should be written in hexadecimal. IE: ~~100~~, instead use 0x64
+=== Documentation ===
+# Documentation is *not* limited to comments. All aspects of code should help document it and the wiki should be used whenever in-code documentation is insufficient.
+# Comments should not be used for version control information. Do not put changelogs, author tags, dates, or any other information that SVN will automatically generate.
+# Comments should follow [http://www.stack.nl/~dimitri/doxygen/ DoxyGen] style.
+# Comments exist to give additional information that you can not infer from the code. They should never repeat information already found in the code. For example:
+{{{
+// BAD! Tells no new information. Better off not being added.
+/** GetUnitCount
+	@param pPlayer pointer to a player
+	@returns unit count
+**/
+int GetUnitCount( BW::Player* pPlayer ) const;
+
+// Better. Adds useful contract information, but repeats what could be inferred from the function name.
+/** Retrieve the current number of units under the given player's control.
+	@param pPlayer may not be NULL or invalid.
+**/
+int GetUnitCount( BW::Player* pPlayer ) const;
+
+// Best. Only adds new information, repeats nothing, and is as concise as possible
+/// @param pPlayer must be valid
+int GetUnitCount( BW::Player* pPlayer ) const;
+}}}
+# Documentation that can go in the header, should go in the header. For example, do not put documentation describing a method in the *.cpp where it is defined, instead put it in the *.h where it is declared.
+# Answer the questions of "How?" and "Why?" code is doing something rather than "What?". What can be read from the code it's self, but the _intention_ behind the code is where comments are needed.
+# Best practice: write comments as you code. Going back to add them makes it unlikely they will be added and less likely they will be good comments. Describing How/Why you are doing things as you do them also does wonders for making code easier to write. 
+# If a section of code is unfinished or temporary, use comments to label it as such. Don't use it as an excuse to forget about the code forever though! :)
+=== Directory Structure ===
+# Directories should correspond with namespaces. IE: put all files in the "BW" namespace in a "BW" directory. This helps make the code organization self-documenting.
+# Put both *.cpp and *.h files for a given class in the same directory (no source/header directories).
+# The rough project structure should follow:
+{{{
+bwapi/
+      SolutionName/ <-- Holds *.sln file
+                   ProjectName/ <-- Hold *.vcproj file
+	                           bin/ <-- Binary output and debug tables
+				               obj/ <-- Temporary object files
+				               source/ <-- holds *.cpp and *.h files
+							          BW/ <-- Possible namespace folder name
+}}}
+=== Function Guidelines ===
+# Functions should have a single obvious purpose.
+# Functions should be as short as required, but no shorter. :) A long function may be a sign that the function is pulling double-duty and needs to be split.
+# Functions with no parameters should be declared as such:
+{{{
+// Bad
+u32 GetUnitCount(void);
+
+// Good
+u32 GetUnitCount();
+}}}
+==== Use Design By Contract ====
+# Try to use fail-fast behavior to catch programming errors as soon as possible. The philosphy is the faster and closer the location of a bug the failure occures, the easier to fix the bug will be.
+# Avoid returning failure codes wherever possible: if it is a programming error it is better to fail-fast, if it is a user-input error than try to handle these as close to the source as possible.
+# Use REQUIRE() and ENSURE() which are copies of ASSERT() where appropriate, to help self-document the code.
+# REQUIRE() all requirements at the beginning of a function.
+# ENSURE() correct operation at the end of a function. For example, if a supplyUsed value should never be returned greater than 200 than do ENSURE(supplyUsed < 200) or even better ENSURE(supplyUsed < supplyLimit) with supplyLimit as a constant variable.
+# ASSERT() throughout the function wherever appropriate. Agressive asserting is encouraged since failing as close to the problem as possible is the goals.
+=== Class Guidelines ===
+# Classes should have a single obvious purpose.
+# Ordering is: public, protected, private. Only one section for each and always in that order.
+# Prefer private where possible, followed by protected where possible. Only expose the interface in public.
+# Keep inheritence chains as short as possible. The reason is not performance, but rather flexibility and understandability. Experience shows large inheritence chains are difficult to modify and understand.
+# Use abstract base classes for 'interface classes' 
+# Only use multiple inheritence when you have (at most) 1 implementation class you are inheriting from. In other words only multiply inherit from interface classes.
+# Always use a virtual destructor if the class has any other virtual functions (in other words, is being used as base class).
+# Never call virtual functions from the constructor.
+# A class with any of (destructor, assignment operator, copy constructor) generally needs all three, since this generally means dynamic memory is involved.
+=== Portability ===
+# Portability is *not* a goal of this project, so where it makes life easier VS2005-specific extensions will be used.
+# Header files should use #pragma once rather than header guards.
+# Packed structures should use #pragma pack(1) followed by #pragma pack() at the end.
+# Setting the size of an enumeration should be done through the *enum Enum : u8* syntax.
+=== Version Control ===
+# Check in changes as often as possible. Always stay on the bleeding edge to avoid merge issues.
+# Never lock a file. If you are making major changes to a file and would rather it not be mucked with then contact the other team members and kindly let them know.
+=== Misc ===
+# Try to declare variables as close to their usage as possible. Avoid 'pascal/c' style of declaring all variables at the beginning of function.
+# Initialize variable on declaration. This ensures they are valid, helps keep declaration close to usage, and helps prevent some common errors.
+# Use as little dynamic memory as possible. Where required usage of smart pointers is preferred to eliminate common dynamic memory issues.
+# Wherever there is wiggle room in this standard always follow the style used in the file you are editing. Do not reformat all the code to your liking as this both rude and can obscure the real changes when looking at revision diffs in version control.
+# Not required, but try to put constants on the left hand of comparisons. Takes time to get used to, but can be useful. For example:
+{{{
+// This will be fullproof against forgetting one of the ='s.
+if (BW::UnitType::Probe == enemyUnitType)
+}}}
+# goto - some think it is evil. Avoid use where possible, but feel free to use it if the result is cleaner code that is easier to follow.
+# (condition) ? something : somethingElse; use this where it makes code cleaner and easier to follow. Never use it just to save typing where a full if statement would be more appropriate. :)
+# One statment per line. 
+# One variable per line.
+# Avoid the 'using' statment where possible. Prefer typing the scope, especially for boost and the STL (std namespace). *Never* globally define 'using' in a header (this pollutes the namespace).
+# Be Const correct. Use the const keyword wherever you can. Always always be const correct.
