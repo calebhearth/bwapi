@@ -90,7 +90,7 @@ while (
   UnitHasBreachePerimeter(unitPosition);
  }
 
-// I prefer this style as in header file you have doxygen multilen commend in front of the function anyway, and it does not become too heavy this way.
+// I prefer this style as in header file you have doxygen multile comment in front of the function anyway, and it does not become too heavy this way (also another argument for "stupid" argument descriptions.)
 int TooLazyToThinkOfAnImaginaryFunctionRightNow( u32 amountOfMyLazy, u32 timeTillIFallAsleep, BW::Unit* pUnitThatWillPutMeToSleep, u32 ohGodAnotherVariable, const std::string& thisFunctionIsHorrible );
 
 // Good (except for all the horrible names, since I am not feeling creative right now)
