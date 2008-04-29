@@ -10,12 +10,12 @@ Before I jump into the standard I want to say this here: *Remember we are in thi
 {{{
 switch (unitType)
 {
-case BW::UnitType::Probe:
+case BW::UnitType::Protoss_Probe:
    {
       // Probe stuff
    }
    break;
-case BW::UnitType::SCV:
+case BW::UnitType::Terran_SCV:
    {
       // SCV stuff
    }
@@ -276,7 +276,7 @@ u32 GetUnitCount();
  # Not required, but try to put constants on the left hand of comparisons. Takes time to get used to, but can be useful. For example:
 {{{
 // This will be fullproof against forgetting one of the ='s.
-if (BW::UnitType::Probe == enemyUnitType)
+if (BW::UnitType::Protoss_Probe == enemyUnitType)
 }}}
  # goto - some think it is evil. Avoid use where possible, but feel free to use it if the result is cleaner code that is easier to follow.
  # (condition) ? something : somethingElse; use this where it makes code cleaner and easier to follow. Never use it just to save typing where a full if statement would be more appropriate. :)
