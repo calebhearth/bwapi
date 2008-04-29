@@ -202,17 +202,17 @@ u32 timeTillDeath = GetTimeTillDeath();
 	@param pPlayer pointer to a player
 	@returns unit count
 **/
-int GetUnitCount( BW::Player* pPlayer ) const;
+int GetUnitCount( const BW::Player* const pPlayer ) const;
 
 // Better. Adds useful contract information, but repeats what could be inferred from the function name.
 /** Retrieve the current number of units under the given player's control.
 	@param pPlayer may not be NULL or invalid.
 **/
-int GetUnitCount( BW::Player* pPlayer ) const;
+int GetUnitCount( const BW::Player* const pPlayer ) const;
 
 // Best. Only adds new information, repeats nothing, and is as concise as possible
 /// @param pPlayer must be valid
-int GetUnitCount( BW::Player* pPlayer ) const;
+int GetUnitCount( const BW::Player* const pPlayer ) const;
 }}}
  # Documentation that can go in the header, should go in the header. For example, do not put documentation describing a method in the .cpp where it is defined, instead put it in the .h where it is declared.
  # Answer the questions of "How?" and "Why?" code is doing something rather than "What?". What can be read from the code it's self, but the _intention_ behind the code is where comments are needed.
