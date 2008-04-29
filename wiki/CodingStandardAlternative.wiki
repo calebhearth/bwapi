@@ -4,7 +4,7 @@ Code standards: Some people love them and some people hate them. When preparing 
 Before I jump into the standard I want to say this here: *Remember we are in this together.* The code standard should exist to help us work together; not to make it more difficult. This document can always be amended as needed.
 
 === Indentation, Tabs, and Spaces ===
- # Do not use tabs, use 3 spaces for indentation. Some good reasons for this are: code viewed in other editors will align correctly, code pasted online will align correctly, I use it at work and hate switching back and forth :)... In VS2005 you can set it to use 'spaces for tabs' in Tools->Options->TextEditor->C++->Tabs
+ # Do not use tabs, use 2 spaces for indentation. 1 space to indent braces.Some good reasons for this are: code viewed in other editors will align correctly, code pasted online will align correctly, I use it at work and hate switching back and forth :)... In VS2005 you can set it to use 'spaces for tabs' in Tools->Options->TextEditor->C++->Tabs
  # Always indent each scope level.
  # Indent switch statments as follows:
 {{{
