@@ -239,11 +239,11 @@ int GetUnitCount( BW::Player* player ) const;
 {{{
 bwapi/
       SolutionName/ <-- Holds *.sln file
-                   ProjectName/ <-- Hold *.vcproj file
-	                           bin/ <-- Binary output and debug tables
-				               obj/ <-- Temporary object files
-				               source/ <-- holds *.cpp and *.h files
-							          BW/ <-- Possible namespace folder name
+      ProjectName/ <-- Hold *.vcproj file
+      bin/ <-- Binary output and debug tables
+      obj/ <-- Temporary object files
+      source/ <-- holds *.cpp and *.h files
+             BW/ <-- Possible namespace folder name
 }}}
 === Function Guidelines ===
  # Functions should have a single obvious purpose.
@@ -253,7 +253,7 @@ bwapi/
 // I prefer this
 u32 getUnitCount(void);
 
-// Good
+// oldschool
 u32 GetUnitCount();
 }}}
 ==== Use Design By Contract ====
