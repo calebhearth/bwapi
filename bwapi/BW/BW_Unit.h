@@ -67,7 +67,8 @@ struct BW_Unit
    /*0x074*/ BW_Order*              orderQueueHead;
    /*0x078*/ BW_Order*              orderQueueTail;
    /*0x07C*/ u8 _UNKNOWN6[4];
-   /*0x080*/ _UNKNOWN _8[208];
+   /*0x080*/ BW_Unit*               connectedUnit;
+   /*0x080*/ _UNKNOWN _8[204];
     
 //_UNKNOWN _LazyFiller1[88];
    //    BW_Unit* ConnectedUnit;
