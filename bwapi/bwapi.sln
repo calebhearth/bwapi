@@ -3,9 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BW", "BW\BW.vcproj", "{001204EC-33B7-427D-AF9B-68F222C97349}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChaosLauncherInjector", "ChaosLauncherInjector\ChaosLauncherInjector.vcproj", "{E872FA31-C3AC-4331-AD60-315768E44ACA}"
-	ProjectSection(ProjectDependencies) = postProject
-		{001204EC-33B7-427D-AF9B-68F222C97349} = {001204EC-33B7-427D-AF9B-68F222C97349}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
