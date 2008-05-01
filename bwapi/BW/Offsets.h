@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Types.h"
+#include "BW_Unit.h"
 
 //--------------------------------- MINERALS TYPE -----------------------------
 struct BW_PlayerMinerals_type
@@ -26,3 +27,5 @@ struct BW_PlayerNames_type
    BW_PlayerName player[8];
 };
 static BW_PlayerNames_type* BW_PlayerNames = (BW_PlayerNames_type*)0x0057EEEB;
+
+static BW_UnitArray* UNIT_NODE_TABLE = (BW_UnitArray*)0x0059CB40;

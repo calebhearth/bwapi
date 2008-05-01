@@ -45,8 +45,7 @@ class Unit
     bool canOrder(const AbilityPrototype* const ability, BW_Position target) const;
     void order(const AbilityPrototype* const ability, Unit* target);
     void order(const AbilityPrototype* const ability, BW_Position target);
+    bool isValid() const; /**< Gets if the unit is alive, it uses hp > 0 heuristic for now. */
   private :
     BW_Unit* rawData; /**< Pointer to broodwar unit data */
-    UnitPrototype* prototype;
-    Player* owner;
 };

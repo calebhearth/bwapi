@@ -2,17 +2,11 @@
 #include "BW_Unit.h"
 #include "UnitPrototypeDefinitions.h"
 #include "Player.h"
+#include "Globals.h"
 //----------------------------- CONSTRUCTOR -----------------------------------
 Unit::Unit(BW_Unit *rawData)
 {
   this->rawData = rawData;
-  switch (this->rawData->unitID)
-  {
-    case BW_UnitType::Protoss_Probe  : this->prototype = Prototypes::Probe; break;
-    case BW_UnitType::Protoss_Zealot : this->prototype = Prototypes::Zealot; break;
-    case BW_UnitType::Terran_SCV     : this->prototype = Prototypes::SCV; break;
-    case BW_UnitType::Zerg_Queen     : this->prototype = Prototypes::Queen; break;
-  }
 }
 //----------------------------- DESTRUCTOR -----------------------------------
 Unit::~Unit()
@@ -41,7 +35,14 @@ u8 Unit::getShieldPointsFraction() const
 //--------------------------  GET UNIT PROTOTYPE -----------------------------
 const UnitPrototype* const Unit::getPrototype() const
 {
-  return this->prototype;
+  switch (this->rawData->unitID)
+  {
+    case BW_UnitType::Protoss_Probe  : return Prototypes::Probe;
+    case BW_UnitType::Protoss_Zealot : return Prototypes::Zealot;
+    case BW_UnitType::Terran_SCV     : return Prototypes::SCV;
+    case BW_UnitType::Zerg_Queen     : return Prototypes::Queen;
+    default : return NULL;
+  }
 }
 //------------------------------ CAN ORDER -----------------------------------
 bool Unit::canOrder(const AbilityPrototype* const ability, Unit* target) const
@@ -78,9 +79,15 @@ void Unit::order(const AbilityPrototype* const ability, Unit* target)
 void Unit::order(const AbilityPrototype* const ability, BW_Position target)
 {
 }
-//----------------------------------------------------------------------------
+//------------------------------- GET OWNER ----------------------------------
 Player* Unit::getOwner() const
 {
-  return this->owner;
+  return Broodwar.players[this->rawData->playerID];
+}
+//-------------------------------- IS VALID ----------------------------------
+bool Unit::isValid() const
+{
+  return this->getHealthPoints() > 0 || 
+         this->getHealthPointsFraction() > 0;
 }
 //----------------------------------------------------------------------------

@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Globals.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Player.cpp"
 				>
 			</File>
@@ -227,7 +231,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NexuizUnitStructure.h"
+				RelativePath=".\Globals.h"
 				>
 			</File>
 			<File
