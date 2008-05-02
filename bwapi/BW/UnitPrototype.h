@@ -1,12 +1,12 @@
-/** 
- * Definition of unit prototype
- */
+#pragma once
 #include "Types.h"
 #include <string>
 class AbilityPrototype;
 class Target;
 class Unit;
-
+/** 
+ * Definition of unit prototype
+ */
 class UnitPrototype
 {
   public :

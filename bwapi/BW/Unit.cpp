@@ -3,6 +3,7 @@
 #include "UnitPrototypeDefinitions.h"
 #include "Player.h"
 #include "Globals.h"
+#include "Offsets.h"
 //----------------------------- CONSTRUCTOR -----------------------------------
 Unit::Unit(BW_Unit *rawData)
 {
@@ -74,10 +75,22 @@ bool Unit::canOrder(const AbilityPrototype* const ability, BW_Position target) c
 //-------------------------------- ORDER -------------------------------------
 void Unit::order(const AbilityPrototype* const ability, Unit* target)
 {
+
 }
+void (_stdcall*sendCommand)(int, int, int, int) = (void(_stdcall*)(int, int, int, int))BWFXN_CommandUnit;
 //--------------------------------- ORDER ------------------------------------
 void Unit::order(const AbilityPrototype* const ability, BW_Position target)
 {
+ sendCommand(6, 0xe4, target.y, 0);
+ //sendcommand(command, 0xe4, y, x);
+                           
+}
+//--------------------------------- ORDER ------------------------------------
+void Unit::order(int commandCode, BW_Position target)
+{
+ sendCommand(commandCode, 0xe4, target.x, target.y);
+ //sendcommand(command, 0xe4, y, x);
+                           
 }
 //------------------------------- GET OWNER ----------------------------------
 Player* Unit::getOwner() const
@@ -89,5 +102,10 @@ bool Unit::isValid() const
 {
   return this->getHealthPoints() > 0 || 
          this->getHealthPointsFraction() > 0;
+}
+//----------------------------------------------------------------------------
+BW_Position Unit::getPosition() const
+{
+  return rawData->currentPos;
 }
 //----------------------------------------------------------------------------

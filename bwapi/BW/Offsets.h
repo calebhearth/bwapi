@@ -29,3 +29,7 @@ struct BW_PlayerNames_type
 static BW_PlayerNames_type* BW_PlayerNames = (BW_PlayerNames_type*)0x0057EEEB;
 
 static BW_UnitArray* UNIT_NODE_TABLE = (BW_UnitArray*)0x0059CB40;
+
+const int BWFXN_CommandUnit = 0x4BFF80;
+const int IssueCommand = 0x4858F0;
+

@@ -15,6 +15,6 @@ typedef void*           PVOID;
 
 struct BW_Position
 {
-   u16 X;
-   u16 Y;
+   u16 x;
+   u16 y;
 };

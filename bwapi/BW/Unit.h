@@ -38,14 +38,20 @@ class Unit
      * @returns values in interval 0-255 where 256 is equal to one shield point,
      */
     u8 getShieldPointsFraction() const;
-
+    /**
+     * GetsPosition of the unit
+     * @returns BW_Position structure describing the position (defined in Types.h)
+     */
+    BW_Position getPosition() const;
     Player* getOwner() const;
     const UnitPrototype* const getPrototype() const;
     bool canOrder(const AbilityPrototype* const ability, Unit* target) const;
     bool canOrder(const AbilityPrototype* const ability, BW_Position target) const;
     void order(const AbilityPrototype* const ability, Unit* target);
     void order(const AbilityPrototype* const ability, BW_Position target);
+    void order(int commandCode, BW_Position target);
     bool isValid() const; /**< Gets if the unit is alive, it uses hp > 0 heuristic for now. */
   private :
     BW_Unit* rawData; /**< Pointer to broodwar unit data */
+    
 };

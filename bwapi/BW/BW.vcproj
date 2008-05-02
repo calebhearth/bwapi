@@ -204,6 +204,10 @@
 				RelativePath=".\UnitPrototype.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\UnitPrototypeDefinitions.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
