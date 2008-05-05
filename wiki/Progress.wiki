@@ -8,8 +8,7 @@
 == Works ==
  # Unit selecting 
  # Unit production 
- # Current selected
- # units reading
+ # Current selected units reading
 == To investigate ==
  # In Game address
  # Public send text command 
