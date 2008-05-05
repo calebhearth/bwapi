@@ -1,20 +1,20 @@
 == Done and properly tested ==
-#Approaching unit data
-#Approaching player data
+ # Approaching unit data
+ # Approaching player data
 == Works and is impelemnted in the BWAPI object model ==
-#Unit selecting (single unit only)
-#Move -(Location/target) 
-#Slot change orders
+ # Unit selecting (single unit only)
+ # Move -(Location/target) 
+ # Slot change orders
 == Works ==
-#Unit selecting 
-#Unit production 
-#Current selected
-#units reading
+ # Unit selecting 
+ # Unit production 
+ # Current selected
+ # units reading
 == To investigate ==
-#In Game address
-#Public send text command 
-#Refresh screen command (rectangle)
-#How to hook functions (generaly)
-#How to hook (Game start, game update, game end, send command)
-#Crash problems (thread safety, how to lock process)
-#Other commands (build building, morph, burrow etc)
+ # In Game address
+ # Public send text command 
+ # Refresh screen command (rectangle)
+ # How to hook functions (generaly)
+ # How to hook (Game start, game update, game end, send command)
+ # Crash problems (thread safety, how to lock process)
+ # Other commands (build building, morph, burrow etc)
