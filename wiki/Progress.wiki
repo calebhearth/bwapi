@@ -17,3 +17,4 @@
  # How to hook (Game start, game update, game end, send command)
  # Crash problems (thread safety, how to lock process)
  # Other commands (build building, morph, burrow etc)
+ # The synchronization process
