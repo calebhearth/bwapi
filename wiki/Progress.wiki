@@ -1,4 +1,4 @@
-== Done and properly tested ==
+== Done and properly tested (can't be used wihout hazard probably)==
  # Approaching unit data
  # Approaching player data
 == Works and is impelemnted in the BWAPI object model ==
