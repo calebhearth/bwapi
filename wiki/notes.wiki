@@ -4,9 +4,9 @@
 So when you order command, #L frames nothing happends, as it would be annoying to workaround the latency in the code that uses the bwapi I decided (and Goosy doesn't like it) to make workaround tool for that directly in our bw api.
 
 We will have 3 versions of bw data.
-1) BW data in the memory that bw uses directly
-2) Our copy (that is made every frame), so some multithread version could work with that without problems
-3) Partialy precomputed version of data
+ # BW data in the memory that bw uses directly
+ # Our copy (that is made every frame), so some multithread version could work with that without problems
+ # Partialy precomputed version of data
 
 I will explain on example, lets assume you ordered your command center to start building scv, but #L the command center will still not start the build, so code like if (cc->notBuilding) buildScv, will order the command to build the scv #L + 1 times.
 
