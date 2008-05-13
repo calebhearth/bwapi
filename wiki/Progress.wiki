@@ -5,19 +5,17 @@
  # Move -(Location/target) 
  # Slot change orders
  # Unit production 
-== Works and is impelemnted in the BWAPI object model ==
-
-== Works ==
  # Unit selecting 
  # Current selected units reading
  # How to hook functions (generaly)
-== Solved ==
  # Crash problems (thread safety)
+ # Hook(Game start, game update, game end, removeUnit)
+ # Gather optimalization (2 workers per mineral patch - 20% faster then human + 300 apm per gather)
+
 == Planned solution ==
  # The synchronization process
 == To investigate ==
  # In Game address
  # Public send text command 
  # Refresh screen command (rectangle)
- # How to hook (Game start, game update, game end, send command)
- # Other commands (build building, morph, burrow etc)
+# Other commands (build building, morph, burrow etc)
