@@ -1,24 +1,5 @@
 = Latency =
-#L = count of frames before commands take effect.
-(Because you must distribute the command to all players)
-So when you order command, #L frames nothing happends, as it would be annoying to workaround the latency in the code that uses the bwapi I decided (and Goosy doesn't like it) to make workaround tool for that directly in our bw api.
-
-We will have 3 versions of bw data.
- # BW data in the memory that bw uses directly
- # Our copy (that is made every frame), so some multithread version could work with that without problems
- # Partialy precomputed version of data
-
-I will explain on example, lets assume you ordered your command center to start building scv, but #L the command center will still not start the build, so code like if (cc->notBuilding) buildScv, will order the command to build the scv #L + 1 times.
-
-So when you do builSCV command, the bwapi library will call that command in bw, but also call our function, that modifies the precomuted version of data immediatly, store it (the command) in buffer, and keep it #L frames, then every frame, we will make fresh copy of bw data (version 3), and apply all commands stored in the buffer manualy.
-
-This will mainly include 
- # Training (We will just place the unit to be built in the building queue, and decrease mineral count (also the precomputed version), Note that we will probably implement negative % progress of the unit construction)
- # Unit command orders (Change of unit orderID and target(location/unit))
-
-so the code will be (cc->precomputed->notBuilding) -> buildSCV, the preComputed state will change immedeatly.
-
-The user of the library must be aware, that we can't guarantee that the preComputed state will really occur, for example if you order to build scv, and just before the command gets executed you lose minerals, the command will fail.
+http://www.kovarex.com/bwapi/doc/localData.html
 
 = Multithread issues =
 
