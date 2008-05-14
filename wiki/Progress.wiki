@@ -13,7 +13,7 @@ Summarization what is already integrated in the system and what awaits realizati
  # Crash problems (thread safety)
  # Hook(Game start, game update, game end, removeUnit)
  # Gather optimalization (2 workers per mineral patch - 20% faster then human + 300 apm per gather)
-== To implement
+== To implement soon ==
   # Other commands (morph, burrow, hold etc)
   # Complete all unit prototype support
   # Map tile-type info
