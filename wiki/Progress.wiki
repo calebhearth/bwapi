@@ -1,5 +1,7 @@
-== Done and properly tested ==
- # Approaching unit data
+Summarization what is already integrated in the system and what awaits realization
+
+== Done-Integrated-tested ==
+ # Approaching unit data (and it's linked list)
  # Approaching player data
  # Unit selecting (single unit only)
  # Move -(Location/target) 
@@ -11,11 +13,19 @@
  # Crash problems (thread safety)
  # Hook(Game start, game update, game end, removeUnit)
  # Gather optimalization (2 workers per mineral patch - 20% faster then human + 300 apm per gather)
-
-== Planned solution ==
- # The synchronization process
+== To implement
+  # Other commands (morph, burrow, hold etc)
+  # Map tile-type info
+  # Map tiles
+== Find good solution ==
+ # The integration of multi thread support (so the ai can long as long as it wants without lag)
 == To investigate ==
- # In Game address
- # Public send text command 
+ # In Game address (address that specifies if the game is running)
+ # Public send text command
  # Refresh screen command (rectangle)
-# Other commands (build building, morph, burrow etc)
+ # Print xy functoin/ print rectangle function
+ # Recognize in-lobby
+ # recognize game started (the ok butten pushed and the 5-4-3-2-1 counting is in progress)
+ # Battle net comands (Send message, join game, create game)
+ # Hook incoming message (battle net or other)
+ # How to load unit prototype names from bw memory
