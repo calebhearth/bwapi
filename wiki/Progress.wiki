@@ -15,6 +15,7 @@ Summarization what is already integrated in the system and what awaits realizati
  # Gather optimalization (2 workers per mineral patch - 20% faster then human + 300 apm per gather)
 == To implement
   # Other commands (morph, burrow, hold etc)
+  # Complete all unit prototype support
   # Map tile-type info
   # Map tiles
 == Find good solution ==
