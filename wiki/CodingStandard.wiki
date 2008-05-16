@@ -135,7 +135,7 @@ class Player
 public:
   // Yada Yada
 private:
-  u32 playerNumber; // <-- m_ for member variables
+  u32 playerNumber; // member variables pascalCase
   std::string playerName; // <-- always leave std:: scoping
   static u32 playerCount; // <-- Static is true scope
   const u32 MAX_PLAYERS; // <-- Member constant
@@ -189,9 +189,9 @@ u32 timeTillDeath = getTimeTillDeath();
 === Reverse Engineering ===
  # Offset values should be written in hexadecimal. IE: ~~100~~, instead use 0x64
 === Documentation ===
- # Documentation is *not* limited to comments. All aspects of code should help document it and the wiki should be used whenever in-code documentation is insufficient.
+ # Documentation is *not* limited to comments. All aspects of code should help document it and the pages.h can be used to construct wiki like documentation pages to describe bigger issues.
  # Comments should not be used for version control information. Do not put changelogs, author tags, dates, or any other information that SVN will automatically generate.
- # Comments should follow [http://www.stack.nl/~dimitri/doxygen/ DoxyGen] style.
+ # Comments MUST follow [http://www.stack.nl/~dimitri/doxygen/ DoxyGen] style.
  # Comments exist to give additional information that you can not infer from the code. They should never repeat information already found in the code. For example:
 {{{
 // BAD! Tells no new information. Better off not being added.
@@ -233,10 +233,10 @@ bwapi/
 # Functions with no parameters should be declared as such:
 {{{
 // Bad
-u32 GetUnitCount(void);
+u32 getUnitCount(void);
 
 // Good
-u32 GetUnitCount();
+u32 getUnitCount();
 }}}
 ==== Use Design By Contract ====
  # Try to use fail-fast behavior to catch programming errors as soon as possible. The philosphy is the faster and closer the location of a bug the failure occures, the easier to fix the bug will be.
@@ -267,16 +267,13 @@ u32 GetUnitCount();
 === Misc ===
  # Try to declare variables as close to their usage as possible. Avoid 'pascal/c' style of declaring all variables at the beginning of function.
  # Initialize variable on declaration. This ensures they are valid, helps keep declaration close to usage, and helps prevent some common errors.
- # Use as little dynamic memory as possible. Where required usage of smart pointers is preferred to eliminate common dynamic memory issues.
+ # Use as little dynamic memory as possible. Where required usage of smart pointers is preferred (but not enforced) to eliminate common dynamic memory issues.
  # Wherever there is wiggle room in this standard always follow the style used in the file you are editing. Do not reformat all the code to your liking as this both rude and can obscure the real changes when looking at revision diffs in version control.
- # Not required, but try to put constants on the left hand of comparisons. Takes time to get used to, but can be useful. For example:
-{{{
-// This will be full-proof against forgetting one of the ='s.
-if (BW::UnitType::Protoss_Probe == enemyUnitType)
-}}}
+ # Not required, but try to put constants on the right hand of comparisons
+
  # goto - some think it is evil. Avoid use where possible, but feel free to use it if the result is cleaner code that is easier to follow.
  # (condition) ? something : somethingElse; use this where it makes code cleaner and easier to follow. Never use it just to save typing where a full if statement would be more appropriate. :)
  # One statement per line. 
  # One variable per line.
  # Avoid the 'using' statement where possible. Prefer typing the scope, especially for boost and the STL (std namespace). *Never* globally define 'using' in a header (this pollutes the namespace).
- # Be Const correct. Use the const keyword wherever you can. Always always be const correct.
+ # Be Const correct. Use the const keyword wherever you can. Always always be const correct, this sometimes requires 2 versions of functions, if the function is too complex to double it, use template.
