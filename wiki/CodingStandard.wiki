@@ -69,10 +69,10 @@ if ( unitPosition.m_x < basePerimeter.GetLeftEdge() && unitPosition.m_x > basePe
 
 // Good
 if (
-      unitPosition.m_x < basePerimeter.GetLeftEdge() && 
-      unitPosition.m_x > basePerimeter.GetRightEdge() && 
-      unitPosition.m_y < basePerimeter.GetTopEdge() && 
-      unitPosition.m_y > basePerimeter.GetBottomEdge()
+     unitPosition.m_x < basePerimeter.GetLeftEdge() && 
+     unitPosition.m_x > basePerimeter.GetRightEdge() && 
+     unitPosition.m_y < basePerimeter.GetTopEdge() && 
+     unitPosition.m_y > basePerimeter.GetBottomEdge()
    )
 {
    UnitHasBreachePerimeter(unitPosition);
