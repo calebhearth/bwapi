@@ -24,6 +24,7 @@ switch (unitType)
   }
 }
 }}}
+ # Switches with similar command of same type shuld have one-line statement
  # Don't put parens() next to keywords, put a space between. Do put parens next to function names. Do not use parens in return statements when it's not neccessary. Do not put spaces directly inside of parens. Examples:
 {{{
   if (condition && condition)
@@ -81,22 +82,20 @@ if (
 int TooLazyToThinkOfAnImaginaryFunctionRightNow( u32 amountOfMyLazy, u32 timeTillIFallAsleep, BW::Unit* pUnitThatWillPutMeToSleep, u32 ohGodAnotherVariable, const std::string& thisFunctionIsHorrible );
 
 // Good (except for all the horrible names, since I am not feeling creative right now)
-int TooLazyToThinkOfAnImaginaryFunctionRightNow
-  (
-    u32 amountOfMyLazy, 
-    u32 timeTillIFallAsleep, 
-    BW::Unit* pUnitThatWillPutMeToSleep, 
-    u32 ohGodAnotherVariable, 
-    const std::string& thisFunctionIsHorrible 
+int TooLazyToThinkOfAnImaginaryFunctionRightNow(      u32          amountOfMyLazy, 
+                                                      u32          timeTillIFallAsleep, 
+                                                      BW::Unit*    pUnitThatWillPutMeToSleep, 
+                                                      u32          ohGodAnotherVariable, 
+                                                const std::string& thisFunctionIsHorrible 
   );
 }}}
  # Format constructor initialize lists as follows (easiest addition/removal of members):
 {{{
 Player::Player()
-:m_unitCount(0)
-,m_pFirstUnit(NULL)
-,m_name("")
-,m_isWinner(false)
+:unitCount(0)
+,pFirstUnit(NULL)
+,name("") // but default constructor should be avoided
+,isWinner(false)
 {
   // additional constructor code
 }
@@ -222,10 +221,9 @@ int GetUnitCount(const BW::Player* const pPlayer) const;
 bwapi/
       SolutionName/ <-- Holds *.sln file
                    ProjectName/ <-- Hold *.vcproj file
-	                           bin/ <-- Binary output and debug tables
-				               obj/ <-- Temporary object files
-				               source/ <-- holds *.cpp and *.h files
-							          BW/ <-- Possible namespace folder name
+                              obj/ <-- Temporary object files
+		              source/ <-- holds *.cpp and *.h files
+			            BW/ <-- Possible namespace folder name
 }}}
 === Function Guidelines ===
  # Functions should have a single obvious purpose.
@@ -241,10 +239,8 @@ u32 getUnitCount();
 ==== Use Design By Contract ====
  # Try to use fail-fast behavior to catch programming errors as soon as possible. The philosphy is the faster and closer the location of a bug the failure occures, the easier to fix the bug will be.
  # Avoid returning failure codes wherever possible: if it is a programming error it is better to fail-fast, if it is a user-input error than try to handle these as close to the source as possible.
- # Use REQUIRE() and ENSURE() which are copies of ASSERT() where appropriate, to help self-document the code.
- # REQUIRE() all requirements at the beginning of a function.
- # ENSURE() correct operation at the end of a function. For example, if a supplyUsed value should never be returned greater than 200 than do ENSURE(supplyUsed < 200) or even better ENSURE(supplyUsed < SUPPLY_LIMIT).
- # ASSERT() throughout the function wherever appropriate. Agressive asserting is encouraged since failing as close to the problem as possible is the goals.
+ # Use Exceptions fro Util project if possible, throw Excpetion objects, not pointers (just don't put the new before the exception)
+ # If you think you need your Exception type, make it in Util/Exceptions, and inherit it      from general exception
 === Class Guidelines ===
  # Use *struct* for pure data-structures, such as mapping BW process memory. Use *class* for any functional classes. In general you will never have a struct with member functions.
  # Classes should have a single obvious purpose.
@@ -267,7 +263,7 @@ u32 getUnitCount();
 === Misc ===
  # Try to declare variables as close to their usage as possible. Avoid 'pascal/c' style of declaring all variables at the beginning of function.
  # Initialize variable on declaration. This ensures they are valid, helps keep declaration close to usage, and helps prevent some common errors.
- # Use as little dynamic memory as possible. Where required usage of smart pointers is preferred (but not enforced) to eliminate common dynamic memory issues.
+ # Use as little dynamic memory as possible. 
  # Wherever there is wiggle room in this standard always follow the style used in the file you are editing. Do not reformat all the code to your liking as this both rude and can obscure the real changes when looking at revision diffs in version control.
  # Not required, but try to put constants on the right hand of comparisons
 
@@ -275,5 +271,5 @@ u32 getUnitCount();
  # (condition) ? something : somethingElse; use this where it makes code cleaner and easier to follow. Never use it just to save typing where a full if statement would be more appropriate. :)
  # One statement per line. 
  # One variable per line.
- # Avoid the 'using' statement where possible. Prefer typing the scope, especially for boost and the STL (std namespace). *Never* globally define 'using' in a header (this pollutes the namespace).
+ # Avoid the 'using' statement' at all. Prefer typing the scope, especially for boost and the STL (std namespace). *Never* globally define 'using' in a header (this pollutes the namespace).
  # Be Const correct. Use the const keyword wherever you can. Always always be const correct, this sometimes requires 2 versions of functions, if the function is too complex to double it, use template.
