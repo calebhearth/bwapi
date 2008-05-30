@@ -1,0 +1,20 @@
+IN progress - I will finish it soon after I test more things
+
+Everyone can add here advices how to set up the visual studio well
+
+I just found there is service pack 1 for visual studio, so make sure you install it.
+
+==Speed up VS==
+#Options->Environment->Startup Set startup to "Load last loaded solution" so the shitty startup page wont load everytime
+#Options->Envioronment->General set recent files to 1/1
+#Options->Envioronment->General set Animate environmental tools to OFF
+
+==Spped up work==
+
+# Be sure you have "go to definition" and "go to declaration" shortucts set ( I use alt-d, alt-s)
+# Have some way to switch between header and cpp file (I use some macro but it has some drawback, looking for better way)
+# Use the Open file function (It opens the file you have cursor on mostly #inlcude, I have it on ctrl-enter (as it had borland)
+# Looking for some addon that would open dialog box, I would write file name and it would open it (with tooltip))
+
+==Test stuff==
+# Refactor pro seems to be nice, but I need to test it more properly, seems to be full of bugs
