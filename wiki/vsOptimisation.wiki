@@ -27,11 +27,13 @@ I just found there is service pack 1 for visual studio, so make sure you install
 ==Test stuff==
  # Refactor pro seems to be nice, but I need to test it more properly, seems to be full of bugs
 === Visual studio 2005 ==
- # King tools http://bwapi.googlecode.com/files/KingsSetup.msi
-If you plan to use the insert comment function (and it is worth it), be sure u replace King Tools config files with these (they are probably in Program Files\King Tools), be sure u also set shortcut for this function ( I use alt-D)
+ =King tools=
+  http://bwapi.googlecode.com/files/KingsSetup.msi
+  If you plan to use the insert comment function (and it is worth it), be sure u replace     King Tools config files with these (they are probably in Program Files\King Tools), be sure u also set shortcut for this function ( I use alt-D)
  http://bwapi.googlecode.com/files/functionparams.txt
  http://bwapi.googlecode.com/files/classheader.txt
- # Comment reflower http://sourceforge.net/project/downloading.php?group_id=122199&use_mirror=garr&filename=CommentReflowerForVS2005.1.4.zip&76972136
+ =Comment reflower=
+http://sourceforge.net/project/downloading.php?group_id=122199&use_mirror=garr&filename=CommentReflowerForVS2005.1.4.zip&76972136
   Make sure you make this setting after install
 Tools->Comment Reflower Settings -> Bullets
 Add this value there now 
