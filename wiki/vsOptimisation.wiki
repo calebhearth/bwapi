@@ -13,13 +13,13 @@ I just found there is service pack 1 for visual studio, so make sure you install
  # Ankh Integrated SVN support http://bwapi.googlecode.com/files/AnkhSetup-1.0.3.2800-Trunk.msi
 
 ==Speed up VS==
-#Options->Environment->Startup Set startup to "Load last loaded solution" so the shitty startup page wont load everytime
+ # Options->Environment->Startup Set startup to "Load last loaded solution" so the shitty startup page wont load everytime
  # Options->Envioronment->General set recent files to 1/1
  # Options->Envioronment->General set Animate environmental tools to OFF
  # Disable HTML validation - Tools\Options\Text Editor\HTML\Validation\   uncheck "Show Errors" checkbox
 
 ==Speed up work==
-# Be sure you have "go to definition" and "go to declaration" shortucts set ( I use alt-d, alt-s)
+ # Be sure you have "go to definition" and "go to declaration" shortucts set ( I use alt-d, alt-s)
  # Have some way to switch between header and cpp file (I use the swap.hpp/cpp feature from kings tools, but it is only for vs 2005)
  # Use the Open file function (It opens the file you have cursor on mostly #inlcude, I have it on ctrl-enter (as it had borland) 
  # Looking for some addon that would open dialog box, I would write file name and it would open it (with tooltip))
