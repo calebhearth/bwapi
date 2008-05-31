@@ -4,6 +4,7 @@ Code standards: Some people love them and some people hate them. When preparing 
 Before I jump into the standard I want to say this here: *Remember we are in this together.* The code standard should exist to help us work together; not to make it more difficult. This document can always be amended as needed.
 
 === Indentation, Tabs, and Spaces ===
+ # Line width is 110 you can find trick how to set a column line at 110 and comment reflower to work the way you want here: http://code.google.com/p/bwapi/wiki/vsOptimisation
  # Do not use tabs, use 2 spaces for indentation. Some good reasons for this are: code viewed in other editors will align correctly and code pasted online will align correctly. In VS2005 you can set it to use 'spaces for tabs' in Tools->Options->TextEditor->C++->Tabs
  # Always indent each scope level.
  # Indent switch statements as follows:
