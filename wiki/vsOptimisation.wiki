@@ -6,8 +6,9 @@ I just found there is service pack 1 for visual studio, so make sure you install
 
 ==Speed up VS==
 #Options->Environment->Startup Set startup to "Load last loaded solution" so the shitty startup page wont load everytime
-#Options->Envioronment->General set recent files to 1/1
-#Options->Envioronment->General set Animate environmental tools to OFF
+# Options->Envioronment->General set recent files to 1/1
+# Options->Envioronment->General set Animate environmental tools to OFF
+# Disable HTML validation - Tools\Options\Text Editor\HTML\Validation\   uncheck "Show Errors" checkbox
 
 ==Spped up work==
 
