@@ -4,35 +4,35 @@ So I made the project to support both vs 2005 and 2008, every project file with 
 
 VS 2005 is starting 13 seconds, while vs 2008 36.
 
-=== Visual studio 2008  ===
+=Visual studio 2008=
 I just found there is service pack 1 for visual studio, so make sure you install it.
 
 
-=== Visual studio 2005/2008  ===
-== Addins ==
+=Visual studio 2005/2008=
+=== Addins ===
  # Ankh Integrated SVN support http://bwapi.googlecode.com/files/AnkhSetup-1.0.3.2800-Trunk.msi
 
-==Speed up VS==
+===Speed up VS===
  # Options->Environment->Startup Set startup to "Load last loaded solution" so the shitty startup page wont load everytime
  # Options->Envioronment->General set recent files to 1/1
  # Options->Envioronment->General set Animate environmental tools to OFF
  # Disable HTML validation - Tools\Options\Text Editor\HTML\Validation\   uncheck "Show Errors" checkbox
 
-==Speed up work==
+===Speed up work===
  # Be sure you have "go to definition" and "go to declaration" shortucts set ( I use alt-d, alt-s)
  # Have some way to switch between header and cpp file (I use the swap.hpp/cpp feature from kings tools, but it is only for vs 2005)
  # Use the Open file function (It opens the file you have cursor on mostly #inlcude, I have it on ctrl-enter (as it had borland) 
  # Looking for some addon that would open dialog box, I would write file name and it would open it (with tooltip))
 
-==Test stuff==
+===Test stuff===
  # Refactor pro seems to be nice, but I need to test it more properly, seems to be full of bugs
-=== Visual studio 2005 ==
- =King tools=
+= Visual studio 2005 =
+ ===King tools===
   http://bwapi.googlecode.com/files/KingsSetup.msi
   If you plan to use the insert comment function (and it is worth it), be sure u replace     King Tools config files with these (they are probably in Program Files\King Tools), be sure u also set shortcut for this function ( I use alt-D)
  http://bwapi.googlecode.com/files/functionparams.txt
  http://bwapi.googlecode.com/files/classheader.txt
- =Comment reflower=
+ ===Comment reflower===
 http://sourceforge.net/project/downloading.php?group_id=122199&use_mirror=garr&filename=CommentReflowerForVS2005.1.4.zip&76972136
   Make sure you make this setting after install
 Tools->Comment Reflower Settings -> Bullets
