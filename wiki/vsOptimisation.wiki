@@ -35,13 +35,13 @@ I just found there is service pack 1 for visual studio, so make sure you install
  ===Comment reflower===
   http://sourceforge.net/project/downloading.php?group_id=122199&use_mirror=garr&filename=CommentReflowerForVS2005.1.4.zip&76972136
   Make sure you make this setting after install
-   Tools->Comment Reflower Settings -> Bullets
-   Add this value there now 
-   Name : "Numbered comments like -# (the name doesn't need to match)
-   Match String : -#
-   is Regexp : OFF
-   Wrap on Edge : Right
-   This will reflow correctly comments that have numbered list like
-    This is class that do 
-    -# thing 2 
-    -# thing 2
+  Tools->Comment Reflower Settings -> Bullets
+  Add this value there now 
+  Name : "Numbered comments like -# (the name doesn't need to match)
+  Match String : -#
+  is Regexp : OFF
+  Wrap on Edge : Right
+  This will reflow correctly comments that have numbered list like
+  This is class that do 
+  -# thing 1 
+  -# thing 2
