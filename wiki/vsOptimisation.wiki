@@ -9,6 +9,11 @@ I just found there is service pack 1 for visual studio, so make sure you install
 
 
 =Visual studio 2005/2008=
+=== Settings ===
+ * Registry directory [HKEY_CURRENT_USER]\Software\Microsoft\VisualStudio\8.0\Text
+ * 9.0 instead of 8.0 for vs 2008
+ * Make new string value Guides with value "RGB(128,128,128) 110"
+ * You can always use new color, but the 110 is our standard line width.
 === Addins ===
  # Ankh Integrated SVN support http://bwapi.googlecode.com/files/AnkhSetup-1.0.3.2800-Trunk.msi
 
