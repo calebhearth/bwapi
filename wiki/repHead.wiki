@@ -1,0 +1,58 @@
+#labels Phase-Implementation
+= Replay Header Structure =
+
+Matches several structures found in memory, like player structure
+{{{
+
+u8		Is Broodwar
+u32		Match Time
+u16		Unknown (Always 0x00)
+u8		Unknown (Always 0x48)
+u32		Creation Date
+u8 * 12		Unknown ID (player related)
+char * 28	Game Name
+u16		Map Width
+u16		Map Height
+u8		Unknown
+u8		Slots Available
+u16		Game Speed
+u16		Game Type
+u16		Game Subtype
+u32		Date recorded? Random Seed?
+u16		Tileset
+u16		Unknown ( x > 0 )
+char * 24	Creator Name
+u8		Unknown ("MapType" 0x3C for BW Reps)
+char * 32	Map Name
+u16		Game Type ID
+u16		Subtype ID
+u16		Subtype Display Value
+u16		Subtype Label
+u8		Victory Conditions (Map Default, Melee, Highest Score, Resources, CTF, Sudden Death, Slaughter, 1v1)
+u8		Resources (type) (Map Default, Fixed Value, Low, Medium, High, Income)
+u8		Unit Stats (Map Default, Standard)
+u8		Fog of War (Off, Warcraft1, On)
+u8		Starting Units (Map Default, Workers Only, Workers+Center)
+u8		Starting Positions (Random, Fixed)
+u8		Player Types (Bit 0 = Computer Available; Bit 1 = Single Player)
+u8		Allies (Not Allowed, Allowed)
+u8		Team Mode (Off, 1 Team[crash], 2 teams, 3 teams, 4 teams)
+u8		Cheat Codes (Off, On)
+u8		Tournament Mode (Off, On)
+u32		Victory Condition Value
+u32		Resources Value
+u32		Unknown/unused
+u8		Unknown/unused
+
+	Player Structure (*12)
+	----------------------------------
+	u32		Player ID
+	u32		Number of Actions
+	u8		Owner
+	u8		Race
+	u8		Force
+	Char * 25	Player Name
+
+u32 * 8		Player Colour
+u8 * 8		Unknown (0x01 if player is used, 0x00 otherwise)
+}}}
