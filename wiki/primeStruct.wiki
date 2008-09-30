@@ -1,5 +1,24 @@
 #labels Phase-Implementation
 {{{
+005136E0	Upgrades.dat Load Table
+00513780		Unk dat Load Table
+005137D8	Techdata.dat Load Table
+00513868	Weapons.dat Load Table
+	{	u32	Offset
+		u32	Field Size in Bytes
+		u32	Number of Fields
+	}
+
+00513C30	Units.dat Load Table
+
+00513EC8	Orders.dat Load Table
+00513FB8	Sprites.dat Load Table
+00514010	Images.dat Load Table
+
+00515A40	Flingy.dat Load Table
+
+0051C008	Begin of Dynamic Memory
+
 0057EE78	Always 0x01
 0057EE7C	Player Slots Taken (4 * 8)
 0057EE9C	Player Name (Current? Host?) (24)
@@ -67,7 +86,7 @@
 0057FD1C	Last Action X (Center location Spacebar)
 0057FD20	Last Action Y
 0057FD24	Full map file name (260)
-0057FE28	Map Title String (64)
+0057FE28	Map Title String (32)
 0057FE48	Player Saved Groups (4[unit ID] * 12[max selection] * 18[Number of these structures] * 8[Number of players])
 00581948		Unknown
 
@@ -127,16 +146,17 @@
 0058D6E8		Unknown (4)
 0058D6EC		Unknown (4)
 0058D6F0	Leaderboard Computer Players Switch (4)
-0058D6F4	Leaderboard Type (2)
-0058D6F6	Leaderboard Flags ? (2)
+0058D6F4	Leaderboard Type (1)
+0058D6F5		Unknown (1)
+0058D6F6		Unknown (1)
+0058D6F7		Unknown (1)
 0058D6F8	Leaderboard Goal (4)
-0058D6FC	Leaderboard String (2)
-0058D6FE	Leaderboard Unknown (2)
+0058D6FC	Leaderboard String (4)
 0058D700	Remaining Game Pauses (8)
 0058D708	Start Location Positions ([2+2] * 8)
-0058D728		Unknown (1280 [0x500])
+0058D728	Locations [SC] (5 * 4 * 64)
 0058DC28	Switch States (32)
-0058DC48	Locations (5 * 4 * 255)
+0058DC48	Locations [BW] (5 * 4 * 255)
 0058F034	Countdown Timer Pause State (4)
 0058F038	Technologies Available (BW) (20 * 12)
 0058F128	Technologies Researched (BW) (20 * 12)
@@ -205,19 +225,48 @@
 0059C068	mapdata.dat string pointers
 0059C16C		Unknown
 
-0059CB40	Unit Array (336 * 1701)
-006283D0+		Unknown
+0059CC90	Unit Array (336 * 1700)
+006283D0		unknown
+006283D4	First Unit 1
+006283D8		unknown
+006283DC	First Unit 2
+006283E0	First Unit P1
+006283E4	First Unit P2
+006283E8	First Unit P3
+006283EC	First Unit P4
+006283F0	First Unit P5
+006283F4	First Unit P6
+006283F8	First Unit P7
+006283Fc	First Unit P8
+00628400	First Unit P9
+00628404	First Unit P10
+00628408	First Unit P11
+0062840C	First Unit P12
+00628410	Last Unit 1
+00628414		unknown
+00628418	First unit 3
+0062841C	Last unit 2
+00628420	First empty unit slot
+00628424	Last empty unit slot
 
-00628418	First unit Ptr
+006284D0	? Player 1 Selection Group (4 * 12)
+00628500	? Player 2 Selection Group (4 * 12)
+00628530	? Player 3 Selection Group (4 * 12)
+00628560	? Player 4 Selection Group (4 * 12)
+00628590	? Player 5 Selection Group (4 * 12)
+006285C0	? Player 6 Selection Group (4 * 12)
+006285F0	? Player 7 Selection Group (4 * 12)
+00628620	? Player 8 Selection Group (4 * 12)
 
-006284D0	Player 1 Selection Group (4 * 12)
-00628500	Player 2 Selection Group (4 * 12)
-00628530	Player 3 Selection Group (4 * 12)
-00628560	Player 4 Selection Group (4 * 12)
-00628590	Player 5 Selection Group (4 * 12)
-006285C0	Player 6 Selection Group (4 * 12)
-006285F0	Player 7 Selection Group (4 * 12)
-00628620	Player 8 Selection Group (4 * 12)
+00629A70		520 1-byte entries (unknown
+00629C78		256 1-byte entries (unknown)
+00629D78		Unknown
+00629D7C		Unknown
+00629D80	Sprite Array (36 * 2500)
+0063FD10
+
+0063FE18	First sprite
+0063FE1C	Last sprite
 
 0063FF30	Display pylon aura
 
@@ -225,15 +274,22 @@
 
 00640963	Player Name
 
-00640B48	In-game text (218 * 12)
-
+00640B0C	Line information (4 * 11)
+00640B3C		Unknown
+00640B40		Unknown
+00640B44		Unknown
+00640B48	In-game text (218 * 13) [last 2 unused]
+0064165C	Line colour (13) [last 2 unused]
+0064166C	Time remaining for line? (13) [last 2 unused]
 00641679	Target Order	Ground
 0064167A	Target Order	Unit
 0064167B	Target Order	Building
 0064167C	Target Order	Enabled
 
-0064169C		Unknown Array; 20-byte entries; 
-ends somewhere around 0064B290
+00641688	Orders Array (20 * 2000)
+0064B2C8	First Order
+0064B2CC	Last Order
+0064B2D0	Unk struct (112 * 100)
 
 006509AC	Game is paused
 
@@ -265,7 +321,7 @@ ends somewhere around 0064B290
 00656470	Techdata.dat	Race (44)
 0065649C	Techdata.dat	Broodwar Flag (44)
 006564C8	Weapons.dat	Damage Factor (130)
-		Weapons.dat	Target Error Message (2 * 130)
+00656550	Weapons.dat	Target Error Message (2 * 130)
 006566E0	Weapons.dat	Explosion Type (130)
 00656870	Weapons.dat	Splash Inner (2 * 130)
 00656A00	Weapons.dat	Minimum Range (4 * 130)
@@ -303,6 +359,7 @@ ends somewhere around 0064B290
 00664798	Units.dat	Shield Enabled? (228)
 00664880	Units.dat	Idle order (228)
 00664968	Units.dat	Infestation Unit (2 * 96)
+
 00664A28	Orders.dat		Unknown 4 (189)
 00664AE8	Orders.dat	Use Weapon Targetting (189)
 00664BA8	Orders.dat		Unknown 12 (189)
