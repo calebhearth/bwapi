@@ -1,33 +1,69 @@
 #labels Phase-Implementation
 {{{
+00512BA0	mapdata.dat Load Table
+
 005136E0	Upgrades.dat Load Table
-00513780		Unk dat Load Table
+00513780	Portdata.dat Load Table
+005137D4		Unk u32
 005137D8	Techdata.dat Load Table
 00513868	Weapons.dat Load Table
-	{	u32	Offset
-		u32	Field Size in Bytes
-		u32	Number of Fields
-	}
+00513998	char[128] "REGISTRATION_BLOCK"
+00513A18		Unknown data
 
 00513C30	Units.dat Load Table
-
 00513EC8	Orders.dat Load Table
 00513FB8	Sprites.dat Load Table
 00514010	Images.dat Load Table
+005140C4		Unknown
 
+00514110	IO String pointer array
+00514178		Unknown
+
+005154A0		Unk dat Load Table
+005154E0		Unknown
+
+00515690	Battle.net Send/Request strings (SC)
+00515820	Battle.net Send/Request strings (BW)
+005159AC		Unknown (0x07)
+005159B0	Battle.net icon images string pointer
+005159B4	Battle.net icon images string pointer
+005159B8		Unknown (0x07)
+005159BC		Unknown (0x07)
+005159C0	char[32] "OK_DIALOG"
+005159E0	char[32] "BIGOK_DIALOG"
+00515A00	char[32] "OKCANCEL_DIALOG"
+00515A20	char[32] "BIGOKCANCEL_DIALOG"
 00515A40	Flingy.dat Load Table
+00515AA0	Trigger Condition Function pointer array
+00515B00		Unknown
+
+00515BF0	Button structures arrays
+005187F0	Buttonset structures array
+005193A8		Unknown struct array; Mission Briefing Related; 228 entries
+00519E58	Briefing Action Function Pointer Array (allocated space for 60 actions)
+00519F48		Unknown
+
+00519F70	Option structure array
+0051A0F0		Unknown
 
 0051C008	Begin of Dynamic Memory
 
+0051CED0	Images.dat Load Locations (pointers to each grp)
+0051DE70		Unknown Struct Array (64 entries)
+0051EE70	Ptr to first unk struct
+0051EE74		Unknown
+0051EE78	Unknown struct Array (64 Entries)
+0051F1F8	Ptr to last unk struct
+0051F1FC		Unknown
+
+0052E5C8		Unknown Images.dat-related Pointer array
+
+0052F5A8		Unknown Struct Array (5092 entries)
 0057EE78	Always 0x01
 0057EE7C	Player Slots Taken (4 * 8)
-0057EE9C	Player Name (Current? Host?) (24)
-0057EEB4		Unknown
-0057EEB8		Unknown
-0057EEB9	Current Player ID (For partial vision)
-0057EEBA		Unknown
-0057EEBB		Unknown
-0057EEBC	Elapsed Time
+0057EE9C	Player Name (Current? Host?) (28)
+0057EEB8	Current Player ID (For partial vision) +1
+0057EEBC	Elapsed Time (Frame)
 0057EEC0	Player IDs [0x08 = no ID] (4 * 8)
 0057EEE0	Player Entries (36 * 12)
 	u32		Player ID
@@ -41,7 +77,14 @@
 0057F098	Game Setting; 0 = Single Player; 1 = Multi Player
 0057F09C		Unknown
 0057F09E		Unknown
-0057F0A0		Unknown (36)
+0057F0A0		Unknown
+0057F0A4		Unknown
+0057F0A8		Unknown
+0057F0AC		Unknown
+0057F0B0		Unknown
+0057F0B4		Unknown
+0057F0B8		Unknown
+0057F0C0		Unknown
 0057F0C4	Current Player Start Location (2 + 2)
 0057F0C8		Unknown
 0057F0CC	Current Player Start Location (2 + 2)
@@ -66,7 +109,8 @@
 0057F204	Player Colour (4 * 8)
 0057F224	Elapsed Time (Current Frame)
 0057F228		Unknown
-0057F22C		Unknown
+0057F22C	Temporary Trigger Data Storage
+0057F22E	Next Scenario string index
 0057F230		Unknown
 0057F234		Unknown
 0057F238		Unknown
@@ -87,10 +131,30 @@
 0057FD20	Last Action Y
 0057FD24	Full map file name (260)
 0057FE28	Map Title String (32)
-0057FE48	Player Saved Groups (4[unit ID] * 12[max selection] * 18[Number of these structures] * 8[Number of players])
-00581948		Unknown
-
-00581D51	Player Selection Circle Colour (12) [00 = green, 01 = yellow, 02 = red]
+0057FE48	Player Saved Groups (8)
+		{	u32[12] 	Group 0 Unit IDs
+			u32[12] 	Group 1 Unit IDs
+			u32[12] 	Group 2 Unit IDs
+			u32[12] 	Group 3 Unit IDs
+			u32[12] 	Group 4 Unit IDs
+			u32[12] 	Group 5 Unit IDs
+			u32[12] 	Group 6 Unit IDs
+			u32[12] 	Group 7 Unit IDs
+			u32[12] 	Group 8 Unit IDs
+			u32[12] 	Group 9 Unit IDs
+			u32[12] 	Group history 1 Unit IDs
+			u32[12] 	Group history 2 Unit IDs
+			u32[12] 	Group history 3 Unit IDs
+			u32[12] 	Group history 4 Unit IDs
+			u32[12] 	Group history 5 Unit IDs
+			u32[12] 	Group history 6 Unit IDs
+			u32[12] 	Group history 7 Unit IDs
+			u32[12] 	Group history 8 Unit IDs
+		}
+00581948		Unknown (1024 bytes)
+00581D48		Unknown
+00581D52	Player Selection Circle Colour (12) [00 = green, 01 = yellow, 02 = red]
+00581D5D		Unknown
 00581D5E	Player Colour Palette (1-byte values ea.) (8 * 12)
 00581DBE	Player Minimap Colour (1-byte values) (12)
 00581DCA	Unused/Padding
@@ -146,10 +210,8 @@
 0058D6E8		Unknown (4)
 0058D6EC		Unknown (4)
 0058D6F0	Leaderboard Computer Players Switch (4)
-0058D6F4	Leaderboard Type (1)
-0058D6F5		Unknown (1)
-0058D6F6		Unknown (1)
-0058D6F7		Unknown (1)
+0058D6F4	Leaderboard Type (2)
+0058D6F6	Leaderboard Flag (2)
 0058D6F8	Leaderboard Goal (4)
 0058D6FC	Leaderboard String (4)
 0058D700	Remaining Game Pauses (8)
@@ -207,14 +269,20 @@
 00596868		Unknown/unused Value (4)
 0059686C		Unknown/unused (1)
 
-00596B08	Random ptrs
+005971F0	? Selection Group (4 * 12)
 
-005971F0	Selection Group (4 * 12)
+00599390	Pointer to Creep Data
+00599394		Unknown
+00599398		Unknown RECT struct
+005993A8		Unknown
+005993AC	Map Tile Array Ptr
+005993B0		Unknown	
+005993B4		Unknown Array Ptr
+005993B8		Unknown Array Ptr
+005993B8	Map String Data
+005993C0		Unknown u8 array (256 entries)
+005994C0		Unknown
 
-005993AC	Ptr to Map Tile Array
-
-005993B8	Ptr to Map Tile Array#2
-005993B8	Ptr to Map Strings (STR section)
 
 0059A0C0	Current Fullscreen Dialog Data
 
@@ -248,6 +316,8 @@
 0062841C	Last unit 2
 00628420	First empty unit slot
 00628424	Last empty unit slot
+
+0062847C	Map Tile Array(2)
 
 006284D0	? Player 1 Selection Group (4 * 12)
 00628500	? Player 2 Selection Group (4 * 12)
@@ -292,6 +362,9 @@
 0064B2D0	Unk struct (112 * 100)
 
 006509AC	Game is paused
+006509D0	Unk Struct Array (16 * 1000)
+
+
 
 00654874	Last save game name?
 
@@ -334,7 +407,11 @@
 00657458	Weapons.dat	Maximum Range (4 * 130)
 00657660	Weapons.dat	Upgrade Bonus (2 * 130)
 00657768	Weapons.dat	Splash Outer (2 * 130)
-0065786C		Unknown (33684)
+
+00657A88		unk Array (4 * 1024)
+
+00658AF8		Unk Array (4 * 1024)
+00659AF8		Unk Struct Array (20 * 1024)
 
 0065FC00	Units.dat	Max hits (Air) (228)
 0065FCE8	Units.dat	Gas Cost (2 * 228)
@@ -417,13 +494,22 @@
 
 006CA900	Currently selected unit shit (strings)
 
+006CDD98	RECT Screen Size
+006CDDA8		Unknown
 006CDDAC	Mouse X Position
 006CDDB0	Mouse Y Position
-
+006CDDB4		Unknown
+006CDDB8		Unknown (512)
+006CDFB8		Unknown
+006CDFBC	Speed
+006CDFC0	Single Player Mouse Scroll
+006CDFC4	Single Player Key Scroll
+006CDFC8	Music Level (%)
 006CDFCC	Sound Level (%)
-
-006CDFD8	Mouse Scroll Speed
-006CDFDC	Key Scroll Speed
+006CDFD0	Tip Number
+006CDFD4	Various Option Flags
+006CDFD8	Multiplayer Mouse Scroll
+006CDFDC	Multiplayer Key Scroll
 
 006CEFDC	Ptr to screen data
 
@@ -436,6 +522,8 @@
 006D1248	Ptr to Fog of war
 
 006D5A50	Cheat Code Flags
+
+006D5BE4	Map Tile Array AI pathing
 
 006D5EA8	Ptr to Tile Type
 
