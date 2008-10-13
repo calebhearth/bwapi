@@ -1,0 +1,671 @@
+#labels Phase-Implementation
+=Notes=
+This list has been merged due to the similarity between Replay data and Packet data.
+
+The command opcode is not stored in the Command ID of the packet, but rather in the data, where many commands may stack.
+Command class 1 opcodes are typically those from ~0x37 to ~0x50.
+
+
+=Command Opcodes=
+
+----------------------------------------------------
+*0x5B - * Make Game Public ??
+{{{
+
+}}}
+
+----------------------------------------------------
+*0x5A - *Merge Dark Archon
+{{{
+   No parameters.
+}}}
+
+----------------------------------------------------
+*0x59 - *Unknown/Unused
+{{{
+
+}}}
+
+----------------------------------------------------
+*0x58 - *Minimap Ping
+{{{
+       signed short (x)
+       signed short(y)
+}}}
+
+----------------------------------------------------
+*0x57 - *Leave Game
+{{{
+	unsigned char (1=Player Quit, 6=Player Dropped)
+}}}
+
+----------------------------------------------------
+*0x56 - *Change Replay Speed
+{{{
+    unsigned char (0=Play, 1=Pause)
+    unsigned long (Game Speed)
+    unsigned long (Speed Multiplier)
+}}}
+
+----------------------------------------------------
+*0x55 - *Set Latency
+{{{
+    unsigned char (latency setting)
+}}}
+
+----------------------------------------------------
+*0x54 - * Mission Briefing Start
+{{{
+    No Parameters
+}}}
+
+----------------------------------------------------
+*0x53 - * DEFAULT CASE 2 (unknown command)
+*0x52 - * DEFAULT CASE (unknown command)
+*0x51 - *
+----------------------------------------------------
+*0x50 - *Unknown
+{{{
+      No Parameters.
+}}}
+
+----------------------------------------------------
+*0x4F - *Map data transfer
+{{{
+      unsigned short (packet size [after value])
+      unsigned short (transfer ID)
+	
+	*ID 0 - Unknown*
+		6 bytes
+	*ID 1 - File Name*
+		unsigned long (file size?)
+		unsigned long (file hash?)
+		string (file name)
+	*ID 4 - Transfer data*
+	      unsigned char (unknown)
+	      unsigned long (file offset ?)
+		unsigned short (block size [after value])
+		void (..data..)
+	*ID 5 - Request data*
+	      unsigned char (unknown)
+	      unsigned long (file offset ?)
+}}}
+
+----------------------------------------------------
+*0x4E - *Ban Player
+{{{
+      unsigned char (Player ID) 
+}}}
+
+----------------------------------------------------
+*0x4D - * 		(unban player?)
+{{{
+
+}}}
+
+----------------------------------------------------
+[color=#FF55FF]*0x4C - *Lobby Chat
+{{{
+      cstring (message)
+}}}
+
+----------------------------------------------------
+*0x4B - *Force Name Transfer
+{{{
+      120 bytes - undefined
+}}}
+
+----------------------------------------------------
+*0x4A - *Player/Force Data Transfer
+{{{
+      unsigned short (Game Speed ?)
+      unsigned short (unknown)
+      unsigned short (unknown)
+
+      unsigned char (Player 1 Controller) // not accurate?
+      unsigned char (Player 2 Controller)
+      unsigned char (Player 3 Controller)
+      unsigned char (Player 4 Controller)
+      unsigned char (Player 5 Controller)
+      unsigned char (Player 6 Controller)
+      unsigned char (Player 7 Controller)
+      unsigned char (Player 8 Controller)
+      unsigned char (Player 9 Controller)
+      unsigned char (Player 10 Controller)
+      unsigned char (Player 11 Controller)
+      unsigned char (Player 12 Controller)
+
+      unsigned char (Player 1 Race)
+      unsigned char (Player 2 Race)
+      unsigned char (Player 3 Race)
+      unsigned char (Player 4 Race)
+      unsigned char (Player 5 Race)
+      unsigned char (Player 6 Race)
+      unsigned char (Player 7 Race)
+      unsigned char (Player 8 Race)
+      unsigned char (Player 9 Race)
+      unsigned char (Player 10 Race)
+      unsigned char (Player 11 Race)
+      unsigned char (Player 12 Race)
+
+      unsigned char (Player 1 Race) // not accurate?
+      unsigned char (Player 2 Race)
+      unsigned char (Player 3 Race)
+      unsigned char (Player 4 Race)
+      unsigned char (Player 5 Race)
+      unsigned char (Player 6 Race)
+      unsigned char (Player 7 Race)
+      unsigned char (Player 8 Race)
+
+      unsigned char (Player 1 Controller)
+      unsigned char (Player 2 Controller)
+      unsigned char (Player 3 Controller)
+      unsigned char (Player 4 Controller)
+      unsigned char (Player 5 Controller)
+      unsigned char (Player 6 Controller)
+      unsigned char (Player 7 Controller)
+      unsigned char (Player 8 Controller)
+      unsigned char (Player 9 Controller)
+      unsigned char (Player 10 Controller)
+      unsigned char (Player 11 Controller)
+      unsigned char (Player 12 Controller)
+
+      unsigned char (Player 1 owning Force)
+      unsigned char (Player 2 owning Force)
+      unsigned char (Player 3 owning Force)
+      unsigned char (Player 4 owning Force)
+      unsigned char (Player 5 owning Force)
+      unsigned char (Player 6 owning Force)
+      unsigned char (Player 7 owning Force)
+      unsigned char (Player 8 owning Force)
+      unsigned char (Player 9 owning Force)
+      unsigned char (Player 10 owning Force)
+      unsigned char (Player 11 owning Force)
+      unsigned char (Player 12 owning Force)
+
+      8 bytes (unknown)
+}}}
+
+----------------------------------------------------
+*0x49 - *Information Request
+{{{
+      unsigned long (Information Byte; 6 = File Name, 7 = File Data ??)
+}}}
+
+----------------------------------------------------
+*0x48 - * Unknown
+{{{
+     unsigned long (Unknown)
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+     unsigned char (Unknown [player related])
+}}}
+----------------------------------------------------
+*0x47 - *
+*0x46 - *
+----------------------------------------------------
+*0x45 - *Unknown
+{{{
+	unsigned char (slot #)
+	unsigned char (?)
+}}}
+
+----------------------------------------------------
+*0x44 - * Slot Change
+{{{
+        unsigned char (slot #)
+        unsigned char (owner [parameter undefined])
+}}}
+
+----------------------------------------------------
+*0x43 - *
+*0x42 - *
+----------------------------------------------------
+*0x41 - *Race Change
+{{{
+	unsigned char (slot #)
+	unsigned char (race [see [wiki]scenario.chk format[/wiki]])
+}}}
+
+----------------------------------------------------
+*0x40 - *Unknown
+{{{
+     17 bytes (unknown)
+}}}
+
+----------------------------------------------------
+*0x3F - *Unknown (Confirmation?)
+{{{
+		unsigned char (player ID?)
+		unsigned short (Null)
+		Unsigned short (01 00)
+		unsigned short (05 00)
+}}}
+
+----------------------------------------------------
+*0x3E - *Game Slot Modification
+{{{
+		unsigned char (Slot #)
+		unsigned char (Player ID)
+		unsigned char (Player Owner [see [wiki]scenario.chk format[/wiki]])
+		unsigned char (Race ID [see [wiki]scenario.chk format[/wiki]])
+		unsigned char (Force #; 0=none, 1-4)
+}}}
+
+----------------------------------------------------
+*0x3D - *Map Download %
+{{{
+		signed char (percentage)
+}}}
+
+----------------------------------------------------
+*0x3C - *Start Game
+{{{
+     No parameters.
+}}}
+
+----------------------------------------------------
+*0x3B - *
+*0x3A - *
+
+*0x39 - *
+*0x38 - *
+----------------------------------------------------
+*0x37 - *Game Hash Check (determines syncronized gameplay, sent every ~0.2 seconds or before any order)
+{{{
+   6 bytes - Unknown
+}}}
+
+----------------------------------------------------
+*0x36 - *Stim
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x35 - *Building Morph
+{{{
+	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]])
+}}}
+
+----------------------------------------------------
+*0x34 - *Cancel Addon
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x33 - *Cancel Upgrade
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x32 - *Upgrade
+{{{
+	unsigned char (Upgrade ID[[wiki]Upgrades.dat Entry Listing[/wiki]])
+}}}
+
+----------------------------------------------------
+*0x31 - *Cancel Research
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x30 - *Research
+{{{
+	unsigned char (Tech ID[[wiki]Techdata.dat Entry Listing[/wiki]])
+}}}
+
+----------------------------------------------------
+*0x2F - *Lift
+{{{
+	signed short (x) ?
+	signed short (y) ?
+}}}
+
+----------------------------------------------------
+*0x2E - *Cancel Nuke
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x2D - *Unburrow
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x2C - *Burrow
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x2B - *Hold Position
+{{{
+	unsigned char (0=instant, 1=shiftqueue)
+}}}
+
+----------------------------------------------------
+*0x2A - *Merge Archon
+{{{
+   No params.
+}}}
+----------------------------------------------------
+*0x29 - *Unload
+{{{
+	unsigned short (Unit ID?? [memory])
+}}}
+
+----------------------------------------------------
+*0x28 - *Unload All
+{{{
+		unsigned char (0=instant, 1=shiftqueue)
+}}}
+
+----------------------------------------------------
+*0x27 - *Build Subunit(Interceptor/Scarab)
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x26 - *Siege
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x25 - *Unsiege
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x24 - * (patch removed)
+{{{
+      Params unknown
+}}}
+
+----------------------------------------------------
+*0x23 - *Unit Morph
+{{{
+	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+}}}
+
+----------------------------------------------------
+*0x22 - *Decloak
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x21 - *Cloak
+{{{
+	unsigned char (0=instant, 1=shiftqueue) (unused)
+}}}
+
+----------------------------------------------------
+*0x20 - *Cancel Train
+{{{
+	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+}}}
+
+----------------------------------------------------
+*0x1F - *Train
+{{{
+	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+}}}
+
+----------------------------------------------------
+*0x1E - *Return Cargo
+{{{
+	unsigned char (0=instant, 1=shiftqueue)
+}}}
+
+----------------------------------------------------
+*0x1D - *"Nothing" ?
+{{{
+    No params.
+}}}
+
+----------------------------------------------------
+*0x1C - *Reaver Stop
+{{{
+     No params
+}}}
+
+----------------------------------------------------
+*0x1B - *Carrier Stop
+{{{
+     No params
+}}}
+
+----------------------------------------------------
+*0x1A - *Stop
+{{{
+	unsigned char (0=instant, 1=shiftqueue)
+}}}
+
+----------------------------------------------------
+*0x19 - *Cancel Unit Morph
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x18 - *Cancel Construction
+{{{
+   No params.
+}}}
+
+----------------------------------------------------
+*0x17 - *
+*0x16 - *
+----------------------------------------------------
+*0x15 - *Target Command
+{{{
+		signed short (x)
+		signed short (y)
+		unsigned short (unit ID[memory]) (visible)
+		unsigned short (unit ID[[wiki]Units.dat entry listing[/wiki]]) (only if memory ID is unused(0), otherwise set to none)
+		unsigned char (Command [[wiki]Orders.dat Entry Listing[/wiki]])
+		unsigned char (0=Instant, 1=ShiftQueue)
+}}}
+
+----------------------------------------------------
+*0x14 - *Right Click
+{{{
+		signed short (x);
+		signed short (y);
+		unsigned short (Unit ID[memory]);
+		unsigned short (unit ID[[wiki]Units.dat entry listing[/wiki]]) (only if memory ID is unused(0), otherwise set to none)
+		unsigned char (0=instant, 1=shiftqueue)
+}}}
+
+----------------------------------------------------
+*0x13 - *Hotkey
+{{{
+	unsigned char (command; 0 = save; 1 = recall)
+	unsigned char (slot)
+}}}
+
+----------------------------------------------------
+*0x12 - *Use Cheat
+{{{
+    Unsigned long (Cheat code flags).
+}}}
+
+----------------------------------------------------
+*0x11 - *Resume Game
+{{{
+    No parameters.
+}}}
+
+----------------------------------------------------
+*0x10 - *Pause Game
+{{{
+    No parameters.
+}}}
+
+----------------------------------------------------
+*0x0F - *Change Game Speed
+{{{
+      unsigned char (speed; 0=Slowest, 6=Fastest)
+}}}
+
+----------------------------------------------------
+*0x0E - *Ally
+{{{
+	u2 	(Alliance p1) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p2) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p3) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p4) [0 = enemy, 1= allied, 2 = allied vic]
+
+	u2 	(Alliance p5) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p6) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p7) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p8) [0 = enemy, 1= allied, 2 = allied vic]
+
+	u2 	(Alliance p9) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p10) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p11) [0 = enemy, 1= allied, 2 = allied vic]
+	u2 	(Alliance p12) [0 = enemy, 1= allied, 2 = allied vic]
+
+	u8	Unknown/unused
+}}}
+
+----------------------------------------------------
+*0x0D - *Vision
+{{{
+	u1	Vision for p1
+	u1	Vision for p2
+	u1	Vision for p3
+	u1	Vision for p4
+	u1	Vision for p5
+	u1	Vision for p6
+	u1	Vision for p7
+	u1	Vision for p8
+
+	u1	Vision for p9
+	u1	Vision for p10
+	u1	Vision for p11
+	u1	Vision for p12
+	u4	Unknown/unused
+}
+
+----------------------------------------------------
+*0x0C - *Build
+{{{
+	unsigned char (Command [[wiki]Orders.dat Entry Listing[/wiki]])
+	signed short (x [tile])
+	signed short (y [tile])
+	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]])
+}}}
+
+----------------------------------------------------
+*0x0B - *Shift Deselect
+{{{
+	unsigned char (#of Units)
+	unsigned short (Unit ID[memory])
+}}}
+
+----------------------------------------------------
+*0x0A - *Shift Select
+{{{
+	unsigned char (#of Units)
+	unsigned short (Unit ID[memory])
+}}}
+
+----------------------------------------------------
+*0x09 - *Select
+{{{
+	unsigned char (#of Units)
+	unsigned short (Unit ID[memory])
+}}}
+
+----------------------------------------------------
+*0x08 - *Restart Game?
+{{{
+      No parameters.
+}}}
+
+----------------------------------------------------
+*0x07 - * Load Game
+{{{
+      unsigned long (unknown)
+      string
+}}}
+
+----------------------------------------------------
+*0x06 - *Save Game
+{{{
+      unsigned long (unknown)
+      string
+}}}
+
+----------------------------------------------------
+*0x05 - * Keep Alive
+{{{
+      No parameters.
+}}}
+
+----------------------------------------------------
+*0x04 - *
+----------------------------------------------------
+*0x03 - * Unknown
+{{{
+      No parameters.
+}}}
+
+----------------------------------------------------
+*0x02 - *
+----------------------------------------------------
+*0x01 - * Claim Host ?
+{{{
+      No parameters.
+}}}
+
+----------------------------------------------------
+*0x00 - *Game Chat
+{{{
+      unsigned char (unknown)
+      string (message)
+}}}
+
+----------------------------------------------------
+
+
+=Packet Header=
+
+	unsigned long udptype (0x00)
+	unsigned short checksum
+	unsigned short packet length
+	unsigned short Sent packets to player (seq1)
+	unsigned short Recieved packets from player (seq2)
+	unsigned char Command Class
+	unsigned char Command ID (0x00)
+	unsigned char Player ID
+	unsigned char Resend
+	...Packet Data...
+
+The command opcode is not stored in the Command ID of the packet, but rather in the data, where many commands may stack.
+Command class 2 opcodes are those you'd find in a replay; unit actions.
+Command class 1 opcodes are others used by Starcraft for communication; send text; lobby data; join game.
+
+=Replay Header=
+
+   unsigned long time (Game Ticks * 255??)
+   unsigned char unk (Game Ticks??)
+
+   unsigned char Player ID
+   unsigned char Command ID
+   ...Command Variables...
