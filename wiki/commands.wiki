@@ -229,7 +229,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 *0x41 - *Race Change
 {{{
 	unsigned char (slot #)
-	unsigned char (race [see [wiki]scenario.chk format[/wiki]])
+	unsigned char (race [see scenario.chk format])
 }}}
 
 ----------------------------------------------------
@@ -252,8 +252,8 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 {{{
 		unsigned char (Slot #)
 		unsigned char (Player ID)
-		unsigned char (Player Owner [see [wiki]scenario.chk format[/wiki]])
-		unsigned char (Race ID [see [wiki]scenario.chk format[/wiki]])
+		unsigned char (Player Owner [see scenario.chk format])
+		unsigned char (Race ID [see scenario.chk format])
 		unsigned char (Force #; 0=none, 1-4)
 }}}
 
@@ -290,7 +290,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x35 - *Building Morph
 {{{
-	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]])
+	unsigned short (Unit ID [Units.dat entry listing])
 }}}
 
 ----------------------------------------------------
@@ -308,7 +308,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x32 - *Upgrade
 {{{
-	unsigned char (Upgrade ID[[wiki]Upgrades.dat Entry Listing[/wiki]])
+	unsigned char (Upgrade ID[Upgrades.dat Entry Listing])
 }}}
 
 ----------------------------------------------------
@@ -320,7 +320,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x30 - *Research
 {{{
-	unsigned char (Tech ID[[wiki]Techdata.dat Entry Listing[/wiki]])
+	unsigned char (Tech ID[Techdata.dat Entry Listing])
 }}}
 
 ----------------------------------------------------
@@ -398,7 +398,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x23 - *Unit Morph
 {{{
-	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+	unsigned short (Unit ID [Units.dat entry listing]);
 }}}
 
 ----------------------------------------------------
@@ -416,13 +416,13 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x20 - *Cancel Train
 {{{
-	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+	unsigned short (Unit ID [Units.dat entry listing]);
 }}}
 
 ----------------------------------------------------
 *0x1F - *Train
 {{{
-	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]]);
+	unsigned short (Unit ID [Units.dat entry listing]);
 }}}
 
 ----------------------------------------------------
@@ -476,8 +476,8 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 		signed short (x)
 		signed short (y)
 		unsigned short (unit ID[memory]) (visible)
-		unsigned short (unit ID[[wiki]Units.dat entry listing[/wiki]]) (only if memory ID is unused(0), otherwise set to none)
-		unsigned char (Command [[wiki]Orders.dat Entry Listing[/wiki]])
+		unsigned short (unit ID[Units.dat entry listing]) (only if memory ID is unused(0), otherwise set to none)
+		unsigned char (Command [Orders.dat Entry Listing])
 		unsigned char (0=Instant, 1=ShiftQueue)
 }}}
 
@@ -487,7 +487,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 		signed short (x);
 		signed short (y);
 		unsigned short (Unit ID[memory]);
-		unsigned short (unit ID[[wiki]Units.dat entry listing[/wiki]]) (only if memory ID is unused(0), otherwise set to none)
+		unsigned short (unit ID[Units.dat entry listing]) (only if memory ID is unused(0), otherwise set to none)
 		unsigned char (0=instant, 1=shiftqueue)
 }}}
 
@@ -565,10 +565,10 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 ----------------------------------------------------
 *0x0C - *Build
 {{{
-	unsigned char (Command [[wiki]Orders.dat Entry Listing[/wiki]])
+	unsigned char (Command [Orders.dat Entry Listing])
 	signed short (x [tile])
 	signed short (y [tile])
-	unsigned short (Unit ID [[wiki]Units.dat entry listing[/wiki]])
+	unsigned short (Unit ID [Units.dat entry listing])
 }}}
 
 ----------------------------------------------------
