@@ -645,7 +645,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 
 
 =Packet Header=
-
+{{{
 	unsigned long udptype (0x00)
 	unsigned short checksum
 	unsigned short packet length
@@ -656,16 +656,17 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 	unsigned char Player ID
 	unsigned char Resend
 	...Packet Data...
-
+}}}
 The command opcode is not stored in the Command ID of the packet, but rather in the data, where many commands may stack.
 Command class 2 opcodes are those you'd find in a replay; unit actions.
 Command class 1 opcodes are others used by Starcraft for communication; send text; lobby data; join game.
 
 =Replay Header=
-
+{{{
    unsigned long time (Game Ticks * 255??)
    unsigned char unk (Game Ticks??)
 
    unsigned char Player ID
    unsigned char Command ID
    ...Command Variables...
+}}}
