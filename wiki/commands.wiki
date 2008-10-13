@@ -560,7 +560,7 @@ Command class 1 opcodes are typically those from ~0x37 to ~0x50.
 	u1	Vision for p11
 	u1	Vision for p12
 	u4	Unknown/unused
-}
+}}}
 
 ----------------------------------------------------
 *0x0C - *Build
