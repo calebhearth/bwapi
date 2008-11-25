@@ -1,0 +1,940 @@
+#summary Offset changes made in 1.16
+#labels Phase-Implementation
+
+Note: This is pretty much a direct copy with changes ON THE RIGHT OF THE DESCRIPTION. The offsets are for 1.15.3, the changes on the right indicate where it has been moved to.
+
+{{{
+005001B4	char[24] "staredit\scenario.chk"
+005001CC	CHK Section Function Pointer Tables
+00500560	CHK 1.00 Starcraft Structure Definitions
+00500588	CHK 1.04 Hybrid Structure Definitions
+005005B0	CHK Broodwar Structure Definitions
+
+00500AF8	Cheat Code Hashes (8 * 18)
+00500B88		Unknown float
+00500B8C		Unknown float
+00500B90	Maps Str Ptr
+00500B94	Replays Str Ptr
+
+0050DEF8	char[200] "PKWARE Data Compression Library..."
+0050DFC0	char[128] "REGISTRATION_BLOCK"
+0050E040	Race-Specific Tile.grp string pointer array
+
+005122C8	char[264] version string
+005123D0	char[128] "REGISTRATION_BLOCK"
+00512450	char[128] "REGISTRATION_TABLE"
+
+00512684	Player race (12)
+00512690	Video SMK string pointer array
+00512700	char[8] "ztp"
+00512708	Cursor Type GRP string pointer array
+
+00512800	Trigger Action Function Pointer Array (4 * 60)
+005128F0		Unknown (4 * 7)
+0051290C	Special Palette Load Struct Array (ofire, gfire, bfire, bexpl, trans50, red, green)
+00512998	Tileset String Pointer Array
+005129B8		Unknown (0x400000)
+005129BC	Game Mode String Structs
+
+00512A98	Score type String Pointer Array
+
+00512B18	char[128] "REGISTRATION_BLOCK"
+00512B98		Unknown (0x07)
+00512B9C		Unknown (0x07)
+00512BA0	Mapdata.dat Load Table
+00512BB8	MusicLoad Struct Array
+00512C80	char[128] "REGISTRATION_BLOCK"
+
+005136CC	Unknown RECT (screen positioning)
+005136DC		Unknown
+005136E0	Upgrades.dat Load Table
+00513780	Portdata.dat Load Table
+005137D4		Unk u32
+005137D8	Techdata.dat Load Table
+00513868	Weapons.dat Load Table
+00513998	char[128] "REGISTRATION_BLOCK"
+00513A18		Unknown data
+
+00513C30	Units.dat Load Table
+00513EC8	Orders.dat Load Table
+00513FB8	Sprites.dat Load Table
+00514010	Images.dat Load Table
+005140C4		Unknown
+
+00514110	IO String pointer array					-0
+00514178		Unknown						-0
+
+005154A0		Unk1 dat Load Table				-8
+005154E0		Unknown
+
+00515690	Battle.net Send/Request strings (SC)
+00515820	Battle.net Send/Request strings (BW)
+005159AC		Unknown (0x07)
+005159B0	Battle.net icon images string pointer
+005159B4	Battle.net icon images string pointer
+005159B8		Unknown (0x07)
+005159BC		Unknown (0x07)
+005159C0	char[32] "OK_DIALOG"			Now 005159B8	-8
+005159E0	char[32] "BIGOK_DIALOG"
+00515A00	char[32] "OKCANCEL_DIALOG"		Now 005159F8	-8
+00515A20	char[32] "BIGOKCANCEL_DIALOG";		Now 00515A18	-8
+00515A40	Flingy.dat Load Table
+00515AA0	Trigger Condition Function pointer array		-8
+00515B00		Unknown
+
+00515BF0	Button structures arrays
+005187F0	Buttonset structures array				-8
+005193A8		Unknown struct array; Mission Briefing Related; 228 entries
+00519E58	Briefing Action Function Pointer Array (allocated space for 60 actions)
+00519F48	HUD string ptr array (4 * 5)				-8
+00519F5C		Unknown
+00519F60		Unknown
+00519F64		Unknown
+00519F68		Unknown
+00519F6C		Unknown
+00519F70	Option structure array
+0051A0F0		Unknown
+
+0051A160	Screen Gamma
+0051A164	RECT Dialog Drawing(refresh) Region
+0051A174	RECT Dialog Drawing Region
+
+0051A3C8	char[24] ".?AUTGAME_HDR_NODE@@"
+
+0051A3F4	char[24] ".?AUTSAVED_GAME_NODE@@"
+
+0051A434	char[16] ".?AUSTREAMED@@"
+
+0051A450	char[16] ".?AUTPROVIDER@@"
+
+0051A468	char[12] ".?AU_ID@@"					-8
+
+0051ACC0	Non-location oriented AI script reference strings	-8
+0051AD18
+
+0051C008	Begin of Dynamic Memory
+
+0051C4B8	In Lobby (bool)
+
+0051CA20	char[520] Broodat.MPQ location		0051CA00	-20
+0051CC28		Unk
+0051CC2C		Unk
+0051CC30		Unk
+0051CC34		Unk
+0051CC38		Unk
+0051CC40	char[260] Starcraft.EXE Location	0051CC20	-20
+0051CD44		Unk
+0051CD48	Version String ptr
+0051CD4C	Starcraft.exe string ptr
+0051CD50	Broodat.mpq string ptr
+0051CD54	patch_rt.mpq string ptr
+0051CD58	char[260] Patch_rt.MPQ location		0051CD38	-20
+0051CE5C		Unknown
+
+0051CE90	End Game Type 
+		{
+			00 = Play Intro
+			01 = Load Game
+			02 = Exit Game(to desktop)
+			03 = Crash
+			04 = Quit Game(to Menu)
+			05 = Restart Game
+			06 = Result Screen (Victory?)
+			07 = Result Screen (Loss?)
+			08 = Play Credits
+			09 = Epilogue
+			0A = Data File Error
+			0B+ = Exit Game(to desktop)
+		}
+
+0051CED0	Images.dat Load Locations (pointers to each grp)
+0051DE70		Unknown Struct Array (64 entries)
+0051EE70	Ptr to first unk struct
+0051EE74		Unknown
+0051EE78	Unknown struct Array (64 Entries)
+0051F1F8	Ptr to last unk struct
+0051F1FC		Unknown
+
+0052E5C8		Unknown Images.dat-related Pointer array
+
+0052E5A8		Unknown Struct Array (5092 entries)
+0057EE78	Always 0x01
+0057EE7C	Player Slots Taken (4 * 8)
+0057EE9C	char[25] Current Player Name			0057EE7C		-20
+0057EEB8	Current Player ID (For partial vision) +1
+0057EEBC	Elapsed Time (Frame)
+0057EEC0	Player IDs [0x08 = no ID] (4 * 8)
+0057EEE0	Player Entries (36 * 12)			0057EEC0		-20
+	u32		Player ID
+	u32		Number of Actions/Flags (Replay?) (Unused?)
+	u8		Owner
+	u8		Race
+	u8		Force
+	Char * 25	Player Name
+0057F090	Command issue interval
+0057F094	Current Player ID (For full vision)		0057F090		-4
+0057F098	Game Setting; 0 = Single Player; 1 = Multi Player
+0057F09C	Player Cheat Code Flags / other flags (4 * 8)
+0057F0BC	Cheat Code Parse Information
+0057F0C0		Unknown
+0057F0C4	Current Player Start Location (2 + 2)
+0057F0C8		Unknown
+0057F0CC	Current Player Start Location (2 + 2)
+0057F0D0		Unknown
+0057F0D4		Unknown
+0057F0D8	Minerals (4 * 12)				0057F0D0		-8
+0057F108	Gas (4 * 12)
+0057F138	Gas Score (4 * 12)
+0057F168	Mineral Score (4 * 12)
+0057F198		Unknown
+0057F19C	Player Controller (12)
+0057F1A8	Player Race (12)
+0057F1B4		Unknown
+0057F1B8		Unknown(coordinates?)
+0057F1BC	Map Size (2 + 2)
+0057F1C0		Unknown (ID?)
+0057F1C4		Unknown (Size?)
+0057F1C8		Unknown (Playerbytes?)
+0057F1CC		Unknown (Playerbytes?)
+0057F1D0		Unknown (Playerbytes?)
+0057F1D4	Player Vision (4 * 12) [each bit]
+0057F204	Player Colour (4 * 8)
+0057F224	Elapsed Time (Current Frame)
+0057F228		Unknown
+0057F22C	Temporary Trigger Data Storage
+0057F22E	Next Scenario string index
+0057F230		Unknown
+0057F234		Unknown
+0057F238		Unknown
+0057F23C		Unknown
+0057F240		Unknown
+0057F244		Unknown
+0057F248		Unknown
+0057F24C		Unknown
+0057F250		Unknown
+0057F254		Unknown
+0057F258	Saved Screen Position 1 (2 + 2)
+0057F25C	Saved Screen Position 2 (2 + 2)
+0057F260	Saved Screen Position 3 (2 + 2)
+0057F264	Unit Availability (12 * 228)
+0057FD14		Unknown
+0057FD18		Unknown
+0057FD1C	Last Action X (Center location Spacebar)
+0057FD20	Last Action Y
+0057FD24	char[260] Full map file name
+0057FE28	char[32] Map Title String
+0057FE48	Player Saved Groups (8)
+		{	u32[12] 	Group 0 Unit IDs
+			u32[12] 	Group 1 Unit IDs
+			u32[12] 	Group 2 Unit IDs
+			u32[12] 	Group 3 Unit IDs
+			u32[12] 	Group 4 Unit IDs
+			u32[12] 	Group 5 Unit IDs
+			u32[12] 	Group 6 Unit IDs
+			u32[12] 	Group 7 Unit IDs
+			u32[12] 	Group 8 Unit IDs
+			u32[12] 	Group 9 Unit IDs
+			u32[12] 	Group history 1 Unit IDs
+			u32[12] 	Group history 2 Unit IDs
+			u32[12] 	Group history 3 Unit IDs
+			u32[12] 	Group history 4 Unit IDs
+			u32[12] 	Group history 5 Unit IDs
+			u32[12] 	Group history 6 Unit IDs
+			u32[12] 	Group history 7 Unit IDs
+			u32[12] 	Group history 8 Unit IDs
+		}
+00581948		Unknown (1024 bytes)
+00581D48		Unknown
+00581D52	Player Selection Circle Colour (12) [00 = green, 01 = yellow, 02 = red]
+00581D5E	Player Colour Palette (1-byte values ea.) (8 * 12)
+00581DBE	Player Minimap Colour (1-byte values) (12)
+00581DCA	Unused/Padding
+00581DCB	Unused/Padding
+00581DCC	Total Units Produced/Owned (4 * 12)		00581DC4	-8
+00581DFC	Units Produced (4 * 12)
+00581E2C	Units Owned (4 * 12)
+00581E5C	Units Lost (4 * 12)
+00581E8C	Units Killed (4 * 12)
+00581EBC	Unit Score (4 * 12)
+00581EEC	Kill Score (4 * 12)
+00581F1C	Total Structures Constructed/Owned (4 * 12)
+00581F4C	Structures Constructed (4 * 12)
+00581F7C	Structures Owned (4 * 12)
+00581FAC	Structures Lost (4 * 12)
+00581FDC	Structures Razed (4 * 12)
+0058200C	Building Score (4 * 12)
+0058203C	Razing Score (4 * 12)
+0058206C	Factories Constructed (4 * 12)
+0058209C	Factories Owned (4 * 12)
+005820CC	Factories Lost (4 * 12)
+005820FC	Factories Razed (4 * 12)
+0058212C	Zerg Underlings Available (4 * 12)
+0058215C	Zerg Underlings Used (4 * 12)
+0058218C	Zerg Underlings Max (4 * 12)
+005821BC	Terran Supply Available (4 * 12)
+005821EC	Terran Supply Used (4 * 12)
+0058221C	Terran Supply Max (4 * 12)
+0058224C	Protoss Psi Available (4 * 12)
+0058227C	Protoss Psi Used (4 * 12)
+005822AC	Protoss Psi Max (4 * 12)			-8
+005822DC	Custom Score (4 * 12)
+0058230C	Number of All Units on the map[includes incomplete] (4 * 12 * 228)		00582304		-8
+00584DCC	Number of Completed Units on the map (4 * 12 * 228)
+0058788C	Player Kill Counts (4 * 12 * 228)
+0058A34C	Unit Deaths (4 * 12 * 228)
+0058CE0C	Technologies Available (SC) (12 * 24)
+0058CF2C	Technologies Researched (SC) (12 * 24)
+0058D04C	Research in Progress (SC; Unused) (3 * 12)
+0058D070	Upgrades Available (SC) (12 * 46)
+0058D298	Upgrades Researched (SC)  (12 * 46)
+0058D4C0	Upgrades in Progress lvl 1 (SC; Unused) (6 * 12)
+0058D508	Upgrades in Progress lvl 2 (SC; Unused) (6 * 12)
+0058D550	Upgrades in Progress lvl 3 (SC; Unused) (6 * 12)
+0058D598	Player Force (8)
+0058D5A0	Force Flags (4)
+0058D5A4	Force Names (30 * 4)
+0058D61C	Player Alliances (12 * 12)
+0058D6AC	Mission Objective String Index (4 * 12)
+0058D6DC	Countdown Timer (4)
+0058D6E0	Elapsed Time (4)
+0058D6E4		Unknown (4)
+0058D6E8		Unknown (4)
+0058D6EC		Unknown (4)
+0058D6F0	Leaderboard Computer Players Switch (4)
+0058D6F4	Leaderboard Type (1) (0x00 = None; 0x01 = Units; 0x02 = UnitsUnused; 0x03 = Resources; 0x04 = Kills; 0x05 = Score; 0x08 = Greed;) (+0x10 = Standard; +0x20 = Goal)
+0058D6F5	Unknown
+0058D6F6	Leaderboard SubType (2) ([RESOURCES]See CHK; 0x03 = None;)([SCORE]See CHK; 0x08 = None;)
+0058D6F8	Leaderboard Goal (4)
+0058D6FC	Leaderboard String (4)
+0058D700	Remaining Game Pauses (8)
+0058D708	Start Location Positions ([2+2] * 8)		-8
+0058D728	Locations [SC] (5 * 4 * 64)
+0058DC28	Switch States (32)
+0058DC48	Locations [BW] (5 * 4 * 255)
+0058F034	Countdown Timer Pause State (4)
+0058F038	Technologies Available (BW) (20 * 12)
+0058F128	Technologies Researched (BW) (20 * 12)
+0058F218	Research in Progress (BW) (6 * 12)
+0058F260	Upgrades Available (BW) (15 * 12)
+0058F314	Upgrades Researched (BW) (15 * 12)
+0058F3C8	Upgrades in Progress (BW) (8 * 12)
+0058F428	Is Broodwar?
+0058F429		Unknown
+0058F42A		Unknown
+0058F42B		Unknown
+0058F42C		Unknown
+0058F42D		Unknown
+0058F42E		Unknown
+0058F42F		Unknown
+0058F430		Unknown
+0058F434		Unknown (29616)
+005967E4	Game Name (28)					-8
+00596800	Map Dimensions (2 + 2)
+00596804		Unknown (1)
+00596805	Slots Available (1)
+00596806	Game Speed (2)
+00596808	Game Type (2)
+0059680A	Game SubType (2)
+0059680C	Random Seed? Date? (4)
+00596810	Tileset (2)
+00596812		Unknown >0 (2)
+00596814	char[25] Creator Name
+0059682D	char[32] Map Name
+0059684D	Game Type ID
+0059684F	Game Subtype ID
+00596851	Game Subtype Display Value
+00596853	Game Subtype Label
+00596855	Victory Conditions (Map Default, Melee, Highest Score, Resources, CTF, Sudden Death, Slaughter, 1v1)
+00596856	Resources (Map Default, Fixed Value, Low, Medium, High, Income)
+00596857	Unit Stats (Map Default, Standard)
+00596858	Fog of War (Off, Warcraft1, On)
+00596859	Starting units (Map Default, Workers Only, Workers+Center)
+0059685A	Starting Positions (Random, Fixed)
+0059685B	Player Types (Bit 0 = Computer Available; Bit 1 = Single Player)
+0059685C	Allies (Not Allowed, Allowed)
+0059685D	#of Teams
+0059685E	Cheat Codes (Off, On)
+0059685F	Tournament Mode (Off, On)
+00596860	Victory Condition Value (4)
+00596864	Resources Value (4)
+00596868		Unknown Value (4)
+0059686C		Unknown (1)
+00596870		Unknown					-8
+00596874	Game mode string ("TENB"; Backwards is "BNET")
+
+005968EC	Cheat code related
+
+005968F8	char[260] Unknown
+
+00596BB0	char[260] "dlgs\tile.grp"			-8
+
+005971CC	Unknown Player Related (4 * 8)
+
+005971F0	? Selection Group (4 * 12)
+
+00599390	Pointer to Creep Data
+00599394		Unknown
+00599398	Mouse click boundry RECT struct (640 x 400)
+005993A8		Unknown
+005993AC	Map Tile Array Ptr
+005993B0		Unknown	
+005993B4		Unknown Array Ptr
+005993B8		Unknown Array Ptr
+005993B8	Map String Data
+005993C0		Unknown u8 array (256 entries)
+005994C0		Unknown
+
+00599A78	char[255]	Unknown
+00599B78		Unknown
+00599B7C		Unknown
+00599B80	char[255]	Unknown
+00599C80	char[255] Common Dialog Box (Error msg)
+
+0059A0B8		unk (0)
+0059A0BC		unk (0)
+0059A0C0		unk (0)
+0059A0C4		unk (0)
+0059A0C8	Number of players on results screen
+0059A0CC	Max Value for number in result screen spot 1
+0059A0D0	Max Value for number in result screen spot 2
+0059A0D4	Max Value for number in result screen spot 3
+0059A0D8	result screen data structures (604 * 8)
+0059B3B8		Unknown ID (3)
+0059B3BC		Unknown (0)
+0059B3C0	result Screen Name structures (72 * 8)
+0059B600		unk(1)
+0059B604		unk(0)
+0059B608	result Screen Parent Dialog
+0059B60C	result Screen Tab
+0059B610	char[260]  Result Screen background directory
+0059B714		Unknown
+
+0059B838	char[260]  Default Maps Subdirectory (IPX)
+0059B940	char[260]  Default Maps subdirectory (IPX)
+0059BA44	Game Subtype value (IPX)
+0059BA48		Unknown ptr
+0059BA4C	Game Type value (IPX)
+0059BA50	char[260] 	Unk
+0059BB54	Game Speed value (IPX)
+0059BB58	char[260]  Current Maps Path (IPX)
+0059BC5C	Ptr to Bin Dialogue containing game subtype element
+0059BC60		Unknown
+0059BC64	Ptr to Bin Dialogue containing game speed
+0059BC68	Ptr to Bin Dialogue containing game Type element
+0059BC6C		Unknown
+0059BC70	char[260]  	Unknown
+0059BD74	In Channel (bool)
+0059BD78		Unk (HGDIOBJ)
+0059BD7C		Unk
+0059BD80		Unk (HGDIOBJ)
+0059BD84	Ptr to Parent BIN Dialog
+0059BD88		Unknown
+0059BD8C		Unknown
+0059BD90		Unknown
+0059BD94		Unknown
+0059BD98	Player structs (36 * 12)
+0059BF48		Unknown
+0059BF4C		Unknown
+0059BF50		Unknown player related (12)
+0059BF5C		Unknown
+0059BF60	char[264]  Maps folder location			-8
+0059C068	Mapdata.dat string pointers			-8
+0059C16C		Unknown
+
+
+0059CC90	Unit Array (336 * 1700)
+006283D0		unknown
+006283D4	First Unit 1
+006283D8	Number of Unit Slots used
+006283DC	First Unit 2
+006283E0	First Unit P1					-8
+006283E4	First Unit P2
+006283E8	First Unit P3
+006283EC	First Unit P4
+006283F0	First Unit P5
+006283F4	First Unit P6
+006283F8	First Unit P7
+006283Fc	First Unit P8
+00628400	First Unit P9
+00628404	First Unit P10
+00628408	First Unit P11
+0062840C	First Unit P12
+00628410	Last Unit 1
+00628414		unknown
+00628418	First unit 3
+0062841C	Last unit 2
+00628420	First empty unit slot
+00628424	Last empty unit slot				-8
+
+0062847C	Map Tile Array(2)
+
+006284D0	Player 1 Selection Group (4 * 12)
+00628500	Player 2 Selection Group (4 * 12)
+00628530	Player 3 Selection Group (4 * 12)
+00628560	Player 4 Selection Group (4 * 12)
+00628590	Player 5 Selection Group (4 * 12)
+006285C0	Player 6 Selection Group (4 * 12)
+006285F0	Player 7 Selection Group (4 * 12)
+00628620	Player 8 Selection Group (4 * 12)
+
+00629A70		520 1-byte entries (unknown
+00629C78		256 1-byte entries (unknown)
+00629D78		Unknown
+00629D7C		Unknown
+00629D80	Sprite Array (36 * 2500)
+0063FD10
+
+0063FE18	First sprite
+0063FE1C	Last sprite
+
+0063FF30	Display pylon aura
+
+00640854	Speech State
+00640858		Unknown
+0064085C		Unknown offset
+00640860		Unknown
+00640864		Unknown
+00640868	Display geyser overlays
+0064086C		Unknown
+00640870		Unknown
+00640872	Building ID
+00640874		Unknown
+00640875	Build Order
+
+00640963	Player Name
+
+00640B0C	Line information (4 * 13)
+00640B40		Unknown
+00640B44		Unknown
+00640B48	In-game text (218 * 13) [last is text at bottom; ex: "Cheat enabled."]
+0064165C	Line colour (13) [last is text at bottom; ex: "Cheat enabled."]
+0064166C	Time remaining for line? (13) [last is text at bottom; ex: "Cheat enabled."]
+00641679	Target Order	Ground
+0064167A	Target Order	Unit
+0064167B	Target Order	Building
+0064167C	Target Order	Enabled
+
+00641688	Orders Array (20 * 2000)
+0064B2C8	First Order
+0064B2CC	Last Order
+0064B2D0	Unk struct (112 * 100)
+
+0065095D	Game End Type
+		{
+			02 = Defeat
+			03 = Victory
+			05 = Draw
+		}
+
+006509AC	Game is paused
+006509D0	Unk Struct Array (16 * 1000)
+
+00654874	Last save game name?
+
+00654A68	Packet RECV class (4 * 8)
+
+0065549C	Packet Buffer Pointers (4 * 8)
+
+006556C0	Player is Finished Briefing(clicked Start) (8)
+006556C8	In-Game flag
+006556CC	Latency Value (local options)
+
+006556D0	CMD Sequence
+
+006556E8	Upgrades.dat	Max Ups (61)
+00655728	Upgrades.dat	Mineral Cost Base (2 * 61)
+006557A8	Upgrades.dat	Gas Cost Factor (2 * 61)
+00655828	Upgrades.dat	Gas Cost Base (2 * 61)
+006558A8	Upgrades.dat		Unk (2 * 61)
+00655922		Unknown
+00655928	Upgrades.dat	Time Factor (2 * 61)
+006559A8	Upgrades.dat	Mineral Cost Factor (2 * 61)
+00655A28	Upgrades.dat	Label (2 * 61)
+00655AA8	Upgrades.dat	Icon (2 * 61)
+00655B24	Upgrades.dat	Broodwar Flag (61)
+00655B68	Upgrades.dat 	Time Base (2 * 61)
+00655BE4	Upgrades.dat	Race (61)
+00655C24		Unknown
+00655C28		Unknown
+00655C2C		Unknown
+00655C30		Unknown
+00655C34		Unknown
+00655C38		Unknown
+00655C3C		Unknown
+00655C40	Portdata.dat	Still Portrait String pointer (4 * 110)
+00655DF8	Portdata.dat		Unk (1 * 110)
+00655E68	Portdata.dat	Talking portrait String pointer (4 * 110)
+00656020	Portdata.dat		Unk (1 * 110)
+00656090	Portdata.dat		Unk (1 * 110)
+00656100	Portdata.dat		Unk (1 * 110)
+00656170		Unknown
+00656174		Unknown
+00656178		Unknown
+00656180	Techdata.dat	Unknown1 (2 * 44)
+006561D8	Techdata.dat	Gas Cost (2 * 44)
+00656230	Techdata.dat	Mineral Cost (2 * 44)
+00656288	Techdata.dat	Label (2 * 44)
+006562E0	Techdata.dat	Unknown2 (2 * 44)
+00656338	Techdata.dat	Researched (44)
+00656368	Techdata.dat	Energy Cost (2 * 44)
+006563C0	Techdata.dat	Time Cost (2 * 44)
+00656418	Techdata.dat	Icon (2 * 44)
+00656470	Techdata.dat	Race (44)
+0065649C	Techdata.dat	Broodwar Flag (44)
+006564C8	Weapons.dat	Damage Factor (130)
+00656550	Weapons.dat	Target Error Message (2 * 130)
+00656658	Weapons.dat	Remove After/Missile Type? (1 * 130)
+006566E0	Weapons.dat	Explosion Type (130)
+00656768	Weapons.dat	Icon (2 * 130)
+00656870	Weapons.dat	Splash Inner (2 * 130)
+00656978	Weapons.dat	Attack Angle (1 * 130)
+00656A00	Weapons.dat	Minimum Range (4 * 130)
+00656C08	Weapons.dat	Offset Y (1 * 130)
+00656C90	Weapons.dat	Missile Sprite (4 * 130)
+00656E98	Weapons.dat	Damage (2 * 130)
+00656FA0	Weapons.dat	Cooldown (130)
+00657028	Weapons.dat	Remove After/Missile Type? (130)
+006570B0	Weapons.dat	Splash Middle (2 * 130)
+006571B8	Weapons.dat	Upgrade ID (130)
+00657240	Weapons.dat	Damage Type (130)
+006572C8	Weapons.dat	Label (2 * 130)
+006573D0	Weapons.dat	Special Attack (1 * 130)
+00657458	Weapons.dat	Maximum Range (4 * 130)
+00657660	Weapons.dat	Upgrade Bonus (2 * 130)
+00657768	Weapons.dat	Splash Outer (2 * 130)
+00657870	Weapons.dat	Launch Spin (1 * 130)
+006578F8	Weapons.dat	Offset X (1 * 130)
+00657980	Weapons.dat	Attack Type (2 * 130)
+00657A84		Unknown
+00657A88		unk Array (4 * 1024)
+
+00658AF8		Unk Array (4 * 1024)
+00659AF8		Unk Struct Array (20 * 1024)
+
+0065FC00	Units.dat	Max hits (Air) (228)
+0065FCE8	Units.dat	Gas Cost (2 * 228)
+0065FEB0	Units.dat	Armor (228)
+0065FF98	Units.dat	"What" Sound Start (2 * 228)
+00660160	Units.dat	Computer AI Unit Type (1 * 228)
+00660248	Units.dat	Custom Name (2 * 228)
+00660410	Units.dat	Build time (2 * 228)
+006605D8	Units.dat	Starting Direction (1 * 228)
+006606C0	Units.dat	Broodwar Flag (1 * 228)
+006607A8	Units.dat	Subunit 1 (2 * 228)
+00660970	Units.dat	Transport Space (1 * 228)
+00660A58	Units.dat	Restriction Flags (2 * 228)
+00660C20	Units.dat	Subunit 2 (2 * 228)
+00660DE8	Units.dat	Shield Points (2 * 228)
+00660FB0	Units.dat	Movement Type (1 * 228)
+00661098	Units.dat	Construction Animation (4 * 228)
+00661428	Units.dat	"Yes" Sound End (2 * 106)
+00661500	Units.dat	Staredit Availability Flags (2 * 228)
+006616C8	Units.dat	Air Weapon ID (228)
+006617B0	Units.dat	Unit Dimensions (8[RECT struct] * 228)
+00661ED0	Units.dat	"Pissed" Sound End (2 * 106)
+00661FA8	Units.dat	"Ready" Sound (2 * 106)
+00662080	Units.dat	Action Type (1 * 228)
+00662168	Units.dat	Size (1 * 228)
+00662250	Units.dat	Human Init Action (228)
+00662339	Units.dat	HP (4 * 228)
+006626C8	Units.dat	Addon Location (2 * 192)
+00662848	Units.dat	Building Dimensions (2 * 456)
+00662BD8	Units.dat	"What" Sound End (2 * 228)
+00662DA0	Units.dat	Seek Range (1 * 228)
+00662E88	Units.dat	Computer AI Init Action (228)
+00663138	Units.dat	Portrait ID (1 * 228)
+00663220	Units.dat	Sight Range (228)
+00663308	Units.dat	Attack Order ID (228)
+006633F0	Units.dat	Build Score (2 * 228)
+006635B8	Units.dat	Armor Upgrade Group (1 * 228)
+006636A0	Units.dat	Ground Weapon ID (228)
+00663788	units.dat	Group Flags (228)
+00663870	Units.dat	Mineral Cost (2 * 228)
+00663A38	Units.dat	Attack Move order ID (228)
+00663B20	Units.dat		Unk (2 * 106)
+00663BF8	Units.dat		Unk (2 * 106)
+00663CD0	Units.dat	Supply Required (228)
+00663DB8	Units.dat		Unk (1 * 228)
+00663EA0	Units.dat	Destroy Score (2 * 228)
+00664068	Units.dat	Special Ability Flags (4 * 228)
+006643F8	Units.dat	Transport Size (1 * 228)
+006644E0	Units.dat	Flingy ID (228)
+006645C8	Units.dat	Max hits (Ground) (228)
+006646B0	Units.dat	Supply Produced (1 * 228)
+00664798	Units.dat	Shield Enabled? (228)
+00664880	Units.dat	Idle order (228)
+00664968	Units.dat	Infestation Unit (2 * 96)
+00664A28	Orders.dat		Unknown 4 (189)
+00664AE8	Orders.dat	Use Weapon Targetting (189)
+00664BA8	Orders.dat		Unknown 12 (189)
+00664C68	Orders.dat		Unknown 11 (189)
+00664D28	Orders.dat	Animation (189)
+00664DE8	Orders.dat	Energy Technology ID (189) 
+00664EA8	Orders.dat	Highlight Button ID (2 * 189)
+00665028	Orders.dat	Can Be Interrupted (189)
+006650E8	Orders.dat		Unknown 7 (189)
+006651A8	Orders.dat		Unknown 9 (189)
+00665268	Orders.dat	Label ID (2 * 189)
+006653E8	Orders.dat	Obscured? (189)
+006654A8	Orders.dat	Can Be Obstructed? (189)
+00665568	Orders.dat		Unknown (2 * 189)
+006656E8	Orders.dat	Can Be Queued? (189)
+006657A8	Orders.dat		Unknown 5 (189)
+00665868	Orders.dat	Targeting (189)
+00665928	Orders.dat	Order is Secondary? (189)
+006659E8	Orders.dat		Unknown 3 (189)
+00665AA8	Sprites.dat	Selection Circle (387)
+00665C30	Sprites.dat	Is Visible? (517)
+00665E38	Sprites.dat	HP Bar Length (387)
+00665FC0	Sprites.dat	Selection Circle Offset (387)
+00666148	Sprites.dat	Image Index ID (517)
+00666558	Sprites.dat		Unknown (517)
+00666760	Images.dat	Landing Dust Overlay (4 * 999)
+00667700	Images.dat	Draw If Cloaked? (999)
+00667AE8	Images.dat	Special Overlay (4 * 999)
+00668A88	Images.dat	GRP File ID (4 * 999)
+00669A28	Images.dat	Remapping Index (999)
+00669E10	Images.dat	Drawing Function (999)
+0066A1F8	Images.dat	Damage Overlay (4 * 999)
+0066B198	Images.dat	Attack Overlay (4 * 999)
+0066C138	Images.dat	Clickable? (1 * 999)
+0066C520	Images.dat	Shields Gfx Overlay (4 * 999)
+0066D4C0	Images.dat	Use Full Iscript? (999)
+0066D8A8	Images.dat	Lift-off Dust Overlay (4 * 999)
+0066E848	Images.dat	Graphics Turns (999)
+0066EC30	Images.dat	Iscript ID (4 * 999)
+0066FBCC		Unknown
+
+0066FBF0	char[260] Starcraft Maps Something
+0066FCF8	char[260] Starcraft Maps Path
+
+0066FE10	char[260] Player Name
+0066FF18		unk (trigger execSwitch?)
+0066FF1C	Player Type IDs (12)
+
+00685130	Last Saved game name
+
+0068AC5C	Cheat Enabled
+
+0068AC74	Ptr to Portrait Dialog Parent
+
+0068AC80	Ptr to Portrait Dialog
+
+0068C134	Currently selected unit ID
+
+0068C198	Cheat Enabled
+
+0068C228	char[32]*6 Overhead strings
+
+0068C430	SFXData Dat entry 5 (1 * 1144)
+0068C8A8	SFXData Dat Entry 3 (1 * 1144)
+0068CD20	SFXData Dat entry 4 (2 * 1144)
+0068D610	SFXData Dat entry 2 (1 * 1144)
+0068DA88	SFXData Dat string pointers (4 * 1144)
+0068EC68		Unk
+0068EC6C		Unk
+0068EC70		Unk
+0068EC74		Unk
+0068EC78		Unk
+0068EC7C		Unk
+0068EC80		Unk
+0068EC84		Unk
+0068EC88		Unk
+0068EC8C		Unk
+0068EC90		Unk
+0068EC94		Unk
+0068EC98	Lobby Slot Structs (176 * 12) [8 players and 4 forces; undefined struct]
+0068F4D8		Unknown
+0068F4DC		Unknown
+0068F4E0		Unknown
+0068F4E4	Download percentage (4 * 8)
+0068F504		Unknown
+
+0068F6E4	Game SubType value for hosting BNET game
+
+0068F700	char[260] Current Maps Location str
+0068F808	char[260] Default Maps Location str
+0068F90C		Unk Player related? (4 * 8)
+0068F92C		Unk Listbox or Dropdown data ptr
+0068F930	char[256] Game Subtype label String
+0068FA30		Unk
+0068FA34		Unk
+0068FA38		Unk
+0068FA3C		Unk
+0068FA40		Unk
+0068FA44		Unk (HWND)
+0068FA48		Unk (HWND)
+0068FA4C		Unk (HWND)
+0068FA50		Unk
+0068FA54		Unk
+0068FA58	char[256] Game Subtype string
+0068FB58	char[260]	Unknown
+0068FC5C	Game Speed for hosting BNET game
+0068FC60		Unk (HWND)
+0068FC64		Unk ptr
+0068FC68		Unk ptr
+0068FC6C		Unk (HWND)
+0068FC70	char[256] Game Type String
+
+0068FE8C	Game Type for hosting BNET game
+
+006C9840	Flingy.dat	Movement Control (209)
+006C9918	Flingy.dat	Halt Distance (4 * 209)
+006C9C60	Flingy.dat	Acceleration (2 * 209)
+006C9E08	Flingy.dat	Turn Radius (209)
+006C9EE0	Flingy.dat	Top Speed (4 * 209)
+006CA300	Flingy.dat	Sprite Index (2 * 209)
+006CA4A4	Player Type/Force/Something (4 * 12)
+006CA4D4	Player Gas (4 * 12)
+006CA504	Player Minerals (4 * 12)
+006CA534		Unk pointer; Player related? (4 * 8)
+006CA554	char[260] Unk
+006CA64C		Unk (trig wait time?)
+006CA650	char[260] Total Supplies string in HUD
+006CA754	char[32] Under-HP string (Energy)
+
+006CA788	char[100] Elapsed Time String (Result Screen)
+006CA7EC	char[8] 	Unk ("1")
+006CA7F4	char[8] Queue Slot 4 string ("4")
+006CA7FC		Unk
+006CA800	char[260]	Unk
+006CA904	char[32] Under-Wireframe string (HP, shields)
+006CA924	Resource Amount value
+006CA928		Unk val
+006CA92C	char[8] Queue Slot 3/Upgrades/Armor string
+006CA934	HP value in HUD
+
+006CA964	char[8] Queue Slot 2/Upgrades/Armor string
+006CA970	char[100] "Replay Progress" in HUD
+006CA9D4	Shields Value in HUD
+006CA9D8		Unk val
+006CA9DC		Unk
+006CA9E0	char[260] Resource Amount String/Supplies Used in HUD
+006CAAE4	char[8] Queue Slot 5 ("5")
+006CAAEC		Unk
+006CAAF0	char[260] Supply Max String in HUD
+006CABF4		unk (val)
+006CABF8	char[104] Replay State string
+006CAC60	char[260] Kills string/Supplies Provided in HUD
+
+006CDD98	RECT Screen Size
+006CDDA8		Unknown
+006CDDAC	Mouse X Position
+006CDDB0	Mouse Y Position
+006CDDB4		Unknown
+006CDDB8		Unknown (512)
+006CDFB8		Unknown
+006CDFBC	Speed
+006CDFC0	Single Player Mouse Scroll
+006CDFC4	Single Player Key Scroll
+006CDFC8	Music Level (%)
+006CDFCC	Sound Level (%)
+006CDFD0	Tip Number
+006CDFD4	Various Option Flags
+006CDFD8	Multiplayer Mouse Scroll
+006CDFDC	Multiplayer Key Scroll
+
+006CE0DC	Font pointers (4 * 4)
+
+006CEFDC	Ptr to screen data
+
+006D0C3C	Briefing Talking Portrait ID?
+006D0C40	Briefing Talking Portrait BIN Dialog pointer
+
+006D0EFC	Is Replay Flag
+
+006D0F04	Reveal Entire Map (Replay)
+006D0F08		Unk
+006D0F0C	CHK File Pointer
+006D0F10		Unk
+006D0F14		Unk
+006D0F18	Full Replay Header (633 bytes)
+006D1194		Unknown
+
+006D11A4	Menu Byte
+		{
+			00	Main Menu
+			01
+			02	Multi-player Menu
+			03	Lobby Menu
+			04	Battle.net Chat
+			05	Name Select Screen
+			06	Vanilla Campaign Menu
+			07	Mission Briefing Terran
+			08	Mission Briefing Zerg
+			09	Mission Briefing Protoss
+			0A	Multiplayer Games List
+			0B	Play Custom
+			0C	Load Replay
+			0D	Load Game
+			0E	Zerg Result Screen Defeat
+			0F	Zerg Result Screen Victory
+			10	Terran Result Screen Defeat
+			11	Terran Result Screen Victory
+			12	Protoss Result Screen Defeat
+			13	Protoss Result Screen Victory
+			14	Modem Menu
+			15	Multiplayer Games List
+			16	Expansion Campaign Menu
+			17	same as 01
+			18	same as 01
+			19	Main Menu (with smk)
+		}
+
+006D11D4	In-Game Byte (0 forces game end)
+
+006D11E8	Ptr to Iscript location
+
+006D1208	Ptr to net string data location
+
+006D1220	ptr to String table
+
+006D1248	Ptr to Fog of war
+
+006D5A10	Game Mode String (4)
+006D5A14	Game Mode String (4)
+006D5A18	Ptr to gluOK popup BIN dlg
+
+006D5A50	Cheat Code Flags
+
+006D5A90	char[260] "Up One Level"
+006D5B94	music WAV string ptr
+006D5B98		BGM/SFX Unknown
+006D5B9C		BGM/SFX Unknown
+006D5BA0		BGM/SFX Unknown
+006D5BA4	Mute Music Switch
+006D5BA5	Mute Speech Switch
+
+006D5BE4	Map Tile Array AI pathing
+
+006D5EA8	Ptr to Tile Type
+
+006D6374	char[24] Game Password String
+
+006D63D4	Screen Play Size X
+006D63D8	Screen Play Size Y
+006D63DC	Screen Play Size X
+006D63E0	Screen Play Size Y
+
+006DB160	char[260] Maps Path String (single)
+006DB264		Unknown
+006DB268		Unknown
+006DB26C		Unknown
+006DB270		Unknown
+006DB274		Unknown
+006DB278	char[1024]  game Speed string
+006DB678	char[128] Tileset String (single)
+006DB6F8	char[128] Human Slots String (single)
+006DB778	char[128] Computer Slots string (single)
+006DB7F8	char[128] Number of Players String (single)
+006DB878	char[128] Map Size String (single)
+006DB8F8	char[1024]  	Unknown
+006DBCF8	char[32]  	Unknown
+006DBD18	char[40]	Unknown
+006DBD40	char[256]	Unknown
+006DBE40	char[1024]  Game subtype string
+006DC240	char[32]  Game subtype label
+006DC260	char[36]  Map size string
+
+006DC2E0	char[4096] File Buffer
+}}}
