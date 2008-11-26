@@ -2,57 +2,6 @@
 = Replay Header Structure =
 
 Matches several structures found in memory, like player structure
-{{{
-u8		Is Broodwar
-u32		Number of Frames
-u8			Unknown
-u8			Unknown
-u8			Unknown
-u32		Creation Date
-u8 * 12		Available Slots
-char * 28	Game Name
-u16		Map Width
-u16		Map Height
-u8			Unknown (0x01)
-u8		Slots Available
-u16		Game Speed
-u16		Game Type
-u16		Game Subtype
-u32			Unknown (Random Seed?)
-u16		Tileset
-u16			Unknown ( x > 0 ) (0x01)
-char * 25	Creator Name
-char * 32	Map Name
-u16		GameTemplate	Game Type ID
-u16		GameTemplate	Subtype ID
-u16		GameTemplate	Subtype Display Value
-u16		GameTemplate	Subtype Label
-u8		GameTemplate	Victory Conditions (Map Default, Melee, Highest Score, Resources, CTF, Sudden Death, Slaughter, 1v1)
-u8		GameTemplate	Resources (type) (Map Default, Fixed Value, Low, Medium, High, Income)
-u8		GameTemplate	Unit Stats (Map Default, Standard)
-u8		GameTemplate	Fog of War (Off, Warcraft1, On)
-u8		GameTemplate	Starting Units (Map Default, Workers Only, Workers+Center)
-u8		GameTemplate	Starting Positions (Random, Fixed)
-u8		GameTemplate	Player Types (Bit 0 = Computer Available; Bit 1 = Single Player)
-u8		GameTemplate	Allies (Not Allowed, Allowed)
-u8		GameTemplate	Number of Teams
-u8		GameTemplate	Cheat Codes (Off, On)
-u8		GameTemplate	Tournament Mode (Off, On)
-u32		GameTemplate	Victory Condition Value
-u32		GameTemplate	Resources Value
-u32		GameTemplate		Unknown/unused
-u8			Unknown/unused
 
-Player Structures (*12)
-{
-	u32		Player ID
-	u32		Number of Actions
-	u8		Owner
-	u8		Race
-	u8		Force
-	Char * 25	Player Name
-}
 
-u32 * 8		Player Colour
-u8 * 8			Unknown (0x01 if custom colour is used)
-}}}
+See http://code.google.com/p/vgce/wiki/starcraftReplayHeader for most recent.
