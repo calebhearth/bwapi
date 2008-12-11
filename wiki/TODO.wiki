@@ -1,0 +1,21 @@
+#summary TODO's in one nice list
+#labels Phase-Design
+
+=Bug Fixes=
+  * Fix (Overflow ?) crash with print text and send text. (Call depot with sendPublic crashes)
+  * Recognize new Larvae units
+  * Fix Protoss build task
+  * Fix Zerg build task
+  * Fix Vulture crash (?)
+  * Cut down on the number of call patches (Warden).
+
+=Must Have=
+  * Finish macro work.
+  * Add some sort of enemySeen when vision is available
+
+=Enhancements=
+  * Finish build location appending/saving (Heinermann)
+  * Add wildcard support for map names (or Terrain hash)
+  * Add support for build orders and micro scripts that can be specific to certain maps
+  * Start basic micro work.
+  * Add more conditions for build orders(For user flexibility).
