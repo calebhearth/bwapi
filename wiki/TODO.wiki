@@ -6,7 +6,6 @@
   * Recognize new Larvae units
   * Fix Protoss build task
   * Fix Zerg build task
-  * Fix Vulture crash (?)
   * Cut down on the number of call patches (Warden).
 
 =Must Have=
