@@ -13,7 +13,6 @@
   * Add some sort of enemySeen when vision is available
 
 =Enhancements=
-  * Finish build location appending/saving (Heinermann)
   * Add wildcard support for map names (or Terrain hash)
   * Add support for build orders and micro scripts that can be specific to certain maps
   * Start basic micro work.
