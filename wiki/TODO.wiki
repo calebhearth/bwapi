@@ -2,7 +2,6 @@
 #labels Phase-Design
 
 =Bug Fixes=
-  * Fix (Overflow ?) crash with print text and send text. (Call depot with sendPublic crashes)
   * Recognize new Larvae units
   * Fix Protoss build task
   * Fix Zerg build task
