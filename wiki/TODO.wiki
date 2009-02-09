@@ -5,7 +5,6 @@
   * Recognize new Larvae units
   * Fix Protoss build task
   * Fix Zerg build task
-  * Cut down on the number of call patches (Warden).
 
 =Must Have=
   * Finish macro work.
@@ -13,6 +12,7 @@
 
 =Enhancements=
   * Add wildcard support for map names (or Terrain hash)
-  * Add support for build orders and micro scripts that can be specific to certain maps
+  * Add support for build orders and micro scripts that can be specific to certain maps.
   * Start basic micro work.
   * Add more conditions for build orders(For user flexibility).
+  * Cut down on the number of call patches (easier management).
