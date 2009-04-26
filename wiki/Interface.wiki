@@ -1,7 +1,5 @@
 #summary How custom AIs can make use of BWAPI
 
-= Introduction =
-
 For BWAPI to be a finished API, it should have a simple interface to the outside that custom AIs use. Below is an list of methods that such an interface could have.
 
 = Interface =
