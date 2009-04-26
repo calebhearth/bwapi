@@ -12,6 +12,8 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int build(UnitID unit, int tile_x, int tile_y, UnitTypeID type);
   * int invent(UnitID unit, TechTypeID tech);
   * int upgrade(UnitID unit, UpgradeTypeID upgrade);
+  * int stop(UnitID unit);
+  * int patrol(UnitID unit, int x, int y);
 
 == Get game information ==
   * vector< PlayerID > get_players();
