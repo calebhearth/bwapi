@@ -114,8 +114,8 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * bool walkable(int walk_x, int walk_y);
   * bool visible(int tile_x, int tile_y);
   * vector< StartLocationID > start_locations();
-  * int start_location_x(StartLocationID);
-  * int start_location_y(StartLocationID);
+  * int start_location_x(StartLocationID location);
+  * int start_location_y(StartLocationID location);
 
 == Misc ==
   * string race_name(RaceID type);
