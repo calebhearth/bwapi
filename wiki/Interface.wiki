@@ -1,0 +1,115 @@
+#summary How custom AIs can make use of BWAPI
+
+= Introduction =
+
+For BWAPI to be a finished API, it should have a simple interface to the outside that custom AIs use. Below is an list of methods that such an interface could have.
+
+= Interface =
+
+== issue commands ==
+  * int attack_location(UnitID unit, int x, int y);
+  * int right_click(UnitID unit, int x, int y);
+  * int right_click(UnitID unit, UnitID target);
+  * int train(UnitID unit, UnitTypeID type);
+  * int build(UnitID unit, int tile_x, int tile_y, UnitTypeID type);
+  * int invent(UnitID unit, TechTypeID tech);
+  * int upgrade(UnitID unit, UpgradeTypeID upgrade);
+
+== get game information ==
+  * vector<PlayerID> get_players();
+  * vector<UnitID> get_units(PlayerID p);
+
+== get information about units ==
+  * PlayerID unit_owner(UnitID unit);
+  * UnitTypeID unit_type(UnitID unit);
+  * int unit_health(UnitID unit);
+  * int unit_shield(UnitID unit);
+  * int unit_energy(UnitID unit);
+  * int unit_position_x(UnitID unit);
+  * int unit_position_y(UnitID unit);
+  * int unit_tile_x(UnitID unit);
+  * int unit_tile_y(UnitID unit);
+
+  * UnitID get_target(UnitID unit);
+  * UnitID get_order_target(UnitID unit);
+  * UnitID get_build_unit(UnitID unit);
+  * int target_position_x(UnitID unit);
+  * int target_position_y(UnitID unit);
+  * OrderID get_order(UnitID unit);
+  * OrderID get_secondary_order(UnitID unit);
+  * int order_timer(UnitID unit);
+  * int build_queue_length(UnitID unit);
+  * UnitTypeID build_queue_slot(UnitID unit, int index);
+  * int unit_exists(UnitID unit);
+  * int unit_visible(UnitID unit);
+  * int unit_completed(UnitID unit);
+  * int unit_lifted(UnitID unit);
+  * int unit_burrowed(UnitID unit);
+  * int unit_idle(UnitID unit);
+  * int unit_cloaked(UnitID unit);
+  * int unit_disabled(UnitID unit);
+
+== get information about types of units ==
+  * string unittype_name(UnitTypeID type);
+  * RaceID unittype_race(UnitTypeID type);
+  * UnitTypeID what_builds(UnitTypeID type);
+  * int supplies_consumed(UnitTypeID type);
+  * int supplies_produced(UnitTypeID type);
+  * int max_health(UnitTypeID type);
+  * int max_shield(UnitTypeID type);
+  * int mineral_price(UnitTypeID type);
+  * int gas_price(UnitTypeID type);
+  * int armor(UnitTypeID type);
+  * int buildtime(UnitTypeID type);
+  * int dimension_left(UnitTypeID type);
+  * int dimension_up(UnitTypeID type);
+  * int dimension_right(UnitTypeID type);
+  * int dimension_down(UnitTypeID type);
+  * int tile_width(UnitTypeID type);
+  * int tile_height(UnitTypeID type);
+  * int damage_factor(UnitTypeID type);
+  * int ground_damage(UnitTypeID type);
+  * int produces(UnitTypeID type);
+  * int worker(UnitTypeID type);
+  * int attacks(UnitTypeID type);
+  * int moves(UnitTypeID type);
+  * int building(UnitTypeID type);
+  * int addon(UnitTypeID type);
+  * int flies(UnitTypeID type);
+  * int neutral(UnitTypeID type);
+  * int organic(UnitTypeID type);
+  * int mechanical(UnitTypeID type);
+  * int unittype_exists(UnitTypeID type);
+
+== get information about our player ==
+  * bool researching(TechTypeID tech);
+  * bool researched(TechTypeID tech);
+  * bool upgrading(UpgradeTypeID upgrade);
+  * int upgrade_level(UpgradeTypeID upgrade);
+  * int minerals();
+  * int gas();
+  * int supply_used();
+  * int supply_total();
+  * int can_build(UnitTypeID unit);
+  * int can_afford(UnitTypeID unit);
+  * int can_afford(TechTypeID tech);
+  * int can_afford(UpgradeTypeID upgrade);
+  * PlayerID my_id();
+
+== get information about any player ==
+  * string player_name(PlayerID player);
+  * RaceID player_race(PlayerID player);
+  * PlayerTypeID player_type(PlayerID player);    
+
+== get map information ==
+  * int map_width();
+  * int map_height();
+  * string map_filename();
+  * string map_name();
+  * bool buildable(int tile_x, int tile_y);
+  * bool walkable(int walk_x, int walk_y);
+  * bool visible(int tile_x, int tile_y);
+
+== misc ==
+  * string race_name(RaceID type);
+  * int print_text(string test);
