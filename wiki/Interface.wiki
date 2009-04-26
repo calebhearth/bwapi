@@ -6,7 +6,7 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
 
 = Interface =
 
-== issue commands ==
+== Issue commands ==
   * int attack_location(UnitID unit, int x, int y);
   * int right_click(UnitID unit, int x, int y);
   * int right_click(UnitID unit, UnitID target);
@@ -15,11 +15,11 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int invent(UnitID unit, TechTypeID tech);
   * int upgrade(UnitID unit, UpgradeTypeID upgrade);
 
-== get game information ==
+== Get game information ==
   * vector< PlayerID > get_players();
   * vector< UnitID > get_units(PlayerID p);
 
-== get information about units ==
+== Get information about units ==
   * PlayerID unit_owner(UnitID unit);
   * UnitTypeID unit_type(UnitID unit);
   * int unit_health(UnitID unit);
@@ -49,7 +49,7 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int unit_cloaked(UnitID unit);
   * int unit_disabled(UnitID unit);
 
-== get information about types of units ==
+== Get information about types of units ==
   * string unittype_name(UnitTypeID type);
   * RaceID unittype_race(UnitTypeID type);
   * UnitTypeID what_builds(UnitTypeID type);
@@ -81,7 +81,7 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int mechanical(UnitTypeID type);
   * int unittype_exists(UnitTypeID type);
 
-== get information about our player ==
+== Get information about our player ==
   * bool researching(TechTypeID tech);
   * bool researched(TechTypeID tech);
   * bool upgrading(UpgradeTypeID upgrade);
@@ -96,12 +96,12 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int can_afford(UpgradeTypeID upgrade);
   * PlayerID my_id();
 
-== get information about any player ==
+== Get information about any player ==
   * string player_name(PlayerID player);
   * RaceID player_race(PlayerID player);
   * PlayerTypeID player_type(PlayerID player);    
 
-== get map information ==
+== Get map information ==
   * int map_width();
   * int map_height();
   * string map_filename();
@@ -110,6 +110,6 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * bool walkable(int walk_x, int walk_y);
   * bool visible(int tile_x, int tile_y);
 
-== misc ==
+== Misc ==
   * string race_name(RaceID type);
   * int print_text(string test);
