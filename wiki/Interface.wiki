@@ -1,6 +1,6 @@
 #summary How custom AIs can make use of BWAPI
 
-For BWAPI to be a finished API, it should have a simple interface to the outside that custom AIs use. Below is an list of methods that such an interface could have. UnitID, PlayerID, UnitTypeID, UpgradeTypeID, RaceTypeID, StartLocationID, and RaceID would all basically be integers. If you tried to get information about UnitIDs that were not visible, the method would return an error saying that the unit was not visible. Each unit would have a unique UnitID.
+For BWAPI to be a finished API, it should have a simple interface to the outside that custom AIs use. This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, or build order execution) can be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, UnitTypeID, UpgradeTypeID, RaceTypeID, StartLocationID, and RaceID would all basically be integers. If you tried to get information about UnitIDs that were not visible, the method would return an error saying that the unit was not visible. Each unit would have a unique UnitID.
 
 = Interface =
 
