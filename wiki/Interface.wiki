@@ -34,7 +34,6 @@ For BWAPI to be a finished API, it should have a simple interface to the outside
   * int unit_position_y(UnitID unit);
   * int unit_tile_x(UnitID unit);
   * int unit_tile_y(UnitID unit);
-
   * UnitID get_target(UnitID unit);
   * UnitID get_order_target(UnitID unit);
   * UnitID get_build_unit(UnitID unit);
