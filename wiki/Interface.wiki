@@ -17,7 +17,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int stop(UnitID unit);
   * int hold_position(UnitID unit);
   * int patrol(UnitID unit, int x, int y);
-  * int use_ability(UnitID unit,AbilityID ability);
+  * int use_tech(UnitID unit,TechTypeID tech);
 
 == Get game information ==
 Only units that are visible to the AI are returned in the vector to prevent cheating.
@@ -128,13 +128,12 @@ Returns a list of all the possible starting location for the given map, not the 
   * int print_text(string test);
 
 == Error Codes ==
-  * ErrorUnitNotVisible - used if enemy unit is not visible and/or dead.
-  * ErrorIncorrectUnitType
-  * ErrorUnitNotOwned - returned when attempting to order a unit that BWAPI does not own
-  * ErrorInsufficientMinerals
-  * ErrorInsufficientGas
-  * ErrorInsufficientSupply
-  * ErrorLocationUnbuildable
-  * ErrorInvalidTechType
-  * ErrorInvalidUpgradeType
-  * ErrorInvalidAbilityType
+  * ERROR_UNIT_NOT_VISIBLE - used if you try to retrieve information that is not current visible or is dead.
+  * ERROR_INVALID_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV.
+  * ERROR_UNIT_NOT_OWNED - returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
+  * ERROR_INSUFFICIENT_MINERALS - returned if you try to train or build something without enough minerals
+  * ERROR_INSUFFICIENT_GAS - returned if you try to train or build something without enough vespene gas
+  * ERROR_INSUFFICIENT_SUPPLY - returned if you try to train something without enough supply
+  * ERROR_LOCATION_UNBUILDABLE - returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way).
+  * ERROR_INCOMPATIBLE_TECH_TYPE - returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Hatchery to use Burrowing tech will return this error)
+  * ERROR_INCOMPATIBLE_UPGRADE_TYPE - returned if you try to upgrade something at the wrong building
