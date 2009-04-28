@@ -138,6 +138,6 @@ Returns a list of all the possible starting location for the given map, not the 
   * ERROR_INSUFFICIENT_MINERALS - returned if you try to train or build something without enough minerals
   * ERROR_INSUFFICIENT_GAS - returned if you try to train or build something without enough vespene gas
   * ERROR_INSUFFICIENT_SUPPLY - returned if you try to train something without enough supply
-  * ERROR_LOCATION_UNBUILDABLE - returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could assume that no units are blocking it (to prevent cheating).
+  * ERROR_LOCATION_UNBUILDABLE - returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating).
   * ERROR_INCOMPATIBLE_TECH_TYPE - returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Hatchery to use Burrowing tech will return this error)
   * ERROR_INCOMPATIBLE_UPGRADE_TYPE - returned if you try to upgrade something at the wrong building
