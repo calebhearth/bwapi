@@ -128,7 +128,7 @@ Returns a list of all the possible starting location for the given map, not the 
   * int print_text(string test);
 
 == Error Codes ==
-  * ERROR_UNIT_NOT_VISIBLE - used if you try to retrieve information that is not current visible or is dead.
+  * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
   * ERROR_INVALID_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV.
   * ERROR_UNIT_NOT_OWNED - returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
   * ERROR_INSUFFICIENT_MINERALS - returned if you try to train or build something without enough minerals
