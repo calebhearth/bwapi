@@ -1,6 +1,8 @@
 #summary How custom AIs can make use of BWAPI
 
-For BWAPI to be a finished API, it should have a simple C/C++ interface to the outside that custom AIs use. This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, or build order execution) can be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, UnitTypeID, UpgradeTypeID, RaceTypeID, StartLocationID, and RaceID would all basically be integers. If you tried to get information about UnitIDs that were not visible, the method would return an error saying that the unit was not visible. Each unit would have a unique UnitID.
+For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface and possibly high-level AI logic parsers for BWAI's XML build order files or Broodwar's current AI scripts.
+
+This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, UnitTypeID, UpgradeTypeID, RaceTypeID, StartLocationID, and RaceID would all basically be integers. If you tried to get information about UnitIDs that were not visible, the method would return an error saying that the unit was not visible. Each unit would have a unique UnitID.
 
 = Interface =
 
@@ -18,6 +20,8 @@ For BWAPI to be a finished API, it should have a simple C/C++ interface to the o
   * int use_ability(UnitID unit,AbilityID ability);
 
 == Get game information ==
+Only units that are visible to the AI are returned in the vector to prevent cheating.
+
   * vector< PlayerID > get_players();
   * vector< UnitID > get_units(PlayerID p);
   * vector< UnitID > get_minerals();
@@ -25,6 +29,7 @@ For BWAPI to be a finished API, it should have a simple C/C++ interface to the o
   * vector< UnitID > get_neutral();
 
 == Get information about units ==
+If the AI tries to obtain information about a unit that is not visible, an error code will be returned.
   * PlayerID unit_owner(UnitID unit);
   * UnitTypeID unit_type(UnitID unit);
   * int unit_health(UnitID unit);
@@ -113,6 +118,7 @@ For BWAPI to be a finished API, it should have a simple C/C++ interface to the o
   * bool buildable(int tile_x, int tile_y);
   * bool walkable(int walk_x, int walk_y);
   * bool visible(int tile_x, int tile_y);
+Returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
   * vector< StartLocationID > start_locations();
   * int start_location_x(StartLocationID location);
   * int start_location_y(StartLocationID location);
@@ -120,3 +126,15 @@ For BWAPI to be a finished API, it should have a simple C/C++ interface to the o
 == Misc ==
   * string race_name(RaceID type);
   * int print_text(string test);
+
+== Error Codes ==
+  * ErrorUnitNotVisible - used if enemy unit is not visible and/or dead.
+  * ErrorIncorrectUnitType
+  * ErrorUnitNotOwned - returned when attempting to order a unit that BWAPI does not own
+  * ErrorInsufficientMinerals
+  * ErrorInsufficientGas
+  * ErrorInsufficientSupply
+  * ErrorLocationUnbuildable
+  * ErrorInvalidTechType
+  * ErrorInvalidUpgradeType
+  * ErrorInvalidAbilityType
