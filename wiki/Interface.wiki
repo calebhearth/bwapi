@@ -29,7 +29,10 @@ Only units that are visible to the AI are returned in the vector to prevent chea
   * vector< UnitID > get_neutral();
 
 == Get information about units ==
-If the AI tries to obtain information about a unit that is not visible, an error code will be returned.
+Can be used on any UnitID
+  * int unit_visible(UnitID unit);
+
+If the AI tries to use one of the following methods on a unit that is not visible, an error code will be returned.
   * PlayerID unit_owner(UnitID unit);
   * UnitTypeID unit_type(UnitID unit);
   * int unit_health(UnitID unit);
@@ -47,16 +50,17 @@ If the AI tries to obtain information about a unit that is not visible, an error
   * OrderID get_order(UnitID unit);
   * OrderID get_secondary_order(UnitID unit);
   * int order_timer(UnitID unit);
-  * int build_queue_length(UnitID unit);
-  * UnitTypeID build_queue_slot(UnitID unit, int index);
   * int unit_exists(UnitID unit);
-  * int unit_visible(UnitID unit);
   * int unit_completed(UnitID unit);
   * int unit_lifted(UnitID unit);
   * int unit_burrowed(UnitID unit);
   * int unit_idle(UnitID unit);
   * int unit_cloaked(UnitID unit);
   * int unit_disabled(UnitID unit);
+  * int build_queue_length(UnitID unit);
+
+The following method will return an error if used on any unit that the AI player does not own.
+  * UnitTypeID build_queue_slot(UnitID unit, int index);
 
 == Get information about types of units ==
   * string unittype_name(UnitTypeID type);
