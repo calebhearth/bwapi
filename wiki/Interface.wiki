@@ -2,86 +2,87 @@
 
 For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface and possibly high-level AI logic parsers for BWAI's XML build order files or Broodwar's current AI scripts.
 
-This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, UnitTypeID, UpgradeTypeID, RaceTypeID, StartLocationID, and RaceID would all basically be integers. If you tried to get information about UnitIDs that were not visible, the method would return an error saying that the unit was not visible. Each unit would have a unique UnitID.
+This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeTypeID, TechTypeID, and RaceID are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
 
 = Interface =
 
 == Issue commands ==
-  * int attack_location(UnitID unit, int x, int y);
-  * int right_click(UnitID unit, int x, int y);
-  * int right_click(UnitID unit, UnitID target);
+  * int attackLocation(UnitID unit, int x, int y);
+  * int rightClick(UnitID unit, int x, int y);
+  * int rightClick(UnitID unit, UnitID target);
   * int train(UnitID unit, UnitTypeID type);
-  * int build(UnitID unit, int tile_x, int tile_y, UnitTypeID type);
+  * int build(UnitID unit, int x, int y, UnitTypeID type);
   * int invent(UnitID unit, TechTypeID tech);
   * int upgrade(UnitID unit, UpgradeTypeID upgrade);
   * int stop(UnitID unit);
-  * int hold_position(UnitID unit);
+  * int holdPosition(UnitID unit);
   * int patrol(UnitID unit, int x, int y);
-  * int use_tech(UnitID unit,TechTypeID tech);
+  * int useTech(UnitID unit,TechTypeID tech);
 
 == Get game information ==
-Only units that are visible to the AI are returned in the vector to prevent cheating.
+Only units that are visible to the AI are returned to prevent cheating.
 
-  * vector< PlayerID > get_players();
-  * vector< UnitID > get_units(PlayerID p);
-  * vector< UnitID > get_minerals();
-  * vector< UnitID > get_geysers();
-  * vector< UnitID > get_neutral();
+  * std::set< ForceID > getForces();
+  * std::set< PlayerID > getPlayers();
+  * std::set< UnitID > getUnits(PlayerID p);
+  * std::set< UnitID > getMinerals();
+  * std::set< UnitID > getQeysers();
+  * std::set< UnitID > getNeutralUnits();
 
 == Get information about units ==
 Can be used on any UnitID
-  * int unit_visible(UnitID unit);
+  * int unitVisible(UnitID unit);
 
 If the AI tries to use one of the following methods on a unit that is not visible, an error code will be returned.
-  * PlayerID unit_owner(UnitID unit);
-  * UnitTypeID unit_type(UnitID unit);
-  * int unit_health(UnitID unit);
-  * int unit_shield(UnitID unit);
-  * int unit_energy(UnitID unit);
-  * int unit_position_x(UnitID unit);
-  * int unit_position_y(UnitID unit);
-  * int unit_tile_x(UnitID unit);
-  * int unit_tile_y(UnitID unit);
-  * UnitID get_target(UnitID unit);
-  * UnitID get_order_target(UnitID unit);
-  * UnitID get_build_unit(UnitID unit);
-  * int target_position_x(UnitID unit);
-  * int target_position_y(UnitID unit);
-  * OrderID get_order(UnitID unit);
-  * OrderID get_secondary_order(UnitID unit);
-  * int order_timer(UnitID unit);
-  * int unit_exists(UnitID unit);
-  * int unit_completed(UnitID unit);
-  * int unit_lifted(UnitID unit);
-  * int unit_burrowed(UnitID unit);
-  * int unit_idle(UnitID unit);
-  * int unit_cloaked(UnitID unit);
-  * int unit_disabled(UnitID unit);
-  * int build_queue_length(UnitID unit);
+  * PlayerID unitOwner(UnitID unit);
+  * UnitTypeID unitType(UnitID unit);
+  * int unitHealth(UnitID unit);
+  * int unitShield(UnitID unit);
+  * int unitEnergy(UnitID unit);
+  * int unitPositionX(UnitID unit);
+  * int unitPositionY(UnitID unit);
+  * int unitTileX(UnitID unit);
+  * int unitTileY(UnitID unit);
+  * UnitID getTarget(UnitID unit);
+  * UnitID getOrderTarget(UnitID unit);
+  * UnitID getBuildUnit(UnitID unit);
+  * int targetPositionX(UnitID unit);
+  * int targetPositionY(UnitID unit);
+  * OrderID getOrder(UnitID unit);
+  * OrderID getSecondaryOrder(UnitID unit);
+  * int orderTimer(UnitID unit);
+  * int unitExists(UnitID unit);
+  * int unitCompleted(UnitID unit);
+  * int unitLifted(UnitID unit);
+  * int unitBurrowed(UnitID unit);
+  * int unitIdle(UnitID unit);
+  * int unitCloaked(UnitID unit);
+  * int unitDisabled(UnitID unit);
+  * int isTraining(UnitID unit);
 
 The following method will return an error code if used on any unit that the AI player does not own.
-  * UnitTypeID build_queue_slot(UnitID unit, int index);
+  * std::list< UnitTypeID > getTrainingQueue(UnitID unit);
 
 == Get information about types of units ==
-  * string unittype_name(UnitTypeID type);
-  * RaceID unittype_race(UnitTypeID type);
-  * UnitTypeID what_builds(UnitTypeID type);
-  * int supplies_consumed(UnitTypeID type);
-  * int supplies_produced(UnitTypeID type);
-  * int max_health(UnitTypeID type);
-  * int max_shield(UnitTypeID type);
-  * int mineral_price(UnitTypeID type);
-  * int gas_price(UnitTypeID type);
+  * std::string unitTypeName(UnitTypeID type);
+  * RaceID unitTypeRace(UnitTypeID type);
+  * UnitTypeID whatBuilds(UnitTypeID type);
+  * int suppliesConsumed(UnitTypeID type);
+  * int suppliesProduced(UnitTypeID type);
+  * int maxHealth(UnitTypeID type);
+  * int maxShield(UnitTypeID type);
+  * int mineralPrice(UnitTypeID type);
+  * int gasPrice(UnitTypeID type);
   * int armor(UnitTypeID type);
-  * int buildtime(UnitTypeID type);
-  * int dimension_left(UnitTypeID type);
-  * int dimension_up(UnitTypeID type);
-  * int dimension_right(UnitTypeID type);
-  * int dimension_down(UnitTypeID type);
-  * int tile_width(UnitTypeID type);
-  * int tile_height(UnitTypeID type);
-  * int damage_factor(UnitTypeID type);
-  * int ground_damage(UnitTypeID type);
+  * int buildTime(UnitTypeID type);
+  * int dimensionLeft(UnitTypeID type);
+  * int dimensionUp(UnitTypeID type);
+  * int dimensionRight(UnitTypeID type);
+  * int dimensionDown(UnitTypeID type);
+  * int tileWidth(UnitTypeID type);
+  * int tileHeight(UnitTypeID type);
+  * int damageFactor(UnitTypeID type);
+  * int groundDamage(UnitTypeID type);
   * int produces(UnitTypeID type);
   * int worker(UnitTypeID type);
   * int attacks(UnitTypeID type);
@@ -92,48 +93,54 @@ The following method will return an error code if used on any unit that the AI p
   * int neutral(UnitTypeID type);
   * int organic(UnitTypeID type);
   * int mechanical(UnitTypeID type);
-  * int unittype_exists(UnitTypeID type);
 
 == Get information about our player ==
-  * bool researching(TechTypeID tech);
-  * bool researched(TechTypeID tech);
-  * bool upgrading(UpgradeTypeID upgrade);
-  * int upgrade_level(UpgradeTypeID upgrade);
+  * int researching(TechTypeID tech);
+  * int researched(TechTypeID tech);
+  * int upgrading(UpgradeTypeID upgrade);
+  * int getUpgradeLevel(UpgradeTypeID upgrade);
   * int minerals();
   * int gas();
-  * int supply_used();
-  * int supply_total();
-  * int can_build(UnitTypeID unit);
-  * int can_afford(UnitTypeID unit);
-  * int can_afford(TechTypeID tech);
-  * int can_afford(UpgradeTypeID upgrade);
-  * PlayerID my_id();
+  * int supplyUsed();
+  * int supplyTotal();
+  * int canBuild(UnitTypeID unit);
+  * int canAfford(UnitTypeID unit);
+  * int canAfford(TechTypeID tech);
+  * int canAfford(UpgradeTypeID upgrade);
+  * PlayerID myID();
 
 == Get information about any player ==
-  * string player_name(PlayerID player);
-  * RaceID player_race(PlayerID player);
-  * PlayerTypeID player_type(PlayerID player);    
+  * std::string playerName(PlayerID player);
+  * RaceID playerRace(PlayerID player);
+  * PlayerTypeID playerType(PlayerID player);
+  * int areAllies(PlayerID player1, PlayerID player2);
+  * ForceID getForce(PlayerID player);
 
 == Get map information ==
-  * int map_width();
-  * int map_height();
-  * string map_filename();
-  * string map_name();
-  * bool buildable(int tile_x, int tile_y);
-  * bool walkable(int walk_x, int walk_y);
-  * bool visible(int tile_x, int tile_y);
+  * int mapWidth();
+  * int mapHeight();
+  * std::string mapFilename();
+  * std::string mapName();
+  * bool buildable(int x, int y);
+  * bool walkable(int x, int y);
+  * bool visible(int x, int y);
 Returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
-  * vector< StartLocationID > start_locations();
-  * int start_location_x(StartLocationID location);
-  * int start_location_y(StartLocationID location);
+  * std::set< StartLocationID > getStartLocations();
+  * int startLocationX(StartLocationID location);
+  * int startLocationY(StartLocationID location);
 
 == Misc ==
-  * string race_name(RaceID type);
-  * int print_text(string test);
+  * std::string raceName(RaceID type);
+  * int printText(string test);
+  * int sendMessage(string test);
+  * int shareVision(PlayerID player);
+  * int unshareVision(PlayerID player);
+  * int formAlliance(PlayerID player);
+  * int destroyAlliance(PlayerID player);
 
 == Error Codes ==
   * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
-  * ERROR_INVALID_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
+  * ERROR_INCOMPATIBLE_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
   * ERROR_UNIT_NOT_OWNED - returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
   * ERROR_INSUFFICIENT_MINERALS - returned if you try to train or build something without enough minerals
   * ERROR_INSUFFICIENT_GAS - returned if you try to train or build something without enough vespene gas
