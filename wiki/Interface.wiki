@@ -2,7 +2,7 @@
 
 For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface and possibly high-level AI logic parsers for BWAI's XML build order files or Broodwar's current AI scripts.
 
-This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeTypeID, TechTypeID, RaceID, and Latency are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
+This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeID, TechID, RaceID, and Latency are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
 
 = Interface =
 
@@ -45,12 +45,13 @@ If the AI tries to use one of the following methods on a unit that is not visibl
   * int unitTileX(UnitID unit);
   * int unitTileY(UnitID unit);
   * UnitID getTarget(UnitID unit);
+  * UnitID getChild(UnitID unit);
   * UnitID getOrderTarget(UnitID unit);
   * UnitID getBuildUnit(UnitID unit);
   * int targetPositionX(UnitID unit);
   * int targetPositionY(UnitID unit);
-  * OrderID getOrder(UnitID unit);
-  * OrderID getSecondaryOrder(UnitID unit);
+  * OrderID::Enum getOrder(UnitID unit);
+  * OrderID::Enum getSecondaryOrder(UnitID unit);
   * int orderTimer(UnitID unit);
   * int unitExists(UnitID unit);
   * int unitCompleted(UnitID unit);
@@ -65,12 +66,11 @@ The following method will return an error code if used on any unit that the AI p
   * std::list< UnitTypeID::Enum > getTrainingQueue(UnitID unit);
 
 == Get information about types of units ==
-  * std::string unitTypeName(UnitTypeID::Enum type);
+  * std::set< UnitTypeID::Enum > allUnitTypes();
   * UnitTypeID::Enum getUnitType(std::string type);
+  * std::string unitTypeName(UnitTypeID::Enum type);
   * RaceID::Enum unitTypeRace(UnitTypeID::Enum type);
   * UnitTypeID::Enum whatBuilds(UnitTypeID::Enum type);
-  * UnitTypeID::Enum whatResearches(TechID::Enum type);
-  * UnitTypeID::Enum whatUpgrades(UpgradeID::Enum type);
   * int suppliesConsumed(UnitTypeID::Enum type);
   * int suppliesProduced(UnitTypeID::Enum type);
   * int maxHealth(UnitTypeID::Enum type);
@@ -99,26 +99,36 @@ The following method will return an error code if used on any unit that the AI p
   * int mechanical(UnitTypeID::Enum type);
 
 == Get information about upgrades ==
+  * std::set< UpgradeID::Enum > allUpgrades();
   * std::string upgradeName(UpgradeID::Enum upgrade);
   * UpgradeID::Enum getUpgrade(std::string upgrade);
   * int mineralPrice(UpgradeID::Enum type);
   * int gasPrice(UpgradeID::Enum type);
+  * UnitTypeID::Enum whatUpgrades(UpgradeID::Enum type);
 
 == Get information about tech ==
-  * std::string techName(TechID::Enum tech);
+  * std::set< TechID::Enum > allTechs();
   * TechID::Enum getTech(std::string tech);
+  * std::string techName(TechID::Enum tech);
   * int mineralPrice(TechID::Enum type);
   * int gasPrice(TechID::Enum type);
+  * UnitTypeID::Enum whatResearches(TechID::Enum type);
 
 == Get information about orders ==
+  * std::set< OrderID::Enum > allOrders();
   * OrderID::Enum getOrder(std::string order);
   * std::string orderName(OrderID::Enum order);
 
+== Get information about races ==
+  * std::set<RaceID::Enum> allRaces();
+  * RaceID::Enum getRace(std::string race);
+  * std::string raceName(RaceID::Enum race);
+
 == Get information about our player ==
-  * int researching(TechTypeID::Enum tech);
-  * int researched(TechTypeID::Enum tech);
-  * int upgrading(UpgradeTypeID::Enum upgrade);
-  * int getUpgradeLevel(UpgradeTypeID::Enum upgrade);
+  * int researching(TechID::Enum tech);
+  * int researched(TechID::Enum tech);
+  * int upgrading(UpgradeID::Enum upgrade);
+  * int getUpgradeLevel(UpgradeID::Enum upgrade);
   * int minerals();
   * int gas();
   * int supplyUsed();
@@ -128,7 +138,7 @@ The following method will return an error code if used on any unit that the AI p
 == Get information about any player ==
   * std::string playerName(PlayerID player);
   * RaceID::Enum playerRace(PlayerID player);
-  * PlayerTypeID playerType(PlayerID player);
+  * PlayerTypeID::Enum playerType(PlayerID player);
   * int areAllies(PlayerID player1, PlayerID player2);
   * ForceID getForce(PlayerID player);
 
@@ -147,8 +157,11 @@ Returns a list of all the possible starting location for the given map, not the 
   * int startLocationY(StartLocationID location);
 
 == Misc ==
-  * int printText(string test);
-  * int sendMessage(string test);
+  * int printText(std::string text);
+  * int printText(const char *text, ...);
+  * int sendMessage(std::string text);
+  * int sendMessage(const char *text, ...);
+
   * int shareVision(PlayerID player);
   * int unshareVision(PlayerID player);
   * int formAlliance(PlayerID player);
