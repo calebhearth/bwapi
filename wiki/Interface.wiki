@@ -10,14 +10,14 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int attackLocation(UnitID unit, int x, int y);
   * int rightClick(UnitID unit, int x, int y);
   * int rightClick(UnitID unit, UnitID target);
-  * int train(UnitID unit, UnitTypeID type);
-  * int build(UnitID unit, int x, int y, UnitTypeID type);
-  * int invent(UnitID unit, TechTypeID tech);
-  * int upgrade(UnitID unit, UpgradeTypeID upgrade);
+  * int train(UnitID unit, UnitTypeID::Enum type);
+  * int build(UnitID unit, int x, int y, UnitTypeID::Enum type);
+  * int invent(UnitID unit, TechTypeID::Enum tech);
+  * int upgrade(UnitID unit, UpgradeTypeID::Enum upgrade);
   * int stop(UnitID unit);
   * int holdPosition(UnitID unit);
   * int patrol(UnitID unit, int x, int y);
-  * int useTech(UnitID unit,TechTypeID tech);
+  * int useTech(UnitID unit,TechTypeID::Enum tech);
 
 == Get game information ==
 Only units that are visible to the AI are returned to prevent cheating.
@@ -28,7 +28,7 @@ Only units that are visible to the AI are returned to prevent cheating.
   * std::set< UnitID > getMinerals();
   * std::set< UnitID > getQeysers();
   * std::set< UnitID > getNeutralUnits();
-  Latency::Enum getLatency();
+  * Latency::Enum getLatency();
 
 == Get information about units ==
 Can be used on any UnitID
@@ -99,20 +99,20 @@ The following method will return an error code if used on any unit that the AI p
   * int mechanical(UnitTypeID::Enum type);
 
 == Get information about upgrades ==
-  std::string upgradeName(UpgradeID::Enum upgrade);
-  UpgradeID::Enum getUpgrade(std::string upgrade);
-  int mineralPrice(UpgradeID::Enum type);
-  int gasPrice(UpgradeID::Enum type);
+  * std::string upgradeName(UpgradeID::Enum upgrade);
+  * UpgradeID::Enum getUpgrade(std::string upgrade);
+  * int mineralPrice(UpgradeID::Enum type);
+  * int gasPrice(UpgradeID::Enum type);
 
 == Get information about tech ==
-  std::string techName(TechID::Enum tech);
-  TechID::Enum getTech(std::string tech);
-  int mineralPrice(TechID::Enum type);
-  int gasPrice(TechID::Enum type);
+  * std::string techName(TechID::Enum tech);
+  * TechID::Enum getTech(std::string tech);
+  * int mineralPrice(TechID::Enum type);
+  * int gasPrice(TechID::Enum type);
 
 == Get information about orders ==
-  OrderID::Enum getOrder(std::string order);
-  std::string orderName(OrderID::Enum order);
+  * OrderID::Enum getOrder(std::string order);
+  * std::string orderName(OrderID::Enum order);
 
 == Get information about our player ==
   * int researching(TechTypeID::Enum tech);
