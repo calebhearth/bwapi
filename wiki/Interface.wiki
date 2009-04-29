@@ -2,7 +2,7 @@
 
 For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface and possibly high-level AI logic parsers for BWAI's XML build order files or Broodwar's current AI scripts.
 
-This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeTypeID, TechTypeID, and RaceID are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
+This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeTypeID, TechTypeID, RaceID, and Latency are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
 
 = Interface =
 
@@ -28,6 +28,7 @@ Only units that are visible to the AI are returned to prevent cheating.
   * std::set< UnitID > getMinerals();
   * std::set< UnitID > getQeysers();
   * std::set< UnitID > getNeutralUnits();
+  Latency::Enum getLatency();
 
 == Get information about units ==
 Can be used on any UnitID
@@ -35,7 +36,7 @@ Can be used on any UnitID
 
 If the AI tries to use one of the following methods on a unit that is not visible, an error code will be returned.
   * PlayerID unitOwner(UnitID unit);
-  * UnitTypeID unitType(UnitID unit);
+  * UnitTypeID::Enum unitType(UnitID unit);
   * int unitHealth(UnitID unit);
   * int unitShield(UnitID unit);
   * int unitEnergy(UnitID unit);
@@ -61,57 +62,72 @@ If the AI tries to use one of the following methods on a unit that is not visibl
   * int isTraining(UnitID unit);
 
 The following method will return an error code if used on any unit that the AI player does not own.
-  * std::list< UnitTypeID > getTrainingQueue(UnitID unit);
+  * std::list< UnitTypeID::Enum > getTrainingQueue(UnitID unit);
 
 == Get information about types of units ==
-  * std::string unitTypeName(UnitTypeID type);
-  * RaceID unitTypeRace(UnitTypeID type);
-  * UnitTypeID whatBuilds(UnitTypeID type);
-  * int suppliesConsumed(UnitTypeID type);
-  * int suppliesProduced(UnitTypeID type);
-  * int maxHealth(UnitTypeID type);
-  * int maxShield(UnitTypeID type);
-  * int mineralPrice(UnitTypeID type);
-  * int gasPrice(UnitTypeID type);
-  * int armor(UnitTypeID type);
-  * int buildTime(UnitTypeID type);
-  * int dimensionLeft(UnitTypeID type);
-  * int dimensionUp(UnitTypeID type);
-  * int dimensionRight(UnitTypeID type);
-  * int dimensionDown(UnitTypeID type);
-  * int tileWidth(UnitTypeID type);
-  * int tileHeight(UnitTypeID type);
-  * int damageFactor(UnitTypeID type);
-  * int groundDamage(UnitTypeID type);
-  * int produces(UnitTypeID type);
-  * int worker(UnitTypeID type);
-  * int attacks(UnitTypeID type);
-  * int moves(UnitTypeID type);
-  * int building(UnitTypeID type);
-  * int addon(UnitTypeID type);
-  * int flies(UnitTypeID type);
-  * int neutral(UnitTypeID type);
-  * int organic(UnitTypeID type);
-  * int mechanical(UnitTypeID type);
+  * std::string unitTypeName(UnitTypeID::Enum type);
+  * UnitTypeID::Enum getUnitType(std::string type);
+  * RaceID::Enum unitTypeRace(UnitTypeID::Enum type);
+  * UnitTypeID::Enum whatBuilds(UnitTypeID::Enum type);
+  * UnitTypeID::Enum whatResearches(TechID::Enum type);
+  * UnitTypeID::Enum whatUpgrades(UpgradeID::Enum type);
+  * int suppliesConsumed(UnitTypeID::Enum type);
+  * int suppliesProduced(UnitTypeID::Enum type);
+  * int maxHealth(UnitTypeID::Enum type);
+  * int maxShield(UnitTypeID::Enum type);
+  * int mineralPrice(UnitTypeID::Enum type);
+  * int gasPrice(UnitTypeID::Enum type);
+  * int armor(UnitTypeID::Enum type);
+  * int buildTime(UnitTypeID::Enum type);
+  * int dimensionLeft(UnitTypeID::Enum type);
+  * int dimensionUp(UnitTypeID::Enum type);
+  * int dimensionRight(UnitTypeID::Enum type);
+  * int dimensionDown(UnitTypeID::Enum type);
+  * int tileWidth(UnitTypeID::Enum type);
+  * int tileHeight(UnitTypeID::Enum type);
+  * int damageFactor(UnitTypeID::Enum type);
+  * int groundDamage(UnitTypeID::Enum type);
+  * int produces(UnitTypeID::Enum type);
+  * int worker(UnitTypeID::Enum type);
+  * int attacks(UnitTypeID::Enum type);
+  * int moves(UnitTypeID::Enum type);
+  * int building(UnitTypeID::Enum type);
+  * int addon(UnitTypeID::Enum type);
+  * int flies(UnitTypeID::Enum type);
+  * int neutral(UnitTypeID::Enum type);
+  * int organic(UnitTypeID::Enum type);
+  * int mechanical(UnitTypeID::Enum type);
+
+== Get information about upgrades ==
+  std::string upgradeName(UpgradeID::Enum upgrade);
+  UpgradeID::Enum getUpgrade(std::string upgrade);
+  int mineralPrice(UpgradeID::Enum type);
+  int gasPrice(UpgradeID::Enum type);
+
+== Get information about tech ==
+  std::string techName(TechID::Enum tech);
+  TechID::Enum getTech(std::string tech);
+  int mineralPrice(TechID::Enum type);
+  int gasPrice(TechID::Enum type);
+
+== Get information about orders ==
+  OrderID::Enum getOrder(std::string order);
+  std::string orderName(OrderID::Enum order);
 
 == Get information about our player ==
-  * int researching(TechTypeID tech);
-  * int researched(TechTypeID tech);
-  * int upgrading(UpgradeTypeID upgrade);
-  * int getUpgradeLevel(UpgradeTypeID upgrade);
+  * int researching(TechTypeID::Enum tech);
+  * int researched(TechTypeID::Enum tech);
+  * int upgrading(UpgradeTypeID::Enum upgrade);
+  * int getUpgradeLevel(UpgradeTypeID::Enum upgrade);
   * int minerals();
   * int gas();
   * int supplyUsed();
   * int supplyTotal();
-  * int canBuild(UnitTypeID unit);
-  * int canAfford(UnitTypeID unit);
-  * int canAfford(TechTypeID tech);
-  * int canAfford(UpgradeTypeID upgrade);
   * PlayerID myID();
 
 == Get information about any player ==
   * std::string playerName(PlayerID player);
-  * RaceID playerRace(PlayerID player);
+  * RaceID::Enum playerRace(PlayerID player);
   * PlayerTypeID playerType(PlayerID player);
   * int areAllies(PlayerID player1, PlayerID player2);
   * ForceID getForce(PlayerID player);
@@ -124,13 +140,13 @@ The following method will return an error code if used on any unit that the AI p
   * bool buildable(int x, int y);
   * bool walkable(int x, int y);
   * bool visible(int x, int y);
+
 Returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
   * std::set< StartLocationID > getStartLocations();
   * int startLocationX(StartLocationID location);
   * int startLocationY(StartLocationID location);
 
 == Misc ==
-  * std::string raceName(RaceID type);
   * int printText(string test);
   * int sendMessage(string test);
   * int shareVision(PlayerID player);
@@ -149,4 +165,7 @@ Returns a list of all the possible starting location for the given map, not the 
   * ERROR_UNBUILDABLE_LOCATION - returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating).
   * ERROR_INCOMPATIBLE_TECH_TYPE - returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Spire to Burrow will return this error)
   * ERROR_INCOMPATIBLE_UPGRADE_TYPE - returned if you try to upgrade something at the wrong building
-  * ERROR_INSUFFICIENT_TECH - returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before spider mines have been researched, or if your Vulture is out of Spider Mines.
+  * ERROR_INSUFFICIENT_TECH - returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before spider mines have been researched.
+  * ERROR_INSUFFICIENT_AMMO - returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
+  * ERROR_OUT_OF_RANGE - returned if you order an immovable unit to attack a unit that is out of range.
+  * ERROR_UNABLE_TO_HIT - returned if you do something like order a Vulture to attack a flying unit.
