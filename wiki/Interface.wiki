@@ -29,8 +29,11 @@ Only units that are visible to the AI are returned to prevent cheating.
   * std::set< UnitID > getQeysers();
   * std::set< UnitID > getNeutralUnits();
   * Latency::Enum getLatency();
+  * int getFrameCount();
 
 == Get information about units ==
+  * std::set< UnitID > unitsOnTile(int x, int y);
+
 Can be used on any UnitID
   * int unitVisible(UnitID unit);
 
@@ -48,6 +51,7 @@ If the AI tries to use one of the following methods on a unit that is not visibl
   * UnitID getChild(UnitID unit);
   * UnitID getOrderTarget(UnitID unit);
   * UnitID getBuildUnit(UnitID unit);
+  * int remainingBuildTime(UnitID unit);
   * int targetPositionX(UnitID unit);
   * int targetPositionY(UnitID unit);
   * OrderID::Enum getOrder(UnitID unit);
@@ -134,6 +138,10 @@ The following method will return an error code if used on any unit that the AI p
   * int supplyUsed();
   * int supplyTotal();
   * PlayerID myID();
+  * int unitsAll(UnitTypeID::Enum type);
+  * int unitsCompleted(UnitTypeID::Enum type);
+  * int unitsKilled(UnitTypeID::Enum type);
+  * int unitsDead(UnitTypeID::Enum type);
 
 == Get information about any player ==
   * std::string playerName(PlayerID player);
@@ -151,7 +159,7 @@ The following method will return an error code if used on any unit that the AI p
   * bool walkable(int x, int y);
   * bool visible(int x, int y);
 
-Returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
+The following function returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
   * std::set< StartLocationID > getStartLocations();
   * int startLocationX(StartLocationID location);
   * int startLocationY(StartLocationID location);
@@ -166,6 +174,8 @@ Returns a list of all the possible starting location for the given map, not the 
   * int unshareVision(PlayerID player);
   * int formAlliance(PlayerID player);
   * int destroyAlliance(PlayerID player);
+
+  * const int TILE_SIZE;
 
 == Error Codes ==
   * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
