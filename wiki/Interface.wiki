@@ -5,7 +5,6 @@ For BWAPI to be a finished API, it should have a simple C++ interface to the out
 This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeID, TechID, RaceID, and Latency are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
 
 = Interface =
-
 == Issue commands ==
   * int attackLocation(UnitID unit, int x, int y);
   * int rightClick(UnitID unit, int x, int y);
@@ -71,6 +70,8 @@ The following method will return an error code if used on any unit that the AI p
 
 == Get information about types of units ==
   * std::set< UnitTypeID::Enum > allUnitTypes();
+  * std::set< UnitTypeID::Enum > requiredUnits(UnitTypeID::Enum type);
+  * TechID::Enum requiredTech(UnitTypeID::Enum type);
   * UnitTypeID::Enum getUnitType(std::string type);
   * std::string unitTypeName(UnitTypeID::Enum type);
   * RaceID::Enum unitTypeRace(UnitTypeID::Enum type);
@@ -166,9 +167,9 @@ The following function returns a list of all the possible starting location for 
 
 == Misc ==
   * int printText(std::string text);
-  * int printText(const char *text, ...);
+  * int printText(const char {{{*}}}text, ...);
   * int sendMessage(std::string text);
-  * int sendMessage(const char *text, ...);
+  * int sendMessage(const char {{{*}}}text, ...);
 
   * int shareVision(PlayerID player);
   * int unshareVision(PlayerID player);
