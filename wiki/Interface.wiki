@@ -26,7 +26,7 @@ Only units that are visible to the AI are returned to prevent cheating.
   * std::set< PlayerID > getPlayers();
   * std::set< UnitID > getUnits(PlayerID p);
   * std::set< UnitID > getMinerals();
-  * std::set< UnitID > getQeysers();
+  * std::set< UnitID > getGeysers();
   * std::set< UnitID > getNeutralUnits();
   * Latency::Enum getLatency();
   * int getFrameCount();
