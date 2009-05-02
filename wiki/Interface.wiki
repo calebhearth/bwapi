@@ -1,182 +1,193 @@
 #summary How custom AIs can make use of BWAPI
 
-For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface and possibly high-level AI logic parsers for BWAI's XML build order files or Broodwar's current AI scripts.
+For BWAPI to be a finished API, it should have a simple C++ interface to the outside that can be used directly by custom AIs written in C++ and as a back-end of a LUA interface.
 
-This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. UnitID, PlayerID, ForceID, and StartLocationID are integers. UnitTypeID, UpgradeID, TechID, RaceID, and Latency are enums. If you try to get information about UnitIDs that are not visible, most methods will return the corresponding error from the list below.
+This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. If you try to get information about units that are not visible, most Unit methods will return the corresponding error from the list below.
 
 = Interface =
-== Issue commands ==
-  * int attackLocation(UnitID unit, int x, int y);
-  * int rightClick(UnitID unit, int x, int y);
-  * int rightClick(UnitID unit, UnitID target);
-  * int train(UnitID unit, UnitTypeID::Enum type);
-  * int build(UnitID unit, int x, int y, UnitTypeID::Enum type);
-  * int invent(UnitID unit, TechTypeID::Enum tech);
-  * int upgrade(UnitID unit, UpgradeTypeID::Enum upgrade);
-  * int stop(UnitID unit);
-  * int holdPosition(UnitID unit);
-  * int patrol(UnitID unit, int x, int y);
-  * int useTech(UnitID unit,TechTypeID::Enum tech);
 
-== Get game information ==
-Only units that are visible to the AI are returned to prevent cheating.
+== Global commands (within BWAPI namespace) ==
+  * std::set< Force > getForces();
+  * std::set< Player > getPlayers();
+  * std::set< Unit > getMinerals();
+  * std::set< Unit > getGeysers();
+  * std::set< Unit > getNeutralUnits();
 
-  * std::set< ForceID > getForces();
-  * std::set< PlayerID > getPlayers();
-  * std::set< UnitID > getUnits(PlayerID p);
-  * std::set< UnitID > getMinerals();
-  * std::set< UnitID > getGeysers();
-  * std::set< UnitID > getNeutralUnits();
   * Latency::Enum getLatency();
   * int getFrameCount();
 
-== Get information about units ==
-  * std::set< UnitID > unitsOnTile(int x, int y);
+  * std::set< Unit > unitsOnTile(TilePosition tile);
 
-Can be used on any UnitID
-  * int unitVisible(UnitID unit);
+  * std::set< UnitType > allUnitTypes();
+  * UnitType getUnitType(std::string type);
 
-If the AI tries to use one of the following methods on a unit that is not visible, an error code will be returned.
-  * PlayerID unitOwner(UnitID unit);
-  * UnitTypeID::Enum unitType(UnitID unit);
-  * int unitHealth(UnitID unit);
-  * int unitShield(UnitID unit);
-  * int unitEnergy(UnitID unit);
-  * int unitPositionX(UnitID unit);
-  * int unitPositionY(UnitID unit);
-  * int unitTileX(UnitID unit);
-  * int unitTileY(UnitID unit);
-  * UnitID getTarget(UnitID unit);
-  * UnitID getChild(UnitID unit);
-  * UnitID getOrderTarget(UnitID unit);
-  * UnitID getBuildUnit(UnitID unit);
-  * int remainingBuildTime(UnitID unit);
-  * int targetPositionX(UnitID unit);
-  * int targetPositionY(UnitID unit);
-  * OrderID::Enum getOrder(UnitID unit);
-  * OrderID::Enum getSecondaryOrder(UnitID unit);
-  * int orderTimer(UnitID unit);
-  * int unitExists(UnitID unit);
-  * int unitCompleted(UnitID unit);
-  * int unitLifted(UnitID unit);
-  * int unitBurrowed(UnitID unit);
-  * int unitIdle(UnitID unit);
-  * int unitCloaked(UnitID unit);
-  * int unitDisabled(UnitID unit);
-  * int isTraining(UnitID unit);
+  * std::set< Upgrade > allUpgrades();
+  * Upgrade getUpgrade(std::string upgrade);
 
-The following method will return an error code if used on any unit that the AI player does not own.
-  * std::list< UnitTypeID::Enum > getTrainingQueue(UnitID unit);
+  * std::set< Tech > allTechs();
+  * Tech getTech(std::string tech);
 
-== Get information about types of units ==
-  * std::set< UnitTypeID::Enum > allUnitTypes();
-  * std::set< UnitTypeID::Enum > requiredUnits(UnitTypeID::Enum type);
-  * TechID::Enum requiredTech(UnitTypeID::Enum type);
-  * UnitTypeID::Enum getUnitType(std::string type);
-  * std::string unitTypeName(UnitTypeID::Enum type);
-  * RaceID::Enum unitTypeRace(UnitTypeID::Enum type);
-  * UnitTypeID::Enum whatBuilds(UnitTypeID::Enum type);
-  * int suppliesConsumed(UnitTypeID::Enum type);
-  * int suppliesProduced(UnitTypeID::Enum type);
-  * int maxHealth(UnitTypeID::Enum type);
-  * int maxShield(UnitTypeID::Enum type);
-  * int mineralPrice(UnitTypeID::Enum type);
-  * int gasPrice(UnitTypeID::Enum type);
-  * int armor(UnitTypeID::Enum type);
-  * int buildTime(UnitTypeID::Enum type);
-  * int dimensionLeft(UnitTypeID::Enum type);
-  * int dimensionUp(UnitTypeID::Enum type);
-  * int dimensionRight(UnitTypeID::Enum type);
-  * int dimensionDown(UnitTypeID::Enum type);
-  * int tileWidth(UnitTypeID::Enum type);
-  * int tileHeight(UnitTypeID::Enum type);
-  * int damageFactor(UnitTypeID::Enum type);
-  * int groundDamage(UnitTypeID::Enum type);
-  * int produces(UnitTypeID::Enum type);
-  * int worker(UnitTypeID::Enum type);
-  * int attacks(UnitTypeID::Enum type);
-  * int moves(UnitTypeID::Enum type);
-  * int building(UnitTypeID::Enum type);
-  * int addon(UnitTypeID::Enum type);
-  * int flies(UnitTypeID::Enum type);
-  * int neutral(UnitTypeID::Enum type);
-  * int organic(UnitTypeID::Enum type);
-  * int mechanical(UnitTypeID::Enum type);
+  * std::set< Race > allRaces();
+  * Race getRace(std::string race);
 
-== Get information about upgrades ==
-  * std::set< UpgradeID::Enum > allUpgrades();
-  * std::string upgradeName(UpgradeID::Enum upgrade);
-  * UpgradeID::Enum getUpgrade(std::string upgrade);
-  * int mineralPrice(UpgradeID::Enum type);
-  * int gasPrice(UpgradeID::Enum type);
-  * UnitTypeID::Enum whatUpgrades(UpgradeID::Enum type);
+  * std::set< Order > allOrders();
+  * Order getOrder(std::string order);
 
-== Get information about tech ==
-  * std::set< TechID::Enum > allTechs();
-  * TechID::Enum getTech(std::string tech);
-  * std::string techName(TechID::Enum tech);
-  * int mineralPrice(TechID::Enum type);
-  * int gasPrice(TechID::Enum type);
-  * UnitTypeID::Enum whatResearches(TechID::Enum type);
-
-== Get information about orders ==
-  * std::set< OrderID::Enum > allOrders();
-  * OrderID::Enum getOrder(std::string order);
-  * std::string orderName(OrderID::Enum order);
-
-== Get information about races ==
-  * std::set<RaceID::Enum> allRaces();
-  * RaceID::Enum getRace(std::string race);
-  * std::string raceName(RaceID::Enum race);
-
-== Get information about our player ==
-  * int researching(TechID::Enum tech);
-  * int researched(TechID::Enum tech);
-  * int upgrading(UpgradeID::Enum upgrade);
-  * int getUpgradeLevel(UpgradeID::Enum upgrade);
+  * Player self();
+  * int researching(Tech tech);
+  * int researched(Tech tech);
+  * int upgrading(Upgrade upgrade);
+  * int getUpgradeLevel(Upgrade upgrade);
   * int minerals();
   * int gas();
   * int supplyUsed();
   * int supplyTotal();
-  * PlayerID myID();
-  * int unitsAll(UnitTypeID::Enum type);
-  * int unitsCompleted(UnitTypeID::Enum type);
-  * int unitsKilled(UnitTypeID::Enum type);
-  * int unitsDead(UnitTypeID::Enum type);
+  * int unitsAll(UnitType type);
+  * int unitsCompleted(UnitType type);
+  * int unitsKilled(UnitType type);
+  * int unitsDead(UnitType type);
+  * int shareVision(Player player);
+  * int unshareVision(Player player);
+  * int formAlliance(Player player);
+  * int destroyAlliance(Player player);
 
-== Get information about any player ==
-  * std::string playerName(PlayerID player);
-  * RaceID::Enum playerRace(PlayerID player);
-  * PlayerTypeID::Enum playerType(PlayerID player);
-  * int areAllies(PlayerID player1, PlayerID player2);
-  * ForceID getForce(PlayerID player);
-
-== Get map information ==
   * int mapWidth();
   * int mapHeight();
   * std::string mapFilename();
   * std::string mapName();
-  * bool buildable(int x, int y);
-  * bool walkable(int x, int y);
-  * bool visible(int x, int y);
+  * bool buildable(BuildTile tile);
+  * bool walkable(WalkTile tile);
+  * bool visible(BuildTile tile);
 
-The following function returns a list of all the possible starting location for the given map, not the actual starting locations for the current match.
-  * std::set< StartLocationID > getStartLocations();
-  * int startLocationX(StartLocationID location);
-  * int startLocationY(StartLocationID location);
+  * std::set< TilePosition > getStartLocations();
 
-== Misc ==
   * int printText(std::string text);
   * int printText(const char {{{*}}}text, ...);
   * int sendMessage(std::string text);
   * int sendMessage(const char {{{*}}}text, ...);
 
-  * int shareVision(PlayerID player);
-  * int unshareVision(PlayerID player);
-  * int formAlliance(PlayerID player);
-  * int destroyAlliance(PlayerID player);
+  * const int BUILD_TILE_SIZE;
+  * const int WALK_TILE_SIZE;
 
-  * const int TILE_SIZE;
+== class Force methods ==
+  * std::set< Player > getPlayers();
+
+== class Player methods ==
+  * std::set< Unit > getUnits();
+  * std::string getName();
+  * Race getRace();
+  * PlayerType playerType();
+  * int isAlliesWith(Player player);
+  * Force getForce();
+
+== class Unit methods ==
+  * int attackLocation(Position target);
+  * int rightClick(Position target);
+  * int rightClick(Unit target);
+  * int train(UnitType type);
+  * int build(BuildTile tile, UnitType type);
+  * int invent(Tech tech);
+  * int upgrade(Upgrade upgrade);
+  * int stop();
+  * int holdPosition();
+  * int patrol(Position target);
+  * int useTech(Tech tech);
+
+  * int visible();
+  * Player getOwner();
+  * UnitType getType();
+  * int health();
+  * int shield();
+  * int energy();
+  * Position getPosition();
+  * BuildTile getTilePosition();
+  * Unit getTarget();
+  * Unit getChild();
+  * Unit getOrderTarget();
+  * Unit getBuildUnit();
+  * int remainingBuildTime();
+  * Position targetPosition();
+  * Order getOrder();
+  * Order getSecondaryOrder();
+  * int timer();
+  * int exists();
+  * int isCompleted();
+  * int isLifted();
+  * int isBurrowed();
+  * int isIdle();
+  * int isCloaked();
+  * int isDisabled();
+  * int isTraining();
+  * std::list< UnitType > getTrainingQueue();
+
+== class UnitType methods ==
+  * std::set< UnitType > requiredUnits();
+  * Tech requiredTech();
+  * std::string getName();
+  * Race getRace();
+  * UnitType whatBuilds();
+  * int suppliesConsumed();
+  * int suppliesProduced();
+  * int maxHealth();
+  * int maxShield();
+  * int mineralPrice();
+  * int gasPrice();
+  * int armor();
+  * int buildTime();
+  * int dimensionLeft();
+  * int dimensionUp();
+  * int dimensionRight();
+  * int dimensionDown();
+  * int tileWidth();
+  * int tileHeight();
+  * int damageFactor();
+  * int groundDamage();
+  * int canProduce();
+  * int isWorker();
+  * int canAttack();
+  * int canMoves();
+  * int isBuilding();
+  * int isAddon();
+  * int isFlyer();
+  * int isNeutral();
+  * int isOrganic();
+  * int isMechanical();
+  
+== class Upgrade methods ==
+  * std::string getName();
+  * int mineralPrice();
+  * int gasPrice();
+  * UnitType whatUpgrades();
+
+== class Tech methods ==
+  * std::string getName();
+  * int mineralPrice();
+  * int gasPrice();
+  * UnitType whatResearches();
+
+== class Order methods ==
+  * std::string getName();
+
+== class Race methods ==
+  * std::string getName();
+
+== class Position methods ==
+  * float x();
+  * float y();
+  * BuildTile getBuildTile();
+  * WalkTile getWalkTile();
+
+== class WalkTile methods ==
+  * int x();
+  * int y();
+  * BuildTile getBuildTile();
+  * Posiiton getPosition();
+
+== class BuildTile methods ==
+  * int x();
+  * int y();
+  * WalkTile getWalkTile();
+  * Position getPosition();
 
 == Error Codes ==
   * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
