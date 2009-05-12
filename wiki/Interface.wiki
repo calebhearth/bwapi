@@ -34,18 +34,6 @@ This interface should be feature-complete in the sense that any higher-level beh
   * Order getOrder(std::string order);
 
   * Player self();
-  * int researching(Tech tech);
-  * int researched(Tech tech);
-  * int upgrading(Upgrade upgrade);
-  * int getUpgradeLevel(Upgrade upgrade);
-  * int minerals();
-  * int gas();
-  * int supplyUsed();
-  * int supplyTotal();
-  * int unitsAll(UnitType type);
-  * int unitsCompleted(UnitType type);
-  * int unitsKilled(UnitType type);
-  * int unitsDead(UnitType type);
   * int shareVision(Player player);
   * int unshareVision(Player player);
   * int formAlliance(Player player);
@@ -79,6 +67,18 @@ This interface should be feature-complete in the sense that any higher-level beh
   * PlayerType playerType();
   * int isAlliesWith(Player player);
   * Force getForce();
+  * int researching(Tech tech);
+  * int researched(Tech tech);
+  * int upgrading(Upgrade upgrade);
+  * int getUpgradeLevel(Upgrade upgrade);
+  * int minerals();
+  * int gas();
+  * int supplyUsed();
+  * int supplyTotal();
+  * int unitsAll(UnitType type);
+  * int unitsCompleted(UnitType type);
+  * int unitsKilled(UnitType type);
+  * int unitsDead(UnitType type);
 
 == class Unit methods ==
   * int attackLocation(Position target);
