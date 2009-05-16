@@ -33,7 +33,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * std::set< OrderType > allOrders();
   * OrderType getOrder(std::string order);
 
-  * Player self();
+  * Player{{{*}}} self();
   * int shareVision(Player{{{*}}} player);
   * int unshareVision(Player{{{*}}} player);
   * int formAlliance(Player{{{*}}} player);
@@ -58,14 +58,14 @@ This interface should be feature-complete in the sense that any higher-level beh
   * const int WALK_TILE_SIZE;
 
 == Force Interface  ==
-  * std::set< Player > getPlayers();
+  * std::set< Player{{{*}}} > getPlayers();
 
 == Player Interface ==
-  * std::set< Unit > getUnits();
+  * std::set< Unit{{{*}}} > getUnits();
   * std::string getName();
   * Race getRace();
   * PlayerType playerType();
-  * int isAlliesWith(Player* player);
+  * int isAlliesWith(Player{{{*}}} player);
   * Force* getForce();
   * int researching(TechType tech);
   * int researched(TechType tech);
@@ -168,7 +168,7 @@ This interface should be feature-complete in the sense that any higher-level beh
 == OrderType Interface ==
   * std::string getName();
 
-== Race Interface ==
+== class RaceType ==
   * std::string getName();
   * UnitType workerUnit();
 
