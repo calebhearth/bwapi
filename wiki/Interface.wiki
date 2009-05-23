@@ -66,7 +66,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * Race getRace();
   * PlayerType playerType();
   * int isAlliesWith(Player{{{*}}} player);
-  * Force* getForce();
+  * Force{{{*}}} getForce();
   * int researching(TechType tech);
   * int researched(TechType tech);
   * int upgrading(UpgradeType upgrade);
@@ -75,10 +75,12 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int gas();
   * int supplyUsed();
   * int supplyTotal();
-  * int unitsAll(UnitType type);
-  * int unitsCompleted(UnitType type);
-  * int unitsKilled(UnitType type);
-  * int unitsDead(UnitType type);
+  * int getUnitsAll(UnitType type);
+  * int getUnitsCompleted(UnitType type);
+  * int getUnitsKilled(UnitType type);
+  * int getUnitsDead(UnitType type);
+  * int getDeaths(BW::UnitType unit);
+  * int getKills(BW::UnitType unit);
 
 == Unit Interface ==
   * int attackLocation(Position target);
