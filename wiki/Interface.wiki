@@ -81,9 +81,9 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int getDeaths(BW::UnitType unit);
   * int getKills(BW::UnitType unit);
 
-  * int researching(TechType tech);
-  * int researched(TechType tech);
-  * int upgrading(UpgradeType upgrade);
+  * bool researching(TechType tech);
+  * bool researched(TechType tech);
+  * bool upgrading(UpgradeType upgrade);
   * int getUpgradeLevel(UpgradeType upgrade);
 
 == Unit Interface ==
