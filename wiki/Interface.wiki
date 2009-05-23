@@ -58,6 +58,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * const int WALK_TILE_SIZE;
 
 == Force Interface  ==
+  * std::string getName();
   * std::set< Player{{{*}}} > getPlayers();
 
 == Player Interface ==
