@@ -46,6 +46,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * bool buildable(BuildTile tile);
   * bool walkable(WalkTile tile);
   * bool visible(BuildTile tile);
+  * int groundHeight(WalkTile tile);
 
   * std::set< TilePosition > getStartLocations();
 
