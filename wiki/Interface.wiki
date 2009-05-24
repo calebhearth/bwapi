@@ -87,6 +87,36 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int upgradeLevel(UpgradeType upgrade);
 
 == Unit Interface ==
+  * Player{{{*}}} getOwner();
+  * UnitType getType();
+  * int health();
+  * int shield();
+  * int energy();
+  * Position getPosition();
+  * BuildTile getTilePosition();
+
+  * Unit{{{*}}} getTarget();
+  * Position getTargetPosition();
+  * Unit{{{*}}} getChild();
+  * OrderType getOrder();
+  * Unit{{{*}}} getOrderTarget();
+  * int getOrderTimer();
+  * OrderType getSecondaryOrder();
+  * Unit{{{*}}} getBuildUnit();
+  * int remainingBuildTime();
+
+  * bool isVisible();
+  * bool isSelected();
+  * bool isCompleted();
+  * bool isLifted();
+  * bool isBurrowed();
+  * bool isIdle();
+  * bool isCloaked();
+  * bool isDisabled();
+  * bool isTraining();
+  * std::list< UnitType > getTrainingQueue();
+
+
   * int attackLocation(Position target);
   * int rightClick(Position target);
   * int rightClick(Unit target);
@@ -98,33 +128,8 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int holdPosition();
   * int patrol(Position target);
   * int useTech(Tech tech);
-
-  * int visible();
-  * Player{{{*}}} getOwner();
-  * UnitType getType();
-  * int health();
-  * int shield();
-  * int energy();
-  * Position getPosition();
-  * BuildTile getTilePosition();
-  * Unit{{{*}}} getTarget();
-  * Unit{{{*}}} getChild();
-  * Unit{{{*}}} getOrderTarget();
-  * Unit{{{*}}} getBuildUnit();
-  * int remainingBuildTime();
-  * Position targetPosition();
-  * OrderType getOrder();
-  * OrderType getSecondaryOrder();
-  * int timer();
-  * int exists();
-  * int isCompleted();
-  * int isLifted();
-  * int isBurrowed();
-  * int isIdle();
-  * int isCloaked();
-  * int isDisabled();
-  * int isTraining();
-  * std::list< UnitType > getTrainingQueue();
+  * int useTech(Tech tech, Position position);
+  * int useTech(Tech tech, Unit{{{*}}} target);
 
 == UnitType Interface ==
   * std::set< UnitType > requiredUnits();
