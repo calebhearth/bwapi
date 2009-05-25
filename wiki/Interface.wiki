@@ -106,6 +106,7 @@ This interface should be feature-complete in the sense that any higher-level beh
   * Unit{{{*}}} getBuildUnit();
   * int remainingBuildTime();
 
+  * bool isLoaded();
   * bool isVisible();
   * bool isSelected();
   * bool isCompleted();
