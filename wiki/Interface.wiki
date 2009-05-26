@@ -9,12 +9,19 @@ This interface should be feature-complete in the sense that any higher-level beh
 == Game Interface ==
   * std::set< Force{{{*}}} > getForces();
   * std::set< Player{{{*}}} > getPlayers();
+  * std::set< Unit{{{*}}} > getAllUnits();
   * std::set< Unit{{{*}}} > getMinerals();
   * std::set< Unit{{{*}}} > getGeysers();
   * std::set< Unit{{{*}}} > getNeutralUnits();
 
   * Latency::Enum getLatency();
   * int getFrameCount();
+  * int getMouseX();
+  * int getMouseY();
+  * int getScreenX();
+  * int getScreenY();
+  * bool isFlagEnabled(Flag::Enum flag);
+  * void enableFlag(Flag::Enum flag);
 
   * std::set< Unit{{{*}}} > unitsOnTile(TilePosition tile);
 
@@ -47,7 +54,6 @@ This interface should be feature-complete in the sense that any higher-level beh
   * bool walkable(WalkTile tile);
   * bool visible(BuildTile tile);
   * int groundHeight(WalkTile tile);
-
   * std::set< TilePosition > getStartLocations();
 
   * int printText(std::string text);
