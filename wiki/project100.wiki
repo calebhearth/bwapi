@@ -1,0 +1,7 @@
+#summary Project Starcraft 1.00.
+
+=May 29, 2009=
+
+==7:49 PM==
+
+I'm attempting to recover a 1.00 copy of Starcraft.exe to avoid the code added in later patches. This will hopefully allow me to dig up some appropriate functions that can be applied to BWAPI.
