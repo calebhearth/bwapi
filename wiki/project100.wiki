@@ -1,5 +1,13 @@
 #summary Project Starcraft 1.00.
 
+=June 3, 2009=
+
+==12:30 PM==
+
+Completely ripped apart the secret to the BIN Dialog functions.
+Looking for IScript's opcode cases.
+
+
 =June 2, 2009=
 
 ==8:22 PM==
