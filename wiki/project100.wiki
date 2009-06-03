@@ -1,5 +1,12 @@
 #summary Project Starcraft 1.00.
 
+=June 2, 2009=
+
+==8:22 PM==
+
+Over one third of all functions have been given a meaningful name.
+
+
 =May 29, 2009=
 
 ==7:49 PM==
