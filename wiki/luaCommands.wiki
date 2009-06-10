@@ -1,0 +1,16 @@
+#summary LUA commands used in BWAI
+
+Apart from the standard LUA commands, the LUA interface to BWAI comes with a few of its own commands.
+
+Currently, there are the following:
+
+
+==Macro Related==
+|| _Currently None_ || _Work in progress ||
+
+==Other Goodies==
+|| sendText(string); || Sends a message to everyone in Starcraft. ||
+|| mapSize(); || Returns the size of the map, both X and Y. ||
+|| mapName(n); || Returns the name of the map. n identifies if the return value will be (0)the map title, or (1)the map file name.||
+|| terrainInfo(n, x, y); || Returns various terrain information, depending on the value of n. 0 = buildable, 1 = walkable, 2 = visible, 3 = ground height ||
+|| playerName(id); || Returns the name of the player given the player ID.||
