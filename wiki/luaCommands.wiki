@@ -5,12 +5,23 @@ Apart from the standard LUA commands, the LUA interface to BWAI comes with a few
 Currently, there are the following:
 
 
-==Macro Related==
-|| _Currently None_ || _Work in progress ||
-
-==Other Goodies==
-|| sendText(string); || Sends a message to everyone in Starcraft. ||
-|| mapSize(); || Returns the size of the map, both X and Y. ||
-|| mapName(n); || Returns the name of the map. n identifies if the return value will be (0)the map title, or (1)the map file name.||
-|| terrainInfo(n, x, y); || Returns various terrain information, depending on the value of n. 0 = buildable, 1 = walkable, 2 = visible, 3 = ground height ||
-|| playerName(id); || Returns the name of the player given the player ID.||
+==Commands==
+|| *LUA command* || *Description* || *Related AIScript Commands* ||
+|| race(); || Returns the current player's race ID. || race_jump ||
+|| sendText(string); || Sends a message to everyone in Starcraft. || debug ||
+|| mapSize(); || Returns the size of the map, both X and Y. || _None_ ||
+|| mapName(n); || Returns the name of the map. n identifies if the return value will be (0)the map title, or (1)the map file name.|| _None_ ||
+|| terrainInfo(n, x, y); || Returns various terrain information, depending on the value of n. 0 = buildable, 1 = walkable, 2 = visible, 3 = ground height || _None_ ||
+|| playerName(); || Returns the name of the current player.|| _None_ ||
+|| currentPlayer(); || Returns the ID of the current player. || _None_ ||
+|| mapHash(); || Returns a hash value of the map's terrain. || _None_ ||
+|| force(); || Returns the name of the force that the current player is in. || _None_ ||
+|| upgrading(id); || Returns 0 if the upgrade is not currently being upgraded. || wait_upgrades ||
+|| upgraded(id); || Returns the number of upgrades a particular upgrade has already. || upgrade ||
+|| researched(id); || Returns 1 if the technology specified has already been researched. || tech ||
+|| researching(id); || Returns 1 if the technology specified is currently being researched. || _None_ ||
+|| kills(id); || Given the Unit, returns the number of total kills. || _None_ ||
+|| deaths(id); || Given the Unit, returns the number of total deaths. || _None_ ||
+|| units(id); || Given the Unit, returns the total count of this unit. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
+|| complete(id); || Given the Unit, returns the total count of completed units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
+|| incomplete(id); || Given the Unit, returns the total count of incomplete units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
