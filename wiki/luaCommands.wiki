@@ -22,6 +22,32 @@ Currently, there are the following:
 || researching(id); || Returns 1 if the technology specified is currently being researched. || _None_ ||
 || kills(id); || Given the Unit, returns the number of total kills. || _None_ ||
 || deaths(id); || Given the Unit, returns the number of total deaths. || _None_ ||
-|| units(id); || Given the Unit, returns the total count of this unit. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
-|| complete(id); || Given the Unit, returns the total count of completed units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
-|| incomplete(id); || Given the Unit, returns the total count of incomplete units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train ||
+|| units(id); || Given the Unit, returns the total count of this unit. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train, wait_force, if_owned ||
+|| complete(id); || Given the Unit, returns the total count of completed units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train, wait_force, if_owned ||
+|| incomplete(id); || Given the Unit, returns the total count of incomplete units. || build, wait_build, wait_buildstart, build_bunkers, wait_bunkers, defensebuild_gg, defensebuild_ag, defensebuild_ga, defensebuild_aa, build_turrets, wait_turrets, player_need, do_morph, train, wait_train, wait_force, if_owned ||
+
+
+==LUA==
+See http://www.lua.org/docs.html.
+
+
+==AI Script==
+A list of AIScripts we will probably scrap or replace.
+|| *Original* || *Replace With* ||
+|| goto || _Available in Lua_ ||
+|| start_town || _Not Necessary_ ||
+|| start_areatown || _Not Necessary_ ||
+|| stop || _Not Necessary_ ||
+|| switch_rescue || _Unavailable_ ||
+|| start_campaign || _Not Necessary_ ||
+|| call || _Available in Lua_ ||
+|| return || _Available in Lua_ ||
+|| give_money || _Unavailable_ ||
+|| enemyowns_jump || _enemyseen_ ||
+|| enemyresources_jump || _Cheating_ ||
+|| set_randomseed || _Not Necessary_ ||
+|| create_nuke || _Unavailable_ ||
+|| create_unit || _Unavailable_ ||
+|| rush || _Not Necessary_ ||
+
+And others.
