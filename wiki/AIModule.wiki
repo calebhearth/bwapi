@@ -8,4 +8,4 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
 
 BWAI currently executes most of its logic in the onFrame callback, however it may be possible to create a new thread in the onStart method and execute your AI asynchronously (has not been tested yet).
 
-[[BWAPIManual|Back to Contents]]
+[BWAPIManual|Contents]
