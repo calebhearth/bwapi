@@ -1,0 +1,53 @@
+
+= Unit=
+
+The Unit class is used to get information about individual units as well as issue orders to units.
+
+Methods:
+
+  * Player{{{*}}} getOwner();
+  * UnitType getType();
+  * int health();
+  * int shield();
+  * int energy();
+  * Position getPosition();
+  * TilePosition getTilePosition();
+
+  * Unit{{{*}}} getTarget();
+  * Position getTargetPosition();
+  * Order getOrder();
+  * Unit{{{*}}} getOrderTarget();
+  * int getOrderTimer();
+  * Order getSecondaryOrder();
+  * Unit{{{*}}} getBuildUnit();
+  * int getRemainingBuildTime();
+  * Unit{{{*}}} getChild();
+
+  * bool isLoaded();
+  * bool isVisible();
+  * bool isSelected();
+  * bool isCompleted();
+  * bool isLifted();
+  * bool isBurrowed();
+  * bool isIdle();
+  * bool isCloaked();
+  * bool isDisabled();
+  * bool isTraining();
+  * std::list< UnitType > getTrainingQueue();
+
+The following orders can be issued to units:
+  * int attackMove(Position target);
+  * int rightClick(Position target);
+  * int rightClick(Unit{{{*}}} target);
+  * int train(UnitType type);
+  * int build(TilePosition p, UnitType type);
+  * int invent(TechType tech);
+  * int upgrade(UpgradeType upgrade);
+
+The following orders have not been implemented yet:
+  * int stop();
+  * int holdPosition();
+  * int patrol(Position target);
+  * int useTech(Tech tech);
+  * int useTech(Tech tech, Position position);
+  * int useTech(Tech tech, Unit{{{*}}} target);
