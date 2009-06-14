@@ -1,0 +1,12 @@
+The UpgradeType class is used to get information about a particular upgrade.
+
+Methods:
+
+  * int getID();
+  * std::string getName();
+  * Race getRace();
+  * int mineralPriceBase();
+  * int mineralPriceFactor();
+  * int gasPriceBase();
+  * int gasPriceFactor();
+  * UnitType{{{*}}} whatUpgrades();
