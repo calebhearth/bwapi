@@ -1,3 +1,4 @@
+#sidebar TableOfContents
 The UpgradeType class is used to get information about a particular upgrade.
 
 Methods:
