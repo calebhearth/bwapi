@@ -1,0 +1,40 @@
+#summary One-sentence summary of this page.
+
+= UnitType =
+The UnitType class is used to get information about a particular type of unit, such as the build time of a Lurker, or the mineral price of an Ultralisk.
+
+Methods:
+
+  * int getID();
+  * std::string getName();
+  * Race getRace();
+  * std::pair< UnitType{{{*}}}, int > whatBuilds();
+  * std::map< UnitType{{{*}}}, int > requiredUnits();
+  * TechType{{{*}}} requiredTech();
+  * int suppliesConsumed();
+  * int suppliesProduced();
+  * int maxHealth();
+  * int maxShield();
+  * int maxEnergy();
+  * int mineralPrice();
+  * int gasPrice();
+  * int armor();
+  * int buildTime();
+  * int dimensionLeft();
+  * int dimensionUp();
+  * int dimensionRight();
+  * int dimensionDown();
+  * int tileWidth();
+  * int tileHeight();
+  * int damageFactor();
+  * int groundDamage();
+  * int canProduce();
+  * int canAttack();
+  * int canMoves();
+  * int isWorker();
+  * int isBuilding();
+  * int isAddon();
+  * int isFlyer();
+  * int isNeutral();
+  * int isOrganic();
+  * int isMechanical();
