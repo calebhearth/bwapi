@@ -1,0 +1,14 @@
+ == BWAPI Manual ==
+=== API ===
+  * [AIModule]
+  * [Game]
+  * [Force]
+  * [Player]
+  * [Unit]
+  * [UnitType]
+  * [UpgradeType]
+  * [TechType]
+  * [Order]
+  * [Race]
+  * [Misc]
+  * [ErrorCodes]
