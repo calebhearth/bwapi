@@ -1,0 +1,43 @@
+
+= Game =
+
+The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units. Methods:
+
+
+  * std::set< Force{{{*}}} > getForces();
+  * std::set< Player{{{*}}} > getPlayers();
+  * std::set< Unit{{{*}}} > getAllUnits();
+  * std::set< Unit{{{*}}} > getMinerals();
+  * std::set< Unit{{{*}}} > getGeysers();
+  * std::set< Unit{{{*}}} > getNeutralUnits();
+
+  * Latency::Enum getLatency();
+  * int getFrameCount();
+  * int getMouseX();
+  * int getMouseY();
+  * int getScreenX();
+  * int getScreenY();
+  * bool isFlagEnabled(Flag::Enum flag);
+  * void enableFlag(Flag::Enum flag);
+  * std::set< Unit{{{*}}} > unitsOnTile(TilePosition tile);
+
+  * int mapWidth();
+  * int mapHeight();
+  * std::string mapFilename();
+  * std::string mapName();
+  * bool buildable(int x, int y);
+  * bool walkable(int x, int y);
+  * bool visible(int x, int y);
+  * int groundHeight(int x, int y);
+  * std::set< TilePosition >& getStartLocations();
+  * int getMapHash();
+
+  * int print(const char {{{*}}}text, ...);
+  * int printPublic(const char {{{*}}}text, ...);
+  * void changeRace(Race race);
+  * void startGame();
+  * void pauseGame();
+  * void resumeGame();
+  * td::set<Unit{{{*}}}>& getSelectedUnits();
+  * Player{{{*}}} self();
+  * Player{{{*}}} enemy();
