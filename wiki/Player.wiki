@@ -1,0 +1,30 @@
+#summary One-sentence summary of this page.
+
+= Player =
+
+Each player in a match will have his or her own player instance. There is also a neutral player which owns all the neutral units.
+
+    * std::string getName();
+    * std::set< Unit* > getUnits();
+    * Race getRace();
+    * PlayerType? playerType();
+    * Force* getForce();
+    * int isAlliesWith(Player* player);
+    * int getID();
+    * TilePosition? getStartLocation(); 
+
+    * int minerals();
+    * int gas();
+    * int supplyTotal();
+    * int supplyUsed(); 
+
+    * int getAllUnits(UnitType? type);
+    * int getCompletedUnits(UnitType? type);
+    * int getKilledUnits(UnitType? type);
+    * int getDeaths(BW::UnitType? unit);
+    * int getKills(BW::UnitType? unit); 
+
+    * bool researching(TechType? tech);
+    * bool researched(TechType? tech);
+    * bool upgrading(UpgradeType? upgrade);
+    * int upgradeLevel(UpgradeType? upgrade); 
