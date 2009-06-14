@@ -1,0 +1,4 @@
+Methods:
+
+  * int getID();
+  * std::string getName();
