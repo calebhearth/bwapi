@@ -4,27 +4,27 @@ Each player in a match will have his or her own player instance. There is also a
 
 Methods:
 
-    * std::string getName();
-    * std::set< Unit{{{*}}} > getUnits();
-    * Race getRace();
-    * PlayerType playerType();
-    * Force{{{*}}} getForce();
-    * int isAlliesWith(Player{{{*}}} player);
-    * int getID();
-    * TilePosition getStartLocation(); 
+  * std::string getName();
+  * std::set< Unit{{{*}}} > getUnits();
+  * Race getRace();
+  * PlayerType playerType();
+  * Force{{{*}}} getForce();
+  * int isAlliesWith(Player{{{*}}} player);
+  * int getID();
+  * TilePosition getStartLocation();
 
-    * int minerals();
-    * int gas();
-    * int supplyTotal();
-    * int supplyUsed(); 
+  * int minerals();
+  * int gas();
+  * int supplyTotal();
+  * int supplyUsed();
 
-    * int getAllUnits(UnitType type);
-    * int getCompletedUnits(UnitType type);
-    * int getKilledUnits(UnitType type);
-    * int getDeaths(UnitType unit);
-    * int getKills(UnitType unit); 
+  * int getAllUnits(UnitType type);
+  * int getCompletedUnits(UnitType type);
+  * int getKilledUnits(UnitType type);
+  * int getDeaths(UnitType unit);
+  * int getKills(UnitType unit);
 
-    * bool researching(TechType tech);
-    * bool researched(TechType tech);
-    * bool upgrading(UpgradeType upgrade);
-    * int upgradeLevel(UpgradeType upgrade); 
+  * bool researching(TechType tech);
+  * bool researched(TechType tech);
+  * bool upgrading(UpgradeType upgrade);
+  * int upgradeLevel(UpgradeType upgrade);
