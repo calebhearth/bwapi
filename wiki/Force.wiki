@@ -1,0 +1,8 @@
+
+= Force =
+The abstract Force class is not currently implemented by BWAPI but will eventually be a way of getting information about each force.
+
+Methods:
+
+  * std::string getName();
+  * std::set< Player{{{*}}} > getPlayers();
