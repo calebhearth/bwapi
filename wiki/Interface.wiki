@@ -69,8 +69,8 @@ Note that not all the methods listed here have been implemented.
   * int getAllUnits(UnitType type);
   * int getCompletedUnits(UnitType type);
   * int getKilledUnits(UnitType type);
-  * int getDeaths(BW::UnitType unit);
-  * int getKills(BW::UnitType unit);
+  * int getDeaths(UnitType unit);
+  * int getKills(UnitType unit);
 
   * bool researching(TechType tech);
   * bool researched(TechType tech);
