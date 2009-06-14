@@ -1,0 +1,9 @@
+Methods:
+
+  * int getID();
+  * std::string getName();
+  * Race getRace();
+  * int mineralPrice();
+  * int gasPrice();
+  * int energyPrice();
+  * UnitType{{{*}}} whatResearches();
