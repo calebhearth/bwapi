@@ -6,7 +6,7 @@ This interface should be feature-complete in the sense that any higher-level beh
 
 = Interface =
 
-== Game Interface ==
+== Game ==
   * std::set< Force{{{*}}} > getForces();
   * std::set< Player{{{*}}} > getPlayers();
   * std::set< Unit{{{*}}} > getAllUnits();
@@ -22,69 +22,51 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int getScreenY();
   * bool isFlagEnabled(Flag::Enum flag);
   * void enableFlag(Flag::Enum flag);
-
   * std::set< Unit{{{*}}} > unitsOnTile(TilePosition tile);
-
-  * std::set< UnitType > allUnitTypes();
-  * UnitType getUnitType(std::string type);
-
-  * std::set< UpgradeType > allUpgrades();
-  * UpgradeType getUpgrade(std::string upgrade);
-
-  * std::set< TechType > allTechs();
-  * TechType getTech(std::string tech);
-
-  * std::set< RaceType > allRaces();
-  * RaceType getRace(std::string race);
-
-  * std::set< OrderType > allOrders();
-  * OrderType getOrder(std::string order);
-
-  * Player{{{*}}} self();
-  * int shareVision(Player{{{*}}} player);
-  * int unshareVision(Player{{{*}}} player);
-  * int formAlliance(Player{{{*}}} player);
-  * int destroyAlliance(Player{{{*}}} player);
 
   * int mapWidth();
   * int mapHeight();
   * std::string mapFilename();
   * std::string mapName();
-  * bool buildable(BuildTile tile);
-  * bool walkable(WalkTile tile);
-  * bool visible(BuildTile tile);
-  * int groundHeight(WalkTile tile);
-  * std::set< TilePosition > getStartLocations();
+  * bool buildable(int x, int y);
+  * bool walkable(int x, int y);
+  * bool visible(int x, int y);
+  * int groundHeight(int x, int y);
+  * std::set< TilePosition >& getStartLocations();
+  * int getMapHash();
 
-  * int printText(std::string text);
-  * int printText(const char {{{*}}}text, ...);
-  * int sendMessage(std::string text);
-  * int sendMessage(const char {{{*}}}text, ...);
+  * int print(const char {{{*}}}text, ...);
+  * int printPublic(const char {{{*}}}text, ...);
+  * void changeRace(Race race);
+  * void startGame();
+  * void pauseGame();
+  * void resumeGame();
+  * td::set<Unit{{{*}}}>& getSelectedUnits();
+  * Player{{{*}}} self();
+  * Player{{{*}}} enemy();
 
-  * const int BUILD_TILE_SIZE;
-  * const int WALK_TILE_SIZE;
-
-== Force Interface  ==
+== Force ==
   * std::string getName();
   * std::set< Player{{{*}}} > getPlayers();
 
-== Player Interface ==
+== Player ==
   * std::string getName();
   * std::set< Unit{{{*}}} > getUnits();
   * Race getRace();
   * PlayerType playerType();
-  * int isAlliesWith(Player{{{*}}} player);
   * Force{{{*}}} getForce();
+  * int isAlliesWith(Player{{{*}}} player);
+  * int getID();
+  * TilePosition getStartLocation();
 
   * int minerals();
   * int gas();
-  * int supplyUsed();
   * int supplyTotal();
+  * int supplyUsed();
 
-  * int getUnitsAll(UnitType type);
-  * int getUnitsCompleted(UnitType type);
-  * int getUnitsKilled(UnitType type);
-  * int getUnitsDead(UnitType type);
+  * int getAllUnits(UnitType type);
+  * int getCompletedUnits(UnitType type);
+  * int getKilledUnits(UnitType type);
   * int getDeaths(BW::UnitType unit);
   * int getKills(BW::UnitType unit);
 
@@ -93,24 +75,24 @@ This interface should be feature-complete in the sense that any higher-level beh
   * bool upgrading(UpgradeType upgrade);
   * int upgradeLevel(UpgradeType upgrade);
 
-== Unit Interface ==
+== Unit ==
   * Player{{{*}}} getOwner();
   * UnitType getType();
   * int health();
   * int shield();
   * int energy();
   * Position getPosition();
-  * BuildTile getTilePosition();
+  * TilePosition getTilePosition();
 
   * Unit{{{*}}} getTarget();
   * Position getTargetPosition();
-  * Unit{{{*}}} getChild();
-  * OrderType getOrder();
+  * Order getOrder();
   * Unit{{{*}}} getOrderTarget();
   * int getOrderTimer();
-  * OrderType getSecondaryOrder();
+  * Order getSecondaryOrder();
   * Unit{{{*}}} getBuildUnit();
-  * int remainingBuildTime();
+  * int getRemainingBuildTime();
+  * Unit{{{*}}} getChild();
 
   * bool isLoaded();
   * bool isVisible();
@@ -125,13 +107,13 @@ This interface should be feature-complete in the sense that any higher-level beh
   * std::list< UnitType > getTrainingQueue();
 
 
-  * int attackLocation(Position target);
+  * int attackMove(Position target);
   * int rightClick(Position target);
-  * int rightClick(Unit target);
+  * int rightClick(Unit{{{*}}} target);
   * int train(UnitType type);
-  * int build(BuildLocation p, UnitType type);
-  * int invent(Tech tech);
-  * int upgrade(Upgrade upgrade);
+  * int build(TilePosition p, UnitType type);
+  * int invent(TechType tech);
+  * int upgrade(UpgradeType upgrade);
   * int stop();
   * int holdPosition();
   * int patrol(Position target);
@@ -139,16 +121,18 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int useTech(Tech tech, Position position);
   * int useTech(Tech tech, Unit{{{*}}} target);
 
-== UnitType Interface ==
-  * std::set< UnitType > requiredUnits();
-  * TechType requiredTech();
+== UnitType ==
+  * int getID();
   * std::string getName();
   * Race getRace();
-  * UnitType whatBuilds();
+  * std::pair< UnitType{{{*}}}, int > whatBuilds();
+  * std::map< UnitType{{{*}}}, int > requiredUnits();
+  * TechType{{{*}}} requiredTech();
   * int suppliesConsumed();
   * int suppliesProduced();
   * int maxHealth();
   * int maxShield();
+  * int maxEnergy();
   * int mineralPrice();
   * int gasPrice();
   * int armor();
@@ -162,9 +146,9 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int damageFactor();
   * int groundDamage();
   * int canProduce();
-  * int isWorker();
   * int canAttack();
   * int canMoves();
+  * int isWorker();
   * int isBuilding();
   * int isAddon();
   * int isFlyer();
@@ -172,52 +156,44 @@ This interface should be feature-complete in the sense that any higher-level beh
   * int isOrganic();
   * int isMechanical();
   
-== UpgradeType Interface ==
+== UpgradeType ==
+  * int getID();
   * std::string getName();
+  * Race getRace();
+  * int mineralPriceBase();
+  * int mineralPriceFactor();
+  * int gasPriceBase();
+  * int gasPriceFactor();
+  * UnitType{{{*}}} whatUpgrades();
+
+== TechType ==
+  * int getID();
+  * std::string getName();
+  * Race getRace();
   * int mineralPrice();
   * int gasPrice();
-  * UnitType whatUpgrades();
+  * int energyPrice();
+  * UnitType{{{*}}} whatResearches();
 
-== TechType Interface ==
-  * std::string getName();
-  * int mineralPrice();
-  * int gasPrice();
-  * UnitType whatResearches();
-
-== OrderType Interface ==
+== Order ==
+  * int getID();
   * std::string getName();
 
-== class RaceType ==
+== Race ==
+  * int getID();
   * std::string getName();
-  * UnitType workerUnit();
 
-== class Position ==
-  * float x();
-  * float y();
-  * BuildTile getBuildTile();
-  * WalkTile getWalkTile();
+== Position ==
+  * int x;
+  * int y;
+  * double getDistance(Position position);
 
-== class WalkTile ==
-  * int x();
-  * int y();
-  * BuildTile getBuildTile();
-  * Posiiton getPosition();
+== TilePosition==
+  * int x;
+  * int y;
+  * bool isValid();
 
-== class BuildTile ==
-  * int x();
-  * int y();
-  * WalkTile getWalkTile();
-  * Position getPosition();
-
-== class BuildLocation ==
-  * BuildLocation(BuildTile p, int width, int height);
-  * BuildLocation(Position p, int width, int height);
-  * int getWidth();
-  * int getHeight();
-  * BuildTile getBuildTile();
-  * Position getPosition();
-
-== Error Codes ==
+== Error Codes (Not implemented yet) ==
   * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
   * ERROR_INCOMPATIBLE_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
   * ERROR_UNIT_NOT_OWNED - returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
