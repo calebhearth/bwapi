@@ -1,5 +1,3 @@
-= AIModule =
-
 AIModule is a virtual class that is intended to be implemented or inherited by a custom AI class. The following callbacks available to AIs:
 
   * void onStart();
