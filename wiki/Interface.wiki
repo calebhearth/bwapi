@@ -4,6 +4,8 @@ For BWAPI to be a finished API, it should have a simple C++ interface to the out
 
 This interface should be feature-complete in the sense that any higher-level behaviors (like SCV-auto balance, build order execution, unit micro, etc) could be fully implemented via this interface. Below is an list of methods that such an interface could have. If you try to get information about units that are not visible, most Unit methods will return the corresponding error from the list below.
 
+Note that not all the methods listed here have been implemented.
+
 = Interface =
 
 == Game ==
