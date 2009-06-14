@@ -9,7 +9,7 @@ Methods:
     * Race getRace();
     * PlayerType playerType();
     * Force{{{*}}} getForce();
-    * int isAlliesWith(Player* player);
+    * int isAlliesWith(Player{{{*}}} player);
     * int getID();
     * TilePosition getStartLocation(); 
 
