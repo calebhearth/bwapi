@@ -1,4 +1,4 @@
-= Position =
+== Position ==
 
 Methods:
 
@@ -6,10 +6,10 @@ Methods:
   * int y;
   * double getDistance(Position position);
 
-= TilePosition =
+== TilePosition ==
   * int x;
   * int y;
   * bool isValid();
 
-= Constants =
+== Constants ==
   * TILE_SIZE = 32
