@@ -3,3 +3,13 @@ Methods:
 
   * int getID();
   * std::string getName();
+
+Complete list of Races:
+
+  * Zerg
+  * Terran
+  * Protoss
+  * Random
+  * Other
+  * None
+  * Unknown
