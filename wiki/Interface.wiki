@@ -7,7 +7,7 @@ This interface should be feature-complete in the sense that any higher-level beh
 Note that not all the methods listed here have been implemented.
 
 = Interface =
-  * [[AIModule]]
+  * [AIModule]
   * [[Game]]
   * [[Force]]
   * [[Player]]
