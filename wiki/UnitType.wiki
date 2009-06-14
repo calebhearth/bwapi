@@ -41,6 +41,8 @@ Methods:
 Unit Types:
 
   * Terran_Marine
+  * Terran_Medic
+  * Terran_Firebat
   * Terran_Ghost
   * Terran_Vulture
   * Terran_Goliath
@@ -53,51 +55,7 @@ Unit Types:
   * Terran_Vulture_Spider_Mine
   * Terran_Nuclear_Missile
   * Terran_Siege_Tank_Siege_Mode
-  * Terran_Firebat
-  * Spell_Scanner_Sweep
-  * Terran_Medic
-  * Zerg_Larva
-  * Zerg_Egg
-  * Zerg_Zergling
-  * Zerg_Hydralisk
-  * Zerg_Ultralisk
-  * Zerg_Broodling
-  * Zerg_Drone
-  * Zerg_Overlord
-  * Zerg_Mutalisk
-  * Zerg_Guardian
-  * Zerg_Queen
-  * Zerg_Defiler
-  * Zerg_Scourge
-  * Zerg_Infested_Terran
   * Terran_Valkyrie
-  * Zerg_Cocoon
-  * Protoss_Corsair
-  * Protoss_Dark_Templar
-  * Zerg_Devourer
-  * Protoss_Dark_Archon
-  * Protoss_Probe
-  * Protoss_Zealot
-  * Protoss_Dragoon
-  * Protoss_High_Templar
-  * Protoss_Archon
-  * Protoss_Shuttle
-  * Protoss_Scout
-  * Protoss_Arbiter
-  * Protoss_Carrier
-  * Protoss_Interceptor
-  * Protoss_Reaver
-  * Protoss_Observer
-  * Protoss_Scarab
-  * Critter_Rhynadon
-  * Critter_Bengalaas
-  * Critter_Scantid
-  * Critter_Kakaru
-  * Critter_Ragnasaur
-  * Critter_Ursadon
-  * Zerg_Lurker_Egg
-  * Zerg_Lurker
-  * Spell_Disruption_Web
   * Terran_Command_Center
   * Terran_Comsat_Station
   * Terran_Nuclear_Silo
@@ -116,6 +74,23 @@ Unit Types:
   * Terran_Armory
   * Terran_Missile_Turret
   * Terran_Bunker
+
+  * Zerg_Larva
+  * Zerg_Egg
+  * Zerg_Zergling
+  * Zerg_Hydralisk
+  * Zerg_Ultralisk
+  * Zerg_Broodling
+  * Zerg_Drone
+  * Zerg_Overlord
+  * Zerg_Mutalisk
+  * Zerg_Guardian
+  * Zerg_Queen
+  * Zerg_Defiler
+  * Zerg_Scourge
+  * Zerg_Infested_Terran
+  * Zerg_Cocoon
+  * Zerg_Devourer
   * Zerg_Infested_Command_Center
   * Zerg_Hatchery
   * Zerg_Lair
@@ -133,6 +108,25 @@ Unit Types:
   * Zerg_Spore_Colony
   * Zerg_Sunken_Colony
   * Zerg_Extractor
+  * Zerg_Lurker_Egg
+  * Zerg_Lurker
+
+  * Protoss_Corsair
+  * Protoss_Dark_Templar
+  * Protoss_Dark_Archon
+  * Protoss_Probe
+  * Protoss_Zealot
+  * Protoss_Dragoon
+  * Protoss_High_Templar
+  * Protoss_Archon
+  * Protoss_Shuttle
+  * Protoss_Scout
+  * Protoss_Arbiter
+  * Protoss_Carrier
+  * Protoss_Interceptor
+  * Protoss_Reaver
+  * Protoss_Observer
+  * Protoss_Scarab
   * Protoss_Nexus
   * Protoss_Robotics_Facility
   * Protoss_Pylon
@@ -149,8 +143,20 @@ Unit Types:
   * Protoss_Arbiter_Tribunal
   * Protoss_Robotics_Support_Bay
   * Protoss_Shield_Battery
+
+  * Critter_Rhynadon
+  * Critter_Bengalaas
+  * Critter_Scantid
+  * Critter_Kakaru
+  * Critter_Ragnasaur
+  * Critter_Ursadon
+
   * Resource_Mineral_Field
   * Resource_Vespene_Geyser
+
+  * Spell_Scanner_Sweep
   * Spell_Dark_Swarm
+  * Spell_Disruption_Web
+
   * None
   * Unknown
