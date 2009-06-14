@@ -1,4 +1,4 @@
-#sidebar BWAPIManual
+#sidebar TableOfContents
 = Game =
 
 The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units. Methods:
