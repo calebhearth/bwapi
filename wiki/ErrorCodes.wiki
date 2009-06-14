@@ -1,3 +1,4 @@
+#sidebar TableOfContents
 == Error Codes (Not implemented yet) ==
   * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
   * ERROR_INCOMPATIBLE_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
