@@ -1,5 +1,5 @@
 #sidebar TableOfContents
-=== [BWAPIManual API] ===
+=== API ===
   * [AIModule]
   * [Game]
   * [Force]
