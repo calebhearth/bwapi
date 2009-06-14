@@ -1,5 +1,3 @@
-
-= UnitType =
 The UnitType class is used to get information about a particular type of unit, such as the build time of a Lurker, or the mineral price of an Ultralisk.
 
 Methods:
