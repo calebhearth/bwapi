@@ -1,6 +1,3 @@
-
-= Unit=
-
 The Unit class is used to get information about individual units as well as issue orders to units.
 
 Methods:
