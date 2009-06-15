@@ -1,4 +1,5 @@
   * [BWAPIManual API]
+  * [UsingBWAPI Using BWAPI]
   * [AIModule]
   * [Game]
   * [Force]
