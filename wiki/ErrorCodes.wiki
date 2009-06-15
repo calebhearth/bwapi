@@ -53,7 +53,7 @@ Returned if you do something like try to train Medics when you don't have an Aca
 Returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
 
 === ERROR_OUT_OF_RANGE ===
-Returned if you order an immovable unit to attack a unit that is out of range.
+Returned if you order an immovable unit, like a Protoss Photon Cannon, to attack a unit that is out of range.
 
 === ERROR_UNABLE_TO_HIT ===
 Returned if you do something like order a Vulture to attack a flying unit.
