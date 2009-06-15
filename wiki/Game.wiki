@@ -3,7 +3,7 @@
 The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units. Methods:
 
 
-  * std::set< Force{{{*}}} > getForces();
+  * [#getForces getForces]
   * std::set< Player{{{*}}} > getPlayers();
   * std::set< Unit{{{*}}} > getAllUnits();
   * std::set< Unit{{{*}}} > getMinerals();
@@ -40,3 +40,6 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
   * td::set<Unit{{{*}}}>& getSelectedUnits();
   * Player{{{*}}} self();
   * Player{{{*}}} enemy();
+
+
+#getForces
