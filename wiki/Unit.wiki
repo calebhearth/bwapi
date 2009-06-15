@@ -3,52 +3,213 @@ The Unit class is used to get information about individual units as well as issu
 
 Methods:
 
-  * Player{{{*}}} getOwner();
-  * UnitType getType();
-  * int health();
-  * int shield();
-  * int energy();
-  * Position getPosition();
-  * TilePosition getTilePosition();
+  * [#getOwner getOwner]
+  * [#getType getType]
+  * [#health health]
+  * [#shield shield]
+  * [#energy energy]
+  * [#getPosition getPosition]
+  * [#getTilePosition getTilePosition]
 
-  * Unit{{{*}}} getTarget();
-  * Position getTargetPosition();
-  * Order getOrder();
-  * Unit{{{*}}} getOrderTarget();
-  * int getOrderTimer();
-  * Order getSecondaryOrder();
-  * Unit{{{*}}} getBuildUnit();
-  * int getRemainingBuildTime();
-  * Unit{{{*}}} getChild();
+  * [#getTarget getTarget]
+  * [#getTargetPosition getTargetPosition]
+  * [#getOrder getOrder]
+  * [#getOrderTarget getOrderTarget]
+  * [#getOrderTimer getOrderTimer]
+  * [#getSecondaryOrder getSecondaryOrder]
+  * [#getBuildUnit getBuildUnit]
+  * [#getRemainingBuildTime getRemainingBuildTime]
+  * [#getChild getChild]
 
-  * bool isLoaded();
-  * bool isVisible();
-  * bool isSelected();
-  * bool isCompleted();
-  * bool isLifted();
-  * bool isBurrowed();
-  * bool isIdle();
-  * bool isCloaked();
-  * bool isDisabled();
-  * bool isTraining();
-  * std::list< UnitType > getTrainingQueue();
+  * [#isLoaded isLoaded]
+  * [#isVisible isVisible]
+  * [#isSelected isSelected]
+  * [#isCompleted isCompleted]
+  * [#isLifted isLifted]
+  * [#isBurrowed isBurrowed]
+  * [#isIdle isIdle]
+  * [#isCloaked isCloaked]
+  * [#isDisabled isDisabled]
+  * [#isTraining isTraining]
+  * [#getTrainingQueue getTrainingQueue]
 
 The following orders can be issued to units:
-  * int attackMove(Position target);
-  * int rightClick(Position target);
-  * int rightClick(Unit{{{*}}} target);
-  * int train(UnitType type);
-  * int build(TilePosition p, UnitType type);
-  * int invent(TechType tech);
-  * int upgrade(UpgradeType upgrade);
+  * [#attackMove attackMove] - Attack move to a posiion
+  * [#rightClick rightClick] - Right click on a position
+  * [#rightClick rightClick] - Right click on a unit
+  * [#train train]
+  * [#build build]
+  * [#invent invent]
+  * [#upgrade upgrade]
 
 The following orders have not been implemented yet:
-  * int stop();
-  * int holdPosition();
-  * int patrol(Position target);
-  * int useTech(Tech tech);
-  * int useTech(Tech tech, Position position);
-  * int useTech(Tech tech, Unit{{{*}}} target);
+  * [#stop stop]
+  * [#holdPosition holdPosition]
+  * [#patrol patrol]
+  * [#useTech useTech]
+  * [#useTech useTech]
+  * [#useTech useTech]
 
 Possible methods we could add:
   * std::list<Unit{{{*}}}> getLoadedUnits();
+
+=== getOwner ===
+[Player]{{{*}}} getOwner();
+
+=== getType ===
+[UnitType] getType();
+
+=== health ===
+int health();
+
+=== shield ===
+int shield();
+
+=== energy ===
+int energy();
+
+=== getPosition ===
+[Misc#Position Position] getPosition();
+
+Returns the position of the unit on the map.
+=== getTilePosition ===
+[Misc#TilePosition TilePosition] getTilePosition();
+
+Returns the build tile position of the unit on the map. Useful if the unit is a building.
+
+=== getTarget ===
+[Unit]{{{*}}} getTarget();
+
+=== getTargetPosition ===
+[Misc#Position Position] getTargetPosition();
+
+=== getOrder ===
+[Order] getOrder();
+
+=== getOrderTarget ===
+[Unit]{{{*}}} getOrderTarget();
+
+=== getOrderTimer ===
+int getOrderTimer();
+
+=== getSecondaryOrder ===
+[Order] getSecondaryOrder();
+
+=== getBuildUnit ===
+[Unit]{{{*}}} getBuildUnit();
+
+=== getRemainingBuildTime ===
+int getRemainingBuildTime();
+
+Returns the remaining build time of a unit/building that is being constructed.
+
+=== getChild ===
+[Unit]{{{*}}} getChild();
+
+=== isLoaded ===
+bool isLoaded();
+
+Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
+
+=== isVisible ===
+bool isVisible();
+
+Returns true if the unit is visible. Incomplete: only based on heuristics right now.
+
+=== isSelected ===
+bool isSelected();
+
+Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable [Misc#Flag Flag]::UserInput during [AIModule]::[AIModule#onStart onStart].
+
+=== isCompleted ===
+bool isCompleted();
+
+=== isLifted ===
+bool isLifted();
+
+Returns true if the unit is a Terran building that is currently lifted off the ground.
+
+=== isBurrowed ===
+bool isBurrowed();
+
+Returns true if the unit is a Zerg unit that is current burrowed.
+
+=== isIdle ===
+bool isIdle();
+
+Returns true if the unit is not doing anything.
+
+=== isCloaked ===
+bool isCloaked();
+
+Returns true if the unit is cloaked. (Does this work as expected for units that have cloaking for free, like Dark Templars?)
+
+=== isDisabled ===
+bool isDisabled();
+
+
+=== isTraining ===
+bool isTraining();
+
+Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue].
+
+=== getTrainingQueue ===
+std::list< UnitType > getTrainingQueue();
+
+Returns the list of units queued up to be trained.
+
+=== attackMove ===
+void attackMove([Misc#Position Position] target);
+
+=== rightClick ===
+void rightClick([Misc#Position Position]target);
+
+=== rightClick ===
+void rightClick([Unit]{{{*}}} target);
+
+=== train ===
+void train([UnitType] type);
+
+=== build ===
+void build([Misc#TilePosition TilePosition] p, [UnitType] type);
+
+Orders the unit to build the given unit type at the given position.
+
+=== invent ===
+void invent([TechType] tech);
+
+Orders the unit to research the given tech type.
+
+=== upgrade ===
+void upgrade(UpgradeType upgrade);
+
+Orders the unit to upgrade teh given upgrade type.
+
+=== stop ===
+int stop(); 
+
+Not implemented yet.
+
+=== holdPosition ===
+void holdPosition();
+
+Not implemented yet.
+
+=== patrol ===
+void patrol([Misc#Position Position] target);
+
+Not implemented yet.
+
+=== useTech ===
+void useTech(Tech tech);
+
+Not implemented yet.
+
+=== useTech ===
+void useTech(Tech tech, Position position);
+Not implemented yet.
+
+=== useTech ===
+void useTech(Tech tech, Unit{{{*}}} target);
+
+Not implemented yet.
