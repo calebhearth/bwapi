@@ -11,6 +11,10 @@ Methods:
   * [#gasPrice gasPrice]
   * [#energyPrice energyPrice]
   * [#whatResearches whatResearches]
+Non-member methods in TechTypes namespace: 
+
+  * [#getTechType getTechType]
+  * [#allTechTypes allTechTypes]
 
 === getID ===
 int getID();
@@ -34,6 +38,14 @@ Not implemented yet.
 
 === whatResearches ===
 [UnitType]{{{*}}} whatResearches();
+
+=== getTechType ===
+[TechType] getTechType(std::string &name);
+
+=== allTechTypes ===
+std::set<[TechType]>& allTechTypes();
+
+Returns the set of all the tech types, which are listed below.
 
 == TechTypes ==
 
