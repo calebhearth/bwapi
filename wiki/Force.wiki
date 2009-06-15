@@ -10,7 +10,7 @@ Methods:
   * [#getPlayers getPlayers]
 
 === getName ===
-std::string getName();
+std::string getName() const;
 
 === getPlayers ===
-std::set< Player{{{*}}} > getPlayers();
+std::set< Player{{{*}}} > getPlayers() const;
