@@ -4,6 +4,7 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 Methods:
 
+  * [#getID getID]
   * [#getName getName]
 
 Non-member methods in PlayerTypes namespace:
@@ -11,9 +12,12 @@ Non-member methods in PlayerTypes namespace:
   * [#getPlayerType getPlayerType]
   * [#allPlayerTypes allPlayerTypes]
 
-=== getName ===
-    std::string getName();
 
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
 
 === getPlayerType ===
 [PlayerType] getPlayerType(std::string &name);
