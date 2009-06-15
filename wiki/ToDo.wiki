@@ -12,7 +12,7 @@ Methods that need to be implemented:
   * [Unit]::[Unit#isLoaded isLoaded]
   * [Unit]::[Unit#getLoadedUnits getLoadedUnits]
 
-  * Maybe replace isDisabled with isUnpowered, isLockedDown, isStasised
+  * Maybe replace [Unit]::[Unit#isDisabled isDisabled] with [Unit]::isUnpowered, [Unit]::isLockedDown, [Unit]::isStasised
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics.
 
