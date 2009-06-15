@@ -31,10 +31,12 @@ Methods:
 
 === getName ===
 std::string getName();
+
 Returns the name of the player.
 
 === getUnits ===
 std::set< Unit{{{*}}} > getUnits();
+
 Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
 
 === getRace ===
@@ -45,34 +47,42 @@ Returns the set of units the player own. Note that units loaded into Terran drop
 
 === getForce ===
 [Force]{{{*}}} getForce();
+
 Not implemented yet.
 
 === isAlliesWith ===
 bool isAlliesWith([Player]{{{*}}} player);
+
 Not implemented yet.
 
 === getID ===
 int getID();
+
 Returns a unique ID for the player.
 
 === getStartLocation ===
 [Misc#TilePosition TilePosition] getStartLocation();
+
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
 === minerals ===
 int minerals();
+
 Returns the amount of minerals the player has.
 
 === gas ===
 int gas();
+
 Returns the amount of vespene gas the player has.
 
 === supplyTotal ===
 int supplyTotal();
+
 Returns the total amount of supply the player has.
 
 === supplyUsed ===
 int supplyUsed();
+
 Returns how much of the supply is actually being used by units.
 
 === getAllUnits ===
@@ -92,16 +102,20 @@ int getKills([UnitType] unit);
 
 === researching ===
 bool researching([TechType] tech);
-Returns true if the player is researching the given tech.
+
+Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
 
 === researched ===
 bool researched([TechType] tech);
-Returns true if the player has finished researching the given tech.
+
+Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
 
 === upgrading ===
 bool upgrading([UpgradeType] upgrade);
-Returns true if the player is upgrading the given upgrade.
+
+Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgradeupgrade].
 
 === upgradeLevel ===
 int upgradeLevel([UpgradeType] upgrade);
-returns the player's current upgrade level of the given upgrade.
+
+returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgradeupgrade].
