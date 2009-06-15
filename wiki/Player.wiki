@@ -113,9 +113,9 @@ Returns true if the player has finished researching the given tech. To order a u
 === upgrading ===
 bool upgrading([UpgradeType] upgrade);
 
-Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgradeupgrade].
+Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
 
 === upgradeLevel ===
 int upgradeLevel([UpgradeType] upgrade);
 
-returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgradeupgrade].
+returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
