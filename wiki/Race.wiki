@@ -1,10 +1,16 @@
 #sidebar TableOfContents
 Methods:
 
-  * int getID();
-  * std::string getName();
+  * [#getID getID]
+  * [#getName getName]
 
-Complete list of Races:
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+== Races ==
 
   * Zerg
   * Terran
