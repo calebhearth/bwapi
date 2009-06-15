@@ -44,4 +44,4 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
  == getForces ==
 
-{{std::set< Player* > getForces();}}
+{{{std::set< Player* > getForces();}}}
