@@ -57,107 +57,107 @@ Possible methods we could add:
   * [#getLoadedUnits getLoadedUnits]
 
 === getOwner ===
-[Player]{{{*}}} getOwner();
+[Player]{{{*}}} getOwner() const;
 
 === getType ===
-[UnitType] getType();
+[UnitType] getType() const;
 
 === health ===
-int health();
+int health() const;
 
 === shield ===
-int shield();
+int shield() const;
 
 === energy ===
-int energy();
+int energy() const;
 
 === getPosition ===
-[Misc#Position Position] getPosition();
+[Misc#Position Position] getPosition() const;
 
 Returns the position of the unit on the map.
 === getTilePosition ===
-[Misc#TilePosition TilePosition] getTilePosition();
+[Misc#TilePosition TilePosition] getTilePosition() const;
 
 Returns the build tile position of the unit on the map. Useful if the unit is a building.
 
 === getTarget ===
-[Unit]{{{*}}} getTarget();
+[Unit]{{{*}}} getTarget() const;
 
 === getTargetPosition ===
-[Misc#Position Position] getTargetPosition();
+[Misc#Position Position] getTargetPosition() const;
 
 === getOrder ===
-[Order] getOrder();
+[Order] getOrder() const;
 
 === getOrderTarget ===
-[Unit]{{{*}}} getOrderTarget();
+[Unit]{{{*}}} getOrderTarget() const;
 
 === getOrderTimer ===
-int getOrderTimer();
+int getOrderTimer() const;
 
 === getSecondaryOrder ===
-[Order] getSecondaryOrder();
+[Order] getSecondaryOrder() const;
 
 === getBuildUnit ===
-[Unit]{{{*}}} getBuildUnit();
+[Unit]{{{*}}} getBuildUnit() const;
 
 === getRemainingBuildTime ===
-int getRemainingBuildTime();
+int getRemainingBuildTime() const;
 
 Returns the remaining build time of a unit/building that is being constructed.
 
 === getChild ===
-[Unit]{{{*}}} getChild();
+[Unit]{{{*}}} getChild() const;
 
 === isLoaded ===
-bool isLoaded();
+bool isLoaded() const;
 
 Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
 
 === isVisible ===
-bool isVisible();
+bool isVisible() const;
 
 Returns true if the unit is visible. Incomplete: only based on heuristics right now.
 
 === isSelected ===
-bool isSelected();
+bool isSelected() const;
 
 Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable [Misc#Flag Flag]::UserInput during [AIModule]::[AIModule#onStart onStart].
 
 === isCompleted ===
-bool isCompleted();
+bool isCompleted() const;
 
 === isLifted ===
-bool isLifted();
+bool isLifted() const;
 
 Returns true if the unit is a Terran building that is currently lifted off the ground.
 
 === isBurrowed ===
-bool isBurrowed();
+bool isBurrowed() const;
 
 Returns true if the unit is a Zerg unit that is current burrowed.
 
 === isIdle ===
-bool isIdle();
+bool isIdle() const;
 
 Returns true if the unit is not doing anything.
 
 === isCloaked ===
-bool isCloaked();
+bool isCloaked() const;
 
 Returns true if the unit is cloaked. (Does this work as expected for units that have cloaking for free, like Dark Templars?)
 
 === isDisabled ===
-bool isDisabled();
+bool isDisabled() const;
 
 
 === isTraining ===
-bool isTraining();
+bool isTraining() const;
 
 Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue getTrainingQueue].
 
 === getTrainingQueue ===
-std::list< UnitType > getTrainingQueue();
+std::list< UnitType > getTrainingQueue() const;
 
 Returns the list of units queued up to be trained.
 
