@@ -4,7 +4,7 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
 
   * [#getForces getForces]
-  * std::set< Player{{{*}}} > getPlayers();
+  * [#getPlayers getPlayers]
   * std::set< Unit{{{*}}} > getAllUnits();
   * std::set< Unit{{{*}}} > getMinerals();
   * std::set< Unit{{{*}}} > getGeysers();
@@ -44,4 +44,9 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
  == getForces ==
 
-{{{std::set< Player* > getForces();}}}
+{{{std::set< Force* > getForces();}}}
+
+
+ == getPlayers==
+
+{{{std::set< Player* > getPlayers();}}}
