@@ -36,7 +36,7 @@ Methods:
 The following orders can be issued to units:
   * [#attackMove attackMove] - Attack move to a posiion
   * [#rightClick rightClick] - Right click on a position
-  * [#rightClick rightClick] - Right click on a unit
+  * [#rightClick_2 rightClick] - Right click on a unit
   * [#train train]
   * [#build build]
   * [#invent invent]
@@ -164,7 +164,7 @@ void attackMove([Misc#Position Position] target);
 === rightClick ===
 void rightClick([Misc#Position Position]target);
 
-=== rightClick ===
+=== rightClick_2 ===
 void rightClick([Unit]{{{*}}} target);
 
 === train ===
