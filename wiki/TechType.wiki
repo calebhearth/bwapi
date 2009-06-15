@@ -1,15 +1,38 @@
 #sidebar TableOfContents
 Methods:
 
-  * int getID();
-  * std::string getName();
-  * [Race] getRace();
-  * int mineralPrice();
-  * int gasPrice();
-  * int energyPrice();
-  * [UnitType]{{{*}}} whatResearches();
+  * [#getID getID]
+  * [#getName getName]
+  * [#getRace getRace]
+  * [#mineralPrice mineralPrice]
+  * [#gasPrice gasPrice]
+  * [#energyPrice energyPrice]
+  * [#whatResearches whatResearches]
 
-Complete list of Tech Types:
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+=== getRace ===
+[Race] getRace();
+
+=== mineralPrice ===
+int mineralPrice();
+
+=== gasPrice ===
+int gasPrice();
+
+=== energyPrice ===
+int energyPrice();
+
+Not implemented yet.
+
+=== whatResearches ===
+[UnitType]{{{*}}} whatResearches();
+
+== TechTypes ==
 
   * Stim_Packs
   * Lockdown
