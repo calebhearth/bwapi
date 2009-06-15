@@ -3,15 +3,40 @@ The UpgradeType class is used to get information about a particular upgrade.
 
 Methods:
 
-  * int getID();
-  * std::string getName();
-  * [Race] getRace();
-  * int mineralPriceBase();
-  * int mineralPriceFactor();
-  * int gasPriceBase();
-  * int gasPriceFactor();
-  * [UnitType]{{{*}}} whatUpgrades();
+  * [#getID getID]
+  * [#getName getName]
+  * [#getRace getRace]
+  * [#mineralPriceBase mineralPriceBase]
+  * [#mineralPriceFactor mineralPriceFactor]
+  * [#gasPriceBase gasPriceBase]
+  * [#gasPriceFactor gasPriceFactor]
+  * [#whatUpgrades whatUpgrades]
 
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+=== getRace ===
+[Race] getRace();
+
+Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace() will return Races::Terran.
+
+=== mineralPriceBase ===
+int mineralPriceBase();
+
+=== mineralPriceFactor ===
+int mineralPriceFactor();
+
+=== gasPriceBase ===
+int gasPriceBase();
+
+=== gasPriceFactor ===
+int gasPriceFactor();
+
+=== whatUpgrades ===
+[UnitType]{{{*}}} whatUpgrades();
 
 Complete list of Upgrade Types:
 
