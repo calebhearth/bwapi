@@ -151,7 +151,7 @@ bool isDisabled();
 === isTraining ===
 bool isTraining();
 
-Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue].
+Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue getTrainingQueue].
 
 === getTrainingQueue ===
 std::list< UnitType > getTrainingQueue();
