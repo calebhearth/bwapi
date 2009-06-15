@@ -1,6 +1,8 @@
 #sidebar TableOfContents
 = Position =
 
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Position.h# BWAPI/Position.h]
+
 Public Member Variables (should change to member functions soon):
   * int x;
   * int y;
@@ -14,6 +16,9 @@ Methods:
   * Unknown
 
 = TilePosition =
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TilePosition.h# BWAPI/TilePosition.h]
+
 Public Member Variables (should change to member functions soon):
   * int x;
   * int y;
@@ -27,6 +32,9 @@ Methods:
   * Unknown
 
 = Latency::Enum =
+
+Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Latency.h# BWAPI/Latency.h]
+
 Possible values:
   * SinglePlayer: 2
   * LanLow: 5
@@ -37,11 +45,16 @@ Possible values:
   * BattlenetHigh: 24
 
 = Flag::Enum =
+
+Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Flag.h# BWAPI/Flag.h]
+
 Possible values:
   * CompleteMapInformation - Enable to get information about all units on the map, not just the visible units.
   * UserInput - Enable to get information from the user (what units are selected, chat messages the user enters, etc)
 
-
 = Constants =
+
+Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Constants.h# BWAPI/Constants.h]
+
   * TILE_SIZE = 32
    Used for converting between [#TilePosition TilePosition] coordinates and [#Position Position] coordinates.
