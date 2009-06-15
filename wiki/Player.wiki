@@ -1,5 +1,7 @@
 #sidebar TableOfContents
 
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Player.h BWAPI/Player.h]
+
 Each player in a match will have his or her own player instance. There is also a neutral player which owns all the neutral units.
 
 Methods:
