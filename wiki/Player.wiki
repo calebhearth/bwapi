@@ -13,21 +13,21 @@ Methods:
   * [#getID getID]
   * [#getStartLocation getStartLocation]
 
-  * int minerals();
-  * int gas();
-  * int supplyTotal();
-  * int supplyUsed();
+  * [#minerals minerals]
+  * [#gas gas]
+  * [#supplyTotal supplyTotal]
+  * [#supplyUsed supplyUsed]
 
-  * int getAllUnits(UnitType type);
-  * int getCompletedUnits(UnitType type);
-  * int getKilledUnits(UnitType type);
-  * int getDeaths(UnitType unit);
-  * int getKills(UnitType unit);
+  * [#getAllUnits getAllUnits]
+  * [#getCompletedUnits getCompletedUnits]
+  * [#getKilledUnits getKilledUnits]
+  * [#getDeaths getDeaths]
+  * [#getKills getKills]
 
-  * bool researching(TechType tech);
-  * bool researched(TechType tech);
-  * bool upgrading(UpgradeType upgrade);
-  * int upgradeLevel(UpgradeType upgrade);
+  * [#researching researching]
+  * [#researched researched]
+  * [#upgrading upgrading]
+  * [#upgradeLevel upgradeLevel]
 
 === getName ===
 std::string getName();
@@ -58,3 +58,42 @@ Returns a unique ID for the player.
 === getStartLocation ===
 TilePosition getStartLocation();
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+
+=== minerals ===
+int minerals();
+Returns the amount of minerals the player has.
+
+=== gas ===
+int gas();
+Returns the amount of vespene gas the player has.
+
+=== supplyTotal ===
+int supplyTotal();
+Returns the total amount of supply the player has.
+
+=== supplyUsed ===
+int supplyUsed();
+Returns how much of the supply is actually being used by units.
+
+=== getAllUnits ===
+int getAllUnits(UnitType type);
+
+=== getCompletedUnits ===
+int getCompletedUnits(UnitType type);
+
+=== getKilledUnits ===
+int getKilledUnits(UnitType type);
+
+=== getDeaths ===
+int getDeaths(UnitType unit);
+
+=== getKills ===
+int getKills(UnitType unit);
+
+bool researching(TechType tech);
+
+bool researched(TechType tech);
+
+bool upgrading(UpgradeType upgrade);
+
+int upgradeLevel(UpgradeType upgrade);
