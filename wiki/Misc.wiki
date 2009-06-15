@@ -12,5 +12,16 @@ Methods:
   * int y;
   * bool isValid();
 
+== Latency::Enum ==
+Possible values:
+  * SinglePlayer: 2
+  * LanLow: 5
+  * LanMedium: 7
+  * LanHigh: 9
+  * BattlenetLow: 14
+  * BattlenetMedium: 19
+  * BattlenetHigh: 24
+
+
 == Constants ==
   * TILE_SIZE = 32
