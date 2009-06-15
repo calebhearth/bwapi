@@ -5,10 +5,10 @@ Methods:
 
   * int getID();
   * std::string getName();
-  * Race getRace();
-  * std::pair< UnitType{{{*}}}, int > whatBuilds();
-  * std::map< UnitType{{{*}}}, int > requiredUnits();
-  * TechType{{{*}}} requiredTech();
+  * [Race] getRace();
+  * std::pair< [UnitType]{{{*}}}, int > whatBuilds();
+  * std::map< [UnitType]{{{*}}}, int > requiredUnits();
+  * [TechType]{{{*}}} requiredTech();
   * int suppliesConsumed();
   * int suppliesProduced();
   * int maxHealth();
@@ -26,16 +26,16 @@ Methods:
   * int tileHeight();
   * int damageFactor();
   * int groundDamage();
-  * int canProduce();
-  * int canAttack();
-  * int canMoves();
-  * int isWorker();
-  * int isBuilding();
-  * int isAddon();
-  * int isFlyer();
-  * int isNeutral();
-  * int isOrganic();
-  * int isMechanical();
+  * bool canProduce();
+  * bool canAttack();
+  * bool canMove();
+  * bool isWorker();
+  * bool isBuilding();
+  * bool isAddon();
+  * bool isFlyer();
+  * bool isNeutral();
+  * bool isOrganic();
+  * bool isMechanical();
 
 
 Unit Types:
