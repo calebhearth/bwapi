@@ -1,4 +1,7 @@
 #sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UpgradeType.h# BWAPI/UpgradeType.h]
+
 The UpgradeType class is used to get information about a particular upgrade.
 
 Methods:
