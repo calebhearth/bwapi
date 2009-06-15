@@ -1,15 +1,19 @@
 #sidebar TableOfContents
 == Position ==
 
-Methods:
-
+Public Member Variables (should change to member functions soon):
   * int x;
   * int y;
+
+Methods:
   * double getDistance(Position position);
 
 == TilePosition ==
+Public Member Variables (should change to member functions soon):
   * int x;
   * int y;
+
+Methods:
   * bool isValid();
 
 == Latency::Enum ==
