@@ -144,7 +144,10 @@ bool isNeutral();
 
 === isOrganic ===
 bool isOrganic();
+
+=== isMechanical ===
 bool isMechanical();
+
 == UnitTypes ==
 
   * Terran_Marine
