@@ -51,4 +51,4 @@ The following orders have not been implemented yet:
   * int useTech(Tech tech, Unit{{{*}}} target);
 
 Possible methods we could add:
-  * std::list<Unit*> getLoadedUnits();
+  * std::list<Unit{{{*}}}> getLoadedUnits();
