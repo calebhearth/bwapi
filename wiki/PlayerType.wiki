@@ -1,0 +1,22 @@
+
+  * [#getName getName]
+
+
+=== getName ===
+    std::string getName();
+
+
+Complete list of possible Player Types:
+
+  * NotUsed
+  * Computer
+  * Human
+  * Rescuable
+  * ComputerSlot
+  * OpenSlot
+  * Neutral
+  * ClosedSlot
+  * HumanDefeated
+  * ComputerDefeated
+  * None
+  * Unknown
