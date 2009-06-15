@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitType.h BWAPI/UnitType.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitType.h# BWAPI/UnitType.h]
 
 The UnitType class is used to get information about a particular type of unit, such as the build time of a Lurker, or the mineral price of an Ultralisk.
 
