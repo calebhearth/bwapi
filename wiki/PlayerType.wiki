@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/PlayerType.h BWAPI/PlayerType.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/PlayerType.h# BWAPI/PlayerType.h]
 
 Methods:
 
