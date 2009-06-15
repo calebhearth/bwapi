@@ -7,11 +7,25 @@ Methods:
   * [#getID getID]
   * [#getName getName]
 
+
+Non-member methods in Races namespace:
+
+  * [#getRace getRace]
+  * [#allRaces allRaces]
+
 === getID ===
 int getID();
 
 === getName ===
 std::string getName();
+
+=== getRace ===
+[Race] getRace(std::string &name);
+
+=== allRaces ===
+std::set<[Race]>& allRaces();
+
+Returns the set of all the races, which are listed below.
 
 == Races ==
 
