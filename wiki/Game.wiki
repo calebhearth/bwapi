@@ -79,14 +79,15 @@ int getScreenX();
 int getScreenY();
 
 === isFlagEnabled ===
-bool isFlagEnabled(Flag::Enum flag);
+bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);
 
 === enableFlag ===
-void enableFlag(Flag::Enum flag);
+void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
+
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === unitsOnTile ===
-std::set< [Unit]{{{*}}} > unitsOnTile(TilePosition tile);
+std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile);
 
 === mapWidth ===
 int mapWidth();
@@ -113,8 +114,9 @@ bool visible(int x, int y);
 int groundHeight(int x, int y);
 
 === getStartLocations ===
-std::set< TilePosition >& getStartLocations();
-Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::getStartLocation.
+std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
+
+Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
 === getMapHash ===
 int getMapHash();
@@ -146,4 +148,5 @@ Returns a pointer to the player that BWAPI controls.
 
 === enemy ===
 [Player]{{{*}}} enemy();
+
 Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] to get the other enemies).
