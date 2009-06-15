@@ -57,4 +57,4 @@ Returns a unique ID for the player.
 
 === getStartLocation ===
 TilePosition getStartLocation();
-Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::getStartLocations.
+Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
