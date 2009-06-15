@@ -38,7 +38,8 @@ int gasPriceFactor();
 === whatUpgrades ===
 [UnitType]{{{*}}} whatUpgrades();
 
-Complete list of Upgrade Types:
+
+== UpgradeTypes ==
 
   * Terran_Infantry_Armor
   * Terran_Vehicle_Plating
