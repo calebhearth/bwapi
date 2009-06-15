@@ -1,5 +1,5 @@
 #sidebar TableOfContents
-To get detailed information about a unit is doing, you can use the Unit::getOrder method, which will return an Order object. For information about how to issue commands to units, go to [Unit].
+To get detailed information about a unit is doing, you can use the Unit::getOrder method, which will return an Order object. Note that a single command, like gather minerals, can consist of several orders ( MoveToMinerals, HarvestMinerals2, MiningMinerals, ReturnMinerals, etc) which will indicate what state the unit is in while executing the command. For information about how to issue commands to units, go to [Unit].
 
 Methods:
 
