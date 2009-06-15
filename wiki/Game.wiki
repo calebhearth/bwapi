@@ -5,10 +5,10 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
   * [#getForces getForces]
   * [#getPlayers getPlayers]
-  * std::set< Unit{{{*}}} > getAllUnits();
-  * std::set< Unit{{{*}}} > getMinerals();
-  * std::set< Unit{{{*}}} > getGeysers();
-  * std::set< Unit{{{*}}} > getNeutralUnits();
+  * [#getAllUnits getAllUnits]
+  * [#getMinerals getMinerals]
+  * [#getGeysers getGeysers]
+  * [#getNeutralUnits getNeutralUnits]
 
   * Latency::Enum getLatency();
   * int getFrameCount();
@@ -42,11 +42,24 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
   * Player{{{*}}} enemy();
 
 
- === getForces ===
+=== getForces ===
 
 {{{std::set< Force* > getForces();}}}
 
 
- === getPlayers===
+=== getPlayers ===
 
 {{{std::set< Player* > getPlayers();}}}
+
+
+=== getAllUnits ===
+  * {{{std::set< Unit* > getAllUnits();}}}
+
+=== getMinerals ===
+  * {{{std::set< Unit* > getMinerals();}}}
+
+=== getGeysers ===
+  * {{{std::set< Unit* > getGeysers();}}}
+
+=== getNeutralUnits ===
+  * {{{std::set< Unit* > getNeutralUnits();}}}
