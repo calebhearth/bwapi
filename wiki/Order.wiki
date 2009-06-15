@@ -9,11 +9,24 @@ Methods:
   * [#getID getID]
   * [#getName getName]
 
+Non-member methods in Orders namespace:
+
+  * [#getOrder getOrder]
+  * [#allOrders allOrders]
+
 === getID ===
 int getID();
 
 === getName ===
 std::string getName();
+
+=== getOrder ===
+[Order] getOrder(std::string &name);
+
+=== allOrders ===
+std::set<[Order]>& allOrders();
+
+Returns the set of all the orders, which are listed below.
 
 == Orders ==
   * Die
