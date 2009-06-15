@@ -4,14 +4,14 @@ Each player in a match will have his or her own player instance. There is also a
 
 Methods:
 
-  * std::string getName();
-  * std::set< Unit{{{*}}} > getUnits();
-  * Race getRace();
-  * PlayerType playerType();
-  * Force{{{*}}} getForce();
-  * int isAlliesWith(Player{{{*}}} player);
-  * int getID();
-  * TilePosition getStartLocation();
+  * [#getName getName]
+  * [#getUnits getUnits]
+  * [#getRace getRace]
+  * [#playerType playerType]
+  * [#getForce getForce]
+  * [#isAlliesWith isAlliesWith]
+  * [#getID getID]
+  * [#getStartLocation getStartLocation]
 
   * int minerals();
   * int gas();
@@ -28,3 +28,33 @@ Methods:
   * bool researched(TechType tech);
   * bool upgrading(UpgradeType upgrade);
   * int upgradeLevel(UpgradeType upgrade);
+
+=== getName ===
+std::string getName();
+Returns the name of the player.
+
+=== getUnits ===
+std::set< Unit{{{*}}} > getUnits();
+Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
+
+=== getRace ===
+[Race] getRace();
+
+=== playerType ===
+[PlayerType] playerType();
+
+=== getForce ===
+[Force]{{{*}}} getForce();
+Not implemented yet.
+
+=== isAlliesWith ===
+bool isAlliesWith(Player{{{*}}} player);
+Not implemented yet.
+
+=== getID ===
+int getID();
+Returns a unique ID for the player.
+
+=== getStartLocation ===
+TilePosition getStartLocation();
+Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::getStartLocations.
