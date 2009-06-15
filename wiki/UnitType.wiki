@@ -3,41 +3,148 @@ The UnitType class is used to get information about a particular type of unit, s
 
 Methods:
 
-  * int getID();
-  * std::string getName();
-  * [Race] getRace();
-  * std::pair< [UnitType]{{{*}}}, int > whatBuilds();
-  * std::map< [UnitType]{{{*}}}, int > requiredUnits();
-  * [TechType]{{{*}}} requiredTech();
-  * int suppliesConsumed();
-  * int suppliesProduced();
-  * int maxHealth();
-  * int maxShield();
-  * int maxEnergy();
-  * int mineralPrice();
-  * int gasPrice();
-  * int armor();
-  * int buildTime();
-  * int dimensionLeft();
-  * int dimensionUp();
-  * int dimensionRight();
-  * int dimensionDown();
-  * int tileWidth();
-  * int tileHeight();
-  * int damageFactor();
-  * int groundDamage();
-  * bool canProduce();
-  * bool canAttack();
-  * bool canMove();
-  * bool isWorker();
-  * bool isBuilding();
-  * bool isAddon();
-  * bool isFlyer();
-  * bool isNeutral();
-  * bool isOrganic();
-  * bool isMechanical();
+  * [#getID getID]
+  * [#getName getName]
+  * [#getRace getRace]
+  * [#whatBuilds whatBuilds]
+  * [#requiredUnits requiredUnits]
+  * [#requiredTech requiredTech]
+  * [#suppliesConsumed suppliesConsumed]
+  * [#suppliesProduced suppliesProduced]
+  * [#maxHealth maxHealth]
+  * [#maxShield maxShield]
+  * [#maxEnergy maxEnergy]
+  * [#mineralPrice mineralPrice]
+  * [#gasPrice gasPrice]
+  * [#armor armor]
+  * [#buildTime buildTime]
+  * [#dimensionLeft dimensionLeft]
+  * [#dimensionUp dimensionUp]
+  * [#dimensionRight dimensionRight]
+  * [#dimensionDown dimensionDown]
+  * [#tileWidth tileWidth]
+  * [#tileHeight tileHeight]
+  * [#damageFactor damageFactor]
+  * [#groundDamage groundDamage]
+  * [#canProduce canProduce]
+  * [#canAttack canAttack]
+  * [#canMove canMove]
+  * [#isWorker isWorker]
+  * [#isBuilding isBuilding]
+  * [#isAddon isAddon]
+  * [#isFlyer isFlyer]
+  * [#isNeutral isNeutral]
+  * [#isOrganic isOrganic]
+  * [#isMechanical isMechanical]
 
+=== getID ===
+int getID();
 
+=== getName ===
+std::string getName();
+
+=== getRace ===
+[Race] getRace();
+
+=== whatBuilds ===
+std::pair< [UnitType]{{{*}}}, int > whatBuilds();
+
+Returns what builds this unit type. The second number will always be one unless the unit type is Protoss_Archon or Protoss_Dark_Archon.
+
+=== requiredUnits ===
+std::map< [UnitType]{{{*}}}, int > requiredUnits();
+
+Returns the units the player is required to have before it can train or build the given unit type.
+
+=== requiredTech ===
+[TechType]{{{*}}} requiredTech();
+
+The only unit that needs tech to be created is the Zerg_Lurker.
+
+=== suppliesConsumed ===
+int suppliesConsumed();
+
+Returns the amount of supply used by this unit.
+
+=== suppliesProduced ===
+int suppliesProduced();
+
+Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon).
+
+=== maxHealth ===
+int maxHealth();
+
+=== maxShield ===
+int maxShield();
+
+=== maxEnergy ===
+int maxEnergy();
+
+Not implemented yet.
+
+=== mineralPrice ===
+int mineralPrice();
+
+=== gasPrice ===
+int gasPrice();
+
+=== armor ===
+int armor();
+
+=== buildTime ===
+int buildTime();
+
+=== dimensionLeft ===
+int dimensionLeft();
+
+=== dimensionUp ===
+int dimensionUp();
+
+=== dimensionRight ===
+int dimensionRight();
+
+=== dimensionDown===
+int dimensionDown();
+
+=== tileWidth ===
+int tileWidth();
+
+=== tileHeight ===
+int tileHeight();
+
+=== damageFactor ===
+int damageFactor();
+
+=== groundDamage ===
+int groundDamage();
+
+=== canProduce ===
+bool canProduce();
+
+=== canAttack ===
+bool canAttack();
+
+=== canMove ===
+bool canMove();
+
+=== isWorker ===
+bool isWorker();
+
+=== isBuilding ===
+bool isBuilding();
+
+=== isAddon ===
+bool isAddon();
+
+=== isFlyer ===
+bool isFlyer();
+
+=== isNeutral ===
+bool isNeutral();
+
+=== isOrganic ===
+bool isOrganic();
+bool isMechanical();
 == UnitTypes ==
 
   * Terran_Marine
