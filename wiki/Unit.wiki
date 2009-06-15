@@ -47,8 +47,8 @@ The following orders have not been implemented yet:
   * [#holdPosition holdPosition]
   * [#patrol patrol]
   * [#useTech useTech]
-  * [#useTech useTech]
-  * [#useTech useTech]
+  * [#useTech_2 useTech]
+  * [#useTech_3 useTech]
 
 Possible methods we could add:
   * [#getLoadedUnits getLoadedUnits]
@@ -205,12 +205,12 @@ void useTech(Tech tech);
 
 Not implemented yet.
 
-=== useTech ===
+=== useTech_2 ===
 void useTech(Tech tech, Position position);
 
 Not implemented yet.
 
-=== useTech ===
+=== useTech_3 ===
 void useTech(Tech tech, Unit{{{*}}} target);
 
 Not implemented yet.
