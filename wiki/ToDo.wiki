@@ -1,0 +1,36 @@
+Classes that need to be implemented:
+  * [Force]
+
+Methods that need to be implemented:
+  * [Unit]::[Unit#stop stop]
+  * [Unit]::[Unit#holdPosition holdPosition]
+  * [Unit]::[Unit#patrol patrol]
+  * [Unit]::[Unit#useTech useTech]
+  * [Unit]::[Unit#useTech_2 useTech] (second variation)
+  * [Unit]::[Unit#useTech_3 useTech] (third variation)
+
+  * [Unit]::[Unit#isLoaded isLoaded]
+  * [Unit]::[Unit#getLoadedUnits getLoadedUnits]
+
+  * Maybe replace isDisabled with isUnpowered, isLockedDown, isStasised
+
+  * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics.
+
+  * [UnitType]::[UnitType#maxEnergy]
+  * [UnitType]::airDamage
+  * [UnitType]::attackRange
+  * [UnitType]::walkSpeed
+
+  * [Player]::[Player#isAlliesWith isAlliesWith]
+  * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
+
+  * [Game]::drawBox
+  * [Game]::drawBoxFilled
+  * [Game]::drawBoxLine
+
+  * [Player]::[Player#getForce getForce]
+  * [Game]::[Game#getForces getForces]
+
+Error Codes:
+  * Make into Enum
+  * Add method [Game]::getLastError
