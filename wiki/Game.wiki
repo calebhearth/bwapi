@@ -53,13 +53,13 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
 
 === getAllUnits ===
-  * {{{std::set< Unit* > getAllUnits();}}}
+{{{std::set< Unit* > getAllUnits();}}}
 
 === getMinerals ===
-  * {{{std::set< Unit* > getMinerals();}}}
+{{{std::set< Unit* > getMinerals();}}}
 
 === getGeysers ===
-  * {{{std::set< Unit* > getGeysers();}}}
+{{{std::set< Unit* > getGeysers();}}}
 
 === getNeutralUnits ===
-  * {{{std::set< Unit* > getNeutralUnits();}}}
+{{{std::set< Unit* > getNeutralUnits();}}}
