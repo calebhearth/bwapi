@@ -8,7 +8,7 @@ Methods:
     std::string getName();
 
 
-Complete list of possible Player Types:
+== PlayerTypes ==
 
   * NotUsed
   * Computer
