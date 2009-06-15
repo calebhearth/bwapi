@@ -51,7 +51,7 @@ The following orders have not been implemented yet:
   * [#useTech useTech]
 
 Possible methods we could add:
-  * std::list<Unit{{{*}}}> getLoadedUnits();
+  * [#getLoadedUnits getLoadedUnits]
 
 === getOwner ===
 [Player]{{{*}}} getOwner();
@@ -207,9 +207,15 @@ Not implemented yet.
 
 === useTech ===
 void useTech(Tech tech, Position position);
+
 Not implemented yet.
 
 === useTech ===
 void useTech(Tech tech, Unit{{{*}}} target);
 
 Not implemented yet.
+
+=== getLoadedUnits ===
+std::list<Unit{{{*}}}> getLoadedUnits();
+
+Would return the list of units loaded, such as in a dropship.
