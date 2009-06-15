@@ -45,43 +45,43 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 
 
 === getForces ===
-std::set< [Force]{{{*}}} > getForces();
+std::set< [Force]{{{*}}} > getForces() const;
 
 === getPlayers ===
-std::set< [Player]{{{*}}} > getPlayers();
+std::set< [Player]{{{*}}} > getPlayers() const;
 
 === getAllUnits ===
-std::set< [Unit]{{{*}}} > getAllUnits();
+std::set< [Unit]{{{*}}} > getAllUnits() const;
 
 === getMinerals ===
-std::set< [Unit]{{{*}}} > getMinerals();
+std::set< [Unit]{{{*}}} > getMinerals() const;
 
 === getGeysers ===
-std::set< [Unit]{{{*}}} > getGeysers();
+std::set< [Unit]{{{*}}} > getGeysers() const;
 
 === getNeutralUnits ===
-std::set< [Unit]{{{*}}} > getNeutralUnits();
+std::set< [Unit]{{{*}}} > getNeutralUnits() const;
 
 === getLatency ===
-Latency::Enum getLatency();
+Latency::Enum getLatency() const;
 
 === getFrameCount ===
-int getFrameCount();
+int getFrameCount() const;
 
 === getMouseX ===
-int getMouseX();
+int getMouseX() const;
 
 === getMouseY ===
-int getMouseY();
+int getMouseY() const;
 
 === getScreenX ===
-int getScreenX();
+int getScreenX() const;
 
 === getScreenY ===
-int getScreenY();
+int getScreenY() const;
 
 === isFlagEnabled ===
-bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);
+bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag) const;
 
 === enableFlag ===
 void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
@@ -89,39 +89,39 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === unitsOnTile ===
-std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile);
+std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile) const;
 
 === mapWidth ===
-int mapWidth();
+int mapWidth() const;
 
 === mapHeight ===
-int mapHeight();
+int mapHeight() const;
 
 === mapFilename ===
-std::string mapFilename();
+std::string mapFilename() const;
 
 === mapName ===
-std::string mapName();
+std::string mapName() const;
 
 === buildable ===
-bool buildable(int x, int y);
+bool buildable(int x, int y) const;
 
 === walkable ===
-bool walkable(int x, int y);
+bool walkable(int x, int y) const;
 
 === visible ===
-bool visible(int x, int y);
+bool visible(int x, int y) const;
 
 === groundHeight ===
-int groundHeight(int x, int y);
+int groundHeight(int x, int y) const;
 
 === getStartLocations ===
-std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
+const std::set< [Misc#TilePosition TilePosition] >& getStartLocations() const;
 
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
 === getMapHash ===
-int getMapHash();
+int getMapHash() const;
 
 === print ===
 int print(const char {{{*}}}text, ...);
@@ -142,13 +142,13 @@ void pauseGame();
 void resumeGame();
 
 === getSelectedUnits ===
-std::set<[Unit]{{{*}}}>& getSelectedUnits();
+std::set<[Unit]{{{*}}}>& getSelectedUnits() const;
 
 === self ===
-[Player]{{{*}}} self();
+[Player]{{{*}}} self() const;
 Returns a pointer to the player that BWAPI controls.
 
 === enemy ===
-[Player]{{{*}}} enemy();
+[Player]{{{*}}} enemy() const;
 
 Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] to get the other enemies).
