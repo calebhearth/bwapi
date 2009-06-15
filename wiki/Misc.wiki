@@ -13,7 +13,7 @@ Methods:
   * None
   * Unknown
 
-== TilePosition ==
+= TilePosition =
 Public Member Variables (should change to member functions soon):
   * int x;
   * int y;
