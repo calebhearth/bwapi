@@ -1,4 +1,7 @@
 #sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Unit.h BWAPI/Unit.h]
+
 The Unit class is used to get information about individual units as well as issue orders to units.
 
 Methods:
