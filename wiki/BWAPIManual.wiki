@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-=== API ===
+== Contents ==
   * [UsingBWAPI Using BWAPI]
   * [AIModule]
   * [Game]
