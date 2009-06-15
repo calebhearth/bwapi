@@ -40,6 +40,11 @@ Methods:
   * [#isOrganic isOrganic]
   * [#isMechanical isMechanical]
 
+Non-member methods in UnitTypes namespace:
+
+  * [#getUnitType getUnitType]
+  * [#allUnitTypes allUnitTypes]
+
 === getID ===
 int getID();
 
@@ -150,6 +155,14 @@ bool isOrganic();
 
 === isMechanical ===
 bool isMechanical();
+
+=== getUnitType ===
+[UnitType] getUnitType(std::string &name);
+
+=== allUnitTypes ===
+std::set<[UnitType]>& allUpgradeTypes();
+
+Returns the set of all the unit types, which are listed below.
 
 == UnitTypes ==
 
