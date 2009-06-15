@@ -144,8 +144,11 @@ void resumeGame();
 === getSelectedUnits ===
 std::set<[Unit]{{{*}}}>& getSelectedUnits() const;
 
+Returns the set of units currently selected by the user in the GUI.
+
 === self ===
 [Player]{{{*}}} self() const;
+
 Returns a pointer to the player that BWAPI controls.
 
 === enemy ===
