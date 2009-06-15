@@ -6,10 +6,22 @@ Methods:
 
   * [#getName getName]
 
+Non-member methods in PlayerTypes namespace:
+
+  * [#getPlayerType getPlayerType]
+  * [#allPlayerTypes allPlayerTypes]
 
 === getName ===
     std::string getName();
 
+
+=== getPlayerType ===
+[PlayerType] getPlayerType(std::string &name);
+
+=== allPlayerTypes ===
+std::set<[PlayerType]>& allPlayerTypes();
+
+Returns the set of all the player types, which are listed below.
 
 == PlayerTypes ==
 
