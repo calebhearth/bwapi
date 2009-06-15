@@ -11,35 +11,35 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
   * [#getNeutralUnits getNeutralUnits]
 
   * [#getLatency getLatency]
-  * int getFrameCount();
-  * int getMouseX();
-  * int getMouseY();
-  * int getScreenX();
-  * int getScreenY();
-  * bool isFlagEnabled(Flag::Enum flag);
-  * void enableFlag(Flag::Enum flag);
-  * std::set< Unit{{{*}}} > unitsOnTile(TilePosition tile);
+  * [#getFrameCount getFrameCount]
+  * [#getMouseX getMouseX]
+  * [#getMouseY getMouseY]
+  * [#getScreenX getScreenX]
+  * [#getScreenY getScreenY]
+  * [#isFlagEnabled isFlagEnabled]
+  * [#enableFlag enableFlag]
+  * [#unitsOnTile unitsOnTile]
 
-  * int mapWidth();
-  * int mapHeight();
-  * std::string mapFilename();
-  * std::string mapName();
-  * bool buildable(int x, int y);
-  * bool walkable(int x, int y);
-  * bool visible(int x, int y);
-  * int groundHeight(int x, int y);
-  * std::set< TilePosition >& getStartLocations();
-  * int getMapHash();
+  * [#mapWidth mapWidth]
+  * [#mapHeight mapHeight]
+  * [#mapFilename mapFilename]
+  * [#mapName mapName]
+  * [#buildable buildable]
+  * [#walkable walkable]
+  * [#visible visible]
+  * [#groundHeight groundHeight]
+  * [#getStartLocations getStartLocations]
+  * [#getMapHash getMapHash]
 
-  * int print(const char {{{*}}}text, ...);
-  * int printPublic(const char {{{*}}}text, ...);
-  * void changeRace(Race race);
-  * void startGame();
-  * void pauseGame();
-  * void resumeGame();
-  * td::set<Unit{{{*}}}>& getSelectedUnits();
-  * Player{{{*}}} self();
-  * Player{{{*}}} enemy();
+  * [#print print]
+  * [#printPublic printPublic]
+  * [#changeRace changeRace]
+  * [#startGame startGame]
+  * [#pauseGame pauseGame]
+  * [#resumeGame resumeGame]
+  * [#getSelectedUnits getSelectedUnits]
+  * [#self self]
+  * [#enemy enemy]
 
 
 === getForces ===
@@ -62,3 +62,88 @@ std::set< [Unit]{{{*}}} > getNeutralUnits();
 
 === getLatency ===
 Latency::Enum getLatency();
+
+=== getFrameCount ===
+int getFrameCount();
+
+=== getMouseX ===
+int getMouseX();
+
+=== getMouseY ===
+int getMouseY();
+
+=== getScreenX ===
+int getScreenX();
+
+=== getScreenY ===
+int getScreenY();
+
+=== isFlagEnabled ===
+bool isFlagEnabled(Flag::Enum flag);
+
+=== enableFlag ===
+void enableFlag(Flag::Enum flag);
+Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
+
+=== unitsOnTile ===
+std::set< [Unit]{{{*}}} > unitsOnTile(TilePosition tile);
+
+=== mapWidth ===
+int mapWidth();
+
+=== mapHeight ===
+int mapHeight();
+
+=== mapFilename ===
+std::string mapFilename();
+
+=== mapName ===
+std::string mapName();
+
+=== buildable ===
+bool buildable(int x, int y);
+
+=== walkable ===
+bool walkable(int x, int y);
+
+=== visible ===
+bool visible(int x, int y);
+
+=== groundHeight ===
+int groundHeight(int x, int y);
+
+=== getStartLocations ===
+std::set< TilePosition >& getStartLocations();
+Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::getStartLocation.
+
+=== getMapHash ===
+int getMapHash();
+
+=== print ===
+int print(const char {{{*}}}text, ...);
+
+=== printPublic ===
+int printPublic(const char {{{*}}}text, ...);
+
+=== changeRace ===
+void changeRace([Race] race);
+
+=== startGame ===
+void startGame();
+
+=== pauseGame ===
+void pauseGame();
+
+=== resumeGame ===
+void resumeGame();
+
+=== getSelectedUnits ===
+std::set<[Unit]{{{*}}}>& getSelectedUnits();
+
+=== self ===
+[Player]{{{*}}} self();
+Returns a pointer to the player that BWAPI controls.
+
+=== enemy ===
+[Player]{{{*}}} enemy();
+Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers] to get the other enemies).
