@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/AIModule.h BWAPI/AIModule.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/AIModule.h# BWAPI/AIModule.h]
 
 AIModule is a virtual class that is intended to be implemented or inherited by a custom AI class. The following callbacks available to AIs:
 
