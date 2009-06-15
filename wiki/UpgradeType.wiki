@@ -5,12 +5,12 @@ Methods:
 
   * int getID();
   * std::string getName();
-  * Race getRace();
+  * [Race] getRace();
   * int mineralPriceBase();
   * int mineralPriceFactor();
   * int gasPriceBase();
   * int gasPriceFactor();
-  * UnitType{{{*}}} whatUpgrades();
+  * [UnitType]{{{*}}} whatUpgrades();
 
 
 Complete list of Upgrade Types:
