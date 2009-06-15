@@ -38,7 +38,7 @@ Methods:
   * bool isMechanical();
 
 
-Unit Types:
+== UnitTypes ==
 
   * Terran_Marine
   * Terran_Medic
