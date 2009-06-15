@@ -22,6 +22,11 @@ Possible values:
   * BattlenetMedium: 19
   * BattlenetHigh: 24
 
+== Flag::Enum ==
+Possible values:
+  * CompleteMapInformation
+  * UserInput
+
 
 == Constants ==
   * TILE_SIZE = 32
