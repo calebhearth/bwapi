@@ -1,4 +1,7 @@
 #sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Race.h# BWAPI/Race.h]
+
 Methods:
 
   * [#getID getID]
