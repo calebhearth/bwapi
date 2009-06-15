@@ -48,7 +48,7 @@ Returns the set of units the player own. Note that units loaded into Terran drop
 Not implemented yet.
 
 === isAlliesWith ===
-bool isAlliesWith(Player{{{*}}} player);
+bool isAlliesWith([Player]{{{*}}} player);
 Not implemented yet.
 
 === getID ===
@@ -56,7 +56,7 @@ int getID();
 Returns a unique ID for the player.
 
 === getStartLocation ===
-TilePosition getStartLocation();
+[Misc#TilePosition TilePosition] getStartLocation();
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
 === minerals ===
@@ -76,24 +76,32 @@ int supplyUsed();
 Returns how much of the supply is actually being used by units.
 
 === getAllUnits ===
-int getAllUnits(UnitType type);
+int getAllUnits([UnitType] type);
 
 === getCompletedUnits ===
-int getCompletedUnits(UnitType type);
+int getCompletedUnits([UnitType] type);
 
 === getKilledUnits ===
-int getKilledUnits(UnitType type);
+int getKilledUnits([UnitType] type);
 
 === getDeaths ===
-int getDeaths(UnitType unit);
+int getDeaths([UnitType] unit);
 
 === getKills ===
-int getKills(UnitType unit);
+int getKills([UnitType] unit);
 
-bool researching(TechType tech);
+=== researching ===
+bool researching([TechType] tech);
+Returns true if the player is researching the given tech.
 
-bool researched(TechType tech);
+=== researched ===
+bool researched([TechType] tech);
+Returns true if the player has finished researching the given tech.
 
-bool upgrading(UpgradeType upgrade);
+=== upgrading ===
+bool upgrading([UpgradeType] upgrade);
+Returns true if the player is upgrading the given upgrade.
 
-int upgradeLevel(UpgradeType upgrade);
+=== upgradeLevel ===
+int upgradeLevel([UpgradeType] upgrade);
+returns the player's current upgrade level of the given upgrade.
