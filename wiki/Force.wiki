@@ -3,5 +3,11 @@ The abstract Force class is not currently implemented by BWAPI but will eventual
 
 Methods:
 
-  * std::string getName();
-  * std::set< Player{{{*}}} > getPlayers();
+  * [#getName getName]
+  * [#getPlayers getPlayers]
+
+=== getName ===
+std::string getName();
+
+=== getPlayers ===
+std::set< Player{{{*}}} > getPlayers();
