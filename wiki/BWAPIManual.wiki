@@ -1,11 +1,13 @@
 #sidebar TableOfContents
 === API ===
   * [AIModule]
+  * [UsingBWAPI Using BWAPI]
   * [Game]
   * [Force]
   * [Player]
   * [Unit]
   * [UnitType]
+  * [PlayerType]
   * [UpgradeType]
   * [TechType]
   * [Order]
