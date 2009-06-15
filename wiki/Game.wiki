@@ -10,7 +10,7 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
   * [#getGeysers getGeysers]
   * [#getNeutralUnits getNeutralUnits]
 
-  * Latency::Enum getLatency();
+  * [#getLatency getLatency]
   * int getFrameCount();
   * int getMouseX();
   * int getMouseY();
@@ -59,3 +59,6 @@ std::set< [Unit]{{{*}}} > getGeysers();
 
 === getNeutralUnits ===
 std::set< [Unit]{{{*}}} > getNeutralUnits();
+
+=== getLatency ===
+Latency::Enum getLatency();
