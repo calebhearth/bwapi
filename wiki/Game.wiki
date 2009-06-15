@@ -1,5 +1,7 @@
 #sidebar TableOfContents
 
+Clas header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Game.h BWAPI/Game.h]
+
 The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units. Methods:
 
 
