@@ -1,5 +1,4 @@
 #sidebar TableOfContents
-= Player =
 
 Each player in a match will have his or her own player instance. There is also a neutral player which owns all the neutral units.
 
