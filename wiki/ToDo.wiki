@@ -33,4 +33,4 @@ Methods that need to be implemented:
 
 Error Codes:
   * Make into Enum
-  * Add method [Game]::getLastError
+  * Add method [Game]::getLastError so user can get the error code if an error occurs.
