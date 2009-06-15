@@ -32,7 +32,7 @@ Methods:
   * [#upgradeLevel upgradeLevel]
 
 === getName ===
-std::string getName();
+std::string getName() const;
 
 Returns the name of the player.
 
@@ -42,48 +42,48 @@ std::set< Unit{{{*}}} > getUnits();
 Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
 
 === getRace ===
-[Race] getRace();
+[Race] getRace() const;
 
 === playerType ===
-[PlayerType] playerType();
+[PlayerType] playerType() const;
 
 === getForce ===
-[Force]{{{*}}} getForce();
+[Force]{{{*}}} getForce() const;
 
 Not implemented yet.
 
 === isAlliesWith ===
-bool isAlliesWith([Player]{{{*}}} player);
+bool isAlliesWith([Player]{{{*}}} player) const;
 
 Not implemented yet.
 
 === getID ===
-int getID();
+int getID() const;
 
 Returns a unique ID for the player.
 
 === getStartLocation ===
-[Misc#TilePosition TilePosition] getStartLocation();
+[Misc#TilePosition TilePosition] getStartLocation() const;
 
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
 === minerals ===
-int minerals();
+int minerals() const;
 
 Returns the amount of minerals the player has.
 
 === gas ===
-int gas();
+int gas() const;
 
 Returns the amount of vespene gas the player has.
 
 === supplyTotal ===
-int supplyTotal();
+int supplyTotal() const;
 
 Returns the total amount of supply the player has.
 
 === supplyUsed ===
-int supplyUsed();
+int supplyUsed() const;
 
 Returns how much of the supply is actually being used by units.
 
@@ -103,21 +103,21 @@ int getDeaths([UnitType] unit);
 int getKills([UnitType] unit);
 
 === researching ===
-bool researching([TechType] tech);
+bool researching([TechType] tech) const;
 
 Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
 
 === researched ===
-bool researched([TechType] tech);
+bool researched([TechType] tech) const;
 
 Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
 
 === upgrading ===
-bool upgrading([UpgradeType] upgrade);
+bool upgrading([UpgradeType] upgrade) const;
 
 Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
 
 === upgradeLevel ===
-int upgradeLevel([UpgradeType] upgrade);
+int upgradeLevel([UpgradeType] upgrade) const;
 
 returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
