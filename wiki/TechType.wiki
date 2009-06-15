@@ -3,11 +3,11 @@ Methods:
 
   * int getID();
   * std::string getName();
-  * Race getRace();
+  * [Race] getRace();
   * int mineralPrice();
   * int gasPrice();
   * int energyPrice();
-  * UnitType{{{*}}} whatResearches();
+  * [UnitType]{{{*}}} whatResearches();
 
 Complete list of Tech Types:
 
