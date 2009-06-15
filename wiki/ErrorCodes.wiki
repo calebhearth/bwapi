@@ -1,16 +1,59 @@
 #sidebar TableOfContents
 == Error Codes (Not implemented yet) ==
-  * ERROR_UNIT_NOT_VISIBLE - returned if you try to retrieve information about a unit that is not currently visible or is dead.
-  * ERROR_INCOMPATIBLE_UNIT_TYPE - returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
-  * ERROR_UNIT_NOT_OWNED - returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
-  * ERROR_INSUFFICIENT_MINERALS - returned if you try to train or build something without enough minerals
-  * ERROR_INSUFFICIENT_GAS - returned if you try to train or build something without enough vespene gas
-  * ERROR_INSUFFICIENT_SUPPLY - returned if you try to train something without enough supply
-  * ERROR_INSUFFICIENT_ENERGY - returned if you to do something like try to order a Defiler to cast a Dark Swarm without enough energy.
-  * ERROR_UNBUILDABLE_LOCATION - returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating).
-  * ERROR_INCOMPATIBLE_TECH_TYPE - returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Spire to Burrow will return this error)
-  * ERROR_INCOMPATIBLE_UPGRADE_TYPE - returned if you try to upgrade something at the wrong building
-  * ERROR_INSUFFICIENT_TECH - returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before spider mines have been researched.
-  * ERROR_INSUFFICIENT_AMMO - returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
-  * ERROR_OUT_OF_RANGE - returned if you order an immovable unit to attack a unit that is out of range.
-  * ERROR_UNABLE_TO_HIT - returned if you do something like order a Vulture to attack a flying unit.
+
+  * [#ERROR_UNIT_NOT_VISIBLE ERROR_UNIT_NOT_VISIBLE]
+  * [#ERROR_INCOMPATIBLE_UNIT_TYPE ERROR_INCOMPATIBLE_UNIT_TYPE]
+  * [#ERROR_UNIT_NOT_OWNED ERROR_UNIT_NOT_OWNED]
+  * [#ERROR_INSUFFICIENT_MINERALS ERROR_INSUFFICIENT_MINERALS]
+  * [#ERROR_INSUFFICIENT_GAS ERROR_INSUFFICIENT_GAS]
+  * [#ERROR_INSUFFICIENT_SUPPLY ERROR_INSUFFICIENT_SUPPLY]
+  * [#ERROR_INSUFFICIENT_ENERGY ERROR_INSUFFICIENT_ENERGY]
+  * [#ERROR_UNBUILDABLE_LOCATION ERROR_UNBUILDABLE_LOCATION]
+  * [#ERROR_INCOMPATIBLE_TECH_TYPE ERROR_INCOMPATIBLE_TECH_TYPE]
+  * [#ERROR_INCOMPATIBLE_UPGRADE_TYPE ERROR_INCOMPATIBLE_UPGRADE_TYPE]
+  * [#ERROR_INSUFFICIENT_TECH ERROR_INSUFFICIENT_TECH]
+  * [#ERROR_INSUFFICIENT_AMMO ERROR_INSUFFICIENT_AMMO]
+  * [#ERROR_OUT_OF_RANGE ERROR_OUT_OF_RANGE]
+  * [#ERROR_UNABLE_TO_HIT ERROR_UNABLE_TO_HIT]
+
+=== ERROR_UNIT_NOT_VISIBLE ===
+Returned if you try to retrieve information about a unit that is not currently visible or is dead.
+
+=== ERROR_INCOMPATIBLE_UNIT_TYPE ===
+Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
+
+=== ERROR_UNIT_NOT_OWNED ===
+Returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away )
+
+=== ERROR_INSUFFICIENT_MINERALS ===
+Returned if you try to train or build something without enough minerals
+
+=== ERROR_INSUFFICIENT_GAS ===
+Returned if you try to train or build something without enough vespene gas
+
+=== ERROR_INSUFFICIENT_SUPPLY ===
+Returned if you try to train something without enough supply
+
+=== ERROR_INSUFFICIENT_ENERGY ===
+Returned if you to do something like try to order a Defiler to cast a Dark Swarm without enough energy.
+
+=== ERROR_UNBUILDABLE_LOCATION ===
+Returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating).
+
+=== ERROR_INCOMPATIBLE_TECH_TYPE ===
+Returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Spire to Burrow will return this error)
+
+=== ERROR_INCOMPATIBLE_UPGRADE_TYPE ===
+Returned if you try to upgrade something at the wrong building
+
+=== ERROR_INSUFFICIENT_TECH ===
+Returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before spider mines have been researched.
+
+=== ERROR_INSUFFICIENT_AMMO ===
+Returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
+
+=== ERROR_OUT_OF_RANGE ===
+Returned if you order an immovable unit to attack a unit that is out of range.
+
+=== ERROR_UNABLE_TO_HIT ===
+Returned if you do something like order a Vulture to attack a flying unit.
