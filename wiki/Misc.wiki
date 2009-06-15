@@ -1,5 +1,5 @@
 #sidebar TableOfContents
-== Position ==
+= Position =
 
 Public Member Variables (should change to member functions soon):
   * int x;
@@ -7,6 +7,11 @@ Public Member Variables (should change to member functions soon):
 
 Methods:
   * double getDistance(Position position);
+
+== Special Positions ==
+  * Invalid
+  * None
+  * Unknown
 
 == TilePosition ==
 Public Member Variables (should change to member functions soon):
@@ -16,7 +21,12 @@ Public Member Variables (should change to member functions soon):
 Methods:
   * bool isValid();
 
-== Latency::Enum ==
+== Special TilePositions ==
+  * Invalid
+  * None
+  * Unknown
+
+= Latency::Enum =
 Possible values:
   * SinglePlayer: 2
   * LanLow: 5
@@ -26,11 +36,11 @@ Possible values:
   * BattlenetMedium: 19
   * BattlenetHigh: 24
 
-== Flag::Enum ==
+= Flag::Enum =
 Possible values:
   * CompleteMapInformation
   * UserInput
 
 
-== Constants ==
+= Constants =
   * TILE_SIZE = 32
