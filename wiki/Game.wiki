@@ -2,8 +2,9 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Game.h# BWAPI/Game.h]
 
-The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units. Methods:
+The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game, including the set of players, units, map information, as well as information about the user, such as mouse position, screen position, and the current selection of units.
 
+Methods:
 
   * [#getForces getForces]
   * [#getPlayers getPlayers]
@@ -43,9 +44,10 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
   * [#self self]
   * [#enemy enemy]
 
-
 === getForces ===
 std::set< [Force]{{{*}}} > getForces() const;
+
+Not implemented yet.
 
 === getPlayers ===
 std::set< [Player]{{{*}}} > getPlayers() const;
@@ -53,35 +55,57 @@ std::set< [Player]{{{*}}} > getPlayers() const;
 === getAllUnits ===
 std::set< [Unit]{{{*}}} > getAllUnits() const;
 
+Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units loaded into shuttles, refineries, bunkers, etc are not included in this set yet.
+
 === getMinerals ===
 std::set< [Unit]{{{*}}} > getMinerals() const;
+
+Returns the set of all visible mineral patches, or all mineral patches if [Flag]::CompleteMapInformation is enabled.
 
 === getGeysers ===
 std::set< [Unit]{{{*}}} > getGeysers() const;
 
+Returns the set of all visible vespene geysers, or all vespene geysers if [Flag]::CompleteMapInformation is enabled.
+
 === getNeutralUnits ===
 std::set< [Unit]{{{*}}} > getNeutralUnits() const;
+
+Returns the set of all visible neutral units, or all neutral units if [Flag]::CompleteMapInformation is enabled.
 
 === getLatency ===
 Latency::Enum getLatency() const;
 
+Not implemented yet.
+
 === getFrameCount ===
 int getFrameCount() const;
+
+Returns the number of logical frames since the match started.
 
 === getMouseX ===
 int getMouseX() const;
 
+Returns the horizontal coordinate of the mouse on the screen.
+
 === getMouseY ===
 int getMouseY() const;
+
+Returns the vertical coordinate of the mouse on the screen.
 
 === getScreenX ===
 int getScreenX() const;
 
+Returns the horizontal coordinate of the screen on the map.
+
 === getScreenY ===
 int getScreenY() const;
 
+Returns the vertical coordinate of the screen on the map.
+
 === isFlagEnabled ===
 bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag) const;
+
+Returns true if the given flag has been enabled. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === enableFlag ===
 void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
@@ -91,29 +115,47 @@ Enables the specified flag. Note that flags can only be enabled at the beginning
 === unitsOnTile ===
 std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile) const;
 
+Returns the set of units that are on the given tile.
+
 === mapWidth ===
 int mapWidth() const;
+
+Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4. To get the width of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
 
 === mapHeight ===
 int mapHeight() const;
 
+Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
+
 === mapFilename ===
 std::string mapFilename() const;
+
+Returns the file name of the current map.
 
 === mapName ===
 std::string mapName() const;
 
+Returns the name of the current map.
+
 === buildable ===
 bool buildable(int x, int y) const;
+
+Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
 
 === walkable ===
 bool walkable(int x, int y) const;
 
+Returns true if the specified build tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
+
 === visible ===
 bool visible(int x, int y) const;
 
+Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false.
+
 === groundHeight ===
 int groundHeight(int x, int y) const;
+
+Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
 
 === getStartLocations ===
 const std::set< [Misc#TilePosition TilePosition] >& getStartLocations() const;
@@ -123,17 +165,25 @@ Returns the set of starting locations for the given map. To determine the starti
 === getMapHash ===
 int getMapHash() const;
 
+Returns a unique identifier for the given map data that does not depend on the file name.
+
 === print ===
 int print(const char {{{*}}}text, ...);
 
 === printPublic ===
 int printPublic(const char {{{*}}}text, ...);
 
+Primary function for printing text to the screen.
+
 === changeRace ===
 void changeRace([Race] race);
 
+Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
+
 === startGame ===
 void startGame();
+
+Used to start the game while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
 === pauseGame ===
 void pauseGame();
