@@ -59,17 +59,27 @@ Possible methods we could add:
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
 
+Returns a pointer to the player that owns this unit.
+
 === getType ===
 [UnitType] getType() const;
+
+Returns the type of the unit.
 
 === health ===
 int health() const;
 
+Returns the unit's current amount of health.
+
 === shield ===
 int shield() const;
 
+Returns the unit's current amount of shield.
+
 === energy ===
 int energy() const;
+
+Returns the unit's current amount of energy.
 
 === getPosition ===
 [Misc#Position Position] getPosition() const;
@@ -127,6 +137,8 @@ Returns true if the unit has been selected by the user via the starcraft GUI. On
 === isCompleted ===
 bool isCompleted() const;
 
+Returns true if the unit has been completed. Used for buildings.
+
 === isLifted ===
 bool isLifted() const;
 
@@ -167,16 +179,22 @@ void attackMove([Misc#Position Position] target);
 === rightClick ===
 void rightClick([Misc#Position Position]target);
 
+Works like the right click in the GUI.
+
 === rightClick_2 ===
 void rightClick([Unit]{{{*}}} target);
+
+Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
 
 === train ===
 void train([UnitType] type);
 
+Orders this unit to a the specified unit type to the training queue. Note that the player must have sufficient resources to train.
+
 === build ===
 void build([Misc#TilePosition TilePosition] p, [UnitType] type);
 
-Orders the unit to build the given unit type at the given position.
+Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail.
 
 === invent ===
 void invent([TechType] tech);
@@ -191,17 +209,17 @@ Orders the unit to upgrade teh given upgrade type.
 === stop ===
 int stop(); 
 
-Not implemented yet.
+Not implemented yet. Will order the unit to stop.
 
 === holdPosition ===
 void holdPosition();
 
-Not implemented yet.
+Not implemented yet. Will order the unit to hold position.
 
 === patrol ===
 void patrol([Misc#Position Position] target);
 
-Not implemented yet.
+Not implemented yet. Will order the unit to patrol between its current position and the specified position.
 
 === useTech ===
 void useTech(Tech tech);
