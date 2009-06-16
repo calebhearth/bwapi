@@ -44,8 +44,12 @@ Returns the set of units the player own. Note that units loaded into Terran drop
 === getRace ===
 [Race] getRace() const;
 
+Returns the race of the player.
+
 === playerType ===
 [PlayerType] playerType() const;
+
+Returns the type of the player.
 
 === getForce ===
 [Force]{{{*}}} getForce() const;
@@ -55,7 +59,7 @@ Not implemented yet.
 === isAlliesWith ===
 bool isAlliesWith([Player]{{{*}}} player) const;
 
-Not implemented yet.
+Not implemented yet. Will return true if this player is allies with the given player.
 
 === getID ===
 int getID() const;
@@ -90,8 +94,12 @@ Returns how much of the supply is actually being used by units.
 === getAllUnits ===
 int getAllUnits([UnitType] type);
 
+Returns the number of all units of the given type.
+
 === getCompletedUnits ===
 int getCompletedUnits([UnitType] type);
+
+Returns the number of completed units of the given type.
 
 === getKilledUnits ===
 int getKilledUnits([UnitType] type);
