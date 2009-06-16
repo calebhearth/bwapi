@@ -12,5 +12,9 @@ Methods:
 === getName ===
 std::string getName() const;
 
+Returns the name of the force.
+
 === getPlayers ===
 std::set< Player{{{*}}} > getPlayers() const;
+
+Returns the set of players in the force.
