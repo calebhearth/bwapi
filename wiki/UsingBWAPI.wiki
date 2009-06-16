@@ -1,7 +1,7 @@
 #sidebar TableOfContents
 
 To program AIs using BWAPI you will need to have the following installed:
-  * Broodwar 1.16.1
+  * Starcraft: Broodwar 1.16.1
   * Chaoslauncher
   * A C++ compiler (such as Visual Studio 2008 SP1 or Visual Studio 2008 Express)
 
