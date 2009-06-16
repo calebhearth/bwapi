@@ -194,7 +194,7 @@ void resumeGame();
 === getSelectedUnits ===
 std::set<[Unit]{{{*}}}>& getSelectedUnits() const;
 
-Returns the set of units currently selected by the user in the GUI.
+Returns the set of units currently selected by the user in the GUI. If [Flag]::UserInput was not enabled during the [AIModule]::[AIModule#onStart onStart] callback, this function will always return an empty set.
 
 === self ===
 [Player]{{{*}}} self() const;
