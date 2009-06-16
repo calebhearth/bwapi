@@ -16,7 +16,7 @@ Methods that need to be implemented:
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics.
 
-  * [UnitType]::[UnitType#maxEnergy]
+  * [UnitType]::[UnitType#maxEnergy maxEnergy]
   * [UnitType]::airDamage
   * [UnitType]::attackRange
   * [UnitType]::walkSpeed
