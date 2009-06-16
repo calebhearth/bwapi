@@ -28,6 +28,8 @@ Methods that need to be implemented:
   * [Game]::drawBoxFilled
   * [Game]::drawBoxLine
 
+  * [Game]::surrender
+
   * [Player]::[Player#getForce getForce]
   * [Game]::[Game#getForces getForces]
 
