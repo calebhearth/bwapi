@@ -20,8 +20,12 @@ Non-member methods in Races namespace:
 === getID ===
 int getID();
 
+Returns a unique ID for this race.
+
 === getName ===
 std::string getName();
+
+Returns the name of the race. For example Races::Terran.getName() will return a std::string object containing "Terran".
 
 === getWorker ===
 [UnitType]{{{*}}} getWorker();
@@ -36,10 +40,12 @@ Returns the center unit type for the given race. For example Races::Terran.getCe
 === getRefinery ===
 [UnitType]{{{*}}} getRefinery();
 
-Returns the refinery unit type for the given race. For example Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
+Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
 
 === getRace ===
 [Race] getRace(std::string &name);
+
+Given the name of a race, this function will return the race type. For example: Races::getRace("Zerg") will return Races::Zerg.
 
 === allRaces ===
 std::set<[Race]>& allRaces();
