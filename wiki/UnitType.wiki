@@ -57,7 +57,7 @@ std::string getName();
 === whatBuilds ===
 std::pair< [UnitType]{{{*}}}, int > whatBuilds();
 
-Returns what builds this unit type. The second number will always be one unless the unit type is Protoss_Archon or Protoss_Dark_Archon.
+Returns what builds this unit type. The second number will usually be 1 unless the unit type is Protoss_Archon or Protoss_Dark_Archon. Units that cannot be created, such as critters and mineral fields, will return a pair where the unit type is UnitTypes::None, and the second component is 0.
 
 Example: UnitTypes::Terran_Marine.whatBuilds() will return an std::pair, where the first component is UnitTypes::Terran_Barracks.
 
