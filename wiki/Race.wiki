@@ -6,6 +6,10 @@ Methods:
 
   * [#getID getID]
   * [#getName getName]
+  * [#getWorker getWorker]
+  * [#getCenter getCenter]
+  * [#getRefinery getRefinery]
+
 
 
 Non-member methods in Races namespace:
@@ -18,6 +22,21 @@ int getID();
 
 === getName ===
 std::string getName();
+
+=== getWorker ===
+[UnitType]{{{*}}} getWorker();
+
+Returns the worker unit type for the given race. For example Races::Protoss.getWorker() will return a pointer to UnitTypes::Protoss_Probe.
+
+=== getCenter ===
+[UnitType]{{{*}}} getCenter();
+
+Returns the center unit type for the given race. For example Races::Terran.getCenter() will return a pointer to UnitTypes::Terran_Command_Center. While there are three center types for Zerg (Hatchery, Lair, and Hive), Races::Zerg.getCenter() will only return a pointer to UnitTypes::Zerg_Hatchery, since it is the unit type needed to make a new center.
+
+=== getRefinery ===
+[UnitType]{{{*}}} getRefinery();
+
+Returns the refinery unit type for the given race. For example Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
 
 === getRace ===
 [Race] getRace(std::string &name);
