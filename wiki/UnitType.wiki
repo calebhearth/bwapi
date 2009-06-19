@@ -201,4 +201,4 @@ For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terr
 === allUnitTypes ===
 std::set<[UnitType]>& allUpgradeTypes();
 
-Returns the set of all the unit types.
+Returns the set of all the UnitTypes.
