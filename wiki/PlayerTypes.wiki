@@ -1,0 +1,16 @@
+#summary Player types in BWAPI
+
+= PlayerTypes =
+
+  * NotUsed
+  * Computer
+  * Human
+  * Rescuable
+  * ComputerSlot
+  * OpenSlot
+  * Neutral
+  * ClosedSlot
+  * HumanDefeated
+  * ComputerDefeated
+  * None
+  * Unknown
