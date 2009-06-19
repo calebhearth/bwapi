@@ -25,19 +25,4 @@ std::string getName();
 === allPlayerTypes ===
 std::set<[PlayerType]>& allPlayerTypes();
 
-Returns the set of all the player types, which are listed below.
-
-== PlayerTypes ==
-
-  * NotUsed
-  * Computer
-  * Human
-  * Rescuable
-  * ComputerSlot
-  * OpenSlot
-  * Neutral
-  * ClosedSlot
-  * HumanDefeated
-  * ComputerDefeated
-  * None
-  * Unknown
+Returns the set of all the player types.
