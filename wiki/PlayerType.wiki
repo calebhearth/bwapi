@@ -25,4 +25,4 @@ std::string getName();
 === allPlayerTypes ===
 std::set<[PlayerType]>& allPlayerTypes();
 
-Returns the set of all the player types.
+Returns the set of all the PlayerTypes.
