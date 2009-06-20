@@ -1,4 +1,5 @@
 #summary Orders in BWAPI
+#sidebar TableOfContents
 
 = Orders =
   * Die
