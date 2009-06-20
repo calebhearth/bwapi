@@ -11,6 +11,7 @@ Methods:
   * [#health health]
   * [#shield shield]
   * [#energy energy]
+  * [#getKillCount getKillCount]
   * [#getPosition getPosition]
   * [#getTilePosition getTilePosition]
 
@@ -80,6 +81,11 @@ Returns the unit's current amount of shield.
 int energy() const;
 
 Returns the unit's current amount of energy.
+
+=== getKillCount
+int getKillCount() const;
+
+Returns the unit's current kill count.
 
 === getPosition ===
 [Misc#Position Position] getPosition() const;
