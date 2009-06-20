@@ -1,4 +1,5 @@
 #summary Unit Types in BWAPI
+#sidebar TableOfContents
 
 
 = UnitTypes =
