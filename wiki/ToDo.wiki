@@ -28,9 +28,7 @@ Methods that need to be implemented:
   * [Unit]::maelstromTimer
   * [Unit]::removeTimer
 
-  * [Unit]::isUnderStorm
-  * [Unit]::isBeingHealed
-  * [Unit]::isBlind
+  * [Unit]::isBeingHealed - implemented, but function unknown
 
   * [Unit]::getKillCount
 
