@@ -1,4 +1,5 @@
 #summary Tech Types used in BWAPI
+#sidebar TableOfContents
 
 = TechTypes =
 
