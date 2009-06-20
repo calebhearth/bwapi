@@ -34,11 +34,6 @@ Methods that need to be implemented:
 
   * [Unit]::getKillCount
 
-  * [Unit]::isMoving
-  * [Unit]::isStartingAttack
-  * [Unit]::isAccelerating
-  * [Unit]::isBraking
-
   * Maybe replace [Unit]::[Unit#isDisabled isDisabled] with [Unit]::isUnpowered, [Unit]::isLockedDown, [Unit]::isStasised
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics.
