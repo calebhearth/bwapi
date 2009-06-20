@@ -5,7 +5,7 @@ To program AIs using BWAPI you will need to have the following installed:
   * [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 Chaoslauncher]
   * A C++ compiler (such as Visual Studio 2008 [http://www.microsoft.com/downloads/details.aspx?FamilyId=FBEE1648-7106-44A7-9649-6D9F6D58056E&displaylang=en SP1] or [http://www.microsoft.com/express/download/#webInstall Visual C++ 2008 Express Edition])
 
-Once you have those, download the [http://bwapi.googlecode.com/files/Example_AI_Module_2.1.zip Example AI Module 2.1] and follow the instructions in the readme after you extract the zip. It will explain where to place files and how to compile a sort of "Hello World"-like AI Module for BWAPI, which you can work from to start making your own custom Broodwar AI.
+Once you have those, download the [http://bwapi.googlecode.com/files/Example_AI_Module_2.2.zip Example AI Module 2.2] and follow the instructions in the readme after you extract the zip. It will explain where to place files and how to compile a sort of "Hello World"-like AI Module for BWAPI, which you can work from to start making your own custom Broodwar AI.
 
 If you are using a compiler other than Visual Studio, you will need to copy the contents of Example_AI_Module_1.2/include to your compiler's include directory, copy Example_AI_Module_1.2/lib/BWAPI.lib to your compiler's lib directory, and link with BWAPI.lib. You should configure your project to compile as a dll. Currently no other compilers/IDEs are supported, but I hope to eventually get it working in an open source IDE such as [http://www.codeblocks.org/home Code::Blocks] - currently it gives errors about the enums.
 
