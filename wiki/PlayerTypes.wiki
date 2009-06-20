@@ -1,4 +1,5 @@
 #summary Player types in BWAPI
+#sidebar TableOfContents
 
 = PlayerTypes =
 
