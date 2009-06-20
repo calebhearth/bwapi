@@ -26,4 +26,4 @@ std::string getName();
 === allOrders ===
 std::set<[Order]>& allOrders();
 
-Returns the set of all the Orders.
+Returns the set of all the [Orders].
