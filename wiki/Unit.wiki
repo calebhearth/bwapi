@@ -82,7 +82,7 @@ int energy() const;
 
 Returns the unit's current amount of energy.
 
-=== getKillCount
+=== getKillCount ===
 int getKillCount() const;
 
 Returns the unit's current kill count.
