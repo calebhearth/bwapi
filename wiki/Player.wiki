@@ -54,7 +54,7 @@ Returns the type of the player.
 === getForce ===
 [Force]{{{*}}} getForce() const;
 
-Not implemented yet.
+Returns the force the player is on.
 
 === isAlliesWith ===
 bool isAlliesWith([Player]{{{*}}} player) const;
