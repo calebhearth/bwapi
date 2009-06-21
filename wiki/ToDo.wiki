@@ -1,5 +1,4 @@
 Methods that need to be implemented:
-  * [Unit]::[Unit#stop stop]
   * [Unit]::[Unit#holdPosition holdPosition]
   * [Unit]::[Unit#useTech useTech]
   * [Unit]::[Unit#useTech_2 useTech] (second variation)
