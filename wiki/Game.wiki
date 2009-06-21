@@ -47,10 +47,12 @@ Methods:
 === getForces ===
 std::set< [Force]{{{*}}} > getForces() const;
 
-Not implemented yet.
+Returns the set of all forces in the match.
 
 === getPlayers ===
 std::set< [Player]{{{*}}} > getPlayers() const;
+
+Returns the set of all players in the match. Note that this includes the Neutral player, which owns all the neutral units such as minerals, critters, etc.
 
 === getAllUnits ===
 std::set< [Unit]{{{*}}} > getAllUnits() const;
