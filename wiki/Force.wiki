@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Force.h# BWAPI/Force.h]
 
-The abstract Force class is not currently implemented by BWAPI but will eventually be a way of getting information about each force.
+The Force class is used to get information about each force in the match, such as the name of the force and the set of players in the force.
 
 Methods:
 
