@@ -1,6 +1,3 @@
-Classes that need to be implemented:
-  * [Force]
-
 Methods that need to be implemented:
   * [Unit]::[Unit#stop stop]
   * [Unit]::[Unit#holdPosition holdPosition]
@@ -49,9 +46,6 @@ Methods that need to be implemented:
   * [Game]::drawBoxLine
 
   * [Game]::surrender
-
-  * [Player]::[Player#getForce getForce]
-  * [Game]::[Game#getForces getForces]
 
 Error Codes:
   * Make into Enum
