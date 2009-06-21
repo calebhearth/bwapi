@@ -225,7 +225,7 @@ Not implemented yet. Will order the unit to hold position.
 === patrol ===
 void patrol([Misc#Position Position] target);
 
-Not implemented yet. Will order the unit to patrol between its current position and the specified position.
+Orders the unit to patrol between its current position and the specified position.
 
 === useTech ===
 void useTech(Tech tech);
