@@ -34,6 +34,8 @@ Methods:
   * [#isIdle isIdle]
   * [#isCloaked isCloaked]
   * [#isDisabled isDisabled]
+  * [#isUnderStorm isUnderStorm]
+  * [#isBlind isBlind]
   * [#isTraining isTraining]
   * [#getTrainingQueue getTrainingQueue]
 
@@ -43,13 +45,13 @@ The following orders can be issued to units:
   * [#rightClick_2 rightClick] - Right click on a unit
   * [#train train]
   * [#build build]
-  * [#invent invent]
+  * [#invent invent] - will be renamed to research soon.
   * [#upgrade upgrade]
-
-The following orders have not been implemented yet:
   * [#stop stop]
   * [#holdPosition holdPosition]
   * [#patrol patrol]
+
+The following orders have not been implemented yet:
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
@@ -168,6 +170,16 @@ Returns true if the unit is cloaked. (Does this work as expected for units that 
 === isDisabled ===
 bool isDisabled() const;
 
+
+=== isUnderStorm ===
+bool isUnderStorm() const;
+
+Returns true if the unit is under a Protoss Psionic Storm.
+
+=== isBlind ===
+bool isBlind() const;
+
+Returns true if the unit is currently blind from a Medic's Optical Flare.
 
 === isTraining ===
 bool isTraining() const;
