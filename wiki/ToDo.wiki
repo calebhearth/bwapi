@@ -1,5 +1,5 @@
 Methods that need to be implemented:
-  * [Unit]::repair - needed to repair dropships, bunkers, and refineries (otherwise the SCV just enters the unit).
+  * [Unit]::repair - needed to repair dropships, bunkers, and refineries (otherwise the SCV just enters the unit when using rightClick).
   * [Unit]::morph
 
   * [Unit]::land - lift is working, but not land yet.
