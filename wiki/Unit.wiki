@@ -25,33 +25,47 @@ Methods:
   * [#getRemainingBuildTime getRemainingBuildTime]
   * [#getChild getChild]
 
-  * [#isLoaded isLoaded]
-  * [#isVisible isVisible]
-  * [#isSelected isSelected]
-  * [#isCompleted isCompleted]
-  * [#isLifted isLifted]
-  * [#isBurrowed isBurrowed]
-  * [#isIdle isIdle]
-  * [#isCloaked isCloaked]
-  * [#isDisabled isDisabled]
-  * [#isUnderStorm isUnderStorm]
+  * [#isAccelerating isAccelerating]
+  * [#isBeingHealed isBeingHealed]
   * [#isBlind isBlind]
+  * [#isBraking isBraking]
+  * [#isBurrowed isBurrowed]
+  * [#isCloaked isCloaked]
+  * [#isCompleted isCompleted]
+  * [#isDisabled isDisabled]
+  * [#isIdle isIdle]
+  * [#isLifted isLifted]
+  * [#isLoaded isLoaded]
+  * [#isMoving isMoving]
+  * [#isSelected isSelected]
+  * [#isSieged isSieged]
+  * [#isStartingAttack isStartingAttack]
   * [#isTraining isTraining]
-  * [#getTrainingQueue getTrainingQueue]
+  * [#isUnderStorm isUnderStorm]
+  * [#isVisible isVisible]
 
 The following orders can be issued to units:
   * [#attackMove attackMove] - Attack move to a posiion
+  * [#attackUnit attackUnit] - Attack a specific unit
   * [#rightClick rightClick] - Right click on a position
   * [#rightClick_2 rightClick] - Right click on a unit
   * [#train train]
   * [#build build]
-  * [#invent invent] - will be renamed to research soon.
+  * [#invent research]
   * [#upgrade upgrade]
   * [#stop stop]
   * [#holdPosition holdPosition]
   * [#patrol patrol]
+  * [#burrow burrow]
+  * [#unburrow unburrow]
+  * [#siege siege]
+  * [#unsiege unsiege]
+  * [#cloak cloak]
+  * [#decloak decloak]
+  * [#lift lift]
 
 The following orders have not been implemented yet:
+  * [#land land]
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
@@ -127,117 +141,192 @@ Returns the remaining build time of a unit/building that is being constructed.
 === getChild ===
 [Unit]{{{*}}} getChild() const;
 
-=== isLoaded ===
-bool isLoaded() const;
+=== getTrainingQueue ===
+std::list< UnitType > getTrainingQueue() const;
 
-Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
+Returns the list of units queued up to be trained.
 
-=== isVisible ===
-bool isVisible() const;
+=== isAccelerating ===
+bool isAccelerating() const;
 
-Returns true if the unit is visible. Incomplete: only based on heuristics right now.
+Returns true if the unit is currently accelerating.
 
-=== isSelected ===
-bool isSelected() const;
+=== isBeingHealed ===
+bool isBeingHealed() const;
 
-Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable [Misc#Flag Flag]::UserInput during [AIModule]::[AIModule#onStart onStart].
-
-=== isCompleted ===
-bool isCompleted() const;
-
-Returns true if the unit has been completed. Used for buildings.
-
-=== isLifted ===
-bool isLifted() const;
-
-Returns true if the unit is a Terran building that is currently lifted off the ground.
-
-=== isBurrowed ===
-bool isBurrowed() const;
-
-Returns true if the unit is a Zerg unit that is current burrowed.
-
-=== isIdle ===
-bool isIdle() const;
-
-Returns true if the unit is not doing anything.
-
-=== isCloaked ===
-bool isCloaked() const;
-
-Returns true if the unit is cloaked. (Does this work as expected for units that have cloaking for free, like Dark Templars?)
-
-=== isDisabled ===
-bool isDisabled() const;
-
-
-=== isUnderStorm ===
-bool isUnderStorm() const;
-
-Returns true if the unit is under a Protoss Psionic Storm.
+Not implemented yet.
 
 === isBlind ===
 bool isBlind() const;
 
 Returns true if the unit is currently blind from a Medic's Optical Flare.
 
+=== isBraking ===
+bool isBraking() const;
+
+Returns true if the unit is currently braking/slowing down.
+
+=== isBurrowed ===
+bool isBurrowed() const;
+
+Returns true if the unit is a Zerg unit that is current burrowed.
+
+=== isCloaked ===
+bool isCloaked() const;
+
+Returns true if the unit is cloaked.
+
+=== isCompleted ===
+bool isCompleted() const;
+
+Returns true if the unit has been completed.
+
+=== isDisabled ===
+bool isDisabled() const;
+
+Not implemented yet.
+
+=== isIdle ===
+bool isIdle() const;
+
+Returns true if the unit is not doing anything.
+
+=== isLifted ===
+bool isLifted() const;
+
+Returns true if the unit is a Terran building that is currently lifted off the ground.
+
+=== isLoaded ===
+bool isLoaded() const;
+
+Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
+
+=== isMoving===
+bool isMoving() const;
+
+Returns true if the unit is moving.
+
+=== isSelected ===
+bool isSelected() const;
+
+Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable [Misc#Flag Flag]::UserInput during [AIModule]::[AIModule#onStart onStart].
+
+=== isSieged ===
+bool isSieged() const;
+
+Returns true if the unit is a Terran Siege Tank that is currently in Siege mode.
+
+
+=== isStartingAttack ===
+bool isStartingAttack() const;
+
+Returns true if the unit is starting to attack.
+
 === isTraining ===
 bool isTraining() const;
 
 Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue getTrainingQueue].
 
-=== getTrainingQueue ===
-std::list< UnitType > getTrainingQueue() const;
+=== isUnderStorm ===
+bool isUnderStorm() const;
 
-Returns the list of units queued up to be trained.
+Returns true if the unit is under a Protoss Psionic Storm.
+
+=== isVisible ===
+bool isVisible() const;
+
+Returns true if the unit is visible. Incomplete: only based on heuristics right now.
 
 === attackMove ===
-void attackMove([Misc#Position Position] target);
+bool attackMove([Misc#Position Position] target);
+
+=== attackUnit ===
+bool attackUnit([Misc#Position Position] target);
 
 === rightClick ===
-void rightClick([Misc#Position Position]target);
+bool rightClick([Misc#Position Position]target);
 
 Works like the right click in the GUI.
 
 === rightClick_2 ===
-void rightClick([Unit]{{{*}}} target);
+bool rightClick([Unit]{{{*}}} target);
 
 Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
 
 === train ===
-void train([UnitType] type);
+bool train([UnitType] type);
 
 Orders this unit to a the specified unit type to the training queue. Note that the player must have sufficient resources to train.
 
 === build ===
-void build([Misc#TilePosition TilePosition] p, [UnitType] type);
+bool build([Misc#TilePosition TilePosition] p, [UnitType] type);
 
 Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail.
 
-=== invent ===
-void invent([TechType] tech);
+=== research ===
+bool research([TechType] tech);
 
 Orders the unit to research the given tech type.
 
 === upgrade ===
-void upgrade(UpgradeType upgrade);
+bool upgrade(UpgradeType upgrade);
 
 Orders the unit to upgrade teh given upgrade type.
 
 === stop ===
-int stop(); 
+bool stop(); 
 
-Not implemented yet. Will order the unit to stop.
+Orders the unit to stop.
 
 === holdPosition ===
-void holdPosition();
+bool holdPosition();
 
-Not implemented yet. Will order the unit to hold position.
+Orders the unit to hold its position.
 
 === patrol ===
-void patrol([Misc#Position Position] target);
+bool patrol([Misc#Position Position] target);
 
 Orders the unit to patrol between its current position and the specified position.
+
+=== burrow ===
+bool burrow();
+
+Orders the unit to burrow.
+
+=== unburrow ===
+bool unburrow();
+
+Orders the unit to unburrow.
+
+=== siege ===
+bool siege();
+
+Orders the unit to siege. Note: unit must be a terran siege tank.
+
+=== unsiege ===
+bool unsiege();
+
+Orders the unit to unsiege. Note: unit must be a terran siege tank.
+
+=== cloak ===
+bool cloak();
+
+Orders the unit to cloak.
+
+=== decloak ===
+bool decloak();
+
+Orders the unit to decloak.
+
+=== lift ===
+bool lift();
+
+Orders the unit to lift. Note: unit must be a terran building that can be lifted.
+
+=== land ===
+bool land();
+
+Not implemented yet. Orders the unit to land. Note: unit must be a terran building that is currently lifted.
 
 === useTech ===
 void useTech(Tech tech);
