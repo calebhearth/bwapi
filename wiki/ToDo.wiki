@@ -8,7 +8,9 @@ Methods that need to be implemented:
   * [Unit]::unloadAll - for bunker, no position parameter
   * [Unit]::unloadAll - with position parameter, for dropships, shuttles, and overloads
 
-  * [Unit]::cancelConstruction
+  * [Unit]::cancelConstruction - cancels building (terran, protoss)
+  * [Unit]::cancelMutation - cancels building and mutations for zerg
+  * [Unit]::cancelMorph
   * [Unit]::haltConstruction
   * [Unit]::cancelTrain - (cancel last)
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
