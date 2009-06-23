@@ -1,4 +1,21 @@
 Methods that need to be implemented:
+  * [Unit]::repair - needed to repair dropships, bunkers, and refineries (otherwise the SCV just enters the unit).
+  * [Unit]::morph
+
+  * [Unit]::land - lift is working, but not land yet.
+  * [Unit]::load
+  * [Unit]::unload
+  * [Unit]::unloadAll - for bunker, no position parameter
+  * [Unit]::unloadAll - with position parameter, for dropships, shuttles, and overloads
+
+  * [Unit]::cancelConstruction
+  * [Unit]::haltConstruction
+  * [Unit]::cancelTrain - (cancel last)
+  * [Unit]::cancelTrain - (cancel unit at specified index in training list)
+  * [Unit]::cancelAddon
+  * [Unit]::cancelUpgrade
+  * [Unit]::cancelResearch
+
   * [Unit]::[Unit#useTech useTech]
   * [Unit]::[Unit#useTech_2 useTech] (second variation)
   * [Unit]::[Unit#useTech_3 useTech] (third variation)
