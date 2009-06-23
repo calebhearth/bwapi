@@ -3,7 +3,7 @@ Methods that need to be implemented:
   * [Unit]::morph
 
   * [Unit]::land - for Terran buildings. lift is working, but not land yet.
-  * [Unit]::load
+  * [Unit]::load - into dropship/shuttle/overlord/bunker
   * [Unit]::unload
   * [Unit]::unloadAll - for bunker, no position parameter
   * [Unit]::unloadAll - with position parameter, for dropships, shuttles, and overloads
@@ -11,7 +11,7 @@ Methods that need to be implemented:
   * [Unit]::cancelConstruction - cancels building (terran, protoss)
   * [Unit]::cancelMutation - cancels building and mutations for zerg
   * [Unit]::cancelMorph
-  * [Unit]::haltConstruction
+  * [Unit]::haltConstruction - construction pauses while SCV takes a break.
   * [Unit]::cancelTrain - (cancel last)
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
   * [Unit]::cancelAddon
