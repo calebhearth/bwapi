@@ -240,8 +240,12 @@ Returns true if the unit is visible. Incomplete: only based on heuristics right 
 === attackMove ===
 bool attackMove([Misc#Position Position] target);
 
+Orders the unit to attack move to the specified location.
+
 === attackUnit ===
 bool attackUnit([Misc#Position Position] target);
+
+Orders the unit to attack the specified unit.
 
 === rightClick ===
 bool rightClick([Misc#Position Position]target);
