@@ -45,7 +45,7 @@ Methods:
   * [#isVisible isVisible]
 
 The following orders can be issued to units:
-  * [#attackMove attackMove] - Attack move to a posiion
+  * [#attackMove attackMove] - Attack move to a position
   * [#attackUnit attackUnit] - Attack a specific unit
   * [#rightClick rightClick] - Right click on a position
   * [#rightClick_2 rightClick] - Right click on a unit
