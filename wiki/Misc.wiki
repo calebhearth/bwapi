@@ -3,11 +3,9 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Position.h# BWAPI/Position.h]
 
-Public Member Variables (should change to member functions soon):
-  * int x;
-  * int y;
-
 Methods:
+  * int x();
+  * int y();
   * double getDistance(Position position);
 
 == Special Positions ==
@@ -19,11 +17,9 @@ Methods:
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TilePosition.h# BWAPI/TilePosition.h]
 
-Public Member Variables (should change to member functions soon):
-  * int x;
-  * int y;
-
 Methods:
+  * int x();
+  * int y();
   * bool isValid();
 
 == Special TilePositions ==
