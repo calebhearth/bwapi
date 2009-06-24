@@ -63,9 +63,13 @@ The following orders can be issued to units:
   * [#cloak cloak]
   * [#decloak decloak]
   * [#lift lift]
+  * [#land land]
 
 The following orders have not been implemented yet:
-  * [#land land]
+  * [#load load]
+  * [#unload unload]
+  * [#unload unloadAll]
+  * [#unloadAll_2 unloadAll]
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
@@ -325,12 +329,31 @@ Orders the unit to decloak.
 === lift ===
 bool lift();
 
-Orders the unit to lift. Note: unit must be a terran building that can be lifted.
+Orders the unit to lift. Note: unit must be a Terran building that can be lifted.
 
 === land ===
-bool land();
+bool land([Misc#TilePosition TilePosition] target);
 
-Not implemented yet. Orders the unit to land. Note: unit must be a terran building that is currently lifted.
+Orders the unit to land. Note: unit must be a Terran building that is currently lifted.
+
+=== load ===
+bool load([Unit]{{{*}}} target);
+
+Not implemented yet.
+=== unload ===
+bool unload([Unit]{{{*}}} target);
+
+Not implemented yet.
+
+=== unloadAll ===
+bool unloadAll();
+
+Not implemented yet.
+
+=== unloadAll_2 ===
+bool unloadAll([Misc#Position Position] target);
+
+Not implemented yet.
 
 === useTech ===
 void useTech(Tech tech);
