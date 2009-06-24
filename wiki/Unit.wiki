@@ -68,7 +68,7 @@ The following orders can be issued to units:
 The following orders have not been implemented yet:
   * [#load load]
   * [#unload unload]
-  * [#unload unloadAll]
+  * [#unloadAll unloadAll]
   * [#unloadAll_2 unloadAll]
   * [#useTech useTech]
   * [#useTech_2 useTech]
