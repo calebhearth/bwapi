@@ -24,6 +24,8 @@ Methods:
   * [#getBuildUnit getBuildUnit]
   * [#getRemainingBuildTime getRemainingBuildTime]
   * [#getChild getChild]
+  * [#getTrainingQueue getTrainingQueue]
+  * [#getLoadedUnits getLoadedUnits]
 
   * [#isAccelerating isAccelerating]
   * [#isBeingHealed isBeingHealed]
@@ -56,6 +58,7 @@ The following orders can be issued to units:
   * [#stop stop]
   * [#holdPosition holdPosition]
   * [#patrol patrol]
+  * [#repair repair]
   * [#burrow burrow]
   * [#unburrow unburrow]
   * [#siege siege]
@@ -66,16 +69,22 @@ The following orders can be issued to units:
   * [#land land]
 
 The following orders have not been implemented yet:
+  * [#morph morph]
   * [#load load]
   * [#unload unload]
   * [#unloadAll unloadAll]
   * [#unloadAll_2 unloadAll]
+  * [#cancelConstruction cancelConstruction]
+  * [#haltConstruction haltConstruction]
+  * [#cancelTrain cancelTrain]
+  * [#cancelTrain_2 cancelTrain]
+  * [#cancelAddon cancelAddon]
+  * [#cancelUpgrade cancelUpgrade]
+  * [#cancelResearch cancelResearch]
+
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
-
-Possible methods we could add:
-  * [#getLoadedUnits getLoadedUnits]
 
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
@@ -149,6 +158,11 @@ Returns the remaining build time of a unit/building that is being constructed.
 std::list< UnitType > getTrainingQueue() const;
 
 Returns the list of units queued up to be trained.
+
+=== getLoadedUnits ===
+std::list<Unit{{{*}}}> getLoadedUnits();
+
+Not implemented yet. Will return the list of units loaded, such as in a dropship.
 
 === isAccelerating ===
 bool isAccelerating() const;
@@ -296,25 +310,35 @@ bool patrol([Misc#Position Position] target);
 
 Orders the unit to patrol between its current position and the specified position.
 
+=== repair ===
+bool repair([Unit]{{{*}}} target);
+
+Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit.
+
+=== morph ===
+bool morph([UnitType] type);
+
+Not implemented yet. Will order the unit to morph into the specified unit type.
+
 === burrow ===
 bool burrow();
 
-Orders the unit to burrow.
+Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground unit and burrow tech must be researched.
 
 === unburrow ===
 bool unburrow();
 
-Orders the unit to unburrow.
+Orders the burrowed unit to unburrow. 
 
 === siege ===
 bool siege();
 
-Orders the unit to siege. Note: unit must be a terran siege tank.
+Orders the unit to siege. Note: unit must be a Terran siege tank.
 
 === unsiege ===
 bool unsiege();
 
-Orders the unit to unsiege. Note: unit must be a terran siege tank.
+Orders the unit to unsiege. Note: unit must be a Terran siege tank.
 
 === cloak ===
 bool cloak();
@@ -339,19 +363,55 @@ Orders the unit to land. Note: unit must be a Terran building that is currently 
 === load ===
 bool load([Unit]{{{*}}} target);
 
-Not implemented yet.
+Not implemented yet. Will order the unit to load the target unit.
+
 === unload ===
 bool unload([Unit]{{{*}}} target);
 
-Not implemented yet.
+Not implemented yet. Will order the unit to unload the target unit.
 
 === unloadAll ===
 bool unloadAll();
 
-Not implemented yet.
+Not implemented yet. Will order the unit to unload all loaded units. Unit must be a Terran Bunker.
 
 === unloadAll_2 ===
 bool unloadAll([Misc#Position Position] target);
+
+Not implemented yet. Will order the unit to unload all loaded units at the specified location. Unit must be a Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+
+=== cancelConstruction ===
+bool cancelConstruction();
+
+Not implemented yet.
+
+=== haltConstruction ===
+bool haltConstruction();
+
+Not implemented yet.
+
+=== cancelTrain ===
+bool cancelTrain();
+
+Not implemented yet.
+
+=== cancelTrain_2 ===
+bool cancelTrain(int slot);
+
+Not implemented yet.
+
+=== cancelAddon ===
+bool cancelAddon();
+
+Not implemented yet.
+
+=== cancelUpgrade ===
+bool cancelUpgrade();
+
+Not implemented yet.
+
+=== cancelResearch ===
+bool cancelResearch();
 
 Not implemented yet.
 
@@ -369,8 +429,3 @@ Not implemented yet.
 void useTech(Tech tech, Unit{{{*}}} target);
 
 Not implemented yet.
-
-=== getLoadedUnits ===
-std::list<Unit{{{*}}}> getLoadedUnits();
-
-Would return the list of units loaded, such as in a dropship.
