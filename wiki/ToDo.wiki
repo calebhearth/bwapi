@@ -2,11 +2,6 @@ Methods that need to be implemented:
   * [Unit]::repair - needed to repair dropships, bunkers, and refineries (otherwise the SCV just enters the unit when using rightClick).
   * [Unit]::morph
 
-  * [Unit]::load - into dropship/shuttle/overlord/bunker
-  * [Unit]::unload
-  * [Unit]::unloadAll - for bunker, no position parameter
-  * [Unit]::unloadAll - with position parameter, for dropships, shuttles, and overloads
-
   * [Unit]::cancelConstruction - cancels building (terran, protoss)
   * [Unit]::cancelMutation - cancels building and mutations for zerg
   * [Unit]::cancelMorph
