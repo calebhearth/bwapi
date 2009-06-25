@@ -67,13 +67,13 @@ The following orders can be issued to units:
   * [#decloak decloak]
   * [#lift lift]
   * [#land land]
-
-The following orders have not been implemented yet:
-  * [#morph morph]
   * [#load load]
   * [#unload unload]
   * [#unloadAll unloadAll]
   * [#unloadAll_2 unloadAll]
+
+The following orders have not been implemented yet:
+  * [#morph morph]
   * [#cancelConstruction cancelConstruction]
   * [#haltConstruction haltConstruction]
   * [#cancelTrain cancelTrain]
@@ -363,22 +363,22 @@ Orders the unit to land. Note: unit must be a Terran building that is currently 
 === load ===
 bool load([Unit]{{{*}}} target);
 
-Not implemented yet. Will order the unit to load the target unit.
+Orders the unit to load the target unit.
 
 === unload ===
 bool unload([Unit]{{{*}}} target);
 
-Not implemented yet. Will order the unit to unload the target unit.
+Orders the unit to unload the target unit.
 
 === unloadAll ===
 bool unloadAll();
 
-Not implemented yet. Will order the unit to unload all loaded units. Unit must be a Terran Bunker.
+Orders the unit to unload all loaded units at the unit's current position.
 
 === unloadAll_2 ===
 bool unloadAll([Misc#Position Position] target);
 
-Not implemented yet. Will order the unit to unload all loaded units at the specified location. Unit must be a Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be unloaded right outsite the bunker, like in the first version of unloadAll.
 
 === cancelConstruction ===
 bool cancelConstruction();
