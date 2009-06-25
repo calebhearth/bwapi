@@ -1,6 +1,4 @@
 Methods that need to be implemented:
-  * [Unit]::morph
-
   * [Unit]::cancelConstruction - cancels building (terran, protoss)
   * [Unit]::cancelMutation - cancels building and mutations for zerg
   * [Unit]::cancelMorph
