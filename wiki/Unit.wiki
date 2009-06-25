@@ -12,6 +12,9 @@ Methods:
   * [#shield shield]
   * [#energy energy]
   * [#getKillCount getKillCount]
+  * [#groundWeaponCooldown groundWeaponCooldown]
+  * [#airWeaponCooldown airWeaponCooldown]
+  * [#spellCooldown spellCooldown]
   * [#getPosition getPosition]
   * [#getTilePosition getTilePosition]
 
@@ -115,6 +118,21 @@ Returns the unit's current amount of energy.
 int getKillCount() const;
 
 Returns the unit's current kill count.
+
+=== groundWeaponCooldown ===
+int groundWeaponCooldown() const;
+
+Returns unit's ground weapon cooldown. It is 0 if the unit is ready to attack.
+
+=== airWeaponCooldown ===
+int airWeaponCooldown() const;
+
+Returns unit's air weapon cooldown. It is 0 if the unit is ready to attack.
+
+=== spellCooldown ===
+int spellWeaponCooldown() const;
+
+Returns unit's ground weapon cooldown. It is 0 if the unit is ready cast a spell.
 
 === getPosition ===
 [Misc#Position Position] getPosition() const;
