@@ -18,10 +18,6 @@ Methods that need to be implemented:
 
   * [Unit]::currentDirection - will return what direction the unit is facing. Might be able to use BW::Unit::currentDirection (unverified).
 
-  * [Unit]::groundWeaponCooldown - see BW::Unit::groundWeaponCooldown. Probably should return time/frames until the unit can attack again, 0 if the unit is ready to attack. Very useful for micro.
-  * [Unit]::airWeaponCooldown - see BW::Unit::airWeaponCooldown
-  * [Unit]::spellCooldown - see BW::Unit::spellCooldown
-
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
 
