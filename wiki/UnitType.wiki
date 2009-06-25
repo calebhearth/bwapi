@@ -194,7 +194,7 @@ Returns true if the unit is mechanical such as a Terran Vulture.
 === getUnitType ===
 [UnitType] getUnitType(std::string &name);
 
-Given the name of a unit type, this function will return the unit time.
+Given the name of a unit type, this function will return the unit type.
 
 For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terran_Marine.
 
