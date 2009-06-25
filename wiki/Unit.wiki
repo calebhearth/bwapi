@@ -59,6 +59,7 @@ The following orders can be issued to units:
   * [#holdPosition holdPosition]
   * [#patrol patrol]
   * [#repair repair]
+  * [#morph morph]
   * [#burrow burrow]
   * [#unburrow unburrow]
   * [#siege siege]
@@ -73,7 +74,6 @@ The following orders can be issued to units:
   * [#unloadAll_2 unloadAll]
 
 The following orders have not been implemented yet:
-  * [#morph morph]
   * [#cancelConstruction cancelConstruction]
   * [#haltConstruction haltConstruction]
   * [#cancelTrain cancelTrain]
