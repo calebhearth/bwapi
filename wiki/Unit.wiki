@@ -313,7 +313,7 @@ Orders the unit to patrol between its current position and the specified positio
 === repair ===
 bool repair([Unit]{{{*}}} target);
 
-Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit.
+Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
 
 === morph ===
 bool morph([UnitType] type);
