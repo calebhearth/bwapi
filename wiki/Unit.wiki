@@ -318,7 +318,7 @@ Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to
 === morph ===
 bool morph([UnitType] type);
 
-Not implemented yet. Will order the unit to morph into the specified unit type.
+Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
 
 === burrow ===
 bool burrow();
