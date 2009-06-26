@@ -84,6 +84,9 @@ The following orders can be issued to units:
   * [#unload unload]
   * [#unloadAll unloadAll]
   * [#unloadAll_2 unloadAll]
+  * [#useTech useTech]
+  * [#useTech_2 useTech]
+  * [#useTech_3 useTech]
 
 The following orders have not been implemented yet:
   * [#cancelConstruction cancelConstruction]
@@ -93,10 +96,6 @@ The following orders have not been implemented yet:
   * [#cancelAddon cancelAddon]
   * [#cancelUpgrade cancelUpgrade]
   * [#cancelResearch cancelResearch]
-
-  * [#useTech useTech]
-  * [#useTech_2 useTech]
-  * [#useTech_3 useTech]
 
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
@@ -490,16 +489,19 @@ bool cancelResearch();
 Not implemented yet. Will order the unit to cancel a research in progress.
 
 === useTech ===
-void useTech(Tech tech);
+bool useTech(Tech tech);
 
-Not implemented yet.
+Orders the unit to use a tech not requiring a target (ie Stim Pack).
+Returns true if it is a valid tech.
 
 === useTech_2 ===
-void useTech(Tech tech, Position position);
+bool useTech(Tech tech, Position position);
 
-Not implemented yet.
+Orders the unit to use a tech requiring a position target (ie Dark Swarm).
+Returns true if it is a valid tech.
 
 === useTech_3 ===
-void useTech(Tech tech, Unit{{{*}}} target);
+bool useTech(Tech tech, Unit{{{*}}} target);
 
-Not implemented yet.
+Orders the unit to use a tech requiring a unit target (ie Irradiate).
+Returns true if it is a valid tech.
