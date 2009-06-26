@@ -23,14 +23,6 @@ Methods that need to be implemented:
 
   * [Unit]::defenseMatrixPoints
 
-  * [Unit]::defenseMatrixTimer
-  * [Unit]::stimTimer
-  * [Unit]::ensareTimer
-  * [Unit]::lockdownTimer
-  * [Unit]::irradiateTimer
-  * [Unit]::stasisTimer
-  * [Unit]::plagueTimer
-  * [Unit]::maelstromTimer
   * [Unit]::removeTimer
 
   * [Unit]::isBeingHealed - implemented, but function unknown
