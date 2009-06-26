@@ -1,6 +1,5 @@
 Methods that need to be implemented:
   * [Unit]::cancelConstruction - cancels building (terran, protoss)
-  * [Unit]::cancelMutation - cancels building and mutations for zerg
   * [Unit]::cancelMorph
   * [Unit]::haltConstruction - construction pauses while SCV takes a break.
   * [Unit]::cancelTrain - (cancel last)
