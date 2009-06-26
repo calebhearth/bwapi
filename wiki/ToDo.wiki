@@ -21,8 +21,6 @@ Methods that need to be implemented:
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
 
-  * [Unit]::defenseMatrixPoints - unverified
-
   * [Unit]::removeTimer
 
   * [Unit]::isBeingHealed - implemented, but function unknown
