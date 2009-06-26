@@ -50,10 +50,12 @@ Methods:
   * [#isIdle isIdle]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
+  * [#isLockedDown isLockedDown]
   * [#isMoving isMoving]
   * [#isSelected isSelected]
   * [#isSieged isSieged]
   * [#isStartingAttack isStartingAttack]
+  * [#isStasised isStasised]
   * [#isTraining isTraining]
   * [#isUnderStorm isUnderStorm]
   * [#isVisible isVisible]
@@ -292,6 +294,11 @@ bool isLoaded() const;
 
 Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
 
+=== isLockedDown ===
+bool isLockedDown() const;
+
+Returns true if the unit is locked down by a Terran Ghost.
+
 === isMoving===
 bool isMoving() const;
 
@@ -307,11 +314,15 @@ bool isSieged() const;
 
 Returns true if the unit is a Terran Siege Tank that is currently in Siege mode.
 
-
 === isStartingAttack ===
 bool isStartingAttack() const;
 
 Returns true if the unit is starting to attack.
+
+=== isStasised ===
+bool isLockedDown() const;
+
+Returns true if the unit has been stasised by a Protoss Arbiter.
 
 === isTraining ===
 bool isTraining() const;
@@ -497,11 +508,11 @@ Returns true if it is a valid tech.
 === useTech_2 ===
 bool useTech(Tech tech, Position position);
 
-Orders the unit to use a tech requiring a position target (ie Dark Swarm).
+Orders the unit to use a tech requiring a position target (ie Dark Swarm).
 Returns true if it is a valid tech.
 
 === useTech_3 ===
 bool useTech(Tech tech, Unit{{{*}}} target);
 
-Orders the unit to use a tech requiring a unit target (ie Irradiate).
+Orders the unit to use a tech requiring a unit target (ie Irradiate).
 Returns true if it is a valid tech.
