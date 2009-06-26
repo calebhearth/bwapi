@@ -21,19 +21,14 @@ Methods that need to be implemented:
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
 
-  * [Unit]::defenseMatrixPoints
+  * [Unit]::defenseMatrixPoints - unverified
 
   * [Unit]::removeTimer
 
   * [Unit]::isBeingHealed - implemented, but function unknown
 
-  * [Unit]::getKillCount
-
   * Maybe replace [Unit]::[Unit#isDisabled isDisabled] with:
   * [Unit]::isUnpowered - StatusFlags::Disabled (unverified)
-
-  * [Unit]::isLockedDown - perhaps base off of lockdownTimer (unverified)
-  * [Unit]::isStasised - perhaps base off of stasisTimer (unverified)
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. One of the [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h status flags] may indicate visibility. If not, we could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
   * Terran_Science_Vessel: 10
