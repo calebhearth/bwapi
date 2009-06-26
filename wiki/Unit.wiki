@@ -320,7 +320,7 @@ bool isStartingAttack() const;
 Returns true if the unit is starting to attack.
 
 === isStasised ===
-bool isLockedDown() const;
+bool isStasised() const;
 
 Returns true if the unit has been stasised by a Protoss Arbiter.
 
