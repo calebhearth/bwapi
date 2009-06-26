@@ -15,6 +15,7 @@ Methods:
   * [#groundWeaponCooldown groundWeaponCooldown]
   * [#airWeaponCooldown airWeaponCooldown]
   * [#spellCooldown spellCooldown]
+  * [#defenseMatrixPoints defenseMatrixPoints]
   * [#defenseMatrixTimer defenseMatrixTimer]
   * [#stimTimer stimTimer]
   * [#ensnareTimer ensnareTimer]
@@ -141,6 +142,13 @@ Returns unit's air weapon cooldown. It is 0 if the unit is ready to attack.
 int spellWeaponCooldown() const;
 
 Returns unit's ground weapon cooldown. It is 0 if the unit is ready cast a spell.
+
+=== defenseMatrixPoints ===
+int defenseMatrixPoints() const;
+
+Returns the remaining hitpoints of the defense matrix. 
+Initially a defense Matrix has 64000(250 ingame) points. Note that you have to divide it by
+256 to get the hitpoint format the game displays.
 
 === defenseMatrixTimer ===
 int defenseMatrixTimer() const;
