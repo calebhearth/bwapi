@@ -20,7 +20,9 @@ Methods that need to be implemented:
   * Maybe replace [Unit]::[Unit#isDisabled isDisabled] with:
   * [Unit]::isUnpowered - StatusFlags::Disabled (unverified)
 
-  * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. One of the [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h status flags] may indicate visibility. If not, we could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
+  * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere, and instead just calculates it while rendering.
+
+We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
   * Terran_Science_Vessel: 10
   * Terran_Missile_Turret: 11
   * Spell_Scanner_Sweep: unknown
