@@ -1,12 +1,8 @@
 Methods that need to be implemented:
-  * [Unit]::cancelConstruction - cancels building (terran, protoss)
   * [Unit]::cancelMorph
-  * [Unit]::haltConstruction - construction pauses while SCV takes a break.
   * [Unit]::cancelTrain - (cancel last)
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
   * [Unit]::cancelAddon
-  * [Unit]::cancelUpgrade
-  * [Unit]::cancelResearch
 
   * [Unit]::currentDirection - will return what direction the unit is facing. Might be able to use BW::Unit::currentDirection (unverified).
 
