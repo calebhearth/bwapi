@@ -52,12 +52,14 @@ Methods:
   * [#isLoaded isLoaded]
   * [#isLockedDown isLockedDown]
   * [#isMoving isMoving]
+  * [#isResearching isResearching]
   * [#isSelected isSelected]
   * [#isSieged isSieged]
   * [#isStartingAttack isStartingAttack]
   * [#isStasised isStasised]
   * [#isTraining isTraining]
   * [#isUnderStorm isUnderStorm]
+  * [#isUpgrading isUpgrading]
   * [#isVisible isVisible]
 
 The following orders can be issued to units:
@@ -86,18 +88,18 @@ The following orders can be issued to units:
   * [#unload unload]
   * [#unloadAll unloadAll]
   * [#unloadAll_2 unloadAll]
+  * [#cancelConstruction cancelConstruction]
+  * [#haltConstruction haltConstruction]
+  * [#cancelResearch cancelResearch]
+  * [#cancelUpgrade cancelUpgrade]
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
 
 The following orders have not been implemented yet:
-  * [#cancelConstruction cancelConstruction]
-  * [#haltConstruction haltConstruction]
   * [#cancelTrain cancelTrain]
   * [#cancelTrain_2 cancelTrain]
   * [#cancelAddon cancelAddon]
-  * [#cancelUpgrade cancelUpgrade]
-  * [#cancelResearch cancelResearch]
 
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
@@ -467,12 +469,12 @@ Orders the unit to unload all loaded units at the specified location. Unit shoul
 === cancelConstruction ===
 bool cancelConstruction();
 
-Not implemented yet. Will order the building to stop being constructed.
+Orders the building to stop being constructed.
 
 === haltConstruction ===
 bool haltConstruction();
 
-Not implemented yet. Will order the SCV to stop constructing the building.
+Orders the SCV to stop constructing the building, and the building is left in a partially complete state until it is canceled, destroyed, or completed.
 
 === cancelTrain ===
 bool cancelTrain();
@@ -489,15 +491,15 @@ bool cancelAddon();
 
 Not implemented yet. Will order the unit to stop making the addon.
 
-=== cancelUpgrade ===
-bool cancelUpgrade();
-
-Not implemented yet. Will order the unit to cancel an upgrade in progress.
-
 === cancelResearch ===
 bool cancelResearch();
 
-Not implemented yet. Will order the unit to cancel a research in progress.
+Orders the unit to cancel a research in progress.
+
+=== cancelUpgrade ===
+bool cancelUpgrade();
+
+Orders the unit to cancel an upgrade in progress.
 
 === useTech ===
 bool useTech(Tech tech);
