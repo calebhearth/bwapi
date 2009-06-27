@@ -4,6 +4,9 @@ Methods that need to be implemented:
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
   * [Unit]::cancelAddon
 
+  * [Unit]::getTech - returns the tech that the unit is currently researching.
+  * [Unit]::getUpgrade - returns the upgrade that the unit is currently upgrading.
+
   * [Unit]::currentDirection - will return what direction the unit is facing. Might be able to use BW::Unit::currentDirection (unverified).
 
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
@@ -13,7 +16,7 @@ Methods that need to be implemented:
 
   * [Unit]::isBeingHealed - implemented, but function unknown
 
-  * Maybe replace [Unit]::[Unit#isDisabled isDisabled] with:
+  * Replace [Unit]::[Unit#isDisabled isDisabled] with:
   * [Unit]::isUnpowered - StatusFlags::Disabled (unverified)
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere, and instead just calculates it while rendering.
