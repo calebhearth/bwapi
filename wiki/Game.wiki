@@ -57,7 +57,7 @@ Returns the set of all players in the match. Note that this includes the Neutral
 === getAllUnits ===
 std::set< [Unit]{{{*}}} > getAllUnits() const;
 
-Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units loaded into shuttles, refineries, bunkers, etc are not included in this set yet.
+Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units inside refineries are not included in this set yet.
 
 === getMinerals ===
 std::set< [Unit]{{{*}}} > getMinerals() const;
