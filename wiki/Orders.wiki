@@ -83,16 +83,16 @@
   * SpawningLarva
   * Harvest1
   * Harvest2
-  * HarvestGas1
-  * HarvestGas2
-  * HarvestGas3
-  * ReturnGas
-  * MoveToMinerals
-  * HarvestMinerals2
-  * MiningMinerals
+  * MoveToGas - Unit is moving to refinery
+  * WaitForGas - Unit is waiting to enter the refinery (another unit is currently in it)
+  * HarvestGas - Unit is in refinery
+  * ReturnGas - Unit is returning gas to center
+  * MoveToMinerals - Unit is moving to mineral patch
+  * WaitForMinerals - Unit is waiting to use the mineral patch (another unit is currently mining from it)
+  * MiningMinerals - Unit is mining minerals from mineral patch
   * Harvest3
   * Harvest4
-  * ReturnMinerals
+  * ReturnMinerals - Unit is returning minerals to center
   * Harvest5
   * EnterTransport
   * Pickup1
