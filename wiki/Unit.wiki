@@ -306,6 +306,11 @@ bool isMoving() const;
 
 Returns true if the unit is moving.
 
+=== isResearching ===
+bool isResearching() const;
+
+Returns true if the unit is a building that is researching tech. See [TechTypes] for the complete list of available techs in Broodwar.
+
 === isSelected ===
 bool isSelected() const;
 
@@ -335,6 +340,11 @@ Returns true if the unit is training units (i.e. a Barracks training Marines). F
 bool isUnderStorm() const;
 
 Returns true if the unit is under a Protoss Psionic Storm.
+
+=== isUpgrading ===
+bool isUpgrading() const;
+
+Returns true if the unit is a building that is upgrading. See [UpgradeTypes] for the complete list of available upgrades in Broodwar.
 
 === isVisible ===
 bool isVisible() const;
