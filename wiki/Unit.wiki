@@ -237,7 +237,7 @@ Returns the list of units queued up to be trained.
 === getLoadedUnits ===
 std::list<Unit{{{*}}}> getLoadedUnits();
 
-Not implemented yet. Will return the list of units loaded, such as in a dropship.
+Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
 
 === isAccelerating ===
 bool isAccelerating() const;
@@ -292,7 +292,7 @@ Returns true if the unit is a Terran building that is currently lifted off the g
 === isLoaded ===
 bool isLoaded() const;
 
-Not implemented yet. Will return true if the unit is loaded into another unit (like a drop ship).
+Return true if the unit is loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
 
 === isLockedDown ===
 bool isLockedDown() const;
