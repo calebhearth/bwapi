@@ -8,9 +8,6 @@ Methods that need to be implemented:
   * [Unit]::cancelUpgrade
   * [Unit]::cancelResearch
 
-  * [Unit]::[Unit#isLoaded isLoaded]
-  * [Unit]::[Unit#getLoadedUnits getLoadedUnits]
-
   * [Unit]::currentDirection - will return what direction the unit is facing. Might be able to use BW::Unit::currentDirection (unverified).
 
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
