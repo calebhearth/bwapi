@@ -42,7 +42,3 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [Game]::drawBoxLine
 
   * [Game]::surrender
-
-Error Codes:
-  * Make into Enum
-  * Add method [Game]::getLastError so user can get the error code if an error occurs.
