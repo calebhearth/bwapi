@@ -59,7 +59,7 @@ Returned if you try to retrieve information about a unit that is not currently v
 
 Returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away ) 
 
-=== {{{Incompatible_UnitType}}} ===
+=== Incompatible{{{_}}}UnitType ===
 
 Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
 
