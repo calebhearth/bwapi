@@ -51,66 +51,66 @@ Returns the set of all the error codes, which are listed below.
   * [#None None]
   * [#Unknown Unknown]
 
-=== Unit_Not_Visible ===
+=== {{{Unit_Not_Visible}}} ===
 
 Returned if you try to retrieve information about a unit that is not currently visible or is dead. 
 
-=== Unit_Not_Owned ===
+=== {{{Unit_Not_Owned}}} ===
 
 Returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away ) 
 
-=== Incompatible{{{_}}}UnitType ===
+=== {{{Incompatible_UnitType}}} ===
 
 Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
 
-=== Incompatible_TechType ===
+=== {{{Incompatible_TechType}}} ===
 
 Returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Spire to Burrow will return this error) 
 
-=== Incompatible_UpgradeType ===
+=== {{{Incompatible_UpgradeType}}} ===
 
 Returned if you try to upgrade something at the wrong building.
 
-=== Insufficient_Minerals ===
+=== {{{Insufficient_Minerals}}} ===
 
 Returned if you try to train or build something without enough minerals.
 
-=== Insufficient_Gas ===
+=== {{{Insufficient_Gas}}} ===
 
 Returned if you try to train or build something without enough vespene gas.
 
-=== Insufficient_Supply ===
+=== {{{Insufficient_Supply}}} ===
 
 Returned if you try to train something without enough supply.
 
-=== Insufficient_Energy ===
+=== {{{Insufficient_Energy}}} ===
 
 Returned if you to do something like try to order a Defiler to cast a Dark Swarm without enough energy. 
 
-=== Insufficient_Tech ===
+=== {{{Insufficient_Tech}}} ===
 
 Returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before spider mines have been researched. 
 
-=== Insufficient_Ammo ===
+=== {{{Insufficient_Ammo}}} ===
 
 Returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
 
-=== Unbuildable_Location ===
+=== {{{Unbuildable_Location}}} ===
 
 Returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating). 
 
-=== Out_Of_Range ===
+=== {{{Out_Of_Range}}} ===
 
 Returned if you order an immovable unit, like a Protoss Photon Cannon, to attack a unit that is out of range. 
 
-=== Unable_To_Hit ===
+=== {{{Unable_To_Hit}}} ===
 
 Returned if you do something like order a Vulture to attack a flying unit. 
 
-=== None ===
+=== {{{None}}} ===
 
 Used when no error has been encountered
 
-=== Unknown ===
+=== {{{Unknown}}} ===
 
 Used when the error code is not recognized can not be determined.
