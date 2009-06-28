@@ -1,0 +1,53 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Error.h# BWAPI/Error.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#toString toString]
+
+Non-member methods in Errors namespace:
+
+  * [#getError getError]
+  * [#allErrors allErrors]
+
+=== getID ===
+int getID();
+
+Returns a unique ID for this error.
+
+=== toString ===
+std::string toString();
+
+Returns the name of the error. For example Errors::Insufficient_Minerals.toString() will return a std::string object containing "Insufficient Minerals".
+
+=== getError ===
+[Error] getError(std::string &name);
+
+Given the name of ab error, this function will return the error code. For example: Errors::getError("Unbuildable Location") will return Errors::Unbuildable_Location.
+
+=== allErrors ===
+std::set<[Error]>& allErrors();
+
+Returns the set of all the error codes, which are listed below.
+
+== Errors ==
+
+  * Unit_Not_Visible
+  * Unit_Not_Owned
+  * Incompatible_Race
+  * Incompatible_UnitType
+  * Incompatible_TechType
+  * Incompatible_UpgradeType
+  * Insufficient_Minerals
+  * Insufficient_Gas
+  * Insufficient_Supply
+  * Insufficient_Energy
+  * Insufficient_Tech
+  * Insufficient_Ammo
+  * Unbuildable_Location
+  * Out_Of_Range
+  * Unable_To_Hit
+  * None
+  * Unknown
