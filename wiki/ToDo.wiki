@@ -32,7 +32,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::[UnitType#maxEnergy maxEnergy]
   * [UnitType]::airDamage
   * [UnitType]::attackRange
-  * [UnitType]::walkSpeed
+  * [UnitType]::moveSpeed
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
