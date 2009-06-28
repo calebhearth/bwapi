@@ -22,6 +22,7 @@ Methods:
   * [#isFlagEnabled isFlagEnabled]
   * [#enableFlag enableFlag]
   * [#unitsOnTile unitsOnTile]
+  * [#getLastError getLastError]
 
   * [#mapWidth mapWidth]
   * [#mapHeight mapHeight]
@@ -118,6 +119,11 @@ Enables the specified flag. Note that flags can only be enabled at the beginning
 std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile) const;
 
 Returns the set of units that are on the given tile.
+
+=== getLastError ===
+[Error] getLastError() const;
+
+Returns the last error that was set. If you try to order enemy units around, or morph bunkers into lurkers, BWAPI will set error codes, which can be retrieved using this function.
 
 === mapWidth ===
 int mapWidth() const;
