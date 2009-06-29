@@ -68,6 +68,7 @@ Methods:
   * [#isVisible isVisible]
 
 The following orders can be issued to units:
+
   * [#attackMove attackMove] - Attack move to a position
   * [#attackUnit attackUnit] - Attack a specific unit
   * [#rightClick rightClick] - Right click on a position
@@ -104,8 +105,6 @@ The following orders can be issued to units:
   * [#useTech useTech]
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
-
-The following orders have not been implemented yet:
 
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
