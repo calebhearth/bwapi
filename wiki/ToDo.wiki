@@ -8,6 +8,7 @@ Methods that need to be implemented:
   * [Unit]::isMorphing
   * [Unit]::isRepairing
   * [Unit]::isConstructing - only returned by SCVs
+  * [Unit]::isHallucination
 
   * bool [Unit]::hasAddon
   * [Unit]{{{*}}} [Unit]::getAddon - returns NULL if the building does not have an addon.
