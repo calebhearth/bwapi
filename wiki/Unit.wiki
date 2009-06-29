@@ -39,6 +39,10 @@ Methods:
   * [#getChild getChild]
   * [#getTrainingQueue getTrainingQueue]
   * [#getLoadedUnits getLoadedUnits]
+  * [#getTech getTech]
+  * [#getUpgrade getUpgrade]
+  * [#getRemainingResearchTime getRemainingResearchTime]
+  * [#getRemainingUpgradeTime getRemainingUpgradeTime]
 
   * [#isAccelerating isAccelerating]
   * [#isBeingHealed isBeingHealed]
@@ -243,9 +247,31 @@ std::list< UnitType > getTrainingQueue() const;
 Returns the list of units queued up to be trained.
 
 === getLoadedUnits ===
-std::list<Unit{{{*}}}> getLoadedUnits();
+std::list<Unit{{{*}}}> getLoadedUnits() const;
 
 Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+
+
+=== getTech ===
+[TechType] getTech() const;
+
+Returns the tech that the unit is currently researching. If the unit is not researching anything, [TechTypes]::None is returned.
+
+=== getUpgrade ===
+[UpgradeType] getUpgrade() const;
+
+Returns the upgrade that the unit is currently upgrading. If the unit is not upgrading anything, [UpgradeTypes]::None is returned.
+
+=== getRemainingResearchTime ===
+int getRemainingResearchTime() const;
+
+Returns the amount of time until the unit is done researching its current tech. If the unit is not researching anything, 0 is returned.
+
+=== getRemainingUpgradeTime ===
+int getRemainingUpgradeTime() const;
+
+Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
+
 
 === isAccelerating ===
 bool isAccelerating() const;
