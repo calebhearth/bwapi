@@ -4,9 +4,6 @@ Methods that need to be implemented:
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
   * [Unit]::cancelAddon
 
-  * [Unit]::getTech - returns the tech that the unit is currently researching.
-  * [Unit]::getUpgrade - returns the upgrade that the unit is currently upgrading.
-
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
 
