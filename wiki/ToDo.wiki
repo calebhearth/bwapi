@@ -11,6 +11,7 @@ Methods that need to be implemented:
 
   * bool [Unit]::hasAddon
   * [Unit]{{{*}}} [Unit]::getAddon - returns NULL if the building does not have an addon.
+  * [Unit]{{{*}}} [Unit]::getTransport - if this unit is loaded into a dropship/shuttle/overlord/bunker, getTransport returns the unit that this is transporting this unit.
 
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
@@ -38,6 +39,10 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::airDamage
   * [UnitType]::attackRange
   * [UnitType]::moveSpeed
+
+
+  * [UnitType]{{{*}}} [Race]::getTransport - returns dropship/shuttle/overlord
+  * [UnitType]{{{*}}} [Race]::getSupplyProvider - returns supply depot/pylon/overlord
  
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
