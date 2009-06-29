@@ -4,6 +4,14 @@ Methods that need to be implemented:
   * [Unit]::cancelTrain - (cancel unit at specified index in training list)
   * [Unit]::cancelAddon
 
+  * [Unit]::isUnderConstruction
+  * [Unit]::isMorphing
+  * [Unit]::isRepairing
+  * [Unit]::isConstructing - only returned by SCVs
+
+  * bool [Unit]::hasAddon
+  * [Unit]{{{*}}} [Unit]::getAddon - returns NULL if the building does not have an addon.
+
   * [Unit]::getRallyPosition - might be stored as the target position of the building.
   * [Unit]::getRallyUnit - might be stored as the target unit of the building.
 
