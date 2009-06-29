@@ -113,4 +113,4 @@ Used when no error has been encountered
 
 === {{{Unknown}}} ===
 
-Used when the error code is not recognized can not be determined.
+Used when the error code is not recognized or can not be determined.
