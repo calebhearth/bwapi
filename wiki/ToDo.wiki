@@ -1,8 +1,4 @@
 Methods that need to be implemented:
-  * [Unit]::cancelMorph
-  * [Unit]::cancelTrain - (cancel last)
-  * [Unit]::cancelTrain - (cancel unit at specified index in training list)
-  * [Unit]::cancelAddon
 
   * [Unit]::isUnderConstruction
   * [Unit]::isMorphing
