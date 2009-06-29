@@ -30,6 +30,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::airDamage
   * [UnitType]::attackRange
   * [UnitType]::moveSpeed
+ 
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
@@ -37,5 +38,9 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [Game]::drawBox
   * [Game]::drawBoxFilled
   * [Game]::drawBoxLine
+  
+  * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
+
+  * Pylon power range - could add to Constants.h or to UnitType, where only the pylon unit type would have a non-zero power range.
 
   * [Game]::surrender
