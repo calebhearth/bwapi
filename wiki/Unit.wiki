@@ -95,6 +95,10 @@ The following orders can be issued to units:
   * [#unloadAll_2 unloadAll]
   * [#cancelConstruction cancelConstruction]
   * [#haltConstruction haltConstruction]
+  * [#cancelMorph cancelMorph]
+  * [#cancelTrain cancelTrain] - cancel the last unit in the queue
+  * [#cancelTrain_2 cancelTrain] - cancel the unit at a specific index in the queue
+  * [#cancelAddon cancelAddon]
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
   * [#useTech useTech]
@@ -102,9 +106,6 @@ The following orders can be issued to units:
   * [#useTech_3 useTech]
 
 The following orders have not been implemented yet:
-  * [#cancelTrain cancelTrain]
-  * [#cancelTrain_2 cancelTrain]
-  * [#cancelAddon cancelAddon]
 
 === getOwner ===
 [Player]{{{*}}} getOwner() const;
@@ -518,20 +519,25 @@ bool haltConstruction();
 
 Orders the SCV to stop constructing the building, and the building is left in a partially complete state until it is canceled, destroyed, or completed.
 
+=== cancelMorph ===
+bool cancelMorph();
+
+Orders the unit to stop morphing.
+
 === cancelTrain ===
 bool cancelTrain();
 
-Not implemented yet. Will order the unit to remove the last unit from its training queue. For a complete list of units in the queue, see [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+Orders the unit to remove the last unit from its training queue. For a complete list of units in the queue, see [Unit]::[Unit#getTrainingQueue getTrainingQueue].
 
 === cancelTrain_2 ===
 bool cancelTrain(int slot);
 
-Not implemented yet. Will order the unit to remove the specified unit from its training queue.
+Orders the unit to remove the specified unit from its training queue.
 
 === cancelAddon ===
 bool cancelAddon();
 
-Not implemented yet. Will order the unit to stop making the addon.
+Orders the unit to stop making the addon.
 
 === cancelResearch ===
 bool cancelResearch();
