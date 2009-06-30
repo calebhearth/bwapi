@@ -9,6 +9,8 @@ Methods:
   * [#getWorker getWorker]
   * [#getCenter getCenter]
   * [#getRefinery getRefinery]
+  * [#getTransport getTransport]
+  * [#getSupplyProvider getSupplyProvider]
 
 
 
@@ -41,6 +43,16 @@ Returns the center unit type for the given race. For example Races::Terran.getCe
 [UnitType]{{{*}}} getRefinery();
 
 Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
+
+=== getTransport ===
+[UnitType]{{{*}}} getTransport();
+
+Returns the transport unit type for the given race. For example: Races::Protoss.getTransport() will return a pointer to UnitTypes::Protoss_Shuttle.
+
+=== getSupplyProvider ===
+[UnitType]{{{*}}} getSupplyProvider();
+
+Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return a pointer to UnitTypes::Terran_Supply_Depot.
 
 === getRace ===
 [Race] getRace(std::string &name);
