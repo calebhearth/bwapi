@@ -20,37 +20,37 @@ Non-member methods in Races namespace:
   * [#allRaces allRaces]
 
 === getID ===
-int getID();
+int getID() const;
 
 Returns a unique ID for this race.
 
 === getName ===
-std::string getName();
+std::string getName() const;
 
 Returns the name of the race. For example Races::Terran.getName() will return a std::string object containing "Terran".
 
 === getWorker ===
-[UnitType]{{{*}}} getWorker();
+[UnitType]{{{*}}} getWorker() const;
 
 Returns the worker unit type for the given race. For example Races::Protoss.getWorker() will return a pointer to UnitTypes::Protoss_Probe.
 
 === getCenter ===
-[UnitType]{{{*}}} getCenter();
+[UnitType]{{{*}}} getCenter() const;
 
 Returns the center unit type for the given race. For example Races::Terran.getCenter() will return a pointer to UnitTypes::Terran_Command_Center. While there are three center types for Zerg (Hatchery, Lair, and Hive), Races::Zerg.getCenter() will only return a pointer to UnitTypes::Zerg_Hatchery, since it is the unit type needed to make a new center.
 
 === getRefinery ===
-[UnitType]{{{*}}} getRefinery();
+[UnitType]{{{*}}} getRefinery() const;
 
 Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
 
 === getTransport ===
-[UnitType]{{{*}}} getTransport();
+[UnitType]{{{*}}} getTransport() const;
 
 Returns the transport unit type for the given race. For example: Races::Protoss.getTransport() will return a pointer to UnitTypes::Protoss_Shuttle.
 
 === getSupplyProvider ===
-[UnitType]{{{*}}} getSupplyProvider();
+[UnitType]{{{*}}} getSupplyProvider() const;
 
 Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return a pointer to UnitTypes::Terran_Supply_Depot.
 
