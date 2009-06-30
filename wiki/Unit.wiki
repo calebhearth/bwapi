@@ -36,6 +36,7 @@ Methods:
   * [#getSecondaryOrder getSecondaryOrder]
   * [#getBuildUnit getBuildUnit]
   * [#getRemainingBuildTime getRemainingBuildTime]
+  * [#getRemainingTrainTime getRemainingTrainTime]
   * [#getChild getChild]
   * [#getTrainingQueue getTrainingQueue]
   * [#getLoadedUnits getLoadedUnits]
@@ -244,6 +245,12 @@ If the unit is an SCV that is constructing a building, this will return the buil
 int getRemainingBuildTime() const;
 
 Returns the remaining build time of a unit/building that is being constructed.
+
+=== getRemainingTrainTime ===
+int getRemainingTrainTime() const;
+
+Returns the remaining time of the unit that is currently being trained.
+
 
 === getChild ===
 [Unit]{{{*}}} getChild() const;
