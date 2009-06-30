@@ -219,6 +219,7 @@ Returns the build tile position of the unit on the map. Useful if the unit is a 
 
 === currentDirection ===
 int currentDirection() const;
+
 Returns the direction the unit is facing. Range 0-255.
 North: 0, East: 64, South: 128, West: 192
 
@@ -252,11 +253,12 @@ std::list< UnitType > getTrainingQueue() const;
 
 Returns the list of units queued up to be trained.
 
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining].
+
 === getLoadedUnits ===
 std::list<Unit{{{*}}}> getLoadedUnits() const;
 
 Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
-
 
 === getTech ===
 [TechType] getTech() const;
