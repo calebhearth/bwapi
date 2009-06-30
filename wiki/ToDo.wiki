@@ -29,6 +29,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::airDamage
   * [UnitType]::attackRange
   * [UnitType]::moveSpeed
+  * [UnitType]::canLift
 
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
 
