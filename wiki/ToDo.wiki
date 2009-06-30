@@ -33,11 +33,6 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::attackRange
   * [UnitType]::moveSpeed
 
-
-  * [UnitType]{{{*}}} [Race]::getTransport - returns dropship/shuttle/overlord
-  * [UnitType]{{{*}}} [Race]::getSupplyProvider - returns supply depot/pylon/overlord
- 
-
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
