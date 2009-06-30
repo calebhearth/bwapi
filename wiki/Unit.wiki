@@ -45,18 +45,22 @@ Methods:
   * [#getRemainingUpgradeTime getRemainingUpgradeTime]
 
   * [#isAccelerating isAccelerating]
+  * [#isBeingConstructed isBeingConstructed]
   * [#isBeingHealed isBeingHealed]
   * [#isBlind isBlind]
   * [#isBraking isBraking]
   * [#isBurrowed isBurrowed]
   * [#isCloaked isCloaked]
   * [#isCompleted isCompleted]
+  * [#isConstructing isConstructing]
   * [#isDisabled isDisabled]
   * [#isIdle isIdle]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
   * [#isLockedDown isLockedDown]
+  * [#isMorphing isMorphing]
   * [#isMoving isMoving]
+  * [#isRepairing isRepairing]
   * [#isResearching isResearching]
   * [#isSelected isSelected]
   * [#isSieged isSieged]
@@ -233,6 +237,8 @@ int getOrderTimer() const;
 === getBuildUnit ===
 [Unit]{{{*}}} getBuildUnit() const;
 
+If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran building that is being constructed, this will return the SCV that is constructing it.
+
 === getRemainingBuildTime ===
 int getRemainingBuildTime() const;
 
@@ -278,6 +284,13 @@ bool isAccelerating() const;
 
 Returns true if the unit is currently accelerating.
 
+=== isBeingConstructed ===
+bool isBeingConstructed() const;
+
+Returns true if the unit is being constructed. Always true for incomplete Protoss and Zerg buildings, and true for incomplete Terran buildings that have an SCV constructing them. If the SCV halts construction, isBeingConstructed will return false.
+
+See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isConstructing isConstructing].
+
 === isBeingHealed ===
 bool isBeingHealed() const;
 
@@ -298,15 +311,26 @@ bool isBurrowed() const;
 
 Returns true if the unit is a Zerg unit that is current burrowed.
 
+See also: [Unit]::[Unit#burrow burrow], [Unit]::[Unit#unburrow unburrow].
+
 === isCloaked ===
 bool isCloaked() const;
 
 Returns true if the unit is cloaked.
 
+See also: [Unit]::[Unit#cloak cloak], [Unit]::[Unit#decloak decloak].
+
 === isCompleted ===
 bool isCompleted() const;
 
 Returns true if the unit has been completed.
+
+=== isConstructing ===
+bool isConstructing() const;
+
+Returns true if the unit is a Terran SCV that is constructing a building.
+
+See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isBeingConstructed isBeingConstructed].
 
 === isDisabled ===
 bool isDisabled() const;
@@ -323,17 +347,28 @@ bool isLifted() const;
 
 Returns true if the unit is a Terran building that is currently lifted off the ground.
 
+See also: [Unit]::[Unit#lift lift],[Unit]::[Unit#land land].
+
 === isLoaded ===
 bool isLoaded() const;
 
 Return true if the unit is loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll].
 
 === isLockedDown ===
 bool isLockedDown() const;
 
 Returns true if the unit is locked down by a Terran Ghost.
 
-=== isMoving===
+=== isMorphing ===
+bool isMorphing() const;
+
+Returns true if the unit is a zerg unit that is morphing.
+
+See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#cancelMorph cancelMorph].
+
+=== isMoving ===
 bool isMoving() const;
 
 Returns true if the unit is moving.
@@ -342,6 +377,8 @@ Returns true if the unit is moving.
 bool isResearching() const;
 
 Returns true if the unit is a building that is researching tech. See [TechTypes] for the complete list of available techs in Broodwar.
+
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#getTech getTech], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime].
 
 === isSelected ===
 bool isSelected() const;
@@ -352,6 +389,8 @@ Returns true if the unit has been selected by the user via the starcraft GUI. On
 bool isSieged() const;
 
 Returns true if the unit is a Terran Siege Tank that is currently in Siege mode.
+
+See also: [Unit]::[Unit#siege siege], [Unit]::[Unit#unsiege unsiege].
 
 === isStartingAttack ===
 bool isStartingAttack() const;
@@ -366,7 +405,9 @@ Returns true if the unit has been stasised by a Protoss Arbiter.
 === isTraining ===
 bool isTraining() const;
 
-Returns true if the unit is training units (i.e. a Barracks training Marines). For the list of units in the queue, see [Unit]::[#getTrainingQueue getTrainingQueue].
+Returns true if the unit is training units (i.e. a Barracks training Marines).
+
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#getTrainingQueue getTrainingQueue], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#cancelTrain_2 cancelTrain].
 
 === isUnderStorm ===
 bool isUnderStorm() const;
@@ -377,6 +418,8 @@ Returns true if the unit is under a Protoss Psionic Storm.
 bool isUpgrading() const;
 
 Returns true if the unit is a building that is upgrading. See [UpgradeTypes] for the complete list of available upgrades in Broodwar.
+
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#getUpgrade getUpgrade], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradehTime].
 
 === isVisible ===
 bool isVisible() const;
