@@ -30,6 +30,8 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::attackRange
   * [UnitType]::moveSpeed
 
+  * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
+
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
