@@ -1,9 +1,5 @@
 Methods that need to be implemented:
 
-  * [Unit]::isUnderConstruction
-  * [Unit]::isMorphing
-  * [Unit]::isRepairing
-  * [Unit]::isConstructing - only returned by SCVs
   * [Unit]::isHallucination
 
   * bool [Unit]::hasAddon
