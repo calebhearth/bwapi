@@ -38,7 +38,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
 
   * [Game]::drawBox
   * [Game]::drawBoxFilled
-  * [Game]::drawBoxLine
+  * [Game]::drawLine
   
   * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
 
