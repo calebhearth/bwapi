@@ -33,9 +33,16 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
+  * [Game]::drawDot
   * [Game]::drawBox
-  * [Game]::drawBoxFilled
-  * [Game]::drawLine
+  * [Game]::drawSolidBox
+  * [Game]::drawLine - http://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+  * [Game]::drawCircle - http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
+  * [Game]::drawSolidCircle
+  * [Game]::drawEllipse
+  * [Game]::drawSolidEllipse
+  * [Game]::drawTriangle
+  * [Game]::drawSolidTriangle
   
   * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
 
