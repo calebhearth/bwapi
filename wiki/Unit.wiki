@@ -373,6 +373,11 @@ bool isMoving() const;
 
 Returns true if the unit is moving.
 
+=== isRepairing ===
+bool isRepairing() const;
+
+Returns true if the unit is a Terran SCV that is repairing or moving to repair another unit.
+
 === isResearching ===
 bool isResearching() const;
 
@@ -569,7 +574,9 @@ Orders the unit to stop morphing.
 === cancelTrain ===
 bool cancelTrain();
 
-Orders the unit to remove the last unit from its training queue. For a complete list of units in the queue, see [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+Orders the unit to remove the last unit from its training queue.
+
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
 
 === cancelTrain_2 ===
 bool cancelTrain(int slot);
