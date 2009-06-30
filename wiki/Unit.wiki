@@ -44,6 +44,8 @@ Methods:
   * [#getUpgrade getUpgrade]
   * [#getRemainingResearchTime getRemainingResearchTime]
   * [#getRemainingUpgradeTime getRemainingUpgradeTime]
+  * [#getRallyPosition getRallyPosition]
+  * [#getRallyUnit getRallyUnit]
 
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
@@ -287,6 +289,15 @@ int getRemainingUpgradeTime() const;
 
 Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
 
+=== getRallyPosition ===
+[Misc#Position Position] getRallyPosition() const;
+
+Returns the position the building is rallied to. If the building does not produce units, Positions::None is returned.
+
+=== getRallyUnit ===
+[Unit] getRallyUnit() const;
+
+Returns the unit the building is rallied to. If the building is not rallied to any unit, NULL is returned.
 
 === isAccelerating ===
 bool isAccelerating() const;
