@@ -56,7 +56,6 @@ Methods:
   * [#isCloaked isCloaked]
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
-  * [#isDisabled isDisabled]
   * [#isIdle isIdle]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
@@ -71,6 +70,7 @@ Methods:
   * [#isStasised isStasised]
   * [#isTraining isTraining]
   * [#isUnderStorm isUnderStorm]
+  * [#isUnpowered isUnpowered]
   * [#isUpgrading isUpgrading]
   * [#isVisible isVisible]
 
@@ -352,11 +352,6 @@ Returns true if the unit is a Terran SCV that is constructing a building.
 
 See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isBeingConstructed isBeingConstructed].
 
-=== isDisabled ===
-bool isDisabled() const;
-
-Not implemented yet.
-
 === isIdle ===
 bool isIdle() const;
 
@@ -438,6 +433,11 @@ See also: [Unit]::[Unit#train train], [Unit]::[Unit#getTrainingQueue getTraining
 bool isUnderStorm() const;
 
 Returns true if the unit is under a Protoss Psionic Storm.
+
+=== isUnpowered ===
+bool isUnpowered() const;
+
+Returns true if the unit is a Protoss building that is unpowered because no pylons are in range.
 
 === isUpgrading ===
 bool isUpgrading() const;
