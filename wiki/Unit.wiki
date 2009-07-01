@@ -527,7 +527,7 @@ bool follow([Unit] target);
 Orders the unit to follow the specified unit.
 
 === setRallyPosition ===
-bool setRallyPosition([Misc#Position Position target);
+bool setRallyPosition([Misc#Position Position] target);
 
 Orders the unit to set its rally position to the specified position.
 
