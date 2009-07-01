@@ -56,12 +56,14 @@ Methods:
   * [#isCloaked isCloaked]
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
+  * [#isFollowing isFollowing]
   * [#isIdle isIdle]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
   * [#isLockedDown isLockedDown]
   * [#isMorphing isMorphing]
   * [#isMoving isMoving]
+  * [#isPatrolling isPatrolling]
   * [#isRepairing isRepairing]
   * [#isResearching isResearching]
   * [#isSelected isSelected]
@@ -87,6 +89,9 @@ The following orders can be issued to units:
   * [#stop stop]
   * [#holdPosition holdPosition]
   * [#patrol patrol]
+  * [#follow follow]
+  * [#setRallyPosition setRallyPosition]
+  * [#setRallyUnit setRallyUnit]
   * [#repair repair]
   * [#morph morph]
   * [#burrow burrow]
@@ -352,6 +357,11 @@ Returns true if the unit is a Terran SCV that is constructing a building.
 
 See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isBeingConstructed isBeingConstructed].
 
+=== isFollowing ===
+bool isFollowing() const;
+
+Returns true if the unit is following another unit.
+
 === isIdle ===
 bool isIdle() const;
 
@@ -387,6 +397,11 @@ See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#cancelMorph cancelMorph].
 bool isMoving() const;
 
 Returns true if the unit is moving.
+
+=== isPatrolling ===
+bool isPatrolling() const;
+
+Returns true if the unit is patrolling between two positions.
 
 === isRepairing ===
 bool isRepairing() const;
@@ -505,6 +520,21 @@ Orders the unit to hold its position.
 bool patrol([Misc#Position Position] target);
 
 Orders the unit to patrol between its current position and the specified position.
+
+=== follow ===
+bool follow([Unit] target);
+
+Orders the unit to follow the specified unit.
+
+=== setRallyPosition ===
+bool setRallyPosition([Misc#Position Position target);
+
+Orders the unit to set its rally position to the specified position.
+
+=== setRallyUnit ===
+bool setRallyUnit([Unit] target);
+
+Orders the unit to set its rally unit to the specified unit.
 
 === repair ===
 bool repair([Unit]{{{*}}} target);
