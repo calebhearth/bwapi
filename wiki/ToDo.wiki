@@ -28,6 +28,11 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::moveSpeed
   * [UnitType]::canLift
 
+http://classic.battle.net/scc/GS/damage.shtml
+  * [UnitType]::groundAttackType
+  * [UnitType]::airAttackType
+  * [UnitType]::size
+
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
@@ -35,14 +40,10 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
 
   * [Game]::drawDot
   * [Game]::drawBox
-  * [Game]::drawSolidBox
   * [Game]::drawLine - http://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
   * [Game]::drawCircle - http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
-  * [Game]::drawSolidCircle
   * [Game]::drawEllipse
-  * [Game]::drawSolidEllipse
   * [Game]::drawTriangle
-  * [Game]::drawSolidTriangle
   
   * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
 
