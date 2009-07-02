@@ -29,7 +29,7 @@ Methods:
 
 = Color=
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TilePosition.h# BWAPI/Color.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Color.h# BWAPI/Color.h]
 
 Methods:
   * Color(int id);
