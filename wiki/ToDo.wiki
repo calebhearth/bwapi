@@ -38,9 +38,6 @@ http://classic.battle.net/scc/GS/damage.shtml
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
-  * [Game]::drawDot
-  * [Game]::drawBox
-  * [Game]::drawLine - http://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
   * [Game]::drawCircle - http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
   * [Game]::drawEllipse
   * [Game]::drawTriangle
