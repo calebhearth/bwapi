@@ -27,6 +27,18 @@ Methods:
   * None
   * Unknown
 
+= Color=
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TilePosition.h# BWAPI/Color.h]
+
+Methods:
+  * Color(int id);
+  * Color(int red, int green, int blue);
+  * int red() const;
+  * int green() const;
+  * int blue() const;
+  * int getID() const;
+
 = Latency::Enum =
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Latency.h# BWAPI/Latency.h]
