@@ -279,30 +279,42 @@ Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protos
 
 Returns the tech that the unit is currently researching. If the unit is not researching anything, [TechTypes]::None is returned.
 
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime].
+
 === getUpgrade ===
 [UpgradeType] getUpgrade() const;
 
 Returns the upgrade that the unit is currently upgrading. If the unit is not upgrading anything, [UpgradeTypes]::None is returned.
+
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime].
 
 === getRemainingResearchTime ===
 int getRemainingResearchTime() const;
 
 Returns the amount of time until the unit is done researching its current tech. If the unit is not researching anything, 0 is returned.
 
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getTech getTech].
+
 === getRemainingUpgradeTime ===
 int getRemainingUpgradeTime() const;
 
 Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
+
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
 
 === getRallyPosition ===
 [Misc#Position Position] getRallyPosition() const;
 
 Returns the position the building is rallied to. If the building does not produce units, Positions::None is returned.
 
+See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyUnit getRallyUnit].
+
 === getRallyUnit ===
 [Unit] getRallyUnit() const;
 
 Returns the unit the building is rallied to. If the building is not rallied to any unit, NULL is returned.
+
+See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyPosition getRallyPosition].
 
 === isAccelerating ===
 bool isAccelerating() const;
@@ -362,10 +374,14 @@ bool isFollowing() const;
 
 Returns true if the unit is following another unit.
 
+See also: [Unit]::[Unit#follow follow].
+
 === isIdle ===
 bool isIdle() const;
 
 Returns true if the unit is not doing anything.
+
+See also: [Unit]::[Unit#stop stop].
 
 === isLifted ===
 bool isLifted() const;
@@ -398,10 +414,14 @@ bool isMoving() const;
 
 Returns true if the unit is moving.
 
+See also: [Unit]::[Unit#attackMove attackMove], [Unit]::[Unit#stop stop].
+
 === isPatrolling ===
 bool isPatrolling() const;
 
 Returns true if the unit is patrolling between two positions.
+
+See also: [Unit]::[Unit#patrol patrol].
 
 === isRepairing ===
 bool isRepairing() const;
@@ -431,6 +451,8 @@ See also: [Unit]::[Unit#siege siege], [Unit]::[Unit#unsiege unsiege].
 bool isStartingAttack() const;
 
 Returns true if the unit is starting to attack.
+
+See also: [Unit]::[Unit#attackUnit attackUnit].
 
 === isStasised ===
 bool isStasised() const;
@@ -501,10 +523,14 @@ bool research([TechType] tech);
 
 Orders the unit to research the given tech type.
 
+See also: [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime], [Unit]::[Unit#getTech getTech].
+
 === upgrade ===
 bool upgrade(UpgradeType upgrade);
 
-Orders the unit to upgrade teh given upgrade type.
+Orders the unit to upgrade the given upgrade type.
+
+See also: [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime], [Unit]::[Unit#getUpgrade getUpgrade].
 
 === stop ===
 bool stop(); 
@@ -521,20 +547,28 @@ bool patrol([Misc#Position Position] target);
 
 Orders the unit to patrol between its current position and the specified position.
 
+See also: [Unit]::[Unit#isPatrolling isPatrolling].
+
 === follow ===
 bool follow([Unit] target);
 
 Orders the unit to follow the specified unit.
+
+See also: [Unit]::[Unit#isFollowing isFollowing].
 
 === setRallyPosition ===
 bool setRallyPosition([Misc#Position Position] target);
 
 Orders the unit to set its rally position to the specified position.
 
+See also: [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyPosition getRallyPosition], [Unit]::[Unit#getRallyUnit getRallyUnit].
+
 === setRallyUnit ===
 bool setRallyUnit([Unit] target);
 
 Orders the unit to set its rally unit to the specified unit.
+
+See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#getRallyPosition getRallyPosition], [Unit]::[Unit#getRallyUnit getRallyUnit].
 
 === repair ===
 bool repair([Unit]{{{*}}} target);
@@ -611,7 +645,6 @@ bool load([Unit]{{{*}}} target);
 
 Orders the unit to load the target unit.
 
-
 See also: [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === unload ===
@@ -641,10 +674,14 @@ bool cancelConstruction();
 
 Orders the building to stop being constructed.
 
+See also: [Unit]::[Unit#beingConstructed beingConstructed].
+
 === haltConstruction ===
 bool haltConstruction();
 
 Orders the SCV to stop constructing the building, and the building is left in a partially complete state until it is canceled, destroyed, or completed.
+
+See also: [Unit]::[Unit#isConstructing isConstructing].
 
 === cancelMorph ===
 bool cancelMorph();
