@@ -32,8 +32,8 @@ Methods:
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Color.h# BWAPI/Color.h]
 
 Methods:
-  * Color(int id);
-  * Color(int red, int green, int blue);
+  * Color(int id); - creates a color using color id from the Starcraft color palette.
+  * Color(int red, int green, int blue); - creates a color using the color from the Starcraft color palette that is closest to the given RGB color.
   * int red() const;
   * int green() const;
   * int blue() const;
