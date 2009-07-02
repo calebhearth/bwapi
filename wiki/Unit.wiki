@@ -541,70 +541,100 @@ bool repair([Unit]{{{*}}} target);
 
 Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
 
+See also: [Unit]::[Unit#isRepairing isRepairing].
+
 === morph ===
 bool morph([UnitType] type);
 
 Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
+
+See also: [Unit]::[Unit#cancelMorph cancelMorph], [Unit]::[Unit#isMorphing isMorphing].
 
 === burrow ===
 bool burrow();
 
 Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground unit and burrow tech must be researched.
 
+See also: [Unit]::[Unit#unburrow unburrow], [Unit]::[Unit#isBurrowed isBurrowed].
+
 === unburrow ===
 bool unburrow();
 
 Orders the burrowed unit to unburrow. 
+
+See also: [Unit]::[Unit#burrow burrow], [Unit]::[Unit#isBurrowed isBurrowed].
 
 === siege ===
 bool siege();
 
 Orders the unit to siege. Note: unit must be a Terran siege tank.
 
+See also: [Unit]::[Unit#unsiege unsiege], [Unit]::[Unit#isSieged isSieged].
+
 === unsiege ===
 bool unsiege();
 
 Orders the unit to unsiege. Note: unit must be a Terran siege tank.
+
+See also: [Unit]::[Unit#unsiege unsiege], [Unit]::[Unit#isSieged isSieged].
 
 === cloak ===
 bool cloak();
 
 Orders the unit to cloak.
 
+See also: [Unit]::[Unit#decloak decloak], [Unit]::[Unit#isCloaked isCloaked].
+
 === decloak ===
 bool decloak();
 
 Orders the unit to decloak.
+
+See also: [Unit]::[Unit#cloak cloak], [Unit]::[Unit#isCloaked isCloaked].
 
 === lift ===
 bool lift();
 
 Orders the unit to lift. Note: unit must be a Terran building that can be lifted.
 
+See also: [Unit]::[Unit#land land], [Unit]::[Unit#isLifted isLifted].
+
 === land ===
 bool land([Misc#TilePosition TilePosition] target);
 
 Orders the unit to land. Note: unit must be a Terran building that is currently lifted.
+
+See also: [Unit]::[Unit#lift lift], [Unit]::[Unit#isLifted isLifted].
 
 === load ===
 bool load([Unit]{{{*}}} target);
 
 Orders the unit to load the target unit.
 
+
+See also: [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
+
 === unload ===
 bool unload([Unit]{{{*}}} target);
 
 Orders the unit to unload the target unit.
+
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === unloadAll ===
 bool unloadAll();
 
 Orders the unit to unload all loaded units at the unit's current position.
 
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
+
 === unloadAll_2 ===
 bool unloadAll([Misc#Position Position] target);
 
 Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be unloaded right outside the bunker, like in the first version of unloadAll.
+
+
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === cancelConstruction ===
 bool cancelConstruction();
@@ -621,6 +651,8 @@ bool cancelMorph();
 
 Orders the unit to stop morphing.
 
+See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#isMorphing isMorphing].
+
 === cancelTrain ===
 bool cancelTrain();
 
@@ -633,6 +665,8 @@ bool cancelTrain(int slot);
 
 Orders the unit to remove the specified unit from its training queue.
 
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+
 === cancelAddon ===
 bool cancelAddon();
 
@@ -643,10 +677,14 @@ bool cancelResearch();
 
 Orders the unit to cancel a research in progress.
 
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getTech getTech].
+
 === cancelUpgrade ===
 bool cancelUpgrade();
 
 Orders the unit to cancel an upgrade in progress.
+
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
 
 === useTech ===
 bool useTech(Tech tech);
