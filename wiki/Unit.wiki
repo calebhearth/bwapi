@@ -11,6 +11,7 @@ Methods:
   * [#health health]
   * [#shield shield]
   * [#energy energy]
+  * [#resources resources]
   * [#getKillCount getKillCount]
   * [#groundWeaponCooldown groundWeaponCooldown]
   * [#airWeaponCooldown airWeaponCooldown]
@@ -142,6 +143,11 @@ Returns the unit's current amount of shield.
 int energy() const;
 
 Returns the unit's current amount of energy.
+
+=== resources ===
+int resources() const;
+
+Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
 
 === getKillCount ===
 int getKillCount() const;
