@@ -38,8 +38,6 @@ http://classic.battle.net/scc/GS/damage.shtml
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
-  * Replace coordinate type in draw commands with enum
-  * [Game]::drawCircle - http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
   * [Game]::drawEllipse
   * [Game]::drawTriangle
   
