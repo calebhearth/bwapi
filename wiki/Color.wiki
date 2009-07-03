@@ -8,7 +8,7 @@ Starcraft uses a 256 color palette to render everything, so the colors we can us
 
 Methods:
   * Color(int id) - Create a color using the specified index from the Broodwar color palette.
-  * (Color(int red, int green, int blue) - Create a color using the color closest to the RGB color specified.
+  * Color(int red, int green, int blue) - Create a color using the color closest to the RGB color specified.
   * int getID() - Return the index of the color in the color palette.
   * int red() - Return the red component of the color.
   * int green() - Return the green component of the color.
