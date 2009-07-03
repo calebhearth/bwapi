@@ -43,6 +43,8 @@ http://classic.battle.net/scc/GS/damage.shtml
   
   * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
 
+  * [Game]::setScreenPosition(int x, int y)
+
   * Pylon power range - could add to Constants.h or to UnitType, where only the pylon unit type would have a non-zero power range.
 
   * [Game]::surrender
