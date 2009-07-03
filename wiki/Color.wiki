@@ -14,6 +14,19 @@ Methods:
   * int green() - Return the green component of the color.
   * int blue() - Return the blue component of the color.
 
+=== Colors ===
+While any color from the palette can be used, the following colors are available as short cuts:
+
+  * Red
+  * Green
+  * Blue
+  * Yellow
+  * Cyan
+  * Purple
+  * Orange
+  * Black
+  * White
+  * Grey
 
 === Palette ===
 The 256 color palette used by Starcraft: BroodWar:
