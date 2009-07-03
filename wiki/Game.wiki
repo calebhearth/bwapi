@@ -220,44 +220,21 @@ Returns a pointer to the player that BWAPI controls.
 Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] to get the other enemies).
 
 === drawBox ===
-void drawBox(int coordinateType, int left, int top, int right, int bottom, [Color] color, bool isSolid);
+void drawBox([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int left, int top, int right, int bottom, [Color] color, bool isSolid);
 
 Draws a box on the screen, with the given color. If isSolid is true, the entire box will be rendered, otherwise just the outline will be drawn.
 
-There are three coordinate types:
-  * 1: use screen coordinates - (0,0) corresponds to the top left corner of the screen
-  * 2: use map coordinates - (0,0) corresponds to the top left corner of the map
-  * 3: use mouse coordinates - (0,0) corresponds to the tip of the mouse
-
-
 === drawCircle ===
-void drawCircle(int coordinateType, int x, int y, int radius, [Color] color, bool isSolid);
+void drawCircle([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, int radius, [Color] color, bool isSolid);
 
 Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn.
 
-There are three coordinate types:
-  * 1: use screen coordinates - (0,0) corresponds to the top left corner of the screen
-  * 2: use map coordinates - (0,0) corresponds to the top left corner of the map
-  * 3: use mouse coordinates - (0,0) corresponds to the tip of the mouse
-
-
 === drawDot ===
-void drawDot(int coordinateType, int x, int y, [Color] color);
-
+void drawDot([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, [Color] color);
 
 Draws a dot on the screen at the given position with the given color.
 
-There are three coordinate types:
-  * 1: use screen coordinates - (0,0) corresponds to the top left corner of the screen
-  * 2: use map coordinates - (0,0) corresponds to the top left corner of the map
-  * 3: use mouse coordinates - (0,0) corresponds to the tip of the mouse
-
 === drawLine ===
-drawLine(int coordinateType, int x1, int y1, int x2, int y2, [Color] color);
+drawLine([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x1, int y1, int x2, int y2, [Color] color);
 
 Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
-
-There are three coordinate types:
-  * 1: use screen coordinates - (0,0) corresponds to the top left corner of the screen
-  * 2: use map coordinates - (0,0) corresponds to the top left corner of the map
-  * 3: use mouse coordinates - (0,0) corresponds to the tip of the mouse
