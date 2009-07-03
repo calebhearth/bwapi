@@ -48,6 +48,15 @@ Possible values:
   * CompleteMapInformation - Enable to get information about all units on the map, not just the visible units.
   * UserInput - Enable to get information from the user (what units are selected, chat messages the user enters, etc)
 
+= CoordinateType::Enum =
+
+Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/CoordinateType.h# BWAPI/CoordinateType.h]
+
+Possible values:
+  * Screen - (0,0) corresponds to the top left corner of the screen 
+  * Map - (0,0) corresponds to the top left corner of the map 
+  * Mouse - (0,0) corresponds to the tip of the mouse 
+
 = Constants =
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Constants.h# BWAPI/Constants.h]
