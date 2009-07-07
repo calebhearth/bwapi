@@ -2,7 +2,6 @@ Methods that need to be implemented:
 
   * [Unit]::isHallucination
 
-  * bool [Unit]::hasAddon
   * [Unit]{{{*}}} [Unit]::getAddon - returns NULL if the building does not have an addon.
   * [Unit]{{{*}}} [Unit]::getTransport - if this unit is loaded into a dropship/shuttle/overlord/bunker, getTransport returns the unit that this is transporting this unit.
 
