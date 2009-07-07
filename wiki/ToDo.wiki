@@ -40,8 +40,6 @@ http://classic.battle.net/scc/GS/damage.shtml
 
   * [Game]::drawEllipse
   * [Game]::drawTriangle
-  
-  * [Game]::hasCreep(int x, int y) - return true if the given tile has zerg creep.
 
   * [Game]::setScreenPosition(int x, int y)
 
