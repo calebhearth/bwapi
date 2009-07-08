@@ -1,7 +1,5 @@
 Methods that need to be implemented:
 
-  * [Unit]::isHallucination
-
   * [Unit]::removeTimer
 
   * [Unit]::isBeingHealed - implemented, but function unknown
