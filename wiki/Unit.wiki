@@ -60,6 +60,7 @@ Methods:
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
   * [#isFollowing isFollowing]
+  * [#isHallucination isHallucination]
   * [#isIdle isIdle]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
@@ -393,6 +394,11 @@ bool isFollowing() const;
 Returns true if the unit is following another unit.
 
 See also: [Unit]::[Unit#follow follow].
+
+=== isHallucination ===
+bool isHallucination() const;
+
+Returns true for hallucinated units, false for normal units.
 
 === isIdle ===
 bool isIdle() const;
