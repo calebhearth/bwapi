@@ -40,6 +40,7 @@ Methods:
   * [#getRemainingTrainTime getRemainingTrainTime]
   * [#getChild getChild]
   * [#getTrainingQueue getTrainingQueue]
+  * [#getTransport getTransport]
   * [#getLoadedUnits getLoadedUnits]
   * [#getTech getTech]
   * [#getUpgrade getUpgrade]
@@ -47,6 +48,7 @@ Methods:
   * [#getRemainingUpgradeTime getRemainingUpgradeTime]
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
+  * [#getAddon getAddon]
 
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
@@ -275,6 +277,11 @@ Returns the list of units queued up to be trained.
 
 See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining].
 
+=== getTransport ===
+[Unit]{{{*}}} getTransport() const;
+
+Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded in to.
+
 === getLoadedUnits ===
 std::list<Unit{{{*}}}> getLoadedUnits() const;
 
@@ -316,11 +323,16 @@ Returns the position the building is rallied to. If the building does not produc
 See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyUnit getRallyUnit].
 
 === getRallyUnit ===
-[Unit] getRallyUnit() const;
+[Unit]{{{*}}} getRallyUnit() const;
 
 Returns the unit the building is rallied to. If the building is not rallied to any unit, NULL is returned.
 
 See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyPosition getRallyPosition].
+
+=== getAddon ===
+[Unit]{{{*}}} getAddon() const;
+
+Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
 
 === isAccelerating ===
 bool isAccelerating() const;
