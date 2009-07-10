@@ -32,7 +32,6 @@ http://classic.battle.net/scc/GS/damage.shtml
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
-  * [Game]::drawEllipse
   * [Game]::drawTriangle
 
   * [Game]::setScreenPosition(int x, int y)
