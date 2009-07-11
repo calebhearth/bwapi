@@ -29,6 +29,7 @@ Methods:
   * [#tileHeight tileHeight]
   * [#damageFactor damageFactor]
   * [#groundDamage groundDamage]
+
   * [#canProduce canProduce]
   * [#canAttack canAttack]
   * [#canMove canMove]
