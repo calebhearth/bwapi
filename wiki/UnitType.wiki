@@ -12,8 +12,8 @@ Methods:
   * [#whatBuilds whatBuilds]
   * [#requiredUnits requiredUnits]
   * [#requiredTech requiredTech]
-  * [#suppliesConsumed suppliesConsumed]
-  * [#suppliesProduced suppliesProduced]
+  * [#supplyRequired supplyRequired]
+  * [#supplyProvided supplyProvided]
   * [#maxHealth maxHealth]
   * [#maxShield maxShield]
   * [#maxEnergy maxEnergy]
@@ -32,13 +32,27 @@ Methods:
   * [#canProduce canProduce]
   * [#canAttack canAttack]
   * [#canMove canMove]
-  * [#isWorker isWorker]
-  * [#isBuilding isBuilding]
-  * [#isAddon isAddon]
   * [#isFlyer isFlyer]
-  * [#isNeutral isNeutral]
+  * [#regeneratesHP regeneratesHP]
+  * [#isSpellcaster isSpellcaster]
+  * [#hasPermanentCloak hasPermanentCloak]
+  * [#isInvincible isInvincible]
   * [#isOrganic isOrganic]
   * [#isMechanical isMechanical]
+  * [#isRobotic isRobotic]
+  * [#isDetector isDetector]
+  * [#isResourceContainer isResourceContainer]
+  * [#isResourceDepot isResourceDepot]
+  * [#isWorker isWorker]
+  * [#requiresPsi requiresPsi]
+  * [#requiresCreep requiresCreep]
+  * [#isTwoUnitsInOneEgg isTwoUnitsInOneEgg]
+  * [#isBurrowable isBurrowable]
+  * [#isCloakable isCloakable]
+  * [#isBuilding isBuilding]
+  * [#isAddon isAddon]
+  * [#isFlyingBuilding isFlyingBuilding]
+  * [#isNeutral isNeutral]
 
 Non-member methods in UnitTypes namespace:
 
@@ -46,125 +60,191 @@ Non-member methods in UnitTypes namespace:
   * [#allUnitTypes allUnitTypes]
 
 === getID ===
-int getID();
+int getID() const;
 
 === getName ===
-std::string getName();
+std::string getName() const;
 
 === getRace ===
-[Race] getRace();
+[Race] getRace() const;
 
 Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return Races::Terran.
 
 === whatBuilds ===
-std::pair< [UnitType]{{{*}}}, int > whatBuilds();
+std::pair< [UnitType]{{{*}}}, int > whatBuilds() const;
 
 Returns what builds this unit type. The second number will usually be 1 unless the unit type is Protoss_Archon or Protoss_Dark_Archon. Units that cannot be created, such as critters and mineral fields, will return a pair where the unit type is UnitTypes::None, and the second component is 0.
 
 Example: UnitTypes::Terran_Marine.whatBuilds() will return an std::pair, where the first component is UnitTypes::Terran_Barracks.
 
 === requiredUnits ===
-std::map< [UnitType]{{{*}}}, int > requiredUnits();
+std::map< [UnitType]{{{*}}}, int > requiredUnits() const;
 
 Returns the units the player is required to have before it can train or build the given unit type.
 
 Example: UnitTypes::Terran_Battlecruiser.requiredUnits() will return a map of three keys: UnitTypes::Terran_Starport, UnitTypes::Terran_Control_Tower, and UnitTypes::Terran_Physics_Lab.
 
 === requiredTech ===
-[TechType]{{{*}}} requiredTech();
+[TechType]{{{*}}} requiredTech() const;
 
 Included in the API for completeness, since the only units that actually needs tech to be trained are the Zerg_Lurker and Zerg_Lurker_Egg. The tech type needed is TechTypes::Lurker_Aspect.
 
-=== suppliesConsumed ===
-int suppliesConsumed();
+=== supplyRequired ===
+int supplyRequired() const;
 
 Returns the amount of supply used by this unit. Note that this value is generally twice what you would expect from playing the game. Terran Marines consume 2 supply, Siege Tanks consume 4, etc. Zerg Zerglings consume 1 supply, so a pair of Zerglings consume 2 supply.
 
-=== suppliesProduced ===
-int suppliesProduced();
+=== supplyProvided ===
+int supplyProvided() const;
 
 Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon). Note that this value is twice what you would expect - Pylons provide 16 supply.
 
 === maxHealth ===
-int maxHealth();
+int maxHealth() const;
 
 Returns the maximum amount of health the unit type can have. This is also the amount of health a unit of this type has when it is first created.
 
 === maxShield ===
-int maxShield();
+int maxShield() const;
 
 Returns the maximum amount of shield the unit type can have.
 
 === maxEnergy ===
-int maxEnergy();
+int maxEnergy() const;
 
 Not implemented yet.
 
 === mineralPrice ===
-int mineralPrice();
+int mineralPrice() const;
 
 Returns the mineral price of the unit. Example: UnitTypes::Siege_Tank_Tank_Mode.mineralPrice() returns 150.
 
 === gasPrice ===
-int gasPrice();
+int gasPrice() const;
 
 UnitTypes::Siege_Tank_Tank_Mode.gasPrice() returns 100.
 
 === armor ===
-int armor();
+int armor() const;
 
 === buildTime ===
-int buildTime();
+int buildTime() const;
 
 Returns the number of frames needed to make this unit type.
 
 === dimensionLeft ===
-int dimensionLeft();
+int dimensionLeft() const;
 
 === dimensionUp ===
-int dimensionUp();
+int dimensionUp() const;
 
 === dimensionRight ===
-int dimensionRight();
+int dimensionRight() const;
 
 === dimensionDown===
-int dimensionDown();
+int dimensionDown() const;
 
 === tileWidth ===
-int tileWidth();
+int tileWidth() const;
 
 Returns the tile width of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileWidth() will return 3.
 
 === tileHeight ===
-int tileHeight();
+int tileHeight() const;
 
 Returns the tile height of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileHeight() will return 2.
 
 === damageFactor ===
-int damageFactor();
+int damageFactor() const;
 
 === groundDamage ===
-int groundDamage();
+int groundDamage() const;
 
 === canProduce ===
-bool canProduce();
+bool canProduce() const;
 
 Returns true if the unit can train other units. For example, UnitTypes::Terran_Barracks.canProduce() will return true, while UnitTypes::Terran_Marine.canProduce() will return false.
 
 === canAttack ===
-bool canAttack();
+bool canAttack() const;
 
 Returns true if the unit has the ability to attack (either ground or air).
 
 === canMove ===
-bool canMove();
+bool canMove() const;
 
 Returns true if the unit can move. Note that buildings will return false, even Terran buildings which can move once lifted.
 
+=== isFlyer ===
+bool isFlyer() const;
+
+Returns true for flying/air units.
+
+=== regeneratesHP ===
+bool regeneratesHP() const;
+
+Returns true for units that regenerate health (i.e. zerg units).
+
+=== isSpellcaster ===
+bool isSpellcaster() const;
+
+=== hasPermanentCloak ===
+bool hasPermanentCloak() const;
+
+=== isInvincible ===
+bool isInvincible() const;
+
+=== isOrganic ===
+bool isOrganic() const;
+
+Returns true if the unit is organic, such as a Terran Marine.
+
+=== isMechanical ===
+bool isMechanical() const;
+
+Returns true if the unit is mechanical such as a Terran Vulture.
+
+=== isRobotic ===
+bool isRobotic() const;
+
+=== isDetector ===
+bool isDetector() const;
+
+=== isResourceContainer ===
+bool isResourceContainer() const;
+
+=== isResourceDepot ===
+bool isResourceDepot() const;
+
 === isWorker ===
-bool isWorker();
+bool isWorker() const;
 
 Returns true if the unit is a Protoss Probe, Terran SCV, or Zerg Drone.
+
+=== requiresPsi ===
+bool requiresPsi() const;
+
+Returns true for buildings that must be near a pylon to be constructed.
+
+=== requiresCreep ===
+bool requiresCreep() const;
+
+Returns true for buildings that can only be built on zerg creep.
+
+=== isTwoUnitsInOneEgg ===
+bool isTwoUnitsInOneEgg() const;
+
+Returns true for Zerglings.
+
+=== isBurrowable ===
+bool isBurrowable() const;
+
+Returns true for units that can burrow when burrow tech is researched.
+
+=== isCloakable ===
+bool isCloakable() const;
+
+Returns true for units that can cloak (not indirectly via Arbiter).
 
 === isBuilding ===
 bool isBuilding();
@@ -174,24 +254,17 @@ Returns true if the unit is a building.
 === isAddon ===
 bool isAddon();
 
-returns true if the unit is a an add-on, such as a Terran Comsat Station.
-=== isFlyer ===
-bool isFlyer();
+Returns true if the unit is a an add-on, such as a Terran Comsat Station.
+
+=== isFlyingBuilding ===
+bool isFlyingBuilding() const;
+
+Returns true for Terran buildings that can lift off (i.e. Barracks).
 
 === isNeutral ===
 bool isNeutral();
 
 Returns true if the unit is neutral, such as a critter or mineral field.
-
-=== isOrganic ===
-bool isOrganic();
-
-Returns true if the unit is organic, such as a Terran Marine.
-
-=== isMechanical ===
-bool isMechanical();
-
-Returns true if the unit is mechanical such as a Terran Vulture.
 
 === getUnitType ===
 [UnitType] getUnitType(std::string &name);
