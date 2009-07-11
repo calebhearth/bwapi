@@ -54,6 +54,8 @@ std::string getName();
 === getRace ===
 [Race] getRace();
 
+Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return Races::Terran.
+
 === whatBuilds ===
 std::pair< [UnitType]{{{*}}}, int > whatBuilds();
 
