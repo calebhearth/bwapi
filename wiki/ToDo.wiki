@@ -39,37 +39,18 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [WeaponType]::targetsOrgOrMech
   * [WeaponType]::targetsOwn
  
-
-  * Rename [UnitType]::suppliesConsumed to [UnitType]::supplyRequired
-  * Rename [UnitType]::suppliesProduced to [UnitType]::supplyProvided
-
   * [UnitType]::[UnitType#maxEnergy maxEnergy]
   * [UnitType]::SpaceRequired
   * [UnitType]::SpaceProvided
   * [UnitType]::SightRange
   * [UnitType]::TargetAcquisitionRange
 
-  * [UnitType]::canRegenerate
-  * [UnitType]::isSpellCaster
-  * [UnitType]::hasPermanentCloak
-  * [UnitType]::isInvincible
-  * [UnitType]::isRobotic
-  * [UnitType]::isDetector
   * [UnitType]::isSubunit
-  * [UnitType]::isResourceContainer
-  * [UnitType]::isResourceDepot
   * perhaps rename [UnitType]::isWorker to  [UnitType]::isResourceMiner.
-  * [UnitType]::requiresPsi
-  * [UnitType]::requiresCreep
-  * [UnitType]::twoUnitsInOneEgg
   * [UnitType]::singleEntity
-  * [UnitType]::burrowable
-  * [UnitType]::cloakable
   * [UnitType]::hasBattleReactions
   * [UnitType]::hasFullAutoAttack
-  * [UnitType]::isFlyingBuilding
   * [UnitType]::ignoresSupplyCheck
-
 
   * [UnitType]::topSpeed
   * [UnitType]::acceleration
