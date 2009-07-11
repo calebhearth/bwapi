@@ -19,30 +19,44 @@ Non-member methods in TechTypes namespace:
 === getID ===
 int getID();
 
+Returns the unique ID for this tech type.
+
 === getName ===
 std::string getName();
+
+Returns the name of the tech type.
 
 === getRace ===
 [Race] getRace();
 
+Returns the race that uses the TechType. For example, TechTypes::Scanner_Sweep.getRace() will return Races::Terran.
+
 === mineralPrice ===
 int mineralPrice();
+
+Returns the mineral cost of the tech type.
 
 === gasPrice ===
 int gasPrice();
 
+Returns the vespene gas price of the tech type.
+
 === energyPrice ===
 int energyPrice();
 
-Not implemented yet.
+Not implemented yet. Will Return the amount of energy needed to use the tech type.
 
 === whatResearches ===
 [UnitType]{{{*}}} whatResearches();
 
+Returns the type of unit that researches this tech type.
+
 === getTechType ===
 [TechType] getTechType(std::string &name);
+
+Given a string, this will return the tech type.
 
 === allTechTypes ===
 std::set<[TechType]>& allTechTypes();
 
-Returns the set of all the TechTypes.
+Returns the set of all the [TechTypes].
