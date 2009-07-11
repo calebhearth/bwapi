@@ -9,25 +9,84 @@ Methods that need to be implemented:
 We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
   * Terran_Science_Vessel: 10
   * Terran_Missile_Turret: 11
-  * Spell_Scanner_Sweep: unknown
+  * Spell_Scanner_Sweep: 10
   * Zerg_Overlord: 9 (11 upgraded)
   * Zerg_Spore_Colony: 10
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
 
+  * Create [ExplosionType] class
+
+  * Create [WeaponType] class, with the following methods:
+  * [WeaponType]::amount
+  * [WeaponType]::bonus
+  * [WeaponType]::factor
+  * [WeaponType]::cooldown
+  * [DamageType] [WeaponType]::damageType()
+  * [ExplosionType] [WeaponType]::explosionType()
+  * [WeaponType]::minRange
+  * [WeaponType]::maxRange
+  * [WeaponType]::InnerSplashRadius
+  * [WeaponType]::MediumSplashRadius
+  * [WeaponType]::OuterSplashRadius
+  * [WeaponType]::targetsAir
+  * [WeaponType]::targetsGround
+  * [WeaponType]::targetsMechanical
+  * [WeaponType]::targetsOrganic
+  * [WeaponType]::targetsNonBuilding
+  * [WeaponType]::targetsNonRobotic
+  * [WeaponType]::targetsTerrain
+  * [WeaponType]::targetsOrgOrMech
+  * [WeaponType]::targetsOwn
+ 
+
+  * Rename [UnitType]::suppliesConsumed to [UnitType]::supplyRequired
+  * Rename [UnitType]::suppliesProduced to [UnitType]::supplyProvided
 
   * [UnitType]::[UnitType#maxEnergy maxEnergy]
-  * [UnitType]::airDamage
-  * [UnitType]::attackRange
-  * [UnitType]::moveSpeed
-  * [UnitType]::canLift
+  * [UnitType]::SpaceRequired
+  * [UnitType]::SpaceProvided
+  * [UnitType]::SightRange
+  * [UnitType]::TargetAcquisitionRange
 
-http://classic.battle.net/scc/GS/damage.shtml
-  * [UnitType]::groundAttackType
-  * [UnitType]::airAttackType
-  * [UnitType]::size
+  * [UnitType]::canRegenerate
+  * [UnitType]::isSpellCaster
+  * [UnitType]::hasPermanentCloak
+  * [UnitType]::isInvincible
+  * [UnitType]::isRobotic
+  * [UnitType]::isDetector
+  * [UnitType]::isSubunit
+  * [UnitType]::isResourceContainer
+  * [UnitType]::isResourceDepot
+  * perhaps rename [UnitType]::isWorker to  [UnitType]::isResourceMiner.
+  * [UnitType]::requiresPsi
+  * [UnitType]::requiresCreep
+  * [UnitType]::twoUnitsInOneEgg
+  * [UnitType]::singleEntity
+  * [UnitType]::burrowable
+  * [UnitType]::cloakable
+  * [UnitType]::hasBattleReactions
+  * [UnitType]::hasFullAutoAttack
+  * [UnitType]::isFlyingBuilding
+  * [UnitType]::ignoresSupplyCheck
+
+
+  * [UnitType]::topSpeed
+  * [UnitType]::acceleration
+  * [UnitType]::haltDistance
+  * [UnitType]::turnRadius
+
+  * WeaponType [UnitType]::groundWeaponType()
+  * int [UnitType]::groundWeaponAmount()
+  * int [UnitType]::groundWeaponMaxHits()
+  * WeaponType [UnitType]::airWeaponType()
+  * int [UnitType]::airWeaponAmount()
+  * int [UnitType]::airWeaponMaxHits()
+  * [UnitType]::unitSize
 
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
+
+  * [UpgradeType]::maxRepeats
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
