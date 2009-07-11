@@ -48,6 +48,7 @@ Methods:
 
   * [#drawBox drawBox]
   * [#drawCircle drawCircle]
+  * [#drawEllipse drawEllipse]
   * [#drawDot drawDot]
   * [#drawLine drawLine]
 
@@ -234,6 +235,11 @@ Draws a box on the screen, with the given color. If isSolid is true, the entire 
 void drawCircle([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, int radius, [Color] color, bool isSolid);
 
 Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn.
+
+=== drawEllipse ===
+void drawEllipse([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, int xrad, int yrad, [Color] color, bool isSolid);
+
+Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn, otherwise just the outline of an ellipse will be drawn.
 
 === drawDot ===
 void drawDot([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, [Color] color);
