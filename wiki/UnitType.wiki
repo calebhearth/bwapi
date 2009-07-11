@@ -213,14 +213,22 @@ Returns true if the unit is mechanical such as a Terran Vulture.
 === isRobotic ===
 bool isRobotic() const;
 
+Returns true if the unit type is robotic.
+
 === isDetector ===
 bool isDetector() const;
+
+Returns true for units that can detect cloaked units.
 
 === isResourceContainer ===
 bool isResourceContainer() const;
 
+Returns true for units that hold resources (i.e. Mineral Field, Vespene Geyser, Terran Refinery).
+
 === isResourceDepot ===
 bool isResourceDepot() const;
+
+Returns true for units that can accept resources (i.e. Terran Command Center).
 
 === isWorker ===
 bool isWorker() const;
