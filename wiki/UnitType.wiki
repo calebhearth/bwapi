@@ -188,11 +188,17 @@ Returns true for units that regenerate health (i.e. zerg units).
 === isSpellcaster ===
 bool isSpellcaster() const;
 
+Returns true if the unit type is capable of casting spells.
+
 === hasPermanentCloak ===
 bool hasPermanentCloak() const;
 
+Returns true for units that are permanently cloaked (i.e. Protoss Observer, Protoss Dark Templar).
+
 === isInvincible ===
 bool isInvincible() const;
+
+Returns true for units that cannot be destroyed (i.e. Mineral Fields, Vespene Geysers)
 
 === isOrganic ===
 bool isOrganic() const;
@@ -247,12 +253,12 @@ bool isCloakable() const;
 Returns true for units that can cloak (not indirectly via Arbiter).
 
 === isBuilding ===
-bool isBuilding();
+bool isBuilding() const;
 
 Returns true if the unit is a building.
 
 === isAddon ===
-bool isAddon();
+bool isAddon() const;
 
 Returns true if the unit is a an add-on, such as a Terran Comsat Station.
 
@@ -262,7 +268,7 @@ bool isFlyingBuilding() const;
 Returns true for Terran buildings that can lift off (i.e. Barracks).
 
 === isNeutral ===
-bool isNeutral();
+bool isNeutral() const;
 
 Returns true if the unit is neutral, such as a critter or mineral field.
 
