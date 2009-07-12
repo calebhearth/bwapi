@@ -57,7 +57,7 @@ unitsDat:
 51 was all zeroes - probably the end of the dat.
 
 weaponsDat:
-  * 0 - unknown. smallest value is 229.
+  * 0 - label
   * 1 - graphics
   * 2 - unused tech property.
   * 3 - weapon target flags
@@ -65,9 +65,9 @@ weaponsDat:
   * 5 - max range (divide by 16 to get range in build tiles)
   * 6 - upgrade
   * 7 - damage type
-  * 8 - unknown. values range from 0 to 9.
+  * 8 - graphical behavior
   * 9 - remove after
-  * 10 - unknown. mostly 1.
+  * 10 - explosion type
   * 11 - inner splash radius
   * 12 - median splash radius
   * 13 - outer splash radius
@@ -79,5 +79,3 @@ weaponsDat:
   * 19 - launch spin
   * 20 - x offset
   * 21 - y offset
-  * 22 - unknown
-  * 23 - unknown
