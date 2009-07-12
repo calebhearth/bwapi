@@ -51,3 +51,5 @@ length: unknown
   * 44 - prototype group flags
   * 45 - supply provided
   * 46 - supply required
+  * 47 - space provided
+  * 48 - space required
