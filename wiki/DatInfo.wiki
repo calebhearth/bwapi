@@ -8,7 +8,7 @@ unitsDat:
   * 3 - unknown. lots of values are 228 or 257.
   * 4 - unknown. 0 for most things
   * 5 - direction
-  * 6 - is protoss
+  * 6 - has shields
   * 7 - shield points
   * 8 - max health points not attackable repairable
   * 9 - elevation
@@ -55,3 +55,23 @@ unitsDat:
   * 50 - destroy score
 
 51 was all zeroes - probably the end of the dat.
+
+weaponsDat:
+  * 0 - unknown. smallest value is 229.
+  * 1 - graphics
+  * 2 - unknown. Mostly 44.
+  * 3 - weapon target flags
+  * 4 - min range (divide by 16 to get range in build tiles)
+  * 5 - max range (divide by 16 to get range in build tiles)
+  * 6
+  * 7
+  * 8
+  * 9
+  * 10
+  * 11
+  * 12
+  * 13
+  * 14 - damage amount
+  * 15
+  * 16
+  * 17 - damage factor
