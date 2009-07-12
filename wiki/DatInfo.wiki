@@ -63,9 +63,9 @@ weaponsDat:
   * 3 - weapon target flags
   * 4 - min range (divide by 16 to get range in build tiles)
   * 5 - max range (divide by 16 to get range in build tiles)
-  * 6
-  * 7
-  * 8
+  * 6 - upgrade
+  * 7 - damage type
+  * 8 - unknown. values range from 0 to 9.
   * 9
   * 10
   * 11
