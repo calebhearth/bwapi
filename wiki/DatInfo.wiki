@@ -66,12 +66,18 @@ weaponsDat:
   * 6 - upgrade
   * 7 - damage type
   * 8 - unknown. values range from 0 to 9.
-  * 9
-  * 10
-  * 11
-  * 12
-  * 13
+  * 9 - remove after
+  * 10 - unknown. mostly 1.
+  * 11 - inner splash radius
+  * 12 - median splash radius
+  * 13 - outer splash radius
   * 14 - damage amount
-  * 15
-  * 16
+  * 15 - damage bonus
+  * 16 - damage cooldown
   * 17 - damage factor
+  * 18 - attack direction
+  * 19 - launch spin
+  * 20 - x offset
+  * 21 - y offset
+  * 22 - unknown
+  * 23 - unknown
