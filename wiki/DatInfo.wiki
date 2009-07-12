@@ -29,8 +29,8 @@ length: unknown
   * 22
   * 23 - seek range
   * 24 - sight range
-  * 25
-  * 26
+  * 25 - unknown, 60 for buildings and critters, 0-6 for most other things
+  * 26 - unit size. 0 = independent, 1 = small, 2 = medium, 3 = large,
   * 27 - armor
   * 28
   * 29
@@ -53,3 +53,7 @@ length: unknown
   * 46 - supply required
   * 47 - space required
   * 48 - space provided
+  * 49 - build score
+  * 50 - destroy score
+
+51 was all zeroes - probably the end of the dat.
