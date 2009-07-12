@@ -2,13 +2,13 @@ This page will be used to store what is known about the structure of dat files
 
 unitsDat:
 
-  * 0
-  * 1
-  * 2
-  * 3
-  * 4
-  * 5
-  * 6
+  * 0 - graphics
+  * 1 - subunit1
+  * 2 - subunit2
+  * 3 - unknown. lots of values are 228 or 257.
+  * 4 - unknown. 0 for most things
+  * 5 - direction
+  * 6 - is protoss
   * 7 - shield points
   * 8 - max health points not attackable repairable
   * 9 - elevation
