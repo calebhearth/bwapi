@@ -59,7 +59,7 @@ unitsDat:
 weaponsDat:
   * 0 - unknown. smallest value is 229.
   * 1 - graphics
-  * 2 - unknown. Mostly 44.
+  * 2 - unused tech property.
   * 3 - weapon target flags
   * 4 - min range (divide by 16 to get range in build tiles)
   * 5 - max range (divide by 16 to get range in build tiles)
