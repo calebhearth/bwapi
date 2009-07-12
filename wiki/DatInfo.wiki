@@ -21,12 +21,12 @@ length: unknown
   * 14 
   * 15
   * 16
-  * 17 - ground weapons
-  * 18
-  * 19
-  * 20
-  * 21
-  * 22
+  * 17 - ground weapon
+  * 18 - max ground hits
+  * 19 - air weapon
+  * 20 - max air hits
+  * 21 - unit AI interval
+  * 22 - unit prototype flags
   * 23 - seek range
   * 24 - sight range
   * 25 - unknown, 60 for buildings and critters, 0-6 for most other things
