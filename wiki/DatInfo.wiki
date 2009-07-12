@@ -32,22 +32,22 @@ length: unknown
   * 25 - unknown, 60 for buildings and critters, 0-6 for most other things
   * 26 - unit size. 0 = independent, 1 = small, 2 = medium, 3 = large,
   * 27 - armor
-  * 28
-  * 29
-  * 30
-  * 31
-  * 32
-  * 33
-  * 34
-  * 35
-  * 36
-  * 37
+  * 28 - unknown
+  * 29 - ready sound
+  * 30 - first what sound
+  * 31 - last what sound
+  * 32 - first annoyed sound
+  * 33 - last annoyed sound
+  * 34 - first yes sound
+  * 35 - last yes sound
+  * 36 - placement
+  * 37 - unknown
   * 38 - dimensions
-  * 39
+  * 39 - idle portrait
   * 40 - mineral price
   * 41 - gas price
   * 42 - build time
-  * 43
+  * 43 - unknown, always 65535
   * 44 - prototype group flags
   * 45 - supply provided
   * 46 - supply required
