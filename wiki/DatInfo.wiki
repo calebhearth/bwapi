@@ -1,50 +1,52 @@
 This page will be used to store what is known about the structure of dat files
 
 unitsDat:
-0
-1
-2
-3
-4
-5
-6
-7 - shield points
-8 - max health points not attackable repairable
-9
-10
-11
-12
-13
-14 
-15
-16
-17 - ground weapons
-18
-19
-20
-21
-22
-23 - seek range
-24 - sight range
-25
-26
-27 - armor
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38 - dimensions
-39
-40 - mineral price
-41 - gas price
-42 - build time
-43
-44 - prototype group flags
-45 - supply provided
-46 - supply required
+length: unknown
+
+  * 0
+  * 1
+  * 2
+  * 3
+  * 4
+  * 5
+  * 6
+  * 7 - shield points
+  * 8 - max health points not attackable repairable
+  * 9
+  * 10
+  * 11
+  * 12
+  * 13
+  * 14 
+  * 15
+  * 16
+  * 17 - ground weapons
+  * 18
+  * 19
+  * 20
+  * 21
+  * 22
+  * 23 - seek range
+  * 24 - sight range
+  * 25
+  * 26
+  * 27 - armor
+  * 28
+  * 29
+  * 30
+  * 31
+  * 32
+  * 33
+  * 34
+  * 35
+  * 36
+  * 37
+  * 38 - dimensions
+  * 39
+  * 40 - mineral price
+  * 41 - gas price
+  * 42 - build time
+  * 43
+  * 44 - prototype group flags
+  * 45 - supply provided
+  * 46 - supply required
