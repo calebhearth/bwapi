@@ -11,14 +11,14 @@ unitsDat:
   * 6
   * 7 - shield points
   * 8 - max health points not attackable repairable
-  * 9
-  * 10
-  * 11
-  * 12
-  * 13
-  * 14 
-  * 15
-  * 16
+  * 9 - elevation
+  * 10 - unknown. Possibly a bit field of some source
+  * 11 - rank/sublabel
+  * 12 - unknown. Mostly 2 for units and critters and 156 for buildings
+  * 13 - unknown. Usually 2 for units, 23 for buildings, and 166 for critters
+  * 14 - unknown. Usually 2 for units, 23 for buildings, and 166 for critters
+  * 15 - unknown. Mostly 10 for units, 23 for buildings, and 188 for critters
+  * 16 - unknown. Usually 2 for units, 23 for buildings, and 188 for critters
   * 17 - ground weapon
   * 18 - max ground hits
   * 19 - air weapon
