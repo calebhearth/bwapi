@@ -6,7 +6,7 @@ unitsDat:
   * 1 - subunit1
   * 2 - subunit2
   * 3 - unknown. lots of values are 228 or 257.
-  * 4 - unknown. 0 for most things
+  * 4 - construction graphics
   * 5 - direction
   * 6 - has shields
   * 7 - shield points
@@ -27,10 +27,10 @@ unitsDat:
   * 22 - unit prototype flags
   * 23 - seek range
   * 24 - sight range
-  * 25 - unknown, 60 for buildings and critters, 0-6 for most other things
+  * 25 - upgrade
   * 26 - unit size. 0 = independent, 1 = small, 2 = medium, 3 = large,
   * 27 - armor
-  * 28 - unknown
+  * 28 - right-click action
   * 29 - ready sound
   * 30 - first what sound
   * 31 - last what sound
@@ -53,6 +53,8 @@ unitsDat:
   * 48 - space provided
   * 49 - build score
   * 50 - destroy score
+  * 52 - broodwar only
+  * 53 - availability flags
 
 51 was all zeroes - probably the end of the dat.
 
