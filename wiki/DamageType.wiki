@@ -1,0 +1,35 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/DamageType.h# BWAPI/DamageType.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in Orders namespace:
+
+  * [#getDamageType getDamageType]
+  * [#allDamageTypes allDamageTypes]
+
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+=== getDamageType ===
+[DamageType] getDamageType(std::string &name);
+
+=== allDamageTypes ===
+std::set<[DamageType]>& allDamageTypes();
+
+Returns the set of all the DamageTypes:
+
+  * Independent
+  * Explosive
+  * Concussive
+  * Normal
+  * Ignore_Armor
+  * None
+  * Unknown
