@@ -1,0 +1,27 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/ExplosionType.h# BWAPI/ExplosionType.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in ExplosionTypes namespace:
+
+  * [#getExplosionType getExplosionType]
+  * [#allExplosionTypes allExplosionTypes]
+
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+=== getExplosionType ===
+[ExplosionType] getExplosionType(std::string &name);
+
+=== allExplosionTypes ===
+std::set<[ExplosionType]>& allExplosionTypes();
+
+Returns the set of all the [ExplosionTypes].
