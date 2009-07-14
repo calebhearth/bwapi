@@ -15,41 +15,36 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
 
-  * Create [ExplosionType] class
-
   * Create [WeaponType] class, with the following methods:
-  * [WeaponType]::amount
-  * [WeaponType]::bonus
-  * [WeaponType]::factor
-  * [WeaponType]::cooldown
+  * int [WeaponType]::damageAmount()
+  * int [WeaponType]::damageBonus()
+  * int [WeaponType]::damageCooldown()
+  * int [WeaponType]::damageFactor()
+  * [UpgradeType] [WeaponType]::upgradeType()
   * [DamageType] [WeaponType]::damageType()
   * [ExplosionType] [WeaponType]::explosionType()
-  * [WeaponType]::minRange
-  * [WeaponType]::maxRange
-  * [WeaponType]::InnerSplashRadius
-  * [WeaponType]::MediumSplashRadius
-  * [WeaponType]::OuterSplashRadius
-  * [WeaponType]::targetsAir
-  * [WeaponType]::targetsGround
-  * [WeaponType]::targetsMechanical
-  * [WeaponType]::targetsOrganic
-  * [WeaponType]::targetsNonBuilding
-  * [WeaponType]::targetsNonRobotic
-  * [WeaponType]::targetsTerrain
-  * [WeaponType]::targetsOrgOrMech
-  * [WeaponType]::targetsOwn
+  * int [WeaponType]::minRange()
+  * int [WeaponType]::maxRange()
+  * int [WeaponType]::InnerSplashRadius()
+  * int [WeaponType]::MedianSplashRadius()
+  * int [WeaponType]::OuterSplashRadius()
+  * bool [WeaponType]::targetsAir()
+  * bool [WeaponType]::targetsGround()
+  * bool [WeaponType]::targetsMechanical()
+  * bool [WeaponType]::targetsOrganic()
+  * bool [WeaponType]::targetsNonBuilding()
+  * bool [WeaponType]::targetsNonRobotic()
+  * bool [WeaponType]::targetsTerrain()
+  * bool [WeaponType]::targetsOrgOrMech()
+  * bool [WeaponType]::targetsOwn()
  
-  * [UnitType]::[UnitType#maxEnergy maxEnergy]
-  * [UnitType]::SpaceRequired
-  * [UnitType]::SpaceProvided
-  * [UnitType]::SightRange
-  * [UnitType]::TargetAcquisitionRange
+  * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Base max energy amount will need to be entered manually
 
-  * [UnitType]::isSubunit
-  * perhaps rename [UnitType]::isWorker to  [UnitType]::isResourceMiner.
-  * [UnitType]::singleEntity
-  * [UnitType]::hasBattleReactions
-  * [UnitType]::hasFullAutoAttack
+  * [UnitType]::spaceRequired
+  * [UnitType]::spaceProvided
+  * [UnitType]::sightRange
+  * [UnitType]::targetAcquisitionRange
+
   * [UnitType]::ignoresSupplyCheck
 
   * [UnitType]::topSpeed
@@ -57,13 +52,13 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::haltDistance
   * [UnitType]::turnRadius
 
-  * WeaponType [UnitType]::groundWeaponType()
+  * [WeaponType] [UnitType]::groundWeaponType()
   * int [UnitType]::groundWeaponAmount()
   * int [UnitType]::groundWeaponMaxHits()
-  * WeaponType [UnitType]::airWeaponType()
+  * [WeaponType] [UnitType]::airWeaponType()
   * int [UnitType]::airWeaponAmount()
   * int [UnitType]::airWeaponMaxHits()
-  * [UnitType]::unitSize
+  * [UnitType]::size
 
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
 
