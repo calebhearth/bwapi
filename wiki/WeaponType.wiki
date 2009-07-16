@@ -36,26 +36,88 @@ Non-member methods in WeaponTypes namespace:
   * [#specialWeaponTypes specialWeaponTypes]
 
 === getID ==
-    int getID() const;
-    std::string getName() const;
-    int damageAmount() const;
-    int damageBonus() const;
-    int damageCooldown() const;
-    int damageFactor() const;
-    const UpgradeType* upgradeType() const;
-    const DamageType* damageType() const;
-    const ExplosionType* explosionType() const;
-    int minRange() const;
-    int maxRange() const;
-    int innerSplashRadius() const;
-    int medianSplashRadius() const;
-    int outerSplashRadius() const;
-    bool targetsAir() const;
-    bool targetsGround() const;
-    bool targetsMechanical() const;
-    bool targetsOrganic() const;
-    bool targetsNonBuilding() const;
-    bool targetsNonRobotic() const;
-    bool targetsTerrain() const;
-    bool targetsOrgOrMech() const;
-    bool targetsOwn() const;
+int getID() const;
+
+=== getName ===
+std::string getName() const;
+
+=== damageAmount ===
+int damageAmount() const;
+
+=== damageBonus ===
+int damageBonus() const;
+
+=== damageCooldown ===
+int damageCooldown() const;
+
+=== damageFactor ===
+int damageFactor() const;
+
+=== upgradeType ===
+const [UpgradeType]{{{*}}} upgradeType() const;
+
+=== damageType ===
+const [DamageType]{{{*}}} damageType() const;
+
+=== explosionType ===
+const [ExplosionType]{{{*}}} explosionType() const;
+
+=== minRange ===
+int minRange() const;
+
+=== maxRange ===
+int maxRange() const;
+
+=== innerSplashRadius ===
+int innerSplashRadius() const;
+
+=== medianSplashRadius ===
+int medianSplashRadius() const;
+
+=== outerSplashRadius ===
+int outerSplashRadius() const;
+
+=== targetsAir ===
+bool targetsAir() const;
+
+=== targetsGround ===
+bool targetsGround() const;
+
+=== targetsMechanical ===
+bool targets Mechanical() const;
+
+=== targetsOrganic ===
+bool targetsOrganic() const;
+
+=== targetsNonBuilding ===
+bool targetsNonBuilding() const;
+
+=== targetsNonRobotic ===
+bool targetsNonRobotic() const;
+
+=== targetsTerrain ===
+bool targetsTerrain() const;
+
+=== targetsOrgOrMech ===
+bool targetsOrgOrMech() const;
+
+=== targetsOwn ===
+bool targetsOwn() const;
+
+=== getWeaponType ===
+[WeaponType] getWeaponType(std::string &name);
+
+=== allWeaponTypes ===
+std::set<[WeaponType]>& allWeaponTypes();
+
+Returns the set of all the [WeaponTypes].
+
+=== normalWeaponTypes ===
+std::set<[WeaponType]>& normalWeaponTypes();
+
+Returns the set of all normal weapons in [WeaponTypes].
+
+=== specialWeaponTypes ===
+std::set<[WeaponType]>& specialWeaponTypes();
+
+Returns the set of all special weapons in [WeaponTypes].
