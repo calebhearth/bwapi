@@ -4,123 +4,123 @@
 
 = UnitTypes =
 
-  * Terran_Marine
-  * Terran_Medic
-  * Terran_Firebat
-  * Terran_Ghost
-  * Terran_Vulture
-  * Terran_Goliath
-  * Terran_Siege_Tank_Tank_Mode
-  * Terran_SCV
-  * Terran_Wraith
-  * Terran_Science_Vessel
-  * Terran_Dropship
+  * Terran_Academy
+  * Terran_Armory
+  * Terran_Barracks
   * Terran_Battlecruiser
-  * Terran_Vulture_Spider_Mine
-  * Terran_Nuclear_Missile
-  * Terran_Siege_Tank_Siege_Mode
-  * Terran_Valkyrie
+  * Terran_Bunker
   * Terran_Command_Center
   * Terran_Comsat_Station
-  * Terran_Nuclear_Silo
-  * Terran_Supply_Depot
-  * Terran_Refinery
-  * Terran_Barracks
-  * Terran_Academy
-  * Terran_Factory
-  * Terran_Starport
   * Terran_Control_Tower
-  * Terran_Science_Facility
   * Terran_Covert_Ops
-  * Terran_Physics_Lab
-  * Terran_Machine_Shop
+  * Terran_Dropship
   * Terran_Engineering_Bay
-  * Terran_Armory
+  * Terran_Factory
+  * Terran_Firebat
+  * Terran_Ghost
+  * Terran_Goliath
+  * Terran_Machine_Shop
+  * Terran_Marine
+  * Terran_Medic
   * Terran_Missile_Turret
-  * Terran_Bunker
+  * Terran_Nuclear_Missile
+  * Terran_Nuclear_Silo
+  * Terran_Physics_Lab
+  * Terran_Refinery
+  * Terran_SCV
+  * Terran_Science_Facility
+  * Terran_Science_Vessel
+  * Terran_Siege_Tank_Siege_Mode
+  * Terran_Siege_Tank_Tank_Mode
+  * Terran_Starport
+  * Terran_Supply_Depot
+  * Terran_Valkyrie
+  * Terran_Vulture
+  * Terran_Vulture_Spider_Mine
+  * Terran_Wraith
 
-  * Zerg_Larva
-  * Zerg_Egg
-  * Zerg_Zergling
-  * Zerg_Hydralisk
-  * Zerg_Ultralisk
   * Zerg_Broodling
-  * Zerg_Drone
-  * Zerg_Overlord
-  * Zerg_Mutalisk
-  * Zerg_Guardian
-  * Zerg_Queen
-  * Zerg_Defiler
-  * Zerg_Scourge
-  * Zerg_Infested_Terran
   * Zerg_Cocoon
-  * Zerg_Devourer
-  * Zerg_Infested_Command_Center
-  * Zerg_Hatchery
-  * Zerg_Lair
-  * Zerg_Hive
-  * Zerg_Nydus_Canal
-  * Zerg_Hydralisk_Den
-  * Zerg_Defiler_Mound
-  * Zerg_Greater_Spire
-  * Zerg_Queens_Nest
-  * Zerg_Evolution_Chamber
-  * Zerg_Ultralisk_Cavern
-  * Zerg_Spire
-  * Zerg_Spawning_Pool
   * Zerg_Creep_Colony
+  * Zerg_Defiler
+  * Zerg_Defiler_Mound
+  * Zerg_Devourer
+  * Zerg_Drone
+  * Zerg_Egg
+  * Zerg_Evolution_Chamber
+  * Zerg_Extractor
+  * Zerg_Greater_Spire
+  * Zerg_Guardian
+  * Zerg_Hatchery
+  * Zerg_Hive
+  * Zerg_Hydralisk
+  * Zerg_Hydralisk_Den
+  * Zerg_Infested_Command_Center
+  * Zerg_Infested_Terran
+  * Zerg_Lair
+  * Zerg_Larva
+  * Zerg_Lurker
+  * Zerg_Lurker_Egg
+  * Zerg_Mutalisk
+  * Zerg_Nydus_Canal
+  * Zerg_Overlord
+  * Zerg_Queen
+  * Zerg_Queens_Nest
+  * Zerg_Scourge
+  * Zerg_Spawning_Pool
+  * Zerg_Spire
   * Zerg_Spore_Colony
   * Zerg_Sunken_Colony
-  * Zerg_Extractor
-  * Zerg_Lurker_Egg
-  * Zerg_Lurker
+  * Zerg_Ultralisk
+  * Zerg_Ultralisk_Cavern
+  * Zerg_Zergling
 
-  * Protoss_Corsair
-  * Protoss_Dark_Templar
-  * Protoss_Dark_Archon
-  * Protoss_Probe
-  * Protoss_Zealot
-  * Protoss_Dragoon
-  * Protoss_High_Templar
-  * Protoss_Archon
-  * Protoss_Shuttle
-  * Protoss_Scout
   * Protoss_Arbiter
-  * Protoss_Carrier
-  * Protoss_Interceptor
-  * Protoss_Reaver
-  * Protoss_Observer
-  * Protoss_Scarab
-  * Protoss_Nexus
-  * Protoss_Robotics_Facility
-  * Protoss_Pylon
-  * Protoss_Assimilator
-  * Protoss_Observatory
-  * Protoss_Gateway
-  * Protoss_Photon_Cannon
-  * Protoss_Citadel_of_Adun
-  * Protoss_Cybernetics_Core
-  * Protoss_Templar_Archives
-  * Protoss_Forge
-  * Protoss_Stargate
-  * Protoss_Fleet_Beacon
   * Protoss_Arbiter_Tribunal
+  * Protoss_Archon
+  * Protoss_Assimilator
+  * Protoss_Carrier
+  * Protoss_Citadel_of_Adun
+  * Protoss_Corsair
+  * Protoss_Cybernetics_Core
+  * Protoss_Dark_Archon
+  * Protoss_Dark_Templar
+  * Protoss_Dragoon
+  * Protoss_Fleet_Beacon
+  * Protoss_Forge
+  * Protoss_Gateway
+  * Protoss_High_Templar
+  * Protoss_Interceptor
+  * Protoss_Nexus
+  * Protoss_Observatory
+  * Protoss_Observer
+  * Protoss_Photon_Cannon
+  * Protoss_Probe
+  * Protoss_Pylon
+  * Protoss_Reaver
+  * Protoss_Robotics_Facility
   * Protoss_Robotics_Support_Bay
+  * Protoss_Scarab
+  * Protoss_Scout
   * Protoss_Shield_Battery
+  * Protoss_Shuttle
+  * Protoss_Stargate
+  * Protoss_Templar_Archives
+  * Protoss_Zealot
 
-  * Critter_Rhynadon
   * Critter_Bengalaas
-  * Critter_Scantid
   * Critter_Kakaru
   * Critter_Ragnasaur
+  * Critter_Rhynadon
+  * Critter_Scantid
   * Critter_Ursadon
 
   * Resource_Mineral_Field
   * Resource_Vespene_Geyser
 
-  * Spell_Scanner_Sweep
   * Spell_Dark_Swarm
   * Spell_Disruption_Web
+  * Spell_Scanner_Sweep
 
   * None
   * Unknown
