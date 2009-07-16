@@ -3,38 +3,38 @@
 
 = TechTypes =
 
-  * Stim_Packs
-  * Lockdown
-  * EMP_Shockwave
-  * Spider_Mines
-  * Scanner_Sweep
-  * Tank_Siege_Mode
-  * Defensive_Matrix
-  * Irradiate
-  * Yamato_Gun
-  * Cloaking_Field
-  * Personnel_Cloaking
-  * Burrowing
-  * Infestation
-  * Spawn_Broodling
-  * Dark_Swarm
-  * Plague
-  * Consume
-  * Ensnare
-  * Parasite
-  * Psionic_Storm
-  * Hallucination
-  * Recall
-  * Stasis_Field
   * Archon_Warp
-  * Restoration
-  * Disruption_Web
-  * Mind_Control
+  * Burrowing
+  * Cloaking_Field
+  * Consume
   * Dark_Archon_Meld
+  * Dark_Swarm
+  * Defensive_Matrix
+  * Disruption_Web
+  * EMP_Shockwave
+  * Ensnare
   * Feedback
-  * Optical_Flare
-  * Maelstrom
-  * Lurker_Aspect
+  * Hallucination
   * Healing
+  * Infestation
+  * Irradiate
+  * Lockdown
+  * Lurker_Aspect
+  * Maelstrom
+  * Mind_Control
+  * Optical_Flare
+  * Parasite
+  * Personnel_Cloaking
+  * Plague
+  * Psionic_Storm
+  * Recall
+  * Restoration
+  * Scanner_Sweep
+  * Spawn_Broodling
+  * Spider_Mines
+  * Stasis_Field
+  * Stim_Packs
+  * Tank_Siege_Mode
+  * Yamato_Gun
   * None
   * Unknown
