@@ -26,10 +26,10 @@ std::set<[DamageType]>& allDamageTypes();
 
 Returns the set of all the DamageTypes:
 
-  * Independent
-  * Explosive
   * Concussive
-  * Normal
+  * Explosive
   * Ignore_Armor
+  * Independent
+  * Normal
   * None
   * Unknown
