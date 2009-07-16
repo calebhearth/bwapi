@@ -1,0 +1,73 @@
+#summary WeaponTypes in BWAPI
+#sidebar TableOfContents
+
+= WeaponTypes =
+
+== Normal Weapons ==
+  * Gauss_Rifle
+  * C_10_Canister_Rifle
+  * Fragmentation_Grenade
+  * Spider_Mines
+  * Twin_Autocannons
+  * Hellfire_Missile_Pack
+  * Arclite_Cannon
+  * Fusion_Cutter
+  * Gemini_Missiles
+  * Burst_Lasers
+  * ATS_Laser_Battery
+  * ATA_Laser_Battery
+  * Flame_Thrower
+  * Arclite_Shock_Cannon
+  * Longbolt_Missile
+  * Claws
+  * Needle_Spines
+  * Kaiser_Blades
+  * Toxic_Spores
+  * Spines
+  * Acid_Spore
+  * Glave_Wurm
+  * Seeker_Spores
+  * Subterranean_Tentacle
+  * Suicide_Infested_Terran
+  * Suicide_Scourge
+  * Particle_Beam
+  * Psi_Blades
+  * Phase_Disruptor
+  * Psionic_Shockwave
+  * Dual_Photon_Blasters
+  * Anti_matter_Missiles
+  * Phase_Disruptor_Cannon
+  * Pulse_Cannon
+  * STS_Photon_Cannon
+  * STA_Photon_Cannon
+  * Scarab
+  * Neutron_Flare
+  * Halo_Rockets
+  * Corrosive_Acid
+  * Subterranean_Spines
+  * Warp_Blades
+
+== Special Weapons ==
+  * Yamato_Gun
+  * Nuclear_Strike
+  * Lockdown
+  * EMP_Shockwave
+  * Irradiate
+  * Parasite
+  * Spawn_Broodlings
+  * Ensnare
+  * Dark_Swarm
+  * Plague
+  * Consume
+  * Stasis_Field
+  * Psionic_Storm
+  * Disruption_Web
+  * Restoration
+  * Mind_Control
+  * Feedback
+  * Optical_Flare
+  * Maelstrom
+
+== Misc ==
+  * None
+  * Unknown
