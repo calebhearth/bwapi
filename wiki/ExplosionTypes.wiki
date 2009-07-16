@@ -2,28 +2,28 @@
 #sidebar TableOfContents
 
 = ExplosionTypes =
-  * None
-  * Normal
-  * Radial_Splash
-  * Enemy_Splash
-  * Lockdown
-  * Nuclear_Missile
-  * Parasite
-  * Broodlings
-  * EMP_Shockwave
-  * Irradiate
-  * Ensnare
-  * Plague
-  * Stasis_Field
-  * Dark_Swarm
-  * Consume
-  * Yamato_Gun
-  * Restoration
-  * Disruption_Web
-  * Corrosive_Acid
-  * Mind_Control
-  * Feedback
-  * Optical_Flare
-  * Maelstrom
   * Air_Splash
+  * Broodlings
+  * Consume
+  * Corrosive_Acid
+  * Dark_Swarm
+  * Disruption_Web
+  * EMP_Shockwave
+  * Enemy_Splash
+  * Ensnare
+  * Feedback
+  * Irradiate
+  * Lockdown
+  * Maelstrom
+  * Mind_Control
+  * Normal
+  * Nuclear_Missile
+  * Optical_Flare
+  * Parasite
+  * Plague
+  * Radial_Splash
+  * Restoration
+  * Stasis_Field
+  * Yamato_Gun
+  * None
   * Unknown
