@@ -19,3 +19,4 @@
   * [Unit]
   * [UnitType]
   * [UpgradeType]
+  * [WeaponType]
