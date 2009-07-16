@@ -4,69 +4,65 @@
 = WeaponTypes =
 
 == Normal Weapons ==
-  * Gauss_Rifle
-  * C_10_Canister_Rifle
-  * Fragmentation_Grenade
-  * Spider_Mines
-  * Twin_Autocannons
-  * Hellfire_Missile_Pack
+  * Acid_Spore
+  * Anti_matter_Missiles
   * Arclite_Cannon
+  * Arclite_Shock_Cannon
+  * ATA_Laser_Battery
+  * ATS_Laser_Battery
+  * Burst_Lasers
+  * Claws
+  * Corrosive_Acid
+  * Dual_Photon_Blasters
+  * Flame_Thrower
   * Fusion_Cutter
   * Gemini_Missiles
-  * Burst_Lasers
-  * ATS_Laser_Battery
-  * ATA_Laser_Battery
-  * Flame_Thrower
-  * Arclite_Shock_Cannon
-  * Longbolt_Missile
-  * Claws
-  * Needle_Spines
-  * Kaiser_Blades
-  * Toxic_Spores
-  * Spines
-  * Acid_Spore
   * Glave_Wurm
+  * Halo_Rockets
+  * Hellfire_Missile_Pack
+  * Kaiser_Blades
+  * Longbolt_Missile
+  * Needle_Spines
+  * Neutron_Flare
+  * Particle_Beam
+  * Phase_Disruptor
+  * Phase_Disruptor_Cannon
+  * Psi_Blades
+  * Psionic_Shockwave
+  * Pulse_Cannon
+  * Scarab
   * Seeker_Spores
+  * Spines
+  * STA_Photon_Cannon
+  * STS_Photon_Cannon
+  * Subterranean_Spines
   * Subterranean_Tentacle
   * Suicide_Infested_Terran
   * Suicide_Scourge
-  * Particle_Beam
-  * Psi_Blades
-  * Phase_Disruptor
-  * Psionic_Shockwave
-  * Dual_Photon_Blasters
-  * Anti_matter_Missiles
-  * Phase_Disruptor_Cannon
-  * Pulse_Cannon
-  * STS_Photon_Cannon
-  * STA_Photon_Cannon
-  * Scarab
-  * Neutron_Flare
-  * Halo_Rockets
-  * Corrosive_Acid
-  * Subterranean_Spines
+  * Toxic_Spores
+  * Twin_Autocannons
   * Warp_Blades
 
 == Special Weapons ==
-  * Yamato_Gun
-  * Nuclear_Strike
-  * Lockdown
-  * EMP_Shockwave
-  * Irradiate
-  * Parasite
-  * Spawn_Broodlings
-  * Ensnare
-  * Dark_Swarm
-  * Plague
   * Consume
-  * Stasis_Field
-  * Psionic_Storm
+  * Dark_Swarm
   * Disruption_Web
-  * Restoration
-  * Mind_Control
+  * EMP_Shockwave
+  * Ensnare
   * Feedback
-  * Optical_Flare
+  * Irradiate
+  * Lockdown
   * Maelstrom
+  * Mind_Control
+  * Nuclear_Strike
+  * Optical_Flare
+  * Parasite
+  * Plague
+  * Psionic_Storm
+  * Restoration
+  * Spawn_Broodlings
+  * Stasis_Field
+  * Yamato_Gun
 
 == Misc ==
   * None
