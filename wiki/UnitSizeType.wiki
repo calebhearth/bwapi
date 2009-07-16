@@ -1,0 +1,34 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitSizeType.h# BWAPI/UnitSizeType.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in UnitSizeTypes namespace:
+
+  * [#getUnitSizeType getUnitSizeType]
+  * [#allUnitSizeTypes allUnitSizeTypes]
+
+=== getID ===
+int getID();
+
+=== getName ===
+std::string getName();
+
+=== getUnitSizeType ===
+[UnitSizeType] getUnitSizeType(std::string &name);
+
+=== allUnitSizeTypes ===
+std::set<[UnitSizeType]>& allUnitSizeTypes();
+
+Returns the set of all the UnitSizeTypes:
+
+  * Independent;
+  * Small
+  * Medium
+  * Large
+  * None
+  * Unknown
