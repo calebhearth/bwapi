@@ -15,7 +15,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
  
-  * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Base max energy amount will need to be entered manually for the spell casters:
+  * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Max energy amount will need to be entered manually for the spell casters:
   * (1)Terran Ghost
   * (8)Terran Wraith
   * (9)Terran Science Vessel
@@ -29,6 +29,8 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * (71)Protoss Arbiter
   * (107)Terran Comsat Station
   * (172)Protoss Shield Battery
+
+The max energy amount for each of these units is 200.
 
 
   * [UnitType]::spaceRequired
@@ -50,6 +52,11 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::size
 
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
+  * [TechType]::getWeapon - returns the weapon that uses the tech type (or TechTypes::None if no weapon).
+  * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used.
+  * [WeaponType]::whatUses - returns a set of pointers to the units that use this weapon.
+
+  Create [TechTypes]::Nuclear_Strike for completeness (so every special weapon type has a corresponding tech type).
 
   * [UpgradeType]::maxRepeats
 
