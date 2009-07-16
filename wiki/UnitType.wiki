@@ -121,6 +121,7 @@ Included in the API for completeness, since the only units that actually needs t
 === armorUpgrade ===
 [UpgradeType]{{{*}}} armorUpgrade() const;
 
+Returns the upgrade that increase's the unit's armor, or UpgradeTypes::None if no upgrade increase's this unit's armor. For example UnitTypes::Terran_Marine.armorUpgrade() will return a pointer to UpgradeTypes::Terran_Infantry_Armor.
 
 === maxHitPoints ===
 int maxHitPoints() const;
