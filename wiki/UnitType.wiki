@@ -8,27 +8,48 @@ Methods:
 
   * [#getID getID]
   * [#getName getName]
+  * [#getSubLabel getSubLabel]
   * [#getRace getRace]
+
   * [#whatBuilds whatBuilds]
   * [#requiredUnits requiredUnits]
   * [#requiredTech requiredTech]
-  * [#supplyRequired supplyRequired]
-  * [#supplyProvided supplyProvided]
-  * [#maxHealth maxHealth]
-  * [#maxShield maxShield]
+  * [#armorUpgrade armorUpgrade]
+
+  * [#maxHitPoints maxHitPoints]
+  * [#maxShields maxShields]
   * [#maxEnergy maxEnergy]
+  * [#armor armor]
+
   * [#mineralPrice mineralPrice]
   * [#gasPrice gasPrice]
-  * [#armor armor]
   * [#buildTime buildTime]
+
+  * [#supplyRequired supplyRequired]
+  * [#supplyProvided supplyProvided]
+  * [#spaceRequired spaceRequired]
+  * [#buildScore buildScore]
+  * [#destroyScore destroyScore]
+
+  * [#size size]
+  * [#tileWidth tileWidth]
+  * [#tileHeight tileHeight]
   * [#dimensionLeft dimensionLeft]
   * [#dimensionUp dimensionUp]
   * [#dimensionRight dimensionRight]
   * [#dimensionDown dimensionDown]
-  * [#tileWidth tileWidth]
-  * [#tileHeight tileHeight]
-  * [#damageFactor damageFactor]
-  * [#groundDamage groundDamage]
+
+  * [#seekRange seekRange]
+  * [#sightRange sightRange]
+  * [#groundWeapon groundWeapon]
+  * [#maxGroundHits maxGroundHits]
+  * [#airWeapon airdWeapon]
+  * [#maxAirHits maxAirHits]
+
+  * [#topSpeed topSpeed]
+  * [#acceleration acceleration]
+  * [#haltDistance haltDistance]
+  * [#turnRadius turnRadius]
 
   * [#canProduce canProduce]
   * [#canAttack canAttack]
@@ -66,6 +87,9 @@ int getID() const;
 === getName ===
 std::string getName() const;
 
+=== getSubLabel ===
+std::string getSubLabel() const;
+
 === getRace ===
 [Race] getRace() const;
 
@@ -90,30 +114,29 @@ Example: UnitTypes::Terran_Battlecruiser.requiredUnits() will return a map of th
 
 Included in the API for completeness, since the only units that actually needs tech to be trained are the Zerg_Lurker and Zerg_Lurker_Egg. The tech type needed is TechTypes::Lurker_Aspect.
 
-=== supplyRequired ===
-int supplyRequired() const;
+=== armorUpgrade ===
+[UpgradeType]{{{*}}} armorUpgrade() const;
 
-Returns the amount of supply used by this unit. Note that this value is generally twice what you would expect from playing the game. Terran Marines consume 2 supply, Siege Tanks consume 4, etc. Zerg Zerglings consume 1 supply, so a pair of Zerglings consume 2 supply.
 
-=== supplyProvided ===
-int supplyProvided() const;
+=== maxHitPoints ===
+int maxHitPoints() const;
 
-Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon). Note that this value is twice what you would expect - Pylons provide 16 supply.
+Returns the maximum amount of hit points the unit type can have. This is also the amount of hit points a unit of this type has when it is first created.
 
-=== maxHealth ===
-int maxHealth() const;
+=== maxShields ===
+int maxShields() const;
 
-Returns the maximum amount of health the unit type can have. This is also the amount of health a unit of this type has when it is first created.
-
-=== maxShield ===
-int maxShield() const;
-
-Returns the maximum amount of shield the unit type can have.
+Returns the maximum amount of shields the unit type can have.
 
 === maxEnergy ===
 int maxEnergy() const;
 
-Not implemented yet.
+Returns the maximum amount of energy the unit type can have.
+
+=== armor ===
+int armor() const;
+
+Returns the amount of armor the non-upgraded unit type has.
 
 === mineralPrice ===
 int mineralPrice() const;
@@ -125,13 +148,49 @@ int gasPrice() const;
 
 UnitTypes::Siege_Tank_Tank_Mode.gasPrice() returns 100.
 
-=== armor ===
-int armor() const;
-
 === buildTime ===
 int buildTime() const;
 
 Returns the number of frames needed to make this unit type.
+
+=== supplyRequired ===
+int supplyRequired() const;
+
+Returns the amount of supply used by this unit. Note that this value is generally twice what you would expect from playing the game. Terran Marines consume 2 supply, Siege Tanks consume 4, etc. Zerg Zerglings consume 1 supply, so a pair of Zerglings consume 2 supply.
+
+=== supplyProvided ===
+int supplyProvided() const;
+
+Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon). Note that this value is twice what you would expect - Pylons provide 16 supply.
+
+=== spaceRequired ===
+int spaceRequired() const;
+Returns the amount of space this unit type takes up inside a bunker or transport unit.
+
+=== spaceProvided ===
+int spaceProvided() const;
+Returns the amount of space this unit type provides.
+
+=== buildScore ===
+int buildScore() const;
+
+=== destroyScore ===
+int destroyScore() const;
+
+=== size ===
+[UnitSizeType] size() const;
+
+Returns the size of the unit.
+
+=== tileWidth ===
+int tileWidth() const;
+
+Returns the tile width of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileWidth() will return 3.
+
+=== tileHeight ===
+int tileHeight() const;
+
+Returns the tile height of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileHeight() will return 2.
 
 === dimensionLeft ===
 int dimensionLeft() const;
@@ -145,21 +204,47 @@ int dimensionRight() const;
 === dimensionDown===
 int dimensionDown() const;
 
-=== tileWidth ===
-int tileWidth() const;
+=== seekRange ===
+int seekRange() const;
 
-Returns the tile width of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileWidth() will return 3.
+Returns the range at which the unit will start targeting enemy units.
 
-=== tileHeight ===
-int tileHeight() const;
+=== sightRange ===
+int sightRange() const;
 
-Returns the tile height of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.tileHeight() will return 2.
+Returns how far the unupgraded unit type can see into the fog of war.
 
-=== damageFactor ===
-int damageFactor() const;
+=== groundWeapon ===
+const [WeaponType]{{{*}}} groundWeapon() const;
 
-=== groundDamage ===
-int groundDamage() const;
+Returns the unit's ground weapon.
+
+=== maxGroundHits ===
+int maxGroundHits() const;
+
+=== airWeapon ===
+const [WeaponType]{{{*}}} airWeapon() const;
+
+Returns the unit's air weapon.
+
+=== maxAirHits ===
+int maxAirHits() const;
+
+=== topSpeed ===
+int topSpeed() const;
+
+Returns the unit's top speed.
+
+=== acceleration ===
+int acceleration() const;
+
+Returns how fast the unit can accelerate to its top speed.
+
+=== haltDistance ===
+int haltDistance() const;
+
+=== turnRadius ===
+int turnRadius() const;
 
 === canProduce ===
 bool canProduce() const;
