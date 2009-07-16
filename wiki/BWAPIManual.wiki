@@ -17,6 +17,7 @@
   * [Race]
   * [TechType]
   * [Unit]
+  * [UnitSizeType]
   * [UnitType]
   * [UpgradeType]
   * [WeaponType]
