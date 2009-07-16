@@ -16,19 +16,19 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Photon_Cannon: 7
  
   * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Base max energy amount will need to be entered manually for the spell casters:
-(1)Terran Ghost
-(8)Terran Wraith
-(9)Terran Science Vessel
-(12)Terran Battlecruiser
-(34)Terran Medic
-(45)Zerg Queen
-(46)Zerg Defiler
-(60)Protoss Corsair
-(63)Protoss Dark Archon
-(67)Protoss High Templar
-(71)Protoss Arbiter
-(107)Terran Comsat Station
-(172)Protoss Shield Battery
+  * (1)Terran Ghost
+  * (8)Terran Wraith
+  * (9)Terran Science Vessel
+  * (12)Terran Battlecruiser
+  * (34)Terran Medic
+  * (45)Zerg Queen
+  * (46)Zerg Defiler
+  * (60)Protoss Corsair
+  * (63)Protoss Dark Archon
+  * (67)Protoss High Templar
+  * (71)Protoss Arbiter
+  * (107)Terran Comsat Station
+  * (172)Protoss Shield Battery
 
 
   * [UnitType]::spaceRequired
