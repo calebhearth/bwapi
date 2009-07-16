@@ -3,15 +3,15 @@
 
 = PlayerTypes =
 
-  * NotUsed
-  * Computer
-  * Human
-  * Rescuable
-  * ComputerSlot
-  * OpenSlot
-  * Neutral
   * ClosedSlot
-  * HumanDefeated
+  * Computer
   * ComputerDefeated
+  * ComputerSlot
+  * Human
+  * HumanDefeated
+  * Neutral
+  * NotUsed
+  * OpenSlot
+  * Rescuable
   * None
   * Unknown
