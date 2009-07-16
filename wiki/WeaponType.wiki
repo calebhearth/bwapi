@@ -18,6 +18,7 @@ Methods:
   * [#innerSplashRadius innerSplashRadius]
   * [#medianSplashRadius medianSplashRadius]
   * [#outerSplashRadius outerSplashRadius]
+
   * [#targetsAir targetsAir]
   * [#targetsGround targetsGround]
   * [#targetsMechanical targetsMechanical]
