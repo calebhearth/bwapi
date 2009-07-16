@@ -1,0 +1,61 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/WeaponType.h# BWAPI/WeaponType.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+  * [#damageAmount damageAmount]
+  * [#damageBonus damageBonus]
+  * [#damageCooldown damageCooldown]
+  * [#damageFactor damageFactor]
+  * [#upgradeType upgradeType]
+  * [#damageType damageType]
+  * [#explosionType explosionType]
+  * [#minRange minRange]
+  * [#maxRange maxRange]
+  * [#innerSplashRadius innerSplashRadius]
+  * [#medianSplashRadius medianSplashRadius]
+  * [#outerSplashRadius outerSplashRadius]
+  * [#targetsAir targetsAir]
+  * [#targetsGround targetsGround]
+  * [#targetsMechanical targetsMechanical]
+  * [#targetsOrganic targetsOrganic]
+  * [#targetsNonBuilding targetsNonBuilding]
+  * [#targetsNonRobotic targetsNonRobotic]
+  * [#targetsTerrain targetsTerrain]
+  * [#targetsOrgOrMech targetsOrgOrMech]
+  * [#targetsOwn targetsOwn]
+
+Non-member methods in WeaponTypes namespace:
+
+  * [#getWeaponType getWeaponType]
+  * [#allWeaponTypes allWeaponTypes]
+  * [#normalWeaponTypes normalWeaponTypes]
+  * [#specialWeaponTypes specialWeaponTypes]
+
+=== getID ==
+    int getID() const;
+    std::string getName() const;
+    int damageAmount() const;
+    int damageBonus() const;
+    int damageCooldown() const;
+    int damageFactor() const;
+    const UpgradeType* upgradeType() const;
+    const DamageType* damageType() const;
+    const ExplosionType* explosionType() const;
+    int minRange() const;
+    int maxRange() const;
+    int innerSplashRadius() const;
+    int medianSplashRadius() const;
+    int outerSplashRadius() const;
+    bool targetsAir() const;
+    bool targetsGround() const;
+    bool targetsMechanical() const;
+    bool targetsOrganic() const;
+    bool targetsNonBuilding() const;
+    bool targetsNonRobotic() const;
+    bool targetsTerrain() const;
+    bool targetsOrgOrMech() const;
+    bool targetsOwn() const;
