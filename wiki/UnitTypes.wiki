@@ -4,6 +4,8 @@
 
 = UnitTypes =
 
+== Terran UnitTypes ==
+
   * Terran_Academy
   * Terran_Armory
   * Terran_Barracks
@@ -38,6 +40,8 @@
   * Terran_Vulture
   * Terran_Vulture_Spider_Mine
   * Terran_Wraith
+
+== Zerg UnitTypes ==
 
   * Zerg_Broodling
   * Zerg_Cocoon
@@ -75,6 +79,8 @@
   * Zerg_Ultralisk_Cavern
   * Zerg_Zergling
 
+== Protoss UnitTypes ==
+
   * Protoss_Arbiter
   * Protoss_Arbiter_Tribunal
   * Protoss_Archon
@@ -108,6 +114,8 @@
   * Protoss_Templar_Archives
   * Protoss_Zealot
 
+== Critter UnitTypes ==
+
   * Critter_Bengalaas
   * Critter_Kakaru
   * Critter_Ragnasaur
@@ -115,12 +123,18 @@
   * Critter_Scantid
   * Critter_Ursadon
 
+== Resource UnitTypes ==
+
   * Resource_Mineral_Field
   * Resource_Vespene_Geyser
+
+== Spell UnitTypes ==
 
   * Spell_Dark_Swarm
   * Spell_Disruption_Web
   * Spell_Scanner_Sweep
+
+== Misc ==
 
   * None
   * Unknown
