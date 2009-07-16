@@ -56,8 +56,6 @@ The max energy amount for each of these units is 200.
   * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used.
   * [WeaponType]::whatUses - returns a set of pointers to the units that use this weapon.
 
-  Create [TechTypes]::Nuclear_Strike for completeness (so every special weapon type has a corresponding tech type).
-
   * [UpgradeType]::maxRepeats
 
   * [Player]::[Player#isAlliesWith isAlliesWith]
