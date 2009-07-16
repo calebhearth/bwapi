@@ -15,7 +15,21 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
  
-  * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Base max energy amount will need to be entered manually
+  * [UnitType]::[UnitType#maxEnergy maxEnergy] - not in unitsDat. Base max energy amount will need to be entered manually for the spell casters:
+(1)Terran Ghost
+(8)Terran Wraith
+(9)Terran Science Vessel
+(12)Terran Battlecruiser
+(34)Terran Medic
+(45)Zerg Queen
+(46)Zerg Defiler
+(60)Protoss Corsair
+(63)Protoss Dark Archon
+(67)Protoss High Templar
+(71)Protoss Arbiter
+(107)Terran Comsat Station
+(172)Protoss Shield Battery
+
 
   * [UnitType]::spaceRequired
   * [UnitType]::spaceProvided
@@ -30,11 +44,9 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [UnitType]::turnRadius
 
   * [WeaponType] [UnitType]::groundWeaponType()
-  * int [UnitType]::groundWeaponAmount()
-  * int [UnitType]::groundWeaponMaxHits()
+  * int [UnitType]::maxGroundHits()
   * [WeaponType] [UnitType]::airWeaponType()
-  * int [UnitType]::airWeaponAmount()
-  * int [UnitType]::airWeaponMaxHits()
+  * int [UnitType]::maxAirHits()
   * [UnitType]::size
 
   * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
