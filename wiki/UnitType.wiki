@@ -170,10 +170,12 @@ Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon). N
 
 === spaceRequired ===
 int spaceRequired() const;
+
 Returns the amount of space this unit type takes up inside a bunker or transport unit.
 
 === spaceProvided ===
 int spaceProvided() const;
+
 Returns the amount of space this unit type provides.
 
 === buildScore ===
