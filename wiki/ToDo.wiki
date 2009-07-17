@@ -2,7 +2,7 @@
 
  * Make BWAPI compatible with replays.
 
-== Methods that need to be implemented ==
+== Complete interface functionality ==
 
   * [Unit]::removeTimer
 
