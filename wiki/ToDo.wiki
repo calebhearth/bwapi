@@ -1,4 +1,8 @@
-Methods that need to be implemented:
+= Todo list for release 1.0 =
+
+ * Make BWAPI compatible with replays.
+
+== Methods that need to be implemented ==
 
   * [Unit]::removeTimer
 
@@ -30,3 +34,18 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Pylon power range - could add to Constants.h or to UnitType, where only the pylon unit type would have a non-zero power range.
 
   * [Game]::surrender
+
+== Enforce CompleteMapInformation cheat flags ==
+  * Game methods
+  * Player methods
+  * Unit methods
+
+== Make BWAPI thread safe ==
+  * Game methods
+  * Player methods
+  * Unit methods (information)
+  * Unit methods (orders)
+
+== Possible Ideas for release 1.x ==
+
+  * Order call-backs and/or buffering
