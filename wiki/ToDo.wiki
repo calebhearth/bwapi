@@ -48,6 +48,11 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Unit methods (information)
   * Unit methods (orders)
 
+== Implement Error Code Usage ==
+  * Game methods
+  * Player methods
+  * Unit methods
+
 = Possible Ideas for release 1.x =
 
   * Order call-backs and/or buffering so the AI module can "listen" to what orders are being issued.
