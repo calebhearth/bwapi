@@ -6,7 +6,7 @@ The Unit class is used to get information about individual units as well as issu
 
 Methods:
 
-  * [#getOwner getOwner]
+  * [#getPlayer getPlayer]
   * [#getType getType]
   * [#health health]
   * [#shield shield]
@@ -122,8 +122,8 @@ The following orders can be issued to units:
   * [#useTech_2 useTech]
   * [#useTech_3 useTech]
 
-=== getOwner ===
-[Player]{{{*}}} getOwner() const;
+=== getPlayer ===
+[Player]{{{*}}} getPlayer() const;
 
 Returns a pointer to the player that owns this unit.
 
