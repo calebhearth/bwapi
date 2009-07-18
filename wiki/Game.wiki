@@ -39,6 +39,7 @@ Methods:
   * [#print print]
   * [#printPublic printPublic]
   * [#changeRace changeRace]
+  * [#inReplay inReplay]
   * [#startGame startGame]
   * [#pauseGame pauseGame]
   * [#resumeGame resumeGame]
@@ -199,6 +200,11 @@ Primary function for printing text to the screen.
 void changeRace([Race] race);
 
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
+
+=== inReplay ===
+void inReplay() const;
+
+Returns true if Broodwar is playing a replay.
 
 === startGame ===
 void startGame();
