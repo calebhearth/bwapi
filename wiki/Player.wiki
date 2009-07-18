@@ -14,6 +14,7 @@ Methods:
   * [#isAlliesWith isAlliesWith]
   * [#getID getID]
   * [#getStartLocation getStartLocation]
+  * [#isNeutral isNeutral]
 
   * [#minerals minerals]
   * [#gas gas]
@@ -70,6 +71,11 @@ Returns a unique ID for the player.
 [Misc#TilePosition TilePosition] getStartLocation() const;
 
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+
+=== isNeutral ===
+bool isNeutral() const;
+
+Returns true if the player is the neutral player.
 
 === minerals ===
 int minerals() const;
