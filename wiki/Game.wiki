@@ -52,6 +52,7 @@ Methods:
   * [#drawEllipse drawEllipse]
   * [#drawDot drawDot]
   * [#drawLine drawLine]
+  * [#drawTriangle drawTriangle]
 
 === getForces ===
 std::set< [Force]{{{*}}} > getForces() const;
@@ -256,3 +257,8 @@ Draws a dot on the screen at the given position with the given color.
 drawLine([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x1, int y1, int x2, int y2, [Color] color);
 
 Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
+
+=== drawTriangle ===
+drawTriangle([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x1, int y1, int x2, int y2, int x3, int y3, [Color] color, bool isSolid);
+
+Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise the just the outline of the triangle will be draw.
