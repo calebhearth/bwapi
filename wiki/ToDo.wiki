@@ -1,7 +1,5 @@
 = Todo list for release 1.0 =
 
- * Make BWAPI compatible with replays.
-
 == Complete interface functionality ==
 
   * [Unit]::removeTimer
