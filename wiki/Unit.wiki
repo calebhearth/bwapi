@@ -8,23 +8,24 @@ Methods:
 
   * [#getPlayer getPlayer]
   * [#getType getType]
-  * [#health health]
-  * [#shield shield]
-  * [#energy energy]
-  * [#resources resources]
+  * [#getHitPoints getHitPoints]
+  * [#getShields getShields]
+  * [#getEnergy getEnergy]
+  * [#getResources getResources]
   * [#getKillCount getKillCount]
-  * [#groundWeaponCooldown groundWeaponCooldown]
-  * [#airWeaponCooldown airWeaponCooldown]
-  * [#spellCooldown spellCooldown]
-  * [#defenseMatrixPoints defenseMatrixPoints]
-  * [#defenseMatrixTimer defenseMatrixTimer]
-  * [#stimTimer stimTimer]
-  * [#ensnareTimer ensnareTimer]
-  * [#lockdownTimer lockdownTimer]
-  * [#irradiateTimer irradiateTimer]
-  * [#stasisTimer stasisTimer]
-  * [#plagueTimer plagueTimer]
-  * [#maelstromTimer maelstromTimer]
+  * [#getGroundWeaponCooldown getGroundWeaponCooldown]
+  * [#getAirWeaponCooldown getAirWeaponCooldown]
+  * [#getSpellCooldown getSpellCooldown]
+  * [#getDefenseMatrixPoints getDefenseMatrixPoints]
+  * [#getDefenseMatrixTimer getDefenseMatrixTimer]
+  * [#getStimTimer getStimTimer]
+  * [#getEnsnareTimer getEnsnareTimer]
+  * [#getLockdownTimer getLockdownTimer]
+  * [#getIrradiateTimer getIrradiateTimer]
+  * [#getStasisTimer getStasisTimer]
+  * [#getPlagueTimer getPlagueTimer]
+  * [#getMaelstromTimer getMaelstromTimer]
+  * [#getRemoveTimer getRemoveTimer]
   * [#getPosition getPosition]
   * [#getTilePosition getTilePosition]
 
@@ -132,23 +133,23 @@ Returns a pointer to the player that owns this unit.
 
 Returns the type of the unit.
 
-=== health ===
-int health() const;
+=== getHitPoints ===
+int getHitPoints() const;
 
-Returns the unit's current amount of health.
+Returns the unit's current amount of hit points.
 
-=== shield ===
-int shield() const;
+=== getShields ===
+int getShields() const;
 
-Returns the unit's current amount of shield.
+Returns the unit's current amount of shields.
 
-=== energy ===
-int energy() const;
+=== getEnergy ===
+int getEnergy() const;
 
 Returns the unit's current amount of energy.
 
-=== resources ===
-int resources() const;
+=== getResources ===
+int getResources() const;
 
 Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
 
@@ -157,67 +158,72 @@ int getKillCount() const;
 
 Returns the unit's current kill count.
 
-=== groundWeaponCooldown ===
-int groundWeaponCooldown() const;
+=== getGroundWeaponCooldown ===
+int getGroundWeaponCooldown() const;
 
 Returns unit's ground weapon cooldown. It is 0 if the unit is ready to attack.
 
-=== airWeaponCooldown ===
-int airWeaponCooldown() const;
+=== getAirWeaponCooldown ===
+int getAirWeaponCooldown() const;
 
 Returns unit's air weapon cooldown. It is 0 if the unit is ready to attack.
 
-=== spellCooldown ===
-int spellWeaponCooldown() const;
+=== getSpellCooldown ===
+int getSpellCooldown() const;
 
 Returns unit's ground weapon cooldown. It is 0 if the unit is ready cast a spell.
 
-=== defenseMatrixPoints ===
-int defenseMatrixPoints() const;
+=== getDefenseMatrixPoints ===
+int getDefenseMatrixPoints() const;
 
 Returns the remaining hitpoints of the defense matrix. 
 Initially a defense Matrix has 64000(250 ingame) points. Note that you have to divide it by
 256 to get the hitpoint format the game displays.
 
-=== defenseMatrixTimer ===
-int defenseMatrixTimer() const;
+=== getDefenseMatrixTimer ===
+int getDefenseMatrixTimer() const;
 
 Returns the time until the defense matrix wears off. 0 -> No defense Matrix present.
 
-=== stimTimer ===
-int stimTimer() const;
+=== getStimTimer ===
+int getStimTimer() const;
 
 Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
 
-=== ensnareTimer ===
-int ensnareTimer() const;
+=== getEnsnareTimer ===
+int getEnsnareTimer() const;
 
 Returns the time until the ensnare effect wears off. 0 -> No ensnare effect present.
 
-=== lockdownTimer ===
-int lockdownTimer() const;
+=== getLockdownTimer ===
+int getLockdownTimer() const;
 
 Returns the time until the lockdown wears off. 0 -> No lockdown present.
 
-=== irradiateTimer ===
-int irradiateTimer() const;
+=== getIrradiateTimer ===
+int getIrradiateTimer() const;
 
 Returns the time until the radiation wears off. 0 -> No radiation present.
 
-=== stasisTimer ===
-int stasisTimer() const;
+=== getStasisTimer ===
+int getStasisTimer() const;
 
 Returns the time until the stasis field wears off. 0 -> No stasis field present.
 
-=== plagueTimer ===
-int plagueTimer() const;
+=== getPlagueTimer ===
+int getPlagueTimer() const;
 
 Returns the time until the plague wears off. 0 -> No plague present.
 
-=== maelstromTimer ===
-int maelstromTimer() const;
+=== getMaelstromTimer ===
+int getMaelstromTimer() const;
 
 Returns the time until the maelstrom wears off. 0 -> No maelstrom present.
+
+=== getRemoveTimer ===
+int getRemoveTimer() const;
+
+Returns the amount of time until the unit is removed, or 0 if the unit does not have a remove timer. Used to determine how much time remains before hallucinated units, dark swarm, etc have until they are removed.
 
 === getPosition ===
 [Misc#Position Position] getPosition() const;
