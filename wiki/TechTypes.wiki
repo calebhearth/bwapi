@@ -22,6 +22,7 @@
   * Lurker_Aspect
   * Maelstrom
   * Mind_Control
+  * Nuclear_Strike
   * Optical_Flare
   * Parasite
   * Personnel_Cloaking
