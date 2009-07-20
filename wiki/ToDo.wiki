@@ -25,8 +25,6 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * [Player]::[Player#isAlliesWith isAlliesWith]
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
 
-  * Add TechTypes::Nuclear_Strike for completeness (so every special ability is a tech type).
-
   * [Game]::setScreenPosition(int x, int y)
 
   * Pylon power range - could add to Constants.h or to UnitType, where only the pylon unit type would have a non-zero power range.
