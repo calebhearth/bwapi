@@ -17,7 +17,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
 
   * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used. Opposite of [TechType]::getWeapon
   * [WeaponType]::whatUses - returns a set of pointers to the units that use this weapon.
-  * [UnitType]::getAbilities - returns the set of tech types this unit type can use (via useTech). Opposite of [TechType]::whatUses.
+  * [UnitType]::abilities - returns the set of tech types this unit type can use (via useTech). Opposite of [TechType]::whatUses.
 
   * [UpgradeType]::maxRepeats
 
