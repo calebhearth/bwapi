@@ -25,7 +25,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
 
   * [Game]::setScreenPosition(int x, int y)
 
-  * Pylon power range - could add to Constants.h or to UnitType, where only the pylon unit type would have a non-zero power range.
+  * Pylon power range - add to Constants.h. Many have a different radius for horizontal and vertical (since it looks like an ellipse in-game).
 
   * [Game]::surrender
   * Determine when BWAPI is in a single player game (not network game or replay)
