@@ -31,7 +31,7 @@
   * Recall
   * Restoration
   * Scanner_Sweep
-  * Spawn_Broodling
+  * Spawn_Broodlings
   * Spider_Mines
   * Stasis_Field
   * Stim_Packs
