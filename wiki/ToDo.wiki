@@ -15,8 +15,6 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
 
-  * [TechType]::whatUses - returns a pointer to the type of unit that uses the tech type. For example, the irradiate tech type would return Terran science vessel.
-  * [TechType]::getWeapon - returns the weapon that uses the tech type (or TechTypes::None if no weapon).
   * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used.
   * [WeaponType]::whatUses - returns a set of pointers to the units that use this weapon.
 
