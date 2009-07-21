@@ -11,6 +11,9 @@ Methods:
   * [#gasPrice gasPrice]
   * [#energyUsed energyUsed]
   * [#whatResearches whatResearches]
+  * [#getWeapon getWeapon]
+  * [#whatUses whatUses]
+
 Non-member methods in TechTypes namespace: 
 
   * [#getTechType getTechType]
