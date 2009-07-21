@@ -15,8 +15,9 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
   * Protoss_Observer: 9 (11 upgraded)
   * Protoss_Photon_Cannon: 7
 
-  * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used.
+  * [WeaponType]::getTech - returns the tech type that must be researched before the weapon can be used. Opposite of [TechType]::getWeapon
   * [WeaponType]::whatUses - returns a set of pointers to the units that use this weapon.
+  * [UnitType]::getAbilities - returns the set of tech types this unit type can use (via useTech). Opposite of [TechType]::whatUses.
 
   * [UpgradeType]::maxRepeats
 
@@ -25,7 +26,7 @@ We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Sou
 
   * [Game]::setScreenPosition(int x, int y)
 
-  * Pylon power range - add to Constants.h. Many have a different radius for horizontal and vertical (since it looks like an ellipse in-game).
+  * Pylon power range - add to Constants.h. May have a different radius for horizontal and vertical (since it looks like an ellipse in-game).
 
   * [Game]::surrender
   * Determine when BWAPI is in a single player game (not network game or replay)
