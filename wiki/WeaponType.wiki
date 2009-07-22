@@ -6,6 +6,8 @@ Methods:
 
   * [#getID getID]
   * [#getName getName]
+  * [#getTech getTech]
+  * [#whatUses whatUses]
   * [#damageAmount damageAmount]
   * [#damageBonus damageBonus]
   * [#damageCooldown damageCooldown]
@@ -42,6 +44,12 @@ int getID() const;
 === getName ===
 std::string getName() const;
 
+=== getTech ===
+const [TechType]{{{*}}} getTech() const;
+
+=== whatUses ===
+const [UnitType]{{{*}}} whatUses() const;
+
 === damageAmount ===
 int damageAmount() const;
 
@@ -66,8 +74,12 @@ const [ExplosionType]{{{*}}} explosionType() const;
 === minRange ===
 int minRange() const;
 
+Returns the minimum attack range of the weapon, 0 for most things except WeaponTypes::Arclite_Shock_Cannon (the weapon of the Terran Siege Tank in Siege Mode).
+
 === maxRange ===
 int maxRange() const;
+
+Returns the maximum attack range of the weapon.
 
 === innerSplashRadius ===
 int innerSplashRadius() const;
@@ -81,8 +93,12 @@ int outerSplashRadius() const;
 === targetsAir ===
 bool targetsAir() const;
 
+Returns true if this weapon can attack air units.
+
 === targetsGround ===
 bool targetsGround() const;
+
+Returns true if this weapon can attack ground units.
 
 === targetsMechanical ===
 bool targets Mechanical() const;
@@ -107,6 +123,8 @@ bool targetsOwn() const;
 
 === getWeaponType ===
 [WeaponType] getWeaponType(std::string &name);
+
+Given the name of a weapon, this will return the corresponding weapon type object.
 
 === allWeaponTypes ===
 std::set<[WeaponType]>& allWeaponTypes();
