@@ -44,14 +44,22 @@ int getID() const;
 === getName ===
 std::string getName() const;
 
+Returns the name of the weapon.
+
 === getTech ===
 const [TechType]{{{*}}} getTech() const;
+
+Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if no tech type is required.
 
 === whatUses ===
 const [UnitType]{{{*}}} whatUses() const;
 
+Returns the unit that can use this weapon.
+
 === damageAmount ===
 int damageAmount() const;
+
+Returns the amount of damage that this weapon deals per attack.
 
 === damageBonus ===
 int damageBonus() const;
@@ -62,14 +70,22 @@ int damageCooldown() const;
 === damageFactor ===
 int damageFactor() const;
 
+Returns the amount that the damage increases per upgrade
+
 === upgradeType ===
 const [UpgradeType]{{{*}}} upgradeType() const;
+
+Returns the upgrade type that can be upgraded to increase the attack damage.
 
 === damageType ===
 const [DamageType]{{{*}}} damageType() const;
 
+Returns the type of damage that this weapon uses (i.e. concussive, normal, explosive, etc).
+
 === explosionType ===
 const [ExplosionType]{{{*}}} explosionType() const;
+
+Returns the type of explosion that this weapon uses.
 
 === minRange ===
 int minRange() const;
