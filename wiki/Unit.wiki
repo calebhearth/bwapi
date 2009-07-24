@@ -356,7 +356,7 @@ See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelCon
 === isBeingHealed ===
 bool isBeingHealed() const;
 
-Not implemented yet.
+Returns true if the unit is currently being healed by a Terran Medic.
 
 === isBlind ===
 bool isBlind() const;
