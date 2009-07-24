@@ -2,8 +2,6 @@
 
 == Complete interface functionality ==
 
-  * [Unit]::isBeingHealed - implemented, but function unknown
-
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere.
 
 We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
