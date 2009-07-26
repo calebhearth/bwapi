@@ -13,6 +13,7 @@ Methods:
   * [#mineralPriceFactor mineralPriceFactor]
   * [#gasPriceBase gasPriceBase]
   * [#gasPriceFactor gasPriceFactor]
+  * [#maxRepeats maxRepeats]
   * [#whatUpgrades whatUpgrades]
 
 Non-member methods in UpgradeTypes namespace:
@@ -55,10 +56,15 @@ int gasPriceFactor();
 
 Returns the amount that the vespene gas price increases for each additional upgrade.
 
+=== maxRepeats ===
+int maxRepeats();
+
+Returns the maximum number of times the upgrade can be researched.
+
 === whatUpgrades ===
 [UnitType]{{{*}}} whatUpgrades();
 
-Returns the type of unit that performs the upgrade.
+Returns the type of unit that researches the upgrade.
 
 === getUpgradeType ===
 [UpgradeType] getUpgradeType(std::string &name);
