@@ -4,14 +4,7 @@
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere.
 
-We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit. Detector unit types (with detection ranges according to [http://starcraft.wikia.com] )
-  * Terran_Science_Vessel: 10
-  * Terran_Missile_Turret: 11
-  * Spell_Scanner_Sweep: 10
-  * Zerg_Overlord: 9 (11 upgraded)
-  * Zerg_Spore_Colony: 10
-  * Protoss_Observer: 9 (11 upgraded)
-  * Protoss_Photon_Cannon: 7
+We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit.
 
   * [UnitType]::abilities - returns the set of tech types this unit type can use (via useTech). Opposite of [TechType]::whatUses.
 
