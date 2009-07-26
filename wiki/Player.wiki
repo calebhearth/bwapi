@@ -60,7 +60,7 @@ Returns the force the player is on.
 === isAlliesWith ===
 bool isAlliesWith([Player]{{{*}}} player) const;
 
-Not implemented yet. Will return true if this player is allies with the given player.
+Returns true if this player is allied with the other player, or is on the same team as the other player.
 
 === getID ===
 int getID() const;
