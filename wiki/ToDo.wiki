@@ -6,8 +6,6 @@
 
   * [UnitType]::abilities - returns the set of tech types this unit type can use (via useTech). Opposite of [TechType]::whatUses.
 
-  * [UpgradeType]::maxRepeats
-
   * Pylon power range - add to Constants.h. May have a different radius for horizontal and vertical (since it looks like an ellipse in-game). After some experimentation, the range does not appear to be either horizontally or vertically symmetric. For example, the range extends a few tiles farther toward the top left. May need to make 3 relative build maps, for 2x2, 2x3, and 3x4 sized buildings to determine exactly where each can be placed, relative to a pylon.
 
   * [Game]::[Game#getLatency getLatency] - right now just set to BattlenetLow in constructor.
