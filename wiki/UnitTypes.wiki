@@ -114,6 +114,23 @@
   * Protoss_Templar_Archives
   * Protoss_Zealot
 
+== Special Units ==
+  * Special_Crashed_Norad_II
+  * Special_Ion_Cannon
+  * Special_Overmind_With_Shell
+  * Special_Overmind
+  * Special_Mature_Chrysalis
+  * Special_Cerebrate
+  * Special_Cerebrate_Daggoth
+  * Special_Stasis_Cell_Prison
+  * Special_Khaydarin_Crystal_Form
+  * Special_Protoss_Temple
+  * Special_XelNaga_Temple
+  * Special_Warp_Gate
+  * Special_Psi_Disrupter
+  * Special_Power_Generator
+  * Special_Overmind_Cocoon
+
 == Critter Units ==
 
   * Critter_Bengalaas
