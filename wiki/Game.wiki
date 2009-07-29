@@ -87,7 +87,7 @@ Returns the set of all visible neutral units, or all neutral units if [Flag]::Co
 === getLatency ===
 Latency::Enum getLatency() const;
 
-Not implemented yet.
+Returns the amount of latency the current game has. Currently only returns LanLow, LanMedium, or LanHigh.
 
 === getFrameCount ===
 int getFrameCount() const;
