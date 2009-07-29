@@ -8,7 +8,6 @@
 
   * Pylon power range - add to Constants.h. May have a different radius for horizontal and vertical (since it looks like an ellipse in-game). After some experimentation, the range does not appear to be either horizontally or vertically symmetric. For example, the range extends a few tiles farther toward the top left. May need to make 3 relative build maps, for 2x2, 2x3, and 3x4 sized buildings to determine exactly where each can be placed, relative to a pylon.
 
-  * [Game]::setScreenPosition(int x, int y)
   * [Game]::surrender
   * Determine when BWAPI is in a single player game (not network game or replay)
   * Make [Game]::printPublic work in single player. Once this works we can remove [Game]::print and rename [Game]::printPublic to [Game]::print.
@@ -33,3 +32,4 @@
 = Possible Ideas for release 1.x =
 
   * Order call-backs and/or buffering so the AI module can "listen" to what orders are being issued.
+  * [Game]::setScreenPosition(int x, int y)
