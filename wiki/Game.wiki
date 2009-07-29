@@ -36,8 +36,8 @@ Methods:
   * [#getStartLocations getStartLocations]
   * [#getMapHash getMapHash]
 
-  * [#print print]
-  * [#printPublic printPublic]
+  * [#printf printf]
+  * [#sendText sendText]
   * [#changeRace changeRace]
   * [#inReplay inReplay]
   * [#startGame startGame]
@@ -189,13 +189,15 @@ int getMapHash() const;
 
 Returns a unique identifier for the given map data that does not depend on the file name.
 
-=== print ===
-int print(const char {{{*}}}text, ...);
+=== printf ===
+int printf(const char {{{*}}}text, ...);
 
-=== printPublic ===
-int printPublic(const char {{{*}}}text, ...);
+Prints text on the screen. Text is not sent to other players in multiplayer games.
 
-Primary function for printing text to the screen.
+=== sendText ===
+int sendText(const char {{{*}}}text, ...);
+
+Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen.
 
 === changeRace ===
 void changeRace([Race] race);
