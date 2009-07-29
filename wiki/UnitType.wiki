@@ -14,6 +14,7 @@ Methods:
   * [#whatBuilds whatBuilds]
   * [#requiredUnits requiredUnits]
   * [#requiredTech requiredTech]
+  * [#abilities abilities]
   * [#armorUpgrade armorUpgrade]
 
   * [#maxHitPoints maxHitPoints]
@@ -100,14 +101,14 @@ Returns the rank/sublabel of the unit, i.e. Private, Captain, Major, etc.
 Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return Races::Terran.
 
 === whatBuilds ===
-std::pair< [UnitType]{{{*}}}, int > whatBuilds() const;
+const std::pair< const [UnitType]{{{*}}}, int > whatBuilds() const;
 
 Returns what builds this unit type. The second number will usually be 1 unless the unit type is Protoss_Archon or Protoss_Dark_Archon. Units that cannot be created, such as critters and mineral fields, will return a pair where the unit type is UnitTypes::None, and the second component is 0.
 
 Example: UnitTypes::Terran_Marine.whatBuilds() will return an std::pair, where the first component is UnitTypes::Terran_Barracks.
 
 === requiredUnits ===
-std::map< [UnitType]{{{*}}}, int > requiredUnits() const;
+const std::map< const [UnitType]{{{*}}}, int > requiredUnits() const;
 
 Returns the units the player is required to have before it can train or build the given unit type.
 
@@ -117,6 +118,11 @@ Example: UnitTypes::Terran_Battlecruiser.requiredUnits() will return a map of th
 [TechType]{{{*}}} requiredTech() const;
 
 Included in the API for completeness, since the only units that actually needs tech to be trained are the Zerg_Lurker and Zerg_Lurker_Egg. The tech type needed is TechTypes::Lurker_Aspect.
+
+=== abilities ===
+const std::set< const [TechType]{{{*}}} >& abilities() const;
+
+Returns the set of tech types this unit can use, provided the tech types have been researched and the unit has enough energy.
 
 === armorUpgrade ===
 [UpgradeType]{{{*}}} armorUpgrade() const;
