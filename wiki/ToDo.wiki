@@ -4,7 +4,7 @@
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere. We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit.
 
-  * [Game]::surrender
+  * [Game]::surrender - quit the match
   * [Game]::text(int x, int y, const char{{{*}}} text, ...) - print at arbitrary screen location
 
 == Enforce CompleteMapInformation cheat flags ==
