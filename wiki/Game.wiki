@@ -32,6 +32,7 @@ Methods:
   * [#walkable walkable]
   * [#visible visible]
   * [#hasCreep hasCreep]
+  * [#hasPower hasPower]
   * [#groundHeight groundHeight]
   * [#getStartLocations getStartLocations]
   * [#getMapHash getMapHash]
@@ -173,6 +174,11 @@ Returns true if the specified build tile is visible. If the tile is concealed by
 bool hasCreep(int x, int y) const;
 
 Returns true if the specified build tile has zerg creep on it.
+
+=== hasPower ===
+bool hasPower(int x, int y, int tileWidth, int tileHeight) const;
+
+Returns true if the given build location is powered by a nearby friendly pylon.
 
 === groundHeight ===
 int groundHeight(int x, int y) const;
