@@ -196,14 +196,19 @@ int getMapHash() const;
 Returns a unique identifier for the given map data that does not depend on the file name.
 
 === printf ===
-int printf(const char {{{*}}}text, ...);
+void printf(const char {{{*}}}text, ...);
 
 Prints text on the screen. Text is not sent to other players in multiplayer games.
 
 === sendText ===
-int sendText(const char {{{*}}}text, ...);
+void sendText(const char {{{*}}}text, ...);
 
 Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen.
+
+=== text ===
+void text([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int x, int y, const char{{{*}}} text, ...);
+
+Draws text on the screen at the given position.
 
 === changeRace ===
 void changeRace([Race] race);
