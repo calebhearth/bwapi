@@ -89,6 +89,7 @@ The following orders can be issued to units:
   * [#rightClick_2 rightClick] - Right click on a unit
   * [#train train]
   * [#build build]
+  * [#buildAddon buildAddon]
   * [#invent research]
   * [#upgrade upgrade]
   * [#stop stop]
