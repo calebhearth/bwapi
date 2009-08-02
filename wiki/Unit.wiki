@@ -549,6 +549,11 @@ bool build([Misc#TilePosition TilePosition] p, [UnitType] type);
 
 Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail.
 
+=== buildAddon ===
+bool buildAddon( [UnitType] type);
+
+Orders the unit to build the given addon. The unit must be a Terran building that can have an addon and the specified unit type must be an addon unit type.
+
 === research ===
 bool research([TechType] tech);
 
