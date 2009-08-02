@@ -61,6 +61,8 @@ Methods:
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
   * [#isFollowing isFollowing]
+  * [#isGatheringGas isGatheringGas]
+  * [#isGatheringMinerals isGatheringMinerals]
   * [#isHallucination isHallucination]
   * [#isIdle isIdle]
   * [#isLifted isLifted]
@@ -401,6 +403,16 @@ bool isFollowing() const;
 Returns true if the unit is following another unit.
 
 See also: [Unit]::[Unit#follow follow].
+
+=== isGatheringGas ===
+bool isGatheringGas() const;
+
+Returns true if the unit is gathering gas.
+
+=== isGatheringMinerals ===
+bool isGatheringMinerals() const;
+
+Returns true if the unit is gathering minerals.
 
 === isHallucination ===
 bool isHallucination() const;
