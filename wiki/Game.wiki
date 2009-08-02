@@ -33,6 +33,7 @@ Methods:
   * [#visible visible]
   * [#hasCreep hasCreep]
   * [#hasPower hasPower]
+  * [#canBuildHere canBuildHere]
   * [#groundHeight groundHeight]
   * [#getStartLocations getStartLocations]
   * [#getMapHash getMapHash]
@@ -180,6 +181,11 @@ Returns true if the specified build tile has zerg creep on it.
 bool hasPower(int x, int y, int tileWidth, int tileHeight) const;
 
 Returns true if the given build location is powered by a nearby friendly pylon.
+
+=== canBuildHere ===
+bool canBuildHere(Unit{{{*}}} builder, [Misc#TilePosition TilePosition], [UnitType] type)
+
+Returns true if the given unit type can be built at the given location. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location.
 
 === groundHeight ===
 int groundHeight(int x, int y) const;
