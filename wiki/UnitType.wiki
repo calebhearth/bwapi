@@ -66,6 +66,7 @@ Methods:
   * [#isDetector isDetector]
   * [#isResourceContainer isResourceContainer]
   * [#isResourceDepot isResourceDepot]
+  * [#isRefinery isRefinery]
   * [#isWorker isWorker]
   * [#requiresPsi requiresPsi]
   * [#requiresCreep requiresCreep]
@@ -328,6 +329,11 @@ Returns true for units that hold resources (i.e. Mineral Field, Vespene Geyser, 
 bool isResourceDepot() const;
 
 Returns true for units that can accept resources (i.e. Terran Command Center).
+
+=== isRefinery ===
+bool isRefinery() const;
+
+Returns true for Terran Refinery, Zerg Extractor, and Protoss Assimilator.
 
 === isWorker ===
 bool isWorker() const;
