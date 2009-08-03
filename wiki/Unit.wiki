@@ -393,7 +393,7 @@ Returns true if the unit has been completed.
 === isConstructing ===
 bool isConstructing() const;
 
-Returns true if the unit is a Terran SCV that is constructing a building.
+Returns true when a unit has been issued an order to build a structure and is moving to the build location. Also returns true for Terran SCVs while they construct a building.
 
 See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isBeingConstructed isBeingConstructed].
 
