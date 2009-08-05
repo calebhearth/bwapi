@@ -51,6 +51,7 @@ Methods:
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
 
+  * [#exists exists]
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
   * [#isBeingHealed isBeingHealed]
@@ -343,6 +344,11 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 [Unit]{{{*}}} getAddon() const;
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
+
+=== exists ===
+bool exists() const;
+
+Returns true if the unit exists.
 
 === isAccelerating ===
 bool isAccelerating() const;
