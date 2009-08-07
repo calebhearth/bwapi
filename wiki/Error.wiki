@@ -37,8 +37,8 @@ Returns the set of all the error codes, which are listed below.
   * [#Unit_Not_Visible Unit_Not_Visible]
   * [#Unit_Not_Owned Unit_Not_Owned]
   * [#Incompatible_UnitType Incompatible_UnitType]
-  * [#Incompatible_TechType Incompatible_TechType]
-  * [#Incompatible_UpgradeType Incompatible_UpgradeType]
+  * [#Already_Researched Already_Researched]
+  * [#Fully_Upgraded Fully_Upgraded]
   * [#Insufficient_Minerals Insufficient_Minerals]
   * [#Insufficient_Gas Insufficient_Gas]
   * [#Insufficient_Supply Insufficient_Supply]
@@ -63,13 +63,13 @@ Returned when attempting to order a unit that BWAPI does not own (i.e. can't ord
 
 Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
 
-=== {{{Incompatible_TechType}}} ===
+=== {{{Already_Researched}}} ===
 
-Returned if you try to research something at the wrong building, or try to use a tech type that is not researched, or if you try to order a unit to use tech that is meant for another unit (i.e. trying order a Zerg Spire to Burrow will return this error) 
+Returned if you try to research something that is already researched.
 
-=== {{{Incompatible_UpgradeType}}} ===
+=== {{{Fully_Upgraded}}} ===
 
-Returned if you try to upgrade something at the wrong building.
+Returned if you try to upgrade something that is already fully upgraded.
 
 === {{{Insufficient_Minerals}}} ===
 
