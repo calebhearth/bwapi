@@ -114,7 +114,7 @@ Returned if you do something like order a Vulture to attack a flying unit.
 
 === {{{None}}} ===
 
-Used when no error has been encountered
+Used when no error has been encountered.
 
 === {{{Unknown}}} ===
 
