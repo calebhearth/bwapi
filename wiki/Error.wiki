@@ -34,6 +34,7 @@ Returns the set of all the error codes, which are listed below.
 
 == Errors ==
 
+  * [#Unit_Does_Not_Exist Unit_Does_Not_Exist]
   * [#Unit_Not_Visible Unit_Not_Visible]
   * [#Unit_Not_Owned Unit_Not_Owned]
   * [#Incompatible_UnitType Incompatible_UnitType]
@@ -50,6 +51,10 @@ Returns the set of all the error codes, which are listed below.
   * [#Unable_To_Hit Unable_To_Hit]
   * [#None None]
   * [#Unknown Unknown]
+
+=== {{{Unit_Does_Not_Exist}}} ===
+
+Returned if you try to order a unit or get information from a unit that no longer exists.
 
 === {{{Unit_Not_Visible}}} ===
 
