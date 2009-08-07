@@ -35,6 +35,8 @@ Methods:
   * [#hasPower hasPower]
   * [#canBuildHere canBuildHere]
   * [#canMake canMake]
+  * [#canResearch canResearch]
+  * [#canUpgrade canUpgrade]
   * [#groundHeight groundHeight]
   * [#getStartLocations getStartLocations]
   * [#getMapHash getMapHash]
@@ -192,6 +194,16 @@ Returns true if the given unit type can be built at the given location. If build
 bool canMake(Unit{{{*}}} builder, [UnitType] type)
 
 Returns true if the AI player has enough resources, supply, tech, and required units in order to make the given unit type. If builder is not null, canMake will return true only if the builder unit can build the given unit type.
+
+=== canResearch ===
+bool canResearch(Unit{{{*}}} unit, [TechType] type)
+
+Returns true if the AI player has enough resources required to research the given tech type. If unit is not null, canResearch will return true only if the given unit can research the given tech type.
+
+=== canUpgrade ===
+bool canUpgrade(Unit{{{*}}} unit, [UpgradeType] type)
+
+Returns true if the AI player has enough resources required to upgrade the given upgrade type. If unit is not null, canUpgrade will return true only if the given unit can upgrade the given upgrade type.
 
 === groundHeight ===
 int groundHeight(int x, int y) const;
