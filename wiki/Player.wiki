@@ -18,6 +18,8 @@ Methods:
 
   * [#minerals minerals]
   * [#gas gas]
+  * [#cumulativeMinerals cumulativeMinerals]
+  * [#cumulativeGas cumulativeGas]
   * [#supplyTotal supplyTotal]
   * [#supplyUsed supplyUsed]
 
@@ -86,6 +88,16 @@ Returns the amount of minerals the player has.
 int gas() const;
 
 Returns the amount of vespene gas the player has.
+
+=== cumulativeMinerals ===
+int cumulativeMinerals() const;
+
+Returns the cumulative amount of minerals the player has mined up to this point (including the 50 minerals at the start of the game).
+
+=== cumulativeGas ===
+int cumulativeGas() const;
+
+Returns the cumulative amount of gas the player has harvested up to this point.
 
 === supplyTotal ===
 int supplyTotal() const;
