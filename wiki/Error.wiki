@@ -39,6 +39,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Unit_Not_Owned Unit_Not_Owned]
   * [#Unit_Busy Unit_Busy]
   * [#Incompatible_UnitType Incompatible_UnitType]
+  * [#Incompatible_TechType Incompatible_TechType]
   * [#Already_Researched Already_Researched]
   * [#Fully_Upgraded Fully_Upgraded]
   * [#Insufficient_Minerals Insufficient_Minerals]
@@ -72,6 +73,10 @@ Returned when trying to order a unit to do something when it is performing anoth
 === {{{Incompatible_UnitType}}} ===
 
 Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
+
+=== {{{Incompatible_TechType}}} ===
+
+Returned if when trying to use a tech type with the wrong [Unit]::[Unit#useTech useTech] method.
 
 === {{{Already_Researched}}} ===
 
