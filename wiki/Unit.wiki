@@ -778,19 +778,19 @@ Orders the unit to cancel an upgrade in progress.
 See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
 
 === useTech ===
-bool useTech(Tech tech);
+bool useTech([TechType] tech);
 
 Orders the unit to use a tech not requiring a target (ie Stim Pack).
 Returns true if it is a valid tech.
 
 === useTech_2 ===
-bool useTech(Tech tech, Position position);
+bool useTech([TechType] tech, Position position);
 
 Orders the unit to use a tech requiring a position target (ie Dark Swarm).
 Returns true if it is a valid tech.
 
 === useTech_3 ===
-bool useTech(Tech tech, Unit{{{*}}} target);
+bool useTech([TechType] tech, Unit{{{*}}} target);
 
 Orders the unit to use a tech requiring a unit target (ie Irradiate).
 Returns true if it is a valid tech.
