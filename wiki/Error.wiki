@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Error.h# BWAPI/Error.h]
 
-Functions in BWAPI may set an error code. To retrieve the error code, call [Game]::[Game#getLastError].
+Functions in BWAPI may set an error code. To retrieve the error code, call [Game]::[Game#getLastError getLastError].
 
 Methods:
 
