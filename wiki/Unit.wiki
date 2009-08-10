@@ -245,7 +245,7 @@ double getDistance([Unit]{{{*}}} target) const;
 
 Returns the edge-to-edge distance between the current unit and the target unit.
 
-=== getDistance ===
+=== getDistance_2 ===
 double getDistance([Misc#Position Position] target) const;
 
 Returns the distance from the edge of the current unit to the target position.
