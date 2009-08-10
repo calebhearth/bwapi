@@ -37,6 +37,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Unit_Does_Not_Exist Unit_Does_Not_Exist]
   * [#Unit_Not_Visible Unit_Not_Visible]
   * [#Unit_Not_Owned Unit_Not_Owned]
+  * [#Unit_Busy Unit_Busy]
   * [#Incompatible_UnitType Incompatible_UnitType]
   * [#Already_Researched Already_Researched]
   * [#Fully_Upgraded Fully_Upgraded]
@@ -63,6 +64,10 @@ Returned if you try to retrieve information about a unit that is not currently v
 === {{{Unit_Not_Owned}}} ===
 
 Returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away ) 
+
+=== {{{Unit_Busy}}} ===
+
+Returned when trying to order a unit to do something when it is performing another order or is in a state which prevents it from performing the desired order. For example, ordering a Terran Engineering Bay to upgrade something while it is already upgrading something else will return this error. Similarly, trying to train units from a factory that is lifted will return this error.
 
 === {{{Incompatible_UnitType}}} ===
 
