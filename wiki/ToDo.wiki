@@ -4,6 +4,12 @@
 
   * [Unit]::[Unit#isVisible isVisible] - needs proper implementation, currently just uses heuristics. Did an exhaustive search of all bits in the unit, and none of them indicate visibility, so I think broodwar does not store visibility information anywhere. We could use [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/BWAPI/Source/BW/UnitStatusFlags.h StatusFlags]::RequiresDetection and check the distances and detection radius of each detector unit.
 
+  * Protoss Carriers / Interceptors
+  * Protoss Reavers / Scarabs
+  * Vulture Spider-mine count
+  * Hatchery -> Get Larva
+  * Unit::getParent (loaded units, larva, addon, interceptors, spider-mines?)
+
 == Make BWAPI thread safe ==
   * Game methods
   * Player methods
