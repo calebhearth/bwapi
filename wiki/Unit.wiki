@@ -28,6 +28,8 @@ Methods:
   * [#getRemoveTimer getRemoveTimer]
   * [#getPosition getPosition]
   * [#getTilePosition getTilePosition]
+  * [#getDistance getDistance]
+  * [#getDistance_2 getDistance]
   * [#getCurrentDirection getCurrentDirection]
 
   * [#getTarget getTarget]
@@ -237,6 +239,16 @@ Returns the position of the unit on the map.
 [Misc#TilePosition TilePosition] getTilePosition() const;
 
 Returns the build tile position of the unit on the map. Useful if the unit is a building.
+
+=== getDistance ===
+double getDistance([Unit]{{{*}}} target) const;
+
+Returns the edge-to-edge distance between the current unit and the target unit.
+
+=== getDistance ===
+double getDistance([Misc#Position Position] target) const;
+
+Returns the distance from the edge of the current unit to the target position.
 
 === getCurrentDirection ===
 int getCurrentDirection() const;
