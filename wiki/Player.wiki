@@ -119,14 +119,20 @@ int getCompletedUnits([UnitType] type);
 
 Returns the number of completed units of the given type.
 
-=== getKilledUnits ===
-int getKilledUnits([UnitType] type);
+=== getIncompleteUnits ===
+int getIncompleteUnits([UnitType] type);
+
+Returns the number of incomplete units of the given type. 
 
 === getDeaths ===
 int getDeaths([UnitType] unit);
 
+Returns the number of dead units of the given type. 
+
 === getKills ===
 int getKills([UnitType] unit);
+
+Returns the number of killed units of the given type. 
 
 === researching ===
 bool researching([TechType] tech) const;
