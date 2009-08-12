@@ -25,7 +25,7 @@ Methods:
 
   * [#getAllUnits getAllUnits]
   * [#getCompletedUnits getCompletedUnits]
-  * [#getKilledUnits getKilledUnits]
+  * [#getIncompleteUnits getIncompleteUnits]
   * [#getDeaths getDeaths]
   * [#getKills getKills]
 
