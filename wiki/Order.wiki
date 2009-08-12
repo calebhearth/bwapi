@@ -17,11 +17,17 @@ Non-member methods in Orders namespace:
 === getID ===
 int getID();
 
+Returns the unique ID for this order.
+
 === getName ===
 std::string getName();
 
+Returns the name of this order.
+
 === getOrder ===
 [Order] getOrder(std::string &name);
+
+Given the name of an order, getOrder() will return the corresponding order object.
 
 === allOrders ===
 std::set<[Order]>& allOrders();
