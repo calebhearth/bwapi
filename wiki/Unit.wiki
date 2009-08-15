@@ -326,7 +326,7 @@ Returns the number of scarabs in the Protoss Reaver.
 === getSpiderMineCount ===
 int getSpiderMineCount() const;
 
-Returns the number of spider mine in the Terran Vulture.
+Returns the number of spider mines in the Terran Vulture.
 
 === getTech ===
 [TechType] getTech() const;
