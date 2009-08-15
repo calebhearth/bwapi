@@ -13,5 +13,5 @@
 
 = Possible Ideas for release 1.x =
 
-  * Order call-backs and/or buffering so the AI module can "listen" to what orders are being issued.
-  * [Game]::setScreenPosition(int x, int y)
+  * Order call-backs and/or buffering so the AI module can "listen" to what orders the user is issuing.
+  * [Game]:: setScreenPosition(int x, int y)
