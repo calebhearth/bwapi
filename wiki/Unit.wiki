@@ -45,6 +45,9 @@ Methods:
   * [#getTrainingQueue getTrainingQueue]
   * [#getTransport getTransport]
   * [#getLoadedUnits getLoadedUnits]
+  * [#getInterceptorCount getInterceptorCount]
+  * [#getScarabCount getScarabCount]
+  * [#getSpiderMineCount getSpiderMineCount]
   * [#getTech getTech]
   * [#getUpgrade getUpgrade]
   * [#getRemainingResearchTime getRemainingResearchTime]
@@ -309,6 +312,21 @@ Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded i
 std::list<[Unit]{{{*}}}> getLoadedUnits() const;
 
 Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+
+=== getInterceptorCount ===
+int getInterceptorCount() const;
+
+Returns the number of interceptors the Protoss Carrier has.
+
+=== getScarabCount ===
+int getScarabCount() const;
+
+Returns the number of scarabs in the Protoss Reaver.
+
+=== getSpiderMineCount ===
+int getSpiderMineCount() const;
+
+Returns the number of spider mine in the Terran Vulture.
 
 === getTech ===
 [TechType] getTech() const;
