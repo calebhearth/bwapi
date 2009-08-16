@@ -6,15 +6,16 @@ Each player in a match will have his or her own player instance. There is also a
 
 Methods:
 
+  * [#getID getID]
   * [#getName getName]
   * [#getUnits getUnits]
   * [#getRace getRace]
   * [#playerType playerType]
   * [#getForce getForce]
-  * [#isAlliesWith isAlliesWith]
-  * [#getID getID]
-  * [#getStartLocation getStartLocation]
+  * [#isAlly isAlly]
+  * [#isEnemy isEnemy]
   * [#isNeutral isNeutral]
+  * [#getStartLocation getStartLocation]
 
   * [#minerals minerals]
   * [#gas gas]
@@ -23,16 +24,21 @@ Methods:
   * [#supplyTotal supplyTotal]
   * [#supplyUsed supplyUsed]
 
-  * [#getAllUnits getAllUnits]
-  * [#getCompletedUnits getCompletedUnits]
-  * [#getIncompleteUnits getIncompleteUnits]
-  * [#getDeaths getDeaths]
-  * [#getKills getKills]
+  * [#allUnitCount allUnitCount]
+  * [#completedUnitCount completedUnitCount]
+  * [#incompleteUnitCount incompleteUnitCount]
+  * [#deadUnitCount deadUnitCount]
+  * [#killedUnitCount killedUnitCount]
 
   * [#researching researching]
   * [#researched researched]
   * [#upgrading upgrading]
   * [#upgradeLevel upgradeLevel]
+
+=== getID ===
+int getID() const;
+
+Returns a unique ID for the player.
 
 === getName ===
 std::string getName() const;
@@ -59,25 +65,25 @@ Returns the type of the player.
 
 Returns the force the player is on.
 
-=== isAlliesWith ===
-bool isAlliesWith([Player]{{{*}}} player) const;
+=== isAlly ===
+bool isAlly([Player]{{{*}}} player) const;
 
-Returns true if this player is allied with the other player, or is on the same team as the other player.
+Returns true if other player is an ally of this player.
 
-=== getID ===
-int getID() const;
+=== isEnemy ===
+bool isEnemy([Player]{{{*}}} player) const;
 
-Returns a unique ID for the player.
-
-=== getStartLocation ===
-[Misc#TilePosition TilePosition] getStartLocation() const;
-
-Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+Returns true if other player is an enemy of this player.
 
 === isNeutral ===
 bool isNeutral() const;
 
 Returns true if the player is the neutral player.
+
+=== getStartLocation ===
+[Misc#TilePosition TilePosition] getStartLocation() const;
+
+Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
 === minerals ===
 int minerals() const;
@@ -102,35 +108,39 @@ Returns the cumulative amount of gas the player has harvested up to this point.
 === supplyTotal ===
 int supplyTotal() const;
 
-Returns the total amount of supply the player has.
+int supplyTotal(Race race) const;
+
+Returns the total amount of supply the player has. If a race is provided, the total supply for the given race will be returned, otherwise the player's initial race will be used.
 
 === supplyUsed ===
 int supplyUsed() const;
 
-Returns how much of the supply is actually being used by units.
+int supplyUsed(Race race) const;
 
-=== getAllUnits ===
-int getAllUnits([UnitType] type);
+Returns how much of the supply is actually being used by units. If a race is provided, the used supply for the given race will be returned, otherwise the player's initial race will be used.
+
+=== allUnitCount ===
+int allUnitCount([UnitType] type) const;
 
 Returns the number of all units of the given type.
 
-=== getCompletedUnits ===
-int getCompletedUnits([UnitType] type);
+=== completedUnitCount ===
+int completedUnitCount([UnitType] type) const;
 
 Returns the number of completed units of the given type.
 
-=== getIncompleteUnits ===
-int getIncompleteUnits([UnitType] type);
+=== incompleteUnitCount ===
+int incompleteUnitCount([UnitType] type) const;
 
 Returns the number of incomplete units of the given type. 
 
-=== getDeaths ===
-int getDeaths([UnitType] unit);
+=== deadUnitCount ===
+int deadUnitCount([UnitType] unit) const;
 
 Returns the number of dead units of the given type. 
 
-=== getKills ===
-int getKills([UnitType] unit);
+=== killedUnitCount ===
+int killedUnitCount([UnitType] unit) const;
 
 Returns the number of killed units of the given type. 
 
