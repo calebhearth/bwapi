@@ -61,67 +61,67 @@ Methods:
   * [#drawTriangle drawTriangle]
 
 === getForces ===
-std::set< [Force]{{{*}}} > getForces() const;
+std::set< [Force]{{{*}}} > getForces();
 
 Returns the set of all forces in the match.
 
 === getPlayers ===
-std::set< [Player]{{{*}}} > getPlayers() const;
+std::set< [Player]{{{*}}} > getPlayers();
 
 Returns the set of all players in the match. Note that this includes the Neutral player, which owns all the neutral units such as minerals, critters, etc.
 
 === getAllUnits ===
-std::set< [Unit]{{{*}}} > getAllUnits() const;
+std::set< [Unit]{{{*}}} > getAllUnits();
 
 Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units inside refineries are not included in this set yet.
 
 === getMinerals ===
-std::set< [Unit]{{{*}}} > getMinerals() const;
+std::set< [Unit]{{{*}}} > getMinerals();
 
 Returns the set of all visible mineral patches, or all mineral patches if [Flag]::CompleteMapInformation is enabled.
 
 === getGeysers ===
-std::set< [Unit]{{{*}}} > getGeysers() const;
+std::set< [Unit]{{{*}}} > getGeysers();
 
 Returns the set of all visible vespene geysers, or all vespene geysers if [Flag]::CompleteMapInformation is enabled.
 
 === getNeutralUnits ===
-std::set< [Unit]{{{*}}} > getNeutralUnits() const;
+std::set< [Unit]{{{*}}} > getNeutralUnits();
 
 Returns the set of all visible neutral units, or all neutral units if [Flag]::CompleteMapInformation is enabled.
 
 === getLatency ===
-Latency::Enum getLatency() const;
+Latency::Enum getLatency();
 
 Returns the amount of latency the current game has. Currently only returns Latency::SinglePlayer, Latency::LanLow, Latency::LanMedium, or Latency::LanHigh.
 
 === getFrameCount ===
-int getFrameCount() const;
+int getFrameCount();
 
 Returns the number of logical frames since the match started.
 
 === getMouseX ===
-int getMouseX() const;
+int getMouseX();
 
 Returns the horizontal coordinate of the mouse on the screen.
 
 === getMouseY ===
-int getMouseY() const;
+int getMouseY();
 
 Returns the vertical coordinate of the mouse on the screen.
 
 === getScreenX ===
-int getScreenX() const;
+int getScreenX();
 
 Returns the horizontal coordinate of the screen on the map.
 
 === getScreenY ===
-int getScreenY() const;
+int getScreenY();
 
 Returns the vertical coordinate of the screen on the map.
 
 === isFlagEnabled ===
-bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag) const;
+bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);
 
 Returns true if the given flag has been enabled. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
@@ -131,7 +131,7 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === unitsOnTile ===
-std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile) const;
+std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile);
 
 Returns the set of units that are on the given tile.
 
@@ -141,82 +141,82 @@ Returns the set of units that are on the given tile.
 Returns the last error that was set. If you try to order enemy units around, or morph bunkers into lurkers, BWAPI will set error codes, which can be retrieved using this function.
 
 === mapWidth ===
-int mapWidth() const;
+int mapWidth();
 
 Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4. To get the width of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
 
 === mapHeight ===
-int mapHeight() const;
+int mapHeight();
 
 Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
 
 === mapFilename ===
-std::string mapFilename() const;
+std::string mapFilename();
 
 Returns the file name of the current map.
 
 === mapName ===
-std::string mapName() const;
+std::string mapName();
 
 Returns the name of the current map.
 
 === buildable ===
-bool buildable(int x, int y) const;
+bool buildable(int x, int y);
 
 Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
 
 === walkable ===
-bool walkable(int x, int y) const;
+bool walkable(int x, int y);
 
 Returns true if the specified build tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
 === visible ===
-bool visible(int x, int y) const;
+bool visible(int x, int y);
 
 Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false.
 
 === hasCreep ===
-bool hasCreep(int x, int y) const;
+bool hasCreep(int x, int y);
 
 Returns true if the specified build tile has zerg creep on it.
 
 === hasPower ===
-bool hasPower(int x, int y, int tileWidth, int tileHeight) const;
+bool hasPower(int x, int y, int tileWidth, int tileHeight);
 
 Returns true if the given build location is powered by a nearby friendly pylon.
 
 === canBuildHere ===
-bool canBuildHere([Unit]{{{*}}} builder, [Misc#TilePosition TilePosition] position, [UnitType] type)
+bool canBuildHere([Unit]{{{*}}} builder, [Misc#TilePosition TilePosition] position, [UnitType] type);
 
 Returns true if the given unit type can be built at the given location. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location.
 
 === canMake ===
-bool canMake([Unit]{{{*}}} builder, [UnitType] type)
+bool canMake([Unit]{{{*}}} builder, [UnitType] type);
 
 Returns true if the AI player has enough resources, supply, tech, and required units in order to make the given unit type. If builder is not null, canMake will return true only if the builder unit can build the given unit type.
 
 === canResearch ===
-bool canResearch([Unit]{{{*}}} unit, [TechType] type)
+bool canResearch([Unit]{{{*}}} unit, [TechType] type);
 
 Returns true if the AI player has enough resources required to research the given tech type. If unit is not null, canResearch will return true only if the given unit can research the given tech type.
 
 === canUpgrade ===
-bool canUpgrade([Unit]{{{*}}} unit, [UpgradeType] type)
+bool canUpgrade([Unit]{{{*}}} unit, [UpgradeType] type);
 
 Returns true if the AI player has enough resources required to upgrade the given upgrade type. If unit is not null, canUpgrade will return true only if the given unit can upgrade the given upgrade type.
 
 === groundHeight ===
-int groundHeight(int x, int y) const;
+int groundHeight(int x, int y);
 
 Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
 
 === getStartLocations ===
-const std::set< [Misc#TilePosition TilePosition] >& getStartLocations() const;
+const std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
 
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
 === getMapHash ===
-int getMapHash() const;
+int getMapHash();
 
 Returns a unique identifier for the given map data that does not depend on the file name.
 
@@ -241,7 +241,7 @@ void changeRace([Race] race);
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
 === inReplay ===
-void inReplay() const;
+void inReplay();
 
 Returns true if Broodwar is playing a replay.
 
@@ -262,17 +262,17 @@ void surrender();
 Surrenders the match and goes to the after-game stats screen. Sometimes this method crashes Broodwar, so we recommend that you don't use it yet.
 
 === getSelectedUnits ===
-std::set<[Unit]{{{*}}}>& getSelectedUnits() const;
+std::set<[Unit]{{{*}}}>& getSelectedUnits();
 
 Returns the set of units currently selected by the user in the GUI. If [Flag]::UserInput was not enabled during the [AIModule]::[AIModule#onStart onStart] callback, this function will always return an empty set.
 
 === self ===
-[Player]{{{*}}} self() const;
+[Player]{{{*}}} self();
 
 Returns a pointer to the player that BWAPI controls.
 
 === enemy ===
-[Player]{{{*}}} enemy() const;
+[Player]{{{*}}} enemy();
 
 Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] to get the other enemies).
 
