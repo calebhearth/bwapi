@@ -9,7 +9,6 @@
 == Implement Error Code Usage ==
   * Game methods
   * Player methods
-  * Unit methods
 
 = Possible Ideas for release 1.x =
 
