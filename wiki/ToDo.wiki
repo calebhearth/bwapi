@@ -6,9 +6,6 @@
   * Unit methods (information)
   * Unit methods (orders)
 
-== Implement Error Code Usage ==
-  * Game methods
-
 = Possible Ideas for release 1.x =
 
   * Order call-backs and/or buffering so the AI module can "listen" to what orders the user is issuing.
