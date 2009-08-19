@@ -127,7 +127,7 @@ Returned if you do something like order a Vulture to attack a flying unit.
 
 === {{{Access_Denied}}} ===
 
-Returned if you try to get information that is not allowed with the given flag settings. For example, trying to read the enemy's resource counts while the CompleteMapInformation flag is not enabled will return this error.
+Returned if you try to get information that is not allowed with the given flag settings. For example, trying to read the enemy's resource counts while the CompleteMapInformation flag is not enabled will return this error. Similarly, trying to read the coordinates of the screen or mouse while the UserInput flag is not enabled will also return this error.
 
 === {{{None}}} ===
 
