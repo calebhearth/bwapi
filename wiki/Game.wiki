@@ -211,7 +211,7 @@ int groundHeight(int x, int y);
 Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
 
 === getStartLocations ===
-const std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
+std::set< [Misc#TilePosition TilePosition] > getStartLocations();
 
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
@@ -262,7 +262,7 @@ void surrender();
 Surrenders the match and goes to the after-game stats screen. Sometimes this method crashes Broodwar, so we recommend that you don't use it yet.
 
 === getSelectedUnits ===
-std::set<[Unit]{{{*}}}>& getSelectedUnits();
+std::set<[Unit]{{{*}}}> getSelectedUnits();
 
 Returns the set of units currently selected by the user in the GUI. If [Flag]::UserInput was not enabled during the [AIModule]::[AIModule#onStart onStart] callback, this function will always return an empty set.
 
