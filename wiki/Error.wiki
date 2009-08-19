@@ -53,6 +53,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Unbuildable_Location Unbuildable_Location]
   * [#Out_Of_Range Out_Of_Range]
   * [#Unable_To_Hit Unable_To_Hit]
+  * [#Access_Denied Access_Denied]
   * [#None None]
   * [#Unknown Unknown]
 
@@ -123,6 +124,10 @@ Returned if you order an immovable unit, like a Protoss Photon Cannon, to attack
 === {{{Unable_To_Hit}}} ===
 
 Returned if you do something like order a Vulture to attack a flying unit. 
+
+=== {{{Access_Denied}}} ===
+
+Returned if you try to get information that is not allowed with the given flag settings. For example, trying to read the enemy's resource counts while the CompleteMapInformation flag is not enabled will return this error.
 
 === {{{None}}} ===
 
