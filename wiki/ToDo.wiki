@@ -7,5 +7,6 @@
   * Unit methods (information)
   * Unit methods (orders)
 
+== Misc ==
   * Order call-backs and/or buffering so the AI module can "listen" to what orders the user is issuing.
   * [Game]:: setScreenPosition(int x, int y)
