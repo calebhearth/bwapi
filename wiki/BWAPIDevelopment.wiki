@@ -1,0 +1,24 @@
+=Developing BWAPI=
+
+While we have made a lot of progress on BWAPI, there is still plenty to work on. If you are interested in developing the BWAPI framework, contact either deathknight13579@aim.com, or lowerlogic@gmail.com, or post on the google group.
+
+Our mostly-complete to do list for what needs to be implemented before the first actual release is located here: http://code.google.com/p/bwapi/wiki/ToDo. While all help is appreciated, at this point we are primarily looking for programmers who understand assembly and can find the offsets, codes, structures, etc, needed to implement the remaining functions. Knowledge of object oriented design is not required.
+
+We are using Visual Studio 2008 SP1. You can download Visual Studio 2008 Express Edition from Microsoft for free at http://www.microsoft.com/express/download/#webInstall
+
+Remember, you don't really need to know C++ to participate. Aside from writing code, participation can include any of the following:
+  * Accumulating valuable knowledge about the Starcraft game engine
+  * Providing feedback about commits, bugs, and anything else.
+  * Organizing the code (ex: making it look pretty and easy to read :) )
+  * Fixing some small bugs or including small patches/fixes to the code.
+
+
+==How to Start Working on BWAPI==
+
+  # Obtain an SVN Program. Google has its own instructions for getting an SVN program, but I use TortoiseSVN, which can be found here: http://tortoisesvn.tigris.org/
+  # Follow the instructions on the [http://code.google.com/p/bwapi/source/checkout Source] tab for retrieving the source code.
+  # Download [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 ChaosLauncher]
+  # Create a Windows Environment variable called ChaosDir with a value pointing to the Chaos Launcher directory. For instructions on how to create a windows environment variable, read this: http://support.microsoft.com/kb/310519
+  # Move the contents of "starcraft-folder" from the source code to your Starcraft Directory.
+  # Be sure to compile the entire solution as a RELEASE, else you will run into major problems.
+  # If you are a project member you can submit your code modifications. Following the [http://code.google.com/p/bwapi/wiki/CodingStandard coding standard] and make sure BWAPI still compiles and runs before you submit your changes.
