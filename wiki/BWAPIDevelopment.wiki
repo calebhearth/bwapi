@@ -2,7 +2,7 @@
 
 While we have made a lot of progress on BWAPI, there is still plenty of things which need to be properly tested and improved. If you are interested in developing the BWAPI framework, contact either deathknight13579@aim.com, or lowerlogic@gmail.com, or post on the google group.
 
-Our mostly-complete to do list for what needs to be implemented before the first actual release is located here: http://code.google.com/p/bwapi/wiki/ToDo. While all help is appreciated, at this point we are primarily looking for programmers who understand assembly and can find the offsets, codes, structures, etc, needed to implement the remaining functions. Knowledge of object oriented design is not required.
+While all help is appreciated, at this point we are primarily looking for people who can make unit tests and other test scenarios in order to find and fix bugs.
 
 We are using Visual Studio 2008 SP1. You can download Visual Studio 2008 Express Edition from Microsoft for free at http://www.microsoft.com/express/download/#webInstall
 
@@ -11,7 +11,7 @@ Remember, you don't really need to know C++ to participate. Aside from writing c
   * Providing feedback about commits, bugs, and anything else.
   * Organizing the code (ex: making it look pretty and easy to read :) )
   * Fixing some small bugs or including small patches/fixes to the code.
-
+  * Improving/expanding/clarifying the user documentation.
 
 ==How to Start Working on BWAPI==
 
