@@ -1,6 +1,6 @@
 =Developing BWAPI=
 
-While we have made a lot of progress on BWAPI, there is still plenty to work on. If you are interested in developing the BWAPI framework, contact either deathknight13579@aim.com, or lowerlogic@gmail.com, or post on the google group.
+While we have made a lot of progress on BWAPI, there is still plenty of things which need to be properly tested and improved. If you are interested in developing the BWAPI framework, contact either deathknight13579@aim.com, or lowerlogic@gmail.com, or post on the google group.
 
 Our mostly-complete to do list for what needs to be implemented before the first actual release is located here: http://code.google.com/p/bwapi/wiki/ToDo. While all help is appreciated, at this point we are primarily looking for programmers who understand assembly and can find the offsets, codes, structures, etc, needed to implement the remaining functions. Knowledge of object oriented design is not required.
 
