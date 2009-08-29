@@ -274,7 +274,7 @@ Returns a pointer to the player that BWAPI controls.
 === enemy ===
 [Player]{{{*}}} enemy();
 
-Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] and [Player]::[Player#isEnemy isEnemy) to get the other enemies).
+Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] and [Player]::[Player#isEnemy isEnemy] to get the other enemies).
 
 === drawBox ===
 void drawBox([Misc#CoordinateType::Enum CoordinateType::Enum] ctype, int left, int top, int right, int bottom, [Color] color, bool isSolid);
