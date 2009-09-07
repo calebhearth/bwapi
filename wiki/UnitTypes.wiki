@@ -155,134 +155,147 @@
 
   * None
   * Unknown
-
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
-|| Terran Marine || Terran || Terran Barracks || Terran Barracks || None || 50 || 0 || 360 || 2 || 0 || 1 || 0 ||
-|| Terran Ghost || Terran || Terran Barracks || Terran Barracks, Terran Academy, Terran Covert Ops || None || 25 || 75 || 750 || 2 || 0 || 1 || 0 ||
-|| Terran Vulture || Terran || Terran Factory || Terran Factory || None || 75 || 0 || 450 || 4 || 0 || 2 || 0 ||
-|| Terran Goliath || Terran || Terran Factory || Terran Factory, Terran Armory || None || 100 || 50 || 600 || 4 || 0 || 2 || 0 ||
-|| Terran Siege Tank Tank Mode || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 4 || 0 ||
-|| Terran SCV || Terran || Terran Command Center || Terran Command Center || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
-|| Terran Wraith || Terran || Terran Starport || Terran Starport || None || 150 || 100 || 900 || 4 || 0 || 255 || 0 ||
-|| Terran Science Vessel || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Science Facility || None || 100 || 225 || 1200 || 4 || 0 || 255 || 0 ||
-|| Terran Dropship || Terran || Terran Starport || Terran Starport, Terran Control Tower || None || 100 || 100 || 750 || 4 || 0 || 255 || 8 ||
+|| Terran Academy || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Armory || Terran || Terran SCV || Terran SCV, Terran Factory || None || 100 || 50 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Barracks || Terran || Terran SCV || Terran SCV, Terran Command Center || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 ||
 || Terran Battlecruiser || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Physics Lab || None || 400 || 300 || 2000 || 12 || 0 || 255 || 0 ||
-|| Terran Vulture Spider Mine || Terran || None ||  || None || 1 || 0 || 1 || 0 || 0 || 255 || 0 ||
-|| Terran Nuclear Missile || Terran || None ||  || None || 200 || 200 || 1500 || 16 || 0 || 255 || 0 ||
-|| Terran Siege Tank Siege Mode || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 255 || 0 ||
-|| Terran Firebat || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 360 || 2 || 0 || 1 || 0 ||
-|| Spell Scanner Sweep || Terran || None ||  || None || 0 || 0 || 1 || 0 || 0 || 255 || 0 ||
-|| Terran Medic || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 450 || 2 || 0 || 1 || 0 ||
-|| Zerg Larva || Zerg || Zerg Hatchery || Zerg Hatchery || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Zerg Egg || Zerg || Zerg Larva || Zerg Larva || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Zerg Zergling || Zerg || Zerg Larva || Zerg Larva, Zerg Spawning Pool || None || 50 || 0 || 420 || 1 || 0 || 1 || 0 ||
-|| Zerg Hydralisk || Zerg || Zerg Larva || Zerg Larva, Zerg Hydralisk Den || None || 75 || 25 || 420 || 2 || 0 || 2 || 0 ||
-|| Zerg Ultralisk || Zerg || Zerg Larva || Zerg Larva, Zerg Ultralisk Cavern || None || 200 || 200 || 900 || 8 || 0 || 4 || 0 ||
-|| Zerg Broodling || Zerg || None ||  || None || 1 || 1 || 1 || 0 || 0 || 1 || 0 ||
-|| Zerg Drone || Zerg || Zerg Larva || Zerg Larva || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
-|| Zerg Overlord || Zerg || Zerg Larva || Zerg Larva || None || 100 || 0 || 600 || 0 || 16 || 255 || 8 ||
-|| Zerg Mutalisk || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 100 || 100 || 600 || 4 || 0 || 255 || 0 ||
-|| Zerg Guardian || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 50 || 100 || 600 || 4 || 0 || 255 || 0 ||
-|| Zerg Queen || Zerg || Zerg Larva || Zerg Larva, Zerg Queen's Nest || None || 100 || 100 || 750 || 4 || 0 || 255 || 0 ||
-|| Zerg Defiler || Zerg || Zerg Larva || Zerg Larva, Zerg Defiler Mound || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 ||
-|| Zerg Scourge || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 25 || 75 || 450 || 1 || 0 || 255 || 0 ||
-|| Zerg Infested Terran || Zerg || Zerg Infested Command Center || Zerg Infested Command Center || None || 100 || 50 || 600 || 2 || 0 || 1 || 0 ||
-|| Terran Valkyrie || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Armory || None || 250 || 125 || 750 || 6 || 0 || 255 || 0 ||
-|| Zerg Cocoon || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Protoss Corsair || Protoss || Protoss Stargate || Protoss Stargate || None || 150 || 100 || 600 || 4 || 0 || 255 || 0 ||
-|| Protoss Dark Templar || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 125 || 100 || 750 || 4 || 0 || 2 || 0 ||
-|| Zerg Devourer || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 150 || 50 || 600 || 4 || 0 || 255 || 0 ||
-|| Protoss Dark Archon || Protoss || Protoss Dark Templar || Protoss Dark Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 ||
-|| Protoss Probe || Protoss || Protoss Nexus || Protoss Nexus || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
-|| Protoss Zealot || Protoss || Protoss Gateway || Protoss Gateway || None || 100 || 0 || 600 || 4 || 0 || 2 || 0 ||
-|| Protoss Dragoon || Protoss || Protoss Gateway || Protoss Gateway, Protoss Cybernetics Core || None || 125 || 50 || 750 || 4 || 0 || 4 || 0 ||
-|| Protoss High Templar || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 ||
-|| Protoss Archon || Protoss || Protoss High Templar || Protoss High Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 ||
-|| Protoss Shuttle || Protoss || Protoss Robotics Facility || Protoss Robotics Facility || None || 200 || 0 || 900 || 4 || 0 || 255 || 8 ||
-|| Protoss Scout || Protoss || Protoss Stargate || Protoss Stargate || None || 275 || 125 || 1200 || 6 || 0 || 255 || 0 ||
-|| Protoss Arbiter || Protoss || Protoss Stargate || Protoss Stargate, Protoss Arbiter Tribunal || None || 100 || 350 || 2400 || 8 || 0 || 255 || 0 ||
-|| Protoss Carrier || Protoss || Protoss Stargate || Protoss Stargate, Protoss Fleet Beacon || None || 350 || 250 || 2100 || 12 || 0 || 255 || 0 ||
-|| Protoss Interceptor || Protoss || Protoss Carrier || Protoss Carrier || None || 25 || 0 || 300 || 0 || 0 || 255 || 0 ||
-|| Protoss Reaver || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Robotics Support Bay || None || 200 || 100 || 1050 || 8 || 0 || 4 || 0 ||
-|| Protoss Observer || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Observatory || None || 25 || 75 || 600 || 2 || 0 || 255 || 0 ||
-|| Protoss Scarab || Protoss || Protoss Reaver || Protoss Reaver || None || 15 || 0 || 105 || 0 || 0 || 255 || 0 ||
-|| Critter Rhynadon || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Critter Bengalaas || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Critter Scantid || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Critter Kakaru || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Critter Ragnasaur || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Critter Ursadon || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Zerg Lurker Egg || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Zerg Lurker || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 50 || 100 || 600 || 4 || 0 || 4 || 0 ||
-|| Spell Disruption Web || Other || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 ||
+|| Terran Bunker || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 100 || 0 || 450 || 0 || 0 || 255 || 4 ||
 || Terran Command Center || Terran || Terran SCV || Terran SCV || None || 400 || 0 || 1800 || 0 || 20 || 255 || 0 ||
 || Terran Comsat Station || Terran || Terran Command Center || Terran Command Center, Terran Academy || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
-|| Terran Nuclear Silo || Terran || Terran Command Center || Terran Command Center, Terran Science Facility, Terran Covert Ops || None || 100 || 100 || 1200 || 0 || 0 || 255 || 0 ||
-|| Terran Supply Depot || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 16 || 255 || 0 ||
-|| Terran Refinery || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Terran Barracks || Terran || Terran SCV || Terran SCV, Terran Command Center || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 ||
-|| Terran Academy || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 ||
-|| Terran Factory || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 200 || 100 || 1200 || 0 || 0 || 255 || 0 ||
-|| Terran Starport || Terran || Terran SCV || Terran SCV, Terran Factory || None || 150 || 100 || 1050 || 0 || 0 || 255 || 0 ||
 || Terran Control Tower || Terran || Terran Starport || Terran Starport || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
-|| Terran Science Facility || Terran || Terran SCV || Terran SCV, Terran Starport || None || 100 || 150 || 900 || 0 || 0 || 255 || 0 ||
 || Terran Covert Ops || Terran || Terran Science Facility || Terran Science Facility || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
-|| Terran Physics Lab || Terran || Terran Science Facility || Terran Science Facility || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
-|| Terran Machine Shop || Terran || Terran Factory || Terran Factory || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
+|| Terran Dropship || Terran || Terran Starport || Terran Starport, Terran Control Tower || None || 100 || 100 || 750 || 4 || 0 || 255 || 8 ||
 || Terran Engineering Bay || Terran || Terran SCV || Terran SCV, Terran Command Center || None || 125 || 0 || 900 || 0 || 0 || 255 || 0 ||
-|| Terran Armory || Terran || Terran SCV || Terran SCV, Terran Factory || None || 100 || 50 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Factory || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 200 || 100 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Firebat || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 360 || 2 || 0 || 1 || 0 ||
+|| Terran Ghost || Terran || Terran Barracks || Terran Barracks, Terran Academy, Terran Covert Ops || None || 25 || 75 || 750 || 2 || 0 || 1 || 0 ||
+|| Terran Goliath || Terran || Terran Factory || Terran Factory, Terran Armory || None || 100 || 50 || 600 || 4 || 0 || 2 || 0 ||
+|| Terran Machine Shop || Terran || Terran Factory || Terran Factory || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
+|| Terran Marine || Terran || Terran Barracks || Terran Barracks || None || 50 || 0 || 360 || 2 || 0 || 1 || 0 ||
+|| Terran Medic || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 450 || 2 || 0 || 1 || 0 ||
 || Terran Missile Turret || Terran || Terran SCV || Terran SCV, Terran Engineering Bay || None || 75 || 0 || 450 || 0 || 0 || 255 || 0 ||
-|| Terran Bunker || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 100 || 0 || 450 || 0 || 0 || 255 || 4 ||
-|| Special Crashed Norad II || None || None ||  || None || 800 || 600 || 4800 || 0 || 0 || 255 || 0 ||
-|| Special Ion Cannon || None || None ||  || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 ||
-|| Zerg Infested Command Center || Zerg || None ||  || None || 1 || 1 || 1800 || 0 || 0 || 255 || 0 ||
-|| Zerg Hatchery || Zerg || Zerg Drone || Zerg Drone || None || 300 || 0 || 1800 || 0 || 2 || 255 || 0 ||
-|| Zerg Lair || Zerg || Zerg Hatchery || Zerg Hatchery, Zerg Spawning Pool || None || 150 || 100 || 1500 || 0 || 2 || 255 || 0 ||
-|| Zerg Hive || Zerg || Zerg Lair || Zerg Lair, Zerg Queen's Nest || None || 200 || 150 || 1800 || 0 || 2 || 255 || 0 ||
-|| Zerg Nydus Canal || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Zerg Hydralisk Den || Zerg || Zerg Drone || Zerg Drone, Zerg Spawning Pool || None || 100 || 50 || 600 || 0 || 0 || 255 || 0 ||
-|| Zerg Defiler Mound || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 100 || 100 || 900 || 0 || 0 || 255 || 0 ||
-|| Zerg Greater Spire || Zerg || Zerg Spire || Zerg Hive, Zerg Spire || None || 100 || 150 || 1800 || 0 || 0 || 255 || 0 ||
-|| Zerg Queen's Nest || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 ||
-|| Zerg Evolution Chamber || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 75 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Zerg Ultralisk Cavern || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 200 || 1200 || 0 || 0 || 255 || 0 ||
-|| Zerg Spire || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 200 || 150 || 1800 || 0 || 0 || 255 || 0 ||
-|| Zerg Spawning Pool || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 200 || 0 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Nuclear Missile || Terran || None ||  || None || 200 || 200 || 1500 || 16 || 0 || 255 || 0 ||
+|| Terran Nuclear Silo || Terran || Terran Command Center || Terran Command Center, Terran Science Facility, Terran Covert Ops || None || 100 || 100 || 1200 || 0 || 0 || 255 || 0 ||
+|| Terran Physics Lab || Terran || Terran Science Facility || Terran Science Facility || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 ||
+|| Terran Refinery || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Terran Science Facility || Terran || Terran SCV || Terran SCV, Terran Starport || None || 100 || 150 || 900 || 0 || 0 || 255 || 0 ||
+|| Terran Science Vessel || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Science Facility || None || 100 || 225 || 1200 || 4 || 0 || 255 || 0 ||
+|| Terran SCV || Terran || Terran Command Center || Terran Command Center || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
+|| Terran Siege Tank Siege Mode || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 255 || 0 ||
+|| Terran Siege Tank Tank Mode || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 4 || 0 ||
+|| Terran Starport || Terran || Terran SCV || Terran SCV, Terran Factory || None || 150 || 100 || 1050 || 0 || 0 || 255 || 0 ||
+|| Terran Supply Depot || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 16 || 255 || 0 ||
+|| Terran Valkyrie || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Armory || None || 250 || 125 || 750 || 6 || 0 || 255 || 0 ||
+|| Terran Vulture Spider Mine || Terran || None ||  || None || 1 || 0 || 1 || 0 || 0 || 255 || 0 ||
+|| Terran Vulture || Terran || Terran Factory || Terran Factory || None || 75 || 0 || 450 || 4 || 0 || 2 || 0 ||
+|| Terran Wraith || Terran || Terran Starport || Terran Starport || None || 150 || 100 || 900 || 4 || 0 || 255 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
+|| Zerg Broodling || Zerg || None ||  || None || 1 || 1 || 1 || 0 || 0 || 1 || 0 ||
+|| Zerg Cocoon || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Zerg Creep Colony || Zerg || Zerg Drone || Zerg Drone || None || 75 || 0 || 300 || 0 || 0 || 255 || 0 ||
+|| Zerg Defiler Mound || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 100 || 100 || 900 || 0 || 0 || 255 || 0 ||
+|| Zerg Defiler || Zerg || Zerg Larva || Zerg Larva, Zerg Defiler Mound || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 ||
+|| Zerg Devourer || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 150 || 50 || 600 || 4 || 0 || 255 || 0 ||
+|| Zerg Drone || Zerg || Zerg Larva || Zerg Larva || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
+|| Zerg Egg || Zerg || Zerg Larva || Zerg Larva || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Zerg Evolution Chamber || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 75 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Zerg Extractor || Zerg || Zerg Drone || Zerg Drone || None || 50 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Zerg Greater Spire || Zerg || Zerg Spire || Zerg Hive, Zerg Spire || None || 100 || 150 || 1800 || 0 || 0 || 255 || 0 ||
+|| Zerg Guardian || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 50 || 100 || 600 || 4 || 0 || 255 || 0 ||
+|| Zerg Hatchery || Zerg || Zerg Drone || Zerg Drone || None || 300 || 0 || 1800 || 0 || 2 || 255 || 0 ||
+|| Zerg Hive || Zerg || Zerg Lair || Zerg Lair, Zerg Queen's Nest || None || 200 || 150 || 1800 || 0 || 2 || 255 || 0 ||
+|| Zerg Hydralisk Den || Zerg || Zerg Drone || Zerg Drone, Zerg Spawning Pool || None || 100 || 50 || 600 || 0 || 0 || 255 || 0 ||
+|| Zerg Hydralisk || Zerg || Zerg Larva || Zerg Larva, Zerg Hydralisk Den || None || 75 || 25 || 420 || 2 || 0 || 2 || 0 ||
+|| Zerg Infested Command Center || Zerg || None ||  || None || 1 || 1 || 1800 || 0 || 0 || 255 || 0 ||
+|| Zerg Infested Terran || Zerg || Zerg Infested Command Center || Zerg Infested Command Center || None || 100 || 50 || 600 || 2 || 0 || 1 || 0 ||
+|| Zerg Lair || Zerg || Zerg Hatchery || Zerg Hatchery, Zerg Spawning Pool || None || 150 || 100 || 1500 || 0 || 2 || 255 || 0 ||
+|| Zerg Larva || Zerg || Zerg Hatchery || Zerg Hatchery || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Zerg Lurker Egg || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Zerg Lurker || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 50 || 100 || 600 || 4 || 0 || 4 || 0 ||
+|| Zerg Mutalisk || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 100 || 100 || 600 || 4 || 0 || 255 || 0 ||
+|| Zerg Nydus Canal || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Zerg Overlord || Zerg || Zerg Larva || Zerg Larva || None || 100 || 0 || 600 || 0 || 16 || 255 || 8 ||
+|| Zerg Queen || Zerg || Zerg Larva || Zerg Larva, Zerg Queen's Nest || None || 100 || 100 || 750 || 4 || 0 || 255 || 0 ||
+|| Zerg Queen's Nest || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 ||
+|| Zerg Scourge || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 25 || 75 || 450 || 1 || 0 || 255 || 0 ||
+|| Zerg Spawning Pool || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 200 || 0 || 1200 || 0 || 0 || 255 || 0 ||
+|| Zerg Spire || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 200 || 150 || 1800 || 0 || 0 || 255 || 0 ||
 || Zerg Spore Colony || Zerg || Zerg Creep Colony || Zerg Evolution Chamber, Zerg Creep Colony || None || 50 || 0 || 300 || 0 || 0 || 255 || 0 ||
 || Zerg Sunken Colony || Zerg || Zerg Creep Colony || Zerg Spawning Pool, Zerg Creep Colony || None || 50 || 0 || 300 || 0 || 0 || 255 || 0 ||
+|| Zerg Ultralisk Cavern || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 200 || 1200 || 0 || 0 || 255 || 0 ||
+|| Zerg Ultralisk || Zerg || Zerg Larva || Zerg Larva, Zerg Ultralisk Cavern || None || 200 || 200 || 900 || 8 || 0 || 4 || 0 ||
+|| Zerg Zergling || Zerg || Zerg Larva || Zerg Larva, Zerg Spawning Pool || None || 50 || 0 || 420 || 1 || 0 || 1 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
+|| Protoss Arbiter Tribunal || Protoss || Protoss Probe || Protoss Probe, Protoss Templar Archives || None || 200 || 150 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss Arbiter || Protoss || Protoss Stargate || Protoss Stargate, Protoss Arbiter Tribunal || None || 100 || 350 || 2400 || 8 || 0 || 255 || 0 ||
+|| Protoss Archon || Protoss || Protoss High Templar || Protoss High Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 ||
+|| Protoss Assimilator || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Protoss Carrier || Protoss || Protoss Stargate || Protoss Stargate, Protoss Fleet Beacon || None || 350 || 250 || 2100 || 12 || 0 || 255 || 0 ||
+|| Protoss Citadel of Adun || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss Corsair || Protoss || Protoss Stargate || Protoss Stargate || None || 150 || 100 || 600 || 4 || 0 || 255 || 0 ||
+|| Protoss Cybernetics Core || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss Dark Archon || Protoss || Protoss Dark Templar || Protoss Dark Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 ||
+|| Protoss Dark Templar || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 125 || 100 || 750 || 4 || 0 || 2 || 0 ||
+|| Protoss Dragoon || Protoss || Protoss Gateway || Protoss Gateway, Protoss Cybernetics Core || None || 125 || 50 || 750 || 4 || 0 || 4 || 0 ||
+|| Protoss Fleet Beacon || Protoss || Protoss Probe || Protoss Probe, Protoss Stargate || None || 300 || 200 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss Forge || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 ||
+|| Protoss Gateway || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss High Templar || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 ||
+|| Protoss Interceptor || Protoss || Protoss Carrier || Protoss Carrier || None || 25 || 0 || 300 || 0 || 0 || 255 || 0 ||
+|| Protoss Nexus || Protoss || Protoss Probe || Protoss Probe || None || 400 || 0 || 1800 || 0 || 18 || 255 || 0 ||
+|| Protoss Observatory || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 50 || 100 || 450 || 0 || 0 || 255 || 0 ||
+|| Protoss Observer || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Observatory || None || 25 || 75 || 600 || 2 || 0 || 255 || 0 ||
+|| Protoss Photon Cannon || Protoss || Protoss Probe || Protoss Probe, Protoss Forge || None || 150 || 0 || 750 || 0 || 0 || 255 || 0 ||
+|| Protoss Probe || Protoss || Protoss Nexus || Protoss Nexus || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 ||
+|| Protoss Pylon || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 450 || 0 || 16 || 255 || 0 ||
+|| Protoss Reaver || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Robotics Support Bay || None || 200 || 100 || 1050 || 8 || 0 || 4 || 0 ||
+|| Protoss Robotics Facility || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 200 || 200 || 1200 || 0 || 0 || 255 || 0 ||
+|| Protoss Robotics Support Bay || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 150 || 100 || 450 || 0 || 0 || 255 || 0 ||
+|| Protoss Scarab || Protoss || Protoss Reaver || Protoss Reaver || None || 15 || 0 || 105 || 0 || 0 || 255 || 0 ||
+|| Protoss Scout || Protoss || Protoss Stargate || Protoss Stargate || None || 275 || 125 || 1200 || 6 || 0 || 255 || 0 ||
+|| Protoss Shield Battery || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 100 || 0 || 450 || 0 || 0 || 255 || 0 ||
+|| Protoss Shuttle || Protoss || Protoss Robotics Facility || Protoss Robotics Facility || None || 200 || 0 || 900 || 4 || 0 || 255 || 8 ||
+|| Protoss Stargate || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 150 || 1050 || 0 || 0 || 255 || 0 ||
+|| Protoss Templar Archives || Protoss || Protoss Probe || Protoss Probe, Protoss Citadel of Adun || None || 150 || 200 || 900 || 0 || 0 || 255 || 0 ||
+|| Protoss Zealot || Protoss || Protoss Gateway || Protoss Gateway || None || 100 || 0 || 600 || 4 || 0 || 2 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
+|| Special Cerebrate Daggoth || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
+|| Special Cerebrate || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
+|| Special Crashed Norad II || None || None ||  || None || 800 || 600 || 4800 || 0 || 0 || 255 || 0 ||
+|| Special Ion Cannon || None || None ||  || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 ||
+|| Special Khaydarin Crystal Form || None || None ||  || None || 250 || 0 || 1 || 0 || 0 || 255 || 0 ||
+|| Special Mature Chrysalis || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
+|| Special Overmind Cocoon || None || None ||  || None || 1000 || 500 || 2400 || 0 || 0 || 255 || 0 ||
 || Special Overmind With Shell || None || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Special Overmind || None || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Zerg Extractor || Zerg || Zerg Drone || Zerg Drone || None || 50 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Special Mature Chrysalis || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
-|| Special Cerebrate || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
-|| Special Cerebrate Daggoth || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
-|| Protoss Nexus || Protoss || Protoss Probe || Protoss Probe || None || 400 || 0 || 1800 || 0 || 18 || 255 || 0 ||
-|| Protoss Robotics Facility || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 200 || 200 || 1200 || 0 || 0 || 255 || 0 ||
-|| Protoss Pylon || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 450 || 0 || 16 || 255 || 0 ||
-|| Protoss Assimilator || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Protoss Observatory || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 50 || 100 || 450 || 0 || 0 || 255 || 0 ||
-|| Protoss Gateway || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Photon Cannon || Protoss || Protoss Probe || Protoss Probe, Protoss Forge || None || 150 || 0 || 750 || 0 || 0 || 255 || 0 ||
-|| Protoss Citadel of Adun || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Cybernetics Core || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Templar Archives || Protoss || Protoss Probe || Protoss Probe, Protoss Citadel of Adun || None || 150 || 200 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Forge || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 ||
-|| Protoss Stargate || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 150 || 1050 || 0 || 0 || 255 || 0 ||
-|| Special Stasis Cell Prison || None || None ||  || None || 150 || 0 || 1 || 0 || 0 || 255 || 0 ||
-|| Protoss Fleet Beacon || Protoss || Protoss Probe || Protoss Probe, Protoss Stargate || None || 300 || 200 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Arbiter Tribunal || Protoss || Protoss Probe || Protoss Probe, Protoss Templar Archives || None || 200 || 150 || 900 || 0 || 0 || 255 || 0 ||
-|| Protoss Robotics Support Bay || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 150 || 100 || 450 || 0 || 0 || 255 || 0 ||
-|| Protoss Shield Battery || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 100 || 0 || 450 || 0 || 0 || 255 || 0 ||
-|| Special Khaydarin Crystal Form || None || None ||  || None || 250 || 0 || 1 || 0 || 0 || 255 || 0 ||
+|| Special Power Generator || None || None ||  || None || 200 || 50 || 2400 || 0 || 0 || 255 || 0 ||
 || Special Protoss Temple || None || None ||  || None || 250 || 0 || 1 || 0 || 0 || 255 || 0 ||
+|| Special Psi Disrupter || None || None ||  || None || 1000 || 400 || 4800 || 0 || 0 || 255 || 0 ||
+|| Special Stasis Cell Prison || None || None ||  || None || 150 || 0 || 1 || 0 || 0 || 255 || 0 ||
+|| Special Warp Gate || None || None ||  || None || 600 || 200 || 2400 || 0 || 0 || 255 || 0 ||
 || Special XelNaga Temple || None || None ||  || None || 1500 || 500 || 4800 || 0 || 0 || 255 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
+|| Critter Bengalaas || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Critter Kakaru || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Critter Ragnasaur || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Critter Rhynadon || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Critter Scantid || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+|| Critter Ursadon || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Resource Mineral Field || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Resource Vespene Geyser || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
-|| Special Warp Gate || None || None ||  || None || 600 || 200 || 2400 || 0 || 0 || 255 || 0 ||
-|| Special Psi Disrupter || None || None ||  || None || 1000 || 400 || 4800 || 0 || 0 || 255 || 0 ||
-|| Special Power Generator || None || None ||  || None || 200 || 50 || 2400 || 0 || 0 || 255 || 0 ||
-|| Special Overmind Cocoon || None || None ||  || None || 1000 || 500 || 2400 || 0 || 0 || 255 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Spell Dark Swarm || Other || None ||  || None || 250 || 200 || 2400 || 0 || 0 || 255 || 0 ||
+|| Spell Disruption Web || Other || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 ||
+|| Spell Scanner Sweep || Terran || None ||  || None || 0 || 0 || 1 || 0 || 0 || 255 || 0 ||
+
+|| Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || None || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
 || Unknown || Unknown || Unknown ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
