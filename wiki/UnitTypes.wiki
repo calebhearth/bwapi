@@ -4,6 +4,8 @@
 
 = UnitTypes =
 
+== Terran ==
+
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Terran Academy || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 ||
 || Terran Armory || Terran || Terran SCV || Terran SCV, Terran Factory || None || 100 || 50 || 1200 || 0 || 0 || 255 || 0 ||
@@ -40,6 +42,7 @@
 || Terran Vulture || Terran || Terran Factory || Terran Factory || None || 75 || 0 || 450 || 4 || 0 || 2 || 0 ||
 || Terran Wraith || Terran || Terran Starport || Terran Starport || None || 150 || 100 || 900 || 4 || 0 || 255 || 0 ||
 
+== Zerg ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Zerg Broodling || Zerg || None ||  || None || 1 || 1 || 1 || 0 || 0 || 1 || 0 ||
 || Zerg Cocoon || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
@@ -77,6 +80,7 @@
 || Zerg Ultralisk || Zerg || Zerg Larva || Zerg Larva, Zerg Ultralisk Cavern || None || 200 || 200 || 900 || 8 || 0 || 4 || 0 ||
 || Zerg Zergling || Zerg || Zerg Larva || Zerg Larva, Zerg Spawning Pool || None || 50 || 0 || 420 || 1 || 0 || 1 || 0 ||
 
+== Protoss ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Protoss Arbiter Tribunal || Protoss || Protoss Probe || Protoss Probe, Protoss Templar Archives || None || 200 || 150 || 900 || 0 || 0 || 255 || 0 ||
 || Protoss Arbiter || Protoss || Protoss Stargate || Protoss Stargate, Protoss Arbiter Tribunal || None || 100 || 350 || 2400 || 8 || 0 || 255 || 0 ||
@@ -111,6 +115,7 @@
 || Protoss Templar Archives || Protoss || Protoss Probe || Protoss Probe, Protoss Citadel of Adun || None || 150 || 200 || 900 || 0 || 0 || 255 || 0 ||
 || Protoss Zealot || Protoss || Protoss Gateway || Protoss Gateway || None || 100 || 0 || 600 || 4 || 0 || 2 || 0 ||
 
+== Special ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Special Cerebrate Daggoth || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
 || Special Cerebrate || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
@@ -128,6 +133,7 @@
 || Special Warp Gate || None || None ||  || None || 600 || 200 || 2400 || 0 || 0 || 255 || 0 ||
 || Special XelNaga Temple || None || None ||  || None || 1500 || 500 || 4800 || 0 || 0 || 255 || 0 ||
 
+== Critters ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Critter Bengalaas || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Critter Kakaru || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
@@ -136,15 +142,18 @@
 || Critter Scantid || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Critter Ursadon || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 
+== Resources ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Resource Mineral Field || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 || Resource Vespene Geyser || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 ||
 
+== Spells ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || Spell Dark Swarm || Other || None ||  || None || 250 || 200 || 2400 || 0 || 0 || 255 || 0 ||
 || Spell Disruption Web || Other || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 ||
 || Spell Scanner Sweep || Terran || None ||  || None || 0 || 0 || 1 || 0 || 0 || 255 || 0 ||
 
+== Misc ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
 || None || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
 || Unknown || Unknown || Unknown ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 ||
