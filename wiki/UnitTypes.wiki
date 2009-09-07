@@ -149,8 +149,8 @@
 
 == Spells ==
 || Name || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided ||
-|| Spell Dark Swarm || Other || None ||  || None || 250 || 200 || 2400 || 0 || 0 || 255 || 0 ||
-|| Spell Disruption Web || Other || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 ||
+|| Spell Dark Swarm || Zerg || None ||  || None || 250 || 200 || 2400 || 0 || 0 || 255 || 0 ||
+|| Spell Disruption Web || Protoss || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 ||
 || Spell Scanner Sweep || Terran || None ||  || None || 0 || 0 || 1 || 0 || 0 || 255 || 0 ||
 
 == Misc ==
