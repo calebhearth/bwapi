@@ -1,5 +1,5 @@
 #summary Offset changes made in 1.16
-#labels Phase-Implementation
+#labels Phase-Implementation,Deprecated
 
 Note: This is pretty much a direct copy with changes ON THE RIGHT OF THE DESCRIPTION. The offsets are for 1.15.3, the changes on the right indicate where it has been moved to.
 
