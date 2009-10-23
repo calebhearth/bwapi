@@ -1,0 +1,5 @@
+Goal: simulate menu button click for automated menu traversal.
+
+Loop at 0041A0A5 cycles once per frame for all non-match menu screens (main menu, profile selection, network selection, pre-game lobby, etc). The function it is in returns during menu transitions.
+
+at offset 004D1C28, EAX != 0 if the user has clicked the mouse (on menu button or otherwise). If the user has not clicked, EAX = 0 at that offset, and the jump takes place.
