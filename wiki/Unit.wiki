@@ -63,6 +63,8 @@ Methods:
   * [#isBlind isBlind]
   * [#isBraking isBraking]
   * [#isBurrowed isBurrowed]
+  * [#isCarryingGas isCarryingGas]
+  * [#isCarryingMinerals isCarryingMinerals]
   * [#isCloaked isCloaked]
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
@@ -413,6 +415,19 @@ bool isBurrowed() const;
 Returns true if the unit is a Zerg unit that is current burrowed.
 
 See also: [Unit]::[Unit#burrow burrow], [Unit]::[Unit#unburrow unburrow].
+
+=== isCarryingGas ===
+bool isCarryingGas() const;
+
+Returns true if the unit is a worker that is carrying gas.
+
+=== isCarryingMinerals ===
+bool isCarryingMinerals() const;
+
+Returns true if the unit is a worker that is carrying minerals.
+
+=== isBurrowed ===
+bool isBurrowed() const;
 
 === isCloaked ===
 bool isCloaked() const;
