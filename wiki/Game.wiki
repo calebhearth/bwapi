@@ -48,7 +48,7 @@ Methods:
   * [#startGame startGame]
   * [#pauseGame pauseGame]
   * [#resumeGame resumeGame]
-  * [#surrender surrender]
+  * [#leaveGame leaveGame]
   * [#getSelectedUnits getSelectedUnits]
   * [#self self]
   * [#enemy enemy]
@@ -256,10 +256,10 @@ void pauseGame();
 === resumeGame ===
 void resumeGame();
 
-=== surrender ===
-void surrender();
+=== leaveGame ===
+void leaveGame();
 
-Surrenders the match and goes to the after-game stats screen. Sometimes this method crashes Broodwar, so we recommend that you don't use it yet.
+Leaves the current the match and goes to the main menu.
 
 === getSelectedUnits ===
 std::set<[Unit]{{{*}}}> getSelectedUnits();
