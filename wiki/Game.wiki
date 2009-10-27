@@ -259,7 +259,7 @@ void resumeGame();
 === leaveGame ===
 void leaveGame();
 
-Leaves the current the match and goes to the main menu.
+Leaves the current match and goes to the main menu.
 
 === getSelectedUnits ===
 std::set<[Unit]{{{*}}}> getSelectedUnits();
