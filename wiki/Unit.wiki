@@ -429,6 +429,8 @@ Returns true if the unit is a worker that is carrying minerals.
 === isBurrowed ===
 bool isBurrowed() const;
 
+Returns true if the unit is burrowed.
+
 === isCloaked ===
 bool isCloaked() const;
 
