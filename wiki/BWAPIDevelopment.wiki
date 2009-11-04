@@ -15,6 +15,8 @@ Remember, you don't really need to know C++ to participate. Aside from writing c
 
 ==How to Start Working on BWAPI==
 
+_Note: Only perform steps 3 and 4 if you want to use ChaosLauncher as a loader. BWAPI will work with any other basic loader such as InsectLoader._
+
   # Obtain an SVN Program. Google has its own instructions for getting an SVN program, but I use TortoiseSVN, which can be found here: http://tortoisesvn.tigris.org/
   # Follow the instructions on the [http://code.google.com/p/bwapi/source/checkout Source] tab for retrieving the source code.
   # Download [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 ChaosLauncher]
