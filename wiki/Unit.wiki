@@ -17,15 +17,17 @@ Methods:
   * [#getAirWeaponCooldown getAirWeaponCooldown]
   * [#getSpellCooldown getSpellCooldown]
   * [#getDefenseMatrixPoints getDefenseMatrixPoints]
+
   * [#getDefenseMatrixTimer getDefenseMatrixTimer]
-  * [#getStimTimer getStimTimer]
   * [#getEnsnareTimer getEnsnareTimer]
-  * [#getLockdownTimer getLockdownTimer]
   * [#getIrradiateTimer getIrradiateTimer]
-  * [#getStasisTimer getStasisTimer]
-  * [#getPlagueTimer getPlagueTimer]
+  * [#getLockdownTimer getLockdownTimer]
   * [#getMaelstromTimer getMaelstromTimer]
+  * [#getPlagueTimer getPlagueTimer]
   * [#getRemoveTimer getRemoveTimer]
+  * [#getStasisTimer getStasisTimer]
+  * [#getStimTimer getStimTimer]
+
   * [#getPosition getPosition]
   * [#getTilePosition getTilePosition]
   * [#getDistance getDistance]
@@ -68,23 +70,29 @@ Methods:
   * [#isCloaked isCloaked]
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
+  * [#isDefenseMatrixed isDefenseMatrixed]
+  * [#isEnsnared isEnsnared]
   * [#isFollowing isFollowing]
   * [#isGatheringGas isGatheringGas]
   * [#isGatheringMinerals isGatheringMinerals]
   * [#isHallucination isHallucination]
   * [#isIdle isIdle]
+  * [#isIrradiated isIrradiated]
   * [#isLifted isLifted]
   * [#isLoaded isLoaded]
   * [#isLockedDown isLockedDown]
+  * [#isMaelstrommed isMaelstrommed]
   * [#isMorphing isMorphing]
   * [#isMoving isMoving]
   * [#isPatrolling isPatrolling]
+  * [#isPlagued isPlagued]
   * [#isRepairing isRepairing]
   * [#isResearching isResearching]
   * [#isSelected isSelected]
   * [#isSieged isSieged]
   * [#isStartingAttack isStartingAttack]
   * [#isStasised isStasised]
+  * [#isStimmed isStimmed]
   * [#isTraining isTraining]
   * [#isUnderStorm isUnderStorm]
   * [#isUnpowered isUnpowered]
@@ -196,45 +204,45 @@ int getDefenseMatrixTimer() const;
 
 Returns the time until the defense matrix wears off. 0 -> No defense Matrix present.
 
-=== getStimTimer ===
-int getStimTimer() const;
-
-Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
-
 === getEnsnareTimer ===
 int getEnsnareTimer() const;
 
 Returns the time until the ensnare effect wears off. 0 -> No ensnare effect present.
-
-=== getLockdownTimer ===
-int getLockdownTimer() const;
-
-Returns the time until the lockdown wears off. 0 -> No lockdown present.
 
 === getIrradiateTimer ===
 int getIrradiateTimer() const;
 
 Returns the time until the radiation wears off. 0 -> No radiation present.
 
-=== getStasisTimer ===
-int getStasisTimer() const;
+=== getLockdownTimer ===
+int getLockdownTimer() const;
 
-Returns the time until the stasis field wears off. 0 -> No stasis field present.
-
-=== getPlagueTimer ===
-int getPlagueTimer() const;
-
-Returns the time until the plague wears off. 0 -> No plague present.
+Returns the time until the lockdown wears off. 0 -> No lockdown present.
 
 === getMaelstromTimer ===
 int getMaelstromTimer() const;
 
 Returns the time until the maelstrom wears off. 0 -> No maelstrom present.
 
+=== getPlagueTimer ===
+int getPlagueTimer() const;
+
+Returns the time until the plague wears off. 0 -> No plague present.
+
 === getRemoveTimer ===
 int getRemoveTimer() const;
 
 Returns the amount of time until the unit is removed, or 0 if the unit does not have a remove timer. Used to determine how much time remains before hallucinated units, dark swarm, etc have until they are removed.
+
+=== getStasisTimer ===
+int getStasisTimer() const;
+
+Returns the time until the stasis field wears off. 0 -> No stasis field present.
+
+=== getStimTimer ===
+int getStimTimer() const;
+
+Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
 
 === getPosition ===
 [Misc#Position Position] getPosition() const;
@@ -450,6 +458,16 @@ Returns true when a unit has been issued an order to build a structure and is mo
 
 See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isBeingConstructed isBeingConstructed].
 
+=== isDefenseMatrixed ===
+bool isDefenseMatrixed() const;
+
+Returns true if the unit has a defense matrix from a Terran Science Vessel.
+
+=== isEnsnared ===
+bool isEnsnared() const;
+
+Returns true if the unit has been ensnared by a Zerg Queen.
+
 === isFollowing ===
 bool isFollowing() const;
 
@@ -479,6 +497,11 @@ Returns true if the unit is not doing anything.
 
 See also: [Unit]::[Unit#stop stop].
 
+=== isIrradiated ===
+bool isIrradiated() const;
+
+Returns true if the unit is being irradiated by a Terran Science Vessel.
+
 === isLifted ===
 bool isLifted() const;
 
@@ -497,6 +520,11 @@ See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#
 bool isLockedDown() const;
 
 Returns true if the unit is locked down by a Terran Ghost.
+
+=== isMaelstrommed ===
+bool isMaelstrommed() const;
+
+Returns true if the unit is being maelstrommed.
 
 === isMorphing ===
 bool isMorphing() const;
@@ -518,6 +546,11 @@ bool isPatrolling() const;
 Returns true if the unit is patrolling between two positions.
 
 See also: [Unit]::[Unit#patrol patrol].
+
+=== isPlagued ===
+bool isPlagued() const;
+
+Returns true if the unit is plagued.
 
 === isRepairing ===
 bool isRepairing() const;
