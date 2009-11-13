@@ -49,6 +49,7 @@ Methods:
   * [#pauseGame pauseGame]
   * [#resumeGame resumeGame]
   * [#leaveGame leaveGame]
+  * [#setLocalSpeed setLocalSpeed]
   * [#getSelectedUnits getSelectedUnits]
   * [#self self]
   * [#enemy enemy]
@@ -260,6 +261,11 @@ void resumeGame();
 void leaveGame();
 
 Leaves the current match and goes to the main menu.
+
+=== setLocalSpeed ===
+void setLocalSpeed(int speed);
+
+Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed Starcraft can handle. Any negative value will reset the speed to the starcraft default.
 
 === getSelectedUnits ===
 std::set<[Unit]{{{*}}}> getSelectedUnits();
