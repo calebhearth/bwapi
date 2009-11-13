@@ -1,6 +1,6 @@
 Changes from BWAPI Beta:
 
-New functions:
+The following functions have been added:
 
   * [Unit#isCarryingGas Unit::isCarryingGas]
   * [Unit#isCarryingMinerals Unit::isCarryingMinerals]
@@ -13,7 +13,7 @@ New functions:
   * [Unit#isStimmed Unit::isStimmed]
 
   * [Game#leaveGame Game::leaveGame] - replaces Game::surrender and now works correctly.
-  * [Game#setLocalSpeed Game::setLocalSpeed] - enables AIs to increase the speed in single player games.
+  * [Game#setLocalSpeed Game::setLocalSpeed] - lets AIs increase the speed in single player games.
 
 Other changes:
 
