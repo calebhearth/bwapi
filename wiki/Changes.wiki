@@ -20,3 +20,4 @@ Other changes:
   * Fixed crash due to null sprite pointer in Broodwar memory
   * Minor update of UnitType information for spells and Terran Nuclear Missile.
   * Minor update of description text shown in Chaoslauncher text box.
+  * Example AI Module compiles much faster due to new compile of BWTA.lib.
