@@ -84,6 +84,7 @@ Methods:
   * [#isMaelstrommed isMaelstrommed]
   * [#isMorphing isMorphing]
   * [#isMoving isMoving]
+  * [#isParasited isParasited]
   * [#isPatrolling isPatrolling]
   * [#isPlagued isPlagued]
   * [#isRepairing isRepairing]
@@ -540,6 +541,11 @@ Returns true if the unit is moving.
 
 See also: [Unit]::[Unit#attackMove attackMove], [Unit]::[Unit#stop stop].
 
+=== isParasited ===
+bool isParasited() const;
+
+Returns true if the unit has been parasited by some other player.
+
 === isPatrolling ===
 bool isPatrolling() const;
 
@@ -587,6 +593,11 @@ See also: [Unit]::[Unit#attackUnit attackUnit].
 bool isStasised() const;
 
 Returns true if the unit has been stasised by a Protoss Arbiter.
+
+=== isStimmed ===
+bool isStimmed() const;
+
+Returns true if the unit is currently stimmed.
 
 === isTraining ===
 bool isTraining() const;
