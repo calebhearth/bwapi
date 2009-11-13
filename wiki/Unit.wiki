@@ -556,7 +556,7 @@ See also: [Unit]::[Unit#patrol patrol].
 === isPlagued ===
 bool isPlagued() const;
 
-Returns true if the unit is plagued.
+Returns true if the unit has been plagued by a Zerg Defiler.
 
 === isRepairing ===
 bool isRepairing() const;
