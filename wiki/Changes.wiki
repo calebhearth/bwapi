@@ -2,7 +2,6 @@ Changes from BWAPI Beta:
 
 New functions:
 
-  * [Game#setLocalSpeed Game::setLocalSpeed]
   * [Unit#isCarryingGas Unit::isCarryingGas]
   * [Unit#isCarryingMinerals Unit::isCarryingMinerals]
   * [Unit#isDefenseMatrixed Unit::isDefenseMatrixed]
@@ -12,3 +11,12 @@ New functions:
   * [Unit#isParasited Unit::isParasited]
   * [Unit#isPlagued Unit::isPlagued]
   * [Unit#isStimmed Unit::isStimmed]
+
+  * [Game#leaveGame Game::leaveGame] - replaces Game::surrender and now works correctly.
+  * [Game#setLocalSpeed Game::setLocalSpeed] - enables AIs to increase the speed in single player games.
+
+Other changes:
+
+  * Fixed crash due to null sprite pointer in Broodwar memory
+  * Minor update of UnitType information for spells and Terran Nuclear Missile.
+  * Minor update of description text shown in Chaoslauncher text box.
