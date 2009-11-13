@@ -1,4 +1,4 @@
-Changes from BWAPI Beta to BWAPI Beta 2:
+Changes from BWAPI Beta to BWAPI Beta 2 (r1400):
 
 The following functions have been added:
 
