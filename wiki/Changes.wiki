@@ -1,0 +1,14 @@
+Changes from BWAPI Beta:
+
+New functions:
+
+[Game#setLocalSpeed Game::setLocalSpeed]
+[Unit#isCarryingGas Unit::isCarryingGas]
+[Unit#isCarryingMinerals Unit::isCarryingMinerals]
+[Unit#isDefenseMatrixed Unit::isDefenseMatrixed]
+[Unit#isEnsnared Unit::isEnsnared]
+[Unit#isIrradiated Unit::isIrradiated]
+[Unit#isMaelstrommed Unit::isMaelstrommed]
+[Unit#isParasited Unit::isParasited]
+[Unit#isPlagued Unit::isPlagued]
+[Unit#isStimmed Unit::isStimmed]
