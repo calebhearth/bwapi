@@ -1,3 +1,7 @@
+Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416):
+
+  * Fixed a bug that produced phantom marines. An internal unit set in BWAPI was not being reset between matches, so units that existed in a previous match appeared to exist in the next game as phantom marines. Retrieving information from these non existant marines and/or issuing orders to them may have also caused Broodwar to crash.
+
 Changes from BWAPI Beta to BWAPI Beta 2 (r1400):
 
 The following functions have been added:
