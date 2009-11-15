@@ -62,32 +62,32 @@ Methods:
   * [#drawTriangle drawTriangle]
 
 === getForces ===
-std::set< [Force]{{{*}}} > getForces();
+std::set< [Force]{{{*}}} >& getForces();
 
 Returns the set of all forces in the match.
 
 === getPlayers ===
-std::set< [Player]{{{*}}} > getPlayers();
+std::set< [Player]{{{*}}} >& getPlayers();
 
 Returns the set of all players in the match. Note that this includes the Neutral player, which owns all the neutral units such as minerals, critters, etc.
 
 === getAllUnits ===
-std::set< [Unit]{{{*}}} > getAllUnits();
+std::set< [Unit]{{{*}}} >& getAllUnits();
 
 Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units inside refineries are not included in this set yet.
 
 === getMinerals ===
-std::set< [Unit]{{{*}}} > getMinerals();
+std::set< [Unit]{{{*}}} >& getMinerals();
 
 Returns the set of all visible mineral patches, or all mineral patches if [Flag]::CompleteMapInformation is enabled.
 
 === getGeysers ===
-std::set< [Unit]{{{*}}} > getGeysers();
+std::set< [Unit]{{{*}}} >& getGeysers();
 
 Returns the set of all visible vespene geysers, or all vespene geysers if [Flag]::CompleteMapInformation is enabled.
 
 === getNeutralUnits ===
-std::set< [Unit]{{{*}}} > getNeutralUnits();
+std::set< [Unit]{{{*}}} >& getNeutralUnits();
 
 Returns the set of all visible neutral units, or all neutral units if [Flag]::CompleteMapInformation is enabled.
 
@@ -132,7 +132,7 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === unitsOnTile ===
-std::set< [Unit]{{{*}}} > unitsOnTile([Misc#TilePosition TilePosition] tile);
+std::set< [Unit]{{{*}}} >& unitsOnTile([Misc#TilePosition TilePosition] tile);
 
 Returns the set of units that are on the given tile.
 
@@ -212,7 +212,7 @@ int groundHeight(int x, int y);
 Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
 
 === getStartLocations ===
-std::set< [Misc#TilePosition TilePosition] > getStartLocations();
+std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
 
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
@@ -268,7 +268,7 @@ void setLocalSpeed(int speed);
 Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed Starcraft can handle (which is about as fast as the fastest speed you can view a replay at). Any negative value will reset the speed to the starcraft default.
 
 === getSelectedUnits ===
-std::set<[Unit]{{{*}}}> getSelectedUnits();
+std::set<[Unit]{{{*}}}>& getSelectedUnits();
 
 Returns the set of units currently selected by the user in the GUI. If [Flag]::UserInput was not enabled during the [AIModule]::[AIModule#onStart onStart] callback, this function will always return an empty set.
 
