@@ -400,7 +400,7 @@ bool exists() const;
 3 cases to consider:
 
   * If exists() returns true, the unit exists and is accessible.
-  * If exists() returns false and the unit is accessible, then the unit does not exist but is accessible.
+  * If exists() returns false and the unit is accessible or the unit is owned by self(), then the unit does not exist.
   * If exists() returns false and the unit is not accessible, then the unit may or may not exist.
 
 See also: [Unit]::[Unit#canAccess canAccess], [Unit]::[Unit#isVisible isVisible].
