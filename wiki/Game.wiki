@@ -258,8 +258,12 @@ Used to start the game while in a lobby. Note that there is no onLobbyEnter call
 === pauseGame ===
 void pauseGame();
 
+Pauses the game.
+
 === resumeGame ===
 void resumeGame();
+
+Resumes the game.
 
 === leaveGame ===
 void leaveGame();
@@ -279,12 +283,12 @@ Returns the set of units currently selected by the user in the GUI. If [Flag]::U
 === self ===
 [Player]{{{*}}} self();
 
-Returns a pointer to the player that BWAPI controls.
+Returns a pointer to the player that BWAPI controls. In replays this will return null.
 
 === enemy ===
 [Player]{{{*}}} enemy();
 
-Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] and [Player]::[Player#isEnemy isEnemy] to get the other enemies).
+Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] and [Player]::[Player#isEnemy isEnemy] to get the other enemies). In replays this will return null.
 
 === drawBox ===
   * void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
