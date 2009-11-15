@@ -1,4 +1,12 @@
 #sidebar TableOfContents
+= Map Coordinates =
+
+There are three different types of map coordinates:
+
+  * Positions are measured in pixels and are the highest resolution
+  * Walk Tiles - each walk tile is an 8x8 square of pixels. These are called walk tiles because walkability data is available at this resolution.
+  * Build Tiles - each build tile is a 4x4 square of walk tiles, or a 32x32 square of pixels. These are called build tiles because buildability data is available at this resolution, correspond to the tiles seen in game. For example, a command center occupies an area of 4x3 build tiles.
+
 = Position =
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Position.h# BWAPI/Position.h]
