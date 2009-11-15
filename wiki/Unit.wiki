@@ -397,7 +397,11 @@ See also: [Unit]::[Unit#exists exists], [Unit]::[Unit#isVisible isVisible].
 === exists ===
 bool exists() const;
 
-Returns true if the unit exists and is accessible. If the unit is inaccessible, exists() will return false, regardless of whether or not the unit actually exists.
+3 cases to consider:
+
+  * If exists() returns true, the unit exists and is accessible.
+  * If exists() returns false and the unit is accessible, then the unit does not exist but is accessible.
+  * If exists() returns false and the unit is not accessible, then the unit may or may not exist.
 
 See also: [Unit]::[Unit#canAccess canAccess], [Unit]::[Unit#isVisible isVisible].
 
