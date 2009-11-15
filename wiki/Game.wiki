@@ -233,10 +233,10 @@ void sendText(const char {{{*}}}text, ...);
 Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen.
 
 === text ===
-  * void text(CoordinateType::Enum ctype, int x, int y, const char* text, ...);
-  * void textScreen(int x, int y, const char* text, ...);
-  * void textMap(int x, int y, const char* text, ...);
-  * void textMouse(int x, int y, const char* text, ...);
+  * void text(CoordinateType::Enum ctype, int x, int y, const char{{{*}}} text, ...);
+  * void textScreen(int x, int y, const char{{{*}}} text, ...);
+  * void textMap(int x, int y, const char{{{*}}} text, ...);
+  * void textMouse(int x, int y, const char{{{*}}} text, ...);
 
 Draws text on the screen at the given position.
 
