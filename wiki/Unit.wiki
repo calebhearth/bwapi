@@ -389,7 +389,7 @@ Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
 === exists ===
 bool exists() const;
 
-Returns true if the unit exists.
+Returns true if the unit exists and is accessible. If the unit is an inaccessible enemy unit, exists() will return false.
 
 === isAccelerating ===
 bool isAccelerating() const;
@@ -626,7 +626,7 @@ See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgr
 === isVisible ===
 bool isVisible() const;
 
-Returns true if the unit is visible.
+Returns true if the unit is visible. If the CompleteMapInformation cheat flag is enabled, units hidden by the fog of war will be accessible, but isVisible will still return false.
 
 === attackMove ===
 bool attackMove([Misc#Position Position] target);
