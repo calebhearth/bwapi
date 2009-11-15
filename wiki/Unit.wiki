@@ -58,6 +58,7 @@ Methods:
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
 
+  * [#canAccess canAccess]
   * [#exists exists]
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
@@ -386,10 +387,15 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
 
+=== canAccess ===
+bool canAccess() const;
+
+Returns true if AI Module is allowed to access the unit. Visible units are always accessible, and invisible units are accessible if the CompleteMapInformation cheat flag is enabled.
+
 === exists ===
 bool exists() const;
 
-Returns true if the unit exists and is accessible. If the unit is an inaccessible enemy unit, exists() will return false.
+Returns true if the unit exists and is accessible. If the unit is inaccessible, exists() will return false, regardless of whether or not the unit actually exists.
 
 === isAccelerating ===
 bool isAccelerating() const;
