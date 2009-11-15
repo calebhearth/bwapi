@@ -75,7 +75,7 @@ Returned when trying to order a unit to do something when it is performing anoth
 
 === {{{Incompatible_UnitType}}} ===
 
-Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks.
+Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks, or order a Hydralisk to lay a spider mine.
 
 === {{{Incompatible_TechType}}} ===
 
