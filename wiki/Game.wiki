@@ -134,7 +134,7 @@ Enables the specified flag. Note that flags can only be enabled at the beginning
 === unitsOnTile ===
 std::set< [Unit]{{{*}}} >& unitsOnTile([Misc#TilePosition TilePosition] tile);
 
-Returns the set of units that are on the given tile.
+Returns the set of units that are on the given build tile.
 
 === getLastError ===
 [Error] getLastError() const;
@@ -169,7 +169,7 @@ Returns true if the specified build tile is buildable. Note that this just uses 
 === walkable ===
 bool walkable(int x, int y);
 
-Returns true if the specified build tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
+Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
 === visible ===
 bool visible(int x, int y);
@@ -189,7 +189,7 @@ Returns true if the given build location is powered by a nearby friendly pylon.
 === canBuildHere ===
 bool canBuildHere([Unit]{{{*}}} builder, [Misc#TilePosition TilePosition] position, [UnitType] type);
 
-Returns true if the given unit type can be built at the given location. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location.
+Returns true if the given unit type can be built at the given build tile position. Note the tile position specifies the top left tile of the building. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location.
 
 === canMake ===
 bool canMake([Unit]{{{*}}} builder, [UnitType] type);
