@@ -29,12 +29,12 @@ BWAPI calls this on every logical frame in the game.
 === onAddUnit ===
 void onAddUnit([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit is created.
+BWAPI calls this when a unit is created. Note that this is not called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onAddUnit call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor.
 
 === onRemoveUnit ===
 void onRemoveUnit([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit dies.
+BWAPI calls this when a unit dies. When a zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is removed.
 
 === onSendText ===
 bool onSendText(std::string text);
