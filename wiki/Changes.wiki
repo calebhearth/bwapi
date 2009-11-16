@@ -2,10 +2,6 @@ Changes from BWAPI Beta 2.1 (r1416) to current revision:
 
 The following functions have been added:
 
-  * [Game#getStaticMinerals Game::getStaticMinerals]
-  * [Game#getStaticGeysers Game::getStaticGeysers]
-  * [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]
-
   * [Unit#canAccess Unit::canAccess]
   * [Unit#getInitialType Unit::getInitialType]
   * [Unit#getInitialPosition Unit::getInitialPosition]
@@ -13,10 +9,13 @@ The following functions have been added:
   * [Unit#getInitialResources Unit::getInitialResources]
   * [Unit#getInitialHitPoints Unit::getInitialHitPoints]
 
+  * [Game#getStaticMinerals Game::getStaticMinerals]
+  * [Game#getStaticGeysers Game::getStaticGeysers]
+  * [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]
 
-  * [Game#drawText drawTextMap]
-  * [Game#drawText drawTextMouse]
-  * [Game#drawText drawTextScreen]
+  * [Game#drawText Game::drawTextMap]
+  * [Game#drawText Game::drawTextMouse]
+  * [Game#drawText Game::drawTextScreen]
 
   * [Game#drawBox Game::drawMapBox]
   * [Game#drawBox Game::drawMouseBox]
