@@ -14,7 +14,7 @@ Methods:
   * [#getShields getShields]
   * [#getEnergy getEnergy]
   * [#getResources getResources]
-  * [#getStaticResources getStaticResources]
+  * [#getInitialResources getInitialResources]
   * [#getKillCount getKillCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
   * [#getAirWeaponCooldown getAirWeaponCooldown]
@@ -32,9 +32,9 @@ Methods:
   * [#getStimTimer getStimTimer]
 
   * [#getPosition getPosition]
-  * [#getStaticPosition getStaticPosition]
+  * [#getInitialPosition getInitialPosition]
   * [#getTilePosition getTilePosition]
-  * [#getStaticTilePosition getStaticTilePosition]
+  * [#getInitialTilePosition getInitialTilePosition]
   * [#getDistance getDistance]
   * [#getDistance_2 getDistance]
   * [#getCurrentDirection getCurrentDirection]
@@ -274,7 +274,7 @@ Returns the position of the unit on the map.
 === getInitialPosition ===
 [Misc#Position Position] getInitialPosition() const;
 
-Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit.
+Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
 
 === getTilePosition ===
 [Misc#TilePosition TilePosition] getTilePosition() const;
@@ -284,7 +284,7 @@ Returns the build tile position of the unit on the map. Useful if the unit is a 
 === getInitialTilePosition ===
 [Misc#TilePosition TilePosition] getInitialTilePosition() const;
 
-Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit.
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
 
 === getDistance ===
 double getDistance([Unit]{{{*}}} target) const;
