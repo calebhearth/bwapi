@@ -13,6 +13,10 @@ Methods:
   * [#getGeysers getGeysers]
   * [#getNeutralUnits getNeutralUnits]
 
+  * [#getStaticMinerals getStaticMinerals]
+  * [#getStaticGeysers getStaticGeysers]
+  * [#getStaticNeutralUnits getStaticNeutralUnits]
+
   * [#getLatency getLatency]
   * [#getFrameCount getFrameCount]
   * [#getMouseX getMouseX]
@@ -80,17 +84,32 @@ Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the
 === getMinerals ===
 std::set< [Unit]{{{*}}} >& getMinerals();
 
-Returns the set of all visible mineral patches, or all mineral patches if [Flag]::CompleteMapInformation is enabled.
+Returns the set of all accessible mineral patches.
 
 === getGeysers ===
 std::set< [Unit]{{{*}}} >& getGeysers();
 
-Returns the set of all visible vespene geysers, or all vespene geysers if [Flag]::CompleteMapInformation is enabled.
+Returns the set of all accessible vespene geysers.
 
 === getNeutralUnits ===
 std::set< [Unit]{{{*}}} >& getNeutralUnits();
 
-Returns the set of all visible neutral units, or all neutral units if [Flag]::CompleteMapInformation is enabled.
+Returns the set of all accessible neutral units.
+
+=== getStaticMinerals ===
+std::set< [Unit]{{{*}}} >& getStaticMinerals();
+
+Returns the set of all mineral patches.
+
+=== getStaticGeysers ===
+std::set< [Unit]{{{*}}} >& getStaticGeysers();
+
+Returns the set of all vespene geysers.
+
+=== getStaticNeutralUnits ===
+std::set< [Unit]{{{*}}} >& getStaticNeutralUnits();
+
+Returns the set of all neutral units.
 
 === getLatency ===
 Latency::Enum getLatency();
