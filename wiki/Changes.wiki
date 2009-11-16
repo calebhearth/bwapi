@@ -14,33 +14,33 @@ The following functions have been added:
   * [Unit#getInitialHitPoints Unit::getInitialHitPoints]
 
 
-  * [Game#drawText drawTextScreen]
   * [Game#drawText drawTextMap]
   * [Game#drawText drawTextMouse]
+  * [Game#drawText drawTextScreen]
 
-  * [Game#drawBox Game::drawScreenBox]
   * [Game#drawBox Game::drawMapBox]
   * [Game#drawBox Game::drawMouseBox]
+  * [Game#drawBox Game::drawScreenBox]
 
-  * [Game#drawTriangle Game::drawScreenTriangle]
   * [Game#drawTriangle Game::drawMapTriangle]
   * [Game#drawTriangle Game::drawMouseTriangle]
+  * [Game#drawTriangle Game::drawScreenTriangle]
 
-  * [Game#drawCircle Game::drawScreenCircle]
   * [Game#drawCircle Game::drawMapCircle]
   * [Game#drawCircle Game::drawMouseCircle]
+  * [Game#drawCircle Game::drawScreenCircle]
 
-  * [Game#drawEllipse Game::drawScreenEllipse]
   * [Game#drawEllipse Game::drawMapEllipse]
   * [Game#drawEllipse Game::drawMouseEllipse]
+  * [Game#drawEllipse Game::drawScreenEllipse]
 
-  * [Game#drawDot Game::drawScreenDot]
   * [Game#drawDot Game::drawMapDot]
   * [Game#drawDot Game::drawMouseDot]
+  * [Game#drawDot Game::drawScreenDot]
 
-  * [Game#drawLine Game::drawScreenLine]
   * [Game#drawLine Game::drawMapLine]
   * [Game#drawLine Game::drawMouseLine]
+  * [Game#drawLine Game::drawScreenLine]
 
 The following functions have changed in functionality:
 
