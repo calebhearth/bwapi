@@ -1,5 +1,0 @@
-= Possible Ideas for release 1.x =
-
-== Misc ==
-  * Order call-backs and/or buffering so the AI module can "listen" to what orders the user is issuing.
-  * [Game]:: setScreenPosition(int x, int y)
