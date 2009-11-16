@@ -13,9 +13,42 @@ The following functions have been added:
   * [Unit#getInitialResources Unit::getInitialResources]
   * [Unit#getInitialHitPoints Unit::getInitialHitPoints]
 
+
+  * [Game#drawText drawTextScreen]
+  * [Game#drawText drawTextMap]
+  * [Game#drawText drawTextMouse]
+
+  * [Game#drawBox Game::drawScreenBox]
+  * [Game#drawBox Game::drawMapBox]
+  * [Game#drawBox Game::drawMouseBox]
+
+  * [Game#drawTriangle Game::drawScreenTriangle]
+  * [Game#drawTriangle Game::drawMapTriangle]
+  * [Game#drawTriangle Game::drawMouseTriangle]
+
+  * [Game#drawCircle Game::drawScreenCircle]
+  * [Game#drawCircle Game::drawMapCircle]
+  * [Game#drawCircle Game::drawMouseCircle]
+
+  * [Game#drawEllipse Game::drawScreenEllipse]
+  * [Game#drawEllipse Game::drawMapEllipse]
+  * [Game#drawEllipse Game::drawMouseEllipse]
+
+  * [Game#drawDot Game::drawScreenDot]
+  * [Game#drawDot Game::drawMapDot]
+  * [Game#drawDot Game::drawMouseDot]
+
+  * [Game#drawLine Game::drawScreenLine]
+  * [Game#drawLine Game::drawMapLine]
+  * [Game#drawLine Game::drawMouseLine]
+
 The following functions have changed in functionality:
 
   * [Unit#exists Unit::exists] - now returns false for inaccessible units, even if they exist.
+
+The following functions have been renamed:
+
+  * Game::text has been renamed to [Game#drawText Game::drawText]
 
 Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416):
 
