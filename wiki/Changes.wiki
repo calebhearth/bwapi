@@ -1,3 +1,22 @@
+Changes from BWAPI Beta 2.1 (r1416) to current revision:
+
+The following functions have been added:
+
+  * [Game#getStaticMinerals Game::getStaticMinerals]
+  * [Game#getStaticGeysers Game::getStaticGeysers]
+  * [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]
+
+  * [Unit#canAccess Unit::canAccess]
+  * [Unit#getInitialType Unit::getInitialType]
+  * [Unit#getInitialPosition Unit::getInitialPosition]
+  * [Unit#getInitialTilePosition Unit::getInitialTilePosition]
+  * [Unit#getInitialResources Unit::getInitialResources]
+  * [Unit#getInitialHitPoints Unit::getInitialHitPoints]
+
+The following functions have changed in functionality:
+
+  * [Unit#exists Unit::exists] - now returns false for inaccessible units, even if they exist.
+
 Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416):
 
   * Fixed a bug that produced phantom marines. An internal unit set in BWAPI was not being reset between matches, so units that existed in a previous match appeared to exist in the next game as phantom marines. Retrieving information from these non existant marines and/or issuing orders to them may have also caused Broodwar to crash.
