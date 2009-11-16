@@ -8,10 +8,13 @@ Methods:
 
   * [#getPlayer getPlayer]
   * [#getType getType]
+  * [#getInitialType getInitialType]
   * [#getHitPoints getHitPoints]
+  * [#getInitialHitPoints getInitialHitPoints]
   * [#getShields getShields]
   * [#getEnergy getEnergy]
   * [#getResources getResources]
+  * [#getStaticResources getStaticResources]
   * [#getKillCount getKillCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
   * [#getAirWeaponCooldown getAirWeaponCooldown]
@@ -29,7 +32,9 @@ Methods:
   * [#getStimTimer getStimTimer]
 
   * [#getPosition getPosition]
+  * [#getStaticPosition getStaticPosition]
   * [#getTilePosition getTilePosition]
+  * [#getStaticTilePosition getStaticTilePosition]
   * [#getDistance getDistance]
   * [#getDistance_2 getDistance]
   * [#getCurrentDirection getCurrentDirection]
@@ -152,12 +157,22 @@ Returns a pointer to the player that owns this unit.
 === getType ===
 [UnitType] getType() const;
 
-Returns the type of the unit.
+Returns the current type of the unit.
+
+=== getInitialType ===
+[UnitType] getInitialType() const;
+
+Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game.
 
 === getHitPoints ===
 int getHitPoints() const;
 
 Returns the unit's current amount of hit points.
+
+=== getInitialHitPoints ===
+int getInitialHitPoints() const;
+
+Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game.
 
 === getShields ===
 int getShields() const;
@@ -173,6 +188,11 @@ Returns the unit's current amount of energy.
 int getResources() const;
 
 Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
+
+=== getInitialResources ===
+int getInitialResources() const;
+
+Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game.
 
 === getKillCount ===
 int getKillCount() const;
@@ -250,10 +270,21 @@ Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
 [Misc#Position Position] getPosition() const;
 
 Returns the position of the unit on the map.
+
+=== getInitialPosition ===
+[Misc#Position Position] getInitialPosition() const;
+
+Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit.
+
 === getTilePosition ===
 [Misc#TilePosition TilePosition] getTilePosition() const;
 
 Returns the build tile position of the unit on the map. Useful if the unit is a building.
+
+=== getInitialTilePosition ===
+[Misc#TilePosition TilePosition] getInitialTilePosition() const;
+
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit.
 
 === getDistance ===
 double getDistance([Unit]{{{*}}} target) const;
