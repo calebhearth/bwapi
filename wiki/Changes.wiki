@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.1 (r1416) to current revision: ==
+== Changes from BWAPI Beta 2.1 (r1416) to BWAPI Beta 2.2 (r1491): ==
 
 The following functions have been added:
 
