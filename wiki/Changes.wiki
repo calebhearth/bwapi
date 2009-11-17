@@ -9,6 +9,9 @@ The following functions have been added:
   * [Unit#getInitialResources Unit::getInitialResources]
   * [Unit#getInitialHitPoints Unit::getInitialHitPoints]
 
+  * [Game#isMultiplayer Game::isMultiplayer]
+  * [Game#isPaused Game::isPaused]
+
   * [Game#getStaticMinerals Game::getStaticMinerals]
   * [Game#getStaticGeysers Game::getStaticGeysers]
   * [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]
@@ -48,6 +51,7 @@ The following functions have changed in functionality:
 The following functions have been renamed:
 
   * Game::text has been renamed to [Game#drawText Game::drawText]
+  * Game::inReplay has been renamed to [Game#isReplay Game::isReplay]
 
 Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416):
 
