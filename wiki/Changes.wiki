@@ -1,4 +1,3 @@
-
 == Changes from BWAPI Beta 2.1 (r1416) to current revision: ==
 
 The following functions have been added:
@@ -48,11 +47,16 @@ The following functions have been added:
 The following functions have changed in functionality:
 
   * [Unit#exists Unit::exists] - now returns false for inaccessible units, even if they exist.
+  * [AIModule#onAddUnit AIModule::onAddUnit] is no longer called for invisible units when complete map information is disabled.
 
 The following functions have been renamed:
 
   * Game::text has been renamed to [Game#drawText Game::drawText]
   * Game::inReplay has been renamed to [Game#isReplay Game::isReplay]
+
+Other changes:
+
+  * BWAPI no longer crashes on replays.
 
 == Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416): ==
 
