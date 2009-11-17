@@ -1,4 +1,5 @@
-Changes from BWAPI Beta 2.1 (r1416) to current revision:
+
+== Changes from BWAPI Beta 2.1 (r1416) to current revision: ==
 
 The following functions have been added:
 
@@ -53,11 +54,11 @@ The following functions have been renamed:
   * Game::text has been renamed to [Game#drawText Game::drawText]
   * Game::inReplay has been renamed to [Game#isReplay Game::isReplay]
 
-Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416):
+== Changes from BWAPI Beta 2 (r1400) to BWAPI Beta 2.1 (r1416): ==
 
   * Fixed a bug that produced phantom marines. An internal unit set in BWAPI was not being reset between matches, so units that existed in a previous match appeared to exist in the next game as phantom marines. Retrieving information from these non existant marines and/or issuing orders to them may have also caused Broodwar to crash.
 
-Changes from BWAPI Beta to BWAPI Beta 2 (r1400):
+== Changes from BWAPI Beta to BWAPI Beta 2 (r1400): ==
 
 The following functions have been added:
 
