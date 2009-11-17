@@ -7,9 +7,11 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onStart onStart]
   * [#onEnd onEnd]
   * [#onFrame onFrame]
-  * [#onAddUnit onAddUnit]
-  * [#onRemoveUnit onRemoveUnit]
   * [#onSendText onSendText]
+  * [#onUnitCreate onUnitCreate]
+  * [#onUnitDestroy onUnitDestroy]
+  * [#onUnitShow onUnitShow]
+  * [#onUnitHide onUnitHide]
 
 Notes:
 
@@ -30,17 +32,27 @@ void onFrame();
 
 BWAPI calls this on every logical frame in the game.
 
-=== onAddUnit ===
-void onAddUnit([Unit]{{{*}}} unit);
-
-BWAPI calls this when a unit is created. Note that this is not called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onAddUnit call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor.
-
-=== onRemoveUnit ===
-void onRemoveUnit([Unit]{{{*}}} unit);
-
-BWAPI calls this when a unit dies. When a zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is removed.
-
 === onSendText ===
 bool onSendText(std::string text);
 
 if [Misc#Flag Flag]::UserInput is enabled, BWAPI will call this each time a user enters a message into the chat.
+
+=== onUnitCreate ===
+void onUnitCreate([Unit]{{{*}}} unit);
+
+BWAPI calls this when a unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor. If Complete Map Information is enabled, this will also be called for units that are hidden by the fog of war. If the unit is visible upon creation, onUnitShow will be called shortly after onUnitCreate is called.
+
+=== onUnitDestroy ===
+void onUnitDestroy([Unit]{{{*}}} unit);
+
+BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a mined out mineral patch). When a zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is removed. If Complete Map Information is enabled, this will also be called for units that are hidden by the fog of war. If a unit that was visible gets destroyed, onUnitHide will be called right before onUnitDestroy is called.
+
+=== onUnitShow ===
+void onUnitShow([Unit]{{{*}}} unit);
+
+BWAPI calls this the instant a previously invisible unit becomes visible.
+
+=== onUnitHide ===
+void onUnitHide([Unit]{{{*}}} unit);
+
+BWAPI calls this right before a unit becomes invisible, so if you want your AI to remember where it last saw a unit, this callback would be the place to implement it.
