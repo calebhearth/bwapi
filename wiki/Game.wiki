@@ -259,17 +259,17 @@ void changeRace([Race] race);
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
 === isMultiplayer ===
-void isMultiplayer();
+bool isMultiplayer();
 
 Returns true if Broodwar is in a multiplayer game. Returns false for single player games and replays.
 
 === isPaused ===
-void isPaused();
+bool isPaused();
 
 Returns true if Broodwar is paused.
 
 === isReplay ===
-void isReplay();
+bool isReplay();
 
 Returns true if Broodwar is in a replay.
 
