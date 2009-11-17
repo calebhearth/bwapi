@@ -63,7 +63,6 @@ Methods:
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
 
-  * [#canAccess canAccess]
   * [#exists exists]
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
@@ -418,23 +417,16 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
 
-=== canAccess ===
-bool canAccess() const;
-
-Returns true if AI Module is allowed to access the unit. Visible units are always accessible, and invisible units are accessible if the CompleteMapInformation cheat flag is enabled.
-
-See also: [Unit]::[Unit#exists exists], [Unit]::[Unit#isVisible isVisible].
-
 === exists ===
 bool exists() const;
 
 3 cases to consider:
 
-  * If exists() returns true, the unit exists and is accessible.
+  * If exists() returns true, the unit exists.
   * If exists() returns false and the unit is owned by self(), then the unit does not exist.
   * If exists() returns false and the unit is not owned by self(), then the unit may or may not exist.
 
-See also: [Unit]::[Unit#canAccess canAccess], [Unit]::[Unit#isVisible isVisible].
+See also: [Unit]::[Unit#isVisible isVisible].
 
 === isAccelerating ===
 bool isAccelerating() const;
@@ -673,7 +665,7 @@ bool isVisible() const;
 
 Returns true if the unit is visible. If the CompleteMapInformation cheat flag is enabled, existing units hidden by the fog of war will be accessible, but isVisible will still return false.
 
-See also: [Unit]::[Unit#canAccess canAccess], [Unit]::[Unit#exists exists].
+See also: [Unit]::[Unit#exists exists].
 
 === attackMove ===
 bool attackMove([Misc#Position Position] target);
