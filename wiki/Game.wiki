@@ -48,7 +48,9 @@ Methods:
   * [#printf printf]
   * [#sendText sendText]
   * [#changeRace changeRace]
-  * [#inReplay inReplay]
+  * [#isMultiplayer isMultiplayer]
+  * [#isPaused isPaused]
+  * [#isReplay isReplay]
   * [#startGame startGame]
   * [#pauseGame pauseGame]
   * [#resumeGame resumeGame]
@@ -256,10 +258,20 @@ void changeRace([Race] race);
 
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
-=== inReplay ===
-void inReplay();
+=== isMultiplayer ===
+void isMultiplayer();
 
-Returns true if Broodwar is playing a replay.
+Returns true if Broodwar is in a multiplayer game. Returns false for single player games and replays.
+
+=== isPaused ===
+void isPaused();
+
+Returns true if Broodwar is paused.
+
+=== isReplay ===
+void isReplay();
+
+Returns true if Broodwar is in a replay.
 
 === startGame ===
 void startGame();
