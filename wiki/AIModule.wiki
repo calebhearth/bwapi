@@ -10,6 +10,7 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onSendText onSendText]
   * [#onUnitCreate onUnitCreate]
   * [#onUnitDestroy onUnitDestroy]
+  * [#onUnitMorph onUnitMorph]
   * [#onUnitShow onUnitShow]
   * [#onUnitHide onUnitHide]
 
@@ -46,6 +47,11 @@ BWAPI calls this when a unit is created. Note that this is NOT called when a uni
 void onUnitDestroy([Unit]{{{*}}} unit);
 
 BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a mined out mineral patch). When a zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is removed. If Complete Map Information is enabled, this will also be called for units that are hidden by the fog of war. If a unit that was visible gets destroyed, onUnitHide will be called right before onUnitDestroy is called.
+
+=== onUnitMorph ===
+void onUnitMorph([Unit]{{{*}}} unit);
+
+BWAPI calls this when a unit changes type, such as from a Zerg Drone to a Zerg Hatchery, or from a Terran Siege Tank Tank Mode to Terran Siege Tank Siege Mode. This is not called when the type changes to or from UnitTypes::Unknown (which happens when a unit becomes visible or invisible).
 
 === onUnitShow ===
 void onUnitShow([Unit]{{{*}}} unit);
