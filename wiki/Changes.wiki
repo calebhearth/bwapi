@@ -2,6 +2,9 @@
 
 The following functions have been added:
 
+  * [AIModule#onUnitShow AIModule::onUnitShow]
+  * [AIModule#onUnitHide AIModule::onUnitHide]
+
   * [Unit#canAccess Unit::canAccess]
   * [Unit#getInitialType Unit::getInitialType]
   * [Unit#getInitialPosition Unit::getInitialPosition]
@@ -53,6 +56,8 @@ The following functions have been renamed:
 
   * Game::text has been renamed to [Game#drawText Game::drawText]
   * Game::inReplay has been renamed to [Game#isReplay Game::isReplay]
+  * AIModule::onAddUnit has been renamed to [AIModule#onUnitCreate AIModule::onUnitCreate]
+  * AIModule::onRemoveUnit has been renamed to [AIModule#onUnitDestroy AIModule::onUnitDestroy]
 
 Other changes:
 
