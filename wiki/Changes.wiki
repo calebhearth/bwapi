@@ -4,6 +4,7 @@ The following functions have been added:
 
   * [AIModule#onUnitShow AIModule::onUnitShow]
   * [AIModule#onUnitHide AIModule::onUnitHide]
+  * [AIModule#onUnitHide AIModule::onUnitMorph]
 
   * [Unit#getInitialType Unit::getInitialType]
   * [Unit#getInitialPosition Unit::getInitialPosition]
