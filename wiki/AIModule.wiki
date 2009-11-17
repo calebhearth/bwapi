@@ -40,7 +40,7 @@ if [Misc#Flag Flag]::UserInput is enabled, BWAPI will call this each time a user
 === onUnitCreate ===
 void onUnitCreate([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor. If Complete Map Information is enabled, this will also be called for units that are hidden by the fog of war. If the unit is visible upon creation, onUnitShow will be called shortly after onUnitCreate is called.
+BWAPI calls this when a unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor. If Complete Map Information is enabled, this will also be called for new units that are hidden by the fog of war. If the unit is visible upon creation, onUnitShow will be called shortly after onUnitCreate is called.
 
 === onUnitDestroy ===
 void onUnitDestroy([Unit]{{{*}}} unit);
@@ -50,9 +50,9 @@ BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a min
 === onUnitShow ===
 void onUnitShow([Unit]{{{*}}} unit);
 
-BWAPI calls this the instant a previously invisible unit becomes visible.
+BWAPI calls this the instant a previously invisible unit becomes visible. The complete map information flag has no effect on this callback.
 
 === onUnitHide ===
 void onUnitHide([Unit]{{{*}}} unit);
 
-BWAPI calls this right before a unit becomes invisible, so if you want your AI to remember where it last saw a unit, this callback would be the place to implement it.
+BWAPI calls this right before a unit becomes invisible, so if you want your AI to remember where it last saw a unit, this callback would be a good place to implement it. The complete map information flag has no effect on this callback.
