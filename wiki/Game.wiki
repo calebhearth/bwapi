@@ -319,7 +319,7 @@ Returns a pointer to the enemy player. If there is more than one enemy, this ret
   * void drawTextMouse(int x, int y, const char{{{*}}} text, ...);
   * void drawTextScreen(int x, int y, const char{{{*}}} text, ...);
 
-Draws text on the screen at the given position.
+Draws text on the screen at the given position. Text can be drawn in different colors by using control characters. For more information: http://www.staredit.net/wiki/Colors_list
 
 === drawBox ===
   * void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
