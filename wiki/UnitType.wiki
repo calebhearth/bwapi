@@ -209,14 +209,22 @@ Returns the tile height of the unit. Useful for determining the size of building
 === dimensionLeft ===
 int dimensionLeft() const;
 
+Distance from the center of the unit to the left edge of the unit, measured in pixels.
+
 === dimensionUp ===
 int dimensionUp() const;
+
+Distance from the center of the unit to the top edge of the unit, measured in pixels.
 
 === dimensionRight ===
 int dimensionRight() const;
 
+Distance from the center of the unit to the right edge of the unit, measured in pixels.
+
 === dimensionDown===
 int dimensionDown() const;
+
+Distance from the center of the unit to the bottom edge of the unit, measured in pixels.
 
 === seekRange ===
 int seekRange() const;
