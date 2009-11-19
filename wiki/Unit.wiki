@@ -425,7 +425,7 @@ bool hasTech([TechType] tech) const;
 Returns true if the owner of this player has researched the given tech type, and this unit is affected by this tech.
 
 === getUpgradeLevel ===
-int getUpgradeLevel([UpgradeType] upgrade);
+int getUpgradeLevel([UpgradeType] upgrade) const;
 
 Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
 
