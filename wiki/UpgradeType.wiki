@@ -15,6 +15,7 @@ Methods:
   * [#gasPriceFactor gasPriceFactor]
   * [#maxRepeats maxRepeats]
   * [#whatUpgrades whatUpgrades]
+  * [#whatUses whatUses]
 
 Non-member methods in UpgradeTypes namespace:
 
@@ -65,6 +66,11 @@ Returns the maximum number of times the upgrade can be researched.
 [UnitType]{{{*}}} whatUpgrades();
 
 Returns the type of unit that researches the upgrade.
+
+=== whatUses ===
+const std::set<const [UnitType]{{{*}}}>& whatUses();
+
+Returns the set of units that are affected by this upgrade.
 
 === getUpgradeType ===
 [UpgradeType] getUpgradeType(std::string &name);
