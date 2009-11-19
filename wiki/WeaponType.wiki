@@ -90,12 +90,12 @@ Returns the type of explosion that this weapon uses.
 === minRange ===
 int minRange() const;
 
-Returns the minimum attack range of the weapon, 0 for most things except WeaponTypes::Arclite_Shock_Cannon (the weapon of the Terran Siege Tank in Siege Mode).
+Returns the minimum attack range of the weapon, measured in pixels, 0 for most things except WeaponTypes::Arclite_Shock_Cannon (the weapon of the Terran Siege Tank in Siege Mode).
 
 === maxRange ===
 int maxRange() const;
 
-Returns the maximum attack range of the weapon.
+Returns the maximum attack range of the weapon, measured in pixels.
 
 === innerSplashRadius ===
 int innerSplashRadius() const;
