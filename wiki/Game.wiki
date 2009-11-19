@@ -156,7 +156,7 @@ Enables the specified flag. Note that flags can only be enabled at the beginning
 === unitsOnTile ===
 std::set< [Unit]{{{*}}} >& unitsOnTile(int x, int y);
 
-Returns the set of units that are on the given build tile.
+Returns the set of units that are on the given build tile. Only returns accessible units on accessible tiles.
 
 === getLastError ===
 [Error] getLastError() const;
