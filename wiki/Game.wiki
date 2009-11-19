@@ -154,7 +154,7 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
 === unitsOnTile ===
-std::set< [Unit]{{{*}}} >& unitsOnTile([Misc#TilePosition TilePosition] tile);
+std::set< [Unit]{{{*}}} >& unitsOnTile(int x, int y);
 
 Returns the set of units that are on the given build tile.
 
