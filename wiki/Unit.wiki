@@ -39,6 +39,7 @@ Methods:
   * [#getDistance_2 getDistance]
   * [#getCurrentDirection getCurrentDirection]
 
+  * [#getUpgradeLevel getUpgradeLevel]
   * [#getTarget getTarget]
   * [#getTargetPosition getTargetPosition]
   * [#getOrder getOrder]
@@ -62,8 +63,6 @@ Methods:
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
-  * [#hasTech hasTech]
-  * [#getUpgradeLevel getUpgradeLevel]
 
   * [#exists exists]
   * [#isAccelerating isAccelerating]
@@ -303,6 +302,11 @@ int getCurrentDirection() const;
 Returns the direction the unit is facing. Range 0-255.
 North: 0, East: 64, South: 128, West: 192
 
+=== getUpgradeLevel ===
+int getUpgradeLevel([UpgradeType] upgrade) const;
+
+Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
+
 === getTarget ===
 [Unit]{{{*}}} getTarget() const;
 
@@ -418,16 +422,6 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 [Unit]{{{*}}} getAddon() const;
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
-
-=== hasTech ===
-bool hasTech([TechType] tech) const;
-
-Returns true if the owner of this player has researched the given tech type, and this unit is affected by this tech.
-
-=== getUpgradeLevel ===
-int getUpgradeLevel([UpgradeType] upgrade) const;
-
-Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
 
 === exists ===
 bool exists() const;
