@@ -34,3 +34,42 @@ The 256 color palette used by Starcraft: BroodWar:
 [http://imgur.com/RyPjC.png]
 
 The two sets of pixels outlined in green are pixels that change color each frame, (cycle from left to right).
+
+=== Text Color ===
+Text color is used simply as an escape character.
+
+"\x03 This is yellow text. \x06 This is red text."
+
+{{{
+x01 - Mimic(Default: Cyan)
+x02 - Cyan
+x03 - Yellow
+x04 - White
+x05 - Grey
+x06 - Red
+x07 - Green
+x08 - Red (P1)
+x09 - Tab
+x0A - Newline
+x0B - Invisible
+x0C - Remove beyond
+x0D - Clear formatting?
+x0E - Blue (P2)
+x0F - Teal (P3)
+x10 - Purple (P4)
+x11 - Orange (P5)
+x12 - Right Align
+x13 - Center Align
+x14 - Invisible
+x15 - Brown (p6)
+x16 - White (p7)
+x17 - Yellow (p8)
+x18 - Green (p9)
+x19 - Brighter Yellow (p10)
+x1A - Cyan
+x1B - Pinkish (p11)
+x1C - Dark Cyan (p12)
+x1D - Greygreen
+x1E - Bluegrey
+x1F - Turquoise
+}}}
