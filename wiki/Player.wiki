@@ -30,10 +30,10 @@ Methods:
   * [#deadUnitCount deadUnitCount]
   * [#killedUnitCount killedUnitCount]
 
-  * [#researching researching]
-  * [#researched researched]
-  * [#upgrading upgrading]
-  * [#upgradeLevel upgradeLevel]
+  * [#getUpgradeLevel getUpgradeLevel]
+  * [#hasResearched hasResearched]
+  * [#isResearching isResearching]
+  * [#isUpgrading isUpgrading]
 
 === getID ===
 int getID() const;
@@ -144,22 +144,23 @@ int killedUnitCount([UnitType] unit) const;
 
 Returns the number of killed units of the given type. 
 
-=== researching ===
-bool researching([TechType] tech) const;
 
-Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
-
-=== researched ===
-bool researched([TechType] tech) const;
-
-Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#invent invent].
-
-=== upgrading ===
-bool upgrading([UpgradeType] upgrade) const;
-
-Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
-
-=== upgradeLevel ===
-int upgradeLevel([UpgradeType] upgrade) const;
+=== getUpgradeLevel ===
+int getUpgradeLevel([UpgradeType] upgrade) const;
 
 returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+
+=== hasResearched ===
+bool hasResearched([TechType] tech) const;
+
+Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#research research].
+
+=== isResearching ===
+bool isResearching([TechType] tech) const;
+
+Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#research reseach].
+
+=== isUpgrading ===
+bool isUpgrading([UpgradeType] upgrade) const;
+
+Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
