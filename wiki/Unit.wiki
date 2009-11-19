@@ -62,6 +62,8 @@ Methods:
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
+  * [#hasTech hasTech]
+  * [#getUpgradeLevel getUpgradeLevel]
 
   * [#exists exists]
   * [#isAccelerating isAccelerating]
@@ -416,6 +418,16 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 [Unit]{{{*}}} getAddon() const;
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
+
+=== hasTech ===
+bool hasTech([TechType] tech) const;
+
+Returns true if the owner of this player has researched the given tech type, and this unit is affected by this tech.
+
+=== getUpgradeLevel ===
+int getUpgradeLevel([UpgradeType] upgrade);
+
+Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
 
 === exists ===
 bool exists() const;
