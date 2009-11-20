@@ -310,12 +310,12 @@ Returns true if the owner of this player has upgraded the given upgrade type, an
 === getTarget ===
 [Unit]{{{*}}} getTarget() const;
 
-Generally returns the appropriate target unit after issuing an order to attack, repair, gather, or follow command.
+Generally returns the appropriate target unit after issuing an order that accepts a target unit (i.e. attack, repair, gather, follow, etc.).
 
 === getTargetPosition ===
 [Misc#Position Position] getTargetPosition() const;
 
-Returns the destination position the unit is moving to.
+Returns the target position the unit is moving to (provided a valid path to the target position exists).
 
 === getOrder ===
 [Order] getOrder() const;
