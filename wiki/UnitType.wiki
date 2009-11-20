@@ -45,7 +45,7 @@ Methods:
   * [#sightRange sightRange]
   * [#groundWeapon groundWeapon]
   * [#maxGroundHits maxGroundHits]
-  * [#airWeapon airdWeapon]
+  * [#airWeapon airWeapon]
   * [#maxAirHits maxAirHits]
 
   * [#topSpeed topSpeed]
