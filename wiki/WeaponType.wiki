@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/WeaponType.h# BWAPI/WeaponType.h]
 
+List of all [WeaponTypes].
+
 Methods:
 
   * [#getID getID]
