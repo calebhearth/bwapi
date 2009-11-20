@@ -55,6 +55,7 @@ Methods:
   * [#pauseGame pauseGame]
   * [#resumeGame resumeGame]
   * [#leaveGame leaveGame]
+  * [#restartGame restartGame]
   * [#setLocalSpeed setLocalSpeed]
   * [#getSelectedUnits getSelectedUnits]
   * [#self self]
@@ -291,7 +292,12 @@ Resumes the game.
 === leaveGame ===
 void leaveGame();
 
-Leaves the current match and goes to the main menu.
+Leaves the current match and goes to the after-game stats screen.
+
+=== restartGame ===
+void restartGame();
+
+Restarts the match. Works the same way as if you restarted the match from the menu screen. Only available in single player mode.
 
 === setLocalSpeed ===
 void setLocalSpeed(int speed);
