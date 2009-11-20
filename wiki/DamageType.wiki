@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/DamageType.h# BWAPI/DamageType.h]
 
+List of all [#DamageTypes DamageTypes].
+
 Methods:
 
   * [#getID getID]
@@ -24,7 +26,9 @@ std::string getName();
 === allDamageTypes ===
 std::set<[DamageType]>& allDamageTypes();
 
-Returns the set of all the DamageTypes:
+Returns the set of all the DamageTypes, which are listed below:
+
+== DamageTypes ==
 
   * Concussive
   * Explosive
