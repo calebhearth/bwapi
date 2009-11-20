@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitSizeType.h# BWAPI/UnitSizeType.h]
 
+List of all [#UnitSizeTypes UnitSizeTypes].
+
 Methods:
 
   * [#getID getID]
@@ -30,8 +32,9 @@ Given a string, this function returns the size time it refers to. For example, U
 === allUnitSizeTypes ===
 std::set<[UnitSizeType]>& allUnitSizeTypes();
 
-Returns the set of all the UnitSizeTypes:
+Returns the set of all the UnitSizeTypes, which are listed below:
 
+== UnitSizeTypes ==
   * Independent
   * Small
   * Medium
