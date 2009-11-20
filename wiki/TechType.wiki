@@ -19,6 +19,8 @@ Non-member methods in TechTypes namespace:
   * [#getTechType getTechType]
   * [#allTechTypes allTechTypes]
 
+List of all [TechTypes].
+
 === getID ===
 int getID() const;
 
