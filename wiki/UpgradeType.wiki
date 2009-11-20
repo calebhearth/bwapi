@@ -4,6 +4,8 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 The UpgradeType class is used to get information about a particular upgrade.
 
+List of all [UpgradeTypes].
+
 Methods:
 
   * [#getID getID]
