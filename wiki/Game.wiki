@@ -102,17 +102,17 @@ Returns the set of all accessible neutral units.
 === getStaticMinerals ===
 std::set< [Unit]{{{*}}} >& getStaticMinerals();
 
-Returns the set of all mineral patches.
+Returns the set of all mineral patches (including mined out and other inaccessible ones).
 
 === getStaticGeysers ===
 std::set< [Unit]{{{*}}} >& getStaticGeysers();
 
-Returns the set of all vespene geysers.
+Returns the set of all vespene geysers (including mined out and other inaccessible ones).
 
 === getStaticNeutralUnits ===
 std::set< [Unit]{{{*}}} >& getStaticNeutralUnits();
 
-Returns the set of all neutral units.
+Returns the set of all neutral units (including mined out and other inaccessible ones).
 
 === getLatency ===
 Latency::Enum getLatency();
@@ -122,27 +122,27 @@ Returns the amount of latency the current game has. Currently only returns Laten
 === getFrameCount ===
 int getFrameCount();
 
-Returns the number of logical frames since the match started.
+Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused.
 
 === getMouseX ===
 int getMouseX();
 
-Returns the horizontal coordinate of the mouse on the screen.
+Returns the horizontal coordinate of the mouse on the screen. Returns 0 if Flag::UserInput is disabled.
 
 === getMouseY ===
 int getMouseY();
 
-Returns the vertical coordinate of the mouse on the screen.
+Returns the vertical coordinate of the mouse on the screen. Returns 0 if Flag::UserInput is disabled.
 
 === getScreenX ===
 int getScreenX();
 
-Returns the horizontal coordinate of the screen on the map.
+Returns the horizontal coordinate of the screen on the map. Returns 0 if Flag::UserInput is disabled.
 
 === getScreenY ===
 int getScreenY();
 
-Returns the vertical coordinate of the screen on the map.
+Returns the vertical coordinate of the screen on the map. Returns 0 if Flag::UserInput is disabled.
 
 === isFlagEnabled ===
 bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);
@@ -167,12 +167,12 @@ Returns the last error that was set. If you try to order enemy units around, or 
 === mapWidth ===
 int mapWidth();
 
-Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4. To get the width of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
+Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4. To get the width of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE] (which is 32).
 
 === mapHeight ===
 int mapHeight();
 
-Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE].
+Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE] (which is 32).
 
 === mapFilename ===
 std::string mapFilename();
@@ -182,7 +182,7 @@ Returns the file name of the current map.
 === mapName ===
 std::string mapName();
 
-Returns the name of the current map.
+Returns the name/title of the current map.
 
 === buildable ===
 bool buildable(int x, int y);
@@ -267,7 +267,7 @@ Returns true if Broodwar is in a multiplayer game. Returns false for single play
 === isPaused ===
 bool isPaused();
 
-Returns true if Broodwar is paused.
+Returns true if Broodwar is paused. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused.
 
 === isReplay ===
 bool isReplay();
@@ -282,7 +282,7 @@ Used to start the game while in a lobby. Note that there is no onLobbyEnter call
 === pauseGame ===
 void pauseGame();
 
-Pauses the game.
+Pauses the game. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused.
 
 === resumeGame ===
 void resumeGame();
@@ -331,48 +331,48 @@ Draws text on the screen at the given position. Text can be drawn in different c
 
 === drawBox ===
   * void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMapBox(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMouseBox(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawScreenBox(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawBoxMap(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawBoxMouse(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawBoxScreen(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 
 Draws a box on the screen, with the given color. If isSolid is true, the entire box will be rendered, otherwise just the outline will be drawn.
 
 === drawCircle ===
   * void drawCircle(CoordinateType::Enum ctype, int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMapCircle(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMouseCircle(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawScreenCircle(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawCircleMap(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawCircleMouse(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawCircleScreen(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 
 Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn.
 
 === drawEllipse ===
   * void drawEllipse(CoordinateType::Enum ctype, int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMapEllipse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMouseEllipse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawScreenEllipse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawEllipseMap(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 
 Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn, otherwise just the outline of an ellipse will be drawn.
 
 === drawDot ===
   * void drawDot(CoordinateType::Enum ctype, int x, int y, Color color = Color(BWAPI::Colors::Green));
-  * void drawMapDot(int x, int y, Color color = Color(BWAPI::Colors::Green));
-  * void drawMouseDot(int x, int y, Color color = Color(BWAPI::Colors::Green));
-  * void drawScreenDot(int x, int y, Color color = Color(BWAPI::Colors::Green));
+  * void drawDotMap(int x, int y, Color color = Color(BWAPI::Colors::Green));
+  * void drawDotMouse(int x, int y, Color color = Color(BWAPI::Colors::Green));
+  * void drawDotScreen(int x, int y, Color color = Color(BWAPI::Colors::Green));
 
 Draws a dot on the screen at the given position with the given color.
 
 === drawLine ===
   * void drawLine(CoordinateType::Enum ctype, int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-  * void drawMapLine(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-  * void drawMouseLine(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-  * void drawScreenLine(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
+  * void drawLineMap(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
+  * void drawLineMouse(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
+  * void drawLineScreen(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
 
 Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
 
 === drawTriangle ===
   * void drawTriangle(CoordinateType::Enum ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMapTriangle(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawMouseTriangle(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-  * void drawScreenTriangle(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+  * void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 
 Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the outline of the triangle will be drawn.
