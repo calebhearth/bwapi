@@ -17,6 +17,8 @@ Non-member methods in ExplosionTypes namespace:
 === getID ===
 int getID();
 
+Returns a unique ID for this explosion type.
+
 === getName ===
 std::string getName();
 
