@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TechType.h# BWAPI/TechType.h]
 
+List of all [TechTypes].
+
 Methods:
 
   * [#getID getID]
@@ -18,8 +20,6 @@ Non-member methods in TechTypes namespace:
 
   * [#getTechType getTechType]
   * [#allTechTypes allTechTypes]
-
-List of all [TechTypes].
 
 === getID ===
 int getID() const;
