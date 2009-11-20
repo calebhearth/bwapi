@@ -267,20 +267,24 @@ Returns the unit's air weapon.
 int maxAirHits() const;
 
 === topSpeed ===
-int topSpeed() const;
+double topSpeed() const;
 
-Returns the unit's top speed.
+Returns the unit's non-upgraded top speed in pixels per frame. For Terran buildings that can lift off and the Zerg Infested Command Center, this returns how fast the building moves when it is lifted.
 
 === acceleration ===
 int acceleration() const;
 
-Returns how fast the unit can accelerate to its top speed.
+Returns how fast the unit can accelerate to its top speed. What units this quantity is measured in is currently unknown.
 
 === haltDistance ===
 int haltDistance() const;
 
+Related to how fast the unit can halt. What units this quantity is measured in is currently unknown.
+
 === turnRadius ===
 int turnRadius() const;
+
+Related to how fast the unit can turn. What units this quantity is measured in is currently unknown.
 
 === canProduce ===
 bool canProduce() const;
@@ -335,12 +339,12 @@ Returns true if the unit is mechanical such as a Terran Vulture.
 === isRobotic ===
 bool isRobotic() const;
 
-Returns true if the unit type is robotic.
+Returns true if the unit type is robotic, such as a Reaver.
 
 === isDetector ===
 bool isDetector() const;
 
-Returns true for units that can detect cloaked units.
+Returns true for units that can detect cloaked units (i.e. Overlord, Scanner Sweep, etc).
 
 === isResourceContainer ===
 bool isResourceContainer() const;
