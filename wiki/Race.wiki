@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Race.h# BWAPI/Race.h]
 
+List of all [#Races Races].
+
 Methods:
 
   * [#getID getID]
@@ -71,5 +73,6 @@ Returns the set of all the races, which are listed below.
   * Protoss
   * Random
   * Other
+
   * None
   * Unknown
