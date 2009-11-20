@@ -41,6 +41,8 @@ Non-member methods in WeaponTypes namespace:
 === getID ==
 int getID() const;
 
+Returns a unique ID for this weapon type.
+
 === getName ===
 std::string getName() const;
 
