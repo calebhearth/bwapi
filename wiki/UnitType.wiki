@@ -89,6 +89,8 @@ Non-member methods in UnitTypes namespace:
 === getID ===
 int getID() const;
 
+Returns a unique ID for this explosion type.
+
 === getName ===
 std::string getName() const;
 
