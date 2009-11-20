@@ -18,6 +18,8 @@ int getID();
 === getName ===
 std::string getName();
 
+Returns the string corresponding to the UnitSizeType object. For example, UnitSizeTypes::Medium.getName() returns std::string("Medium").
+
 === getUnitSizeType ===
 [UnitSizeType] getUnitSizeType(std::string &name);
 
