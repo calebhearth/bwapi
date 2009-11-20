@@ -4,6 +4,8 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 The UnitType class is used to get information about a particular type of unit, such as the build time of a Lurker, or the mineral price of an Ultralisk.
 
+List of all [UnitTypes].
+
 Methods:
 
   * [#getID getID]
