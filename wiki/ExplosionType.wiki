@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/ExplosionType.h# BWAPI/ExplosionType.h]
 
+List of all [ExplosionTypes].
+
 Methods:
 
   * [#getID getID]
