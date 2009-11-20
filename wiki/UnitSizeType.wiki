@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitSizeType.h# BWAPI/UnitSizeType.h]
 
-List of all [UnitSizeTypes#UnitSizeTypes UnitSizeTypes].
+List of all [#UnitSizeTypes UnitSizeTypes].
 
 Methods:
 
