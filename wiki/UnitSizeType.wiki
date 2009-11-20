@@ -21,6 +21,8 @@ std::string getName();
 === getUnitSizeType ===
 [UnitSizeType] getUnitSizeType(std::string &name);
 
+Given a string, this function returns the size time it refers to. For example, UnitSizeTypes::getUnitSizeType("Small") returns UnitSizeTypes::Small.
+
 === allUnitSizeTypes ===
 std::set<[UnitSizeType]>& allUnitSizeTypes();
 
