@@ -32,9 +32,10 @@ Given a string, this function returns the size time it refers to. For example, U
 === allUnitSizeTypes ===
 std::set<[UnitSizeType]>& allUnitSizeTypes();
 
-Returns the set of all the UnitSizeTypes, which are listed below:
+Returns the set of all the sizes, which are listed below:
 
 == UnitSizeTypes ==
+
   * Independent
   * Small
   * Medium
