@@ -194,13 +194,17 @@ Returns the amount of space this unit type provides.
 === buildScore ===
 int buildScore() const;
 
+Returns the score which is used to determine the total scores in the after-game stats screen.
+
 === destroyScore ===
 int destroyScore() const;
+
+Returns the score which is used to determine the total scores in the after-game stats screen.
 
 === size ===
 [UnitSizeType] size() const;
 
-Returns the size of the unit.
+Returns the size of the unit - either Small, Medium, Large, or Independent.
 
 === tileWidth ===
 int tileWidth() const;
