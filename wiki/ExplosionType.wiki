@@ -22,8 +22,12 @@ Returns a unique ID for this explosion type.
 === getName ===
 std::string getName();
 
+Returns the name of this explosion type.
+
 === getExplosionType ===
 [ExplosionType] getExplosionType(std::string &name);
+
+Given a name of an explosion type, this will return the corresponding ExplosionType object.
 
 === allExplosionTypes ===
 std::set<[ExplosionType]>& allExplosionTypes();
