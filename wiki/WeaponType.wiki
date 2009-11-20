@@ -69,10 +69,14 @@ int damageBonus() const;
 === damageCooldown ===
 int damageCooldown() const;
 
+Returns the amount of cooldown time between attacks.
+
 === damageFactor ===
 int damageFactor() const;
 
 Returns the amount that the damage increases per upgrade
+
+See also: WeaponType::[#upgradeType upgradeType].
 
 === upgradeType ===
 const [UpgradeType]{{{*}}} upgradeType() const;
@@ -102,11 +106,17 @@ Returns the maximum attack range of the weapon, measured in pixels.
 === innerSplashRadius ===
 int innerSplashRadius() const;
 
+Inner radius used in splash damage calculations.
+
 === medianSplashRadius ===
 int medianSplashRadius() const;
 
+Median radius used in splash damage calculations.
+
 === outerSplashRadius ===
 int outerSplashRadius() const;
+
+Outer radius used in splash damage calculations.
 
 === targetsAir ===
 bool targetsAir() const;
@@ -119,7 +129,7 @@ bool targetsGround() const;
 Returns true if this weapon can attack ground units.
 
 === targetsMechanical ===
-bool targets Mechanical() const;
+bool targetsMechanical() const;
 
 === targetsOrganic ===
 bool targetsOrganic() const;
