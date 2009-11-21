@@ -521,7 +521,7 @@ bool isFollowing() const;
 
 Returns true if the unit is following another unit.
 
-See also: [Unit]::[Unit#follow follow].
+See also: [Unit]::[Unit#follow follow], [Unit]::[Unit#getTarget getTarget].
 
 === isGatheringGas ===
 bool isGatheringGas() const;
@@ -540,7 +540,7 @@ See also: [Unit]::[#isCarryingMinerals isCarryingMinerals].
 === isHallucination ===
 bool isHallucination() const;
 
-Returns true for hallucinated units, false for normal units.
+Returns true for hallucinated units, false for normal units. Returns true for hallucinated enemy units only if Complete Map Information is enabled.
 
 === isIdle ===
 bool isIdle() const;
