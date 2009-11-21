@@ -7,6 +7,6 @@ To program AIs using BWAPI you will need to have the following installed:
 
 Once you have those, download [http://bwapi.googlecode.com/files/BWAPI_Beta_2.2.zip BWAPI Beta 2.2] and follow the instructions in the readme on how to build the example AI module. It will explain where to place files and how to compile a sort of "Hello World"-like AI Module for BWAPI, which you can work from to start making your own custom Broodwar AI.
 
-To battle 2 custom AIs against each other, or to play against your own custom AI, you'll need to have Broodwar running on 2 computers and make a UDP LAN game (as if 2 humans were playing a match). This is because BWAPI controls the user's player and injects commands as if they were coming from the user.
+To battle 2 custom AIs against each other, or to play against your own custom AI, you'll need to have Broodwar running on 2 computers and make a multiplayer UDP LAN game (as if 2 humans were playing a match). This is because BWAPI controls the user's player and injects commands as if they were coming from the user.
 
 Once you understand how the Example AI Module works, feel free to download the [http://code.google.com/p/bwsal/downloads/list Basic AI Module] from the [http://code.google.com/p/bwsal/ BWSAL project], which aims to develop several add-ons for BWAPI that will be useful for a wide variety of AIs.
