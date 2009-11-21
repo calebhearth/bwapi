@@ -526,12 +526,12 @@ See also: [Unit]::[Unit#follow follow].
 === isGatheringGas ===
 bool isGatheringGas() const;
 
-Returns true if the unit is gathering gas.
+Returns true if the unit is in one of the four states for gathering gas (MoveToGas, WaitForGas, HarvestGas, ReturnGas).
 
 === isGatheringMinerals ===
 bool isGatheringMinerals() const;
 
-Returns true if the unit is gathering minerals.
+Returns true if the unit is in one of the four states for gathering minerals (MoveToMinerals, WaitForMinerals, MiningMinerals, ReturnMinerals).
 
 === isHallucination ===
 bool isHallucination() const;
