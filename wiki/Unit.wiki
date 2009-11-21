@@ -528,10 +528,14 @@ bool isGatheringGas() const;
 
 Returns true if the unit is in one of the four states for gathering gas (MoveToGas, WaitForGas, HarvestGas, ReturnGas).
 
+See also: [Unit]::[#isCarryingGas isCarryingGas].
+
 === isGatheringMinerals ===
 bool isGatheringMinerals() const;
 
 Returns true if the unit is in one of the four states for gathering minerals (MoveToMinerals, WaitForMinerals, MiningMinerals, ReturnMinerals).
+
+See also: [Unit]::[#isCarryingMinerals isCarryingMinerals].
 
 === isHallucination ===
 bool isHallucination() const;
