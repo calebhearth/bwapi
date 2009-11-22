@@ -1,3 +1,65 @@
+== Changes from BWAPI Beta 2.2 (r1491) to current revision: ==
+
+  * INI file no longer accepts curly brace definitions.
+
+The following functions have been renamed:
+  * Player::researching has been renamed to [Player#isResearching Player::isResearching]
+  * Player::researched has been renamed to [Player#hasResearched Player::hasResearched]
+  * Player::upgrading has been renamed to [Player#isUpgrading Player::isUpgrading]
+  * Player::upgradeLevel has been renamed to [Player#getUpgradeLevel Player::getUpgradeLevel]
+
+  * Game::drawMapBox has been renamed to [Game#drawBox Game::drawBoxMap]
+  * Game::drawMouseBox has been renamed to [Game#drawBox Game::drawBoxMouse]
+  * Game::drawScreenBox has been renamed to [Game#drawBox Game::drawBoxScreen]
+
+  * Game::drawMapTriangle has been renamed to [Game#drawTriangle Game::drawTriangleMap]
+  * Game::drawMouseTriangle has been renamed to [Game#drawTriangle Game::drawTriangleMouse]
+  * Game::drawScreenTriangle has been renamed to [Game#drawTriangle Game::drawTriangleScreen]
+
+  * Game::drawMapCircle has been renamed to [Game#drawCircle Game::drawCircleMap]
+  * Game::drawMouseCircle has been renamed to [Game#drawCircle Game::drawCircleMouse]
+  * Game::drawScreenCircle has been renamed to [Game#drawCircle Game::drawCircleScreen]
+
+  * Game::drawMapEllipse has been renamed to [Game#drawEllipse Game::drawEllipseMap]
+  * Game::drawMouseEllipse has been renamed to [Game#drawEllipse Game::drawEllipseMouse]
+  * Game::drawScreenEllipse has been renamed to [Game#drawEllipse Game::drawEllipseScreen]
+
+  * Game::drawMapDot has been renamed to [Game#drawDot Game::drawDotMap]
+  * Game::drawMouseDot has been renamed to [Game#drawDot Game::drawDotMouse]
+  * Game::drawScreenDot has been renamed to [Game#drawDot Game::drawDotScreen]
+
+  * Game::drawMapLine has been renamed to [Game#drawLine Game::drawLineMap]
+  * Game::drawMouseLine has been renamed to [Game#drawLine Game::drawLineMouse]
+  * Game::drawScreenLine has been renamed to [Game#drawLine Game::drawLineScreen]
+
+
+  * Fixed [Game#drawText Game::drawTextMap] so that it uses map coordinates and not screen coordinates.
+  * Added documentation of how to draw text in different colors.
+
+  * Increase speed of multiplayer menus.
+
+  * Fixed a bug where rightClick and other functions would not target the right unit.
+  * Fixed [Unit#isGatheringGas Unit::isGatheringGas] and [Unit#isGatheringMinerals Unit::isGatheringMinerals].
+
+  * Fixed a bug where getUnits() functions would return an incomplete list of units in onUnitMorph, onUnitShow, and onUnitHide.
+
+  
+The following functions have been added:
+
+  * [AIModule#onUnitRenegade AIModule::onUnitRenegade]
+  * [Game#restartGame Game::restartGame]
+  * [Unit#getUpgradeLevel Unit::getUpgradeLevel]
+  * [Unit#getVelocityX Unit::getVelocityX]
+  * [Unit#getVelocityY Unit::getVelocityY]
+  * [UnitType#upgrades UnitType::upgrades]
+  * [UpgradeType#whatUses UpgradeType::whatUses]
+
+The following functions have changed in functionality:
+
+  * [Game#leaveGame Game::leaveGame] now goes to the after-match stats screen, rather than going to the main menu.
+
+  * [UnitType#topSpeed UnitType::topSpeed] now returns the correct top speed of the units in pixels per frame.
+
 == Changes from BWAPI Beta 2.1 (r1416) to BWAPI Beta 2.2 (r1491): ==
 
 The following functions have been added:
