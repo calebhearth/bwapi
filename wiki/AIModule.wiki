@@ -13,6 +13,7 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onUnitMorph onUnitMorph]
   * [#onUnitShow onUnitShow]
   * [#onUnitHide onUnitHide]
+  * [#onUnitRenegade onUnitRenegade]
 
 Notes:
 
@@ -62,3 +63,8 @@ BWAPI calls this the instant a previously invisible unit becomes visible. The co
 void onUnitHide([Unit]{{{*}}} unit);
 
 BWAPI calls this right before a unit becomes invisible, so if you want your non-cheating AI to remember where it last saw a unit, this callback would be a good place to implement it. The complete map information flag has no effect on this callback.
+
+=== onUnitRenegade ===
+void onUnitRenegade([Unit]{{{*}}} unit);
+
+BWAPI calls this when an accessible unit changes ownership.
