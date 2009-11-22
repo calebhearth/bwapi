@@ -47,14 +47,17 @@ The following functions have changed in functionality:
   * [UnitType#topSpeed UnitType::topSpeed] now returns the correct top speed of the UnitType in pixels per frame.
   * [Game#leaveGame Game::leaveGame] now goes to the after-match stats screen, rather than going to the main menu.
 
-  * Added documentation of how to draw text in different colors.
-
-  * Increased speed of multiplayer menus.
+Bug fixes:
 
   * Fixed a bug where [Game#drawText Game::drawTextMap] would use screen coordinates. It now uses map coordinates as expected.
   * Fixed a bug where rightClick and other functions would not target the right unit.
   * Fixed a bug where [Unit#isGatheringGas Unit::isGatheringGas] and [Unit#isGatheringMinerals Unit::isGatheringMinerals] would sometimes return false, even though the unit was gathering minerals/gas.
   * Fixed a bug where getUnits() functions would return an incomplete list of units when called from onUnitMorph, onUnitShow, or onUnitHide.
+
+Other changes:
+
+  * Added documentation of how to draw text in different colors.
+  * Increased speed of multiplayer menus.
 
 == Changes from BWAPI Beta 2.1 (r1416) to BWAPI Beta 2.2 (r1491): ==
 
