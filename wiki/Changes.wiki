@@ -5,12 +5,12 @@
 The following functions have been added:
 
   * [AIModule#onUnitRenegade AIModule::onUnitRenegade]
-  * [Game#restartGame Game::restartGame]
-  * [Unit#getUpgradeLevel Unit::getUpgradeLevel]
-  * [Unit#getVelocityX Unit::getVelocityX]
-  * [Unit#getVelocityY Unit::getVelocityY]
-  * [UnitType#upgrades UnitType::upgrades]
-  * [UpgradeType#whatUses UpgradeType::whatUses]
+  * [Game#restartGame Game::restartGame] - restarts the single player match
+  * [Unit#getUpgradeLevel Unit::getUpgradeLevel] - returns the upgrade level of the unit
+  * [Unit#getVelocityX Unit::getVelocityX] - returns x component of velocity in pixels per frame
+  * [Unit#getVelocityY Unit::getVelocityY] - returns y component of velocity in pixels per frame
+  * [UnitType#upgrades UnitType::upgrades] - returns the set of upgrades that affect this unit
+  * [UpgradeType#whatUses UpgradeType::whatUses] - returns the set of unit types that are affected by this upgrade.
 
 The following functions have been renamed:
   * Player::researching has been renamed to [Player#isResearching Player::isResearching]
