@@ -29,7 +29,7 @@ BWAPI calls this at the start of a match. Typically an AI will execute set up co
 === onEnd ===
 void onEnd(bool isWinner);
 
-BWAPI calls this at the end of the match. isWinner will be true if the AIModule won the game.
+BWAPI calls this at the end of the match. isWinner will be true if the AIModule won the game. If the game is a replay, isWinner will always be false.
 
 === onFrame ===
 void onFrame();
