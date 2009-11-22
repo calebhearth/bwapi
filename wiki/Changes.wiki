@@ -10,9 +10,9 @@ The following functions have been added:
   * [Unit#getUpgradeLevel Unit::getUpgradeLevel] - returns the upgrade level of the unit.
   * [Unit#getVelocityX Unit::getVelocityX] - returns the x component of velocity in pixels per frame.
   * [Unit#getVelocityY Unit::getVelocityY] - returns the y component of velocity in pixels per frame.
+  * [Player#leftGame Player::leftGame] - returns true if the player has left the game.
   * [UnitType#upgrades UnitType::upgrades] - returns the set of upgrades that can affect this UnitType.
   * [UpgradeType#whatUses UpgradeType::whatUses] - returns the set of unit types that are affected by this UpgradeType.
-  * [Player#leftGame Player::leftGame] - returns true if the player has left the game.
 
 The following functions have been renamed:
   * Player::researching has been renamed to [Player#isResearching Player::isResearching]
