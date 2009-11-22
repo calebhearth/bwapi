@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.2 (r1610): ==
+== Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
   * bwapi.ini file no longer accepts curly brace definitions.
 
