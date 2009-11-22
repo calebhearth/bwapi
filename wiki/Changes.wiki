@@ -1,6 +1,6 @@
 == Changes from BWAPI Beta 2.2 (r1491) to current revision: ==
 
-  * INI file no longer accepts curly brace definitions.
+  * bwapi.ini file no longer accepts curly brace definitions.
 
 The following functions have been added:
 
