@@ -16,6 +16,9 @@ The following functions have been added:
   * [UpgradeType#whatUses UpgradeType::whatUses] - returns the set of unit types that are affected by this UpgradeType.
 
 The following functions have been renamed:
+
+  * Unit::getCurrentDirection has been renamed to [Unit#getAngle Unit::getAngle]
+
   * Player::researching has been renamed to [Player#isResearching Player::isResearching]
   * Player::researched has been renamed to [Player#hasResearched Player::hasResearched]
   * Player::upgrading has been renamed to [Player#isUpgrading Player::isUpgrading]
@@ -46,7 +49,7 @@ The following functions have been renamed:
   * Game::drawScreenLine has been renamed to [Game#drawLine Game::drawLineScreen]
 
 The following functions have changed in functionality:
-
+  * [Unit#getAngle Unit::getAngle] now returns the angle of the unit in radians.
   * [UnitType#topSpeed UnitType::topSpeed] now returns the correct top speed of the UnitType in pixels per frame.
   * [Game#leaveGame Game::leaveGame] now goes to the after-match stats screen, rather than going to the main menu.
   * [Unit#isResearching Unit::isResearching] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
