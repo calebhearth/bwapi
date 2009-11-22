@@ -66,7 +66,7 @@ When complete map information is disabled, the following function no longer prov
   * [Unit#getRallyPosition Unit::getRallyPosition]
   * [Unit#getRallyUnit Unit::getRallyUnit]
 
-To determine if a visble enemy unit is busy researching or upgrading, use isIdle.
+To determine if a visble enemy unit is busy researching or upgrading, use [Unit#isIdle Unit::isIdle].
 
 The following functions have changed in functionality:
   * [Unit#getAngle Unit::getAngle] (renamed from Unit::getCurrentDirection) now returns the angle of the unit in radians.
