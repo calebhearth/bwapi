@@ -25,9 +25,9 @@ void onStart();
 BWAPI calls this at the start of a match. Typically an AI will execute set up code in this method (initialize data structures, load build orders, etc).
 
 === onEnd ===
-void onEnd();
+void onEnd(bool isWinner);
 
-BWAPI calls this at the end of the match.
+BWAPI calls this at the end of the match. isWinner will be true if the AIModule won the game.
 
 === onFrame ===
 void onFrame();
