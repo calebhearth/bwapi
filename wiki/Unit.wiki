@@ -37,7 +37,9 @@ Methods:
   * [#getInitialTilePosition getInitialTilePosition]
   * [#getDistance getDistance]
   * [#getDistance_2 getDistance]
-  * [#getCurrentDirection getCurrentDirection]
+  * [#getDirection getDirection]
+  * [#getVelocityX getVelocityX]
+  * [#getVelocityY getVelocityY]
 
   * [#getUpgradeLevel getUpgradeLevel]
   * [#getTarget getTarget]
@@ -296,11 +298,21 @@ double getDistance([Misc#Position Position] target) const;
 
 Returns the distance from the edge of the current unit to the target position.
 
-=== getCurrentDirection ===
-int getCurrentDirection() const;
+=== getDirection ===
+int getDirection() const;
 
 Returns the direction the unit is facing. Range 0-255.
 North: 0, East: 64, South: 128, West: 192
+
+=== getVelocityX ===
+double getVelocityX() const;
+
+Returns the x component of the unit's velocity, measured in pixels per frame.
+
+=== getVelocityY ===
+double getVelocityY() const;
+
+Returns the y component of the unit's velocity, measured in pixels per frame.
 
 === getUpgradeLevel ===
 int getUpgradeLevel([UpgradeType] upgrade) const;
