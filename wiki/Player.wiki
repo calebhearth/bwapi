@@ -16,6 +16,7 @@ Methods:
   * [#isEnemy isEnemy]
   * [#isNeutral isNeutral]
   * [#getStartLocation getStartLocation]
+  * [#leftGame leftGame]
 
   * [#minerals minerals]
   * [#gas gas]
@@ -84,6 +85,11 @@ Returns true if the player is the neutral player.
 [Misc#TilePosition TilePosition] getStartLocation() const;
 
 Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+
+=== leftGame ===
+bool leftGame() const;
+
+Returns true if the player left the game.
 
 === minerals ===
 int minerals() const;
