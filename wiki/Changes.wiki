@@ -5,12 +5,14 @@
 The following functions have been added:
 
   * [AIModule#onUnitRenegade AIModule::onUnitRenegade]
-  * [Game#restartGame Game::restartGame] - restarts the single player match
-  * [Unit#getUpgradeLevel Unit::getUpgradeLevel] - returns the upgrade level of the unit
-  * [Unit#getVelocityX Unit::getVelocityX] - returns the x component of velocity in pixels per frame
-  * [Unit#getVelocityY Unit::getVelocityY] - returns the y component of velocity in pixels per frame
+  * [AIModule#onPlayerLeft AIModule::onPlayerLeft]
+  * [Game#restartGame Game::restartGame] - restarts the single player match.
+  * [Unit#getUpgradeLevel Unit::getUpgradeLevel] - returns the upgrade level of the unit.
+  * [Unit#getVelocityX Unit::getVelocityX] - returns the x component of velocity in pixels per frame.
+  * [Unit#getVelocityY Unit::getVelocityY] - returns the y component of velocity in pixels per frame.
   * [UnitType#upgrades UnitType::upgrades] - returns the set of upgrades that can affect this UnitType.
   * [UpgradeType#whatUses UpgradeType::whatUses] - returns the set of unit types that are affected by this UpgradeType.
+  * [Player#leftGame Player::leftGame] - returns true if the player has left the game.
 
 The following functions have been renamed:
   * Player::researching has been renamed to [Player#isResearching Player::isResearching]
@@ -115,6 +117,7 @@ The following functions have changed in functionality:
 
   * [Unit#exists Unit::exists] - now returns false for inaccessible units, even if they exist.
   * [AIModule#onUnitCreate AIModule::onUnitCreate] is no longer called for invisible units when complete map information is disabled.
+  * [AIModule#onEnd AIModule::onEnd] is now called with an argument isWinner, which is true if the ai module is the winner of the game.
 
 The following functions have been renamed:
 
