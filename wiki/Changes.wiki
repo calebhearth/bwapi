@@ -48,13 +48,30 @@ The following functions have been renamed:
   * Game::drawMouseLine has been renamed to [Game#drawLine Game::drawLineMouse]
   * Game::drawScreenLine has been renamed to [Game#drawLine Game::drawLineScreen]
 
+When complete map information is disabled, the following function no longer provide information about enemy units, regardless of visibility:
+
+  * [Unit#isHallucination Unit::isHallucination]
+  * [Unit#isLoaded Unit::isLoaded]
+  * [Unit#getTrainingQueue Unit::getTrainingQueue]
+  * [Unit#getTransport Unit::getTransport]
+  * [Unit#getLoadedUnits Unit::getLoadedUnits]
+  * [Unit#getScarabCount Unit::getScarabCount]
+  * [Unit#getSpiderMineCount Unit::getSpiderMineCount]
+  * [Unit#getTech Unit::getTech]
+  * [Unit#getUpgrade Unit::getUpgrade]
+  * [Unit#getRemainingResearchTime Unit::getRemainingResearchTime]
+  * [Unit#getRemainingUpgradeTime Unit::getRemainingUpgradeTime]
+  * [Unit#isResearching Unit::isResearching]
+  * [Unit#isUpgrading Unit::isUpgrading]
+  * [Unit#getRallyPosition Unit::getRallyPosition]
+  * [Unit#getRallyUnit Unit::getRallyUnit]
+
+To determine if a visble enemy unit is busy researching or upgrading, use isIdle.
+
 The following functions have changed in functionality:
-  * [Unit#getAngle Unit::getAngle] now returns the angle of the unit in radians.
+  * [Unit#getAngle Unit::getAngle] (renamed from Unit::getCurrentDirection) now returns the angle of the unit in radians.
   * [UnitType#topSpeed UnitType::topSpeed] now returns the correct top speed of the UnitType in pixels per frame.
   * [Game#leaveGame Game::leaveGame] now goes to the after-match stats screen, rather than going to the main menu.
-  * [Unit#isResearching Unit::isResearching] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
-  * [Unit#isUpgrading Unit::isUpgrading] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
-  * [Unit#isIdle Unit::isIdle] now returns false if the unit is researching or upgrading.
   * [AIModule#onEnd AIModule::onEnd] is now called with an argument isWinner, which is true if the ai module has won the game.
 
 Bug fixes:
