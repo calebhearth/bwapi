@@ -49,7 +49,7 @@ BWAPI calls this when a player leaves the game.
 === onNukeDetect ===
 bool onNukeDetect([Misc#Position Position] target);
 
-BWAPI calls this when a nuclear launch has been detected. If the target position is visible, or if Complete Map Information is enabled, the target will also be provided. If Complete Map Information is disabled and the target position is not visible, target will be set to Positions::Unknown.
+BWAPI calls this when a nuclear launch has been detected. If the target position is visible, or if Complete Map Information is enabled, the target position will also be provided. If Complete Map Information is disabled and the target position is not visible, target will be set to Positions::Unknown.
 
 === onUnitCreate ===
 void onUnitCreate([Unit]{{{*}}} unit);
