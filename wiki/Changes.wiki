@@ -4,8 +4,8 @@
 
 The following functions have been added:
 
-  * [AIModule#onUnitRenegade AIModule::onUnitRenegade]
-  * [AIModule#onPlayerLeft AIModule::onPlayerLeft]
+  * [AIModule#onUnitRenegade AIModule::onUnitRenegade] - called when a unit changes ownership.
+  * [AIModule#onPlayerLeft AIModule::onPlayerLeft] - called when a player leaves the game.
   * [Game#restartGame Game::restartGame] - restarts the single player match.
   * [Unit#getUpgradeLevel Unit::getUpgradeLevel] - returns the upgrade level of the unit.
   * [Unit#getVelocityX Unit::getVelocityX] - returns the x component of velocity in pixels per frame.
