@@ -46,8 +46,8 @@ The following functions have changed in functionality:
 
   * [UnitType#topSpeed UnitType::topSpeed] now returns the correct top speed of the UnitType in pixels per frame.
   * [Game#leaveGame Game::leaveGame] now goes to the after-match stats screen, rather than going to the main menu.
-  * [Unit#isResearching Unit::isResearching] now returns false for all enemy units when complete map information is disabled. This is because in-game a human cannot tell if a unit is researching, or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
-  * [Unit#isUpgrading Unit::isUpgrading] now returns false for all enemy units when complete map information is disabled. This is because in-game a human cannot tell if a unit is researching, or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
+  * [Unit#isResearching Unit::isResearching] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
+  * [Unit#isUpgrading Unit::isUpgrading] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
   * [Unit#isIdle Unit::isIdle] now returns false if the unit is researching or upgrading.
 
 Bug fixes:
