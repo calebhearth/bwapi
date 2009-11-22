@@ -51,6 +51,7 @@ The following functions have changed in functionality:
   * [Unit#isResearching Unit::isResearching] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
   * [Unit#isUpgrading Unit::isUpgrading] now returns false for all enemy units when complete map information is disabled. This is because in-game, a human cannot tell if an enemy unit is researching or upgrading. However you can still determine if a unit is busy doing one of the two by checking [Unit#isIdle Unit::isIdle].
   * [Unit#isIdle Unit::isIdle] now returns false if the unit is researching or upgrading.
+  * [AIModule#onEnd AIModule::onEnd] is now called with an argument isWinner, which is true if the ai module is the winner of the game.
 
 Bug fixes:
 
@@ -117,7 +118,6 @@ The following functions have changed in functionality:
 
   * [Unit#exists Unit::exists] - now returns false for inaccessible units, even if they exist.
   * [AIModule#onUnitCreate AIModule::onUnitCreate] is no longer called for invisible units when complete map information is disabled.
-  * [AIModule#onEnd AIModule::onEnd] is now called with an argument isWinner, which is true if the ai module is the winner of the game.
 
 The following functions have been renamed:
 
