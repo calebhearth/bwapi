@@ -32,18 +32,18 @@ Methods:
   * [#mapHeight mapHeight]
   * [#mapFilename mapFilename]
   * [#mapName mapName]
+  * [#getMapHash getMapHash]
   * [#buildable buildable]
   * [#walkable walkable]
   * [#visible visible]
+  * [#groundHeight groundHeight]
   * [#hasCreep hasCreep]
   * [#hasPower hasPower]
   * [#canBuildHere canBuildHere]
   * [#canMake canMake]
   * [#canResearch canResearch]
   * [#canUpgrade canUpgrade]
-  * [#groundHeight groundHeight]
   * [#getStartLocations getStartLocations]
-  * [#getMapHash getMapHash]
 
   * [#printf printf]
   * [#sendText sendText]
@@ -184,8 +184,14 @@ std::string mapName();
 
 Returns the name/title of the current map.
 
+=== getMapHash ===
+int getMapHash();
+
+Returns a unique identifier for the given map data that does not depend on the file name.
+
 === buildable ===
 bool buildable(int x, int y);
+bool buildable([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
 
@@ -196,16 +202,24 @@ Returns true if the specified walk tile is walkable. The values of x and y are i
 
 === visible ===
 bool visible(int x, int y);
+bool visible([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false.
 
+=== groundHeight ===
+int groundHeight(int x, int y);
+
+Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
+
 === hasCreep ===
 bool hasCreep(int x, int y);
+bool hasCreep([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile has zerg creep on it. If the tile is concealed by fog of war, the function will return false.
 
 === hasPower ===
 bool hasPower(int x, int y, int tileWidth, int tileHeight);
+bool hasPower([Misc#TilePosition TilePosition] position, int tileWidth, int tileHeight);
 
 Returns true if the given build location is powered by a nearby friendly pylon.
 
@@ -229,20 +243,10 @@ bool canUpgrade([Unit]{{{*}}} unit, [UpgradeType] type);
 
 Returns true if the AI player has enough resources required to upgrade the given upgrade type. If unit is not null, canUpgrade will return true only if the given unit can upgrade the given upgrade type.
 
-=== groundHeight ===
-int groundHeight(int x, int y);
-
-Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
-
 === getStartLocations ===
 std::set< [Misc#TilePosition TilePosition] >& getStartLocations();
 
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
-
-=== getMapHash ===
-int getMapHash();
-
-Returns a unique identifier for the given map data that does not depend on the file name.
 
 === printf ===
 void printf(const char {{{*}}}text, ...);
