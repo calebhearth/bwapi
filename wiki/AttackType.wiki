@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/AttackType.h# BWAPI/AttackType.h]
 
+List of all [AttackTypes].
+
 Methods:
 
   * [#getID getID]
