@@ -1,7 +1,5 @@
 #sidebar TableOfContents
 
-= Color=
-
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Color.h# BWAPI/Color.h]
 
 Starcraft uses a 256 color palette to render everything, so the colors we can use to draw shapes using BWAPI is limited to the colors available in the [#Palette Palette].
