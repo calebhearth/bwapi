@@ -281,12 +281,12 @@ Returns the initial position of the unit on the map, or Positions::Unknown if th
 === getTilePosition ===
 [Misc#TilePosition TilePosition] getTilePosition() const;
 
-Returns the build tile position of the unit on the map. Useful if the unit is a building.
+Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building.
 
 === getInitialTilePosition ===
 [Misc#TilePosition TilePosition] getInitialTilePosition() const;
 
-Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game. The tile position is of the top left corner of the building.
 
 === getDistance ===
 double getDistance([Unit]{{{*}}} target) const;
@@ -720,7 +720,7 @@ Orders this unit to a the specified unit type to the training queue. Note that t
 === build ===
 bool build([Misc#TilePosition TilePosition] p, [UnitType] type);
 
-Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail.
+Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail. The tile position specifies where the top left corner of the building will be placed.
 
 === buildAddon ===
 bool buildAddon( [UnitType] type);
