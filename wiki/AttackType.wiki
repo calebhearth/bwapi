@@ -1,0 +1,33 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/AttackType.h# BWAPI/AttackType.h]
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in AttackTypes namespace:
+
+  * [#getAttackType getAttackType]
+  * [#allAttackTypes allAttackTypes]
+
+=== getID ===
+int getID();
+
+Returns the unique ID for this attack type.
+
+=== getName ===
+std::string getName();
+
+Returns the name of this attack type.
+
+=== getAttackType ===
+[Order] getAttackType(std::string &name);
+
+Given the name of an attack type, getAttackType() will return the corresponding AttackType object.
+
+=== allAttackTypes ===
+std::set<[AttackType]>& allAttackTypes();
+
+Returns the set of all the [AttackTypes].
