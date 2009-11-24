@@ -5,6 +5,8 @@
   * [UnitType#sightRange UnitType::sightRange] now returns the sight range in pixels.
   * Fixed [UnitType#maxHitPoints UnitType::maxHitPoints]
   * Fixed a bug where [Game#visible Game::visible] would crash the program when called during a replay.
+  * Fixed a bug where [Unit#setRallyPosition Unit::setRallyPosition] and [Unit#setRallyUnit Unit::setRallyUnit] would not execute the command properly.
+  * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
 
 == Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
