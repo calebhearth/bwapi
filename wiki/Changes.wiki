@@ -1,3 +1,10 @@
+== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1638): ==
+
+  * Added [AttackType] class.
+  * [UnitType#seekRange UnitType::seekRange] now returns the seek range in pixels.
+  * [UnitType#sightRange UnitType::sightRange] now returns the sight range in pixels.
+  * Fixed [UnitType#maxHitPoints UnitType::maxHitPoints]
+
 == Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
   * bwapi.ini file no longer accepts curly brace definitions.
