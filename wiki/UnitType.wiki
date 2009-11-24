@@ -243,12 +243,12 @@ Distance from the center of the unit to the bottom edge of the unit, measured in
 === seekRange ===
 int seekRange() const;
 
-Returns the range at which the unit will start targeting enemy units.
+Returns the range at which the unit will start targeting enemy units, measured in pixels.
 
 === sightRange ===
 int sightRange() const;
 
-Returns how far the unupgraded unit type can see into the fog of war.
+Returns how far the un-upgraded unit type can see into the fog of war, measured in pixels.
 
 === groundWeapon ===
 const [WeaponType]{{{*}}} groundWeapon() const;
