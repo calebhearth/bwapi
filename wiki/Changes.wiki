@@ -3,10 +3,14 @@
   * Added [AttackType] class.
   * Added build tile versions of [Game#buildable Game::buildable], [Game#visible Game::visible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
 
+The following functions have changed in functionality:
+
   * [UnitType#seekRange UnitType::seekRange] now returns the seek range in pixels.
   * [UnitType#sightRange UnitType::sightRange] now returns the sight range in pixels.
+  * [UnitType#maxHitPoints UnitType::maxHitPoints] now returns actual max hit points.
 
-  * Fixed [UnitType#maxHitPoints UnitType::maxHitPoints]
+Bug fixes:
+
   * Fixed a bug where [Game#visible Game::visible] would crash the program when called during a replay.
   * Fixed a bug where [Unit#setRallyPosition Unit::setRallyPosition] and [Unit#setRallyUnit Unit::setRallyUnit] would not execute properly.
   * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
