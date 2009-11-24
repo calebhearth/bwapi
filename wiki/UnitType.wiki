@@ -143,7 +143,7 @@ Returns the upgrade that increase's the unit's armor, or UpgradeTypes::None if n
 === maxHitPoints ===
 int maxHitPoints() const;
 
-Returns the maximum amount of hit points the unit type can have. This is also the amount of hit points a unit of this type has when it is first created.
+Returns the maximum amount of hit points the unit type can have.
 
 === maxShields ===
 int maxShields() const;
