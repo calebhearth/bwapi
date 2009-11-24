@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1638): ==
+== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1645): ==
 
   * Added [AttackType] class.
   * Added build tile versions of [Game#buildable Game::buildable], [Game#visible Game::visible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
