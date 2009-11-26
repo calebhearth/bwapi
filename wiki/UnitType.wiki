@@ -294,7 +294,7 @@ Returns true if the unit can train other units. For example, UnitTypes::Terran_B
 === canAttack ===
 bool canAttack() const;
 
-Returns true if the unit has the ability to attack (either ground or air).
+Returns true if the unit can attack (either ground or air). Returns false for units that can only inflict damage via special abilities (such as Protoss High Templar).
 
 === canMove ===
 bool canMove() const;
