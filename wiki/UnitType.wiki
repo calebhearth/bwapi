@@ -289,7 +289,7 @@ Related to how fast the unit can turn. What units this quantity is measured in i
 === canProduce ===
 bool canProduce() const;
 
-Returns true if the unit can train other units. For example, UnitTypes::Terran_Barracks.canProduce() will return true, while UnitTypes::Terran_Marine.canProduce() will return false.
+Returns true if the unit can train other units. For example, UnitTypes::Terran_Barracks.canProduce() will return true, while UnitTypes::Terran_Marine.canProduce() will return false. This is also true for two non-building units: Protoss Carrier (can produce interceptors) and Protoss Reaver (can produce scarabs).
 
 === canAttack ===
 bool canAttack() const;
@@ -314,17 +314,17 @@ Returns true for units that regenerate health (i.e. zerg units).
 === isSpellcaster ===
 bool isSpellcaster() const;
 
-Returns true if the unit type is capable of casting spells.
+Returns true if the unit type is capable of casting spells / using technology.
 
 === hasPermanentCloak ===
 bool hasPermanentCloak() const;
 
-Returns true for units that are permanently cloaked (i.e. Protoss Observer, Protoss Dark Templar).
+Returns true for the two units that are permanently cloaked - Protoss Observer and Protoss Dark Templar.
 
 === isInvincible ===
 bool isInvincible() const;
 
-Returns true for units that cannot be destroyed (i.e. Mineral Fields, Vespene Geysers)
+Returns true for units that cannot be destroyed (i.e. Terran Nuclear Missile, Mineral Field, Vespene Geyser, etc)
 
 === isOrganic ===
 bool isOrganic() const;
@@ -339,22 +339,22 @@ Returns true if the unit is mechanical such as a Terran Vulture.
 === isRobotic ===
 bool isRobotic() const;
 
-Returns true if the unit type is robotic, such as a Reaver.
+Returns true for the four robotic Protoss units - Probe, Shuttle, Reaver, and Observer.
 
 === isDetector ===
 bool isDetector() const;
 
-Returns true for units that can detect cloaked units (i.e. Overlord, Scanner Sweep, etc).
+Returns true for the seven units that can detect cloaked units - Terran Science Vessel, Spell Scanner Sweep, Zerg Overlord, Protoss Observer, Terran Missile Turret, Zerg Spore Colony, and Protoss Photon Cannon.
 
 === isResourceContainer ===
 bool isResourceContainer() const;
 
-Returns true for units that hold resources (i.e. Mineral Field, Vespene Geyser, Terran Refinery).
+Returns true for the five units that hold resources - Mineral Field, Vespene Geyser, Terran Refinery, Zerg Extractor, and Protoss Assimilator.
 
 === isResourceDepot ===
 bool isResourceDepot() const;
 
-Returns true for units that can accept resources (i.e. Terran Command Center).
+Returns true for the five units that can accept resources - Terran Command Center, Protoss Nexus, Zerg Hatchery, Zerg Lair, and Zerg Hive.
 
 === isRefinery ===
 bool isRefinery() const;
@@ -364,7 +364,7 @@ Returns true for Terran Refinery, Zerg Extractor, and Protoss Assimilator.
 === isWorker ===
 bool isWorker() const;
 
-Returns true if the unit is a Protoss Probe, Terran SCV, or Zerg Drone.
+Returns true for Protoss Probe, Terran SCV, and Zerg Drone.
 
 === requiresPsi ===
 bool requiresPsi() const;
@@ -379,27 +379,27 @@ Returns true for buildings that can only be built on zerg creep.
 === isTwoUnitsInOneEgg ===
 bool isTwoUnitsInOneEgg() const;
 
-Returns true for Zerglings.
+Returns true for Zergling and Scourge.
 
 === isBurrowable ===
 bool isBurrowable() const;
 
-Returns true for units that can burrow when burrow tech is researched.
+Returns true for Zerg Lurker and units that can burrow when burrow tech is researched.
 
 === isCloakable ===
 bool isCloakable() const;
 
-Returns true for units that can cloak (not indirectly via Arbiter).
+Returns true for units that can be cloaked - Terran Ghost and Terran Wraith. Does not include units which have permanent cloak (Protoss Observer and Protoss Dark Templar).
 
 === isBuilding ===
 bool isBuilding() const;
 
-Returns true if the unit is a building.
+Returns true if the unit is a building (also true for mineral field and vespene geyser).
 
 === isAddon ===
 bool isAddon() const;
 
-Returns true if the unit is a an add-on, such as a Terran Comsat Station.
+Returns true if the unit is an add-on, such as a Terran Comsat Station.
 
 === isFlyingBuilding ===
 bool isFlyingBuilding() const;
