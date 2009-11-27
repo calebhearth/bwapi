@@ -69,6 +69,7 @@ Methods:
   * [#exists exists]
   * [#isAccelerating isAccelerating]
   * [#isBeingConstructed isBeingConstructed]
+  * [#isBeingGathered isBeingGathered]
   * [#isBeingHealed isBeingHealed]
   * [#isBlind isBlind]
   * [#isBraking isBraking]
@@ -460,6 +461,11 @@ bool isBeingConstructed() const;
 Returns true if the unit is being constructed. Always true for incomplete Protoss and Zerg buildings, and true for incomplete Terran buildings that have an SCV constructing them. If the SCV halts construction, isBeingConstructed will return false.
 
 See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelConstruction], [Unit]::[Unit#haltConstruction haltConstruction], [Unit]::[Unit#isConstructing isConstructing].
+
+=== isBeingGathered ===
+bool isBeingGathered() const;
+
+Returns true if the unit is a mineral patch or refinery that is being gathered.
 
 === isBeingHealed ===
 bool isBeingHealed() const;
