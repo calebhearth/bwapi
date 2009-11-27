@@ -2,6 +2,7 @@
 
   * Added [AttackType] class.
   * Added build tile versions of [Game#buildable Game::buildable], [Game#visible Game::visible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
+  * Added [Unit#isBeingGathered Unit::isBeingGathered]
 
 The following functions have changed in functionality:
 
