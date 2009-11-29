@@ -8,7 +8,10 @@ The following functions have changed in functionality:
 
   * [UnitType#seekRange UnitType::seekRange] now returns the seek range in pixels.
   * [UnitType#sightRange UnitType::sightRange] now returns the sight range in pixels.
-  * [UnitType#maxHitPoints UnitType::maxHitPoints] now returns actual max hit points.
+  * [UnitType#maxHitPoints UnitType::maxHitPoints] now returns actual max hit points (not multiplied by 256).
+  * [Unit#getHitPoints Unit::getHitPoints] now returns actual current hit points (not multiplied by 256).
+  * [Unit#getShields Unit::getShields] now returns actual current shields (not multiplied by 256).
+  * [Unit#getEnergy Unit::getEnergy] now returns actual current energy (not multiplied by 256).
 
 Bug fixes:
 
