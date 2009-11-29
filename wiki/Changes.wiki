@@ -21,10 +21,10 @@ Bug fixes:
   * Fixed a bug where [Game#visible Game::visible] would crash the program when called during a replay.
   * Fixed a bug where [Unit#setRallyPosition Unit::setRallyPosition] and [Unit#setRallyUnit Unit::setRallyUnit] would not execute properly.
   * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
-  * Fixed [UnitType#topSpeed UnitType::topSpeed], [Unit#getVelocityX Unit::getVelocityX], and [Unit#getVelocityY Unit::getVelocityY]. Everything should now be in pixels per frame.
   * Fixed a bug where [Unit#isStartingAttack Unit::isStartingAttack] would always be false for certain types of units, even when they were attacking.
   * Fixed a bug where scanner sweep (and possibly other tech types that don't need to be researched) would not work.
   * Fixed a bug where [AIModule#onFrame AIModule::onFrame] would be called twice on the first frame.
+  * Fixed [UnitType#topSpeed UnitType::topSpeed], [Unit#getVelocityX Unit::getVelocityX], and [Unit#getVelocityY Unit::getVelocityY]. Everything should now be in pixels per frame.
 
 == Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
