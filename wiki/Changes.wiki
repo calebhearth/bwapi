@@ -14,6 +14,7 @@ The following functions have changed in functionality:
   * [Unit#getEnergy Unit::getEnergy] now returns actual current energy (not multiplied by 256).
   * [UnitType#canAttack UnitType::canAttack] now returns false for overlords, dropships, and other types of units that cannot attack.
   * [Player#hasResearched Player::hasResearched] now returns true for abilities that the player has researched by default, such as Scanner Sweep.
+  * [Game#getFrameCount Game::getFrameCount] now counts from 0. So the first frame is frame 0.
 
 Bug fixes:
 
@@ -22,6 +23,9 @@ Bug fixes:
   * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
   * Fixed [UnitType#topSpeed UnitType::topSpeed], [Unit#getVelocityX Unit::getVelocityX], and [Unit#getVelocityY Unit::getVelocityY]. Everything should now be in pixels per frame.
   * Fixed a bug where Unit::isStartingAttack would always be false for certain types of units, even when they were attacking.
+  * Fixed a bug where scanner sweep would not work.
+  * Fixed a bug where onFrame would be called twice on the first frame.
+
 == Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
   * bwapi.ini file no longer accepts curly brace definitions.
