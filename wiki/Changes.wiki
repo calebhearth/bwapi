@@ -1,8 +1,8 @@
-== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1645): ==
+== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1667): ==
 
   * Added [AttackType] class.
   * Added build tile versions of [Game#buildable Game::buildable], [Game#visible Game::visible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
-  * Added [Unit#isBeingGathered Unit::isBeingGathered]
+  * Added [Unit#isBeingGathered Unit::isBeingGathered] - returns true for mineral patches and the three types of refineries when a unit is gathering from it.
 
 The following functions have changed in functionality:
 
@@ -12,13 +12,16 @@ The following functions have changed in functionality:
   * [Unit#getHitPoints Unit::getHitPoints] now returns actual current hit points (not multiplied by 256).
   * [Unit#getShields Unit::getShields] now returns actual current shields (not multiplied by 256).
   * [Unit#getEnergy Unit::getEnergy] now returns actual current energy (not multiplied by 256).
+  * [UnitType#canAttack UnitType::canAttack] now returns false for overlords, dropships, and other types of units that cannot attack.
+  * [Player#hasResearched Player::hasResearched] now returns true for abilities that the player has researched by default, such as Scanner Sweep.
 
 Bug fixes:
 
   * Fixed a bug where [Game#visible Game::visible] would crash the program when called during a replay.
   * Fixed a bug where [Unit#setRallyPosition Unit::setRallyPosition] and [Unit#setRallyUnit Unit::setRallyUnit] would not execute properly.
   * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
-
+  * Fixed [UnitType#topSpeed UnitType::topSpeed], [Unit#getVelocityX Unit::getVelocityX], and [Unit#getVelocityY Unit::getVelocityY]. Everything should now be in pixels per frame.
+  * Fixed a bug where Unit::isStartingAttack would always be false for certain types of units, even when they were attacking.
 == Changes from BWAPI Beta 2.2 (r1491) to BWAPI Beta 2.3 (r1610): ==
 
   * bwapi.ini file no longer accepts curly brace definitions.
