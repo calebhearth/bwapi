@@ -1,6 +1,6 @@
 == Changes from BWAPI Beta 2.3 (r1610) to current revision (r1667): ==
 
-  * Added [AttackType] class, however this won't be of much use until the Attack class is implemented (which will let AI Modules "see" projectiles, bullets, lurker attacks, etc).
+  * Added [AttackType] class, however this won't be of much use until the Attack class is implemented (which will let AI Modules "see" projectiles, bullets, psi storms, lurker attacks, etc).
   * Added build tile versions of [Game#buildable Game::buildable], [Game#visible Game::visible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
   * Added [Unit#isBeingGathered Unit::isBeingGathered] - returns true for mineral patches and the three types of refineries when a unit is gathering from it.
 
