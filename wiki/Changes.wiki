@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1689): ==
+== Changes from BWAPI Beta 2.3 (r1610) to BWAPI Beta 2.4 (r1689): ==
 
   * Added [AttackType] class, however this won't be of much use until the Attack class is implemented (which will let AI Modules "see" projectiles, bullets, psi storms, lurker attacks, etc).
   * Added [Game#isExplored Game::isExplored] - returns true for tiles that are visible or were visible at some point earlier in the match.
@@ -25,7 +25,7 @@ The following functions have changed in functionality:
 
 Bug fixes:
 
-  * Fixed a bug where [Game#visible Game::visible] would crash the program when called during a replay.
+  * Fixed a bug where [Game#isVisible Game::isVisible] would crash the program when called during a replay.
   * Fixed a bug where [Unit#setRallyPosition Unit::setRallyPosition] and [Unit#setRallyUnit Unit::setRallyUnit] would not execute properly.
   * Fixed a bug where [Unit#patrol Unit::patrol] would appear to change the position of the unit to the target position.
   * Fixed a bug where [Unit#isStartingAttack Unit::isStartingAttack] would always be false for certain types of units, even when they were attacking.
