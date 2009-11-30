@@ -32,6 +32,7 @@ Methods:
   * [#supplyRequired supplyRequired]
   * [#supplyProvided supplyProvided]
   * [#spaceRequired spaceRequired]
+  * [#spaceProvided spaceProvided]
   * [#buildScore buildScore]
   * [#destroyScore destroyScore]
 
