@@ -15,6 +15,7 @@ The following functions have changed in functionality:
   * [UnitType#canAttack UnitType::canAttack] now returns false for overlords, dropships, and other types of units that cannot attack.
   * [Player#hasResearched Player::hasResearched] now returns true for abilities that the player has researched by default, such as Scanner Sweep.
   * [Game#getFrameCount Game::getFrameCount] now counts from 0. So the first frame is frame 0.
+  * [Game#sendText Game::sendText] now processes most cheat codes in single player games. For example, typing Broodwar->sendText("black sheep wall") will reveal the entire map.
 
 Bug fixes:
 
