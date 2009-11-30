@@ -5,6 +5,7 @@
   * Added [Unit#isBeingGathered Unit::isBeingGathered] - returns true for mineral patches and the three types of refineries when a unit is gathering from it.
 
   * Renamed Game::buildable to [Game#isBuildable Game::isBuildable]
+  * Renamed Game::walkable to [Game#isWalkable Game::isWalkable]
   * Renamed Game::visible to [Game#isVisible Game::isVisible]
   * Renamed Game::groundHeight to [Game#getGroundHeight Game::getGroundHeight]
   * Added [Misc#TilePosition TilePosition] versions of [Game#isBuildable Game::isBuildable], [Game#isVisible Game::isVisible], [Game#hasCreep Game::hasCreep], and [Game#hasPower Game::hasPower].
