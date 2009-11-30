@@ -33,10 +33,11 @@ Methods:
   * [#mapFilename mapFilename]
   * [#mapName mapName]
   * [#getMapHash getMapHash]
-  * [#buildable buildable]
-  * [#walkable walkable]
-  * [#visible visible]
-  * [#groundHeight groundHeight]
+  * [#getGroundHeight getGroundHeight]
+  * [#isBuildable isBuildable]
+  * [#isWalkable isWalkable]
+  * [#isVisible isVisible]
+  * [#isExplored isExplored]
   * [#hasCreep hasCreep]
   * [#hasPower hasPower]
   * [#canBuildHere canBuildHere]
@@ -189,29 +190,36 @@ int getMapHash();
 
 Returns a unique identifier for the given map data that does not depend on the file name.
 
-=== buildable ===
-bool buildable(int x, int y);
+=== getGroundHeight ===
+int getGroundHeight(int x, int y);
 
-bool buildable([Misc#TilePosition TilePosition] position);
+Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
+
+=== isBuildable ===
+bool isBuildable(int x, int y);
+
+bool isBuildable([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
 
-=== walkable ===
-bool walkable(int x, int y);
+=== isWalkable ===
+bool isWalkable(int x, int y);
 
 Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
-=== visible ===
-bool visible(int x, int y);
+=== isVisible ===
+bool isVisible(int x, int y);
 
-bool visible([Misc#TilePosition TilePosition] position);
+bool isVisible([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false.
 
-=== groundHeight ===
-int groundHeight(int x, int y);
+=== isExplored ===
+bool isExplored(int x, int y);
 
-Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
+bool isExplored([Misc#TilePosition TilePosition] position);
+
+Returns true if the specified build tile has been explored.
 
 === hasCreep ===
 bool hasCreep(int x, int y);
