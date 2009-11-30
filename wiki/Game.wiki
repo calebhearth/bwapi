@@ -195,17 +195,17 @@ int getGroundHeight(int x, int y);
 
 Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
 
+=== isWalkable ===
+bool isWalkable(int x, int y);
+
+Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
+
 === isBuildable ===
 bool isBuildable(int x, int y);
 
 bool isBuildable([Misc#TilePosition TilePosition] position);
 
 Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
-
-=== isWalkable ===
-bool isWalkable(int x, int y);
-
-Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
 === isVisible ===
 bool isVisible(int x, int y);
