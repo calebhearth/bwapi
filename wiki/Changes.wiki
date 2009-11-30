@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1667): ==
+== Changes from BWAPI Beta 2.3 (r1610) to current revision (r1694): ==
 
   * Added [AttackType] class, however this won't be of much use until the Attack class is implemented (which will let AI Modules "see" projectiles, bullets, psi storms, lurker attacks, etc).
   * Added [Game#isExplored Game::isExplored] - returns true for tiles that are visible or were visible at some point earlier in the match.
