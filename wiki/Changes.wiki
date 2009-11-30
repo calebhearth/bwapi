@@ -25,7 +25,7 @@ Bug fixes:
   * Fixed a bug where [Unit#isStartingAttack Unit::isStartingAttack] would always be false for certain types of units, even when they were attacking.
   * Fixed a bug where scanner sweep (and possibly other tech types that don't need to be researched) would not work.
   * Fixed a bug where [AIModule#onFrame AIModule::onFrame] would be called twice on the first frame.
-  * Fixed a bug where [Unit#train Unit::train] would not allow more than one unit to the training queue.
+  * Fixed a bug where [Unit#train Unit::train] would not allow more than one unit to be added to the training queue.
   * Fixed a bug where [AIModule#onUnitDestroy AIModule::onUnitDestroy] would not be called for units loaded into dropships/shuttles/overlords when the transport unit was destroyed.
   * Fixed [UnitType#topSpeed UnitType::topSpeed], [Unit#getVelocityX Unit::getVelocityX], and [Unit#getVelocityY Unit::getVelocityY]. Everything should now be in pixels per frame.
 
