@@ -47,7 +47,7 @@ std::string getName() const;
 Returns the name of the player.
 
 === getUnits ===
-std::set< [Unit]{{{*}}} >& getUnits();
+const std::set< [Unit]{{{*}}} >& getUnits() const;
 
 Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
 
