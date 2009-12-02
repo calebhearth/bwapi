@@ -219,7 +219,7 @@ bool isExplored(int x, int y);
 
 bool isExplored([Misc#TilePosition TilePosition] position);
 
-Returns true if the specified build tile has been explored.
+Returns true if the specified build tile has been explored (i.e. was visible at some point in the match).
 
 === hasCreep ===
 bool hasCreep(int x, int y);
