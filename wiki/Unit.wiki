@@ -322,7 +322,7 @@ Returns true if the owner of this player has upgraded the given upgrade type, an
 === getTarget ===
 [Unit]{{{*}}} getTarget() const;
 
-Generally returns the appropriate target unit after issuing an order that accepts a target unit (i.e. attack, repair, gather, follow, etc.).
+Generally returns the appropriate target unit after issuing an order that accepts a target unit (i.e. attack, repair, gather, follow, etc.). To check for a target that has been acquired automatically (without issuing an order) see getOrderTarget.
 
 === getTargetPosition ===
 [Misc#Position Position] getTargetPosition() const;
@@ -334,6 +334,8 @@ Returns the target position the unit is moving to (provided a valid path to the 
 
 === getOrderTarget ===
 [Unit]{{{*}}} getOrderTarget() const;
+
+This is usually set when the low level unit AI acquires a new target automatically. For example if an enemy probe comes in range of your marine, the marine will start attacking it, and getOrderTarget will be set in this case, but not getTarget.
 
 === getOrderTimer ===
 int getOrderTimer() const;
