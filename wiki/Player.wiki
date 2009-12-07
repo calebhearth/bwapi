@@ -84,7 +84,7 @@ Returns true if the player is the neutral player.
 === getStartLocation ===
 [Misc#TilePosition TilePosition] getStartLocation() const;
 
-Returns the starting location of the player. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+Returns the starting location of the player. If complete map information is disabled, this function will return TilePositions::Unknown for enemy players. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
 === leftGame ===
 bool leftGame() const;
