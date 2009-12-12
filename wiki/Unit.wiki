@@ -706,12 +706,12 @@ bool attackMove([Misc#Position Position] target);
 Orders the unit to attack move to the specified location.
 
 === attackUnit ===
-bool attackUnit([Misc#Position Position] target);
+bool attackUnit([Unit]{{{*}}} target);
 
 Orders the unit to attack the specified unit.
 
 === rightClick ===
-bool rightClick([Misc#Position Position]target);
+bool rightClick([Misc#Position Position] target);
 
 Works like the right click in the GUI.
 
