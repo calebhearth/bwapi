@@ -1,0 +1,14 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwagent/source/BWAPI/BWAPI.h# BWAPI/BWAPI.h]
+
+BWAPI1 is a native API. Native APIs are timeless, being the most basic API choise in windows, it is not very hi-end or object oriented. If you're not searching for ridiculously high performance, use the BWAPI2 interface.
+
+Methods:
+
+  * [#BWGetVersion BWGetVersion]
+
+=== BWGetVersion ===
+int BWGetVersion();
+
+Returns the SVN-revision number of the BWAgent.dll you're using.
