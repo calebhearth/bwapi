@@ -149,8 +149,6 @@ The following orders can be issued to units:
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
   * [#useTech useTech]
-  * [#useTech_2 useTech]
-  * [#useTech_3 useTech]
 
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
@@ -946,13 +944,13 @@ bool useTech([TechType] tech);
 Orders the unit to use a tech not requiring a target (ie Stim Pack).
 Returns true if it is a valid tech.
 
-=== useTech_2 ===
+=== useTech ===
 bool useTech([TechType] tech, Position position);
 
 Orders the unit to use a tech requiring a position target (ie Dark Swarm).
 Returns true if it is a valid tech.
 
-=== useTech_3 ===
+=== useTech ===
 bool useTech([TechType] tech, Unit{{{*}}} target);
 
 Orders the unit to use a tech requiring a unit target (ie Irradiate).
