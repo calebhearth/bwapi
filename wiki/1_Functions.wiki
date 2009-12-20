@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi3/bwagent/source/BWAPI/BWAPI.h BWAPI/BWAPI.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi3/BWAgent/Source/BWAPI/BWAPI.h BWAPI/BWAPI.h]
 
 BWAPI1 is a native C style API. Native APIs are timeless, being the most basic API choise in windows. It is not object oriented.
 
