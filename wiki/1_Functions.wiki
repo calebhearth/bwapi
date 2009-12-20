@@ -50,6 +50,6 @@ printf("Connected.\n");
 }}}
 
 === BWGetLastError ===
-const char{{{*}}} BWGetLastError();
+const char`*` BWGetLastError();
 
 returns a string describing the error of the last BWAPI1 function call. call this immediately after a failed BWAPI1 function call, because the next BWAPI1 function call will overwrite the last error.
