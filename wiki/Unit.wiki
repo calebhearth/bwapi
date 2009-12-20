@@ -350,7 +350,7 @@ If the unit is an SCV that is constructing a building, this will return the buil
 === getBuildType ===
 [UnitType] getBuildType() const;
 
-If the unit is moving to construct a building, this will return the type of building the unit has been ordered to construct. If the unit is a morphing Zerg unit, this will return the type the unit is morphing into.
+Returns the building type a worker is about to construct. If the unit is a morphing Zerg unit or an incomplete building, this returns the UnitType the unit is about to become upon completion.
 
 === getRemainingBuildTime ===
 int getRemainingBuildTime() const;
