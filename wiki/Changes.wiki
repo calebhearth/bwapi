@@ -1,7 +1,7 @@
 == Changes from BWAPI Beta 2.4 (r1689) to current revision ==
 
   * Added a logging option to bwapi.ini - by default it is set to off.
-  * Added [TechType]::[TechType#getRace]
+  * Added [TechType]::[TechType#getRace getRace]
 
 
   * Fixed TechTypes::Restoration.whatResearches() so that it now returns UnitTypes::Terran_Academy.
