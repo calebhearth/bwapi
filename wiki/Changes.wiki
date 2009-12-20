@@ -2,7 +2,7 @@
 
   * Added a logging option to bwapi.ini - by default it is set to off.
   * Added [TechType]::[TechType#getRace getRace] (the function was declared before but not actually implemented).
-
+  * Added [Unit]::[Unit#getBuildType getBuildType] - returns the building type the unit is about to construct, or the UnitType a zerg unit is morphing into.
 
   * Fixed TechTypes::Restoration.whatResearches() so that it now returns UnitTypes::Terran_Academy.
   * Fixed a bug where [Game]::[Game#canBuildHere canBuildHere] would return true even when a nexus/command center/hatchery was too close to invisible minerals/geysers. The function now uses static mineral and geyser data and assumes mineral fields exist unless it can see the build tile where the mineral is supposed to be, and cannot see the mineral unit.
