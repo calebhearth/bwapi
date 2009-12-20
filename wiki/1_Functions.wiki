@@ -9,6 +9,8 @@ BWAPI1 is designed as a data query interface only. This is why BWAPI1 functions 
 Methods:
 
   * [#BWGetVersion BWGetVersion]
+  * [#BWConnect BWConnect]
+  * [#BWGetLastError BWGetLastError]
 
 === BWGetVersion ===
 int BWGetVersion();
