@@ -10,6 +10,7 @@
   * Fixed a bug where using Siege Tanks would cause the game to crash.
   * Fixed a bug where BWAPI would crash on game end if a player left during the game.
   * Fixed a bug where [Unit]::[Unit#isGatheringGas isGatheringGas] would sometimes return false for drones harvesting gas into a morphing Hatchery.
+  * Fixed a bug where chat messages in multiplayer games would either appear garbled or not show at all.
 
 == Changes from BWAPI Beta 2.3 (r1610) to BWAPI Beta 2.4 (r1689): ==
 
