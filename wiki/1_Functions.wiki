@@ -17,12 +17,37 @@ int BWGetVersion();
 
 Returns the SVN-revision number of the BWAgent.dll you're using.
 
+The header-file version should always be checked at startup of your AI.exe to match the BWAgent.dll version. In the header files, the version is defined as SVN_REV.
+
+Example:
+{{{
+if(BWGetVersion() != SVN_REV)
+{
+  printf("Wrong BWAgent.dll version\n");
+  exit(1);
+}
+}}}
+
 === BWConnect ===
 bool BWConnect();
 
 Searches for a running Starcraft instance with a loaded BWAPI plugin and, if found, attempts to connect.
 Returns false if no connection was established. Feel free to try again later.
 Returns true if connected successfully.
+
+Example:
+{{{
+if(!BWConnect())
+{
+  printf("Waiting for Starcraft to startup.\n");
+  while(!BWConnect())
+  {
+    // retry every second
+    Sleep(1000);
+  }
+}
+printf("Connected.\n");
+}}}
 
 === BWGetLastError ===
 const char{{{*}}} BWGetLastError();
