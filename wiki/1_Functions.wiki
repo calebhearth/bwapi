@@ -6,10 +6,15 @@ BWAPI1 is a native C style API. Native APIs are timeless, being the most basic A
 
 BWAPI1 is designed as a data query interface only. This is why BWAPI1 functions do not return the data directly, but pointers to structures which are filled with data. Use BWAPI1 only if your AI uses only it's own algorithms and wants to avoid the per-frame overhead of BWAPI2 algorithms.
 
-Methods:
-
+Basic:
   * [#BWGetVersion BWGetVersion]
   * [#BWConnect BWConnect]
+
+Commands:
+  * [#BWPrintText BWPrintText]
+  * [#BWSendText BWSendText]
+
+Errors:
   * [#BWGetLastError BWGetLastError]
 
 === BWGetVersion ===
@@ -49,7 +54,17 @@ if(!BWConnect())
 printf("Connected.\n");
 }}}
 
+=== BWPrintText ===
+bool BWPrintText(const char`*` c_string);
+
+Prints c_string in Starcraft window. Returns true on success.
+
+=== BWSendText ===
+bool BWSendText(const char`*` c_string);
+
+Emulates user typing c_string in Starcraft chat. Returns true on success.
+
 === BWGetLastError ===
 const char`*` BWGetLastError();
 
-returns a string describing the error of the last BWAPI1 function call. call this immediately after a failed BWAPI1 function call, because the next BWAPI1 function call will overwrite the last error.
+Returns a string describing the error of the last BWAPI1 function call. call this immediately after a failed BWAPI1 function call, because the next BWAPI1 function call will overwrite the last error.
