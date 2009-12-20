@@ -1,8 +1,10 @@
 #sidebar TableOfContents
 
-Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwagent/source/BWAPI/BWAPI.h# BWAPI/BWAPI.h]
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwagent/source/BWAPI/BWAPI.h BWAPI/BWAPI.h]
 
-BWAPI1 is a native API. Native APIs are timeless, being the most basic API choise in windows, it is not very hi-end or object oriented. If you're not searching for ridiculously high performance, use the BWAPI2 interface.
+BWAPI1 is a native C style API. Native APIs are timeless, being the most basic API choise in windows. It is not object oriented.
+
+BWAPI1 is designed as a data query interface only. This is why BWAPI1 functions do not return the data directly, but pointers to structures which are filled with data. Use BWAPI1 only if your AI uses only it's own algorithms and wants to avoid the per-frame overhead of BWAPI2 algorithms.
 
 Methods:
 
@@ -12,3 +14,15 @@ Methods:
 int BWGetVersion();
 
 Returns the SVN-revision number of the BWAgent.dll you're using.
+
+=== BWConnect ===
+bool BWConnect();
+
+Searches for a running Starcraft instance with a loaded BWAPI plugin and, if found, attempts to connect.
+Returns false if no connection was established. Feel free to try again later.
+Returns true if connected successfully.
+
+=== BWGetLastError ===
+const char{{{*}}} BWGetLastError();
+
+returns a string describing the error of the last BWAPI1 function call. call this immediately after a failed BWAPI1 function call, because the next BWAPI1 function call will overwrite the last error.
