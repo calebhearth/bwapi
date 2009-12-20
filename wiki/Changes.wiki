@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.4 (r1689) to current revision ==
+== Changes from BWAPI Beta 2.4 (r1689) to BWAPI Beta 2.5 (r1830) ==
 
   * Added a logging option to bwapi.ini - by default it is set to off.
   * Added [TechType]::[TechType#getRace getRace] (the function was declared before but not actually implemented).
