@@ -1,3 +1,15 @@
+== Changes from BWAPI Beta 2.4 (r1689) to current revision ==
+
+  * Added a logging option to bwapi.ini - by default it is set to off.
+  * Added [TechType]::[TechType#getRace]
+
+
+  * Fixed TechTypes::Restoration.whatResearches() so that it now returns UnitTypes::Terran_Academy.
+  * Fixed a bug where Game::canBuildHere would return true even when a nexus/command center/hatchery was too close to invisible minerals/geysers. The function now uses static mineral and geyser data and assumes mineral fields exist unless it can see the build tile where the mineral is supposed to be, and cannot see the mineral unit.
+  * Fixed a bug where [Unit]::[Unit#isIdle] would return false after a worker failed to start construction of a building.
+  * Fixed a bug where using Siege Tanks would cause the game to crash.
+  * Fixed a bug where BWAPI would crash on game end if a player left during the game.
+
 == Changes from BWAPI Beta 2.3 (r1610) to BWAPI Beta 2.4 (r1689): ==
 
   * Added [AttackType] class, however this won't be of much use until the Attack class is implemented (which will let AI Modules "see" projectiles, bullets, psi storms, lurker attacks, etc).
