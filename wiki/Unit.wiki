@@ -49,6 +49,7 @@ Methods:
   * [#getOrderTimer getOrderTimer]
   * [#getSecondaryOrder getSecondaryOrder]
   * [#getBuildUnit getBuildUnit]
+  * [#getBuildType getBuildType]
   * [#getRemainingBuildTime getRemainingBuildTime]
   * [#getRemainingTrainTime getRemainingTrainTime]
   * [#getChild getChild]
@@ -345,6 +346,11 @@ int getOrderTimer() const;
 [Unit]{{{*}}} getBuildUnit() const;
 
 If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran building that is being constructed, this will return the SCV that is constructing it.
+
+=== getBuildType ===
+[UnitType] getBuildType() const;
+
+If the unit is moving to construct a building, this will return the type of building the unit has been ordered to construct. If the unit is a morphing Zerg unit, this will return the type the unit is morphing into.
 
 === getRemainingBuildTime ===
 int getRemainingBuildTime() const;
