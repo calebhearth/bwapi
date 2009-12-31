@@ -298,7 +298,7 @@ Used to start the game while in a lobby. Note that there is no onLobbyEnter call
 === pauseGame ===
 void pauseGame();
 
-Pauses the game. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused.
+Pauses the game. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused.
 
 === resumeGame ===
 void resumeGame();
