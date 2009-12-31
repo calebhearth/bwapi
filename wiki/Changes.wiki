@@ -6,7 +6,7 @@
 
 The following functions have changed in functionality:
 
-  * [Unit#getRemainingTrainTime Unit::getRemainingTrainTime] now returns the number of frames until the next larva spawns at the given hatchery/lair/hive. Works as before on other unit types.
+  * [Unit#getRemainingTrainTime Unit::getRemainingTrainTime] now returns the number of frames until the next larva spawns at the given Hatchery, Lair, or Hive. Works as before on other unit types.
   * [Unit#getDistance Unit::getDistance(Unit* target)] now computes the distance between units more similar to the way starcraft computes distance between units when determining if a unit is in attack range.
 
 Bug fixes:
