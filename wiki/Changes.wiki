@@ -9,7 +9,9 @@ The following functions have changed in functionality:
   * [Unit#getRemainingTrainTime Unit::getRemainingTrainTime] now returns the number of frames until the next larva spawns at the given hatchery/lair/hive. Works as before on other unit types.
   * [Unit#getDistance Unit::getDistance] now computes the distance between units more similar to the way starcraft computes distance between units, using the approximate distance function.
 
-Fixed a bug in [Game#canUpgrade Game::canUpgrade].
+Bug fixes:
+
+  * Fixed a bug in [Game#canUpgrade Game::canUpgrade].
 
 == Changes from BWAPI Beta 2.4 (r1689) to BWAPI Beta 2.5 (r1830) ==
 
