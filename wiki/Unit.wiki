@@ -513,15 +513,14 @@ bool isCarryingGas() const;
 
 Returns true if the unit is a worker that is carrying gas.
 
+See also: [Unit]::[Unit#returnCargo returnCargo], [Unit]::[Unit#isGatheringGas isGatheringGas].
+
 === isCarryingMinerals ===
 bool isCarryingMinerals() const;
 
 Returns true if the unit is a worker that is carrying minerals.
 
-=== isBurrowed ===
-bool isBurrowed() const;
-
-Returns true if the unit is burrowed.
+See also: [Unit]::[Unit#returnCargo returnCargo], [Unit]::[Unit#isGatheringMinerals isGatheringMinerals].
 
 === isCloaked ===
 bool isCloaked() const;
