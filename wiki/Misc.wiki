@@ -15,6 +15,7 @@ Methods:
   * int x();
   * int y();
   * double getDistance(Position position);
+  * double getApproxDistance(Position position);
 
 == Special Positions ==
   * Invalid
