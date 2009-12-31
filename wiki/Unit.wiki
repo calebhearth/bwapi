@@ -577,6 +577,8 @@ bool isHallucination() const;
 
 Returns true for hallucinated units, false for normal units. Returns true for hallucinated enemy units only if Complete Map Information is enabled.
 
+See also: [Unit]::[Unit#getRemoveTimer getRemoveTimer].
+
 === isIdle ===
 bool isIdle() const;
 
@@ -588,6 +590,8 @@ See also: [Unit]::[Unit#stop stop].
 bool isIrradiated() const;
 
 Returns true if the unit is being irradiated by a Terran Science Vessel.
+
+See also: [Unit]::[Unit#getIrradiateTimer getIrradiateTimer].
 
 === isLifted ===
 bool isLifted() const;
@@ -608,17 +612,21 @@ bool isLockedDown() const;
 
 Returns true if the unit is locked down by a Terran Ghost.
 
+See also: [Unit]::[Unit#getLockdownTimer getLockdownTimer].
+
 === isMaelstrommed ===
 bool isMaelstrommed() const;
 
 Returns true if the unit is being maelstrommed.
+
+See also: [Unit]::[Unit#getMaelstromTimer getMaelstromTimer].
 
 === isMorphing ===
 bool isMorphing() const;
 
 Returns true if the unit is a zerg unit that is morphing.
 
-See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#cancelMorph cancelMorph].
+See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#cancelMorph cancelMorph], [Unit]::[Unit#getBuildType getBuildType], [Unit]::[Unit#getRemainingBuildTime getRemainingBuildTime].
 
 === isMoving ===
 bool isMoving() const;
@@ -644,6 +652,8 @@ bool isPlagued() const;
 
 Returns true if the unit has been plagued by a Zerg Defiler.
 
+See also: [Unit]::[Unit#getPlagueTimer getPlagueTimer].
+
 === isRepairing ===
 bool isRepairing() const;
 
@@ -661,6 +671,8 @@ bool isSelected() const;
 
 Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable [Misc#Flag Flag]::UserInput during [AIModule]::[AIModule#onStart onStart].
 
+See also: [Game]::[Game#getSelectedUnits getSelectedUnits].
+
 === isSieged ===
 bool isSieged() const;
 
@@ -673,24 +685,28 @@ bool isStartingAttack() const;
 
 Returns true if the unit is starting to attack.
 
-See also: [Unit]::[Unit#attackUnit attackUnit].
+See also: [Unit]::[Unit#attackUnit attackUnit], [Unit]::[Unit#getGroundWeaponCooldown getGroundWeaponCooldown], [Unit]::[Unit#getAirWeaponCooldown getAirWeaponCooldown].
 
 === isStasised ===
 bool isStasised() const;
 
 Returns true if the unit has been stasised by a Protoss Arbiter.
 
+See also: [Unit]::[Unit#getStasisTimer getStasisTimer].
+
 === isStimmed ===
 bool isStimmed() const;
 
 Returns true if the unit is currently stimmed.
+
+See also: [Unit]::[Unit#getStimTimer getStimTimer].
 
 === isTraining ===
 bool isTraining() const;
 
 Returns true if the unit is training units (i.e. a Barracks training Marines).
 
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#getTrainingQueue getTrainingQueue], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#cancelTrain_2 cancelTrain].
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#getTrainingQueue getTrainingQueue], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#getRemainingTrainTime getRemainingTrainTime].
 
 === isUnderStorm ===
 bool isUnderStorm() const;
@@ -707,7 +723,7 @@ bool isUpgrading() const;
 
 Returns true if the unit is a building that is upgrading. See [UpgradeTypes] for the complete list of available upgrades in Broodwar.
 
-See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#getUpgrade getUpgrade], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradehTime].
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#getUpgrade getUpgrade], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime].
 
 === isVisible ===
 bool isVisible() const;
