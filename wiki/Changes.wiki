@@ -1,6 +1,6 @@
 == Changes from BWAPI Beta 2.5 (r1830) to current revision ==
 
-  * Added [Unit#getLarva Unit::getLarva] - returns a set of 0-3 larva units that have spawned from the given hatchery/lair/hive.
+  * Added [Unit#getLarva Unit::getLarva] - returns a set of 0,1,2, or 3 larva units that have spawned from the given hatchery/lair/hive.
   * Added [Unit#getHatchery Unit::getHatchery] - returns the hatchery/lair/hive that spawned the given larva.
   * Added [Misc#Position Position::getApproxDistance] - an approximate distance function similar to the one starcraft uses.
 
