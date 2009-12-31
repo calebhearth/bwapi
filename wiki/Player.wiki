@@ -16,6 +16,8 @@ Methods:
   * [#isEnemy isEnemy]
   * [#isNeutral isNeutral]
   * [#getStartLocation getStartLocation]
+  * [#isVictorious isVictorious]
+  * [#isDefeated isDefeated]
   * [#leftGame leftGame]
 
   * [#minerals minerals]
@@ -85,6 +87,16 @@ Returns true if the player is the neutral player.
 [Misc#TilePosition TilePosition] getStartLocation() const;
 
 Returns the starting location of the player. If complete map information is disabled, this function will return TilePositions::Unknown for enemy players. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
+
+=== isVictorious ===
+bool isVictorious() const;
+
+Returns true if the player has achieved victory.
+
+=== isDefeated ===
+bool isDefeated() const;
+
+Returns true if the player has been defeated.
 
 === leftGame ===
 bool leftGame() const;
