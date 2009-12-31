@@ -66,6 +66,8 @@ Methods:
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
+  * [#getHatchery getHatchery]
+  * [#getLarva getLarva]
 
   * [#exists exists]
   * [#isAccelerating isAccelerating]
@@ -360,7 +362,7 @@ Returns the remaining build time of a unit/building that is being constructed.
 === getRemainingTrainTime ===
 int getRemainingTrainTime() const;
 
-Returns the remaining time of the unit that is currently being trained.
+Returns the remaining time of the unit that is currently being trained. If the unit is a Hatchery, Lair, or Hive, this returns the amount of time until the next larva spawns, or 0 if the unit already has 3 larva.
 
 
 === getChild ===
@@ -444,6 +446,16 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 [Unit]{{{*}}} getAddon() const;
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
+
+=== getHatchery ===
+[Unit]{{{*}}} getHatchery() const;
+
+For Zerg Larva, this returns the Hatchery, Lair, or Hive unit this Larva was spawned from. For all other unit types this function returns NULL.
+
+=== getLarva ===
+std::set<[Unit]{{{*}}}> getLarva() const;
+
+Returns the set of larva spawned by this unit. If the unit has no larva, or is not a Hatchery, Lair, or Hive, this function returns an empty set. Equivalent to clicking "Select Larva" from the Starcraft GUI.
 
 === exists ===
 bool exists() const;
