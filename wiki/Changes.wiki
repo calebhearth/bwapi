@@ -3,6 +3,8 @@
   * Added [Unit#getLarva Unit::getLarva] - returns a set of 0, 1, 2, or 3 larva units that have spawned from the given Hatchery, Lair, or Hive.
   * Added [Unit#getHatchery Unit::getHatchery] - returns the Hatchery, Lair, or Hive that spawned the given larva. Returns NULL if the unit is not a Zerg Larva.
   * Added [Misc#Position Position::getApproxDistance] - an approximate distance function similar to the one starcraft uses.
+  * Added [Player#isDefeated Player::isDefeated] - true if the player has been defeated
+  * Added [Player#isVictorious Player::isVictorious] - true if the player has achieved victory.
 
 The following functions have changed in functionality:
 
