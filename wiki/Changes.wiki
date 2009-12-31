@@ -8,6 +8,8 @@
 
 The following functions have changed in functionality:
 
+  * [AIModule#onEnd AIModule::onEnd] is now called before any user interaction at the end of games and replays.
+  * [Game#getFrameCount Game::getFrameCount] no longer increases while the game is paused, however [AIModule#onFrame AIModule::onFrame] is still called.
   * [Unit#getRemainingTrainTime Unit::getRemainingTrainTime] now returns the number of frames until the next larva spawns at the given Hatchery, Lair, or Hive. Works as before on other unit types.
   * [Unit#getDistance Unit::getDistance(Unit* target)] now computes the distance between units more similar to the way starcraft computes distance between units when determining if a unit is in attack range.
 
