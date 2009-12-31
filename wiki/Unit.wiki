@@ -222,9 +222,9 @@ Returns unit's ground weapon cooldown. It is 0 if the unit is ready cast a spell
 === getDefenseMatrixPoints ===
 int getDefenseMatrixPoints() const;
 
-Returns the remaining hitpoints of the defense matrix. 
-Initially a defense Matrix has 64000(250 ingame) points. Note that you have to divide it by
-256 to get the hitpoint format the game displays.
+Returns the remaining hit points of the defense matrix. Initially a defense Matrix has 250 points.
+
+See also: [Unit]::[Unit#getDefenseMatrixTimer getDefenseMatrixTimer], [Unit]::[Unit#isDefenseMatrixed isDefenseMatrixed].
 
 === getDefenseMatrixTimer ===
 int getDefenseMatrixTimer() const;
