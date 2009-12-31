@@ -36,7 +36,6 @@ Methods:
   * [#getTilePosition getTilePosition]
   * [#getInitialTilePosition getInitialTilePosition]
   * [#getDistance getDistance]
-  * [#getDistance_2 getDistance]
   * [#getAngle getAngle]
   * [#getVelocityX getVelocityX]
   * [#getVelocityY getVelocityY]
@@ -114,10 +113,9 @@ Methods:
 
 The following orders can be issued to units:
 
-  * [#attackMove attackMove] - Attack move to a position
-  * [#attackUnit attackUnit] - Attack a specific unit
-  * [#rightClick rightClick] - Right click on a position
-  * [#rightClick_2 rightClick] - Right click on a unit
+  * [#attackMove attackMove]
+  * [#attackUnit attackUnit]
+  * [#rightClick rightClick]
   * [#train train]
   * [#build build]
   * [#buildAddon buildAddon]
@@ -143,12 +141,10 @@ The following orders can be issued to units:
   * [#load load]
   * [#unload unload]
   * [#unloadAll unloadAll]
-  * [#unloadAll_2 unloadAll]
   * [#cancelConstruction cancelConstruction]
   * [#haltConstruction haltConstruction]
   * [#cancelMorph cancelMorph]
-  * [#cancelTrain cancelTrain] - cancel the last unit in the queue
-  * [#cancelTrain_2 cancelTrain] - cancel the unit at a specific index in the queue
+  * [#cancelTrain cancelTrain]
   * [#cancelAddon cancelAddon]
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
@@ -296,7 +292,7 @@ double getDistance([Unit]{{{*}}} target) const;
 
 Returns the edge-to-edge distance between the current unit and the target unit.
 
-=== getDistance_2 ===
+=== getDistance ===
 double getDistance([Misc#Position Position] target) const;
 
 Returns the distance from the edge of the current unit to the target position.
