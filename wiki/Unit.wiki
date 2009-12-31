@@ -731,7 +731,7 @@ bool rightClick([Misc#Position Position] target);
 
 Works like the right click in the GUI.
 
-=== rightClick_2 ===
+=== rightClick ===
 bool rightClick([Unit]{{{*}}} target);
 
 Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
@@ -901,7 +901,7 @@ Orders the unit to unload all loaded units at the unit's current position.
 
 See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
-=== unloadAll_2 ===
+=== unloadAll ===
 bool unloadAll([Misc#Position Position] target);
 
 Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be unloaded right outside the bunker, like in the first version of unloadAll.
@@ -937,7 +937,7 @@ Orders the unit to remove the last unit from its training queue.
 
 See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
 
-=== cancelTrain_2 ===
+=== cancelTrain ===
 bool cancelTrain(int slot);
 
 Orders the unit to remove the specified unit from its training queue.
