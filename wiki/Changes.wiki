@@ -16,7 +16,7 @@ The following functions have changed in functionality:
 
 Bug fixes:
 
-  * Fixed a bug in [Game#canUpgrade Game::canUpgrade].
+  * Fixed a bug where [Game#canUpgrade Game::canUpgrade] would sometimes return true even though the player did not have enough resources.
   * Fixed a bug where [Unit#cancelTrain Unit::cancelTrain] would not cancel Terran Nuclear Missiles when called on a Terran Nuclear Missile Silo.
   * Fixed a bug where [Unit#isTraining Unit::isTraining] would return false when called on a Terran Nuclear Missile Silo training a Terran Nuclear Missile.
   * Fixed a bug where [Unit#getTrainingQueue Unit::getTrainingQueue] would return and empty list when called on a Terran Nuclear Missile Silo training a Terran Nuclear Missile.
