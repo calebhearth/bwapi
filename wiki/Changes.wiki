@@ -1,3 +1,16 @@
+== Changes from BWAPI Beta 2.5 (r1830) to current revision ==
+
+  * Added [Unit#getLarva Unit::getLarva] - returns a set of 0-3 larva units that have spawned from the given hatchery/lair/hive.
+  * Added [Unit#getHatchery Unit::getHatchery] - returns the hatchery/lair/hive that spawned the given larva.
+  * Added [Misc#Position Position::getApproxDistance] - an approximate distance function similar to the one starcraft uses.
+
+The following functions have changed in functionality:
+
+  * [Unit#getRemainingTrainTime Unit::getRemainingTrainTime] now returns the number of frames until the next larva spawns at the given hatchery/lair/hive. Works as before on other unit types.
+  * [Unit#getDistance Unit::getDistance] now computes the distance between units more similar to the way starcraft computes distance between units, using the approximate distance function.
+
+Fixed a bug in [Game#canUpgrade Game::canUpgrade].
+
 == Changes from BWAPI Beta 2.4 (r1689) to BWAPI Beta 2.5 (r1830) ==
 
   * Added a logging option to bwapi.ini - by default it is set to off.
