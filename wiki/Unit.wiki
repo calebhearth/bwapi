@@ -130,6 +130,7 @@ The following orders can be issued to units:
   * [#setRallyPosition setRallyPosition]
   * [#setRallyUnit setRallyUnit]
   * [#repair repair]
+  * [#returnCargo returnCargo]
   * [#morph morph]
   * [#burrow burrow]
   * [#unburrow unburrow]
@@ -809,6 +810,13 @@ bool repair([Unit]{{{*}}} target);
 Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
 
 See also: [Unit]::[Unit#isRepairing isRepairing].
+
+=== returnCargo ===
+bool returnCargo();
+
+Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only workers that are carrying minerals or gas can be ordered to return cargo.
+
+See also: [Unit]::[Unit#isCarryingGas isCarryingGas], [Unit]::[Unit#isCarryingMinerals isCarryingMinerals].
 
 === morph ===
 bool morph([UnitType] type);
