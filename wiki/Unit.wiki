@@ -370,7 +370,7 @@ std::list< [UnitType] > getTrainingQueue() const;
 
 Returns the list of units queued up to be trained.
 
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining].
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining].
 
 === getTransport ===
 [Unit]{{{*}}} getTransport() const;
@@ -601,7 +601,7 @@ bool isLoaded() const;
 
 Return true if the unit is loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
 
-See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll].
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll].
 
 === isLockedDown ===
 bool isLockedDown() const;
@@ -897,21 +897,21 @@ bool load([Unit]{{{*}}} target);
 
 Orders the unit to load the target unit.
 
-See also: [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
+See also: [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === unload ===
 bool unload([Unit]{{{*}}} target);
 
 Orders the unit to unload the target unit.
 
-See also: [Unit]::[Unit#load load], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === unloadAll ===
 bool unloadAll();
 
 Orders the unit to unload all loaded units at the unit's current position.
 
-See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll_2 unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
+See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 === unloadAll ===
 bool unloadAll([Misc#Position Position] target);
@@ -947,7 +947,7 @@ bool cancelTrain();
 
 Orders the unit to remove the last unit from its training queue.
 
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain_2 cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
 
 === cancelTrain ===
 bool cancelTrain(int slot);
