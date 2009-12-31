@@ -123,7 +123,7 @@ Returns the amount of latency the current game has. Currently only returns Laten
 === getFrameCount ===
 int getFrameCount();
 
-Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
+Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
 
 === getMouseX ===
 int getMouseX();
