@@ -17,7 +17,7 @@ The following functions have changed in functionality:
 
 Bug fixes:
 
-  * Fixed a bug where scourge that suicide into other units would not produce an AIModule::onUnitDestroy message.
+  * Fixed a bug where scourge that suicide into other units would not produce an [AIModule#onUnitDestroy AIModule::onUnitDestroy] message.
   * Fixed a bug where [Game#canUpgrade Game::canUpgrade] would sometimes return true even though the player did not have enough resources.
   * Fixed a bug where [Unit#cancelTrain Unit::cancelTrain] would not cancel Terran Nuclear Missiles when called on a Terran Nuclear Missile Silo.
   * Fixed a bug where [Unit#isTraining Unit::isTraining] would return false when called on a Terran Nuclear Missile Silo training a Terran Nuclear Missile.
