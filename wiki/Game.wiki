@@ -144,7 +144,7 @@ Returns the vertical coordinate of the mouse on the screen. Returns 0 if Flag::U
 === getMousePosition ===
 BWAPI::Position getMousePosition();
 
-Returns the position of the mouse on the screen.
+Returns the position of the mouse on the screen. Returns Positions::Unknown if Flag::UserInput is disabled.
 
 === getMouseState ===
 bool getMouseState([Input#MouseButton MouseButton] button);
@@ -173,7 +173,7 @@ Returns the vertical coordinate of the screen on the map. Returns 0 if Flag::Use
 === getScreenPosition ===
 BWAPI::Position getScreenPosition();
 
-Returns the position of the top left corner of the screen on the map.
+Returns the position of the top left corner of the screen on the map. Returns Positions::Unknown if Flag::UserInput is disabled.
 
 === setScreenPosition ===
 void setScreenPosition(int x, int y);
