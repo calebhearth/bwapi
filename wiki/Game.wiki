@@ -21,8 +21,12 @@ Methods:
   * [#getFrameCount getFrameCount]
   * [#getMouseX getMouseX]
   * [#getMouseY getMouseY]
+  * [#getMousePosition getMousePosition]
   * [#getScreenX getScreenX]
   * [#getScreenY getScreenY]
+  * [#getScreenPosition getScreenPosition]
+  * [#setScreenPosition setScreenPosition]
+  * [#pingMinimap pingMinimap]
   * [#isFlagEnabled isFlagEnabled]
   * [#enableFlag enableFlag]
   * [#unitsOnTile unitsOnTile]
@@ -135,6 +139,11 @@ int getMouseY();
 
 Returns the vertical coordinate of the mouse on the screen. Returns 0 if Flag::UserInput is disabled.
 
+=== getMousePosition ===
+BWAPI::Position getMousePosition();
+
+Returns the position of the mouse on the screen.
+
 === getScreenX ===
 int getScreenX();
 
@@ -144,6 +153,25 @@ Returns the horizontal coordinate of the screen on the map. Returns 0 if Flag::U
 int getScreenY();
 
 Returns the vertical coordinate of the screen on the map. Returns 0 if Flag::UserInput is disabled.
+
+=== getScreenPosition ===
+BWAPI::Position getScreenPosition();
+
+Returns the position of the top left corner of the screen on the map.
+
+=== setScreenPosition ===
+void setScreenPosition(int x, int y);
+
+void setScreenPosition(BWAPI::Position p);
+
+Moves the top left corner of the screen to the given position on the map.
+
+=== pingMinimap ===
+void pingMinimap(int x, int y);
+
+void pingMinimap(BWAPI::Position p);
+
+Pings the given position on the minimap.
 
 === isFlagEnabled ===
 bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);
