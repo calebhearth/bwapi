@@ -10,6 +10,8 @@
   * Added [Game#getScreenPosition Game::getScreenPosition] - returns the position of the screen on the map.
   * Added [Game#setScreenPosition Game::setScreenPosition] - moves the screen to the given position on the map.
   * Added [Game#pingMinimap Game::pingMinimap] - pings the given position on the minimap.
+  * Added [Game#getMouseState Game::getMouseState] - returns true if the specified mouse button is pressed
+  * Added [Game#getKeyState Game::getKeyState] - returns true if the specified key is pressed
 
 The following functions have changed in functionality:
 
