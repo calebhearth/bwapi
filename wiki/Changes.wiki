@@ -6,6 +6,10 @@
   * Added [Misc#Position Position::getApproxDistance] - an approximate distance function similar to the one starcraft uses.
   * Added [Player#isDefeated Player::isDefeated] - returns true if the player has been defeated
   * Added [Player#isVictorious Player::isVictorious] - returns true if the player has achieved victory.
+  * Added [Game#getMousePosition Game::getMousePosition] - returns the position of the mouse on the screen.
+  * Added [Game#getScreenPosition Game::getScreenPosition] - returns the position of the screen on the map.
+  * Added [Game#setScreenPosition Game::setScreenPosition] - moves the screen to the given position on the map.
+  * Added [Game#pingMinimap Game::pingMinimap] - pings the given position on the minimap.
 
 The following functions have changed in functionality:
 
