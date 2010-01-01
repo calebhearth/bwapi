@@ -22,6 +22,8 @@ Methods:
   * [#getMouseX getMouseX]
   * [#getMouseY getMouseY]
   * [#getMousePosition getMousePosition]
+  * [#getMouseState getMouseState]
+  * [#getKeyState getKeyState]
   * [#getScreenX getScreenX]
   * [#getScreenY getScreenY]
   * [#getScreenPosition getScreenPosition]
@@ -143,6 +145,20 @@ Returns the vertical coordinate of the mouse on the screen. Returns 0 if Flag::U
 BWAPI::Position getMousePosition();
 
 Returns the position of the mouse on the screen.
+
+=== getMouseState ===
+bool getMouseState([Input#MouseButton MouseButton] button);
+
+bool getMouseState(int button);
+
+Returns true if the specified mouse button is pressed. Returns false if Flag::UserInput is disabled.
+
+=== getKeyState ===
+bool getKeyState([Input#Key] key);
+
+bool getKeyState(int key);
+
+Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. For now these values are not raw keyboard input - i.e. it automatically alternates between true and false when you hold a key down.
 
 === getScreenX ===
 int getScreenX();
