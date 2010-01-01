@@ -1,4 +1,6 @@
-#summary One-sentence summary of this page.
+#sidebar TableOfContents
+
+Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Input.h# BWAPI/Input.h]
 
 == MouseButton ==
   * M_LEFT   = 0
