@@ -2,7 +2,7 @@
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Input.h# BWAPI/Input.h]
 
-== MouseButton ==
+= MouseButton =
 
 The MouseButton enum is used by [Game#getMouseState Game::getMouseState].
 
@@ -10,7 +10,7 @@ The MouseButton enum is used by [Game#getMouseState Game::getMouseState].
   * M_RIGHT  = 1
   * M_MIDDLE = 2
 
-== Key ==
+= Key =
 
 The Key enum is used by [Game#getKeyState Game::getKeyState].
 
