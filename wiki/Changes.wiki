@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.5 (r1830) to BWAPI Beta 2.6 (r1908) ==
+== Changes from BWAPI Beta 2.5 (r1830) to BWAPI Beta 2.6 (r1910) ==
 
   * Added [Unit#getLarva Unit::getLarva] - returns a set of 0, 1, 2, or 3 larva units that have spawned from the given Hatchery, Lair, or Hive.
   * Added [Unit#getHatchery Unit::getHatchery] - returns the Hatchery, Lair, or Hive that spawned the given larva. Returns NULL if the unit is not a Zerg Larva.
