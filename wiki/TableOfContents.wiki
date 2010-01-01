@@ -8,6 +8,7 @@
   * [ExplosionType]
   * [Force]
   * [Game]
+  * [Input]
   * [Misc]
   * [Order]
   * [Player]
