@@ -158,7 +158,7 @@ bool getKeyState([Input#Key Key] key);
 
 bool getKeyState(int key);
 
-Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. For now these values are not raw keyboard input - i.e. it automatically alternates between true and false when you hold a key down.
+Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. Unfortunately this does not read the raw keyboard input yet - when you hold down a key, the getKeyState function is true for a frame, then false for a few frames, and then alternates between true and false (as if you were holding down the key in a text box). Hopefully this will be fixed in a later version.
 
 === getScreenX ===
 int getScreenX();
