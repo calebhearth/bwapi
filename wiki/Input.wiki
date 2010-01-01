@@ -3,11 +3,17 @@
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Input.h# BWAPI/Input.h]
 
 == MouseButton ==
+
+The MouseButton enum is used by [Game#getMouseState Game::getMouseState].
+
   * M_LEFT   = 0
   * M_RIGHT  = 1
   * M_MIDDLE = 2
 
 == Key ==
+
+The Key enum is used by [Game#getKeyState Game::getKeyState].
+
   * K_BACKSPACE   =  8
   * K_TAB         =  9
   * K_RETURN      = 13
