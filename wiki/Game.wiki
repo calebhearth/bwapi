@@ -154,7 +154,7 @@ bool getMouseState(int button);
 Returns true if the specified mouse button is pressed. Returns false if Flag::UserInput is disabled.
 
 === getKeyState ===
-bool getKeyState([Input#Key] key);
+bool getKeyState([Input#Key Key] key);
 
 bool getKeyState(int key);
 
