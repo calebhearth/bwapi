@@ -164,7 +164,7 @@ void setScreenPosition(int x, int y);
 
 void setScreenPosition(BWAPI::Position p);
 
-Moves the top left corner of the screen to the given position on the map.
+Moves the screen to the given position on the map. The position specified where the top left corner of the screen will be.
 
 === pingMinimap ===
 void pingMinimap(int x, int y);
