@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.6 (r1830) to BWAPI Beta 2.6.1 (r1914) ==
+== Changes from BWAPI Beta 2.6 (r1910) to BWAPI Beta 2.6.1 (r1914) ==
 
   * Added [Unit#getID Unit::getID] - returns a unique ID for the unit.
   * Fixed a crash inadvertently introduced in BWAPI Beta 2.6 related to the new mouse and key state functionality.
