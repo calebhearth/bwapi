@@ -6,6 +6,7 @@ The Unit class is used to get information about individual units as well as issu
 
 Methods:
 
+  * [#getID getID]
   * [#getPlayer getPlayer]
   * [#getType getType]
   * [#getInitialType getInitialType]
@@ -149,6 +150,11 @@ The following orders can be issued to units:
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
   * [#useTech useTech]
+
+=== getID ===
+int getID() const;
+
+Returns a unique ID for this unit. It simply casts the unit's address as an integer, since each unit has a unique address.
 
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
