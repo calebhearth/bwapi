@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Unit.h BWAPI/Unit.h]
 
-The Unit class is used to get information about individual units as well as issue orders to units. Each unit in the game has a unique Unit object, and Unit objects are not deleted until the end of the match.
+The Unit class is used to get information about individual units as well as issue orders to units. Each unit in the game has a unique Unit object, and Unit objects are not deleted until the end of the match (so you don't need to worry about unit pointers becoming invalid).
 
 Every Unit in the game is either accessible or inaccessible. To determine if an AI can access a particular unit, BWAPI checks to see if Flag::CompleteMapInformation is enabled. So there are two cases to consider - either the flag is enabled, or it is disabled:
 
