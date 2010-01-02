@@ -10,18 +10,17 @@ If Flag::CompleteMapInformation is enabled, then a unit is accessible if and onl
 
 If Flag::CompleteMapInformation is disabled, the all units that exist in the game are accessible, and [Unit#exists Unit::exists] is accurate for all units. Similarly [AIModule#onUnitDestroy AIModule::onUnitDestroy] messages are generated for all units that get destroyed, not just visible ones.
 
+If a Unit is not accessible, in general the only the getInitial__ functions will be available to the AI. However for units that were owned by the player, getPlayer and getType will continue to work for units that have been destroyed.
+
 Methods:
 
   * [#getID getID]
   * [#getPlayer getPlayer]
   * [#getType getType]
-  * [#getInitialType getInitialType]
   * [#getHitPoints getHitPoints]
-  * [#getInitialHitPoints getInitialHitPoints]
   * [#getShields getShields]
   * [#getEnergy getEnergy]
   * [#getResources getResources]
-  * [#getInitialResources getInitialResources]
   * [#getKillCount getKillCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
   * [#getAirWeaponCooldown getAirWeaponCooldown]
@@ -39,13 +38,17 @@ Methods:
   * [#getStimTimer getStimTimer]
 
   * [#getPosition getPosition]
-  * [#getInitialPosition getInitialPosition]
   * [#getTilePosition getTilePosition]
-  * [#getInitialTilePosition getInitialTilePosition]
   * [#getDistance getDistance]
   * [#getAngle getAngle]
   * [#getVelocityX getVelocityX]
   * [#getVelocityY getVelocityY]
+
+  * [#getInitialType getInitialType]
+  * [#getInitialHitPoints getInitialHitPoints]
+  * [#getInitialResources getInitialResources]
+  * [#getInitialPosition getInitialPosition]
+  * [#getInitialTilePosition getInitialTilePosition]
 
   * [#getUpgradeLevel getUpgradeLevel]
   * [#getTarget getTarget]
