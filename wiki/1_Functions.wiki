@@ -2,23 +2,41 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi3/BWAgent/Source/BWAPI/BWAPI.h BWAPI/BWAPI.h]
 
-BWAPI1 is a native C style API. Native APIs are timeless, being the most basic API choise in windows. It is not object oriented.
+*-------- Warning, this document is still work in progress --------*
 
-BWAPI1 is designed as a data query interface only. This is why BWAPI1 functions do not return the data directly, but pointers to structures which are filled with data. Use BWAPI1 only if your AI uses only it's own algorithms and wants to avoid the per-frame overhead of BWAPI2 algorithms.
+BWAPI1 is the new interface provided since the BWAPIv3.0 release. If you have code running with BWAPIv2.x, use BWAPI2.
+
+BWAPI1 is not object oriented, it's rather data oriented. It is designed as a data query interface only which and can be easily built on in a modular fashion. This is why BWAPI1 functions do not return the data directly, but pointers to structures which are filled with data. These structures have built-in functions to simplify data access. Use BWAPI1 only if your AI uses only it's own algorithms and wants to avoid the per-frame overhead of BWAPI2 algorithms.
+
+BWAPI1 uses exceptions as the error handling mechanism. e.g. Data queries are only possible when a connection is established, and will throw an exception otherwise. When exceptions become more conclusive in BWAPI1, there will be lists of possible exceptions a function could throw and what they mean (fatal, non fatal).
+
+so far, all functions are declared in the BWAPI namespace
 
 Basic:
-  * [#BWGetVersion BWGetVersion]
-  * [#BWConnect BWConnect]
+  * [#GetVersion GetVersion]
+  * [#Connect Connect]
+
+Data queries:
+  * [#GetStaticGameData GetStaticGameData]
+
+  * [#GetUnit GetUnit]
+  * [#GetPlayer GetPlayer]
+  * [#GetUnitType GetUnitType]
+  * [#GetTechType GetTechType]
+  * [#GetUpgradeType GetUpgradeType]
+  * [#GetWeaponType GetWeaponType]
+  * [#GetDamageType GetDamageType]
+  * [#GetExplosionType GetExplosionType]
+  * [#GetRace GetRace]
+  * [#GetUnitSizeType GetUnitSizeType]
+  * [#GetPlayerType GetPlayerType]
 
 Commands:
-  * [#BWPrintText BWPrintText]
-  * [#BWSendText BWSendText]
+  * [#PrintText PrintText]
+  * [#SendText SendText]
 
-Errors:
-  * [#BWGetLastError BWGetLastError]
-
-=== BWGetVersion ===
-int BWGetVersion();
+=== GetVersion ===
+int GetVersion() throw();
 
 Returns the SVN-revision number of the BWAgent.dll you're using.
 
@@ -26,26 +44,27 @@ The header-file version should always be checked at startup of your AI.exe to ma
 
 Example:
 {{{
-if(BWGetVersion() != SVN_REV)
+if(GetVersion() != SVN_REV)
 {
   printf("Wrong BWAgent.dll version\n");
   exit(1);
 }
 }}}
 
-=== BWConnect ===
-bool BWConnect();
+=== Connect ===
+bool Connect();
 
-Searches for a running Starcraft instance with a loaded BWAPI plugin and, if found, attempts to connect.
-Returns false if no connection was established. Feel free to try again later.
+Searches for a running Starcraft instance with a loaded BWAPI plugin and, if found, attempts to connect. It is however a very lightweight function.
+This function does NOT throw an exception when failed to connect. Not connecting is an expected outcome and thus must be signalled through the return value.
+Returns false if no connection was established.
 Returns true if connected successfully.
 
 Example:
 {{{
-if(!BWConnect())
+if(!Connect())
 {
   printf("Waiting for Starcraft to startup.\n");
-  while(!BWConnect())
+  while(!Connect())
   {
     // retry every second
     Sleep(1000);
@@ -54,17 +73,50 @@ if(!BWConnect())
 printf("Connected.\n");
 }}}
 
-=== BWPrintText ===
-bool BWPrintText(const char`*` c_string);
+=== PrintText ===
+bool PrintText(const char`*` c_string);
 
 Prints c_string in Starcraft window. Returns true on success.
 
-=== BWSendText ===
-bool BWSendText(const char`*` c_string);
+=== SendText ===
+bool SendText(const char`*` c_string);
 
 Emulates user typing c_string in Starcraft chat. Returns true on success.
 
-=== BWGetLastError ===
-const char`*` BWGetLastError();
+=== GetStaticGameData ===
+const StaticGameData* GetStaticGameData();
 
-Returns a string describing the error of the last BWAPI1 function call. call this immediately after a failed BWAPI1 function call, because the next BWAPI1 function call will overwrite the last error.
+Returns a pointer to the game data structure. Most of the gamestate can be retrieved from there. After a successful connection the data resides in the same place in memory, so you only have to call GetStaticGameData once.
+
+=== GetUnit ===
+const UnitState`*` GetUnit(UnitId unitId);
+
+=== GetPlayer ===
+const Player`*` GetPlayer(PlayerId playerId);
+
+=== GetUnitType ===
+const UnitType`*` GetUnitType(UnitTypeId id);
+
+=== GetTechType ===
+const TechType`*` GetTechType(TechTypeId id);
+
+=== GetUpgradeType ===
+const UpgradeType`*` GetUpgradeType(UpgradeTypeId id);
+
+=== GetWeaponType ===
+const WeaponType`*` GetWeaponType(WeaponTypeId id);
+
+=== GetDamageType ===
+const DamageType`*` GetDamageType(DamageTypeId id);
+
+=== GetExplosionType ===
+const ExplosionType`*` GetExplosionType(ExplosionTypeId id);
+
+=== GetRace ===
+const Race`*` GetRace(RaceId id);
+
+=== GetUnitSizeType ===
+const UnitSizeType`*` GetUnitSizeType(UnitSizeTypeId id);
+
+=== GetPlayerType ===
+const PlayerType`*` GetPlayerType(PlayerTypeId id);
