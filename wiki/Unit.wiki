@@ -766,7 +766,7 @@ Works like the right click in the GUI. Right click on a mineral patch to order a
 === train ===
 bool train([UnitType] type);
 
-Orders this unit to a the specified unit type to the training queue. Note that the player must have sufficient resources to train.
+Orders this unit to a the specified unit type to the training queue. Note that the player must have sufficient resources to train. If you wish to make units from a hatchery, use [getLarva] to get the larva associated with the hatchery and then call [morph] on the larva you want to morph. This command can also be used to make interceptors and scarabs.
 
 === build ===
 bool build([Misc#TilePosition TilePosition] p, [UnitType] type);
