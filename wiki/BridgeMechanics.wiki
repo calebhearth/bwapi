@@ -1,0 +1,3 @@
+#summary Technical details of the shared memory bridge implementation
+#labels Phase-Implementation
+*------------ work in progress ------------*
