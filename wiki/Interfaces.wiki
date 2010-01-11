@@ -24,4 +24,4 @@ This is a concept that caused the major revision change to 3, because it changed
   * for competitons based on the BWAPI project, this is the first step to prevent cheating
 
 *Technical*:
-The bridge is a shared memory communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. For more info, see BridgeMechanics.
+The bridge is a shared memory communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. For more info, see BridgeMechanics and issue 134.
