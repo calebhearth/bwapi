@@ -18,11 +18,11 @@ The BWAPI2 Interface is provided by BWAPI2.dll, which is loaded just like a regu
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWAPI2.png]
 
-If you use BWTA or other libraries, it looks like this:
+If you use BWTA or other libraries, then the dependency graph looks like this:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWTA.png]
 
-Do not delude yourself, using more .dlls does not lead to overhead using BWAPI.
+Do not delude yourself, BWAPI2 being a separate .dll does not induce overhead. It does improve the modularity of this project, preventing some bug types.
 
 ==BWAPI1==
 *Explanation*:
