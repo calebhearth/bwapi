@@ -1,25 +1,27 @@
 #summary Explanation of the different interfaces in BWAPI
 #labels Featured
 
-This page aims to clarify naming/terminology of this project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short). There have been understandable confusion lately.
-
-==Bridge==
-*Explanation*:
-This is the new feature implemented in BWAPIv3 which changed the whole design of the project. In BWAPIv3, AIs are not loaded as .dll files anymore, but are run in a separate process.
-
-*Technical*:
-For more info, see BridgeMechanics.
-
-==BWAPI1==
-*Explanation*:
-This is a new interface exposed by the BWAPI project since BWAPIv3. Do not delude yourself, this interface does not have more features, in fact, it has much less. It is dedicated to developing huge, high performance AIs in C++. For more information see ModularDesign.
-
-*Technical*:
-The code of BWAPI1 resides in the BWAPI namespace.
+This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been understandable confusion lately.
 
 ==BWAPI2==
 *Explanation*:
 This is the interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). For those who worked with BWAPIv2.x, yes it will be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
 
 *Technical*:
-The code resides in the BWAPI2 namespace now. (In BWAPIv2.x it was in the BWAPI namespace).
+The C++ namespace is now called "BWAPI2". (In BWAPIv2.x it was called "BWAPI").
+
+==BWAPI1==
+*Explanation*:
+This is a new interface exposed by the BWAPI project since BWAPIv3. Do not delude yourself, this interface does not have more features, in fact, it has much less. Designed minimalistic and is dedicated to developing huge, high performance AIs in C++. For more information see ModularDesign. BWAPI1 is internally based on the Bridge concept.
+
+*Technical*:
+The C++ namespace is called "BWAPI".
+
+==(Shared Memory) Bridge==
+*Explanation*:
+This is a concept that caused the major revision change to 3, because it changed the whole internal design of the project. For AI developers, the bridge is transparent. The only change from BWAPIv2.x you will experience is: AIs are not loaded as .dll files anymore, but are run in a separate process as executables. The biggest advantages are:
+  * it makes debugging easier
+  * for competitons based on the BWAPI project, this is the first step to prevent cheating
+
+*Technical*:
+The bridge is a shared memory communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. For more info, see BridgeMechanics.
