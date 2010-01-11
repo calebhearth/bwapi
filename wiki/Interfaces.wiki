@@ -4,21 +4,21 @@
 This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been 
 understandable confusion lately.
 
-  * [#BWAPI1 BWAPI1]
   * [#BWAPI2 BWAPI2]
+  * [#BWAPI1 BWAPI1]
   * [#Bridge (Shared Memory) Bridge]
 
 ==BWAPI2==
 *Explanation*:
-This is the interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it will be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
+This is the interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it is be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
 
 *Technical*:
 The C++ namespace is now called "BWAPI2". (In BWAPIv2.x it was called "BWAPI").
-The BWAPI2 Interface is provided by BWAPI2.dll, which will be loaded just like a regular library:
+The BWAPI2 Interface is provided by BWAPI2.dll, which is loaded just like a regular library:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWAPI2.png]
 
-If you use BWTA or other libraries, it will look like this:
+If you use BWTA or other libraries, it looks like this:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWTA.png]
 
@@ -30,11 +30,11 @@ This is a new interface exposed by the BWAPI project since BWAPIv3. This interfa
 
 *Technical*:
 The C++ namespace is called "BWAPI".
-To use BWAPI1 you will use BWAgent.dll directly:
+To use BWAPI1 you use BWAgent.dll directly:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWAPI1.png]
 
-The performance gain does not come from directly using BWAgent.dll, but from BWAPI1 being tightly based on the bridge concept. BWAPI1 does not provide functions for querying gamestate. Instead it returns pointers so you can fetch whatever data you need yourself.
+The performance gain does not come from directly using BWAgent.dll, but from BWAPI1 being tightly based on the bridge concept. In a nutshell, BWAPI1 does not provide functions for querying gamestate. Instead it returns pointers for you to random access whatever data you need. Issuing orders in BWAPI1 does not have performance advantages over BWAPI2.
 
 ==Bridge==
 *Explanation*:
@@ -42,4 +42,4 @@ This is a concept that caused the major revision change to 3, because it changed
   * it makes debugging easier
   * for competitons based on the BWAPI project, this is the first step to prevent cheating
 *Technical*:
-The bridge is a shared memory communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. If you are a developer (or just nosey) see BridgeMechanics. Where is all started: issue 134.
+The bridge is a shared memory interprocess communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. If you are a developer (or just nosey) see BridgeMechanics. Where it all started: issue 134.
