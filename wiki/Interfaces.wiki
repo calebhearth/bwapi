@@ -10,7 +10,7 @@ understandable confusion lately.
 
 ==BWAPI2==
 *Explanation*:
-This is the interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic functionality. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it will be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
+This is the interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it will be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
 
 *Technical*:
 The C++ namespace is now called "BWAPI2". (In BWAPIv2.x it was called "BWAPI").
@@ -26,7 +26,7 @@ Do not delude yourself, using more .dlls does not lead to overhead using BWAPI.
 
 ==BWAPI1==
 *Explanation*:
-This is a new interface exposed by the BWAPI project since BWAPIv3. This interface does _not_ have more features, in fact, it has much less. Designed minimalistic and is dedicated to developing specialised, high performance AIs in C++. For more information see ModularDesign. BWAPI1 is internally based on the Bridge concept.
+This is a new interface exposed by the BWAPI project since BWAPIv3. This interface does _not_ have more features, in fact, it has much less. Designed minimalistic and is dedicated to developing specialised, high performance AIs in C++. BWAPI1 is itself not object oriented (rather data-oriented). For more information see ModularDesign. BWAPI1 is internally based on the Bridge concept.
 
 *Technical*:
 The C++ namespace is called "BWAPI".
