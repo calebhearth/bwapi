@@ -4,9 +4,9 @@
 This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been 
 understandable confusion lately.
 
-  * [BWAPI1 BWAPI1]
-  * [BWAPI2 BWAPI2]
-  * [Bridge (Shared Memory) Bridge]
+  * [#BWAPI1 BWAPI1]
+  * [#BWAPI2 BWAPI2]
+  * [#Bridge (Shared Memory) Bridge]
 
 ==BWAPI2==
 *Explanation*:
@@ -36,7 +36,7 @@ To use BWAPI1 you will use BWAgent.dll directly:
 
 The performance gain does not come from directly using BWAgent.dll, but from BWAPI1 being tightly based on the bridge concept. BWAPI1 does not provide functions for querying gamestate. Instead it returns pointers so you can fetch whatever data you need yourself.
 
-==(Shared Memory) Bridge==
+==Bridge==
 *Explanation*:
 This is a concept that caused the major revision change to 3, because it changed the whole internal design of the project. For AI developers, the bridge is transparent. The only change from BWAPIv2.x you will experience is: AIs are not loaded as .dll files anymore, but are run in a separate process as executables. The biggest advantages are:
   * it makes debugging easier
