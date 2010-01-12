@@ -10,7 +10,7 @@ understandable confusion lately.
 
 ==BWAPI2==
 *Explanation*:
-This is the same interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it is be compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
+This is the same interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it is compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
 
 *Technical*:
 The C++ namespace is now called "BWAPI2". (In BWAPIv2.x it was called "BWAPI").
