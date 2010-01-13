@@ -26,7 +26,7 @@ BWAPI intervenes right where Broodwar processes user's commands, and gives Brood
   * repeat
 Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. BWAPI explicitely gives control to the AI when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the timeframe where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see [Multithreading]).
 
-[]
+[simpleTimeline.png]
 
 The conrol passing reflects the mathematical representation of an AI. Imagine the AI as a function, that is passed the whole game state as parameter. It returns all orders and shapes that should be issued/drawn this frame. The function is called once each frame.
 ===BWAPI2===
