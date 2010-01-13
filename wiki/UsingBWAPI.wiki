@@ -23,7 +23,7 @@ BWAPI intervenes right where Broodwar processes user's commands, and gives Brood
   * Take *AI's* commands
   * Draw Screen
   * repeat
-Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. BWAPI explicitely gives control to the AI when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the timeframe where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see Multithreading).
+Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. BWAPI explicitely gives control to the AI when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the timeframe where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see [Multithreading]).
 
 []
 
