@@ -32,10 +32,10 @@ The conrol passing reflects the mathematical representation of an AI. Imagine th
 ===BWAPI2===
 This interface provides callbacks as means of passing conrol. But since there is only one timeframe, several callbacks are called in the same frame, hence the rule: BWAPI2 always calls onFrame last. Any other callback called before onFrame is in the same timeframe as the subsequent onFrame call. BWAPI2 does not guarantee in what order the other callbacks get called.
 
-[]
+[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI2.png]
 
 ===BWAPI1===
-This interface does not provide callbacks for passing control. Instead, blocking and polling functions are used. The events represented by BWAPI2's callback functions can be read as part of the game state data BWAPI1 provides each frame.
+This interface does not provide callbacks for passing control. Instead, blocking and polling functions are used. Events like unit creation and user input are passed along with the rest of the game state data.
 
 []
 
