@@ -2,7 +2,7 @@
 #labels Featured
 
 This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been 
-understandable confusion lately.
+understandable confusion lately. For information on how to use the interfaces, see [UsingBWAPI].
 
   * [#BWAPI2 BWAPI2]
   * [#BWAPI1 BWAPI1]
