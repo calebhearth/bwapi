@@ -49,4 +49,6 @@ For more information see the BWAPI1 offline documentation which will be download
 
 =BWAPIv2.x=
 ==Comparison==
-The above is only true for BWAPIv3.x. In BWAPIv2.x callbacks are called from different internal Broodwar steps and orders are executed directly without caching. As a result, you are not able to issue orders from e.g. the onSendText callback.
+The above is only true for BWAPIv3.x. In BWAPIv2.x callbacks are called from different internal Broodwar steps and orders are executed directly without caching. As a result, you are not able to issue orders from e.g. the onSendText callback. Here's the visual:
+
+[http://bwapi.googlecode.com/svn/wiki/timelineBWAPIv2.png]
