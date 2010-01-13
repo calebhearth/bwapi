@@ -1,12 +1,15 @@
-#sidebar TableOfContents
+#summary User's guide to how BWAPI ticks
 
-To program AIs using BWAPI you will need to have the following installed:
-  * [http://www.blizzard.com/us/broodwar/ Starcraft: Broodwar] [http://us.blizzard.com/support/article.xml?locale=en_US&articleId=21149 1.16.1]
-  * [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 Chaoslauncher]
-  * A C++ compiler (such as Visual Studio 2008 [http://www.microsoft.com/downloads/details.aspx?FamilyId=FBEE1648-7106-44A7-9649-6D9F6D58056E&displaylang=en SP1] or [http://www.microsoft.com/express/download/#webInstall Visual C++ 2008 Express Edition])
+*--------------- work in progress -----------------*
 
-Once you have those, download [http://bwapi.googlecode.com/files/BWAPI_Beta_2.6.1.zip BWAPI Beta 2.6.1] and follow the instructions in the readme on how to build the example AI module. It will explain where to place files and how to compile a sort of "Hello World"-like AI Module for BWAPI, which you can work from to start making your own custom Broodwar AI.
+This article attempts to explain how your code will interact with Broodwar.
 
-To battle 2 custom AIs against each other, or to play against your own custom AI, you'll need to have Broodwar running on 2 computers and make a multiplayer UDP LAN game (as if 2 humans were playing a match). This is because BWAPI controls the user's player and injects commands as if they were coming from the user.
+  * [#Frames Frames]
+  * [#BWAPI2 BWAPI2]
+  * [#BWAPI1 BWAPI1]
 
-Once you understand how the Example AI Module works, feel free to download the [http://code.google.com/p/bwsal/downloads/list Basic AI Module] from the [http://code.google.com/p/bwsal/ BWSAL project], which aims to develop several add-ons for BWAPI that will be useful for a wide variety of AIs.
+==Frames==
+==BWAPI2==
+==BWAPI1==
+
+*--------------- work in progress -----------------*
