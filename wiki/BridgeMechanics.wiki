@@ -1,3 +1,14 @@
-#summary Technical details of the shared memory bridge implementation
+#summary Developer's guide for the shared memory bridge
 #labels Phase-Implementation
+*------------ work in progress ------------*
+  * [#Concept Concept]
+  * [#Protocoll Protocoll]
+  * [#WinAPI WinAPI]
+  * [#BWAPI1 BWAPI1]
+
+==Concept==
+==Protocoll==
+==WinAPI==
+==BWAPI1==
+
 *------------ work in progress ------------*
