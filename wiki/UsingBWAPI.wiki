@@ -34,11 +34,19 @@ This interface provides callbacks as means of passing conrol. But since there is
 
 [http://bwapi.googlecode.com/svn/wiki/timelineBWAPI2.png]
 
+Since all the callbacks are inside AI's timeframe, you do not have to worry about that and may query information and assign orders from any callback as you like.
+
 ===BWAPI1===
 This interface does not provide callbacks for passing control. Instead, blocking and polling functions are used. Events like unit creation and user input are passed along with the rest of the game state data.
 
-[]
+The blocking function is waitForEvent(). When it returns, the return value (an enum) determines the type of event. If the return value is OnMatchFrame, AI's timeframe begins.
+
+[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI1.png]
+
+While blocking, the AI cannot run further computations. To make use of this time, you have a choices: Use Multithreading or polling. Or ofcourse, you may use both. The pollForEvent() function does not block. It immediately returns whether there is an event. If there is no event, you may continue your computations, but if pollForEvent() returns true, a subsequent call to waitForEvent() will not block but return immediately while also starting your timeframe. Here is the timeline:
+
+[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI1polling.png]
 
 =BWAPIv2.x=
 ==Comparison==
-The above is only true for the newer releases BWAPIv3.x. In BWAPIv2.x callbacks are called from different internal Broodwar steps and orders are executed directly without caching. As a result, you are not able to issue orders from the onSendText callback.
+The above is only true for the newer releases BWAPIv3.x. In BWAPIv2.x callbacks are called from different internal Broodwar steps and orders are executed directly without caching. As a result, you are not able to issue orders from e.g. the onSendText callback.
