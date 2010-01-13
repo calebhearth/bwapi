@@ -4,23 +4,24 @@
 
 This article attempts to explain how your code will interact with Broodwar.
 
-  * BWAPIv3.x
-   * [#Control Control]
-   * [#BWAPI2 BWAPI2]
-   * [#BWAPI1 BWAPI1]
-  * [#Comparison Comparison to BWAPIv2.x]
+BWAPIv3.x
+  * [#Control Control]
+  * [#BWAPI2 BWAPI2]
+  * [#BWAPI1 BWAPI1]
+BWAPIv2.x
+  * [#Comparison Comparison]
 
 =BWAPIv3.x=
 ==Control==
 BWAPI let's you manipulate Broodwar in the same technical way as a human player would. But like most games, Broodwar computes the game state frame by frame. Without BWAPI, Broodwar runs through these steps:
-  * Compute next frame
   * Take user's commands
+  * Compute next frame
   * Draw Screen
   * repeat
 BWAPI intervenes right where Broodwar processes user's commands, and gives Broodwar AI's commands instead:
-  * Compute next frame
   * *AI does it's thing*
   * Take *AI's* commands
+  * Compute next frame
   * Draw Screen
   * repeat
 Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. BWAPI explicitely gives control to the AI when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the timeframe where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see [Multithreading]).
