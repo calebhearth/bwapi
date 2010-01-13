@@ -1,8 +1,6 @@
 #summary User's guide
 
-*-------------- work in progress ---------------*
-
-This article attempts to explain how your code will interact with Broodwar.
+This article attempts to explain how your code will interact with Broodwar. For a basic explanation of the interfaces and naming see [Interfaces Interfaces].
 
 BWAPIv3.x
   * [#Control Control]
