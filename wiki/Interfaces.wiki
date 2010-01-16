@@ -30,11 +30,11 @@ This is the basic interface exposed by the BWAPI project since version 3.0. BWAP
 
 *Technical*:
 The C++ namespace is called "BWAPI".
-To use BWAPI you use BWAgent.dll directly:
+To use BWAPI you use BWAPI.dll directly:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWAPI.png]
 
-The performance gain does not come from directly using BWAgent.dll, but from BWAPI being tightly based on the bridge concept. In a nutshell, BWAPI does not provide functions for querying gamestate nor does it have per frame overhead of any sort. It only returns pointers for you to random access whatever data you need. Issuing orders in BWAPI does not have performance advantages over BWSL.
+The performance gain does not come from directly using BWAPI.dll, but from BWAPI being tightly based on the bridge concept. In a nutshell, BWAPI does not provide functions for querying gamestate nor does it have per frame overhead of any sort. It only returns pointers for you to random access whatever data you need. Issuing orders in BWAPI does not have performance advantages over BWSL.
 
 ==Bridge==
 *Explanation*:
