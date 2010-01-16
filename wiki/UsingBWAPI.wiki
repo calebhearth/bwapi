@@ -7,8 +7,8 @@ General
   * [#Getting_started Getting started]
 BWAPIv3.x
   * [#Control Control]
-  * [#BWAPI2 BWAPI2]
-  * [#BWAPI1 BWAPI1]
+  * [#BWSL BWSL]
+  * [#BWAPI BWAPI]
 BWAPIv2.x
   * [#Comparison Comparison]
 
@@ -37,30 +37,30 @@ BWAPI intervenes right where Broodwar processes user's commands, and gives Brood
   * Compute next frame
   * Draw Screen
   * repeat
-Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. BWAPI explicitely gives control to the AI when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the *timeframe* where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see [Multithreading]).
+Thus your AI, unlike a regular program, is bound by Broodwar's frame cycle. The AI is explicitely given control when the time has come (e.g. via callbacks), and the AI explicitely gives back control (e.g. by returning from those callbacks). During the *timeframe* where your AI is in control, you may read any data and issue any orders. You may even do so from a different thread than the one which invoked the callback (see [Multithreading]).
 
 [http://bwapi.googlecode.com/svn/wiki/simpleTimeline.png]
 
 The conrol passing reflects the mathematical representation of an AI. Imagine the AI as a function, that is passed the whole game state as parameter. It returns all orders and shapes that should be issued/drawn this frame. The function is called once each frame.
-===BWAPI2===
-This interface provides callbacks as means of passing conrol. But since there is only one timeframe, several callbacks are called in the same frame, hence the rule: BWAPI2 always calls onFrame last. Any other callback called before onFrame is in the same timeframe as the subsequent onFrame call. BWAPI2 does not guarantee in what order the other callbacks get called.
+===BWSL===
+This interface provides callbacks as means of passing conrol. But since there is only one timeframe, several callbacks are called in the same frame, hence the rule: BWSL always calls onFrame last. Any other callback called before onFrame is in the same timeframe as the subsequent onFrame call. BWSL does not guarantee in what order the other callbacks get called.
 
-[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI2.png]
+[http://bwapi.googlecode.com/svn/wiki/timelineBWSL.png]
 
 Since all the callbacks are inside AI's timeframe, you do not have to worry about that and may query information and assign orders from any callback as you like.
 
-===BWAPI1===
+===BWAPI===
 This interface does not provide callbacks for passing control. Instead, blocking and polling functions are used. Events like unit creation and user input are passed along with the rest of the game state data.
 
 The blocking function is waitForEvent(). When it returns, the return value (an enum) determines the type of event. If the return value is OnMatchFrame, AI's timeframe begins.
 
-[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI1.png]
+[http://bwapi.googlecode.com/svn/wiki/timelineBWAPI.png]
 
 While blocking, the AI cannot run further computations. To make use of this time, you have a choice: Use [Multithreading] or polling. Or ofcourse, you may use both. The pollForEvent() function does not block. It immediately returns whether there is an event. If there is no event, you may continue your computations, but if pollForEvent() returns true, a subsequent call to waitForEvent() will not block but return immediately while also starting your timeframe. Here is the timeline:
 
 [http://bwapi.googlecode.com/svn/wiki/timelineBWAPI1polling.png]
 
-For more information see the BWAPI1 offline documentation which will be downloadable along with a BWAPIv3.x release.
+For more information see the BWAPI offline documentation which will be downloadable along with a BWAPIv3.x release.
 
 =BWAPIv2.x=
 ==Comparison==
