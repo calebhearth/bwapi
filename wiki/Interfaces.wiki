@@ -4,42 +4,42 @@
 This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been 
 understandable confusion lately. For information on how to use the interfaces, see [UsingBWAPI].
 
-  * [#BWAPI2 BWAPI2]
-  * [#BWAPI1 BWAPI1]
+  * [#BWSL BWSL]
+  * [#BWAPI BWAPI]
   * [#Bridge (Shared Memory) Bridge]
 
-==BWAPI2==
+==BWSL==
 *Explanation*:
-This is the same interface that was provided in BWAPI versions prior v3 (or BWAPIv2.x for short). It is a very easy to use, clearly structured and object oriented interface which also provides some basic features. It has a shallow learning curve in case you do not know C++ xor Broodwar. For those who worked with BWAPIv2.x, yes it is compatible with your code, it's the same old interface you know and love. Why rename it to BWAPI2 then? Because BWAPI1 is a much more basic, low-level and feature less. BWAPI2 is internally based on BWAPI1 so it would be irrational to call them any other way.
+BWSL (BroodWar Standard Library) is a feature library. Based on BWAPI, it provides an interface that can be used completely independent from BWAPI. BWSL is easy to use, fully object oriented and provides a good deal of generally usefull functionality, ideal to jumpstart your AI development. It has a shallow learning curve.
+
+*Porting from BWAPIv2.6.1*:
+For those who worked with BWAPI versions 2.x, the interface of BWSL is compatible with your code. It's the same old interface you know and love. It moved to BWSL because in the major revision, the project became more modular. The former BWAPI Interface is forked into the BWSL library (to hold the features) and BWAPI interface (to expose the pure API). BWSL is based on BWAPI.
 
 *Technical*:
-The C++ namespace is now called "BWAPI2". (In BWAPIv2.x it was called "BWAPI").
-The BWAPI2 Interface is provided by BWAPI2.dll, which is loaded just like a regular library:
+The C++ namespace of the library is called "BWSL". The BWSL Interface is provided by BWSL.dll, which is loaded just like a regular library:
 
-[http://bwapi.googlecode.com/svn/wiki/usingBWAPI2.png]
+[http://bwapi.googlecode.com/svn/wiki/usingBWSL.png]
 
 If you use BWTA or other libraries, then the dependency graph looks like this:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWTA.png]
 
-Do not delude yourself, BWAPI2 being a separate .dll does not induce overhead. It does improve the modularity of this project, preventing some bug types.
-
-==BWAPI1==
+==BWAPI==
 *Explanation*:
-This is a new interface exposed by the BWAPI project since BWAPIv3. This interface does _not_ have more features, in fact, it has much less. Designed minimalistic and is dedicated to developing specialised, high performance AIs in C++. BWAPI1 is itself not object oriented (rather data-oriented). For more information see ModularDesign. BWAPI1 is internally based on the Bridge concept.
+This is the basic interface exposed by the BWAPI project since version 3.0. BWAPI (BroodWar Application Programming Interface) is an inteface for querying data and issuing orders in its most basic form. Itself it does not have any nontrivial functionality (to improve modularity) and includes a few modules to help implement the most common tasks. This way there is no overhead the AI did not ask for and very high performance can be achieved. BWAPI is itself not object oriented (rather data-oriented). For more information see ModularDesign. BWAPI is internally based on the Bridge concept.
 
 *Technical*:
 The C++ namespace is called "BWAPI".
-To use BWAPI1 you use BWAgent.dll directly:
+To use BWAPI you use BWAgent.dll directly:
 
-[http://bwapi.googlecode.com/svn/wiki/usingBWAPI1.png]
+[http://bwapi.googlecode.com/svn/wiki/usingBWAPI.png]
 
-The performance gain does not come from directly using BWAgent.dll, but from BWAPI1 being tightly based on the bridge concept. In a nutshell, BWAPI1 does not provide functions for querying gamestate. Instead it returns pointers for you to random access whatever data you need. Issuing orders in BWAPI1 does not have performance advantages over BWAPI2.
+The performance gain does not come from directly using BWAgent.dll, but from BWAPI being tightly based on the bridge concept. In a nutshell, BWAPI does not provide functions for querying gamestate nor does it have per frame overhead of any sort. It only returns pointers for you to random access whatever data you need. Issuing orders in BWAPI does not have performance advantages over BWSL.
 
 ==Bridge==
 *Explanation*:
-This is a concept that caused the major revision change to 3, because it changed the whole internal design of the project. For AI developers, the bridge is transparent. The only change from BWAPIv2.x you will experience is: AIs are not loaded as .dll files anymore, but are run in a separate process as executables. The biggest advantages are:
+This is a concept that caused the major revision change to 3, because it changed the whole internal design of the project. For AI developers, the bridge is transparent. The only change from BWAPI version 2.x you will experience is: AIs are not loaded as .dll files anymore, but are run in a separate process as executables. The biggest advantages are:
   * it makes debugging easier
   * for competitons based on the BWAPI project, this is the first step to prevent cheating
 *Technical*:
-The bridge is a shared memory interprocess communication means between the Starcraft and AI processes. The BWAPI1 interface is based on the bridge implementation. If you are a developer (or just nosey) see BridgeMechanics. Where it all started: issue 134.
+The bridge is a shared memory interprocess communication means between the Starcraft and AI processes. The BWAPI interface is tightly based on the bridge implementation. If you are a developer (or just nosey) see BridgeMechanics. Where it all started: issue 134.
