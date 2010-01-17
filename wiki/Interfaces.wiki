@@ -1,22 +1,22 @@
 #summary Explanation of the different interfaces in BWAPI
 #labels Featured
 
-This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). There have been 
-understandable confusion lately. For information on how to use the interfaces, see [UsingBWAPI].
+This page aims to clarify naming/terminology of the BWAPI project and it's interfaces for the upcoming release v3.0 (or BWAPIv3 for short, note the "v"). For information on how to use the interfaces, see [UsingBWAPI].
 
   * [#BWSL BWSL]
   * [#BWAPI BWAPI]
+  * [#Choosing_between_BWSL_and_BWAPI Choosing between BWSL and BWAPI]
   * [#Bridge (Shared Memory) Bridge]
 
 ==BWSL==
 *Explanation*:
-BWSL (BroodWar Standard Library) is a feature library. Based on BWAPI, it provides an interface that can be used completely independent from BWAPI. BWSL is easy to use, fully object oriented and provides a good deal of generally usefull functionality, ideal to jumpstart your AI development. It has a shallow learning curve.
+BWSL (Brood War Standard Library) is a library based on BWAPI, it exposes an interface that is completely independent from BWAPI (Like a layer). BWSL is easy to use and has a shallow learning curve. Designed for maximum convenience it is fully object oriented and provides a good deal of often used functionality. BWSL is ideal to jumpstart AI and tool development.
 
 *Porting from BWAPIv2.6.1*:
-For those who worked with BWAPI versions 2.x, the interface of BWSL is compatible with your code. It's the same old interface you know and love. It moved to BWSL because in the major revision, the project became more modular. The former BWAPI Interface is forked into the BWSL library (to hold the features) and BWAPI interface (to expose the pure API). BWSL is based on BWAPI.
+For those who worked with BWAPI versions 2.x, the interface of BWSL is compatible with your code. It's the same old interface you know and love. It moved to BWSL because in the major revision, the project became more modular. The former BWAPI Interface is forked into the BWSL library (to hold the object oriented design and extra functionality) and BWAPI interface (to expose the pure API itself).
 
 *Technical*:
-The C++ namespace of the library is called "BWSL". The BWSL Interface is provided by BWSL.dll, which is loaded just like a regular library:
+The C++ namespace of the library is called "BWSL". The BWSL Interface is provided by BWSL.dll:
 
 [http://bwapi.googlecode.com/svn/wiki/usingBWSL.png]
 
@@ -26,7 +26,7 @@ If you use BWTA or other libraries, then the dependency graph looks like this:
 
 ==BWAPI==
 *Explanation*:
-This is the basic interface exposed by the BWAPI project since version 3.0. BWAPI (BroodWar Application Programming Interface) is an inteface for querying data and issuing orders in its most basic form. Itself it does not have any nontrivial functionality (to improve modularity) and includes a few modules to help implement the most common tasks. This way there is no overhead the AI did not ask for and very high performance can be achieved. BWAPI is itself not object oriented (rather data-oriented). For more information see ModularDesign. BWAPI is internally based on the Bridge concept.
+This is the basic interface exposed by the BWAPI project since version 3.0. BWAPI (Brood War Application Programming Interface) is an inteface for querying data and issuing orders in its most basic form. Itself it does not have any nontrivial functionality (to improve modularity) and offers a few add-on classes to help implement the most common tasks. Designed for writing sophisticated algorithms and high performance applications, BWAPI is not object oriented. For more information see ModularDesign. BWAPI is internally based on the Bridge concept.
 
 *Technical*:
 The C++ namespace is called "BWAPI".
@@ -35,6 +35,11 @@ To use BWAPI you use BWAPI.dll directly:
 [http://bwapi.googlecode.com/svn/wiki/usingBWAPI.png]
 
 The performance gain does not come from directly using BWAPI.dll, but from BWAPI being tightly based on the bridge concept. In a nutshell, BWAPI does not provide functions for querying gamestate nor does it have per frame overhead of any sort. It only returns pointers for you to random access whatever data you need. Issuing orders in BWAPI does not have performance advantages over BWSL.
+
+==Choosing between BWSL and BWAPI==
+In most cases, if you are new to the BWAPI project or if you are only familiar with object oriented programming, use BWSL. If you just want try something out, use BWSL. Among other features, BWSL cross-references all objects, saves initial values and even provides various algorithm implementations. Those are the most common tasks when writing BWAPI applications, so experimenting and building different AIs and tools becomes surprisingly easy, provided you do not care for performance.
+
+When performance is an issue, usually because your algorithm is very resource-intensive on a per frame or even multithread basis, BWAPI is the way to go. BWSL's features come with the price of noticable per-frame overhead and, when multithreading, BWSL's objects cannot be easily used or saved. BWAPI separates object's state and the object's identity. State data like e.g. "unit's state in this frame" can be easily copied (memory techniques can also be used) and saved in a single variable, and since it's a (random access) structure, quickly processed. This allows for highly complex code working with many copies of data still being fast and readable.
 
 ==Bridge==
 *Explanation*:
