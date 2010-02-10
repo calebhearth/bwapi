@@ -29,18 +29,18 @@ Game
 || getStaticNeutralUnits || || ||
 || getLatency || x || ||
 || getFrameCount || x || x ||
-|| getMouseX || x || ||
-|| getMouseY || x || ||
-|| getMousePosition || x || ||
+|| getMouseX || x || x ||
+|| getMouseY || x || x ||
+|| getMousePosition || x || x ||
 || getMouseState (MouseButton) || || ||
 || getMouseState || || ||
 || getKeyState (Key) || || ||
 || getKeyState || || ||
-|| getScreenX || x || ||
-|| getScreenY || x || ||
-|| getScreenPosition || x || ||
-|| setScreenPosition || || ||
-|| setScreenPosition (Position) || || ||
+|| getScreenX || x || x ||
+|| getScreenY || x || x ||
+|| getScreenPosition || x || x ||
+|| setScreenPosition || x || ||
+|| setScreenPosition (Position) || x || ||
 || pingMinimap || x || ||
 || pingMinimap (Position) || x || ||
 || isFlagEnabled || x || ||
