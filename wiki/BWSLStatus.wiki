@@ -47,8 +47,8 @@ Game
 || enableFlag || x || ||
 || unitsOnTile || x || ||
 || getLastError || || ||
-|| mapWidth || x || ||
-|| mapHeight || x || ||
+|| mapWidth || x || x ||
+|| mapHeight || x || x ||
 || mapFilename || x || ||
 || mapName || x || ||
 || getMapHash || x || ||
@@ -73,7 +73,7 @@ Game
 || sendText || x || x ||
 || changeRace || || ||
 || isMultiplayer || x || ||
-|| isPaused || x || ||
+|| isPaused || x || x ||
 || isReplay || x || ||
 || startGame || x || ||
 || pauseGame || x || ||
@@ -87,11 +87,11 @@ Game
 || drawText || || ||
 || drawTextMap || x || ||
 || drawTextMouse || || ||
-|| drawTextScreen || x || ||
+|| drawTextScreen || x || x ||
 || drawBox || || ||
-|| drawBoxMap || x || ||
+|| drawBoxMap || x || x ||
 || drawBoxMouse || || ||
-|| drawBoxScreen || x || ||
+|| drawBoxScreen || x || x ||
 || drawTriangle || || ||
 || drawTriangleMap || x || ||
 || drawTriangleMouse || || ||
@@ -99,7 +99,7 @@ Game
 || drawCircle || || ||
 || drawCircleMap || x || ||
 || drawCircleMouse || || ||
-|| drawCircleScreen || x || ||
+|| drawCircleScreen || x || x ||
 || drawEllipse || || ||
 || drawEllipseMap || x || ||
 || drawEllipseMouse || || ||
