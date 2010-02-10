@@ -1,0 +1,302 @@
+This page will be used to keep track of the status of each function in BWSL to help determine which functions are left to be implemented or tested.
+
+AIModule
+|| Callback || Implemented || Tested ||
+|| onStart  || x || x ||
+|| onEnd || || ||
+|| onFrame || x || x ||
+|| onSendText || partially || ||
+|| onPlayerLeft || || ||
+|| onNukeDetect || || ||
+
+|| onUnitCreate || || ||
+|| onUnitDestroy || || ||
+|| onUnitMorph || || ||
+|| onUnitShow || || ||
+|| onUnitHide || || ||
+|| onUnitRenegade || || ||
+
+Game
+
+|| Function || Implemented || Tested ||
+|| getForces || x || ||
+|| getPlayers || x || ||
+|| getAllUnits || x || ||
+|| getMinerals || x || ||
+|| getGeysers || x || ||
+|| getNeutralUnits ||x  || ||
+|| getStaticMinerals || || ||
+|| getStaticGeysers || || ||
+|| getStaticNeutralUnits || || ||
+|| getLatency || x || ||
+|| getFrameCount || x || x ||
+|| getMouseX || x || ||
+|| getMouseY || x || ||
+|| getMousePosition || x || ||
+|| getMouseState (MouseButton) || || ||
+|| getMouseState || || ||
+|| getKeyState (Key) || || ||
+|| getKeyState || || ||
+|| getScreenX || x || ||
+|| getScreenY || x || ||
+|| getScreenPosition || || ||
+|| setScreenPosition || || ||
+|| setScreenPosition (Position) || || ||
+|| pingMinimap || x || ||
+|| pingMinimap (Position) || x || ||
+|| isFlagEnabled || x || ||
+|| enableFlag || x || ||
+|| unitsOnTile || x || ||
+|| getLastError || || ||
+|| mapWidth || x || ||
+|| mapHeight || x || ||
+|| mapFilename || x || ||
+|| mapName || x || ||
+|| getMapHash || x || ||
+|| getGroundHeight || x || ||
+|| isWalkable || x || ||
+|| isBuildable || x || ||
+|| isVisible || x || ||
+|| isExplored || x || ||
+|| hasCreep || x || ||
+|| hasPower || x || ||
+|| isBuildable (TilePosition) || x || ||
+|| isVisible (TilePosition) || x || ||
+|| isExplored (TilePosition) || x || ||
+|| hasCreep (TilePosition) || x || ||
+|| hasPower (TilePosition) || x || ||
+|| canBuildHere || x || ||
+|| canMake || x || ||
+|| canResearch || || ||
+|| canUpgrade || || ||
+|| getStartLocations || x || ||
+|| printf || x || x ||
+|| sendText || x || x ||
+|| changeRace || || ||
+|| isMultiplayer || x || ||
+|| isPaused || x || ||
+|| isReplay || x || ||
+|| startGame || x || ||
+|| pauseGame || x || ||
+|| resumeGame || x || ||
+|| leaveGame || x || ||
+|| restartGame || x || ||
+|| setLocalSpeed || x || ||
+|| getSelectedUnits || x || ||
+|| self || || ||
+|| enemy || || ||
+|| drawText || || ||
+|| drawTextMap || x || ||
+|| drawTextMouse || || ||
+|| drawTextScreen || x || ||
+|| drawBox || || ||
+|| drawBoxMap || x || ||
+|| drawBoxMouse || || ||
+|| drawBoxScreen || x || ||
+|| drawTriangle || || ||
+|| drawTriangleMap || x || ||
+|| drawTriangleMouse || || ||
+|| drawTriangleScreen || x || ||
+|| drawCircle || || ||
+|| drawCircleMap || x || ||
+|| drawCircleMouse || || ||
+|| drawCircleScreen || x || ||
+|| drawEllipse || || ||
+|| drawEllipseMap || x || ||
+|| drawEllipseMouse || || ||
+|| drawEllipseScreen || x || ||
+|| drawDot || || ||
+|| drawDotMap || x || ||
+|| drawDotMouse || || ||
+|| drawDotScreen || x || ||
+|| drawLine || || ||
+|| drawLineMap || x || ||
+|| drawLineMouse || || ||
+|| drawLineScreen || x || ||
+
+Force
+
+|| Function || Implemented || Tested ||
+|| getName || || ||
+|| getPlayers || || ||
+
+Player
+
+|| Function || Implemented || Tested ||
+|| getID || x || ||
+|| getName || x || ||
+|| getUnits || x || ||
+|| getRace || x || ||
+|| playerType || x || ||
+|| getForce || x || ||
+|| isAlly || x || ||
+|| isEnemy || x || ||
+|| isNeutral || x || ||
+|| getStartLocation || x || ||
+|| isVictorious || x || ||
+|| isDefeated || x || ||
+|| leftGame || || ||
+|| minerals || x || ||
+|| gas || x || ||
+|| cumulativeMinerals || x || ||
+|| cumulativeGas || x || ||
+|| supplyTotal || x || ||
+|| supplyUsed || x || ||
+|| supplyTotal (Race) || x || ||
+|| supplyUsed (Race) || x || ||
+|| allUnitCount || x || ||
+|| completedUnitCount || x || ||
+|| incompleteUnitCount || x || ||
+|| deadUnitCount || x || ||
+|| killedUnitCount || x || ||
+|| getUpgradeLevel || x || ||
+|| hasResearched || x || ||
+|| isResearching || x || ||
+|| isUpgrading || x || ||
+
+Unit
+
+|| Function || Implemented || Tested ||
+|| getID || x || ||
+|| getPlayer || x || ||
+|| getType || x || ||
+|| getInitialType || || ||
+|| getHitPoints || x || ||
+|| getInitialHitPoints || || ||
+|| getShields || x || ||
+|| getEnergy || x || ||
+|| getResources || x || ||
+|| getInitialResources || || ||
+|| getKillCount || x || ||
+|| getGroundWeaponCooldown || x || ||
+|| getAirWeaponCooldown || x || ||
+|| getSpellCooldown || x || ||
+|| getDefenseMatrixPoints || x || ||
+|| getDefenseMatrixTimer || x || ||
+|| getEnsnareTimer || x || ||
+|| getIrradiateTimer || x || ||
+|| getLockdownTimer || x || ||
+|| getMaelstromTimer || x || ||
+|| getPlagueTimer || x || ||
+|| getRemoveTimer || x || ||
+|| getStasisTimer || x || ||
+|| getStimTimer || x || ||
+|| getPosition || x || ||
+|| getInitialPosition || || ||
+|| getTilePosition || x || ||
+|| getInitialTilePosition || || ||
+|| getDistance (Unit) || x || ||
+|| getDistance (Position) || x || ||
+|| getAngle || x || ||
+|| getVelocityX || x || ||
+|| getVelocityY || x || ||
+|| getTarget || x || ||
+|| getTargetPosition || x || ||
+|| getOrder || x || ||
+|| getOrderTarget || || ||
+|| getOrderTimer || || ||
+|| getSecondaryOrder || || ||
+|| getBuildUnit || x || ||
+|| getBuildType || || ||
+|| getRemainingBuildTime || || ||
+|| getRemainingTrainTime || x || ||
+|| getChild || x || ||
+|| getTrainingQueue || x || ||
+|| getTransport || x || ||
+|| getLoadedUnits || x || ||
+|| getInterceptorCount || x || ||
+|| getScarabCount || x || ||
+|| getSpiderMineCount || x || ||
+|| getTech || x || ||
+|| getUpgrade || x || ||
+|| getRemainingResearchTime || x || ||
+|| getRemainingUpgradeTime || x || ||
+|| getRallyPosition || x || ||
+|| getRallyUnit || x || ||
+|| getAddon || x || ||
+|| getHatchery || x || ||
+|| getLarva || x || ||
+|| getUpgradeLevel || x || ||
+|| exists || x || ||
+|| isAccelerating || x || ||
+|| isBeingConstructed || x || ||
+|| isBeingGathered || x || ||
+|| isBeingHealed || x || ||
+|| isBlind || x || ||
+|| isBraking || x || ||
+|| isBurrowed || x || ||
+|| isCarryingGas || x || ||
+|| isCarryingMinerals || x || ||
+|| isCloaked || x || ||
+|| isCompleted || x || ||
+|| isConstructing || x || ||
+|| isDefenseMatrixed || x || ||
+|| isEnsnared || x || ||
+|| isFollowing || x || ||
+|| isGatheringGas || x || ||
+|| isGatheringMinerals || x || ||
+|| isHallucination || x || ||
+|| isIdle || x || ||
+|| isIrradiated || x || ||
+|| isLifted || x || ||
+|| isLoaded || x || ||
+|| isLockedDown || x || ||
+|| isMaelstrommed || x || ||
+|| isMorphing || x || ||
+|| isMoving || x || ||
+|| isParasited || x || ||
+|| isPatrolling || x || ||
+|| isPlagued || x || ||
+|| isRepairing || x || ||
+|| isResearching || x || ||
+|| isSelected || x || ||
+|| isSieged || x || ||
+|| isStartingAttack || x || ||
+|| isStasised || x || ||
+|| isStimmed || x || ||
+|| isTraining || x || ||
+|| isUnderStorm || x || ||
+|| isUnpowered || x || ||
+|| isUpgrading || x || ||
+|| isVisible || x || ||
+|| attackMove || || ||
+|| attackUnit || partially || ||
+|| rightClick (Position) || || ||
+|| rightClick (Unit) || partially || ||
+|| train || || ||
+|| build || || ||
+|| buildAddon || || ||
+|| research || || ||
+|| upgrade || || ||
+|| stop || partially || ||
+|| holdPosition || partially || ||
+|| patrol || || ||
+|| follow || partially || ||
+|| setRallyPosition || || ||
+|| setRallyUnit || partially || ||
+|| repair || partially || ||
+|| returnCargo || || ||
+|| morph || || ||
+|| burrow || partially || ||
+|| unburrow || partially || ||
+|| siege || partially || ||
+|| unsiege || partially || ||
+|| cloak || partially || ||
+|| decloak || partially || ||
+|| lift || partially || ||
+|| land || || ||
+|| load || partially || ||
+|| unload || partially || ||
+|| unloadAll || partially || ||
+|| unloadAll (Position) || || ||
+|| cancelConstruction || partially || ||
+|| haltConstruction || partially || ||
+|| cancelMorph || partially || ||
+|| cancelTrain || partially || ||
+|| cancelTrain (Slot) || partially || ||
+|| cancelAddon || partially || ||
+|| cancelResearch || partially || ||
+|| cancelUpgrade || partially || ||
+|| useTech || || ||
+|| useTech (Position) || || ||
+|| useTech (Unit) || || ||
