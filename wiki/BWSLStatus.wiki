@@ -46,7 +46,7 @@ Game
 || isFlagEnabled || x || ||
 || enableFlag || x || ||
 || unitsOnTile || x || ||
-|| getLastError || || ||
+|| getLastError || x || ||
 || mapWidth || x || x ||
 || mapHeight || x || x ||
 || mapFilename || x || ||
@@ -82,36 +82,36 @@ Game
 || restartGame || x || ||
 || setLocalSpeed || x || ||
 || getSelectedUnits || x || ||
-|| self || || ||
+|| self || x || ||
 || enemy || || ||
-|| drawText || x || ||
-|| drawTextMap || x || ||
-|| drawTextMouse || x || ||
+|| drawText || x || x ||
+|| drawTextMap || x || x ||
+|| drawTextMouse || x || x ||
 || drawTextScreen || x || x ||
-|| drawBox || x || ||
+|| drawBox || x || x ||
 || drawBoxMap || x || x ||
-|| drawBoxMouse || x || ||
+|| drawBoxMouse || x || x ||
 || drawBoxScreen || x || x ||
-|| drawTriangle || x || ||
-|| drawTriangleMap || x || ||
-|| drawTriangleMouse || x || ||
-|| drawTriangleScreen || x || ||
-|| drawCircle || x || ||
-|| drawCircleMap || x || ||
-|| drawCircleMouse || x || ||
+|| drawTriangle || x || x ||
+|| drawTriangleMap || x || x ||
+|| drawTriangleMouse || x || x ||
+|| drawTriangleScreen || x || x ||
+|| drawCircle || x || x ||
+|| drawCircleMap || x || x ||
+|| drawCircleMouse || x || x ||
 || drawCircleScreen || x || x ||
-|| drawEllipse || x || ||
-|| drawEllipseMap || x || ||
-|| drawEllipseMouse || x || ||
-|| drawEllipseScreen || x || ||
-|| drawDot || x || ||
-|| drawDotMap || x || ||
-|| drawDotMouse || x || ||
-|| drawDotScreen || x || ||
-|| drawLine || x || ||
-|| drawLineMap || x || ||
-|| drawLineMouse || x || ||
-|| drawLineScreen || x || ||
+|| drawEllipse || x || x ||
+|| drawEllipseMap || x || x ||
+|| drawEllipseMouse || x || x ||
+|| drawEllipseScreen || x || x ||
+|| drawDot || x || x ||
+|| drawDotMap || x || x ||
+|| drawDotMouse || x || x ||
+|| drawDotScreen || x || x ||
+|| drawLine || x || x ||
+|| drawLineMap || x || x ||
+|| drawLineMouse || x || x ||
+|| drawLineScreen || x || x ||
 
 Force
 
