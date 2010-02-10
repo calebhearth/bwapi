@@ -38,7 +38,7 @@ Game
 || getKeyState || || ||
 || getScreenX || x || ||
 || getScreenY || x || ||
-|| getScreenPosition || || ||
+|| getScreenPosition || x || ||
 || setScreenPosition || || ||
 || setScreenPosition (Position) || || ||
 || pingMinimap || x || ||
