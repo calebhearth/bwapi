@@ -84,33 +84,33 @@ Game
 || getSelectedUnits || x || ||
 || self || || ||
 || enemy || || ||
-|| drawText || || ||
+|| drawText || x || ||
 || drawTextMap || x || ||
-|| drawTextMouse || || ||
+|| drawTextMouse || x || ||
 || drawTextScreen || x || x ||
-|| drawBox || || ||
+|| drawBox || x || ||
 || drawBoxMap || x || x ||
-|| drawBoxMouse || || ||
+|| drawBoxMouse || x || ||
 || drawBoxScreen || x || x ||
-|| drawTriangle || || ||
+|| drawTriangle || x || ||
 || drawTriangleMap || x || ||
-|| drawTriangleMouse || || ||
+|| drawTriangleMouse || x || ||
 || drawTriangleScreen || x || ||
-|| drawCircle || || ||
+|| drawCircle || x || ||
 || drawCircleMap || x || ||
-|| drawCircleMouse || || ||
+|| drawCircleMouse || x || ||
 || drawCircleScreen || x || x ||
-|| drawEllipse || || ||
+|| drawEllipse || x || ||
 || drawEllipseMap || x || ||
-|| drawEllipseMouse || || ||
+|| drawEllipseMouse || x || ||
 || drawEllipseScreen || x || ||
-|| drawDot || || ||
+|| drawDot || x || ||
 || drawDotMap || x || ||
-|| drawDotMouse || || ||
+|| drawDotMouse || x || ||
 || drawDotScreen || x || ||
-|| drawLine || || ||
+|| drawLine || x || ||
 || drawLineMap || x || ||
-|| drawLineMouse || || ||
+|| drawLineMouse || x || ||
 || drawLineScreen || x || ||
 
 Force
