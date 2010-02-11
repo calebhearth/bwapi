@@ -83,7 +83,7 @@ Game
 || setLocalSpeed || x || ||
 || getSelectedUnits || x || ||
 || self || x || x ||
-|| enemy || || ||
+|| enemy || x || x ||
 || drawText || x || x ||
 || drawTextMap || x || x ||
 || drawTextMouse || x || x ||
