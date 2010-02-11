@@ -131,18 +131,18 @@ Player
 || isAlly || x || ||
 || isEnemy || x || ||
 || isNeutral || x || ||
-|| getStartLocation || x || ||
+|| getStartLocation || x || x ||
 || isVictorious || x || ||
 || isDefeated || x || ||
 || leftGame || x || ||
 || minerals || x || x ||
 || gas || x || x ||
-|| cumulativeMinerals || x || ||
-|| cumulativeGas || x || ||
-|| supplyTotal || x || ||
-|| supplyUsed || x || ||
-|| supplyTotal (Race) || x || ||
-|| supplyUsed (Race) || x || ||
+|| cumulativeMinerals || x || x ||
+|| cumulativeGas || x || x ||
+|| supplyTotal || x || x ||
+|| supplyUsed || x || x ||
+|| supplyTotal (Race) || x || x ||
+|| supplyUsed (Race) || x || x ||
 || allUnitCount || x || ||
 || completedUnitCount || x || ||
 || incompleteUnitCount || x || ||
