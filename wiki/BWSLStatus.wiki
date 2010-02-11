@@ -44,7 +44,7 @@ Game
 || pingMinimap || x || ||
 || pingMinimap (Position) || x || ||
 || isFlagEnabled || x || ||
-|| enableFlag || x || ||
+|| enableFlag || x || x ||
 || unitsOnTile || x || ||
 || getLastError || x || ||
 || mapWidth || x || x ||
@@ -82,7 +82,7 @@ Game
 || restartGame || x || ||
 || setLocalSpeed || x || ||
 || getSelectedUnits || x || ||
-|| self || x || ||
+|| self || x || x ||
 || enemy || || ||
 || drawText || x || x ||
 || drawTextMap || x || x ||
