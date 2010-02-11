@@ -74,13 +74,13 @@ Game
 || changeRace || || ||
 || isMultiplayer || x || ||
 || isPaused || x || x ||
-|| isReplay || x || ||
+|| isReplay || x || x ||
 || startGame || x || ||
-|| pauseGame || x || ||
+|| pauseGame || x || x ||
 || resumeGame || x || ||
-|| leaveGame || x || ||
-|| restartGame || x || ||
-|| setLocalSpeed || x || ||
+|| leaveGame || x || x ||
+|| restartGame || x || x ||
+|| setLocalSpeed || x || x ||
 || getSelectedUnits || x || ||
 || self || x || x ||
 || enemy || x || x ||
