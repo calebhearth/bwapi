@@ -49,19 +49,19 @@ Game
 || getLastError || x || ||
 || mapWidth || x || x ||
 || mapHeight || x || x ||
-|| mapFilename || x || ||
-|| mapName || x || ||
-|| getMapHash || x || ||
+|| mapFilename || x || x ||
+|| mapName || x || x ||
+|| getMapHash || x || x ||
 || getGroundHeight || x || ||
 || isWalkable || x || ||
-|| isBuildable || x || ||
-|| isVisible || x || ||
-|| isExplored || x || ||
+|| isBuildable || x || x ||
+|| isVisible || x || x ||
+|| isExplored || x || x ||
 || hasCreep || x || ||
 || hasPower || x || ||
-|| isBuildable (TilePosition) || x || ||
-|| isVisible (TilePosition) || x || ||
-|| isExplored (TilePosition) || x || ||
+|| isBuildable (TilePosition) || x || x ||
+|| isVisible (TilePosition) || x || x ||
+|| isExplored (TilePosition) || x || x ||
 || hasCreep (TilePosition) || x || ||
 || hasPower (TilePosition) || x || ||
 || canBuildHere || x || ||
