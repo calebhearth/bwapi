@@ -19,7 +19,7 @@ Game
 
 || Function || Implemented || Tested ||
 || getForces || x || ||
-|| getPlayers || x || ||
+|| getPlayers || x || x ||
 || getAllUnits || x || ||
 || getMinerals || x || ||
 || getGeysers || x || ||
@@ -122,10 +122,10 @@ Force
 Player
 
 || Function || Implemented || Tested ||
-|| getID || x || ||
-|| getName || x || ||
+|| getID || x || x ||
+|| getName || x || x ||
 || getUnits || x || ||
-|| getRace || x || ||
+|| getRace || x || x ||
 || playerType || x || ||
 || getForce || x || ||
 || isAlly || x || ||
@@ -134,9 +134,9 @@ Player
 || getStartLocation || x || ||
 || isVictorious || x || ||
 || isDefeated || x || ||
-|| leftGame || || ||
-|| minerals || x || ||
-|| gas || x || ||
+|| leftGame || x || ||
+|| minerals || x || x ||
+|| gas || x || x ||
 || cumulativeMinerals || x || ||
 || cumulativeGas || x || ||
 || supplyTotal || x || ||
