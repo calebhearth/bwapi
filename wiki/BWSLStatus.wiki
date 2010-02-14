@@ -192,12 +192,12 @@ Unit
 || getTarget || x || ||
 || getTargetPosition || x || ||
 || getOrder || x || ||
-|| getOrderTarget || || ||
-|| getOrderTimer || || ||
-|| getSecondaryOrder || || ||
+|| getOrderTarget || x || ||
+|| getOrderTimer || x || ||
+|| getSecondaryOrder || x || ||
 || getBuildUnit || x || ||
-|| getBuildType || || ||
-|| getRemainingBuildTime || || ||
+|| getBuildType || x || ||
+|| getRemainingBuildTime || x || ||
 || getRemainingTrainTime || x || ||
 || getChild || x || ||
 || getTrainingQueue || x || ||
