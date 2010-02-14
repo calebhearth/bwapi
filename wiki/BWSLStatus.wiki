@@ -258,24 +258,24 @@ Unit
 || isUnpowered || x || ||
 || isUpgrading || x || ||
 || isVisible || x || ||
-|| attackMove || || ||
+|| attackMove || partially || ||
 || attackUnit || partially || ||
-|| rightClick (Position) || || ||
+|| rightClick (Position) || partially || ||
 || rightClick (Unit) || partially || ||
-|| train || || ||
-|| build || || ||
-|| buildAddon || || ||
-|| research || || ||
-|| upgrade || || ||
+|| train || partially || ||
+|| build || partially || ||
+|| buildAddon || partially || ||
+|| research || partially || ||
+|| upgrade || partially || ||
 || stop || partially || ||
 || holdPosition || partially || ||
-|| patrol || || ||
+|| patrol || partially || ||
 || follow || partially || ||
-|| setRallyPosition || || ||
+|| setRallyPosition || partially || ||
 || setRallyUnit || partially || ||
 || repair || partially || ||
-|| returnCargo || || ||
-|| morph || || ||
+|| returnCargo || partially || ||
+|| morph || partially || ||
 || burrow || partially || ||
 || unburrow || partially || ||
 || siege || partially || ||
@@ -283,11 +283,11 @@ Unit
 || cloak || partially || ||
 || decloak || partially || ||
 || lift || partially || ||
-|| land || || ||
+|| land || partially || ||
 || load || partially || ||
 || unload || partially || ||
 || unloadAll || partially || ||
-|| unloadAll (Position) || || ||
+|| unloadAll (Position) || partially || ||
 || cancelConstruction || partially || ||
 || haltConstruction || partially || ||
 || cancelMorph || partially || ||
@@ -296,6 +296,6 @@ Unit
 || cancelAddon || partially || ||
 || cancelResearch || partially || ||
 || cancelUpgrade || partially || ||
-|| useTech || || ||
-|| useTech (Position) || || ||
-|| useTech (Unit) || || ||
+|| useTech || partially || ||
+|| useTech (Position) || partially || ||
+|| useTech (Unit) || partially || ||
