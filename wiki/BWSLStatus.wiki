@@ -23,10 +23,10 @@ Game
 || getAllUnits || x || ||
 || getMinerals || x || ||
 || getGeysers || x || ||
-|| getNeutralUnits ||x  || ||
-|| getStaticMinerals || || ||
-|| getStaticGeysers || || ||
-|| getStaticNeutralUnits || || ||
+|| getNeutralUnits || x || ||
+|| getStaticMinerals || x || ||
+|| getStaticGeysers || x || ||
+|| getStaticNeutralUnits || x || ||
 || getLatency || x || ||
 || getFrameCount || x || x ||
 || getMouseX || x || x ||
@@ -159,13 +159,13 @@ Unit
 || getID || x || ||
 || getPlayer || x || ||
 || getType || x || ||
-|| getInitialType || || ||
+|| getInitialType || x || ||
 || getHitPoints || x || ||
-|| getInitialHitPoints || || ||
+|| getInitialHitPoints || x || ||
 || getShields || x || ||
 || getEnergy || x || ||
 || getResources || x || ||
-|| getInitialResources || || ||
+|| getInitialResources || x || ||
 || getKillCount || x || ||
 || getGroundWeaponCooldown || x || ||
 || getAirWeaponCooldown || x || ||
@@ -181,9 +181,9 @@ Unit
 || getStasisTimer || x || ||
 || getStimTimer || x || ||
 || getPosition || x || ||
-|| getInitialPosition || || ||
+|| getInitialPosition || x || ||
 || getTilePosition || x || ||
-|| getInitialTilePosition || || ||
+|| getInitialTilePosition || x || ||
 || getDistance (Unit) || x || ||
 || getDistance (Position) || x || ||
 || getAngle || x || ||
