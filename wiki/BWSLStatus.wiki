@@ -124,9 +124,9 @@ Player
 || Function || Implemented || Tested ||
 || getID || x || x ||
 || getName || x || x ||
-|| getUnits || x || ||
+|| getUnits || x || x ||
 || getRace || x || x ||
-|| playerType || x || ||
+|| playerType || x || x ||
 || getForce || x || ||
 || isAlly || x || ||
 || isEnemy || x || ||
@@ -158,7 +158,7 @@ Unit
 || Function || Implemented || Tested ||
 || getID || x || ||
 || getPlayer || x || ||
-|| getType || x || ||
+|| getType || x || x ||
 || getInitialType || x || ||
 || getHitPoints || x || ||
 || getInitialHitPoints || x || ||
