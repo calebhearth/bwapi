@@ -116,8 +116,8 @@ Game
 Force
 
 || Function || Implemented || Tested ||
-|| getName || || ||
-|| getPlayers || || ||
+|| getName || x || ||
+|| getPlayers || x || ||
 
 Player
 
