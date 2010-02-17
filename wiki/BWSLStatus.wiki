@@ -66,12 +66,12 @@ Game
 || hasPower (TilePosition) || x || ||
 || canBuildHere || x || ||
 || canMake || x || ||
-|| canResearch || || ||
-|| canUpgrade || || ||
+|| canResearch || x || ||
+|| canUpgrade || x || ||
 || getStartLocations || x || ||
 || printf || x || x ||
 || sendText || x || x ||
-|| changeRace || || ||
+|| changeRace || x || ||
 || isMultiplayer || x || ||
 || isPaused || x || x ||
 || isReplay || x || x ||
