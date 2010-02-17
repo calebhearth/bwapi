@@ -20,10 +20,10 @@ Game
 || Function || Implemented || Tested ||
 || getForces || x || ||
 || getPlayers || x || x ||
-|| getAllUnits || x || ||
-|| getMinerals || x || ||
-|| getGeysers || x || ||
-|| getNeutralUnits || x || ||
+|| getAllUnits || x || x ||
+|| getMinerals || x || x ||
+|| getGeysers || x || x ||
+|| getNeutralUnits || x || x ||
 || getStaticMinerals || x || ||
 || getStaticGeysers || x || ||
 || getStaticNeutralUnits || x || ||
