@@ -81,7 +81,7 @@ Game
 || leaveGame || x || x ||
 || restartGame || x || x ||
 || setLocalSpeed || x || x ||
-|| getSelectedUnits || x || ||
+|| getSelectedUnits || x || x ||
 || self || x || x ||
 || enemy || x || x ||
 || drawText || x || x ||
@@ -180,7 +180,7 @@ Unit
 || getRemoveTimer || x || ||
 || getStasisTimer || x || ||
 || getStimTimer || x || ||
-|| getPosition || x || ||
+|| getPosition || x || x ||
 || getInitialPosition || x || ||
 || getTilePosition || x || ||
 || getInitialTilePosition || x || ||
