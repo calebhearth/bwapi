@@ -175,6 +175,7 @@ namespace BWAPI
       virtual void drawLineMouse(int x1, int y1, int x2, int y2, Color color);
       virtual void drawLineScreen(int x1, int y1, int x2, int y2, Color color);
 
+      char *dummyMessage(char *message);
       virtual bool gluMessageBox(char* message, int type);
       virtual bool gluEditBox(char* message, char* dest, size_t destsize, char* restricted);
 
@@ -190,6 +191,8 @@ namespace BWAPI
        * @param slotID Order of the slot (0 based)
        */
       void pressKey(int key);
+      void mouseDown(int x, int y);
+      void mouseUp(int x, int y);
       void changeSlot(BW::Orders::ChangeSlot::Slot slot, u8 slotID);
       void setOnStartCalled(bool onStartCalled);
       void IssueCommand(PBYTE pbBuffer, u32 iSize);
@@ -198,9 +201,6 @@ namespace BWAPI
       void onGameEnd();
       bool onSendText(const char* text);
       bool parseText(const char* text);
-      void onUnitDestroy(BWAPI::UnitImpl* unit);
-      void onUnitDestroy(BW::Unit* unit);
-      void onAddUnit(BWAPI::Unit* unit);
       bool inScreen(int ctype, int x, int y);
       bool inScreen(int ctype, int x1, int y1, int x2, int y2);
       bool inScreen(int ctype, int x1, int y1, int x2, int y2, int x3, int y3);
@@ -232,7 +232,8 @@ namespace BWAPI
       bool keyPress[256];
       bool savedKeyPress[256];
       void onSaveGame(char *name);
-
+      BWAPI::UnitImpl *spriteToUnit(BW::CSprite *sprite);
+      void iscriptParser(BW::CSprite *sprite, u8 anim);
     private :
       HMODULE hMod;
       void saveSelected();
