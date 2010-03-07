@@ -1,4 +1,4 @@
-#summary Orders in BWAPI
+#summary Orders in Starcraft: Broodwar
 #sidebar TableOfContents
 
 = Orders =
