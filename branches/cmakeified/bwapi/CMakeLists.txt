@@ -7,6 +7,11 @@ SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 #SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 #SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
+#-------------------------------------------------------------------------------------------------------------
+OPTION(FAST_BUILD "Include all source files into one big and compile that (this can be faster)" OFF)
+
+#-------------------------------------------------------------------------------------------------------------
+
 ADD_SUBDIRECTORY(Util)
 ADD_SUBDIRECTORY(BWAPILIB)
 ADD_SUBDIRECTORY(BWAPI)
