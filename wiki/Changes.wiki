@@ -1,7 +1,6 @@
 == Incomplete list of changes since BWAPI Beta 2.6.1 (r1914) ==
 
   * Added Unit::isAttacking
-  * Added Unit::isStoppingAttack
   * Added AIModule::onSaveGame
 
 Bug Fixes:
