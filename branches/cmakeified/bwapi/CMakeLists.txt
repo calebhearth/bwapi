@@ -23,6 +23,25 @@ INCLUDE(svnrevconfig)
 INCLUDE(setupeclipse)
 
 #-------------------------------------------------------------------------------------------------------------
+# Doxygen
+
+FIND_PACKAGE(Doxygen)
+
+IF (DOXYGEN_FOUND)
+  SET(DOXYFILE_INPUT_DIR "${PROJECT_SOURCE_DIR}/include")
+  SET(DOXYFILE_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doc")
+  
+  CONFIGURE_FILE(
+    "${PROJECT_SOURCE_DIR}/include/Doxyfile.in"
+    "${PROJECT_BINARY_DIR}/Doxyfile"
+    IMMEDIATE @ONLY)
+    
+  FILE(TO_NATIVE_PATH "${PROJECT_BINARY_DIR}/Doxyfile" DOXYFILE_PATH)
+  
+  ADD_CUSTOM_TARGET(doc COMMAND "${DOXYGEN_EXECUTABLE}" "${DOXYFILE_PATH}")
+ENDIF ()
+
+#-------------------------------------------------------------------------------------------------------------
 # Custom target to directly install the Chaoslauncher plugin into the Chaoslauncher directory
 
 FIND_PATH(STARCRAFT_ROOT_DIR StarCraft.exe
