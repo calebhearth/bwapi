@@ -9,8 +9,8 @@ Bug Fixes:
   * Fixed a bug with Unit::getAirWeaponCooldown
   * Fixed a bug with Unit::isConstructing
   * Fixed a bug with Unit::isIdle
+  * Fixed a bug with Unit::isStartingAttack
   * Fixed a bug with Unit::isTraining
-  * Fixed a bug with Unit::getBuildType
 
 Probably need to fix before next release:
 
