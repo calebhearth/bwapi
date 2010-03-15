@@ -1,4 +1,4 @@
-PROJECT(BWAPI_ChaosLauncherInjector)
+PROJECT(BWAPI_ChaosLauncherInjector_cmake)
 
 SET(SOURCES 
   source/DLLMain.cpp
@@ -16,5 +16,7 @@ ADD_DEFINITIONS(
   -D_CRT_SECURE_NO_WARNINGS
 )
 
-ADD_LIBRARY(BWAPI_ChaosLauncherInjector MODULE ${SOURCES})
-SET_TARGET_PROPERTIES(BWAPI_ChaosLauncherInjector PROPERTIES SUFFIX .bwl)
+ADD_LIBRARY(BWAPI_ChaosLauncherInjector_cmake MODULE ${SOURCES})
+SET_TARGET_PROPERTIES(BWAPI_ChaosLauncherInjector_cmake PROPERTIES SUFFIX .bwl)
+SET_TARGET_PROPERTIES(BWAPI_ChaosLauncherInjector_cmake PROPERTIES PROJECT_LABEL BWAPI_ChaosLauncherInjector)
+SET_TARGET_PROPERTIES(BWAPI_ChaosLauncherInjector_cmake PROPERTIES OUTPUT_NAME BWAPI_ChaosLauncherInjector)
