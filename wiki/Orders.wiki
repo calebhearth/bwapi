@@ -18,14 +18,14 @@
   * Hover
   * AttackMove
   * InfestMine1
-  * Nothing1
-  * Powerup1
+  * UnusedNothing
+  * UnusedPowerup
   * TowerGuard
   * TowerAttack
   * VultureMine
   * StayinRange
   * TurretAttack
-  * Nothing2
+  * Nothing
   * Nothing3
   * DroneStartBuild
   * DroneBuild
@@ -41,42 +41,42 @@
   * PlaceAddon
   * BuildAddon
   * Train
-  * RallyPoint1
-  * RallyPoint2
+  * RallyPointUnit
+  * RallyPointTile
   * ZergBirth
-  * Morph1
-  * Morph2
-  * BuildSelf1
+  * ZergUnitMorph
+  * ZergBuildingMorph
+  * TerranBuildSelf
   * ZergBuildSelf
-  * Build5
-  * Enternyduscanal
-  * BuildSelf2
+  * BuildNydusExit
+  * EnterNydusCanal
+  * ProtossBuildSelf
   * Follow
   * Carrier
-  * CarrierIgnore1
+  * ReaverCarrierMove
   * CarrierStop
   * CarrierAttack1
   * CarrierAttack2
   * CarrierIgnore2
   * CarrierFight
-  * HoldPosition1
+  * CarrierHoldPosition
   * Reaver
   * ReaverAttack1
   * ReaverAttack2
   * ReaverFight
-  * ReaverHold
+  * ReaverHoldPosition
   * TrainFighter
   * StrafeUnit1
   * StrafeUnit2
-  * RechargeShields1
-  * Rechargeshields2
+  * RechargeShieldsUnit
+  * RechargeShieldsBattery
   * ShieldBattery
   * Return
   * DroneLand
   * BuildingLand
-  * BuildingLiftoff
-  * DroneLiftoff
-  * Liftoff
+  * BuildingLiftOff
+  * DroneLiftOff
+  * LiftingOff
   * ResearchTech
   * Upgrade
   * Larva
@@ -93,13 +93,13 @@
   * Harvest3
   * Harvest4
   * ReturnMinerals - Unit is returning minerals to center
-  * Harvest5
+  * Interrupted
   * EnterTransport
-  * Pickup1
-  * Pickup2
-  * Pickup3
+  * PickupIdle
+  * PickupTransport
+  * PickupBunker
   * Pickup4
-  * Powerup2
+  * PowerupIdle
   * SiegeMode
   * TankMode
   * WatchTarget
@@ -109,8 +109,8 @@
   * GuardianAspect
   * WarpingArchon
   * CompletingArchonsummon
-  * HoldPosition2
-  * HoldPosition3
+  * HoldPosition
+  * QueenHoldPosition
   * Cloak
   * Decloak
   * Unload
@@ -138,7 +138,7 @@
   * Rightclickaction
   * SapUnit
   * SapLocation
-  * HoldPosition4
+  * SuicideHoldPosition
   * Teleport
   * TeleporttoLocation
   * PlaceScanner
