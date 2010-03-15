@@ -1,7 +1,36 @@
-== Incomplete list of changes since BWAPI Beta 2.6.1 (r1914) ==
+== Changes from BWAPI Beta 2.6.1 (r1914) to r2140 ==
 
   * Added Unit::isAttacking
   * Added AIModule::onSaveGame
+
+The following [Orders Orders] have been renamed:
+  * Nothing1 -> UnusedNothing
+  * Powerup1 -> UnusedPowerup
+  * Nothing2 -> Nothing
+  * RallyPoint1 -> RallyPointUnit
+  * RallyPoint2 -> RallyPointTile
+  * Morph1 -> ZergUnitMorph
+  * Morph2 -> ZergBuildingMorph
+  * BuildSelf1 -> TerranBuildSelf
+  * Build5 -> BuildNydusExit
+  * Enternyduscanal -> EnterNydusCanal
+  * BuildSelf2 -> ProtossBuildSelf
+  * CarrierIgnore1 -> ReaverCarrierMove
+  * HoldPosition1 -> CarrierHoldPosition
+  * ReaverHold -> ReaverHoldPosition
+  * RechargeShields1 -> RechargeShieldsUnit
+  * Rechargeshields2 -> RechargeShieldsBattery
+  * BuildingLiftoff -> BuildingLiftOff
+  * DroneLiftoff -> DroneLiftOff
+  * Liftoff -> LiftingOff
+  * Harvest5 -> Interrupted
+  * Pickup1 -> PickupIdle
+  * Pickup2 -> PickupTransport
+  * Pickup3 -> PickupBunker
+  * Powerup2 -> PowerupIdle
+  * HoldPosition2 -> HoldPosition
+  * HoldPosition3 -> QueenHoldPosition
+  * HoldPosition4 -> SuicideHoldPosition
 
 Bug Fixes:
 
@@ -11,11 +40,6 @@ Bug Fixes:
   * Fixed a bug with Unit::isIdle
   * Fixed a bug with Unit::isStartingAttack
   * Fixed a bug with Unit::isTraining
-
-Probably need to fix before next release:
-
-  * BWAPI::Key has changed?
-  * Game::getMouseState not currently in interface
 
 == Changes from BWAPI Beta 2.6 (r1910) to BWAPI Beta 2.6.1 (r1914) ==
 
