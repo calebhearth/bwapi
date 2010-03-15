@@ -39,7 +39,7 @@ Bug Fixes:
   * Fixed a bug with [Unit#isConstructing Unit::isConstructing]
   * Fixed a bug with [Unit#isIdle Unit::isIdle]
   * Fixed a bug with [Unit#isStartingAttack Unit::isStartingAttack]
-  * Fixed a bug where [Unit#isTraining Unit::isTraining] would be true for warping hatcheries, lairs, and hives.
+  * Fixed a bug where [Unit#isTraining Unit::isTraining] would return true for morphing hatcheries, lairs, and hives.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not work for Archon_Warp or Dark_Archon_Meld.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would return true for refineries over geysers that already have refineries on them.
 
