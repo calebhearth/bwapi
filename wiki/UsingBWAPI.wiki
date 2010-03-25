@@ -24,6 +24,8 @@ To battle 2 custom AIs against each other, or to play against your own custom AI
 
 Once you understand how the Example AI Module works, feel free to download the [http://code.google.com/p/bwsal/downloads/list Basic AI Module] from the [http://code.google.com/p/bwsal/ BWSAL project], which aims to develop several add-ons for BWAPI that will be useful for a wide variety of AIs.
 
+You probably also want to *debug* your AI Module with more than just simple _printf()_ calls. Using _Debug -> Attach to Process_ from VC++ this is possible. Read more about [Debugging] to know about all the steps needed.
+
 =BWAPIv3.x=
 ==Control==
 BWAPI let's you manipulate Broodwar in the same technical way as a human player would. But like most games, Broodwar computes the game state frame by frame. Without BWAPI, Broodwar runs through these steps:
