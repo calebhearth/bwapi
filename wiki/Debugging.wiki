@@ -1,0 +1,20 @@
+#summary Explains how to debug a your AIModule in the VC++ debugger
+
+= Debugging your AIModule =
+
+Debugging an AI Module for BWAPI is not as easy as debugging a regular VC++ application. When you compile an AI Module a DLL file is created which BWAPI will load into the running StarCraft process once a game is started.
+
+For your AI Module to be debuggable you have to compile it in _Debug_ mode. You also have to make sure that your AI Module uses the *Multithreaded (Release) DLL (/MD)* runtime instead of the Multithreaded Debug DLL (/MDd). If you don't errors will happen and at best BWAPI will complain about not beeing able to load your module. Also make sure _[_DEBUG]_ is _not_ listed in your preprocessor definitions because that might give you link errors with the release runtime DLL.
+
+Now to actually debug your DLL you have to use _Debug -> Attach to Process_ from the VC++ main menu and find the already launched StarCraft.exe in the list of running processes. Only after you successfully attached to the running StarCraft.exe the VC++ debugger will be able to halt the game at breakpoints and point you at the location where exceptions are thrown, invalid memory accesses and crashed are produced.
+
+== Notes ==
+
+  * When using BWAPI 2.6.1 Beta Package _(with .sln derived from ExampleAIModule)_
+    * Compile your AI Module in _Debug_ and use *Multithreaded (Release) DLL runtime (/MD)*
+    * Make sure _[_DEBUG]_ is _not_ in your preprocessor definitions in case you get linker errors.
+    * _Debug -> Attach to Process_ and find StarCraft.exe
+
+  * When using BWAPI from svn
+    * Basically the same applies here. _The VC++ runtime used by BWAPI and your AIModule should be the same if you want to avoid running into problems._
+    * If you compile BWAPI in debug _(e.g. using the cmake build system)_ you can also use the Multithreaded Debug DLL in your AI Module (you probably have to).
