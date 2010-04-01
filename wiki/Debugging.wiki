@@ -1,4 +1,4 @@
-#summary Explains how to debug a your AIModule in the VC++ debugger
+#summary Explains how to debug your AIModule with the VC++ debugger
 
 = Debugging your AIModule =
 
