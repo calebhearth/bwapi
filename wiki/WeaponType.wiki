@@ -51,12 +51,12 @@ std::string getName() const;
 Returns the name of the weapon.
 
 === getTech ===
-const [TechType]{{{*}}} getTech() const;
+[TechType] getTech() const;
 
 Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if no tech type is required.
 
 === whatUses ===
-const [UnitType]{{{*}}} whatUses() const;
+[UnitType] whatUses() const;
 
 Returns the unit that can use this weapon.
 
@@ -81,17 +81,17 @@ Returns the amount that the damage increases per upgrade
 See also: WeaponType::[#upgradeType upgradeType].
 
 === upgradeType ===
-const [UpgradeType]{{{*}}} upgradeType() const;
+[UpgradeType] upgradeType() const;
 
 Returns the upgrade type that can be upgraded to increase the attack damage.
 
 === damageType ===
-const [DamageType]{{{*}}} damageType() const;
+[DamageType] damageType() const;
 
 Returns the type of damage that this weapon uses (i.e. concussive, normal, explosive, etc).
 
 === explosionType ===
-const [ExplosionType]{{{*}}} explosionType() const;
+[ExplosionType] explosionType() const;
 
 Returns the type of explosion that this weapon uses.
 
