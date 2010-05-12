@@ -746,8 +746,11 @@ See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgr
 
 === isVisible ===
 bool isVisible() const;
+bool isVisible(Player* player) const;
 
 Returns true if the unit is visible. If the CompleteMapInformation cheat flag is enabled, existing units hidden by the fog of war will be accessible, but isVisible will still return false.
+
+If a player is specified, this will return true if the unit is visible to the given player. This version of the function is only available in replays or if the CompleteMapInformation cheat flag is enabled.
 
 See also: [Unit]::[Unit#exists exists].
 
