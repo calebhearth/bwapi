@@ -1,7 +1,17 @@
-== Changes from BWAPI Beta 2.6.1 (r1914) to r2140 ==
+== Changes from BWAPI Beta 2.6.1 (r1914) to r2183 ==
 
-  * Added Unit::isAttacking
-  * Added AIModule::onSaveGame
+New
+  * Added enums [EventType]
+  * Added enum [UnitCommandType]
+  * Added class [Event]
+  * Added class [UnitCommand]
+
+The following functions have been added:
+  * Added [AIModule#onSaveGame AIModule::onSaveGame]
+  * Added [Game#getEvents Game::getEvents] - returns the set of events for the frame
+  * Added [Game#isInGame Game::isInGame] - returns true if Broodwar is currently in a match
+  * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking
+  * Added [Unit#issueCommand Unit::issueCommand] - general purpose function to issue any valid unit command.
 
 The following [Orders Orders] have been renamed:
   * Nothing1 -> UnusedNothing
@@ -33,13 +43,13 @@ The following [Orders Orders] have been renamed:
   * HoldPosition4 -> SuicideHoldPosition
 
 Bug Fixes:
-
   * Fixed a bug where [Unit#getGroundWeaponCooldown Unit::getGroundWeaponCooldown] would always return 0 for Siege Tanks and Goliaths.
   * Fixed a bug where [Unit#getAirWeaponCooldown Unit::getAirWeaponCooldown] would always return 0 for Goliaths.
-  * Fixed a bug with [Unit#isConstructing Unit::isConstructing]
-  * Fixed a bug with [Unit#isIdle Unit::isIdle]
-  * Fixed a bug with [Unit#isStartingAttack Unit::isStartingAttack]
-  * Fixed a bug where [Unit#isTraining Unit::isTraining] would return true for morphing hatcheries, lairs, and hives.
+  * Fixed a bug with [Unit#isConstructing Unit::isConstructing] - now also returns true when the unit's order is TerranBuildSelf, ProtossBuildSelf, ZergBuildSelf, BuildNydusExit, and BuildAddon.
+  * Fixed a bug with [Unit#isIdle Unit::isIdle] - now also returns true when the unit's order is Reaver, Neutral, TowerGuard, and Burrowed.
+  * Fixed a bug with [Unit#isMorphing Unit::isMorphing] - now also returns true when the unit's order is ZergBirth.
+  * Fixed a bug with [Unit#isStartingAttack Unit::isStartingAttack] - now based on animation data (does this still work for vultures?)
+  * Fixed a bug where [Unit#isTraining Unit::isTraining] - would return true for morphing hatcheries, lairs, and hives.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not work for Archon_Warp or Dark_Archon_Meld.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would return true for refineries over geysers that already have refineries on them.
 
