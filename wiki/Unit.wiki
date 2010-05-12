@@ -491,7 +491,7 @@ Returns true if the unit is currently accelerating.
 === isAttacking ===
 bool isAttacking() const;
 
-Returns true if th eunit is currently attacking.
+Returns true if the unit is currently attacking.
 
 === isBeingConstructed ===
 bool isBeingConstructed() const;
