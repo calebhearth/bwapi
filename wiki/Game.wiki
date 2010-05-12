@@ -13,6 +13,8 @@ Methods:
   * [#getGeysers getGeysers]
   * [#getNeutralUnits getNeutralUnits]
 
+  * [#getEvents getEvents]
+
   * [#getStaticMinerals getStaticMinerals]
   * [#getStaticGeysers getStaticGeysers]
   * [#getStaticNeutralUnits getStaticNeutralUnits]
@@ -55,6 +57,7 @@ Methods:
   * [#printf printf]
   * [#sendText sendText]
   * [#changeRace changeRace]
+  * [#isInGame isInGame]
   * [#isMultiplayer isMultiplayer]
   * [#isPaused isPaused]
   * [#isReplay isReplay]
@@ -120,6 +123,11 @@ Returns the set of all vespene geysers (including mined out and other inaccessib
 std::set< [Unit]{{{*}}} >& getStaticNeutralUnits();
 
 Returns the set of all neutral units (including mined out and other inaccessible ones).
+
+=== getEvents ===
+std::list< Event >& getEvents();
+
+Returns the list of events for the current frame. Events correspond to AIModule callbacks, so for example rather than implementing [AIModule#onUnitCreate AIModule::onUnitCreate] you could check the list of events every frame and look for [Event#UnitCreate Event::UnitCreate].
 
 === getLatency ===
 Latency::Enum getLatency();
@@ -318,6 +326,11 @@ Sends text to other players - as if it were entered in chat. In single player ga
 void changeRace([Race] race);
 
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
+
+=== isInGame ===
+bool isInGame();
+
+Returns true if Broodwar is in a match (single player match, replay, or multiplayer match). Returns false if the Broodwar is in a menu screen.
 
 === isMultiplayer ===
 bool isMultiplayer();
