@@ -32,29 +32,29 @@ std::string getName() const;
 Returns the name of the race. For example Races::Terran.getName() will return a std::string object containing "Terran".
 
 === getWorker ===
-[UnitType]{{{*}}} getWorker() const;
+[UnitType] getWorker() const;
 
-Returns the worker unit type for the given race. For example Races::Protoss.getWorker() will return a pointer to UnitTypes::Protoss_Probe.
+Returns the worker unit type for the given race. For example Races::Protoss.getWorker() will return UnitTypes::Protoss_Probe.
 
 === getCenter ===
-[UnitType]{{{*}}} getCenter() const;
+[UnitType] getCenter() const;
 
-Returns the center unit type for the given race. For example Races::Terran.getCenter() will return a pointer to UnitTypes::Terran_Command_Center. While there are three center types for Zerg (Hatchery, Lair, and Hive), Races::Zerg.getCenter() will only return a pointer to UnitTypes::Zerg_Hatchery, since it is the unit type needed to make a new center.
+Returns the center unit type for the given race. For example Races::Terran.getCenter() will return UnitTypes::Terran_Command_Center. While there are three center types for Zerg (Hatchery, Lair, and Hive), Races::Zerg.getCenter() will only return UnitTypes::Zerg_Hatchery, since it is the unit type needed to make a new center.
 
 === getRefinery ===
-[UnitType]{{{*}}} getRefinery() const;
+[UnitType] getRefinery() const;
 
-Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor.
+Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return UnitTypes::Zerg_Extractor.
 
 === getTransport ===
-[UnitType]{{{*}}} getTransport() const;
+[UnitType] getTransport() const;
 
-Returns the transport unit type for the given race. For example: Races::Protoss.getTransport() will return a pointer to UnitTypes::Protoss_Shuttle.
+Returns the transport unit type for the given race. For example: Races::Protoss.getTransport() will return UnitTypes::Protoss_Shuttle.
 
 === getSupplyProvider ===
-[UnitType]{{{*}}} getSupplyProvider() const;
+[UnitType] getSupplyProvider() const;
 
-Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return a pointer to UnitTypes::Terran_Supply_Depot.
+Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return UnitTypes::Terran_Supply_Depot.
 
 === getRace ===
 [Race] getRace(std::string &name);
