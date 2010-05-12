@@ -169,7 +169,7 @@ Returns the mineral price of the unit. Example: UnitTypes::Siege_Tank_Tank_Mode.
 === gasPrice ===
 int gasPrice() const;
 
-UnitTypes::Siege_Tank_Tank_Mode.gasPrice() returns 100.
+Returns the gas price of the unit. Example: UnitTypes::Siege_Tank_Tank_Mode.gasPrice() returns 100.
 
 === buildTime ===
 int buildTime() const;
