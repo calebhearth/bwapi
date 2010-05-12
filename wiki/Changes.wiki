@@ -15,6 +15,7 @@ The following functions have been added:
   * Added [Game#getEvents Game::getEvents] - returns the set of events for the frame
   * Added [Game#isInGame Game::isInGame] - returns true if Broodwar is currently in a match
   * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking
+  * Added [Unit#isVisible Unit::isVisible(Player* player)] - returns true if the given player can see the given unit. Only available in replays or if the complete map information flag has been enabled.
   * Added [Unit#issueCommand Unit::issueCommand] - general purpose function to issue any valid unit command.
 
 All member functions of Race, TechType, UnitType, UpgradeType, WeaponType now return other objects by value instead of by pointer. For example [TechType#whatResearches TechType::whatResearches] returns a UnitType object rather than a const pointer to a UnitType object.
