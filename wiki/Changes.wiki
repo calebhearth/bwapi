@@ -1,8 +1,12 @@
 == Changes from BWAPI Beta 2.6.1 (r1914) to r2183 ==
 
-New
+AIs can now connect from another process using BWAPIClient.lib.
+
+New enums:
   * Added enums [EventType]
   * Added enum [UnitCommandType]
+
+New classes:
   * Added class [Event]
   * Added class [UnitCommand]
 
