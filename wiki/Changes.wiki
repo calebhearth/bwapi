@@ -3,7 +3,7 @@
 AIs can now connect from another process using BWAPIClient.lib.
 
 New enums:
-  * Added enums [EventType]
+  * Added enum [EventType]
   * Added enum [UnitCommandType]
 
 New classes:
