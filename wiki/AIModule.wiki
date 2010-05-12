@@ -16,6 +16,7 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onUnitShow onUnitShow]
   * [#onUnitHide onUnitHide]
   * [#onUnitRenegade onUnitRenegade]
+  * [#onSaveGame onSaveGame]
 
 Notes:
 
@@ -80,3 +81,8 @@ BWAPI calls this right before a unit becomes invisible, so if you want your non-
 void onUnitRenegade([Unit]{{{*}}} unit);
 
 BWAPI calls this when an accessible unit changes ownership.
+
+=== onSaveGame ===
+void onSaveGame(std::string gameName);
+
+BWAPI calls this when the user saves the match.
