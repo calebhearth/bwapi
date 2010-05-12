@@ -80,6 +80,7 @@ Methods:
 
   * [#exists exists]
   * [#isAccelerating isAccelerating]
+  * [#isAttacking isAttacking]
   * [#isBeingConstructed isBeingConstructed]
   * [#isBeingGathered isBeingGathered]
   * [#isBeingHealed isBeingHealed]
@@ -121,7 +122,9 @@ Methods:
   * [#isUpgrading isUpgrading]
   * [#isVisible isVisible]
 
-The following orders can be issued to units:
+  * [#issueCommand issueCommand]
+
+The following commands can be issued to units:
 
   * [#attackMove attackMove]
   * [#attackUnit attackUnit]
@@ -485,6 +488,11 @@ bool isAccelerating() const;
 
 Returns true if the unit is currently accelerating.
 
+=== isAttacking ===
+bool isAttacking() const;
+
+Returns true if th eunit is currently attacking.
+
 === isBeingConstructed ===
 bool isBeingConstructed() const;
 
@@ -742,6 +750,13 @@ bool isVisible() const;
 Returns true if the unit is visible. If the CompleteMapInformation cheat flag is enabled, existing units hidden by the fog of war will be accessible, but isVisible will still return false.
 
 See also: [Unit]::[Unit#exists exists].
+
+=== issueCommand ===
+bool issueCommand([UnitCommand] command);
+
+Calls the corresponding unit member function with the data provided in the [UnitCommand] object. For example Unit::issueCommand(UnitCommand(UnitCommandType::AttackPosition,NULL,50,60,0))
+
+will call Unit::attackMove(Position(50,60)).
 
 === attackMove ===
 bool attackMove([Misc#Position Position] target);
