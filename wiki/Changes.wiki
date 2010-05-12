@@ -17,7 +17,7 @@ The following functions have been added:
   * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking
   * Added [Unit#issueCommand Unit::issueCommand] - general purpose function to issue any valid unit command.
 
-All member functions of UnitType, TechType, UpgradeType, WeaponType, UnitSizeType, ExplosionType, DamageType return other objects by value instead of by pointer. For example [TechType#whatResearches TechType::whatResearches] returns a UnitType object rather than a const pointer to a UnitType object.
+All member functions of Race, TechType, UnitType, UpgradeType, WeaponType now return other objects by value instead of by pointer. For example [TechType#whatResearches TechType::whatResearches] returns a UnitType object rather than a const pointer to a UnitType object.
 
 The following [Orders Orders] have been renamed:
   * Nothing1 -> UnusedNothing
