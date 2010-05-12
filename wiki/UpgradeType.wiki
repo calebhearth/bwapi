@@ -65,12 +65,12 @@ int maxRepeats();
 Returns the maximum number of times the upgrade can be researched.
 
 === whatUpgrades ===
-[UnitType]{{{*}}} whatUpgrades();
+[UnitType] whatUpgrades();
 
 Returns the type of unit that researches the upgrade.
 
 === whatUses ===
-const std::set<const [UnitType]{{{*}}}>& whatUses();
+const std::set<[UnitType]>& whatUses();
 
 Returns the set of units that are affected by this upgrade.
 
