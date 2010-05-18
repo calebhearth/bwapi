@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.6.1 (r1914) to r2205 ==
+== Changes from BWAPI Beta 2.6.1 (r1914) to r2212 ==
 
 AIs can now connect from another process using BWAPIClient.lib.
 
@@ -11,7 +11,7 @@ New classes:
   * Added enum [UnitCommandType]
 
 The following functions have been added:
-  * Added [AIModule#onSaveGame AIModule::onSaveGame]
+  * Added [AIModule#onSaveGame AIModule::onSaveGame] - called when the user saves the single player match. Currently is triggered twice.
   * Added [Game#getEvents Game::getEvents] - returns the set of events for the frame
   * Added [Game#isInGame Game::isInGame] - returns true if Broodwar is currently in a match
   * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking. Does not yet work for siege tanks or goliaths.
@@ -59,6 +59,8 @@ Bug Fixes:
   * Fixed a bug where [Unit#useTech Unit::useTech] would not work for Archon_Warp or Dark_Archon_Meld.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would return true for refineries over geysers that already have refineries on them.
   * Fixed a bug where [Game#setScreenPosition Game::setScreenPosition] would crash the game if given a position with negative coordinate values.
+  * Fixed a bug where [Game#isBuildable Game::isBuildable] would return true for the inaccessible row of tiles at the bottom of the map.
+  * Fixed a bug where [Game#isWalkable Game::isWalkable] would return true for the four inaccessible rows of tiles at the bottom of the map.
 
 == Changes from BWAPI Beta 2.6 (r1910) to BWAPI Beta 2.6.1 (r1914) ==
 
