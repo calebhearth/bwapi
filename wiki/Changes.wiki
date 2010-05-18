@@ -14,7 +14,7 @@ The following functions have been added:
   * Added [AIModule#onSaveGame AIModule::onSaveGame]
   * Added [Game#getEvents Game::getEvents] - returns the set of events for the frame
   * Added [Game#isInGame Game::isInGame] - returns true if Broodwar is currently in a match
-  * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking
+  * Added [Unit#isAttacking Unit::isAttacking] - returns true if the unit is attacking. Does not yet work for siege tanks or goliaths.
   * Added [Unit#isVisible Unit::isVisible(Player* player)] - returns true if the given player can see the given unit. Only available in replays or if the complete map information flag has been enabled.
   * Added [Unit#issueCommand Unit::issueCommand] - general purpose function to issue any valid unit command.
 
