@@ -4,11 +4,11 @@ AIs can now connect from another process using BWAPIClient.lib.
 
 New enums:
   * Added enum [EventType]
-  * Added enum [UnitCommandType]
 
 New classes:
   * Added class [Event]
   * Added class [UnitCommand]
+  * Added enum [UnitCommandType]
 
 The following functions have been added:
   * Added [AIModule#onSaveGame AIModule::onSaveGame]
@@ -55,10 +55,10 @@ Bug Fixes:
   * Fixed a bug with [Unit#isConstructing Unit::isConstructing] - now also returns true when the unit's order is TerranBuildSelf, ProtossBuildSelf, ZergBuildSelf, BuildNydusExit, and BuildAddon.
   * Fixed a bug with [Unit#isIdle Unit::isIdle] - now also returns true when the unit's order is Reaver, Neutral, TowerGuard, and Burrowed.
   * Fixed a bug with [Unit#isMorphing Unit::isMorphing] - now also returns true when the unit's order is ZergBirth.
-  * Fixed a bug with [Unit#isStartingAttack Unit::isStartingAttack] - now based on animation data (does this still work for vultures?)
   * Fixed a bug where [Unit#isTraining Unit::isTraining] - would return true for morphing hatcheries, lairs, and hives.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not work for Archon_Warp or Dark_Archon_Meld.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would return true for refineries over geysers that already have refineries on them.
+  * Fixed a bug where [Game#setScreenPosition Game::setScreenPosition] would crash the game if given a position with negative coordinate values.
 
 == Changes from BWAPI Beta 2.6 (r1910) to BWAPI Beta 2.6.1 (r1914) ==
 
