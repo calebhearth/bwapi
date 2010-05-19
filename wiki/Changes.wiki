@@ -61,6 +61,8 @@ Bug Fixes:
   * Fixed a bug where [Game#setScreenPosition Game::setScreenPosition] would crash the game if given a position with negative coordinate values.
   * Fixed a bug where [Game#isBuildable Game::isBuildable] would return true for the inaccessible row of tiles at the bottom of the map.
   * Fixed a bug where [Game#isWalkable Game::isWalkable] would return true for the four inaccessible rows of tiles at the bottom of the map.
+  * Fixed a bug where [UnitType#maxGroundHits UnitType::maxGroundHits] would return 0 for Terran Siege Tank Siege Mode, Terran Siege Tank Tank Mode, and Terran Goliath.
+  * Fixed a bug where [UnitType#maxAirHits UnitType::maxAirHits] would return 0 for Terran Goliath.
 
 == Changes from BWAPI Beta 2.6 (r1910) to BWAPI Beta 2.6.1 (r1914) ==
 
