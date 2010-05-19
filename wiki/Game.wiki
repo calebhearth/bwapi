@@ -14,6 +14,7 @@ Methods:
   * [#getNeutralUnits getNeutralUnits]
 
   * [#getEvents getEvents]
+  * [#indexToUnit indexToUnit]
 
   * [#getStaticMinerals getStaticMinerals]
   * [#getStaticGeysers getStaticGeysers]
@@ -128,6 +129,11 @@ Returns the set of all neutral units (including mined out and other inaccessible
 std::list< Event >& getEvents();
 
 Returns the list of events for the current frame. Events correspond to AIModule callbacks, so for example rather than implementing [AIModule#onUnitCreate AIModule::onUnitCreate] you could check the list of events every frame and look for [Event#UnitCreate Event::UnitCreate].
+
+=== indexToUnit ===
+Unit{{{*}}} indexToUnit(int unitIndex);
+
+Given an index value between 0 and 1699, this function will return the Unit{{{*}}} currently associated with the index value in Starcraft's internal Unit table. Only available when the Complete Map Information flag is enabled.
 
 === getLatency ===
 Latency::Enum getLatency();
