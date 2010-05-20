@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.6.1 (r1914) to r2212 ==
+== Changes from BWAPI Beta 2.6.1 (r1914) to BWAPI Beta 2.7 (r2224) ==
 
 AIs can now connect from another process using BWAPIClient.lib.
 
@@ -8,7 +8,7 @@ New enums:
 New classes:
   * Added class [Event]
   * Added class [UnitCommand]
-  * Added enum [UnitCommandType]
+  * Added class [UnitCommandType]
 
 The following functions have been added:
   * Added [AIModule#onSaveGame AIModule::onSaveGame] - called when the user saves the single player match. Currently is triggered twice.
