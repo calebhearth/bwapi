@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.6.1 (r1914) to BWAPI Beta 2.7 (r2224) ==
+== Changes from BWAPI Beta 2.6.1 (r1914) to BWAPI Beta 2.7.1 (r2224) ==
 
 AIs can now connect from another process using BWAPIClient.lib.
 
