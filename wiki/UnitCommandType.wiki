@@ -1,0 +1,55 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitCommandType.h# BWAPI/UnitCommandType.h]
+
+Specifies the type of UnitCommand. Used when constructing UnitCommand objects, which are then passed to [Unit#issueCommand Unit::issueCommand] which uses this type to determine which Unit member function to call.
+
+Methods:
+
+  * getID - returns a ID value for this UnitCommandType
+  * getName - returns an std::string for this UnitCommandType
+
+=== UnitCommandTypes ===
+  * Attack_Position
+  * Attack_Unit
+  * Right_Click_Position
+  * Right_Click_Unit
+  * Train
+  * Build
+  * Build_Addon
+  * Research
+  * Upgrade
+  * Stop
+  * Hold_Position
+  * Patrol
+  * Follow
+  * Set_Rally_Position
+  * Set_Rally_Unit
+  * Repair
+  * Return_Cargo
+  * Morph
+  * Burrow
+  * Unburrow
+  * Siege
+  * Unsiege
+  * Cloak
+  * Decloak
+  * Lift
+  * Land
+  * Load
+  * Unload
+  * Unload_All
+  * Unload_All_Position
+  * Cancel_Construction
+  * Halt_Construction
+  * Cancel_Morph
+  * Cancel_Train
+  * Cancel_Train_Slot
+  * Cancel_Addon
+  * Cancel_Research
+  * Cancel_Upgrade
+  * Use_Tech
+  * Use_Tech_Position
+  * Use_Tech_Unit
+  * None
+  * Unknown
