@@ -17,6 +17,8 @@
   * [Race]
   * [TechType]
   * [Unit]
+  * [UnitCommand]
+  * [UnitCommandType]
   * [UnitSizeType]
   * [UnitType]
   * [UpgradeType]
