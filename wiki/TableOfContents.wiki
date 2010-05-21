@@ -5,6 +5,7 @@
   * [Color]
   * [DamageType]
   * [Error Error Codes]
+  * [Event]
   * [ExplosionType]
   * [Force]
   * [Game]
