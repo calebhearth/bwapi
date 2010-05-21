@@ -758,7 +758,7 @@ See also: [Unit]::[Unit#exists exists].
 === issueCommand ===
 bool issueCommand([UnitCommand] command);
 
-Calls the corresponding unit member function with the data provided in the [UnitCommand] object. For example Unit::issueCommand(UnitCommand(UnitCommandType::AttackPosition,NULL,50,60,0))
+Calls the corresponding unit member function with the data provided in the [UnitCommand] object. For example Unit::issueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0))
 
 will call Unit::attackMove(Position(50,60)).
 
