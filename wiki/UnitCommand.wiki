@@ -1,0 +1,13 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitCommand.h# BWAPI/UnitCommand.h]
+
+UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While unit's can be issued commands the normal way via the [Unit] methods, in some cases you may want to have a function that can process any unit command, such as when you're writing a wrapper for BWAPI.
+
+This class has the following data members:
+
+  * UnitCommandType type - the type of the command
+  * Unit{{{*}}} target - can be filled with the target if the UnitCommandType requires a target unit (such as UnitCommandTypes::Attack_Unit).
+  * int x - the x coordinate of a position or tile position (depending on the UnitCommandType)
+  * int y - the y coordinate of a position or tile position (depending on the UnitCommandType)
+  * int extra - used for various things depending on the UnitCommandType, such as a TechType value, UpgradeType value, UnitType value, or slot index number.
