@@ -10,46 +10,46 @@ Methods:
   * getName - returns an std::string for this UnitCommandType
 
 === UnitCommandTypes ===
-  * Attack_Position
-  * Attack_Unit
-  * Right_Click_Position
-  * Right_Click_Unit
-  * Train
-  * Build
-  * Build_Addon
-  * Research
-  * Upgrade
-  * Stop
-  * Hold_Position
-  * Patrol
-  * Follow
-  * Set_Rally_Position
-  * Set_Rally_Unit
-  * Repair
-  * Return_Cargo
-  * Morph
-  * Burrow
-  * Unburrow
-  * Siege
-  * Unsiege
-  * Cloak
-  * Decloak
-  * Lift
-  * Land
-  * Load
-  * Unload
-  * Unload_All
-  * Unload_All_Position
-  * Cancel_Construction
-  * Halt_Construction
-  * Cancel_Morph
-  * Cancel_Train
-  * Cancel_Train_Slot
-  * Cancel_Addon
-  * Cancel_Research
-  * Cancel_Upgrade
-  * Use_Tech
-  * Use_Tech_Position
-  * Use_Tech_Unit
+  * Attack_Position - corresponds to [Unit#attackMove Unit::attackMove]
+  * Attack_Unit - corresponds to [Unit#attackUnit Unit::attackUnit]
+  * Right_Click_Position - corresponds to [Unit#rightClick Unit::rightClick]
+  * Right_Click_Unit - corresponds to [Unit#rightClick Unit::rightClick]
+  * Train - corresponds to [Unit#train Unit::train]
+  * Build - corresponds to [Unit#build Unit::build]
+  * Build_Addon - corresponds to [Unit#buildAddon Unit::buildAddon]
+  * Research - corresponds to [Unit#research Unit::research]
+  * Upgrade - corresponds to [Unit#upgrade Unit::upgrade]
+  * Stop - corresponds to [Unit#stop Unit::stop]
+  * Hold_Position - corresponds to [Unit#holdPosition Unit::holdPosition]
+  * Patrol - corresponds to [Unit#patrol Unit::patrol]
+  * Follow - corresponds to [Unit#follow Unit::follow]
+  * Set_Rally_Position - corresponds to [Unit#setRallyPosition Unit::setRallyPosition]
+  * Set_Rally_Unit - corresponds to [Unit#setRallyUnit Unit::setRallyUnit]
+  * Repair - corresponds to [Unit#repair Unit::repair]
+  * Return_Cargo - corresponds to [Unit#returnCargo Unit::returnCargo]
+  * Morph - corresponds to [Unit#morph Unit::morph]
+  * Burrow - corresponds to [Unit#burrow Unit::burrow]
+  * Unburrow - corresponds to [Unit#unburrow Unit::unburrow]
+  * Siege - corresponds to [Unit#siege Unit::siege]
+  * Unsiege - corresponds to [Unit#unsiege Unit::unsiege]
+  * Cloak - corresponds to [Unit#cloak Unit::cloak]
+  * Decloak - corresponds to [Unit#decloak Unit::decloak]
+  * Lift - corresponds to [Unit#lift Unit::lift]
+  * Land - corresponds to [Unit#land Unit::land]
+  * Load - corresponds to [Unit#load Unit::load]
+  * Unload - corresponds to [Unit#unload Unit::unload]
+  * Unload_All - corresponds to [Unit#unloadAll Unit::unloadAll]
+  * Unload_All_Position - corresponds to [Unit#unloadAll Unit::unloadAll]
+  * Cancel_Construction - corresponds to [Unit#cancelConstruction Unit::cancelConstruction]
+  * Halt_Construction - corresponds to [Unit#haltConstruction Unit::haltConstruction]
+  * Cancel_Morph - corresponds to [Unit#cancelMorph Unit::cancelMorph]
+  * Cancel_Train - corresponds to [Unit#cancelTrain Unit::cancelTrain]
+  * Cancel_Train_Slot - corresponds to [Unit#cancelTrain Unit::cancelTrain]
+  * Cancel_Addon - corresponds to [Unit#cancelAddon Unit::cancelAddon]
+  * Cancel_Research - corresponds to [Unit#cancelResearch Unit::cancelResearch]
+  * Cancel_Upgrade - corresponds to [Unit#cancelUpgrade Unit::cancelUpgrade]
+  * Use_Tech - corresponds to [Unit#useTech Unit::useTech]
+  * Use_Tech_Position - corresponds to [Unit#useTech Unit::useTech]
+  * Use_Tech_Unit - corresponds to [Unit#useTech Unit::useTech]
   * None
   * Unknown
