@@ -1,0 +1,33 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Event.h# BWAPI/Event.h]
+
+Events correspond to [AIModule] callbacks. Depending on the type of event, the following data members may be filled with information:
+
+  * EventType::Enum type;
+  * Position position;
+  * std::string text;
+  * Unit{{{*}}} unit;
+  * Player{{{*}}} player;
+  * bool isWinner;
+
+=== Events ===
+
+The EventType Enum can have the following values:
+
+  * Disconnect
+  * MatchStart
+  * MatchEnd
+  * MatchFrame
+  * MenuFrame
+  * SendText
+  * PlayerLeft
+  * NukeDetect
+  * UnitCreate
+  * UnitDestroy
+  * UnitMorph
+  * UnitShow
+  * UnitHide
+  * UnitRenegade
+  * SaveGame
+  * None
