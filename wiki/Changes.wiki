@@ -1,3 +1,7 @@
+== Changes from BWAPI Beta 2.7.1 (r2224) to BWAPI Beta 2.7.2 (r2239) ==
+
+Fixed a bug in GameImpl::spriteToUnit which caused the game to crash every once in a while.
+
 == Changes from BWAPI Beta 2.6.1 (r1914) to BWAPI Beta 2.7.1 (r2224) ==
 
 AIs can now connect from another process using BWAPIClient.lib.
