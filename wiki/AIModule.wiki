@@ -8,7 +8,7 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onEnd onEnd]
   * [#onFrame onFrame]
   * [#onSendText onSendText]
-  * [#onReceiveTextonReceiveText]
+  * [#onReceiveText onReceiveText]
   * [#onPlayerLeft onPlayerLeft]
   * [#onNukeDetect onNukeDetect]
   * [#onUnitCreate onUnitCreate]
