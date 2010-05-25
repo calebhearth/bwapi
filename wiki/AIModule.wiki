@@ -8,6 +8,7 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onEnd onEnd]
   * [#onFrame onFrame]
   * [#onSendText onSendText]
+  * [#onReceiveTextonReceiveText]
   * [#onPlayerLeft onPlayerLeft]
   * [#onNukeDetect onNukeDetect]
   * [#onUnitCreate onUnitCreate]
@@ -41,6 +42,11 @@ BWAPI calls this on every logical frame in the game.
 bool onSendText(std::string text);
 
 if [Misc#Flag Flag]::UserInput is enabled, BWAPI will call this each time a user enters a message into the chat.
+
+=== onReceiveText ===
+bool onReceiveText([Player]{{{*}}} player, std::string text);
+
+BWAPI calls this each time it receives a message from another player in the chat.
 
 === onPlayerLeft ===
 bool onPlayerLeft([Player]{{{*}}} player);
