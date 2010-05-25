@@ -1,3 +1,7 @@
+== Changes since BWAPI Beta 2.7.2 (r2239) ==
+
+  * Added [AIModule#onReceiveText AIModule::onReceiveText].
+
 == Changes from BWAPI Beta 2.7.1 (r2224) to BWAPI Beta 2.7.2 (r2239) ==
 
 Fixed a bug in GameImpl::spriteToUnit which caused the game to crash every once in a while.
