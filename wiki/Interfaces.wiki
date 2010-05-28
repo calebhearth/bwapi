@@ -1,5 +1,4 @@
 #summary Explanation of the different interfaces in BWAPI
-#labels Featured
 
 This is an introduction to the BWAPI project's interfaces for the upcoming release v3.0. For information on how to use the interfaces, see [UsingBWAPI].
 
