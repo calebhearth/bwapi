@@ -28,7 +28,7 @@ Returns the name of the player type. For example PlayerTypes::Computer.getName()
 === getPlayerType ===
 [PlayerType] getPlayerType(std::string &name);
 
-Given the name of a player type, this function will return the playertype. For example: PlayerTypes::getPlayerType("Player") will return PlayerTypes::Player.
+Given the name of a player type, this function will return the PlayerType. For example: PlayerTypes::getPlayerType("Player") will return PlayerTypes::Player.
 
 === allPlayerTypes ===
 std::set<[PlayerType]>& allPlayerTypes();
