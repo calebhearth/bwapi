@@ -1,0 +1,36 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/GameType.h# BWAPI/GameType.h]
+
+List of all [GameTypes].
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in GameTypes namespace:
+
+  * [#getGameType getGameType]
+  * [#allGameTypes allGameTypes]
+
+
+=== getID ===
+int getID();
+
+Returns the unique ID for this game type.
+
+=== getName ===
+std::string getName();
+
+Returns the name of the game type. For example GameTypes::Free_For_All.getName() will return an std::string object containing "Free For All".
+
+=== getGameType ===
+[GameType] getGameType(std::string &name);
+
+Given the name of a game type, this function will return the GameType. For example: GameTypes::getGameType("Use Map Settings") will return GameTypes::Use_Map_Settings. 
+
+=== allGameTypes ===
+std::set<[GameType]>& allGameTypes();
+
+Returns the set of all the [GameTypes].
