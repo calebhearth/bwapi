@@ -1,0 +1,21 @@
+#summary Game types in BWAPI
+#sidebar TableOfContents
+
+= GameTypes =
+
+  * Melee
+  * Free_For_All
+  * One_on_One
+  * Capture_The_Flag
+  * Greed
+  * Slaughter
+  * Sudden_Death
+  * Ladder
+  * Use_Map_Settings
+  * Team_Melee
+  * Team_Free_For_All
+  * Team_Capture_The_Flag
+  * Top_vs_Bottom
+  * Pro_Gamer_League
+  * None
+  * Unknown
