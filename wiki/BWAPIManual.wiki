@@ -5,6 +5,7 @@
   * [UsingBWAPI Using BWAPI]
   * [AIModule]
   * [AttackType]
+  * [Client]
   * [Color]
   * [DamageType]
   * [Error Error Codes]
