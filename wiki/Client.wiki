@@ -22,9 +22,11 @@ bool connect();
 Attempts to connect the client to the server. If it succeeds, it returns true. If Starcraft/BWAPI is not yet running, this will fail and return false.
 
 === disconnect ===
+void disconnect();
 
 Disconnects the client from the server.
 
 === update ===
+void update();
 
 Tells the server to process commands sent from the client and proceed to the next frame in the game and then it processes new information obtained from the server.
