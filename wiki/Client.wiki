@@ -4,6 +4,8 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 The Client class manages the connection between a BWAPI client program and the BWAPI server running in BWAPI.dll. For examples of how to use this class please see the Example AI Client and the AI Module Loader that are included in the latest release of BWAPI.
 
+The BWAPIClient.lib library contains the implementation of the Client class along with classes which implement the [Game], [Force], [Player], and [Unit] interfaces.
+
 Methods:
 
   * [#isConnected isConnected]
