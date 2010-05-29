@@ -1,7 +1,9 @@
 == Changes since BWAPI Beta 2.7.2 (r2239) ==
 
+  * Added class [GameType].
   * Added [AIModule#onReceiveText AIModule::onReceiveText].
   * Added Game::isBattleNet.
+
   * Fixed a bug where [Game#getLatency Game::getLatency] would return incorrect values for games played on BattleNet.
 
 == Changes from BWAPI Beta 2.7.1 (r2224) to BWAPI Beta 2.7.2 (r2239) ==
