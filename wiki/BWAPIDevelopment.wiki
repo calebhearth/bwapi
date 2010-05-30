@@ -24,3 +24,8 @@ _Note: Only perform steps 3 and 4 if you want to use ChaosLauncher as a loader. 
   # Move the contents of "starcraft-folder" from the source code to your Starcraft Directory.
   # Be sure to compile the entire solution as a RELEASE, else you will run into major problems.
   # If you are a project member you can submit your code modifications. Following the [http://code.google.com/p/bwapi/wiki/CodingStandard coding standard] and make sure BWAPI still compiles and runs before you submit your changes.
+
+== Useful Tools for finding new offsets/hooks ==
+
+  * [http://www.ollydbg.de/ Ollydbg]
+  * [http://memoryhacking.com/download.php L. Spiro's Memory Hacking Software]
