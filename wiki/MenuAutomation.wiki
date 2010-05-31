@@ -2,12 +2,12 @@
 
 BWAPI can automate most of the menus in the Starcraft GUI. The following options in the bwapi.ini file specify how BWAPI automates the in-game menu system:
 
-  * auto_menu
-  * map
-  * race
-  * enemy_race
-  * enemy_count
-  * game_type
+  * [#auto_menu auto_menu]
+  * [#map map]
+  * [#race race]
+  * [#enemy_race enemy_race]
+  * [#enemy_count enemy_count]
+  * [#game_type game_type]
 
 === auto_menu ===
 This specifies what mode the menu system is in. It can have one of the following values:
