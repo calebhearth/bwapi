@@ -3,6 +3,7 @@
 
 == Contents ==
   * [UsingBWAPI Using BWAPI]
+  * [MenuAutomation]
   * [AIModule]
   * [AttackType]
   * [Client]
