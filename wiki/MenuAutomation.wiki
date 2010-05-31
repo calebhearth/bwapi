@@ -1,0 +1,61 @@
+#sidebar TableOfContents
+
+BWAPI can automate most of the menus in the Starcraft GUI. The following options in the bwapi.ini file specify how BWAPI automates the in-game menu system:
+
+  * auto_menu
+  * map
+  * race
+  * enemy_race
+  * enemy_count
+  * game_type
+
+=== auto_menu ===
+This specifies what mode the menu system is in. It can have one of the following values:
+  * OFF - does no menu automation
+  * SINGLE_PLAYER - goes to single player screen (also used for replays)
+  * LAN_UDP - goes to LAN UDP screen
+  * BATTLE_NET - does to Battle Net login screen
+
+If auto_menu is set to OFF, menu automation is disabled and none of the options have any effect.
+
+=== map ===
+Specifies which map to play on, or which replays to watch. The path is relative to the Starcraft folder. If you wish to automate the process of joining a LAN UDP game, set auto_menu to LAN_UDP and set map to nothing (i.e. "map = ").
+
+Examples:
+
+  * map = maps\(2)Boxer.scm
+  * map = maps\BroodWar\WebMaps\(8)Big Game Hunters.scm
+  * map = maps\replays\LastReplay.rep
+
+=== race ===
+Specifies which race to select for the player. Can have one of the following values:
+  * Terran
+  * Protoss
+  * Zerg
+  * Random
+
+=== enemy_race ===
+Specifies which race to select for the computer opponents. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Can have one of the following values:
+  * Terran
+  * Protoss
+  * Zerg
+  * Random
+
+=== enemy_count ===
+Specifies the number of computer opponents to add to the game. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does have enough slots for the given number of computer opponents, then the maximum number available on the map is used.
+
+=== game_type ===
+Specifies the game type. Sub-type selection is not implemented at this time (add an issue if you want to see it added), so there is limited support for Team Melee, and several other game types which use game sub-type options. Can have one of the following values:
+
+  * TOP_VS_BOTTOM
+  * MELEE
+  * FREE_FOR_ALL
+  * ONE_ON_ONE
+  * USE_MAP_SETTINGS
+  * CAPTURE_THE_FLAG
+  * GREED
+  * SLAUGHTER
+  * SUDDEN_DEATH
+  * TEAM_MELEE
+  * TEAM_FREE_FOR_ALL
+  * TEAM_CAPTURE_THE_FLAG
