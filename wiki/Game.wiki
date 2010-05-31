@@ -60,6 +60,7 @@ Methods:
   * [#changeRace changeRace]
   * [#isInGame isInGame]
   * [#isMultiplayer isMultiplayer]
+  * [#isBattleNet isBattleNet]
   * [#isPaused isPaused]
   * [#isReplay isReplay]
   * [#startGame startGame]
@@ -342,6 +343,11 @@ Returns true if Broodwar is in a match (single player match, replay, or multipla
 bool isMultiplayer();
 
 Returns true if Broodwar is in a multiplayer game. Returns false for single player games and replays.
+
+=== isBattleNet ===
+bool isBattleNet();
+
+Returns true if Broodwar is in an online game on BattleNet or similar server (like ICCup).
 
 === isPaused ===
 bool isPaused();
