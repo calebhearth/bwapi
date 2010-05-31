@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-BWAPI can automate most of the menus in the Starcraft GUI. The following options in the bwapi.ini file specify how BWAPI automates the in-game menu system:
+BWAPI can automate most of the menus in the Starcraft GUI. The following options in the [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/starcraft-folder/bwapi-data/bwapi.ini bwapi.ini] file specify how BWAPI automates the in-game menu system:
 
   * [#auto_menu auto_menu]
   * [#map map]
