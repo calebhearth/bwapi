@@ -3,6 +3,7 @@
   * Added class [GameType].
   * Added [AIModule#onReceiveText AIModule::onReceiveText].
   * Added Game::isBattleNet.
+  * Added [MenuAutomation menu automation].
 
   * Fixed a bug where [Game#getLatency Game::getLatency] would return incorrect values for games played on BattleNet.
 
