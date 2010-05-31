@@ -16,7 +16,7 @@ This specifies what mode the menu system is in. It can have one of the following
   * LAN_UDP - goes to LAN UDP screen
   * BATTLE_NET - does to Battle Net login screen
 
-If auto_menu is set to OFF, menu automation is disabled and none of the options have any effect.
+If auto_menu is set to OFF, menu automation is disabled and none of the other options have any effect.
 
 === map ===
 Specifies which map to play on, or which replays to watch. The path is relative to the Starcraft folder. If you wish to automate the process of joining a LAN UDP game, set auto_menu to LAN_UDP and set map to nothing (i.e. "map = ").
