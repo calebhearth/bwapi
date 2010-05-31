@@ -42,7 +42,7 @@ Specifies which race to select for the computer opponents. This option is only u
   * Random
 
 === enemy_count ===
-Specifies the number of computer opponents to add to the game. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does have enough slots for the given number of computer opponents, then the maximum number available on the map is used.
+Specifies the number of computer opponents to add to the game. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
 
 === game_type ===
 Specifies the game type. Sub-type selection is not implemented at this time (add an issue if you want to see it added), so there is limited support for Team Melee, and several other game types which use game sub-type options. Can have one of the following values:
