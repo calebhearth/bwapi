@@ -1,5 +1,6 @@
   * [BWAPIManual API]
   * [UsingBWAPI Using BWAPI]
+  * [MenuAutomation]
   * [AIModule]
   * [AttackType]
   * [Client]
