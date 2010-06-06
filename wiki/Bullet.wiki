@@ -18,7 +18,7 @@ Methods:
 Returns the type of the bullet.
 
 === getOwner ===
-[Unit]{{{*}}}} getOwner() const;
+[Unit]{{{*}}} getOwner() const;
 === getPosition ===
 [Misc#Position Position] getPosition() const;
 
