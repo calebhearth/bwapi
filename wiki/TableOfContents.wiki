@@ -2,6 +2,7 @@
   * [UsingBWAPI Using BWAPI]
   * [MenuAutomation]
   * [AIModule]
+  * [Bullet]
   * [BulletType]
   * [Client]
   * [Color]
