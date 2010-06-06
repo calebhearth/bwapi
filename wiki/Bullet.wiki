@@ -1,0 +1,43 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Bullet.h# BWAPI/Bullet.h]
+
+
+Methods:
+
+ * [#getType getType]
+ * [#getOwner getOwner]
+ * [#getPosition getPosition]
+ * [#getRemoveTimer getRemoveTimer]
+ * [#exists exists]
+ * [#isVisible isVisible]
+
+=== getType ===
+[BulletType] getType() const;
+
+Returns the type of the bullet.
+
+=== getOwner ===
+[Unit]{{{*}}}} getOwner() const;
+=== getPosition ===
+[Misc#Position Position] getPosition() const;
+
+Returns the position of the bullet.
+
+=== getRemoveTimer ===
+int getRemoveTimer() const;
+
+Returns the remove timer of the bullet.
+
+=== exists ===
+bool exists() const;
+
+If Complete Map Information is enabled, this returns true if the bullet exists. Otherwise, this returns true if the bullet exists and is visible.
+
+=== isVisible ===
+bool isVisible() const;
+bool isVisible([Player]{{{*}}} player) const;
+
+Returns true if the bullet exists and is visible.
+
+If Complete Map Information is enabled, you can also specify to which player you want to check visibility.
