@@ -1,0 +1,35 @@
+#sidebar TableOfContents
+
+Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/BulletType.h# BWAPI/BulletType.h]
+
+List of all [BulletType].
+
+Methods:
+
+  * [#getID getID]
+  * [#getName getName]
+
+Non-member methods in BulletTypes namespace:
+
+  * [#getBulletType getBulletType]
+  * [#allBulletTypes allBulletTypes]
+
+=== getID ===
+int getID();
+
+Returns the unique ID for this bullet type.
+
+=== getName ===
+std::string getName();
+
+Returns the name of this bullet type.
+
+=== getBulletType ===
+[Order] getBulletType(std::string name);
+
+Given the name of a bullet type, getBulletType() will return the corresponding BulletType object.
+
+=== allBulletTypes ===
+std::set<[BulletType]>& allBulletTypes();
+
+Returns the set of all the [BulletTypes].
