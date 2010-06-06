@@ -36,6 +36,7 @@ If Complete Map Information is enabled, this returns true if the bullet exists. 
 
 === isVisible ===
 bool isVisible() const;
+
 bool isVisible([Player]{{{*}}} player) const;
 
 Returns true if the bullet exists and is visible.
