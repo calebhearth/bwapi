@@ -8,6 +8,7 @@ Methods:
  * [#getType getType]
  * [#getOwner getOwner]
  * [#getPosition getPosition]
+ * [#getAngle getAngle]
  * [#getVelocityX getVelocityX]
  * [#getVelocityY getVelocityY]
  * [#getRemoveTimer getRemoveTimer]
@@ -28,6 +29,11 @@ Returns the unit that fired the bullet. If the unit is inaccessible (such as a c
 [Misc#Position Position] getPosition() const;
 
 Returns the position of the bullet.
+
+=== getAngle ===
+double getAngle() const;
+
+Returns the direction the bullet is facing/traveling in, measured in radians. An angle of 0 means the bullet is facing east/right.
 
 === getVelocityX ===
 double getVelocityX() const;
