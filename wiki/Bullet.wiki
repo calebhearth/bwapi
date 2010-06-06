@@ -19,6 +19,9 @@ Returns the type of the bullet.
 
 === getOwner ===
 [Unit]{{{*}}} getOwner() const;
+
+Returns the unit that fired the bullet. If the unit is inaccessible (such as a cloaked or burrowed enemy unit) with no detection around and complete map information disabled, this will return NULL.
+
 === getPosition ===
 [Misc#Position Position] getPosition() const;
 
