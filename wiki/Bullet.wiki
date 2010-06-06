@@ -8,6 +8,8 @@ Methods:
  * [#getType getType]
  * [#getOwner getOwner]
  * [#getPosition getPosition]
+ * [#getVelocityX getVelocityX]
+ * [#getVelocityY getVelocityY]
  * [#getRemoveTimer getRemoveTimer]
  * [#exists exists]
  * [#isVisible isVisible]
@@ -26,6 +28,16 @@ Returns the unit that fired the bullet. If the unit is inaccessible (such as a c
 [Misc#Position Position] getPosition() const;
 
 Returns the position of the bullet.
+
+=== getVelocityX ===
+double getVelocityX() const;
+
+Returns the x component of the bullet's velocity, measured in pixels per frame.
+
+=== getVelocityY ===
+double getVelocityY() const;
+
+Returns the y component of the bullet's velocity, measured in pixels per frame. 
 
 === getRemoveTimer ===
 int getRemoveTimer() const;
