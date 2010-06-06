@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/BulletType.h# BWAPI/BulletType.h]
 
-List of all [BulletType].
+List of all [BulletTypes].
 
 Methods:
 
