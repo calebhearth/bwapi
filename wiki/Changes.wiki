@@ -1,9 +1,12 @@
 == Changes since BWAPI Beta 2.7.2 (r2239) ==
 
   * Added class [GameType].
+  * Added class [Bullet].
   * Added [AIModule#onReceiveText AIModule::onReceiveText].
   * Added [Game#isBattleNet Game::isBattleNet].
   * Added [MenuAutomation menu automation].
+
+Renamed the AttackType class to [BulletType].
 
   * Fixed a bug where [Game#getLatency Game::getLatency] would return incorrect values for games played on BattleNet.
   * Fixed a bug where [Unit#getGroundWeaponCooldown Unit::getGroundWeaponCooldown] would always return 0 and [Unit#isStartingAttack Unit::isStartingAttack] would always return false and for Protoss Reavers.
