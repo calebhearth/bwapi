@@ -2,7 +2,7 @@
   * [UsingBWAPI Using BWAPI]
   * [MenuAutomation]
   * [AIModule]
-  * [AttackType]
+  * [BulletType]
   * [Client]
   * [Color]
   * [DamageType]
