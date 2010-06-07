@@ -5,6 +5,8 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 Methods:
 
+ * [#getID getID]
+ * [#getPlayer getPlayer]
  * [#getType getType]
  * [#getSource getSource]
  * [#getPosition getPosition]
@@ -16,6 +18,16 @@ Methods:
  * [#getRemoveTimer getRemoveTimer]
  * [#exists exists]
  * [#isVisible isVisible]
+
+=== getID ===
+int getID() const;
+
+Returns a unique ID for this bullet.
+
+=== getPlayer ===
+[Player]{{{*}}} getPlayer() const;
+
+Returns the player of the source unit.
 
 === getType ===
 [BulletType] getType() const;
