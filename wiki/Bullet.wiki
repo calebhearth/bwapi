@@ -6,11 +6,13 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 Methods:
 
  * [#getType getType]
- * [#getOwner getOwner]
+ * [#getSource getSource]
  * [#getPosition getPosition]
  * [#getAngle getAngle]
  * [#getVelocityX getVelocityX]
  * [#getVelocityY getVelocityY]
+ * [#getTarget getTarget]
+ * [#getTargetPosition getTargetPosition]
  * [#getRemoveTimer getRemoveTimer]
  * [#exists exists]
  * [#isVisible isVisible]
@@ -20,8 +22,8 @@ Methods:
 
 Returns the type of the bullet.
 
-=== getOwner ===
-[Unit]{{{*}}} getOwner() const;
+=== getSource ===
+[Unit]{{{*}}} getSource() const;
 
 Returns the unit that fired the bullet. If the unit is inaccessible (such as a cloaked or burrowed enemy unit with no detection around and complete map information disabled), this will return NULL.
 
@@ -44,6 +46,16 @@ Returns the x component of the bullet's velocity, measured in pixels per frame.
 double getVelocityY() const;
 
 Returns the y component of the bullet's velocity, measured in pixels per frame. 
+
+=== getTarget ===
+[Unit]{{{*}}} getTarget() const;
+
+Returns the unit that the bullet is trying to hit. If the unit is inaccessible (such as a cloaked or burrowed enemy unit with no detection around and complete map information disabled), this will return NULL.
+
+=== getTargetPosition ===
+[Misc#Position Position] getTargetPosition() const;
+
+Returns the target position of the bullet.
 
 === getRemoveTimer ===
 int getRemoveTimer() const;
