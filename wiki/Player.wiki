@@ -10,7 +10,7 @@ Methods:
   * [#getName getName]
   * [#getUnits getUnits]
   * [#getRace getRace]
-  * [#playerType playerType]
+  * [#getType getType]
   * [#getForce getForce]
   * [#isAlly isAlly]
   * [#isEnemy isEnemy]
@@ -58,8 +58,8 @@ Returns the set of units the player own. Note that units loaded into Terran drop
 
 Returns the race of the player.
 
-=== playerType ===
-[PlayerType] playerType() const;
+=== getType ===
+[PlayerType] getType() const;
 
 Returns the type of the player.
 
