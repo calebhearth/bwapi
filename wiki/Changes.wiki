@@ -5,6 +5,7 @@
   * Added [AIModule#onReceiveText AIModule::onReceiveText].
   * Added [Game#isBattleNet Game::isBattleNet].
   * Added [MenuAutomation menu automation].
+  * Added [Game#getBullets Game::getBullets].
 
 Renamed the AttackType class to [BulletType].
 
