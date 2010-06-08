@@ -8,17 +8,18 @@ Methods:
 
   * [#getForces getForces]
   * [#getPlayers getPlayers]
+
   * [#getAllUnits getAllUnits]
   * [#getMinerals getMinerals]
   * [#getGeysers getGeysers]
   * [#getNeutralUnits getNeutralUnits]
-
-  * [#getEvents getEvents]
-  * [#indexToUnit indexToUnit]
-
   * [#getStaticMinerals getStaticMinerals]
   * [#getStaticGeysers getStaticGeysers]
   * [#getStaticNeutralUnits getStaticNeutralUnits]
+
+  * [#getBullets getBullets]
+  * [#getEvents getEvents]
+  * [#indexToUnit indexToUnit]
 
   * [#getLatency getLatency]
   * [#getFrameCount getFrameCount]
@@ -125,6 +126,11 @@ Returns the set of all vespene geysers (including mined out and other inaccessib
 std::set< [Unit]{{{*}}} >& getStaticNeutralUnits();
 
 Returns the set of all neutral units (including mined out and other inaccessible ones).
+
+=== getBullets ===
+std::set< [Bullet]{{{*}}} >& getBullets();
+
+Returns the set of all accessible bullets.
 
 === getEvents ===
 std::list< Event >& getEvents();
