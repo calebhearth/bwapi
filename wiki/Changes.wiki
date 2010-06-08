@@ -7,6 +7,7 @@
   * Added [MenuAutomation menu automation].
   * Added [Game#getBullets Game::getBullets].
 
+Renamed Player::playerType to [Player#getType Player::getType].
 Renamed the AttackType class to [BulletType].
 
   * Fixed a bug where [Game#getLatency Game::getLatency] would return incorrect values for games played on BattleNet.
