@@ -57,6 +57,8 @@ Possible values:
   * CompleteMapInformation - Enable to get information about all units on the map, not just the visible units.
   * UserInput - Enable to get information from the user (what units are selected, chat messages the user enters, etc)
 
+Used in [Game#enableFlag Game::enableFlag] and [Game#isFlagEnabled Game::isFlagEnabled].
+
 = CoordinateType::Enum =
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/CoordinateType.h# BWAPI/CoordinateType.h]
