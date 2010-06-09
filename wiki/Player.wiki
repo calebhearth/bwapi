@@ -38,6 +38,8 @@ Methods:
   * [#isResearching isResearching]
   * [#isUpgrading isUpgrading]
 
+  * [#maxEnergy maxEnergy]
+
 === getID ===
 int getID() const;
 
