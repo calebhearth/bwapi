@@ -10,6 +10,7 @@ The following functions have been added:
   * Added [AIModule#onReceiveText AIModule::onReceiveText] - called when messages are received from other players.
   * Added [Game#isBattleNet Game::isBattleNet] - returns true during games being played on BattleNet.
   * Added [Game#getBullets Game::getBullets] - returns the set of accessible bullets.
+  * Added [Game#getGameType Game::getGameType] - returns the game type of the current match.
   * Added [Player#maxEnergy Player::maxEnergy] - returns the max energy for the unit type, taking into account the player's upgrades.
 
 The following functions have changed in functionality:
