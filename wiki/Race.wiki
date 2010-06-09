@@ -57,7 +57,7 @@ Returns the transport unit type for the given race. For example: Races::Protoss.
 Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return UnitTypes::Terran_Supply_Depot.
 
 === getRace ===
-[Race] getRace(std::string &name);
+[Race] getRace(std::string name);
 
 Given the name of a race, this function will return the race type. For example: Races::getRace("Zerg") will return Races::Zerg.
 
