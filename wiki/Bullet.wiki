@@ -2,6 +2,13 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Bullet.h# BWAPI/Bullet.h]
 
+The Bullet class is used to get information about individual bullets, missiles, spells, and generally any sort of non-melee attack. Unlike Units, Bullet objects are reused after they are destroyed, however the ID of the bullet is updated when it represents a new bullet.
+
+If [Misc#Flag Flag::CompleteMapInformation] is disabled, then a bullet is accessible if and only if it is visible. If a bullet is not visible, [Bullet#exists Bullet::exists] will return false, regardless of whether or not the bullet exists. This is because absolutely no state information on invisible enemy bullets is made available to the AI.
+
+If [Misc#Flag Flag::CompleteMapInformation] is enabled, then all bullets that exist in the game are accessible, and [Bullet#exists Bullet::exists] is accurate for all bullets.
+
+No message similar to [AIModule#onUnitDestroy AIModule::onUnitDestroy] exists for bullets. To determine if a bullet has been destroyed, check to see if exists() is false or getID() has changed to a new value.
 
 Methods:
 
@@ -72,12 +79,12 @@ Returns the target position of the bullet.
 === getRemoveTimer ===
 int getRemoveTimer() const;
 
-Returns the remove timer of the bullet.
+Returns the maximum number of frames until this bullet is removed. Generally bullets hit their targets before this timer reaches 0.
 
 === exists ===
 bool exists() const;
 
-If Complete Map Information is enabled, this returns true if the bullet exists. Otherwise, this returns true if the bullet exists and is visible.
+If [Misc#Flag Flag::CompleteMapInformation] is enabled, this returns true if the bullet exists. Otherwise, this returns true if the bullet exists and is visible.
 
 === isVisible ===
 bool isVisible() const;
@@ -86,4 +93,4 @@ bool isVisible([Player]{{{*}}} player) const;
 
 Returns true if the bullet exists and is visible.
 
-If Complete Map Information is enabled, you can also specify to which player you want to check visibility.
+If [Misc#Flag Flag::CompleteMapInformation] is enabled, you can also specify to which player you want to check visibility.
