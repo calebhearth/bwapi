@@ -27,7 +27,7 @@ std::string getName();
 Returns the name of this order.
 
 === getOrder ===
-[Order] getOrder(std::string &name);
+[Order] getOrder(std::string name);
 
 Given the name of an order, getOrder() will return the corresponding order object.
 
