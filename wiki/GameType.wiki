@@ -26,7 +26,7 @@ std::string getName();
 Returns the name of the game type. For example GameTypes::Free_For_All.getName() will return an std::string object containing "Free For All".
 
 === getGameType ===
-[GameType] getGameType(std::string &name);
+[GameType] getGameType(std::string name);
 
 Given the name of a game type, this function will return the GameType. For example: GameTypes::getGameType("Use Map Settings") will return GameTypes::Use_Map_Settings. 
 
