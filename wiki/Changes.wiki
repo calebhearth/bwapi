@@ -19,6 +19,8 @@ The following functions have changed in functionality:
   * [Unit#getHitPoints Unit::getHitPoints] now rounds up.
   * [Unit#getShields Unit::getShields] now rounds up.
   * [Unit#getEnergy Unit::getEnergy] now rounds up.
+  * [Game#enableFlag Game::enableFlag] can now also be called in AIModule::onFrame() during frame 0.
+All neutral units are accessible in AIModule::onFrame() during frame 0.
 
 The AttackType class has been renamed to [BulletType].
 
@@ -57,6 +59,10 @@ Bug Fixes:
   * Fixed a bug where [Unit#getGroundWeaponCooldown Unit::getGroundWeaponCooldown] would always return 0 and [Unit#isStartingAttack Unit::isStartingAttack] would always return false and for Protoss Reavers.
   * Fixed a bug with [AIModule#onSendText AIModule::onSendText].
   * Fixed a bug where [AIModule#onUnitDestroy AIModule::onUnitDestroy] was being called for invisible units with complete map info disabled.
+  * Fixed a bug where both cheat flags would automatically be enabled when running the AI as a client process.
+  * Fixed a bug where [Game#enableFlag Game::enableFlag] would not work when called from a client process.
+
+
 
 == Changes from BWAPI Beta 2.7.1 (r2224) to BWAPI Beta 2.7.2 (r2239) ==
 
