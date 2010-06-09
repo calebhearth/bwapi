@@ -152,7 +152,7 @@ bool targetsOrgOrMech() const;
 bool targetsOwn() const;
 
 === getWeaponType ===
-[WeaponType] getWeaponType(std::string &name);
+[WeaponType] getWeaponType(std::string name);
 
 Given the name of a weapon, this will return the corresponding weapon type object.
 
