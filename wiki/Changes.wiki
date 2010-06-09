@@ -9,20 +9,20 @@
 
 The following functions are now case-insensitive:
 
-  * [BulletTypes#getBulletType BulletTypes::getBulletType]
-  * [DamageTypes#getDamageType DamageTypes::getDamageType]
-  * [Errors#getError Errors::getError]
-  * [ExplosionTypes#getExplosionType ExplosionTypes::getExplosionType]
-  * [GameTypes#getGameType GameTypes::getGameType]
-  * [Orders#getOrder Orders::getOrder]
-  * [PlayerTypes#getPlayerType PlayerTypes::getPlayerType]
-  * [Races#getRace Races::getRace]
-  * [TechTypes#getTechType TechTypes::getTechType]
-  * [UnitCommandTypes#getUnitCommandType UnitCommandTypes::getUnitCommandType]
-  * [UnitSizeTypes#getUnitSizeType UnitSizeTypes::getUnitSizeType]
-  * [UnitTypes#getUnitType UnitTypes::getUnitType]
-  * [UpgradeTypes#getUpgradeType UpgradeTypes::getUpgradeType]
-  * [WeaponTypes#getWeaponType WeaponTypes::getWeaponType]
+  * [BulletType#getBulletType BulletTypes::getBulletType]
+  * [DamageType#getDamageType DamageTypes::getDamageType]
+  * [Error#getError Errors::getError]
+  * [ExplosionType#getExplosionType ExplosionTypes::getExplosionType]
+  * [GameType#getGameType GameTypes::getGameType]
+  * [Order#getOrder Orders::getOrder]
+  * [PlayerType#getPlayerType PlayerTypes::getPlayerType]
+  * [Race#getRace Races::getRace]
+  * [TechType#getTechType TechTypes::getTechType]
+  * [UnitCommandType#getUnitCommandType UnitCommandTypes::getUnitCommandType]
+  * [UnitSizeType#getUnitSizeType UnitSizeTypes::getUnitSizeType]
+  * [UnitType#getUnitType UnitTypes::getUnitType]
+  * [UpgradeType#getUpgradeType UpgradeTypes::getUpgradeType]
+  * [WeaponType#getWeaponType WeaponTypes::getWeaponType]
 
 
 The AttackType class has been renamed to [BulletType].
