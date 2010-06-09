@@ -218,7 +218,7 @@ Returns true if the given flag has been enabled. Note that flags can only be ena
 === enableFlag ===
 void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 
-Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule#onStart AIModule::onStart] callback, on the first frame (frame 0) during the [AIModule#onFrame AIModule::onFrame] callback.
+Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule#onStart AIModule::onStart] callback, or during the [AIModule#onFrame AIModule::onFrame] callback on the first frame (frame 0).
 
 === unitsOnTile ===
 std::set< [Unit]{{{*}}} >& unitsOnTile(int x, int y);
