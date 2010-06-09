@@ -1,4 +1,4 @@
-== Changes since BWAPI Beta 2.7.2 (r2239) ==
+== Changes from BWAPI Beta 2.7.2 (r2239) to r2404 ==
 
 Added [MenuAutomation menu automation] - you can now automatically start replays and games with no manual user interaction.
 
@@ -14,6 +14,11 @@ The following functions have been added:
   * Added [Unit#maxHitPoints Unit::maxHitPoints] - returns the max hit points for the unit, taking into account upgrades.
   * Added [Unit#maxShields Unit::maxShields] - returns the max shield amount for the unit, taking into account upgrades.
   * Added [Unit#maxEnergy Unit::maxEnergy] - returns the energy for the unit, taking into account upgrades.
+
+The following functions have changed in functionality:
+  * [Unit#getHitPoints Unit::getHitPoints] now rounds up.
+  * [Unit#getShields Unit::getShields] now rounds up.
+  * [Unit#getEnergy Unit::getEnergy] now rounds up.
 
 The AttackType class has been renamed to [BulletType].
 
