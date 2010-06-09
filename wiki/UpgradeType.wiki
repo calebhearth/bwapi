@@ -75,7 +75,7 @@ const std::set<[UnitType]>& whatUses();
 Returns the set of units that are affected by this upgrade.
 
 === getUpgradeType ===
-[UpgradeType] getUpgradeType(std::string &name);
+[UpgradeType] getUpgradeType(std::string name);
 
 Given a string, this will return the upgrade type.
 
