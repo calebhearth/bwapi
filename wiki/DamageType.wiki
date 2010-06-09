@@ -25,7 +25,7 @@ std::string getName();
 Returns the name of this damage type. For example DamageTypes::Explosive.getName() will return std::string("Explosive").
 
 === getDamageType ===
-[DamageType] getDamageType(std::string &name);
+[DamageType] getDamageType(std::string name);
 
 Given the name of a damage type, this will return a corresponding DamageType object. For example, DamageTypes::getDamageType("Concussive") will return DamageTypes::Concussive.
 
