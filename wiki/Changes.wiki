@@ -1,14 +1,16 @@
 == Changes since BWAPI Beta 2.7.2 (r2239) ==
 
+New classes:
   * Added class [GameType].
   * Added class [Bullet].
+
+The following functions have been added:
   * Added [AIModule#onReceiveText AIModule::onReceiveText].
   * Added [Game#isBattleNet Game::isBattleNet].
   * Added [MenuAutomation menu automation].
   * Added [Game#getBullets Game::getBullets].
 
 The following functions are now case-insensitive for the strings they accept:
-
   * [BulletType#getBulletType BulletTypes::getBulletType]
   * [DamageType#getDamageType DamageTypes::getDamageType]
   * [Error#getError Errors::getError]
