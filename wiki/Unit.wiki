@@ -372,6 +372,8 @@ Returns the target position the unit is moving to (provided a valid path to the 
 === getOrder ===
 [Order] getOrder() const;
 
+Returns the [Order] that this unit is currently executing.
+
 === getOrderTarget ===
 [Unit]{{{*}}} getOrderTarget() const;
 
