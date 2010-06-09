@@ -11,6 +11,8 @@ The following functions have been added:
   * Added [Game#isBattleNet Game::isBattleNet] - returns true during games being played on BattleNet.
   * Added [Game#getBullets Game::getBullets] - returns the set of accessible bullets.
 
+The AttackType class has been renamed to [BulletType].
+
 The following functions are now case-insensitive for the strings they accept:
   * [BulletType#getBulletType BulletTypes::getBulletType]
   * [DamageType#getDamageType DamageTypes::getDamageType]
@@ -26,9 +28,6 @@ The following functions are now case-insensitive for the strings they accept:
   * [UnitType#getUnitType UnitTypes::getUnitType]
   * [UpgradeType#getUpgradeType UpgradeTypes::getUpgradeType]
   * [WeaponType#getWeaponType WeaponTypes::getWeaponType]
-
-
-The AttackType class has been renamed to [BulletType].
 
 Player::playerType has been renamed to [Player#getType Player::getType].
 
