@@ -15,15 +15,11 @@ If a Unit is not accessible, in general the only the getInitial{{{__}}} function
 Methods:
 
   * [#getID getID]
-  * [#getName getName]
   * [#getPlayer getPlayer]
   * [#getType getType]
   * [#getHitPoints getHitPoints]
-  * [#maxHitPoints maxHitPoints]
   * [#getShields getShields]
-  * [#maxShields maxShields]
   * [#getEnergy getEnergy]
-  * [#maxEnergy maxEnergy]
   * [#getResources getResources]
   * [#getKillCount getKillCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
@@ -172,11 +168,6 @@ int getID() const;
 
 Returns a unique ID for this unit. It simply casts the unit's address as an integer, since each unit has a unique address.
 
-=== getName ===
-std::string getName() const;
-
-Returns the name of the unit's type.
-
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
 
@@ -192,30 +183,15 @@ int getHitPoints() const;
 
 Returns the unit's current amount of hit points.
 
-=== maxHitPoints ===
-int maxHitPoints() const;
-
-Returns the max hit points of this unit, taking into account upgrades.
-
 === getShields ===
 int getShields() const;
 
 Returns the unit's current amount of shields.
 
-=== maxShields ===
-int maxShields() const;
-
-Returns the max shields of this unit, taking into account upgrades.
-
 === getEnergy ===
 int getEnergy() const;
 
 Returns the unit's current amount of energy.
-
-=== maxEnergy ===
-int maxEnergy() const;
-
-Returns the max energy of this unit, taking into account upgrades.
 
 === getResources ===
 int getResources() const;
