@@ -25,7 +25,7 @@ std::string toString();
 Returns the name of the error. For example Errors::Insufficient_Minerals.toString() will return a std::string object containing "Insufficient Minerals".
 
 === getError ===
-[Error] getError(std::string &name);
+[Error] getError(std::string name);
 
 Given the name of an error, this function will return the error code. For example: Errors::getError("Unbuildable Location") will return Errors::Unbuildable_Location.
 
