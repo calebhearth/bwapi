@@ -28,7 +28,7 @@ std::string getName();
 Returns the name of the unit command type. For example UnitCommandTypes::Hold_Position.getName() will return an std::string object containing "Hold Position".
 
 === getUnitCommandType ===
-[UnitCommandType] getUnitCommandType(std::string &name);
+[UnitCommandType] getUnitCommandType(std::string name);
 
 Given the name of a unit command type, this function will return the UnitCommandType. For example: UnitCommandTypes::getUnitCommandType("Attack Unit") will return UnitCommandTypes::Attack_Unit. 
 
