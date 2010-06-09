@@ -27,7 +27,7 @@ Returns a unique ID for this bullet.
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
 
-Returns the player of the source unit.
+Returns the player of the source unit, or NULL if the source unit has been destroyed or is otherwise inaccessible.
 
 === getType ===
 [BulletType] getType() const;
