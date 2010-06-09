@@ -14,9 +14,9 @@ The following functions have been added:
   * Added [Player#maxEnergy Player::maxEnergy] - returns the max energy for the unit type, taking into account the player's upgrades.
 
 The following functions have changed in functionality:
-  * [Unit#getHitPoints Unit::getHitPoints] now rounds up.
-  * [Unit#getShields Unit::getShields] now rounds up.
-  * [Unit#getEnergy Unit::getEnergy] now rounds up.
+  * [Unit#getHitPoints Unit::getHitPoints] now rounds up to nearest integer rather than down.
+  * [Unit#getShields Unit::getShields] now rounds up to nearest integer rather than down.
+  * [Unit#getEnergy Unit::getEnergy] now rounds up to nearest integer rather than down.
   * [Game#enableFlag Game::enableFlag] can now also be called in AIModule::onFrame() during frame 0.
 All neutral units are accessible in AIModule::onFrame() during frame 0.
 
