@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.7.2 (r2239) to r2404 ==
+== Changes from BWAPI Beta 2.7.2 (r2239) to BWAPI Beta 2.8 (r2422) ==
 
 Added [MenuAutomation menu automation] - you can now automatically start replays and games with no manual user interaction.
 
