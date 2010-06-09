@@ -7,7 +7,7 @@
   * Added [MenuAutomation menu automation].
   * Added [Game#getBullets Game::getBullets].
 
-The following functions are now case-insensitive:
+The following functions are now case-insensitive for the strings they accept:
 
   * [BulletType#getBulletType BulletTypes::getBulletType]
   * [DamageType#getDamageType DamageTypes::getDamageType]
