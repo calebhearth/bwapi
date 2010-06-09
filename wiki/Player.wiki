@@ -182,3 +182,8 @@ Returns true if the player is researching the given tech. To order a unit to res
 bool isUpgrading([UpgradeType] upgrade) const;
 
 Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+
+=== maxEnergy ===
+int maxEnergy([UnitType] unit) const;
+
+Returns the maximum amount of energy for the given unit type, taking into account the upgrades the player has.
