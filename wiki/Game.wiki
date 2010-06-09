@@ -21,6 +21,7 @@ Methods:
   * [#getEvents getEvents]
   * [#indexToUnit indexToUnit]
 
+  * [#getGameType getGameType]
   * [#getLatency getLatency]
   * [#getFrameCount getFrameCount]
   * [#getMouseX getMouseX]
@@ -142,10 +143,15 @@ Unit{{{*}}} indexToUnit(int unitIndex);
 
 Given an index value between 0 and 1699, this function will return the Unit{{{*}}} currently associated with the index value in Starcraft's internal Unit table. Only available when the Complete Map Information flag is enabled.
 
+=== getGameType ===
+[GameType] getGameType();
+
+Returns the game type of the given match, or GameTypes::None if Starcraft is in a replay.
+
 === getLatency ===
 Latency::Enum getLatency();
 
-Returns the amount of latency the current game has. Currently only returns Latency::SinglePlayer, Latency::LanLow, Latency::LanMedium, or Latency::LanHigh.
+Returns the amount of latency the current game has.
 
 === getFrameCount ===
 int getFrameCount();
