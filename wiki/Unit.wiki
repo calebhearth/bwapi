@@ -15,11 +15,15 @@ If a Unit is not accessible, in general the only the getInitial{{{__}}} function
 Methods:
 
   * [#getID getID]
+  * [#getName getName]
   * [#getPlayer getPlayer]
   * [#getType getType]
   * [#getHitPoints getHitPoints]
+  * [#maxHitPoints maxHitPoints]
   * [#getShields getShields]
+  * [#maxShields maxShields]
   * [#getEnergy getEnergy]
+  * [#maxEnergy maxEnergy]
   * [#getResources getResources]
   * [#getKillCount getKillCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
@@ -168,6 +172,11 @@ int getID() const;
 
 Returns a unique ID for this unit. It simply casts the unit's address as an integer, since each unit has a unique address.
 
+=== getName ===
+std::string getName() const;
+
+Returns the name of the unit's type.
+
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
 
@@ -178,40 +187,40 @@ Returns a pointer to the player that owns this unit.
 
 Returns the current type of the unit.
 
-=== getInitialType ===
-[UnitType] getInitialType() const;
-
-Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game.
-
 === getHitPoints ===
 int getHitPoints() const;
 
 Returns the unit's current amount of hit points.
 
-=== getInitialHitPoints ===
-int getInitialHitPoints() const;
+=== maxHitPoints ===
+int maxHitPoints() const;
 
-Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game.
+Returns the max hit points of this unit, taking into account upgrades.
 
 === getShields ===
 int getShields() const;
 
 Returns the unit's current amount of shields.
 
+=== maxShields ===
+int maxShields() const;
+
+Returns the max shields of this unit, taking into account upgrades.
+
 === getEnergy ===
 int getEnergy() const;
 
 Returns the unit's current amount of energy.
 
+=== maxEnergy ===
+int maxEnergy() const;
+
+Returns the max energy of this unit, taking into account upgrades.
+
 === getResources ===
 int getResources() const;
 
 Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
-
-=== getInitialResources ===
-int getInitialResources() const;
-
-Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game.
 
 === getKillCount ===
 int getKillCount() const;
@@ -290,20 +299,10 @@ Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
 
 Returns the position of the unit on the map.
 
-=== getInitialPosition ===
-[Misc#Position Position] getInitialPosition() const;
-
-Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
-
 === getTilePosition ===
 [Misc#TilePosition TilePosition] getTilePosition() const;
 
 Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building.
-
-=== getInitialTilePosition ===
-[Misc#TilePosition TilePosition] getInitialTilePosition() const;
-
-Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game. The tile position is of the top left corner of the building.
 
 === getDistance ===
 double getDistance([Unit]{{{*}}} target) const;
@@ -329,6 +328,31 @@ Returns the x component of the unit's velocity, measured in pixels per frame.
 double getVelocityY() const;
 
 Returns the y component of the unit's velocity, measured in pixels per frame.
+
+=== getInitialType ===
+[UnitType] getInitialType() const;
+
+Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game.
+
+=== getInitialHitPoints ===
+int getInitialHitPoints() const;
+
+Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game.
+
+=== getInitialResources ===
+int getInitialResources() const;
+
+Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game.
+
+=== getInitialPosition ===
+[Misc#Position Position] getInitialPosition() const;
+
+Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
+
+=== getInitialTilePosition ===
+[Misc#TilePosition TilePosition] getInitialTilePosition() const;
+
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game. The tile position is of the top left corner of the building.
 
 === getUpgradeLevel ===
 int getUpgradeLevel([UpgradeType] upgrade) const;
