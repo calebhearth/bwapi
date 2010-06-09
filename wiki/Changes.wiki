@@ -7,12 +7,45 @@
   * Added [MenuAutomation menu automation].
   * Added [Game#getBullets Game::getBullets].
 
-Renamed Player::playerType to [Player#getType Player::getType].
+The following functions are now case-insensitive:
 
-Renamed the AttackType class to [BulletType].
+  * [BulletTypes#getBulletType BulletTypes::getBulletType]
+  * [DamageTypes#getDamageType DamageTypes::getDamageType]
+  * [Errors#getError Errors::getError]
+  * [ExplosionTypes#getExplosionType ExplosionTypes::getExplosionType]
+  * [GameTypes#getGameType GameTypes::getGameType]
+  * [Orders#getOrder Orders::getOrder]
+  * [PlayerTypes#getPlayerType PlayerTypes::getPlayerType]
+  * [Races#getRace Races::getRace]
+  * [TechTypes#getTechType TechTypes::getTechType]
+  * [UnitCommandTypes#getUnitCommandType UnitCommandTypes::getUnitCommandType]
+  * [UnitSizeTypes#getUnitSizeType UnitSizeTypes::getUnitSizeType]
+  * [UnitTypes#getUnitType UnitTypes::getUnitType]
+  * [UpgradeTypes#getUpgradeType UpgradeTypes::getUpgradeType]
+  * [WeaponTypes#getWeaponType WeaponTypes::getWeaponType]
 
+
+The AttackType class has been renamed to [BulletType].
+
+Player::playerType has been renamed to [Player#getType Player::getType].
+
+The following PlayerTypes have been renamed:
+  * NotUsed -> None
+  * Human -> Player
+  * Rescuable -> RescuePassive
+  * Unknown0 -> Unknown4
+  * ComputerSlot -> EitherPreferComputer
+  * OpenSlot -> EitherPreferHuman
+  * ClosedSlot -> Closed
+  * Unknown1 -> Observer
+  * HumanDefeated -> PlayerLeft
+  * ComputerDefeated -> ComputerLeft
+
+Bug Fixes:
   * Fixed a bug where [Game#getLatency Game::getLatency] would return incorrect values for games played on BattleNet.
   * Fixed a bug where [Unit#getGroundWeaponCooldown Unit::getGroundWeaponCooldown] would always return 0 and [Unit#isStartingAttack Unit::isStartingAttack] would always return false and for Protoss Reavers.
+  * Fixed a bug with [AIModule#onSendText AIModule::onSendText].
+  * Fixed a bug where [AIModule#onUnitDestroy AIModule::onUnitDestroy] was being called for invisible units with complete map info disabled.
 
 == Changes from BWAPI Beta 2.7.1 (r2224) to BWAPI Beta 2.7.2 (r2239) ==
 
