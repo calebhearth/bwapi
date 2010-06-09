@@ -413,7 +413,7 @@ bool isNeutral() const;
 Returns true if the unit is neutral, such as a critter or mineral field.
 
 === getUnitType ===
-[UnitType] getUnitType(std::string &name);
+[UnitType] getUnitType(std::string name);
 
 Given the name of a unit type, this function will return the unit type.
 
