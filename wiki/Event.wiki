@@ -21,6 +21,7 @@ The EventType Enum can have the following values:
   * MatchFrame
   * MenuFrame
   * SendText
+  * ReceiveText
   * PlayerLeft
   * NukeDetect
   * UnitCreate
