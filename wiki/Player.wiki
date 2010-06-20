@@ -142,28 +142,27 @@ Returns how much of the supply is actually being used by units. If a race is pro
 === allUnitCount ===
 int allUnitCount([UnitType] type) const;
 
-Returns the number of all units of the given type.
+Returns the current number of all existing units of the given type owned by this player (both completed units and incomplete units).
 
 === completedUnitCount ===
 int completedUnitCount([UnitType] type) const;
 
-Returns the number of completed units of the given type.
+Returns the current number of completed units of the given type owned by this player.
 
 === incompleteUnitCount ===
 int incompleteUnitCount([UnitType] type) const;
 
-Returns the number of incomplete units of the given type. 
+Returns the current number of incomplete units of the given type owned by this player.
 
 === deadUnitCount ===
 int deadUnitCount([UnitType] unit) const;
 
-Returns the number of dead units of the given type. 
+Returns the total number of friendly units of the given type that this player has lost.
 
 === killedUnitCount ===
 int killedUnitCount([UnitType] unit) const;
 
-Returns the number of killed units of the given type. 
-
+Returns the total number of enemy units of the given type that this player has killed.
 
 === getUpgradeLevel ===
 int getUpgradeLevel([UpgradeType] upgrade) const;
