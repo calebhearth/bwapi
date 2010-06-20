@@ -364,7 +364,7 @@ Returns true if Broodwar is in an online game on BattleNet or similar server (li
 === isPaused ===
 bool isPaused();
 
-Returns true if Broodwar is paused. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still be called while paused.
+Returns true if Broodwar is paused. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused.
 
 === isReplay ===
 bool isReplay();
