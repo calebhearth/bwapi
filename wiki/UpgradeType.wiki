@@ -15,6 +15,8 @@ Methods:
   * [#mineralPriceFactor mineralPriceFactor]
   * [#gasPriceBase gasPriceBase]
   * [#gasPriceFactor gasPriceFactor]
+  * [#upgradeTimeBase upgradeTimeBase]
+  * [#upgradeTimeFactor upgradeTimeFactor]
   * [#maxRepeats maxRepeats]
   * [#whatUpgrades whatUpgrades]
   * [#whatUses whatUses]
@@ -58,6 +60,16 @@ Returns the vespene gas price for the first upgrade.
 int gasPriceFactor();
 
 Returns the amount that the vespene gas price increases for each additional upgrade.
+
+=== upgradeTimeBase ===
+int upgradeTimeBase() const;
+
+Returns the number of frames needed to research the first upgrade.
+
+=== upgradeTimeFactor ===
+int upgradeTimeFactor() const;
+
+Returns the amount of frames that the upgrade time increases for each additional upgrade.
 
 === maxRepeats ===
 int maxRepeats();
