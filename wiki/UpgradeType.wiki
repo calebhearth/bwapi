@@ -69,7 +69,7 @@ Returns the number of frames needed to research the first upgrade.
 === upgradeTimeFactor ===
 int upgradeTimeFactor() const;
 
-Returns the amount of frames that the upgrade time increases for each additional upgrade.
+Returns the number of frames that the upgrade time increases for each additional upgrade.
 
 === maxRepeats ===
 int maxRepeats();
