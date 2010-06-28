@@ -420,6 +420,6 @@ Given the name of a unit type, this function will return the unit type.
 For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terran_Marine.
 
 === allUnitTypes ===
-std::set<[UnitType]>& allUpgradeTypes();
+std::set<[UnitType]>& allUnitTypes();
 
 Returns the set of all the UnitTypes.
