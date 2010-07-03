@@ -14,7 +14,7 @@ This specifies what mode the menu system is in. It can have one of the following
   * OFF - does no menu automation
   * SINGLE_PLAYER - goes to single player screen (also used for replays)
   * LAN_UDP - goes to LAN UDP screen
-  * BATTLE_NET - does to Battle Net login screen
+  * BATTLE_NET - goes to Battle Net login screen
 
 If auto_menu is set to OFF, menu automation is disabled and none of the other options have any effect.
 
@@ -35,14 +35,14 @@ Specifies which race to select for the player. Can have one of the following val
   * Random
 
 === enemy_race ===
-Specifies which race to select for the computer opponents. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Can have one of the following values:
+Specifies which race to select for the computer opponents. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Can have one of the following values:
   * Terran
   * Protoss
   * Zerg
   * Random
 
 === enemy_count ===
-Specifies the number of computer opponents to add to the game. This option is only used in single player games - current no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
+Specifies the number of computer opponents to add to the game. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
 
 === game_type ===
 Specifies the GameType. Sub-type selection is not implemented at this time (add an issue if you want to see it added), so there is limited support for Team Melee, and several other game types which use game sub-type options. Can have one of the following values:
