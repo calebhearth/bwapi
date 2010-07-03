@@ -1,8 +1,0 @@
-= Latency =
-http://www.kovarex.com/bwapi/doc/localData.html
-
-= Multithread issues =
-
-We already tested out, that calling bw functions in different thread while bw is runnig is dangerous, and can result in crash occasionaly, so we decided to run all bw functions directly from the bw tread (by hooking interal bw function and taking the tread for that).
-
-Later on, we will implement multithread version, where you can let ai to run in different treads, but all bw function calls will be buffered, and flushed once per frame from the bw thread.
