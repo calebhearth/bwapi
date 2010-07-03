@@ -1,5 +1,0 @@
-#summary User's guide
-
-This article summarizes how to use multithreading techniques with BWAPI.
-
-*-------------- work in progress ---------------*
