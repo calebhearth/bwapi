@@ -85,6 +85,7 @@ Methods:
   * [#getLarva getLarva]
 
   * [#exists exists]
+  * [#hasNuke hasNuke]
   * [#isAccelerating isAccelerating]
   * [#isAttacking isAttacking]
   * [#isBeingConstructed isBeingConstructed]
