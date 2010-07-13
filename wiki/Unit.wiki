@@ -17,11 +17,29 @@ Methods:
   * [#getID getID]
   * [#getPlayer getPlayer]
   * [#getType getType]
+  * [#getPosition getPosition]
+  * [#getTilePosition getTilePosition]
+  * [#getAngle getAngle]
+  * [#getVelocityX getVelocityX]
+  * [#getVelocityY getVelocityY]
   * [#getHitPoints getHitPoints]
   * [#getShields getShields]
   * [#getEnergy getEnergy]
   * [#getResources getResources]
+
+  * [#getDistance getDistance]
+  * [#getUpgradeLevel getUpgradeLevel]
+
+  * [#getInitialType getInitialType]
+  * [#getInitialPosition getInitialPosition]
+  * [#getInitialTilePosition getInitialTilePosition]
+  * [#getInitialHitPoints getInitialHitPoints]
+  * [#getInitialResources getInitialResources]
+
   * [#getKillCount getKillCount]
+  * [#getInterceptorCount getInterceptorCount]
+  * [#getScarabCount getScarabCount]
+  * [#getSpiderMineCount getSpiderMineCount]
   * [#getGroundWeaponCooldown getGroundWeaponCooldown]
   * [#getAirWeaponCooldown getAirWeaponCooldown]
   * [#getSpellCooldown getSpellCooldown]
@@ -32,49 +50,37 @@ Methods:
   * [#getIrradiateTimer getIrradiateTimer]
   * [#getLockdownTimer getLockdownTimer]
   * [#getMaelstromTimer getMaelstromTimer]
+  * [#getOrderTimer getOrderTimer]
   * [#getPlagueTimer getPlagueTimer]
   * [#getRemoveTimer getRemoveTimer]
   * [#getStasisTimer getStasisTimer]
   * [#getStimTimer getStimTimer]
 
-  * [#getPosition getPosition]
-  * [#getTilePosition getTilePosition]
-  * [#getDistance getDistance]
-  * [#getAngle getAngle]
-  * [#getVelocityX getVelocityX]
-  * [#getVelocityY getVelocityY]
+  * [#getBuildType getBuildType]
+  * [#getTrainingQueue getTrainingQueue]
+  * [#getTech getTech]
+  * [#getUpgrade getUpgrade]
+  * [#getRemainingBuildTime getRemainingBuildTime]
+  * [#getRemainingTrainTime getRemainingTrainTime]
+  * [#getRemainingResearchTime getRemainingResearchTime]
+  * [#getRemainingUpgradeTime getRemainingUpgradeTime]
+  * [#getBuildUnit getBuildUnit]
 
-  * [#getInitialType getInitialType]
-  * [#getInitialHitPoints getInitialHitPoints]
-  * [#getInitialResources getInitialResources]
-  * [#getInitialPosition getInitialPosition]
-  * [#getInitialTilePosition getInitialTilePosition]
-
-  * [#getUpgradeLevel getUpgradeLevel]
   * [#getTarget getTarget]
   * [#getTargetPosition getTargetPosition]
   * [#getOrder getOrder]
   * [#getOrderTarget getOrderTarget]
-  * [#getOrderTimer getOrderTimer]
   * [#getSecondaryOrder getSecondaryOrder]
-  * [#getBuildUnit getBuildUnit]
-  * [#getBuildType getBuildType]
-  * [#getRemainingBuildTime getRemainingBuildTime]
-  * [#getRemainingTrainTime getRemainingTrainTime]
   * [#getChild getChild]
-  * [#getTrainingQueue getTrainingQueue]
-  * [#getTransport getTransport]
-  * [#getLoadedUnits getLoadedUnits]
-  * [#getInterceptorCount getInterceptorCount]
-  * [#getScarabCount getScarabCount]
-  * [#getSpiderMineCount getSpiderMineCount]
-  * [#getTech getTech]
-  * [#getUpgrade getUpgrade]
-  * [#getRemainingResearchTime getRemainingResearchTime]
-  * [#getRemainingUpgradeTime getRemainingUpgradeTime]
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
+  * [#getNydusExit getNydusExit]
+
+  * [#getTransport getTransport]
+  * [#getLoadedUnits getLoadedUnits]
+  * [#getCarrier getCarrier]
+  * [#getInterceptors getInterceptors]
   * [#getHatchery getHatchery]
   * [#getLarva getLarva]
 
@@ -98,6 +104,7 @@ Methods:
   * [#isGatheringGas isGatheringGas]
   * [#isGatheringMinerals isGatheringMinerals]
   * [#isHallucination isHallucination]
+  * [#isHoldingPosition isHoldingPosition]
   * [#isIdle isIdle]
   * [#isIrradiated isIrradiated]
   * [#isLifted isLifted]
@@ -178,6 +185,31 @@ Returns a pointer to the player that owns this unit.
 
 Returns the current type of the unit.
 
+=== getPosition ===
+[Misc#Position Position] getPosition() const;
+
+Returns the position of the unit on the map.
+
+=== getTilePosition ===
+[Misc#TilePosition TilePosition] getTilePosition() const;
+
+Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building.
+
+=== getAngle ===
+double getAngle() const;
+
+Returns the direction the unit is facing, measured in radians. An angle of 0 means the unit is facing east.
+
+=== getVelocityX ===
+double getVelocityX() const;
+
+Returns the x component of the unit's velocity, measured in pixels per frame.
+
+=== getVelocityY ===
+double getVelocityY() const;
+
+Returns the y component of the unit's velocity, measured in pixels per frame.
+
 === getHitPoints ===
 int getHitPoints() const;
 
@@ -198,10 +230,65 @@ int getResources() const;
 
 Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
 
+=== getDistance ===
+double getDistance([Unit]{{{*}}} target) const;
+
+Returns the edge-to-edge distance between the current unit and the target unit.
+
+=== getDistance ===
+double getDistance([Misc#Position Position] target) const;
+
+Returns the distance from the edge of the current unit to the target position.
+
+=== getUpgradeLevel ===
+int getUpgradeLevel([UpgradeType] upgrade) const;
+
+Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
+
+=== getInitialType ===
+[UnitType] getInitialType() const;
+
+Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game.
+
+=== getInitialPosition ===
+[Misc#Position Position] getInitialPosition() const;
+
+Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
+
+=== getInitialTilePosition ===
+[Misc#TilePosition TilePosition] getInitialTilePosition() const;
+
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game. The tile position is of the top left corner of the building.
+
+=== getInitialHitPoints ===
+int getInitialHitPoints() const;
+
+Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game.
+
+=== getInitialResources ===
+int getInitialResources() const;
+
+Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game.
+
 === getKillCount ===
 int getKillCount() const;
 
 Returns the unit's current kill count.
+
+=== getInterceptorCount ===
+int getInterceptorCount() const;
+
+Returns the number of interceptors the Protoss Carrier has.
+
+=== getScarabCount ===
+int getScarabCount() const;
+
+Returns the number of scarabs in the Protoss Reaver.
+
+=== getSpiderMineCount ===
+int getSpiderMineCount() const;
+
+Returns the number of spider mines in the Terran Vulture.
 
 === getGroundWeaponCooldown ===
 int getGroundWeaponCooldown() const;
@@ -250,6 +337,9 @@ int getMaelstromTimer() const;
 
 Returns the time until the maelstrom wears off. 0 -> No maelstrom present.
 
+=== getOrderTimer ===
+int getOrderTimer() const;
+
 === getPlagueTimer ===
 int getPlagueTimer() const;
 
@@ -270,70 +360,60 @@ int getStimTimer() const;
 
 Returns the time until the stimpack wears off. 0 -> No stimpack boost present.
 
-=== getPosition ===
-[Misc#Position Position] getPosition() const;
+=== getBuildType ===
+[UnitType] getBuildType() const;
 
-Returns the position of the unit on the map.
+Returns the building type a worker is about to construct. If the unit is a morphing Zerg unit or an incomplete building, this returns the UnitType the unit is about to become upon completion.
 
-=== getTilePosition ===
-[Misc#TilePosition TilePosition] getTilePosition() const;
+=== getTrainingQueue ===
+std::list< [UnitType] > getTrainingQueue() const;
 
-Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building.
+Returns the list of units queued up to be trained.
 
-=== getDistance ===
-double getDistance([Unit]{{{*}}} target) const;
+See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining].
 
-Returns the edge-to-edge distance between the current unit and the target unit.
+=== getTech ===
+[TechType] getTech() const;
 
-=== getDistance ===
-double getDistance([Misc#Position Position] target) const;
+Returns the tech that the unit is currently researching. If the unit is not researching anything, [TechTypes]::None is returned.
 
-Returns the distance from the edge of the current unit to the target position.
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime].
 
-=== getAngle ===
-double getAngle() const;
+=== getUpgrade ===
+[UpgradeType] getUpgrade() const;
 
-Returns the direction the unit is facing, measured in radians. An angle of 0 means the unit is facing east.
+Returns the upgrade that the unit is currently upgrading. If the unit is not upgrading anything, [UpgradeTypes]::None is returned.
 
-=== getVelocityX ===
-double getVelocityX() const;
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime].
 
-Returns the x component of the unit's velocity, measured in pixels per frame.
+=== getRemainingBuildTime ===
+int getRemainingBuildTime() const;
 
-=== getVelocityY ===
-double getVelocityY() const;
+Returns the remaining build time of a unit/building that is being constructed.
 
-Returns the y component of the unit's velocity, measured in pixels per frame.
+=== getRemainingTrainTime ===
+int getRemainingTrainTime() const;
 
-=== getInitialType ===
-[UnitType] getInitialType() const;
+Returns the remaining time of the unit that is currently being trained. If the unit is a Hatchery, Lair, or Hive, this returns the amount of time until the next larva spawns, or 0 if the unit already has 3 larva.
 
-Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game.
+=== getRemainingResearchTime ===
+int getRemainingResearchTime() const;
 
-=== getInitialHitPoints ===
-int getInitialHitPoints() const;
+Returns the amount of time until the unit is done researching its current tech. If the unit is not researching anything, 0 is returned.
 
-Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game.
+See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getTech getTech].
 
-=== getInitialResources ===
-int getInitialResources() const;
+=== getRemainingUpgradeTime ===
+int getRemainingUpgradeTime() const;
 
-Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game.
+Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
 
-=== getInitialPosition ===
-[Misc#Position Position] getInitialPosition() const;
+See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
 
-Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game.
+=== getBuildUnit ===
+[Unit]{{{*}}} getBuildUnit() const;
 
-=== getInitialTilePosition ===
-[Misc#TilePosition TilePosition] getInitialTilePosition() const;
-
-Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the beginning of the game. The tile position is of the top left corner of the building.
-
-=== getUpgradeLevel ===
-int getUpgradeLevel([UpgradeType] upgrade) const;
-
-Returns true if the owner of this player has upgraded the given upgrade type, and this unit is affected by this upgrade.
+If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran building that is being constructed, this will return the SCV that is constructing it.
 
 === getTarget ===
 [Unit]{{{*}}} getTarget() const;
@@ -355,95 +435,11 @@ Returns the [Order] that this unit is currently executing.
 
 This is usually set when the low level unit AI acquires a new target automatically. For example if an enemy probe comes in range of your marine, the marine will start attacking it, and getOrderTarget will be set in this case, but not getTarget.
 
-=== getOrderTimer ===
-int getOrderTimer() const;
-
 === getSecondaryOrder ===
 [Order] getSecondaryOrder() const;
 
-=== getBuildUnit ===
-[Unit]{{{*}}} getBuildUnit() const;
-
-If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran building that is being constructed, this will return the SCV that is constructing it.
-
-=== getBuildType ===
-[UnitType] getBuildType() const;
-
-Returns the building type a worker is about to construct. If the unit is a morphing Zerg unit or an incomplete building, this returns the UnitType the unit is about to become upon completion.
-
-=== getRemainingBuildTime ===
-int getRemainingBuildTime() const;
-
-Returns the remaining build time of a unit/building that is being constructed.
-
-=== getRemainingTrainTime ===
-int getRemainingTrainTime() const;
-
-Returns the remaining time of the unit that is currently being trained. If the unit is a Hatchery, Lair, or Hive, this returns the amount of time until the next larva spawns, or 0 if the unit already has 3 larva.
-
-
 === getChild ===
 [Unit]{{{*}}} getChild() const;
-
-=== getTrainingQueue ===
-std::list< [UnitType] > getTrainingQueue() const;
-
-Returns the list of units queued up to be trained.
-
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining].
-
-=== getTransport ===
-[Unit]{{{*}}} getTransport() const;
-
-Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded in to.
-
-=== getLoadedUnits ===
-std::list<[Unit]{{{*}}}> getLoadedUnits() const;
-
-Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
-
-=== getInterceptorCount ===
-int getInterceptorCount() const;
-
-Returns the number of interceptors the Protoss Carrier has.
-
-=== getScarabCount ===
-int getScarabCount() const;
-
-Returns the number of scarabs in the Protoss Reaver.
-
-=== getSpiderMineCount ===
-int getSpiderMineCount() const;
-
-Returns the number of spider mines in the Terran Vulture.
-
-=== getTech ===
-[TechType] getTech() const;
-
-Returns the tech that the unit is currently researching. If the unit is not researching anything, [TechTypes]::None is returned.
-
-See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime].
-
-=== getUpgrade ===
-[UpgradeType] getUpgrade() const;
-
-Returns the upgrade that the unit is currently upgrading. If the unit is not upgrading anything, [UpgradeTypes]::None is returned.
-
-See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime].
-
-=== getRemainingResearchTime ===
-int getRemainingResearchTime() const;
-
-Returns the amount of time until the unit is done researching its current tech. If the unit is not researching anything, 0 is returned.
-
-See also: [Unit]::[Unit#research research], [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getTech getTech].
-
-=== getRemainingUpgradeTime ===
-int getRemainingUpgradeTime() const;
-
-Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
-
-See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
 
 === getRallyPosition ===
 [Misc#Position Position] getRallyPosition() const;
@@ -463,6 +459,31 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 [Unit]{{{*}}} getAddon() const;
 
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
+
+=== getNydusExit ===
+[Unit]{{{*}}} getAddon() const;
+
+Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
+
+=== getTransport ===
+[Unit]{{{*}}} getTransport() const;
+
+Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded in to.
+
+=== getLoadedUnits ===
+std::set<[Unit]{{{*}}}> getLoadedUnits() const;
+
+Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, Protoss Carrier, or Zerg Overlord.
+
+=== getCarrier ===
+[Unit]{{{*}}} getCarrier() const;
+
+Returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed.
+
+=== getInterceptors ===
+std::set<[Unit]{{{*}}}> getInterceptors() const;
+
+Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets.
 
 === getHatchery ===
 [Unit]{{{*}}} getHatchery() const;
@@ -599,6 +620,14 @@ bool isHallucination() const;
 Returns true for hallucinated units, false for normal units. Returns true for hallucinated enemy units only if Complete Map Information is enabled.
 
 See also: [Unit]::[Unit#getRemoveTimer getRemoveTimer].
+
+=== isHoldingPosition ===
+bool isHoldingPosition() const;
+
+Returns true for units that are holding position.
+
+See also: [Unit]::[Unit#holdPosition holdPosition].
+
 
 === isIdle ===
 bool isIdle() const;
