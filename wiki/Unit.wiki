@@ -506,6 +506,11 @@ bool exists() const;
 
 See also: [Unit]::[Unit#isVisible isVisible].
 
+=== hasNuke ===
+bool hasNuke() const;
+
+Returns true if the unit is a Terran Nuclear Missile Silo and has a Terran Nuclear Missile trained and ready to go.
+
 === isAccelerating ===
 bool isAccelerating() const;
 
