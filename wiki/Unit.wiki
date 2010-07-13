@@ -821,7 +821,7 @@ Orders the unit to stop.
 === holdPosition ===
 bool holdPosition();
 
-Orders the unit to hold its position.
+Orders the unit to hold its position. Note: Reavers and Carriers can only hold position if they have at least one Scarab or Interceptor.
 
 === patrol ===
 bool patrol([Misc#Position Position] target);
