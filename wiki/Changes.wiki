@@ -2,6 +2,8 @@
 
 The internal implementation of the Unit class has been refactored to optimize performance for the client-server architecture.
 
+Menu automation has increased speed and several more dialogs are automated.
+
 The following functions have been added:
 
   * [Game#getGroundHeight Game::getGroundHeight](TilePosition position) - works same way as Game::getGroundHeight(int x, int y)
