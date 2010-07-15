@@ -48,8 +48,7 @@ Bug fixes:
   * Fixed a bug where [Game#canUpgrade Game::canUpgrade] would return true while another unit was upgrading the same UpgradeType.
   * Fixed a bug with UpgradeType::Apial_Sensors.whatResearches() so that it now correctly returns UnitTypes::Protoss_Fleet_Beacon.
   * Fixed a bug with [Unit#getTransport Unit::getTransport] so that it works for Protoss Interceptors
-  * Fixed a bug with [Unit#isLoaded Unit::isLoaded] so that it returns true if and only if
-[Unit#getTransport Unit::getTransport]!=NULL.
+  * Fixed a bug with [Unit#isLoaded Unit::isLoaded] so that it returns true if and only if [Unit#getTransport Unit::getTransport]!=NULL.
   * Fixed a bug with [Unit#getLoadedUnits Unit::getLoadedUnits] so that it also returns the Interceptors currently loaded inside a Protoss Carrier.
   * Fixed a bug where [Unit#getPosition Unit::getPosition] and [Unit#getTilePosition Unit::getTilePosition] would return incorrect positions for loaded units.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not cast Maelstroms.
