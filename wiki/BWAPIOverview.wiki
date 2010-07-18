@@ -1,0 +1,1 @@
+todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
