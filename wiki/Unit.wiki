@@ -71,7 +71,6 @@ Methods:
   * [#getOrder getOrder]
   * [#getOrderTarget getOrderTarget]
   * [#getSecondaryOrder getSecondaryOrder]
-  * [#getChild getChild]
   * [#getRallyPosition getRallyPosition]
   * [#getRallyUnit getRallyUnit]
   * [#getAddon getAddon]
@@ -136,40 +135,47 @@ The following commands can be issued to units:
 
   * [#attackMove attackMove]
   * [#attackUnit attackUnit]
-  * [#rightClick rightClick]
-  * [#train train]
   * [#build build]
   * [#buildAddon buildAddon]
+  * [#train train]
+  * [#morph morph]
   * [#research research]
   * [#upgrade upgrade]
-  * [#stop stop]
-  * [#holdPosition holdPosition]
-  * [#patrol patrol]
-  * [#follow follow]
   * [#setRallyPosition setRallyPosition]
   * [#setRallyUnit setRallyUnit]
-  * [#repair repair]
+  * [#move move]
+  * [#patrol patrol]
+  * [#holdPosition holdPosition]
+  * [#stop stop]
+  * [#follow follow]
+  * [#gather gather]
   * [#returnCargo returnCargo]
-  * [#morph morph]
+  * [#repair repair]
   * [#burrow burrow]
   * [#unburrow unburrow]
-  * [#siege siege]
-  * [#unsiege unsiege]
   * [#cloak cloak]
   * [#decloak decloak]
+  * [#siege siege]
+  * [#unsiege unsiege]
   * [#lift lift]
   * [#land land]
   * [#load load]
   * [#unload unload]
   * [#unloadAll unloadAll]
-  * [#cancelConstruction cancelConstruction]
+  * [#unloadAll unloadAll](Position)
+  * [#rightClick rightClick](Position)
+  * [#rightClick rightClick](Unit)
   * [#haltConstruction haltConstruction]
-  * [#cancelMorph cancelMorph]
-  * [#cancelTrain cancelTrain]
+  * [#cancelConstruction cancelConstruction]
   * [#cancelAddon cancelAddon]
+  * [#cancelTrain cancelTrain]
+  * [#cancelTrain cancelTrain](Slot)
+  * [#cancelMorph cancelMorph]
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
   * [#useTech useTech]
+  * [#useTech useTech](Position)
+  * [#useTech useTech](Unit)
 
 === getID ===
 int getID() const;
@@ -438,9 +444,6 @@ This is usually set when the low level unit AI acquires a new target automatical
 
 === getSecondaryOrder ===
 [Order] getSecondaryOrder() const;
-
-=== getChild ===
-[Unit]{{{*}}} getChild() const;
 
 === getRallyPosition ===
 [Misc#Position Position] getRallyPosition() const;
@@ -802,152 +805,166 @@ will call Unit::attackMove(Position(50,60)).
 === attackMove ===
 bool attackMove([Misc#Position Position] target);
 
-Orders the unit to attack move to the specified location.
+Orders the unit to attack move to the specified location. After issuing, the unit's order will become Orders::AttackMove.
 
 === attackUnit ===
 bool attackUnit([Unit]{{{*}}} target);
 
-Orders the unit to attack the specified unit.
+Orders the unit to attack the specified unit. After issuing, the unit's order will become Orders::AttackUnit.
 
-=== rightClick ===
-bool rightClick([Misc#Position Position] target);
+=== build ===
+bool build([Misc#TilePosition TilePosition] target, [UnitType] type);
 
-Works like the right click in the GUI.
+Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail. The tile position specifies where the top left corner of the building will be placed. After issuing the unit's order will become Orders::PlaceBuilding.
 
-=== rightClick ===
-bool rightClick([Unit]{{{*}}} target);
+See also: [Unit#haltConstruction haltConstruction], [Unit#cancelConstruction Unit::cancelConstruction], [Unit#isConstructing Unit::isConstructing], [Unit#isBeingConstructed Unit::isBeingConstructed], [Unit#getBuildType Unit::getBuiltType], [Unit#getBuildUnit Unit::getBuildUnit], [Unit#getRemainingBuildTime Unit::getRemainingBuildTime].
 
-Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
+=== buildAddon ===
+bool buildAddon( [UnitType] type);
+
+Orders the unit to build the given add-on. The unit must be a Terran building that can have an add-on and the specified unit type must be an add-on unit type. The build() command can also be used to build add-ons.
+
+See also: [Unit#cancelAddon Unit::cancelAddon], [Unit#isConstructing Unit::isConstructing], [Unit#getBuildType Unit::getBuiltType], [Unit#getBuildUnit Unit::getBuildUnit], [Unit#getRemainingBuildTime Unit::getRemainingBuildTime].
 
 === train ===
 bool train([UnitType] type);
 
 Orders this unit to add the specified unit type to the training queue. Note that the player must have sufficient resources to train. If you wish to make units from a hatchery, use [getLarva] to get the larva associated with the hatchery and then call [morph] on the larva you want to morph. This command can also be used to make interceptors and scarabs.
 
-=== build ===
-bool build([Misc#TilePosition TilePosition] p, [UnitType] type);
-
-Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts to place the building down, the order will fail. The tile position specifies where the top left corner of the building will be placed.
-
-=== buildAddon ===
-bool buildAddon( [UnitType] type);
-
-Orders the unit to build the given addon. The unit must be a Terran building that can have an addon and the specified unit type must be an addon unit type.
-
-=== research ===
-bool research([TechType] tech);
-
-Orders the unit to research the given tech type.
-
-See also: [Unit]::[Unit#cancelResearch cancelResearch], [Unit]::[Unit#isResearching], [Unit]::[Unit#getRemainingResearchTime getRemainingResearchTime], [Unit]::[Unit#getTech getTech].
-
-=== upgrade ===
-bool upgrade(UpgradeType upgrade);
-
-Orders the unit to upgrade the given upgrade type.
-
-See also: [Unit]::[Unit#cancelUpgrade cancelUpgrade], [Unit]::[Unit#isUpgrading], [Unit]::[Unit#getRemainingUpgradeTime getRemainingUpgradeTime], [Unit]::[Unit#getUpgrade getUpgrade].
-
-=== stop ===
-bool stop(); 
-
-Orders the unit to stop.
-
-=== holdPosition ===
-bool holdPosition();
-
-Orders the unit to hold its position. Note: Reavers and Carriers can only hold position if they have at least one Scarab or Interceptor.
-
-=== patrol ===
-bool patrol([Misc#Position Position] target);
-
-Orders the unit to patrol between its current position and the specified position.
-
-See also: [Unit]::[Unit#isPatrolling isPatrolling].
-
-=== follow ===
-bool follow([Unit] target);
-
-Orders the unit to follow the specified unit.
-
-See also: [Unit]::[Unit#isFollowing isFollowing].
-
-=== setRallyPosition ===
-bool setRallyPosition([Misc#Position Position] target);
-
-Orders the unit to set its rally position to the specified position.
-
-See also: [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyPosition getRallyPosition], [Unit]::[Unit#getRallyUnit getRallyUnit].
-
-=== setRallyUnit ===
-bool setRallyUnit([Unit] target);
-
-Orders the unit to set its rally unit to the specified unit.
-
-See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#getRallyPosition getRallyPosition], [Unit]::[Unit#getRallyUnit getRallyUnit].
-
-=== repair ===
-bool repair([Unit]{{{*}}} target);
-
-Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
-
-See also: [Unit]::[Unit#isRepairing isRepairing].
-
-=== returnCargo ===
-bool returnCargo();
-
-Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only workers that are carrying minerals or gas can be ordered to return cargo.
-
-See also: [Unit]::[Unit#isCarryingGas isCarryingGas], [Unit]::[Unit#isCarryingMinerals isCarryingMinerals].
+See also: [Unit#cancelTrain Unit::cancelTrain], [Unit#cancelTrain Unit::cancelTrain(slot)], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue], [Unit#getRemainingTrainTime Unit::getRemainingTrainTime].
 
 === morph ===
 bool morph([UnitType] type);
 
 Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
 
-See also: [Unit]::[Unit#cancelMorph cancelMorph], [Unit]::[Unit#isMorphing isMorphing].
+See also: [Unit#cancelMorph Unit::cancelMorph], [Unit#isMorphing Unit::isMorphing], [Unit#getBuildType Unit::getBuildType], [Unit#getRemainingBuildTime Unit::getRemainingBuildTime].
+
+=== research ===
+bool research([TechType] tech);
+
+Orders the unit to research the given tech type.
+
+See also: [Unit#cancelResearch Unit::cancelResearch], [Unit#isResearching Unit::isResearching], [Unit#getTech Unit::getTech], [Unit#getRemainingResearchTime Unit::getRemainingResearchTime].
+
+=== upgrade ===
+bool upgrade(UpgradeType upgrade);
+
+Orders the unit to upgrade the given upgrade type.
+
+See also: [Unit#cancelUpgrade Unit::cancelUpgrade], [Unit#isUpgrading Unit::isUpgrading], [Unit#getUpgrade Unit::getUpgrade], [Unit#getRemainingUpgradeTime Unit::getRemainingUpgradeTime].
+
+=== setRallyPosition ===
+bool setRallyPosition([Misc#Position Position] target);
+
+Orders the unit to set its rally position to the specified position.
+
+See also: [Unit#setRallyUnit Unit::setRallyUnit], [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
+
+=== setRallyUnit ===
+bool setRallyUnit([Unit] target);
+
+Orders the unit to set its rally unit to the specified unit.
+
+See also: [Unit#setRallyPosition Unit::setRallyPosition], [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
+
+=== move ===
+bool move([Misc#Position Position] target);
+
+Orders the unit to move to the specified position. After issuing, the unit's order will become Orders::Move.
+
+See also: [Unit#isMoving Unit::isMoving].
+
+=== patrol ===
+bool patrol([Misc#Position Position] target);
+
+Orders the unit to patrol between its current position and the specified position. After issuing, the unit's order will become Orders::Patrol.
+
+See also: [Unit#isPatrolling Unit::isPatrolling].
+
+=== holdPosition ===
+bool holdPosition();
+
+Orders the unit to hold its position. Note: Reavers and Carriers can only hold position if they have at least one Scarab or Interceptor. After issuing, the unit's order will become Orders::HoldPosition.
+
+See also: [Unit#isHoldingPosition Unit::isHoldingPosition].
+
+=== stop ===
+bool stop(); 
+
+Orders the unit to stop. After issuing, the unit's order will become Orders::Stop.
+
+See also: [Unit]::[Unit#isMoving isMoving],[Unit]::[Unit#isBraking isBraking].
+
+=== follow ===
+bool follow([Unit] target);
+
+Orders the unit to follow the specified unit. After issuing, the unit's order will become Orders::Follow.
+
+See also: [Unit]::[Unit#isFollowing isFollowing].
+
+=== gather ===
+bool gather([Unit]{{{*}}} target);
+
+Orders the unit to gather the specified unit. Only workers can be ordered to gather, and the target must be a mineral patch, Refinery, Assimilator, or Extractor.
+
+See also: [Unit#isGatheringGas Unit::isGatheringGas], [Unit#isGatheringMinerals Unit::isGatheringMinerals].
+
+=== returnCargo ===
+bool returnCargo();
+
+Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only workers that are carrying minerals or gas can be ordered to return cargo.
+
+See also: [Unit#isCarryingGas Unit::isCarryingGas], [Unit#isCarryingMinerals isCarryingMinerals], [Unit#isGatheringGas Unit::isGatheringGas], [Unit#isGatheringMinerals Unit::isGatheringMinerals].
+
+=== repair ===
+bool repair([Unit]{{{*}}} target);
+
+Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
+
+See also: [Unit]::[Unit#isRepairing isRepairing]. After issuing, the unit's order will become Orders::Repair.
 
 === burrow ===
 bool burrow();
 
-Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground unit and burrow tech must be researched.
+Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground unit and burrow tech must be researched. After issuing, the unit's order will become Orders::Burrowing while the unit transitions.
 
-See also: [Unit]::[Unit#unburrow unburrow], [Unit]::[Unit#isBurrowed isBurrowed].
+See also: [Unit#unburrow Unit::unburrow], [Unit#isBurrowed Unit::isBurrowed].
 
 === unburrow ===
 bool unburrow();
 
-Orders the burrowed unit to unburrow. 
+Orders the burrowed unit to unburrow. After issuing, the unit's order will become Orders::Unburrowing while the unit transitions.
 
-See also: [Unit]::[Unit#burrow burrow], [Unit]::[Unit#isBurrowed isBurrowed].
-
-=== siege ===
-bool siege();
-
-Orders the unit to siege. Note: unit must be a Terran siege tank.
-
-See also: [Unit]::[Unit#unsiege unsiege], [Unit]::[Unit#isSieged isSieged].
-
-=== unsiege ===
-bool unsiege();
-
-Orders the unit to unsiege. Note: unit must be a Terran siege tank.
-
-See also: [Unit]::[Unit#unsiege unsiege], [Unit]::[Unit#isSieged isSieged].
+See also: [Unit#burrow Unit::burrow], [Unit#isBurrowed Unit::isBurrowed].
 
 === cloak ===
 bool cloak();
 
 Orders the unit to cloak.
 
-See also: [Unit]::[Unit#decloak decloak], [Unit]::[Unit#isCloaked isCloaked].
+See also: [Unit#decloak Unit::decloak], [Unit#isCloaked Unit::isCloaked].
 
 === decloak ===
 bool decloak();
 
 Orders the unit to decloak.
 
-See also: [Unit]::[Unit#cloak cloak], [Unit]::[Unit#isCloaked isCloaked].
+See also: [Unit#cloak Unit::cloak], [Unit#isCloaked Unit::isCloaked].
+
+=== siege ===
+bool siege();
+
+Orders the unit to siege. Note: unit must be a Terran siege tank. After issuing, the unit's order will become Orders::Sieging while the siege tank transitions.
+
+See also: [Unit#unsiege Unit::unsiege], [Unit#isSieged Unit::isSieged].
+
+=== unsiege ===
+bool unsiege();
+
+Orders the unit to unsiege. Note: unit must be a Terran siege tank. After issuing, the unit's order will become Orders::Unsieging while the siege tank transitions.
+
+See also: [Unit#siege Unit::siege], [Unit#isSieged Unit::isSieged].
 
 === lift ===
 bool lift();
@@ -989,15 +1006,17 @@ bool unloadAll([Misc#Position Position] target);
 
 Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be unloaded right outside the bunker, like in the first version of unloadAll.
 
-
 See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
-=== cancelConstruction ===
-bool cancelConstruction();
+=== rightClick ===
+bool rightClick([Misc#Position Position] target);
 
-Orders the building to stop being constructed.
+Works like the right click in the GUI.
 
-See also: [Unit]::[Unit#beingConstructed beingConstructed].
+=== rightClick ===
+bool rightClick([Unit]{{{*}}} target);
+
+Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
 
 === haltConstruction ===
 bool haltConstruction();
@@ -1006,12 +1025,17 @@ Orders the SCV to stop constructing the building, and the building is left in a 
 
 See also: [Unit]::[Unit#isConstructing isConstructing].
 
-=== cancelMorph ===
-bool cancelMorph();
+=== cancelConstruction ===
+bool cancelConstruction();
 
-Orders the unit to stop morphing.
+Orders the building to stop being constructed.
 
-See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#isMorphing isMorphing].
+See also: [Unit]::[Unit#beingConstructed beingConstructed].
+
+=== cancelAddon ===
+bool cancelAddon();
+
+Orders the unit to stop making the addon.
 
 === cancelTrain ===
 bool cancelTrain();
@@ -1027,10 +1051,12 @@ Orders the unit to remove the specified unit from its training queue.
 
 See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
 
-=== cancelAddon ===
-bool cancelAddon();
+=== cancelMorph ===
+bool cancelMorph();
 
-Orders the unit to stop making the addon.
+Orders the unit to stop morphing.
+
+See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#isMorphing isMorphing].
 
 === cancelResearch ===
 bool cancelResearch();
