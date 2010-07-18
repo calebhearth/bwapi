@@ -894,7 +894,7 @@ bool stop();
 
 Orders the unit to stop. After issuing, the unit's order will become Orders::Stop.
 
-See also: [Unit]::[Unit#isMoving isMoving],[Unit]::[Unit#isBraking isBraking].
+See also: [Unit]::[Unit#isMoving isMoving], [Unit]::[Unit#isBraking isBraking].
 
 === follow ===
 bool follow([Unit] target);
@@ -920,9 +920,9 @@ See also: [Unit#isCarryingGas Unit::isCarryingGas], [Unit#isCarryingMinerals isC
 === repair ===
 bool repair([Unit]{{{*}}} target);
 
-Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
+Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building. After issuing, the unit's order will become Orders::Repair.
 
-See also: [Unit]::[Unit#isRepairing isRepairing]. After issuing, the unit's order will become Orders::Repair.
+See also: [Unit#isRepairing Unit::isRepairing].
 
 === burrow ===
 bool burrow();
@@ -971,14 +971,14 @@ bool lift();
 
 Orders the unit to lift. Note: unit must be a Terran building that can be lifted.
 
-See also: [Unit]::[Unit#land land], [Unit]::[Unit#isLifted isLifted].
+See also: [Unit#land Unit::land], [Unit#isLifted Unit::isLifted].
 
 === land ===
 bool land([Misc#TilePosition TilePosition] target);
 
 Orders the unit to land. Note: unit must be a Terran building that is currently lifted.
 
-See also: [Unit]::[Unit#lift lift], [Unit]::[Unit#isLifted isLifted].
+See also: [Unit#lift Unit::lift], [Unit#isLifted Unit::isLifted].
 
 === load ===
 bool load([Unit]{{{*}}} target);
@@ -1023,69 +1023,71 @@ bool haltConstruction();
 
 Orders the SCV to stop constructing the building, and the building is left in a partially complete state until it is canceled, destroyed, or completed.
 
-See also: [Unit]::[Unit#isConstructing isConstructing].
+See also: [Unit]::[Unit#build Unit::build], [Unit]::[Unit#cancelConstruction Unit::cancelConstruction], [Unit#isConstructing Unit::isConstructing].
 
 === cancelConstruction ===
 bool cancelConstruction();
 
 Orders the building to stop being constructed.
 
-See also: [Unit]::[Unit#beingConstructed beingConstructed].
+See also: [Unit#build Unit::build], [Unit#beingConstructed Unit::beingConstructed].
 
 === cancelAddon ===
 bool cancelAddon();
 
 Orders the unit to stop making the addon.
 
+See also: [Unit#buildAddon Unit::buildAddon].
+
 === cancelTrain ===
 bool cancelTrain();
 
 Orders the unit to remove the last unit from its training queue.
 
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+See also: [Unit#train Unit::train], [Unit#cancelTrain Unit::cancelTrain(Slot)], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue].
 
 === cancelTrain ===
 bool cancelTrain(int slot);
 
 Orders the unit to remove the specified unit from its training queue.
 
-See also: [Unit]::[Unit#train train], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#isTraining isTraining], [Unit]::[Unit#getTrainingQueue getTrainingQueue].
+See also: [Unit#train Unit::train], [Unit#cancelTrain Unit::cancelTrain], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue].
 
 === cancelMorph ===
 bool cancelMorph();
 
 Orders the unit to stop morphing.
 
-See also: [Unit]::[Unit#morph morph], [Unit]::[Unit#isMorphing isMorphing].
+See also: [Unit#morph Unit::morph], [Unit#isMorphing Unit::isMorphing].
 
 === cancelResearch ===
 bool cancelResearch();
 
 Orders the unit to cancel a research in progress.
 
-See also: [Unit]::[Unit#research research], [Unit]::[Unit#isResearching isResearching], [Unit]::[Unit#getTech getTech].
+See also: [Unit#research Unit::research], [Unit#isResearching Unit::isResearching], [Unit#getTech Unit::getTech].
 
 === cancelUpgrade ===
 bool cancelUpgrade();
 
 Orders the unit to cancel an upgrade in progress.
 
-See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#isUpgrading isUpgrading], [Unit]::[Unit#getUpgrade getUpgrade].
+See also: [Unit#upgrade Unit::upgrade], [Unit#isUpgrading Unit::isUpgrading], [Unit#getUpgrade Unit::getUpgrade].
 
 === useTech ===
 bool useTech([TechType] tech);
 
-Orders the unit to use a tech not requiring a target (ie Stim Pack).
+Orders the unit to use a tech not requiring a target (i.e. Stim Pack).
 Returns true if it is a valid tech.
 
 === useTech ===
 bool useTech([TechType] tech, Position position);
 
-Orders the unit to use a tech requiring a position target (ie Dark Swarm).
+Orders the unit to use a tech requiring a position target (i.e. Dark Swarm).
 Returns true if it is a valid tech.
 
 === useTech ===
 bool useTech([TechType] tech, Unit{{{*}}} target);
 
-Orders the unit to use a tech requiring a unit target (ie Irradiate).
+Orders the unit to use a tech requiring a unit target (i.e. Irradiate).
 Returns true if it is a valid tech.
