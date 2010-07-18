@@ -133,24 +133,24 @@ Methods:
 
 The following commands can be issued to units:
 
-  * [#attackMove attackMove]
-  * [#attackUnit attackUnit]
-  * [#build build]
-  * [#buildAddon buildAddon]
-  * [#train train]
-  * [#morph morph]
-  * [#research research]
-  * [#upgrade upgrade]
-  * [#setRallyPosition setRallyPosition]
-  * [#setRallyUnit setRallyUnit]
-  * [#move move]
-  * [#patrol patrol]
+  * [#attackMove attackMove](Position)
+  * [#attackUnit attackUnit](Unit)
+  * [#build build](TilePosition, UnitType)
+  * [#buildAddon buildAddon](UnitType)
+  * [#train train](UnitType)
+  * [#morph morph](UnitType)
+  * [#research research](TechType)
+  * [#upgrade upgrade](UpgradeType)
+  * [#setRallyPosition setRallyPosition](Position)
+  * [#setRallyUnit setRallyUnit](Unit)
+  * [#move move](Position)
+  * [#patrol patrol](Position)
   * [#holdPosition holdPosition]
   * [#stop stop]
-  * [#follow follow]
-  * [#gather gather]
+  * [#follow follow](Unit)
+  * [#gather gather](Unit)
   * [#returnCargo returnCargo]
-  * [#repair repair]
+  * [#repair repair](Unit)
   * [#burrow burrow]
   * [#unburrow unburrow]
   * [#cloak cloak]
@@ -158,9 +158,9 @@ The following commands can be issued to units:
   * [#siege siege]
   * [#unsiege unsiege]
   * [#lift lift]
-  * [#land land]
-  * [#load load]
-  * [#unload unload]
+  * [#land land](TilePosition)
+  * [#load load](Unit)
+  * [#unload unload](Unit)
   * [#unloadAll unloadAll]
   * [#unloadAll unloadAll](Position)
   * [#rightClick rightClick](Position)
@@ -173,9 +173,9 @@ The following commands can be issued to units:
   * [#cancelMorph cancelMorph]
   * [#cancelResearch cancelResearch]
   * [#cancelUpgrade cancelUpgrade]
-  * [#useTech useTech]
-  * [#useTech useTech](Position)
-  * [#useTech useTech](Unit)
+  * [#useTech useTech](TechType)
+  * [#useTech useTech](TechType, Position)
+  * [#useTech useTech](TechType, Unit)
 
 === getID ===
 int getID() const;
