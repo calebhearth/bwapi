@@ -445,6 +445,8 @@ This is usually set when the low level unit AI acquires a new target automatical
 === getSecondaryOrder ===
 [Order] getSecondaryOrder() const;
 
+Returns the secondary [Order] that this unit is currently executing.
+
 === getRallyPosition ===
 [Misc#Position Position] getRallyPosition() const;
 
