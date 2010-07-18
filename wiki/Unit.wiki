@@ -180,7 +180,7 @@ The following commands can be issued to units:
 === getID ===
 int getID() const;
 
-Returns a unique ID for this unit. It simply casts the unit's address as an integer, since each unit has a unique address.
+Returns a unique ID for this unit.
 
 === getPlayer ===
 [Player]{{{*}}} getPlayer() const;
