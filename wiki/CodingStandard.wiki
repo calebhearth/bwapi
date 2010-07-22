@@ -85,9 +85,9 @@ int TooLazyToThinkOfAnImaginaryFunctionRightNow( u32 amountOfMyLazy, u32 timeTil
 // Good (except for all the horrible names, since I am not feeling creative right now)
 int TooLazyToThinkOfAnImaginaryFunctionRightNow(      u32          amountOfMyLazy, 
                                                       u32          timeTillIFallAsleep, 
-                                                      BW::Unit*    pUnitThatWillPutMeToSleep, 
+                                                      BW::Unit     *pUnitThatWillPutMeToSleep, 
                                                       u32          ohGodAnotherVariable, 
-                                                const std::string& thisFunctionIsHorrible 
+                                                const std::string  &thisFunctionIsHorrible 
   );
 }}}
  # Format constructor initialize lists as follows (easiest addition/removal of members):
@@ -160,9 +160,10 @@ namespace UnitTypes
 ==== Pointers and References ====
  # The asterisk and ampersand symbols should be placed next to the variable type, as these are part of the type information. Be careful not to fall pray to the common bug caused by declaring multiple pointers on the same line without prepending an asterisk to each one. For example:
 {{{
-BW::Unit* unit; // Good
-const std::string& oldUnitName = unitName; // Good
-BW::Unit* unitBug1, unitBug2, unitBug3; // Avoid, probably not intended behavior: only unitBug1 is a pointer
+BW::Unit *unit; // Good
+const std::string &oldUnitName = unitName; // Good
+BW::Unit *unitBug1, *unitBug2, *unitBug3; // Good
+BW::Unit* unitBug1, unitBug2, unitBug3; // Bad
 }}}
 ==== Defines and Macros ====
  # Use constants and inline functions as much as possible rather than defines and macros.
