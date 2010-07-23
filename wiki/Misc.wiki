@@ -12,10 +12,12 @@ There are three different types of map coordinates:
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Position.h# BWAPI/Position.h]
 
 Methods:
-  * int x();
-  * int y();
-  * double getDistance(Position position);
-  * double getApproxDistance(Position position);
+  * int x()
+  * int y()
+  * double getDistance(Position position) - returns the actual distance to the given position
+  * double getApproxDistance(Position position) - uses Starcraft's approximated distance function, which is reasonably accurate yet avoids a sqrt operation.
+  * bool isValid() - returns true if the position is on the map
+  * void makeValid() - moves the position to the closest valid position
 
 == Special Positions ==
   * Invalid
@@ -27,9 +29,10 @@ Methods:
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/TilePosition.h# BWAPI/TilePosition.h]
 
 Methods:
-  * int x();
-  * int y();
-  * bool isValid();
+  * int x()
+  * int y()
+  * bool isValid() - returns true if the tile position is on the map
+  * void makeValid() - moves the tile position to the closest valid tile position
 
 == Special TilePositions ==
   * Invalid
@@ -39,6 +42,8 @@ Methods:
 = Latency::Enum =
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Latency.h# BWAPI/Latency.h]
+
+The latency value is the number of frames it takes a unit command to take effect in the game after you issue it to a unit.
 
 Possible values:
   * SinglePlayer: 2
@@ -54,7 +59,7 @@ Possible values:
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Flag.h# BWAPI/Flag.h]
 
 Possible values:
-  * CompleteMapInformation - Enable to get information about all units on the map, not just the visible units.
+  * CompleteMapInformation - Enable to make all units accessible, not just visible units.
   * UserInput - Enable to get information from the user (what units are selected, chat messages the user enters, etc)
 
 Used in [Game#enableFlag Game::enableFlag] and [Game#isFlagEnabled Game::isFlagEnabled].
@@ -62,6 +67,8 @@ Used in [Game#enableFlag Game::enableFlag] and [Game#isFlagEnabled Game::isFlagE
 = CoordinateType::Enum =
 
 Header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/CoordinateType.h# BWAPI/CoordinateType.h]
+
+CoordinateTypes are used in drawing functions in the game class (i.e. [Game#drawBox Game::drawBox]). Specify Map if you wish to draw a shape at a particular spot on the map, regardless of screen position. Specify Screen if you wish to draw something at a particular spot on the screen. Specify Mouse if you wish to draw something near the mouse.
 
 Possible values:
   * Screen - (0,0) corresponds to the top left corner of the screen 
