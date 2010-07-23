@@ -19,11 +19,16 @@ Methods:
 
   * [#getBullets getBullets]
   * [#getEvents getEvents]
+  * [#getForce getForce]
+  * [#getPlayer getPlayer]
+  * [#getUnit getUnit]
   * [#indexToUnit indexToUnit]
 
   * [#getGameType getGameType]
   * [#getLatency getLatency]
   * [#getFrameCount getFrameCount]
+  * [#getFPS getFPS]
+  * [#getAverageFPS getAverageFPS]
   * [#getMouseX getMouseX]
   * [#getMouseY getMouseY]
   * [#getMousePosition getMousePosition]
@@ -142,6 +147,21 @@ std::list< Event >& getEvents();
 
 Returns the list of events for the current frame. Events correspond to AIModule callbacks, so for example rather than implementing [AIModule#onUnitCreate AIModule::onUnitCreate] you could check the list of events every frame and look for [Event#UnitCreate Event::UnitCreate].
 
+=== getForce ===
+[Force]{{{*}}} getForce(int forceID);
+
+Returns the [Force] with the given ID, or NULL if no [Force] has the given ID.
+
+=== getPlayer ===
+[Player]{{{*}}} getPlayer(int playerID);
+
+Returns the [Player] with the given ID, or NULL if no [Player] has the given ID.
+
+=== getUnit ===
+[Unit]{{{*}}} getUnit(int unitID);
+
+Returns the [Unit] with the given ID, or NULL if no [Unit] has the given ID.
+
 === indexToUnit ===
 Unit{{{*}}} indexToUnit(int unitIndex);
 
@@ -161,6 +181,16 @@ Returns the amount of latency the current game has.
 int getFrameCount();
 
 Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
+
+=== getFPS ===
+int getFPS();
+
+Returns the number of frames per second that the game is running at, based on the number of frames that have passed in the last second.
+
+=== getAverageFPS ===
+int getAverageFPS();
+
+Returns the average number of frames per second that the game is running at.
 
 === getMouseX ===
 int getMouseX();
