@@ -11,6 +11,7 @@ Methods:
   * [#getRace getRace]
   * [#mineralPrice mineralPrice]
   * [#gasPrice gasPrice]
+  * [#researchTime researchTime]
   * [#energyUsed energyUsed]
   * [#whatResearches whatResearches]
   * [#getWeapon getWeapon]
@@ -45,6 +46,11 @@ Returns the mineral cost of the tech type.
 int gasPrice() const;
 
 Returns the vespene gas price of the tech type.
+
+=== researchTime ===
+int researchTime() const;
+
+Returns the number of frames needed to research this tech type.
 
 === energyUsed ===
 int energyUsed() const;
