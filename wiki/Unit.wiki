@@ -479,7 +479,7 @@ Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded i
 === getLoadedUnits ===
 std::set<[Unit]{{{*}}}> getLoadedUnits() const;
 
-Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, Protoss Carrier, or Zerg Overlord.
+Returns the set of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, Protoss Carrier, or Zerg Overlord.
 
 === getCarrier ===
 [Unit]{{{*}}} getCarrier() const;
