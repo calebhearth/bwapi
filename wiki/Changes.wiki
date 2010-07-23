@@ -4,8 +4,16 @@ The internal implementation of the Unit class has been refactored to optimize pe
 
 Menu automation has increased speed and several more dialogs are automated.
 
-The following functions have been added:
+The following callbacks have been added:
+  * [AIModule#onUnitDiscover AIModule::onUnitDiscover] - called when a unit becomes accessible
+  * [AIModule#onUnitEvade AIModule::onUnitEvade] - called right before a unit becomes accessible
 
+The following Events have been added:
+  * [Event#UnitDiscover Event::UnitDiscover] - corresponds with [AIModule#onUnitDiscover AIModule::onUnitDiscover]
+  * [Event#UnitEvade Event::UnitEvade] - corresponds with [AIModule#onUnitEvade AIModule::onUnitEvade]
+
+The following functions have been added:
+ 
   * [Game#getGroundHeight Game::getGroundHeight](TilePosition position) - works same way as Game::getGroundHeight(int x, int y)
   * [Game#getFPS Game::getFPS] - returns the frames per second the game is running at.
   * [Game#getAverageFPS Game::getAverageFPS ] - returns the exponential moving average frames per second.
@@ -13,6 +21,9 @@ The following functions have been added:
   * [Unit#getCarrier Unit::getCarrier] - returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed. 
   * [Unit#getInterceptors Unit::getInterceptors] - Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets. 
   * [Game#mapPathName Game::mapPathName] - returns the path and file name of the map.
+  * [Game#getForce Game::getForce] - returns the Force object with the given force ID, or NULL if no force has the given ID.
+  * [Game#getPlayer Game::getPlayer] - returns the Player object with the given player ID, or NULL if no player has the given ID.
+  * [Game#getUnit Game::getUnit] - returns the Unit object with the given unit ID, or NULL if no unit has the given ID.
 
   * [Unit#getNydusExit Unit::getNydusExit] - Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
   * [Unit#isHoldingPosition Unit::isHoldingPosition] - returns true if the unit is holding position.
@@ -22,6 +33,7 @@ The following functions have been added:
   * [Unit#isDetected Unit::isDetected] - returns true if the unit is visible and detected/targetable. If this is false and [Unit#isVisible Unit::isVisible] is true, then the unit is only partially visible, and won't be targetable until a science vessel, overlord, or some other detection unit comes in range and detects the unit.
 
   * [TechType#researchTime TechType::researchTime] - returns the number of frames needed to research the given tech type.
+
   * [Misc#Position Position::isValid] - returns true if the position is on the map.
   * [Misc#Position Position::makeValid] - modifies the position so that it becomes valid (on the map), moving it at little as possible
   * [Misc#TilePosition TilePosition::makeValid] - modifies the tile position so that it becomes valid (on the map), moving it at little as possible
@@ -114,7 +126,7 @@ The following Orders have been renamed/merged:
 The following functions have changed in functionality:
   * [Game#getGroundHeight Game::getGroundHeight] now accepts build tile coordinates rather than walk tile coordinates.
   * [Unit#getLoadedUnits Unit::getLoadedUnits] now returns a set rather than a list.
-
+  * [AIModule#onSendText AIModule::onSendText] now has a void return type, rather than bool. Instead of returning true you can use [Game#printf Game::printf] or [Game#sendText Game::sendText] to send the message.
 
 Bug fixes:
   * Fixed a bug where [Game#getGroundHeight Game::getGroundHeight] would always return 0 for tiles until Zerg Creep.
