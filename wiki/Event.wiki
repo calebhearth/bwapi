@@ -11,10 +11,9 @@ Events correspond to [AIModule] callbacks and can be obtained by calling [Game#g
   * Player{{{*}}} player;
   * bool isWinner;
 
-For more information about a particular events, please refer to the corresponding [AIModule] callback.
 === Events ===
 
-The EventType Enum contains the following values:
+The EventType Enum contains the following values, which have been linked with their corresponding [AIModule] callbacks for more information:
 
   * [AIModule#onStart MatchStart]
   * [AIModule#onEnd MatchEnd]
