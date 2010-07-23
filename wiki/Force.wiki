@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Force.h# BWAPI/Force.h]
 
-The Force class is used to get information about each force in the match, such as the name of the force and the set of players in the force.
+The Force class is used to get information about each force in the match, such as the name of the force and the set of players in the force. In team-based [GameTypes], such as GameTypes::Team_Melee, each Force object will correspond to a different team. In non team-based matches, though, it is common for all players to be contained in the same Force.
 
 Methods:
 
@@ -17,4 +17,4 @@ Returns the name of the force.
 === getPlayers ===
 std::set< [Player]{{{*}}} > getPlayers() const;
 
-Returns the set of players in the force.
+Returns the set of players in the force. For team-based [GameTypes], this will return the set of players on this team.
