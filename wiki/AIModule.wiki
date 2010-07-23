@@ -73,12 +73,12 @@ BWAPI calls this right before a unit becomes inaccessible. If Complete Map Infor
 === onUnitShow ===
 void onUnitShow([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit becomes visible. If Complete Map Information is disabled, this means that the unit has just become accessible.
+BWAPI calls this when a unit becomes visible. If Complete Map Information is disabled, this also means that the unit has just become accessible.
 
 === onUnitHide ===
 void onUnitHide([Unit]{{{*}}} unit);
 
-BWAPI calls this right before a unit becomes invisible. If Complete Map Information is disabled, this means that the unit is about to become inaccessible.
+BWAPI calls this right before a unit becomes invisible. If Complete Map Information is disabled, this also means that the unit is about to become inaccessible.
 
 === onUnitCreate ===
 void onUnitCreate([Unit]{{{*}}} unit);
