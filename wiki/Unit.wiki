@@ -99,6 +99,7 @@ Methods:
   * [#isCompleted isCompleted]
   * [#isConstructing isConstructing]
   * [#isDefenseMatrixed isDefenseMatrixed]
+  * [#isDetected isDetected]
   * [#isEnsnared isEnsnared]
   * [#isFollowing isFollowing]
   * [#isGatheringGas isGatheringGas]
@@ -598,6 +599,11 @@ See also: [Unit]::[Unit#build build], [Unit]::[Unit#cancelConstruction cancelCon
 bool isDefenseMatrixed() const;
 
 Returns true if the unit has a defense matrix from a Terran Science Vessel.
+
+=== isDetected ===
+bool isDetected() const;
+
+Returns true if the unit is visible and detected. If this is false and [Unit#isVisible Unit::isVisible] returns true, then the unit is only partially visible, and requires detection (such as from a science vessel or overlord) to become fully visible and selectable/targetable.
 
 === isEnsnared ===
 bool isEnsnared() const;
