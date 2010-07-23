@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Event.h# BWAPI/Event.h]
 
-Events correspond to [AIModule] callbacks. Depending on the type of event, the following data members may be filled with information:
+Events correspond to [AIModule] callbacks and can be obtained by calling [Game#getEvents Game::getEvents]. Depending on the type of event, the following data members may be filled with information:
 
   * EventType::Enum type;
   * Position position;
@@ -11,24 +11,25 @@ Events correspond to [AIModule] callbacks. Depending on the type of event, the f
   * Player{{{*}}} player;
   * bool isWinner;
 
+For more information about a particular events, please refer to the corresponding [AIModule] callback.
 === Events ===
 
-The EventType Enum can have the following values:
+The EventType Enum contains the following values:
 
-  * Disconnect
-  * MatchStart
-  * MatchEnd
-  * MatchFrame
-  * MenuFrame
-  * SendText
-  * ReceiveText
-  * PlayerLeft
-  * NukeDetect
-  * UnitCreate
-  * UnitDestroy
-  * UnitMorph
-  * UnitShow
-  * UnitHide
-  * UnitRenegade
-  * SaveGame
+  * [AIModule#onStart MatchStart]
+  * [AIModule#onEnd MatchEnd]
+  * [AIModule#onFrame MatchFrame]
+  * [AIModule#onSendText SendText]
+  * [AIModule#onReceiveText ReceiveText]
+  * [AIModule#onPlayerLeft PlayerLeft]
+  * [AIModule#onNukeDetect NukeDetect]
+  * [AIModule#onUnitDiscover UnitDiscover]
+  * [AIModule#onUnitEvade UnitEvade]
+  * [AIModule#onUnitShow UnitShow]
+  * [AIModule#onUnitHide UnitHide]
+  * [AIModule#onUnitCreate UnitCreate]
+  * [AIModule#onUnitDestroy UnitDestroy]
+  * [AIModule#onUnitMorph UnitMorph]
+  * [AIModule#onUnitRenegade UnitRenegade]
+  * [AIModule#onSaveGame SaveGame]
   * None
