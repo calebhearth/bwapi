@@ -55,7 +55,7 @@ The following UpgradeTypes have been renamed:
 
 Renamed UnitCommandType::Attack_Position to [UnitCommandTypes UnitCommandType::Attack_Move].
 
-The following Orders have been renamed/merged:
+The following [Orders] have been renamed/merged:
 
   * SiegeMode -> Sieging
   * TankMode  -> Unsieging
