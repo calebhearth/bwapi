@@ -2,11 +2,11 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Color.h# BWAPI/Color.h]
 
-Starcraft uses a 256 color palette to render everything, so the colors we can use to draw shapes using BWAPI is limited to the colors available in the [#Palette Palette].
+Starcraft uses a 256 color palette to render everything, so the colors available for draw shapes using BWAPI is limited to the colors available in the [#Palette Palette].
 
 Methods:
   * Color(int id) - Create a color using the specified index from the Broodwar color [#Palette palette].
-  * Color(int red, int green, int blue) - Create a color using the color in the [#Palette palette] that is closest to the RGB color specified.
+  * Color(int red, int green, int blue) - Create a color using the color in the [#Palette palette] that is closest to the RGB color specified. This will check a number of colors in the pallet to see which is closest to the specified color so this function is relatively slow.
   * int getID() - Return the index of the color in the color [#Palette palette].
   * int red() - Return the red component of the color.
   * int green() - Return the green component of the color.
