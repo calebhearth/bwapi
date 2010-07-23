@@ -44,6 +44,8 @@ Returns the set of all the error codes, which are listed below.
   * [#Incompatible_TechType Incompatible_TechType]
   * [#Already_Researched Already_Researched]
   * [#Fully_Upgraded Fully_Upgraded]
+  * [#Currently_Researching Currently_Researching]
+  * [#Currently_Upgrading Currently_Upgrading]
   * [#Insufficient_Minerals Insufficient_Minerals]
   * [#Insufficient_Gas Insufficient_Gas]
   * [#Insufficient_Supply Insufficient_Supply]
@@ -88,6 +90,14 @@ Returned if you try to research something that is already researched.
 === {{{Fully_Upgraded}}} ===
 
 Returned if you try to upgrade something that is already fully upgraded.
+
+=== {{{Currently_Researching}}} ===
+
+Returned if you try to research something that is already being researched. For example, if you try to research [TechTypes]::Spider_Mines from two different machine shops (or twice from the same machine shop), the second call will generate this error code.
+
+=== {{{Currently_Upgrading}}} ===
+
+Returned if you try to upgrade something that is already being upgraded. For example, if you try to upgrade [UpgradeTypes]::Terran_Infantry_Weapons from two different Engineering Bays at the same time, the second call will generate this error code.
 
 === {{{Insufficient_Minerals}}} ===
 
