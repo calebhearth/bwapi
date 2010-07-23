@@ -34,7 +34,7 @@ std::set<[DamageType]>& allDamageTypes();
 
 Returns the set of all the DamageTypes, which are listed below:
 
-== DamageTypes ==
+=== DamageTypes ===
 
   * Concussive
   * Explosive
