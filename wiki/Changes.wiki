@@ -2,6 +2,8 @@
 
 The internal implementation of the Unit class has been refactored to optimize performance for the client-server architecture.
 
+Unit IDs now increment from 0, rather than just casting the unit address as an int.
+
 Menu automation has increased speed and several more dialogs are automated.
 
 The following callbacks have been added:
