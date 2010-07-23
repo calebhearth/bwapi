@@ -15,7 +15,7 @@ The following functions have been added:
   * [Unit#getCarrier Unit::getCarrier] - returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed. 
   * [Unit#getInterceptors Unit::getInterceptors] - Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets. 
   * [Unit#getNydusExit Unit::getNydusExit] - Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
-  * [Unit#isHoldingPosition] - returns true if the unit is holding position.
+  * [Unit#isHoldingPosition Unit::isHoldingPosition] - returns true if the unit is holding position.
 
 The following error codes have been added:
   * Error::Currently_Researching - generated when you try to tell a unit to research a TechType that is already being researched (at that unit or another unit).
