@@ -467,7 +467,7 @@ See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRal
 Returns the add-on of this unit, or NULL if the unit doesn't have an add-on.
 
 === getNydusExit ===
-[Unit]{{{*}}} getAddon() const;
+[Unit]{{{*}}} getNydusExit() const;
 
 Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
 
