@@ -262,15 +262,17 @@ int getMapHash();
 
 Returns a unique identifier for the given map data that does not depend on the file name.
 
-=== getGroundHeight ===
-int getGroundHeight(int x, int y);
-
-Returns the ground height of the given walk tile. 0 = normal, 1 = high ground.
-
 === isWalkable ===
 bool isWalkable(int x, int y);
 
 Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
+
+=== getGroundHeight ===
+int getGroundHeight(int x, int y);
+
+bool getGroundHeight([Misc#TilePosition TilePosition] position);
+
+Returns the ground height of the given build tile. 0 = normal, 1 = high ground, 2 = very high ground.
 
 === isBuildable ===
 bool isBuildable(int x, int y);
