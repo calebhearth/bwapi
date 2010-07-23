@@ -41,9 +41,10 @@ Methods:
 
   * [#mapWidth mapWidth]
   * [#mapHeight mapHeight]
-  * [#mapFilename mapFilename]
+  * [#mapFileName mapFileName]
+  * [#mapPathName mapPathName]
   * [#mapName mapName]
-  * [#getMapHash getMapHash]
+  * [#mapHash mapHash]
   * [#isWalkable isWalkable]
   * [#getGroundHeight getGroundHeight]
   * [#isBuildable isBuildable]
@@ -247,20 +248,25 @@ int mapHeight();
 
 Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE] (which is 32).
 
-=== mapFilename ===
-std::string mapFilename();
+=== mapFileName ===
+std::string mapFileName();
 
 Returns the file name of the current map.
+
+=== mapPathName ===
+std::string mapFileName();
+
+Returns the path name of the current map (path + file name).
 
 === mapName ===
 std::string mapName();
 
 Returns the name/title of the current map.
 
-=== getMapHash ===
-int getMapHash();
+=== mapHash ===
+std::string mapHash();
 
-Returns a unique identifier for the given map data that does not depend on the file name.
+Returns the sha1 hash of the map file in an alpha-numeric string.
 
 === isWalkable ===
 bool isWalkable(int x, int y);
