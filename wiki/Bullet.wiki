@@ -49,48 +49,48 @@ Returns the unit that fired the bullet. If the unit is inaccessible (such as a c
 === getPosition ===
 [Misc#Position Position] getPosition() const;
 
-Returns the position of the bullet.
+Returns the position of the bullet, or an invalid position if the bullet is inaccessible.
 
 === getAngle ===
 double getAngle() const;
 
-Returns the direction the bullet is facing/traveling in, measured in radians. An angle of 0 means the bullet is facing east/right.
+Returns the direction the bullet is facing/traveling in, measured in radians. An angle of 0 means the bullet is facing east/right. If the bullet is inaccessible this will return 0.
 
 === getVelocityX ===
 double getVelocityX() const;
 
-Returns the x component of the bullet's velocity, measured in pixels per frame.
+Returns the x component of the bullet's velocity, measured in pixels per frame. If the bullet is inaccessible this will return 0.
 
 === getVelocityY ===
 double getVelocityY() const;
 
-Returns the y component of the bullet's velocity, measured in pixels per frame. 
+Returns the y component of the bullet's velocity, measured in pixels per frame. If the bullet is inaccessible this will return 0.
 
 === getTarget ===
 [Unit]{{{*}}} getTarget() const;
 
-Returns the unit that the bullet is trying to hit. If the unit is inaccessible (such as a cloaked or burrowed enemy unit with no detection around and complete map information disabled), this will return NULL.
+Returns the unit that the bullet is trying to hit. If the unit is inaccessible (such as a cloaked or burrowed enemy unit with no detection around and complete map information disabled), this will return NULL. If the bullet is inaccessible this will return NULL.
 
 === getTargetPosition ===
 [Misc#Position Position] getTargetPosition() const;
 
-Returns the target position of the bullet.
+Returns the target position of the bullet. If the bullet is inaccessible this will return an invalid position.
 
 === getRemoveTimer ===
 int getRemoveTimer() const;
 
-Returns the maximum number of frames until this bullet is removed. Generally bullets hit their targets before this timer reaches 0.
+Returns the maximum number of frames until this bullet is removed. Generally bullets hit their targets before this timer reaches 0. If the bullet is inaccessible this will return 0.
 
 === exists ===
 bool exists() const;
 
-If [Misc#Flag Flag::CompleteMapInformation] is enabled, this returns true if the bullet exists. Otherwise, this returns true if the bullet exists and is visible.
+Returns true if the bullet is accessible. If [Misc#Flag Flag::CompleteMapInformation] is enabled, all bullets that actually exist in the game will be accessible. If it is disabled, then only visible bullets will be accessible.
 
 === isVisible ===
 bool isVisible() const;
 
 bool isVisible([Player]{{{*}}} player) const;
 
-Returns true if the bullet exists and is visible.
+Returns true if the bullet is visible.
 
-If [Misc#Flag Flag::CompleteMapInformation] is enabled, you can also specify to which player you want to check visibility.
+If [Misc#Flag Flag::CompleteMapInformation] is enabled, you can also specify to which player you want to check visibility for, otherwise [Game#self Game::self] is used.
