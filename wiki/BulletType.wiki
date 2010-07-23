@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/BulletType.h# BWAPI/BulletType.h]
 
-List of all [BulletTypes].
+Each [Bullet] object in the game has a certain type. The list of all the possible Bullet types is available here: [BulletTypes].
 
 Methods:
 
@@ -27,7 +27,7 @@ Returns the name of this bullet type.
 === getBulletType ===
 [Order] getBulletType(std::string name);
 
-Given the name of a bullet type, getBulletType() will return the corresponding BulletType object.
+Given the name of a bullet type, BulletTypes::getBulletType() will return the corresponding BulletType object.
 
 === allBulletTypes ===
 std::set<[BulletType]>& allBulletTypes();
