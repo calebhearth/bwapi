@@ -45,15 +45,15 @@ The following functions have been renamed:
   * Game::getMapHash has been renamed to [Game#mapHash Game::mapHash] and it now returns the sda1 hash of the map file as a std::string.
 
 The following error codes have been added:
-  * Error::Currently_Researching - generated when you try to tell a unit to research a TechType that is already being researched (at that unit or another unit).
-  * Error::Currently_Upgrading - generated when you try to tell a unit to upgrade an UpgradeType that is already being upgraded (at that unit or another unit).
+  * [Error#Currently_Researching Error::Currently_Researching] - generated when you try to tell a unit to research a TechType that is already being researched (at that unit or another unit).
+  * [Error#Currently_Upgrading Error::Currently_Upgrading] - generated when you try to tell a unit to upgrade an UpgradeType that is already being upgraded (at that unit or another unit).
 
 The following UpgradeTypes have been renamed:
   * Protoss_Armor -> Protoss_Ground_Armor
   * Protoss_Plating -> Protoss_Air_Armor
   * Charon_Booster -> Charon_Boosters
 
-Renamed UnitCommandType::Attack_Position to UnitCommandType::Attack_Move.
+Renamed UnitCommandType::Attack_Position to [UnitCommandTypes UnitCommandType::Attack_Move].
 
 The following Orders have been renamed/merged:
 
