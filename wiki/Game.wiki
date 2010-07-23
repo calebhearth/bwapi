@@ -45,6 +45,7 @@ Methods:
   * [#mapPathName mapPathName]
   * [#mapName mapName]
   * [#mapHash mapHash]
+
   * [#isWalkable isWalkable]
   * [#getGroundHeight getGroundHeight]
   * [#isBuildable isBuildable]
@@ -52,6 +53,7 @@ Methods:
   * [#isExplored isExplored]
   * [#hasCreep hasCreep]
   * [#hasPower hasPower]
+
   * [#canBuildHere canBuildHere]
   * [#canMake canMake]
   * [#canResearch canResearch]
