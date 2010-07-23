@@ -6,7 +6,7 @@ Menu automation has increased speed and several more dialogs are automated.
 
 The following callbacks have been added:
   * [AIModule#onUnitDiscover AIModule::onUnitDiscover] - called when a unit becomes accessible
-  * [AIModule#onUnitEvade AIModule::onUnitEvade] - called right before a unit becomes accessible
+  * [AIModule#onUnitEvade AIModule::onUnitEvade] - called right before a unit becomes inaccessible
 
 The following Events have been added:
   * [Event#UnitDiscover Event::UnitDiscover] - corresponds with [AIModule#onUnitDiscover AIModule::onUnitDiscover]
