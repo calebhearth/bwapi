@@ -28,11 +28,11 @@ The following functions have been added:
   * [Game#getUnit Game::getUnit] - returns the Unit object with the given unit ID, or NULL if no unit has the given ID.
 
   * [Unit#getNydusExit Unit::getNydusExit] - Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
-  * [Unit#isHoldingPosition Unit::isHoldingPosition] - returns true if the unit is holding position.
   * [Unit#hasNuke Unit::hasNuke] - returns true for nuclear missile silos that have a nuke ready.
+  * [Unit#isDetected Unit::isDetected] - returns true if the unit is visible and detected/targetable. If this is false and [Unit#isVisible Unit::isVisible] is true, then the unit is only partially visible, and won't be targetable until a science vessel, overlord, or some other detection unit comes in range and detects the unit.
+  * [Unit#isHoldingPosition Unit::isHoldingPosition] - returns true if the unit is holding position.
   * [Unit#gather Unit::gather] - orders the unit to gather the specified mineral patch or refinery/extractor/assimilator
   * [Unit#move Unit::move] - orders the unit to move to the specified position
-  * [Unit#isDetected Unit::isDetected] - returns true if the unit is visible and detected/targetable. If this is false and [Unit#isVisible Unit::isVisible] is true, then the unit is only partially visible, and won't be targetable until a science vessel, overlord, or some other detection unit comes in range and detects the unit.
 
   * [TechType#researchTime TechType::researchTime] - returns the number of frames needed to research the given tech type.
 
