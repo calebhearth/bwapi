@@ -12,7 +12,7 @@
   * Argus_Talisman
   * Caduceus_Reactor
   * Carrier_Capacity
-  * Charon_Booster
+  * Charon_Boosters
   * Chitinous_Plating
   * Colossus_Reactor
   * Gamete_Meiosis
@@ -31,10 +31,10 @@
   * Ocular_Implants
   * Pneumatized_Carapace
   * Protoss_Air_Weapons
-  * Protoss_Armor
+  * Protoss_Ground_Armor
   * Protoss_Ground_Weapons
   * Protoss_Plasma_Shields
-  * Protoss_Plating
+  * Protoss_Air_Armor
   * Reaver_Capacity
   * Scarab_Damage
   * Sensor_Array
