@@ -11,11 +11,13 @@ AIModule is a virtual class that is intended to be implemented or inherited by a
   * [#onReceiveText onReceiveText]
   * [#onPlayerLeft onPlayerLeft]
   * [#onNukeDetect onNukeDetect]
+  * [#onUnitDiscover onUnitDiscover]
+  * [#onUnitEvade onUnitEvade]
+  * [#onUnitShow onUnitShow]
+  * [#onUnitHide onUnitHide]
   * [#onUnitCreate onUnitCreate]
   * [#onUnitDestroy onUnitDestroy]
   * [#onUnitMorph onUnitMorph]
-  * [#onUnitShow onUnitShow]
-  * [#onUnitHide onUnitHide]
   * [#onUnitRenegade onUnitRenegade]
   * [#onSaveGame onSaveGame]
 
@@ -39,9 +41,9 @@ void onFrame();
 BWAPI calls this on every logical frame in the game.
 
 === onSendText ===
-bool onSendText(std::string text);
+void onSendText(std::string text);
 
-if [Misc#Flag Flag]::UserInput is enabled, BWAPI will call this each time a user enters a message into the chat.
+If [Misc#Flag Flag]::UserInput is enabled, BWAPI will call this each time a user enters a message into the chat. If you want the message to actually show up in chat, you can use [Game#sendText Game::sendText] to send the message to other players (if the game is multiplayer), or use [Game#printf Game::printf] if you want the message to just show up locally.
 
 === onReceiveText ===
 bool onReceiveText([Player]{{{*}}} player, std::string text);
@@ -58,30 +60,40 @@ bool onNukeDetect([Misc#Position Position] target);
 
 BWAPI calls this when a nuclear launch has been detected. If the target position is visible, or if Complete Map Information is enabled, the target position will also be provided. If Complete Map Information is disabled and the target position is not visible, target will be set to Positions::Unknown.
 
-=== onUnitCreate ===
-void onUnitCreate([Unit]{{{*}}} unit);
+=== onUnitDiscover ===
+void onUnitDiscover([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor. If Complete Map Information is enabled, this will also be called for new units that are hidden by the fog of war. If the unit is visible upon creation, onUnitShow will be called shortly after onUnitCreate is called.
+BWAPI calls this when a unit becomes accessible. If Complete Map Information is enabled, this will be called at the same time as [#onUnitCreate AIModule::onUnitCreate], otherwise it will be called at the same time as [#onUnitShow AIModule::onUnitShow].
 
-=== onUnitDestroy ===
-void onUnitDestroy([Unit]{{{*}}} unit);
+=== onUnitEvade ===
+void onUnitEvade([Unit]{{{*}}} unit);
 
-BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a mined out mineral patch). When a zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is removed. If Complete Map Information is enabled, this will also be called for units that are hidden by the fog of war. If a unit that was visible gets destroyed, onUnitHide will be called right before onUnitDestroy is called.
-
-=== onUnitMorph ===
-void onUnitMorph([Unit]{{{*}}} unit);
-
-BWAPI calls this when a unit changes type, such as from a Zerg Drone to a Zerg Hatchery, or from a Terran Siege Tank Tank Mode to Terran Siege Tank Siege Mode. This is not called when the type changes to or from UnitTypes::Unknown (which happens when a unit becomes visible or invisible).
+BWAPI calls this right before a unit becomes inaccessible. If Complete Map Information is enabled, this will be called at the same time as [#onUnitDestroy AIModule::onUnitDestroy], otherwise it will be called at the same time as [#onUnitHide AIModule::onUnitHide].
 
 === onUnitShow ===
 void onUnitShow([Unit]{{{*}}} unit);
 
-BWAPI calls this the instant a previously invisible unit becomes visible. The complete map information flag has no effect on this callback.
+BWAPI calls this when a unit becomes visible. If Complete Map Information is disabled, this means that the unit has just become accessible.
 
 === onUnitHide ===
 void onUnitHide([Unit]{{{*}}} unit);
 
-BWAPI calls this right before a unit becomes invisible, so if you want your non-cheating AI to remember where it last saw a unit, this callback would be a good place to implement it. The complete map information flag has no effect on this callback.
+BWAPI calls this right before a unit becomes invisible. If Complete Map Information is disabled, this means that the unit is about to become inaccessible.
+
+=== onUnitCreate ===
+void onUnitCreate([Unit]{{{*}}} unit);
+
+BWAPI calls this when an accessible unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone). Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the refinery/assimilator/extractor. If the unit is not accessible at the time of creation (i.e. if the unit is invisible and Complete Map Information is disabled), then this callback will NOT be called. If the unit is visible at the time of creation, [#onUnitShow AIModule::onUnitShow] will also be called.
+
+=== onUnitDestroy ===
+void onUnitDestroy([Unit]{{{*}}} unit);
+
+BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a mined out mineral patch). When a Zerg drone becomes an extractor, the Vespene geyser changes to the Zerg Extractor type and the drone is destroyed. If the unit is not accessible at the time of destruction, (i.e. if the unit is invisible and Complete Map Information is disabled), then this callback will NOT be called. If the unit was visible at the time of destruction, [#onUnitHide AIModule::onUnitHide] will also be called.
+
+=== onUnitMorph ===
+void onUnitMorph([Unit]{{{*}}} unit);
+
+BWAPI calls this when an accessible unit changes type, such as from a Zerg Drone to a Zerg Hatchery, or from a Terran Siege Tank Tank Mode to Terran Siege Tank Siege Mode. This is not called when the type changes to or from UnitTypes::Unknown (which happens when a unit is transitioning to or from inaccessibility).
 
 === onUnitRenegade ===
 void onUnitRenegade([Unit]{{{*}}} unit);
@@ -91,4 +103,4 @@ BWAPI calls this when an accessible unit changes ownership.
 === onSaveGame ===
 void onSaveGame(std::string gameName);
 
-BWAPI calls this when the user saves the match.
+BWAPI calls this when the user saves the match. The gameName will be the name that the player entered in the save game screen.
