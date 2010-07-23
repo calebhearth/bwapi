@@ -1,4 +1,4 @@
-#summary Orders in Starcraft: Broodwar
+#summary Orders in BWAPI
 #sidebar TableOfContents
 
 = Orders =
@@ -9,35 +9,23 @@
   * TurretGuard
   * BunkerGuard
   * Move
-  * ReaverStop
-  * Attack1
-  * Attack2
   * AttackUnit
-  * AttackFixedRange
   * AttackTile
   * Hover
   * AttackMove
-  * InfestMine1
+  * InfestedCommandCenter
   * UnusedNothing
   * UnusedPowerup
   * TowerGuard
-  * TowerAttack
   * VultureMine
-  * StayinRange
-  * TurretAttack
   * Nothing
   * Nothing3
-  * DroneStartBuild
-  * DroneBuild
-  * InfestMine2
-  * InfestMine3
-  * InfestMine4
-  * BuildTerran
-  * BuildProtoss1
+  * CastInfestation
+  * InfestingCommandCenter
+  * PlaceBuilding
   * BuildProtoss2
   * ConstructingBuilding
-  * Repair1
-  * Repair2
+  * Repair
   * PlaceAddon
   * BuildAddon
   * Train
@@ -46,33 +34,21 @@
   * ZergBirth
   * ZergUnitMorph
   * ZergBuildingMorph
-  * TerranBuildSelf
-  * ZergBuildSelf
+  * IncompleteBuilding
   * BuildNydusExit
   * EnterNydusCanal
-  * ProtossBuildSelf
   * Follow
   * Carrier
   * ReaverCarrierMove
-  * CarrierStop
-  * CarrierAttack1
-  * CarrierAttack2
   * CarrierIgnore2
-  * CarrierFight
-  * CarrierHoldPosition
   * Reaver
-  * ReaverAttack1
-  * ReaverAttack2
-  * ReaverFight
-  * ReaverHoldPosition
   * TrainFighter
-  * StrafeUnit1
-  * StrafeUnit2
+  * InterceptorAttack
+  * ScarabAttack
   * RechargeShieldsUnit
   * RechargeShieldsBattery
   * ShieldBattery
-  * Return
-  * DroneLand
+  * InterceptorReturn
   * BuildingLand
   * BuildingLiftOff
   * DroneLiftOff
@@ -100,60 +76,51 @@
   * PickupBunker
   * Pickup4
   * PowerupIdle
-  * SiegeMode
-  * TankMode
-  * WatchTarget
+  * Sieging
+  * Unsieging
   * InitCreepGrowth
   * SpreadCreep
   * StoppingCreepGrowth
   * GuardianAspect
-  * WarpingArchon
+  * ArchonWarp
   * CompletingArchonsummon
   * HoldPosition
-  * QueenHoldPosition
   * Cloak
   * Decloak
   * Unload
   * MoveUnload
-  * FireYamatoGun1
-  * FireYamatoGun2
-  * MagnaPulse
-  * Burrow
+  * FireYamatoGun
+  * CastLockdown
+  * Burrowing
   * Burrowed
-  * Unburrow
-  * DarkSwarm
+  * Unburrowing
+  * CastDarkSwarm
   * CastParasite
-  * SummonBroodlings
-  * EmpShockwave
+  * CastSpawnBroodlings
+  * CastEMPShockwave
   * NukeWait
   * NukeTrain
   * NukeLaunch
-  * NukePaint
   * NukeUnit
-  * NukeGround
+  * CastNuclearStrike
   * NukeTrack
-  * InitArbiter
   * CloakNearbyUnits
   * PlaceMine
-  * Rightclickaction
-  * SapUnit
-  * SapLocation
-  * SuicideHoldPosition
-  * Teleport
+  * RightClickAction
+  * CastRecall
   * TeleporttoLocation
-  * PlaceScanner
+  * CastScannerSweep
   * Scanner
-  * DefensiveMatrix
-  * PsiStorm
-  * Irradiate
-  * Plague
-  * Consume
-  * Ensnare
-  * StasisField
-  * Hallucianation1
+  * CastDefensiveMatrix
+  * CastPsionicStorm
+  * CastIrradiate
+  * CastPlague
+  * CastConsume
+  * CastEnsnare
+  * CastStasisField
+  * CastHallucination
   * Hallucination2
-  * ResetCollision1
-  * ResetCollision2
+  * ResetCollision
   * Patrol
   * CTFCOPInit
   * CTFCOP1
@@ -166,7 +133,6 @@
   * RescuePassive
   * Neutral
   * ComputerReturn
-  * InitPsiProvider
   * SelfDestrucing
   * Critter
   * HiddenGun
@@ -180,12 +146,11 @@
   * Medic
   * MedicHeal1
   * HealMove
-  * MedicHoldPosition
   * MedicHeal2
-  * Restoration
+  * CastRestoration
   * CastDisruptionWeb
   * CastMindControl
-  * WarpingDarkArchon
+  * DarkArchonMeld
   * CastFeedback
   * CastOpticalFlare
   * CastMaelstrom
