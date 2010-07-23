@@ -12,10 +12,23 @@ The following functions have been added:
   * [Game#setTextSize Game::setTextSize] - sets the text size for drawText commands.
   * [Unit#getCarrier Unit::getCarrier] - returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed. 
   * [Unit#getInterceptors Unit::getInterceptors] - Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets. 
+  * [Game#mapPathName Game::mapPathName] - returns the path and file name of the map.
+
   * [Unit#getNydusExit Unit::getNydusExit] - Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
   * [Unit#isHoldingPosition Unit::isHoldingPosition] - returns true if the unit is holding position.
   * [Unit#hasNuke Unit::hasNuke] - returns true for nuclear missile silos that have a nuke ready.
+  * [Unit#gather Unit::gather] - orders the unit to gather the specified mineral patch or refinery/extractor/assimilator
+  * [Unit#move Unit::move] - orders the unit to move to the specified position
+  * [Unit#isDetected Unit::isDetected] - returns true if the unit is visible and detected/targetable. If this is false and [Unit#isVisible Unit::isVisible] is true, then the unit is only partially visible, and won't be targetable until a science vessel, overlord, or some other detection unit comes in range and detects the unit.
+
   * [TechType#researchTime TechType::researchTime] - returns the number of frames needed to research the given tech type.
+  * [Misc#Position Position::isValid] - returns true if the position is on the map.
+  * [Misc#Position Position::makeValid] - modifies the position so that it becomes valid (on the map), moving it at little as possible
+  * [Misc#TilePosition TilePosition::makeValid] - modifies the tile position so that it becomes valid (on the map), moving it at little as possible
+
+The following functions have been renamed:
+  * Game::mapFilename has been renamed to [Game#mapFileName Game::mapFileName].
+  * Game::getMapHash has been renamed to [Game#mapHash Game::mapHash] and it now returns the sda1 hash of the map file as a std::string.
 
 The following error codes have been added:
   * Error::Currently_Researching - generated when you try to tell a unit to research a TechType that is already being researched (at that unit or another unit).
@@ -25,6 +38,78 @@ The following UpgradeTypes have been renamed:
   * Protoss_Armor -> Protoss_Ground_Armor
   * Protoss_Plating -> Protoss_Air_Armor
   * Charon_Booster -> Charon_Boosters
+
+The following Orders have been renamed/merged:
+
+  * SiegeMode -> Sieging
+  * TankMode  -> Unsieging
+  * Burrow    -> Burrowing
+  * Unburrow  -> Unburrowing
+  * StrafeUnit1 -> InterceptorAttack
+  * StrafeUnit2 -> ScarabAttack
+  * Return      -> InterceptorReturn
+  * Rightclickaction -> RightClickAction
+  * ReaverStop  -> Stop
+  * CarrierStop -> Stop
+  * Attack1          -> AttackUnit
+  * Attack2          -> AttackUnit
+  * CarrierAttack1   -> AttackUnit
+  * CarrierAttack2   -> AttackUnit
+  * CarrierFight     -> AttackUnit
+  * ReaverAttack1    -> AttackUnit
+  * ReaverAttack2    -> AttackUnit
+  * ReaverFight      -> AttackUnit
+  * StayinRange      -> AttackUnit
+  * SapUnit          -> AttackUnit
+  * WatchTarget      -> AttackUnit
+  * TowerAttack      -> AttackUnit
+  * TurretAttack     -> AttackUnit
+  * AttackFixedRange -> AttackUnit
+  * CarrierHoldPosition -> HoldPosition
+  * QueenHoldPosition   -> HoldPosition
+  * SuicideHoldPosition -> HoldPosition
+  * MedicHoldPosition   -> HoldPosition
+  * ReaverHoldPosition  -> HoldPosition
+  * BuildTerran     -> PlaceBuilding
+  * BuildProtoss1   -> PlaceBuilding
+  * DroneStartBuild -> PlaceBuilding
+  * DroneLand       -> PlaceBuilding
+  * SapLocation -> AttackMove
+  * Repair1 -> Repair
+  * Repair2 -> Repair
+  * FireYamatoGun1 -> FireYamatoGun
+  * FireYamatoGun2 -> FireYamatoGun
+  * InfestMine1 -> InfestedCommandCenter
+  * InfestMine2 -> CastInfestation
+  * InfestMine3 -> CastInfestation
+  * InfestMine4 -> InfestingCommandCenter
+  * TerranBuildSelf  -> IncompleteBuilding
+  * ProtossBuildSelf -> IncompleteBuilding
+  * DroneBuild       -> IncompleteBuilding
+  * ZergBuildSelf    -> IncompleteBuilding
+  * WarpingArchon     -> ArchonWarp
+  * WarpingDarkArchon -> DarkArchonMeld
+  * MagnaPulse       -> CastLockdown
+  * DarkSwarm        -> CastDarkSwarm
+  * SummonBroodlings -> CastSpawnBroodlings
+  * EmpShockwave     -> CastEMPShockwave
+  * NukePaint        -> CastNuclearStrike
+  * NukeGround       -> CastNuclearStrike
+  * PlaceScanner     -> CastScannerSweep
+  * DefensiveMatrix  -> CastDefensiveMatrix
+  * PsiStorm         -> CastPsionicStorm
+  * Irradiate        -> CastIrradiate
+  * Plague           -> CastPlague
+  * Consume          -> CastConsume
+  * Ensnare          -> CastEnsnare
+  * StasisField      -> CastStasisField
+  * Hallucination1   -> CastHallucination
+  * Restoration      -> CastRestoration
+  * ResetCollision1  -> ResetCollision
+  * ResetCollision2  -> ResetCollision
+  * InitPsiProvider  -> Nothing
+  * InitArbiter      -> PlayerGuard
+  * Teleport         -> CastRecall
 
 The following functions have changed in functionality:
   * [Game#getGroundHeight Game::getGroundHeight] now accepts build tile coordinates rather than walk tile coordinates.
@@ -57,6 +142,10 @@ Bug fixes:
   * Fixed a bug where [Unit#getPosition Unit::getPosition] and [Unit#getTilePosition Unit::getTilePosition] would return incorrect positions for loaded units.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not cast Maelstroms.
   * Fixed a bug where [Unit#useTech Unit::useTech] would not work for Nuclear Missiles.
+  * Fixed a bug where Siege Tanks, Goliaths, Reavers, and Carriers would not attack when given an attackUnit command.
+  * Fixed a bug where Starcraft would crash when an AI issued a stop command to a Reaver or Carrier.
+  * Fixed a bug where [Game#unitsOnTile Game::unitsOnTile] would incorrectly include Terran Add-ons for tiles that did not contain a Terran Add-on.
+  * Fixed a bug where [Unit#isBeingHealed Unit::isBeingHealed] wouldn't work. Now returns true for Terran units that are being healed or repaired.
 
 == Changes from BWAPI Beta 2.7.2 (r2239) to BWAPI Beta 2.8 (r2422) ==
 
