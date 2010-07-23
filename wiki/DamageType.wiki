@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/DamageType.h# BWAPI/DamageType.h]
 
-Each type of Unit in Starcraft: Broodwar has a particular [WeaponType] for its ground weapon and air weapon (either of which could be WeaponTypes::None). Each type of Weapon has a particular damage type, which could be explosive, concussive, or something else. Here is the list of all the possible [DamageType#DamageTypes DamageTypes].
+Each type of Unit in Starcraft: Broodwar has a particular [WeaponType] for its ground weapon and air weapon (either of which could be WeaponTypes::None). Each type of Weapon has a particular damage type, which could be explosive, concussive, or something else. Here is the list of all the possible [#DamageTypes DamageTypes].
 
 Methods:
 
@@ -34,7 +34,7 @@ std::set<[DamageType]>& allDamageTypes();
 
 Returns the set of all the DamageTypes, which are listed below:
 
-=== DamageTypes ===
+== DamageTypes ==
 
   * Concussive
   * Explosive
