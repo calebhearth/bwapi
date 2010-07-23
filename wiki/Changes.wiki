@@ -51,6 +51,8 @@ The following UpgradeTypes have been renamed:
   * Protoss_Plating -> Protoss_Air_Armor
   * Charon_Booster -> Charon_Boosters
 
+Renamed UnitCommandType::Attack_Position to UnitCommandType::Attack_Move.
+
 The following Orders have been renamed/merged:
 
   * SiegeMode -> Sieging
