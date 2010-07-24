@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.1 (r2630) to BWAPI Beta 3.0.1 (r2635) ==
+== Changes from BWAPI Beta 3.0.1 (r2630) to BWAPI Beta 3.0.2 (r2635) ==
 
 Fixed order of UnitDiscover/UnitEvade events.
 
