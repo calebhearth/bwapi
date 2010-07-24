@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 2.8 (r2422) to r2608 ==
+== Changes from BWAPI Beta 2.8 (r2422) to r2624 ==
 
 The internal implementation of the Unit class has been refactored to optimize performance for the client-server architecture.
 
