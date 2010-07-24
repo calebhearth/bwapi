@@ -20,13 +20,13 @@ The following functions have been added:
   * [Game#getFPS Game::getFPS] - returns the frames per second the game is running at.
   * [Game#getAverageFPS Game::getAverageFPS ] - returns the exponential moving average frames per second.
   * [Game#setTextSize Game::setTextSize] - sets the text size for drawText commands.
-  * [Unit#getCarrier Unit::getCarrier] - returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed. 
-  * [Unit#getInterceptors Unit::getInterceptors] - Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets. 
   * [Game#mapPathName Game::mapPathName] - returns the path and file name of the map.
   * [Game#getForce Game::getForce] - returns the Force object with the given force ID, or NULL if no force has the given ID.
   * [Game#getPlayer Game::getPlayer] - returns the Player object with the given player ID, or NULL if no player has the given ID.
   * [Game#getUnit Game::getUnit] - returns the Unit object with the given unit ID, or NULL if no unit has the given ID.
 
+  * [Unit#getCarrier Unit::getCarrier] - returns the carrier that this unit belongs to, or NULL if this unit is not an Interceptor or if its carrier has recently been destroyed. 
+  * [Unit#getInterceptors Unit::getInterceptors] - Returns the set of interceptors owned by this carrier. The interceptors inside the carrier can be obtained via getLoadedUnits, while the interceptors outside of the carrier is the difference of these two sets. 
   * [Unit#getNydusExit Unit::getNydusExit] - Returns the Nydus Canal unit that is connected to this Nydus Canal, or NULL if the unit doesn't have a connecting Nydus Canal.
   * [Unit#hasNuke Unit::hasNuke] - returns true for nuclear missile silos that have a nuke ready.
   * [Unit#isDetected Unit::isDetected] - returns true if the unit is visible and detected/targetable. If this is false and [Unit#isVisible Unit::isVisible] is true, then the unit is only partially visible, and won't be targetable until a science vessel, overlord, or some other detection unit comes in range and detects the unit.
