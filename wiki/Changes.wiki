@@ -42,7 +42,7 @@ The following functions have been added:
 
 The following functions have been renamed:
   * Game::mapFilename has been renamed to [Game#mapFileName Game::mapFileName].
-  * Game::getMapHash has been renamed to [Game#mapHash Game::mapHash] and it now returns the sda1 hash of the map file as a std::string.
+  * Game::getMapHash has been renamed to [Game#mapHash Game::mapHash] and it now returns the sha1 hash of the map file as a std::string.
 
 The following error codes have been added:
   * [Error#Currently_Researching Error::Currently_Researching] - generated when you try to tell a unit to research a TechType that is already being researched (at that unit or another unit).
