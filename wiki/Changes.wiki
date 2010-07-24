@@ -1,3 +1,7 @@
+== Changes from BWAPI Beta 3.0 (r2627) to BWAPI Beta 3.0.1 (r2630) ==
+
+Fixed order of events/callbacks.
+
 == Changes from BWAPI Beta 2.8 (r2422) to BWAPI Beta 3.0 (r2627) ==
 
 The internal implementation of the Unit class has been refactored to optimize performance for the client-server architecture.
