@@ -75,11 +75,11 @@ Note: [AIModule#onUnitShow AIModule::onUnitShow] and [AIModule#onUnitHide AIModu
 Units that are dead will have no accessibility. If Complete Map Info is disabled, then units shrouded by Fog of War will also have no accessibility, even if they are still alive.
 
 The initial value functions, however, are always accessible at all levels:
-  * getInitialType
-  * getInitialPosition
-  * getInitialTilePosition
-  * getInitialHitPoints
-  * getInitialResources
+  * [Unit#getInitialType getInitialType]
+  * [Unit#getInitialPosition getInitialPosition]
+  * [Unit#getInitialTilePosition getInitialTilePosition]
+  * [Unit#getInitialHitPoints getInitialHitPoints]
+  * [Unit#getInitialResources getInitialResources]
 
 These only apply for neutral units that existed at the start of the match are are useful for getting general/static knowledge of the map even when complete map info is disabled. To obtain this static map info use these functions on the units returned by:
   * [Game#getStaticMinerals Game::getStaticMinerals]
