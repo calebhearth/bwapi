@@ -1,6 +1,6 @@
 todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
 
-The four tiers of accessibility:
+The four tiers of unit accessibility:
 
 == 1) Full Accessibility ==
 
