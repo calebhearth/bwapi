@@ -28,7 +28,7 @@ When complete map information is disabled, then all visible and detected enemy u
   * [Unit#hasNuke hasNuke]
   * [Unit#isHallucination isHallucination]
 
-These inaccessible functions will just return 0/NULL/false, depending on the return type.
+These inaccessible functions will just return 0/NULL/false/etc, depending on the return type.
 
 == 3) Partial Accessibility ==
 
