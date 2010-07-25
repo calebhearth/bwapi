@@ -1,5 +1,6 @@
   * [BWAPIManual API]
   * [UsingBWAPI Using BWAPI]
+  * [BWAPIOverview BWAPIOverview]
   * [MenuAutomation]
   * [AIModule]
   * [Bullet]
