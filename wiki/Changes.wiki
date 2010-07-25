@@ -1,6 +1,6 @@
 == Changes from BWAPI Beta 3.0.2 (r2630) to BWAPI Beta 3.0.3 (r2639) ==
 
-Fixed a bug where BWTA would not identify base locations when run on the client.
+Fixed a bug with BWAPI's frame 0 accessibility where BWTA would not identify base locations when run on the client.
 
 == Changes from BWAPI Beta 3.0.1 (r2630) to BWAPI Beta 3.0.2 (r2635) ==
 
