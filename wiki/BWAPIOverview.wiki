@@ -2,11 +2,11 @@ todo: explain overview of BWAPI, what each class does, cheat flags, major concep
 
 The four tiers of accessibility:
 
-1) full accessibility
+== 1) full accessibility ==
 
 All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()].
 
-2) normal accessibility
+== 2) normal accessibility ==
 
 When complete map information is disabled, then all visible and detected enemy units will have normal accessibility. This includes all of the attributes in full accessibility except for the following:
 
@@ -28,7 +28,7 @@ When complete map information is disabled, then all visible and detected enemy u
   * hasNuke
   * isHallucination
 
-3) partial accessibility
+== 3) limited accessibility ==
 
 Units that return true for [Unit#isVisible Unit::isVisible] but false for [Unit#isDetected Unit::isDetected] are partially accessible.
 
@@ -58,7 +58,7 @@ Partial accessibilityincludes access to the following functions:
 
 The initial value functions are also still accessible at this level, however I don't think its possible for neutral units (like mineral patches) to cloak, so think they would be of any use here.
 
-4) no accessibility
+== 4) no accessibility ==
 
 Units that are dead will have no accessibility. If Complete Map Info is disabled, then units shrouded by Fog of War will also have no accessibility, even if they are still alive.
 
