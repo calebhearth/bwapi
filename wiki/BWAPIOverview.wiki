@@ -1,8 +1,38 @@
 todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
 
-Units that return true for [Unit#isVisible Unit::isVisible] but false for [Unit#isDetected Unit::isDetected] are partially visible.
+The four tiers of accessibility:
 
-Partial visibility includes access to the following functions:
+1) full accessibility
+
+All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()].
+
+2) normal accessibility
+
+When complete map information is disabled, then all visible and detected enemy units will have normal accessibility. This includes all of the attributes in full accessibility except for the following:
+
+  * getScarabCount
+  * getSpiderMineCount
+  * getBuildType
+  * getTrainingQueue
+  * getTech
+  * getUpgrade
+  * getRemainingBuildTime
+  * getRemainingTrainTime
+  * getRemainingResearchTime
+  * getRemainingUpgradeTime
+  * getRallyPosition
+  * getRallyUnit
+  * getTransport
+  * getCarrier
+  * getHatchery
+  * hasNuke
+  * isHallucination
+
+3) partial accessibility
+
+Units that return true for [Unit#isVisible Unit::isVisible] but false for [Unit#isDetected Unit::isDetected] are partially accessible.
+
+Partial accessibilityincludes access to the following functions:
   * [Unit#getID getID]
   * [Unit#getPlayer getPlayer]
   * [Unit#getType getType]
@@ -25,3 +55,21 @@ Partial visibility includes access to the following functions:
   * [Unit#isSieged isSieged]
   * [Unit#isStartingAttack isStartingAttack]
   * [Unit#isVisible isVisible]
+
+The initial value functions are also still accessible at this level, however I don't think its possible for neutral units (like mineral patches) to cloak, so think they would be of any use here.
+
+4) no accessibility
+
+Units that are dead will have no accessibility. If Complete Map Info is disabled, then units shrouded by Fog of War will also have no accessibility, even if they are still alive.
+
+The initial value functions, however, are always accessible at all levels:
+  * getInitialType
+  * getInitialPosition
+  * getInitialTilePosition
+  * getInitialHitPoints
+  * getInitialResources
+
+These only apply for neutral units that existed at the start of the match are are useful for getting general/static knowledge of the map even when complete map info is disabled. To obtain this static map info use these functions on the units returned by:
+  * [Game#getStaticMinerals Game::getStaticMinerals]
+  * [Game#getStaticGeysers Game::getStaticGeysers 
+  * [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]
