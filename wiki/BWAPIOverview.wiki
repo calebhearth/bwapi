@@ -4,7 +4,15 @@ The four tiers of accessibility:
 
 == 1) Full Accessibility ==
 
-All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, or if the match is a replay, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()]. Otherwise, the neutral and enemy units will fall into one of the remaining tiers of accessibility.
+All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, or if the match is a replay, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()].
+
+If the Complete Map Information flag is disabled and if the match is not a replay, then neutral and enemy units will fall into one of the remaining tiers of accessibility.
+
+Frame 0 notes:
+
+On frame 0, all neutral units will have full accessibility, regardless of Compelete Map Information status.
+
+If you enabled the Complete Map Information flag on frame 0, enemy units will not become fully accessible until frame 1.
 
 == 2) Normal Accessibility ==
 
