@@ -1,1 +1,27 @@
 todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
+
+Units that return true for Unit::[Unit#isVisible isVisible] but false for Unit::[Unit#isDetected isDetected] are partially visible.
+
+Partial visibility includes access to the following functions:
+  * [Unit#getID getID]
+  * [Unit#getPlayer getPlayer]
+  * [Unit#getType getType]
+  * [Unit#getPosition getPosition]
+  * [Unit#getTilePosition getTilePosition]
+  * [Unit#getAngle getAngle]
+  * [Unit#getVelocityX getVelocityX]
+  * [Unit#getVelocityY getVelocityY]
+  * [Unit#getDistance getDistance]
+  * [Unit#getGroundWeaponCooldown getGroundWeaponCooldown]
+  * [Unit#getAirWeaponCooldown getAirWeaponCooldown]
+  * [Unit#getSpellCooldown getSpellCooldown]
+  * [Unit#exists exists]
+  * [Unit#isAttacking isAttacking]
+  * [Unit#isBurrowed isBurrowed]
+  * [Unit#isCloaked isCloaked]
+  * [Unit#isCompleted isCompleted]
+  * [Unit#isDetected isDetected]
+  * [Unit#isMoving isMoving]
+  * [Unit#isSieged isSieged]
+  * [Unit#isStartingAttack isStartingAttack]
+  * [Unit#isVisible isVisible]
