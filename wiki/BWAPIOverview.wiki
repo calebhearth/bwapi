@@ -8,25 +8,27 @@ All of units owned by the BWAPI player/AI are fully accessible all of the time w
 
 == 2) Normal Accessibility ==
 
-When complete map information is disabled, then all visible and detected enemy units will have normal accessibility. This includes all of the attributes in full accessibility except for the following:
+When complete map information is disabled, then all visible and detected enemy units will have normal accessibility. This includes all of the attributes in full accessibility EXCEPT for the following:
 
-  * getScarabCount
-  * getSpiderMineCount
-  * getBuildType
-  * getTrainingQueue
-  * getTech
-  * getUpgrade
-  * getRemainingBuildTime
-  * getRemainingTrainTime
-  * getRemainingResearchTime
-  * getRemainingUpgradeTime
-  * getRallyPosition
-  * getRallyUnit
-  * getTransport
-  * getCarrier
-  * getHatchery
-  * hasNuke
-  * isHallucination
+  * [Unit#getScarabCount getScarabCount]
+  * [Unit#getSpiderMineCount getSpiderMineCount]
+  * [Unit#getBuildType getBuildType]
+  * [Unit#getTrainingQueue getTrainingQueue]
+  * [Unit#getTech getTech]
+  * [Unit#getUpgrade getUpgrade]
+  * [Unit#getRemainingBuildTime getRemainingBuildTime]
+  * [Unit#getRemainingTrainTime getRemainingTrainTime]
+  * [Unit#getRemainingResearchTime getRemainingResearchTime]
+  * [Unit#getRemainingUpgradeTime getRemainingUpgradeTime]
+  * [Unit#getRallyPosition getRallyPosition]
+  * [Unit#getRallyUnit getRallyUnit]
+  * [Unit#getTransport getTransport]
+  * [Unit#getCarrier getCarrier]
+  * [Unit#getHatchery getHatchery]
+  * [Unit#hasNuke hasNuke]
+  * [Unit#isHallucination isHallucination]
+
+These inaccessible functions will just return 0/NULL/false, depending on the return type.
 
 == 3) Partial Accessibility ==
 
