@@ -68,7 +68,7 @@ Partial accessibility includes access to the following functions:
 
 The initial value functions are also still accessible at this level, however I don't think its possible for neutral units (like mineral patches) to cloak, so think they would be of any use here.
 
-Note: [AIModule#onUnitShow AIModule::onUnitShow] and [AIModule#onUnitHide AIModule::onUnitHide] occur when the unit switches between partial accessibility and no accessibility.
+Note: [AIModule#onUnitShow AIModule::onUnitShow] and [AIModule#onUnitHide AIModule::onUnitHide] occur when the unit switches between partial accessibility and no accessibility. If Complete Map Info is disabled, then [AIModule#onUnitDiscover AIModule::onUnitDiscover] and [AIModule#onUnitEvade AIModule::onUnitEvade] also occur during this transition.
 
 == 4) No Accessibility ==
 
