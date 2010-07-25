@@ -10,9 +10,9 @@ If the Complete Map Information flag is disabled and if the match is not a repla
 
 Frame 0 notes:
 
-On frame 0, all neutral units will have full accessibility, regardless of Compelete Map Information status.
+  * On frame 0, all neutral units will have full accessibility, regardless of Compelete Map Information status.
 
-If you enabled the Complete Map Information flag on frame 0, enemy units will not become fully accessible until frame 1.
+  * If you enabled the Complete Map Information flag on frame 0, enemy units will not become fully accessible until frame 1.
 
 == 2) Normal Accessibility ==
 
