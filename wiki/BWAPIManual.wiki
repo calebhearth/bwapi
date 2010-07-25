@@ -4,6 +4,7 @@
 == Contents ==
   * [UsingBWAPI Using BWAPI]
   * [MenuAutomation]
+  * [BWAPIOverview]
   * [AIModule]
   * [Bullet]
   * [BulletType]
