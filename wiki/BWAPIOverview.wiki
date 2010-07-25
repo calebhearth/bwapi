@@ -1,6 +1,6 @@
 todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
 
-Units that return true for Unit::[Unit#isVisible isVisible] but false for Unit::[Unit#isDetected isDetected] are partially visible.
+Units that return true for [Unit#isVisible Unit::isVisible] but false for [Unit#isDetected Unit::isDetected] are partially visible.
 
 Partial visibility includes access to the following functions:
   * [Unit#getID getID]
