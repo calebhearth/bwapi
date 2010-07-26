@@ -305,7 +305,7 @@ Returns unit's air weapon cooldown. It is 0 if the unit is ready to attack.
 === getSpellCooldown ===
 int getSpellCooldown() const;
 
-Returns unit's spell cooldown. It is 0 if the unit is ready cast a spell.
+Returns unit's spell cooldown. It is 0 if the unit is ready to cast a spell.
 
 === getDefenseMatrixPoints ===
 int getDefenseMatrixPoints() const;
