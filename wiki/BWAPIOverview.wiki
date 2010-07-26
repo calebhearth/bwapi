@@ -42,6 +42,8 @@ These inaccessible functions will just return 0/NULL/false/etc, depending on the
 
 Units that return true for [Unit#isVisible Unit::isVisible] but false for [Unit#isDetected Unit::isDetected] are partially accessible.
 
+Cloaked enemy that are not covered by fog of war will return true for [Unit#isVisible Unit::isVisible], and thus always be at least partially visible. Burrowed enemy units that are not covered by fog of war will return true for [Unit#isVisible Unit::isVisible] only if they are attacking or detected (by a Science Vessel or other detection unit).
+
 Partial accessibility includes access to the following functions:
   * [Unit#getID getID]
   * [Unit#getPlayer getPlayer]
