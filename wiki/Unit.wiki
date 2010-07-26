@@ -4,7 +4,7 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 The Unit class is used to get information about individual units as well as issue orders to units. Each unit in the game has a unique Unit object, and Unit objects are not deleted until the end of the match (so you don't need to worry about unit pointers becoming invalid).
 
-Note: There are 4 tiers of unit accessibility that determine which functions AIs will have access to. If the Complete Map Information cheat flag is enabled, you have perfect information of every unit. Otherwise, the functions that will return information will be limited depending on the unit's visibility. To learn more about unit accessibility, read the [#BWAPIOverview BWAPI Overview] page.
+Note: There are 4 tiers of unit accessibility that determine which functions AIs will have access to. If the Complete Map Information cheat flag is enabled, you have perfect information of every unit. Otherwise, the functions that will return information will be limited depending on the unit's visibility. To learn more about unit accessibility, read the [BWAPIOverview BWAPI Overview] page.
 
 Methods:
 
