@@ -2,21 +2,16 @@
 
 The following functions have been added:
 
-  * getLatencyFrames() - returns the maximum number of frames for a command to
-be processed.
-  * getLatencyTime() - returns the maximum time for a command to be processed
-(milliseconds).
-  * getRemainingLatencyFrames() - returns the remaining number of frames for a
-command to be processed, according to the current frame.
-  * getRemainingLatencyTime() - returns the remaining time for a command to be
-processed (milliseconds), according to the current tick count.
+  * Game::getLatencyFrames() - returns the maximum number of frames for a command to be processed.
+  * Game::getLatencyTime() - returns the maximum time for a command to be processed (milliseconds).
+  * Game::getRemainingLatencyFrames() - returns the remaining number of frames for a command to be processed, according to the current frame.
+  * Game::getRemainingLatencyTime() - returns the remaining time for a command to be processed (milliseconds), according to the current tick count.
 
 Bug fixes:
 
   * Fixed a bug where multiple onEnd events would be produced.
   * Fixed a bug where onFrame was called after onEnd.
-  * Fixed a bug where neutral buildings were not included in getStaticNeutralUnits
-when called from the client process.
+  * Fixed a bug where neutral buildings were not included in getStaticNeutralUnits when called from the client process.
   * Fixed a bug that caused Starcraft to randomly pause for 100ms every couple of seconds.
 
 == Changes from BWAPI Beta 3.0.2 (r2630) to BWAPI Beta 3.0.3 (r2639) ==
