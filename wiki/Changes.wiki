@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2704 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2706 ==
 
 The following features have been altered:
 
@@ -22,7 +22,7 @@ Bug fixes:
   * Fixed a bug that caused Starcraft to crash while retrieving force names.
   * Fixed an off-by-one issue when retrieving force names.
   * Fixed a compatibility issue with auto-menu and a non-english locale.
-  * Fixed a user bug when attempting to recall a group of units.
+  * Fixed a user bug when attempting to recall(hotkey) a group of units.
   * Fixed a bug involving the inability to retrieve enemy upgrades via Unit::getUpgradeLevel(UpgradeType).
   * Fixed an issue with canBuildHere failing when units are at a valid position on the same tile.
   * Fixed an issue with hasPower failing for 4x3 buildings at the top-most position of the power range.
