@@ -1,4 +1,8 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2680 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2704 ==
+
+The following features have been altered:
+
+  * Game::getStartLocations
 
 The following functions have been added:
 
@@ -8,13 +12,21 @@ The following functions have been added:
   * Game::getRemainingLatencyTime() - returns the remaining time for a command to be processed (milliseconds), according to the current tick count.
   * Game::getRevision - returns the current BWAPI revision number
   * Game::isDebug - returns whether the current build is debug mode or not
+  * Game::sendTextEx - allows the AI to send a text message to allies only
 Bug fixes:
 
   * Fixed a bug where multiple onEnd events would be produced.
   * Fixed a bug where onFrame was called after onEnd.
   * Fixed a bug where neutral buildings were not included in getStaticNeutralUnits when called from the client process.
   * Fixed a bug that caused Starcraft to randomly pause for 100ms every couple of seconds.
-  * Fixed a bug that caused Starcraft to crash on some UMS and some other rare cases.
+  * Fixed a bug that caused Starcraft to crash while retrieving force names.
+  * Fixed an off-by-one issue when retrieving force names.
+  * Fixed a compatibility issue with auto-menu and a non-english locale.
+  * Fixed a user bug when attempting to recall a group of units.
+  * Fixed a bug involving the inability to retrieve enemy upgrades via Unit::getUpgradeLevel(UpgradeType).
+  * Fixed an issue with canBuildHere failing when units are at a valid position on the same tile.
+  * Fixed an issue with hasPower failing for 4x3 buildings at the top-most position of the power range.
+
 
 == Changes from BWAPI Beta 3.0.2 (r2630) to BWAPI Beta 3.0.3 (r2639) ==
 
