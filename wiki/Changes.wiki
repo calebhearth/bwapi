@@ -1,8 +1,8 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2706 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2708 ==
 
 The following features have been altered:
 
-  * Game::getStartLocations
+  * Player::isAlly, Player::isEnemy, Game::enemy, Game::getStartLocations no longer include players that don't start with any supply (used or available).
 
 The following functions have been added:
 
