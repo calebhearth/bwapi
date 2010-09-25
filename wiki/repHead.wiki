@@ -1,4 +1,4 @@
-#labels Phase-Implementation
+#labels Phase-Implementation,Deprecated
 = Replay Header Structure =
 
 Matches several structures found in memory, like player structure
