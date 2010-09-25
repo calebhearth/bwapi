@@ -1,4 +1,4 @@
-#labels Phase-Implementation
+#labels Phase-Implementation,Deprecated
 =Notes=
 This list has been merged due to the similarity between Replay data and Packet data.
 
