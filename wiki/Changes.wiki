@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2713 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2719 ==
 
 The following features have been altered:
 
@@ -13,6 +13,7 @@ The following functions have been added:
   * Game::getRevision - returns the current BWAPI revision number
   * Game::isDebug - returns whether the current build is debug mode or not
   * Game::sendTextEx - allows the AI to send a text message to allies only
+
 Bug fixes:
 
   * Fixed a bug where multiple onEnd events would be produced.
@@ -27,6 +28,7 @@ Bug fixes:
   * Fixed an issue with canBuildHere failing when units are at a valid position on the same tile.
   * Fixed an issue with hasPower failing for 4x3 buildings at the top-most position of the power range.
   * Fixed a bug where canMake will fail for Mutalisks when a Greater Spire is owned.
+  * Fixed an issue with two unhandled canBuildHere requirements that produce the messages "You must explore there first." and "Couldn't reach building site.".
 
 
 == Changes from BWAPI Beta 3.0.2 (r2630) to BWAPI Beta 3.0.3 (r2639) ==
