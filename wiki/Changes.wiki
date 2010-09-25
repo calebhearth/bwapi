@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2719 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2723 ==
 
 The following features have been altered:
 
@@ -13,6 +13,7 @@ The following functions have been added:
   * Game::getRevision - returns the current BWAPI revision number
   * Game::isDebug - returns whether the current build is debug mode or not
   * Game::sendTextEx - allows the AI to send a text message to allies only
+  * Unit::hasPath - checks if the unit and target specified are on the same island
 
 Bug fixes:
 
