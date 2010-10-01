@@ -6,14 +6,18 @@ The following features have been altered:
 
 The following functions have been added:
 
-  * Game::getLatencyFrames() - returns the maximum number of frames for a command to be processed.
-  * Game::getLatencyTime() - returns the maximum time for a command to be processed (milliseconds).
-  * Game::getRemainingLatencyFrames() - returns the remaining number of frames for a command to be processed, according to the current frame.
-  * Game::getRemainingLatencyTime() - returns the remaining time for a command to be processed (milliseconds), according to the current tick count.
-  * Game::getRevision - returns the current BWAPI revision number
-  * Game::isDebug - returns whether the current build is debug mode or not
-  * Game::sendTextEx - allows the AI to send a text message to allies only
-  * Unit::hasPath - checks if the unit and target specified are on the same island
+  * [Game#getLatencyFrames Game::getLatencyFrames] - returns the maximum number of frames for a command to be processed.
+  * [Game#getLatencyTime Game::getLatencyTime] - returns the maximum time for a command to be processed (milliseconds).
+  * [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames] - returns the remaining number of frames for a command to be processed, according to the current frame.
+  * [Game#getRemainingLatencyTime Game::getRemainingLatencyTime] - returns the remaining time for a command to be processed (milliseconds), according to the current tick count.
+  * [Game#getRevision Game::getRevision] - returns the current BWAPI revision number
+  * [Game#isDebug Game::isDebug] - returns whether the current build is debug mode or not
+  * [Game#sendTextEx  Game::sendTextEx] - allows the AI to send a text message to allies only
+  * [Unit#hasPath Unit::hasPath] - checks if the unit and target specified are on the same island
+  * [Game#isLatComEnabled  Game::isLatComEnabled] - returns true if latency compensation is enabled
+  * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation
+(Default: Enabled)
+
 
 Bug fixes:
 
