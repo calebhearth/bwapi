@@ -2,7 +2,7 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitCommand.h# BWAPI/UnitCommand.h]
 
-UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While unit's can be issued commands the normal way via the [Unit] methods (i.e. [Unit#attackUnit Unit::attackUnit]), in some cases you may want to have a function that can process any unit command, such as when you're writing a proxy for BWAPI.
+UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While units can be issued commands the normal way via the [Unit] methods (i.e. [Unit#attackUnit Unit::attackUnit]), in some cases you may want to have a function that can process any unit command, such as when you're writing a proxy for BWAPI.
 
 This class has the following data members:
 
