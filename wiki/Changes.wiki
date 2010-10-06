@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2723 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2737 ==
 
 The following features have been altered:
 
