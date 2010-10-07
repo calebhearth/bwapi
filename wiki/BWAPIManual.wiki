@@ -3,11 +3,12 @@
 
 == Contents ==
   * [UsingBWAPI Using BWAPI]
-  * [MenuAutomation]
-  * [BWAPIOverview]
+  * [MenuAutomation Menu Automation]
+  * [BWAPIOverview BWAPI Overview]
   * [AIModule]
   * [Bullet]
   * [BulletType]
+  * [Changes]
   * [Client]
   * [Color]
   * [DamageType]
