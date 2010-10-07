@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2744 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2751 ==
 
 The following features have been altered:
 
@@ -17,7 +17,7 @@ The following functions have been added:
   * [Game#isLatComEnabled  Game::isLatComEnabled] - returns true if latency compensation is enabled
   * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation
 (Default: Enabled)
-
+  * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
 
 Bug fixes:
 
