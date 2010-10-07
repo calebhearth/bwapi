@@ -15,8 +15,7 @@ The following functions have been added:
   * [Game#sendTextEx  Game::sendTextEx] - allows the AI to send a text message to allies only
   * [Unit#hasPath Unit::hasPath] - checks if the unit and target specified are on the same island
   * [Game#isLatComEnabled  Game::isLatComEnabled] - returns true if latency compensation is enabled
-  * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation
-(Default: Enabled)
+  * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation; Default: Enabled
   * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
 
 Bug fixes:
