@@ -1,8 +1,9 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2751 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2756 ==
 
 The following features have been altered:
 
   * Player::isAlly, Player::isEnemy, Game::enemy, Game::getStartLocations no longer include players that don't start with any supply (used or available).
+  * Using a hacked executable, ChaosLauncher can now run multiple instances of Starcraft. Each instance of BWAPI can load a different AI module specified in the configuration(bwapi.ini) file. There are plans for inter-process communication as a network module.
 
 The following functions have been added:
 
@@ -17,6 +18,10 @@ The following functions have been added:
   * [Game#isLatComEnabled  Game::isLatComEnabled] - returns true if latency compensation is enabled
   * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation; Default: Enabled
   * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
+  * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
+  * [Unit#setClientInfo Unit::setClientInfo] - Sets the unit's custom client info. The client is responsible for deallocation. In other words, this allows the user to associate data with the unit.
+  * [Unit#getClientInfo Unit::getClientInfo] - Returns the unit's custom client info. The client is responsible for deallocation.
+
 
 Bug fixes:
 
