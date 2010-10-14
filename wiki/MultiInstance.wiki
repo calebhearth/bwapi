@@ -1,9 +1,12 @@
 #summary Running multiple instances of Starcraft using ChaosLauncher
 #sidebar TableOfContents
 
+<wiki:toc max_depth="2" />
+
+
 = Starcraft =
 
-    _*Note*: It is generally not possible to run Starcraft as multiple instances without a hack, thus we have created a patch that will allow Starcraft to have multiple instances of itself and have a unique description in ChaosLauncher._
+    _*Note*: It is generally not possible to run Starcraft as multiple instances without a hack, thus we have created a patch that will allow Starcraft to have multiple instances of itself and have a unique description in Chaos Launcher._
 
 After copying the contents of _{{{starcraft-folder\}}}_ to your Starcraft folder, go to  _{{{\Starcraft\bwapi-data\}}}_ and run _{{{Multiple Instance Hack.bat}}}_.
 
@@ -12,11 +15,11 @@ http://bwapi.googlecode.com/svn/wiki/multi_tut_00.gif
 The batch file will proceed to run an included patch file and create a new executable called _{{{StarCraft_MultiInstance.exe}}}_.
 
 
-= ChaosLauncher =
+= Chaos Launcher =
 
-    _*Note*: It is also not possible for the default ChaosLauncher to support the launching of multiple instances, thus we included a hacked version that does._
+    _*Note*: It is also not possible for the default Chaos Launcher to support the launching of multiple instances, thus we included a hacked version that does._
 
-After copying the contents of _{{{chaos-launcher-folder\}}}_ to your ChaosLauncher folder, you should run _{{{Chaoslauncher - MultiInstance.exe}}}_.
+After copying the contents of _{{{chaos-launcher-folder\}}}_ to your Chaos Launcher folder, you should run _{{{Chaoslauncher - MultiInstance.exe}}}_.
 
 http://bwapi.googlecode.com/svn/wiki/multi_tut_01.gif
 
