@@ -1,7 +1,7 @@
 #labels Featured
+#sidebar TableOfContents
 
 == Contents ==
-  * [BWAPIManual API]
   * [UsingBWAPI Using BWAPI]
   * [BWAPIOverview BWAPI Overview]
   * [MenuAutomation Menu Automation]
