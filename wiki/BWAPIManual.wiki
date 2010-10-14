@@ -1,14 +1,16 @@
 #labels Featured
-#sidebar TableOfContents
 
 == Contents ==
+  * [BWAPIManual API]
   * [UsingBWAPI Using BWAPI]
-  * [MenuAutomation Menu Automation]
   * [BWAPIOverview BWAPI Overview]
+  * [MenuAutomation Menu Automation]
+  * [MultiInstance Multiple Instances]
+  * [Changes]
+----
   * [AIModule]
   * [Bullet]
   * [BulletType]
-  * [Changes]
   * [Client]
   * [Color]
   * [DamageType]
