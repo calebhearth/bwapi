@@ -98,7 +98,7 @@ Associates client info with the unit. The client is responsible for the allocati
 == getClientInfo ==
 void {{{*}}}getClientInfo();
 
-Retrieves the client info that was set by [Unit#setClientInfo]. The client is responsible for the allocation and deallocation of the client info pointer.
+Retrieves the client info that was set by [#setClientInfo setClientInfo]. The client is responsible for the allocation and deallocation of the client info pointer.
 
 == getUpgradeLevel ==
 int getUpgradeLevel([UpgradeType] upgrade) const;
