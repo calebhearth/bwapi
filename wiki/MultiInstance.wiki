@@ -13,6 +13,8 @@ The batch file will proceed to run an included patch file and create a new execu
 
 = ChaosLauncher =
 
+    _*Note*: It is also not possible for the default ChaosLauncher to support the launching of multiple instances, thus we included a hacked version that does._
+
 After copying the contents of _{{{chaos-launcher-folder\}}}_ to your ChaosLauncher folder, you should run _{{{Chaoslauncher - MultiInstance.exe}}}_.
 
 http://bwapi.googlecode.com/svn/wiki/multi_tut_01.gif
