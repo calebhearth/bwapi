@@ -1,0 +1,59 @@
+#summary Running multiple instances of Starcraft using ChaosLauncher
+
+= Starcraft =
+
+    _*Note*: It is generally not possible to run Starcraft as multiple instances without a hack, thus we have created a patch that will allow Starcraft to have multiple instances of itself and have a unique description in ChaosLauncher._
+
+After copying the contents of _*starcraft-folder\*_ to your Starcraft folder, go to  _*\Starcraft\bwapi-data\*_ and run _*Multiple Instance Hack.bat*_.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_00.gif
+
+The batch file will proceed to run an included patch file and create a new executable called _*StarCraft_MultiInstance.exe*_.
+
+
+= ChaosLauncher =
+
+After copying the contents of _*chaos-launcher-folder\*_ to your ChaosLauncher folder, you should run _*Chaoslauncher - MultiInstance.exe*_.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_01.gif
+
+There is a drop-down menu that allows you to select the version you want to use. Click on it and select _*Starcraft Multi-Instance*_.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_02.gif
+
+Select _*BWAPI Injector*_ and any other plugins you want to use. _*W-MODE*_ is also compatible and recommended with multiple instances.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_03.gif
+
+Some plugins will be greyed out. Don't worry, this is normal behaviour. There is a checkbox available that will enable them.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_04.gif
+
+
+= BWAPI =
+
+To set up BWAPI for multiple instances, you must configure the AI path for each instance. Browse to _*Starcraft\bwapi-data\*_ and open _*bwapi.ini*_.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_05.gif
+
+Now change the entries _*ai{{{_}}}dll{{{_}}}#*_ accordingly to load your AI modules.
+
+http://bwapi.googlecode.com/svn/wiki/multi_tut_06.gif
+
+When running with multiple instances, the original _*ai{{{_}}}dll*_ entry is ignored, and the _*ai{{{_}}}dll{{{_}}}#*_ entries specify which AI module belongs to which instance.
+
+
+= Networking =
+
+This is incomplete and has yet to be finished.
+
+
+= Conclusion =
+
+If you run into problems, please don't hesitate to do one of the following:
+
+  * Visit the IRC channel
+  * Post on the BWAPI group
+  * Post on the BroodwarAi forum
+  * Send us an email
+  * Create an issue
