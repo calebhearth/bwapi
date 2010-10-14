@@ -1,4 +1,5 @@
 #summary Running multiple instances of Starcraft using ChaosLauncher
+#sidebar TableOfContents
 
 = Starcraft =
 
