@@ -1,8 +1,8 @@
-== Changes from BWAPI Beta 3.0.3 (r2639) to r2756 ==
+== Changes from BWAPI Beta 3.0.3 (r2639) to r2781 ==
 
 The following features have been altered:
 
-  * Player::isAlly, Player::isEnemy, Game::enemy, Game::getStartLocations no longer include players that don't start with any supply (used or available).
+  * Player::isAlly, Player::isEnemy, and Game::enemy no longer include players that don't start with any supply (used or available).
   * Using a hacked executable, ChaosLauncher can now run multiple instances of Starcraft. Each instance of BWAPI can load a different AI module specified in the configuration(bwapi.ini) file. There are plans for inter-process communication as a network module.
 
 The following functions have been added:
@@ -13,11 +13,10 @@ The following functions have been added:
   * [Game#getRemainingLatencyTime Game::getRemainingLatencyTime] - returns the remaining time for a command to be processed (milliseconds), according to the current tick count.
   * [Game#getRevision Game::getRevision] - returns the current BWAPI revision number
   * [Game#isDebug Game::isDebug] - returns whether the current build is debug mode or not
-  * [Game#sendTextEx  Game::sendTextEx] - allows the AI to send a text message to allies only
+  * [Game#sendTextEx Game::sendTextEx] - allows the AI to send a text message to allies only
   * [Unit#hasPath Unit::hasPath] - checks if the unit and target specified are on the same island
   * [Game#isLatComEnabled  Game::isLatComEnabled] - returns true if latency compensation is enabled
   * [Game#setLatCom Game::setLatCom] - use to enable or disable latency compensation; Default: Enabled
-  * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
   * [Unit#getLastOrderFrame Unit::getLastOrderFrame] - Returns the frame of the last successful order issued.
   * [Unit#setClientInfo Unit::setClientInfo] - Sets the unit's custom client info. The client is responsible for deallocation. In other words, this allows the user to associate data with the unit.
   * [Unit#getClientInfo Unit::getClientInfo] - Returns the unit's custom client info. The client is responsible for deallocation.
@@ -37,7 +36,7 @@ Bug fixes:
   * Fixed an issue with canBuildHere failing when units are at a valid position on the same tile.
   * Fixed an issue with hasPower failing for 4x3 buildings at the top-most position of the power range.
   * Fixed a bug where canMake will fail for Mutalisks when a Greater Spire is owned.
-  * Fixed an issue with two unhandled canBuildHere requirements that produce the messages "You must explore there first." and "Couldn't reach building site.".
+  * Fixed an issue with an unhandled canBuildHere requirements that produces the message "You must explore there first.".
   * Fixed an auto-menu bug that would pause at the end of a Replay in Single Player.
   * Fixed an issue that would reselect the user's unit every time BWAPI performed an action. Reduces APM by 1/3.
 
