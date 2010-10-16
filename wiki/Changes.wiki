@@ -1,3 +1,17 @@
+== Changes from BWAPI Beta 3.0.3 (r2639) to Current r2811 ==
+
+Changes:
+
+  * bwapi-errors are now written to the logs folder with a time and date stamp.
+  * Map::getMapHash() now hashes the map's terrain using sha1.
+
+Bug fixes:
+
+  * Fixed a desynch caused by a large number of commands being processed.
+  * Fixed restartGame which was broken in a previous revision.
+  * Fixed a crash when passing a NULL target to UnitImpl::getDistance.
+
+
 == Changes from BWAPI Beta 3.0.3 (r2639) to BWAPI Beta 3.1 (r2796) ==
 
 The following features have been altered:
