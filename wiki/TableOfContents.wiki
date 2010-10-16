@@ -4,6 +4,7 @@
  * [MenuAutomation Menu Automation]
  * [MultiInstance Multiple Instances]
  * [Changes]
+ * [contact Contact Information]
 
 ----
 
