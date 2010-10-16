@@ -1,5 +1,7 @@
 #summary How to contact BWAPI developers
 
+This page contains contact information for submitting or discussing issues, suggestions, comments, joining the project, and any other BWAPI topics.
+
 To contact us you simply have to do one of the following:
 
   * Visit the [http://webchat.quakenet.org/?channels=BWAPI IRC channel]
