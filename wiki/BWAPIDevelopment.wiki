@@ -29,3 +29,18 @@ _Note: Only perform steps 3 and 4 if you want to use ChaosLauncher as a loader. 
 
   * [http://www.ollydbg.de/ Ollydbg]
   * [http://memoryhacking.com/download.php L. Spiro's Memory Hacking Software]
+
+== How To Create a New Release of BWAPI ==
+
+  1. Compile BWTA from latest BWAPI header files.
+  2. Copy new BWTA LIBs over to new BWAPI release.
+  3. Open the last release of BWAPI.
+  4. Copy over the new BWAPI DLLs, BWLs, LIBs, and header files over to new BWAPI release.
+  5. Update the ChangeLog file with info from the [Changes] page.
+  6. Update the README file so it has the name of the new release at the top of the file.
+  7. Compile and test Example AI Module in Release mode and Debug mode. Type /analyze to test BWTA.
+  8. Compile and test the Example AI Client in Release mode and Debug mode.
+  9. Remove any extra files that get automatically generated when you open/build the projects.
+  10. Compress to zip archive.
+  11. Upload to the Downloads page and mark as Featured.
+  12. Update Project Home page.
