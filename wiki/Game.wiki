@@ -176,6 +176,16 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule#onStart AIModule::onStart] callback, or during the [AIModule#onFrame AIModule::onFrame] callback on the first frame (frame 0).
 
+== isLatComEnabled ==
+bool isLatComEnabled();
+
+Returns true if latency compensation is enabled. It is enabled by default.
+
+== setLatCom ==
+void setLatCom( bool isEnabled);
+
+Use to enable or disable latency compensation. It is enabled by default.
+
 == unitsOnTile ==
 std::set< [Unit]{{{*}}} >& unitsOnTile(int x, int y);
 
