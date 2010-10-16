@@ -1,10 +1,9 @@
 =Developing BWAPI=
 
-While we have made a lot of progress on BWAPI, there is still plenty of things which need to be properly tested and improved. If you are interested in developing the BWAPI framework, contact either deathknight13579@aim.com, or lowerlogic@gmail.com, or post on the google group.
+While we have made a lot of progress on BWAPI, there is still plenty of things which need to be properly tested and improved. If you are interested in developing the BWAPI framework, please don't hesitate to [contact contact us].
 
-While all help is appreciated, at this point we are primarily looking for people who can make unit tests and other test scenarios in order to find and fix bugs.
 
-We are using Visual Studio 2008 SP1. You can download Visual Studio 2008 Express Edition from Microsoft for free at http://www.microsoft.com/express/download/#webInstall
+We are primarily using Visual Studio 2008 Express Edition. You can download [http://www.microsoft.com/express/download/#webInstall Visual Studio 2008 Express Edition from Microsoft] for free and use it for an unlimited time.
 
 Remember, you don't really need to know C++ to participate. Aside from writing code, participation can include any of the following:
   * Accumulating valuable knowledge about the Starcraft game engine
@@ -12,23 +11,25 @@ Remember, you don't really need to know C++ to participate. Aside from writing c
   * Organizing the code (ex: making it look pretty and easy to read :) )
   * Fixing some small bugs or including small patches/fixes to the code.
   * Improving/expanding/clarifying the user documentation.
+  * Issues management, project member recruitment, friendly advertising.
 
 ==How to Start Working on BWAPI==
 
-_Note: Only perform steps 3 and 4 if you want to use ChaosLauncher as a loader. BWAPI will work with any other basic loader such as InsectLoader._
+_Note: Only perform steps 3 and 4 if you want to use Chaos Launcher as a loader. BWAPI will work with any other basic hack loader as well as MPQDraft._
 
-  # Obtain an SVN Program. Google has its own instructions for getting an SVN program, but I use TortoiseSVN, which can be found here: http://tortoisesvn.tigris.org/
+  # Obtain an SVN Program. Google has its own instructions for getting an SVN program, but we use TortoiseSVN, which can be found here: http://tortoisesvn.tigris.org/
   # Follow the instructions on the [http://code.google.com/p/bwapi/source/checkout Source] tab for retrieving the source code.
   # Download [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 ChaosLauncher]
-  # Create a Windows Environment variable called ChaosDir with a value pointing to the Chaos Launcher directory. For instructions on how to create a windows environment variable, read this: http://support.microsoft.com/kb/310519
-  # Move the contents of "starcraft-folder" from the source code to your Starcraft Directory.
-  # Be sure to compile the entire solution as a RELEASE, else you will run into major problems.
+  # (Optional) Create a Windows Environment variable called ChaosDir with a value pointing to the Chaos Launcher directory. For instructions on how to create a windows environment variable, read this: http://support.microsoft.com/kb/310519
+  # Move the contents of "starcraft-folder" and "chaos-launcher-folder" from the source code to your Starcraft and Chaos Launcher Directories.
   # If you are a project member you can submit your code modifications. Following the [http://code.google.com/p/bwapi/wiki/CodingStandard coding standard] and make sure BWAPI still compiles and runs before you submit your changes.
 
 == Useful Tools for finding new offsets/hooks ==
 
   * [http://www.ollydbg.de/ Ollydbg]
   * [http://memoryhacking.com/download.php L. Spiro's Memory Hacking Software]
+  * [http://www.hex-rays.com/idapro/ IDA Pro]
+  * [http://www.artmoney.ru/ ArtMoney]
 
 == How To Create a New Release of BWAPI ==
 
