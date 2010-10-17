@@ -70,6 +70,11 @@ int getResources() const;
 
 Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch, or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor).
 
+== getResourceGroup ==
+int getResourceGroup();
+
+Returns the group index of a resource. Can be used to identify which resources belong to an expansion.
+
 == getDistance ==
 double getDistance([Unit]{{{*}}} target) const;
 
