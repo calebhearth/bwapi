@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.1 (r2796) to Current r2816 ==
+== Changes from BWAPI Beta 3.1 (r2796) to Current r2828 ==
 
 Changes:
 
@@ -10,6 +10,8 @@ Bug fixes:
   * Fixed restartGame which was broken in a previous revision.
   * Fixed a crash when passing a NULL target to Unit::getDistance().
   * Fixed an issue where Map::getMapHash() failed on campaign maps.
+  * Fix a bug that prevented sending text when no module is loaded.
+  * Fix a bug involving duplicate cheat codes.
 
 == Changes from BWAPI Beta 3.0.3 (r2639) to BWAPI Beta 3.1 (r2796) ==
 
