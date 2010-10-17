@@ -1,8 +1,12 @@
-== Changes from BWAPI Beta 3.1 (r2796) to Current r2828 ==
+== Changes from BWAPI Beta 3.1 (r2796) to Current r2836 ==
 
 Changes:
 
   * bwapi-errors are now written to the logs folder with a time and date stamp.
+
+Additions:
+
+  * Added [Unit#getResourceGroup Unit::getResourceGroup] - Returns a group index for a resource to identify which base it belongs to.
 
 Bug fixes:
 
