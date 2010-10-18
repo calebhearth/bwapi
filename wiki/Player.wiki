@@ -4,41 +4,9 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 Each player in a match will have his or her own player instance. There is also a neutral player which owns all the neutral units.
 
-Methods:
+<wiki:toc max_depth="2" />
 
-  * [#getID getID]
-  * [#getName getName]
-  * [#getUnits getUnits]
-  * [#getRace getRace]
-  * [#getType getType]
-  * [#getForce getForce]
-  * [#isAlly isAlly]
-  * [#isEnemy isEnemy]
-  * [#isNeutral isNeutral]
-  * [#getStartLocation getStartLocation]
-  * [#isVictorious isVictorious]
-  * [#isDefeated isDefeated]
-  * [#leftGame leftGame]
-
-  * [#minerals minerals]
-  * [#gas gas]
-  * [#cumulativeMinerals cumulativeMinerals]
-  * [#cumulativeGas cumulativeGas]
-  * [#supplyTotal supplyTotal]
-  * [#supplyUsed supplyUsed]
-
-  * [#allUnitCount allUnitCount]
-  * [#completedUnitCount completedUnitCount]
-  * [#incompleteUnitCount incompleteUnitCount]
-  * [#deadUnitCount deadUnitCount]
-  * [#killedUnitCount killedUnitCount]
-
-  * [#getUpgradeLevel getUpgradeLevel]
-  * [#hasResearched hasResearched]
-  * [#isResearching isResearching]
-  * [#isUpgrading isUpgrading]
-
-  * [#maxEnergy maxEnergy]
+== Methods ==
 
 === getID ===
 int getID() const;
@@ -51,7 +19,7 @@ std::string getName() const;
 Returns the name of the player.
 
 === getUnits ===
-const std::set< [Unit]{{{*}}} >& getUnits() const;
+const std::set< [Unit]`*` >& getUnits() const;
 
 Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
 
@@ -188,3 +156,13 @@ Returns true if the player is upgrading the given upgrade. To order a unit to up
 int maxEnergy([UnitType] unit) const;
 
 Returns the maximum amount of energy for the given unit type, taking into account the upgrades the player has.
+
+=== getColor ===
+[Color] getColor() const;
+
+Returns the color of the player, used for drawing to the screen.
+
+=== getTextColor ===
+int getTextColor() const;
+
+Returns a control character that represents the player's color. Used for printing text to the screen.
