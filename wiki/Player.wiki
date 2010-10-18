@@ -6,163 +6,163 @@ Each player in a match will have his or her own player instance. There is also a
 
 <wiki:toc max_depth="2" />
 
-== Methods ==
+= Methods =
 
-=== getID ===
+== getID ==
 int getID() const;
 
 Returns a unique ID for the player.
 
-=== getName ===
+== getName ==
 std::string getName() const;
 
 Returns the name of the player.
 
-=== getUnits ===
+== getUnits ==
 const std::set< [Unit]`*` >& getUnits() const;
 
 Returns the set of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the set.
 
-=== getRace ===
+== getRace ==
 [Race] getRace() const;
 
 Returns the race of the player.
 
-=== getType ===
+== getType ==
 [PlayerType] getType() const;
 
 Returns the type of the player.
 
-=== getForce ===
+== getForce ==
 [Force]{{{*}}} getForce() const;
 
 Returns the force the player is on.
 
-=== isAlly ===
+== isAlly ==
 bool isAlly([Player]{{{*}}} player) const;
 
 Returns true if other player is an ally of this player.
 
-=== isEnemy ===
+== isEnemy ==
 bool isEnemy([Player]{{{*}}} player) const;
 
 Returns true if other player is an enemy of this player.
 
-=== isNeutral ===
+== isNeutral ==
 bool isNeutral() const;
 
 Returns true if the player is the neutral player.
 
-=== getStartLocation ===
+== getStartLocation ==
 [Misc#TilePosition TilePosition] getStartLocation() const;
 
 Returns the starting location of the player. If complete map information is disabled, this function will return TilePositions::Unknown for enemy players. For the complete set of starting locations for the current map, see [Game]::[Game#getStartLocations getStartLocations].
 
-=== isVictorious ===
+== isVictorious ==
 bool isVictorious() const;
 
 Returns true if the player has achieved victory.
 
-=== isDefeated ===
+== isDefeated ==
 bool isDefeated() const;
 
 Returns true if the player has been defeated.
 
-=== leftGame ===
+== leftGame ==
 bool leftGame() const;
 
 Returns true if the player left the game.
 
-=== minerals ===
+== minerals ==
 int minerals() const;
 
 Returns the amount of minerals the player has.
 
-=== gas ===
+== gas ==
 int gas() const;
 
 Returns the amount of vespene gas the player has.
 
-=== cumulativeMinerals ===
+== cumulativeMinerals ==
 int cumulativeMinerals() const;
 
 Returns the cumulative amount of minerals the player has mined up to this point (including the 50 minerals at the start of the game).
 
-=== cumulativeGas ===
+== cumulativeGas ==
 int cumulativeGas() const;
 
 Returns the cumulative amount of gas the player has harvested up to this point.
 
-=== supplyTotal ===
+== supplyTotal ==
 int supplyTotal() const;
 
 int supplyTotal(Race race) const;
 
 Returns the total amount of supply the player has. If a race is provided, the total supply for the given race will be returned, otherwise the player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game. This is because zerglings take up 0.5 in-game supply.
 
-=== supplyUsed ===
+== supplyUsed ==
 int supplyUsed() const;
 
 int supplyUsed(Race race) const;
 
 Returns how much of the supply is actually being used by units. If a race is provided, the used supply for the given race will be returned, otherwise the player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game. This is because zerglings take up 0.5 in-game supply.
 
-=== allUnitCount ===
+== allUnitCount ==
 int allUnitCount([UnitType] type) const;
 
 Returns the current number of all existing units of the given type owned by this player (both completed units and incomplete units).
 
-=== completedUnitCount ===
+== completedUnitCount ==
 int completedUnitCount([UnitType] type) const;
 
 Returns the current number of completed units of the given type owned by this player.
 
-=== incompleteUnitCount ===
+== incompleteUnitCount ==
 int incompleteUnitCount([UnitType] type) const;
 
 Returns the current number of incomplete units of the given type owned by this player.
 
-=== deadUnitCount ===
+== deadUnitCount ==
 int deadUnitCount([UnitType] unit) const;
 
 Returns the total number of friendly units of the given type that this player has lost.
 
-=== killedUnitCount ===
+== killedUnitCount ==
 int killedUnitCount([UnitType] unit) const;
 
 Returns the total number of enemy units of the given type that this player has killed.
 
-=== getUpgradeLevel ===
+== getUpgradeLevel ==
 int getUpgradeLevel([UpgradeType] upgrade) const;
 
 returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
 
-=== hasResearched ===
+== hasResearched ==
 bool hasResearched([TechType] tech) const;
 
 Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#research research].
 
-=== isResearching ===
+== isResearching ==
 bool isResearching([TechType] tech) const;
 
 Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#research reseach].
 
-=== isUpgrading ===
+== isUpgrading ==
 bool isUpgrading([UpgradeType] upgrade) const;
 
 Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
 
-=== maxEnergy ===
+== maxEnergy ==
 int maxEnergy([UnitType] unit) const;
 
 Returns the maximum amount of energy for the given unit type, taking into account the upgrades the player has.
 
-=== getColor ===
+== getColor ==
 [Color] getColor() const;
 
 Returns the color of the player, used for drawing to the screen.
 
-=== getTextColor ===
+== getTextColor ==
 int getTextColor() const;
 
 Returns a control character that represents the player's color. Used for printing text to the screen.
