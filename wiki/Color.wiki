@@ -13,15 +13,18 @@ Methods:
   * int blue() - Return the blue component of the color.
 
 === Colors ===
-While any color from the [#Palette palette] can be used, the following colors are available as short cuts:
+While any color from the [#Palette palette] can be used, the following colors are available as shortcuts:
 
   * Red
-  * Green
   * Blue
-  * Yellow
-  * Cyan
+  * Teal
   * Purple
   * Orange
+  * Brown
+  * Yellow
+  * Green
+  * Cyan
+
   * Black
   * White
   * Grey
@@ -34,23 +37,23 @@ The 256 color palette used by Starcraft: BroodWar:
 The two sets of pixels outlined in green are pixels that change color each frame, (cycle from left to right).
 
 === Text Color ===
-Text color is used simply as an escape character.
-
-"\x03 This is yellow text. \x06 This is red text."
+Examples using text color:
+printf("\x03" "This is yellow text. " "\x06" "This is red text.");
+printf("%cThis is yellow text. %cThis is red text.", 0x03, 0x06);
 
 {{{
-x01 - Mimic(Default: Cyan)
-x02 - Cyan
+x01 - Previous
+x02 - Cyan (Default)
 x03 - Yellow
 x04 - White
-x05 - Grey
+x05 - Grey (no override)
 x06 - Red
 x07 - Green
 x08 - Red (P1)
 x09 - Tab
 x0A - Newline
-x0B - Invisible
-x0C - Remove beyond
+x0B - Invisible (no override)
+x0C - Remove beyond (no override)
 x0D - Clear formatting?
 x0E - Blue (P2)
 x0F - Teal (P3)
@@ -64,7 +67,7 @@ x16 - White (p7)
 x17 - Yellow (p8)
 x18 - Green (p9)
 x19 - Brighter Yellow (p10)
-x1A - Cyan
+x1A - Cyan (player default)
 x1B - Pinkish (p11)
 x1C - Dark Cyan (p12)
 x1D - Greygreen
