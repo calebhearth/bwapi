@@ -76,17 +76,18 @@ int getResourceGroup();
 Returns the group index of a resource. Can be used to identify which resources belong to an expansion.
 
 == getDistance ==
-double getDistance([Unit]{{{*}}} target) const;
+double getDistance([Unit] `*`target) const;
 
 Returns the edge-to-edge distance between the current unit and the target unit.
 
-== getDistance ==
 double getDistance([Misc#Position Position] target) const;
 
 Returns the distance from the edge of the current unit to the target position.
 
 == hasPath ==
 bool hasPath([Misc#Position Position] target);
+
+bool hasPath([Unit Unit] `*`target);
 
 Returns true if the target is on the same island as the unit, and false if the unit supposedly can't reach the destination target.
 
@@ -96,12 +97,12 @@ int getLastOrderFrame();
 Returns the frame of the last successful order. For example, issuing a Move command will record the frame it was issued in, and you retrieve the frame with this.
 
 == setClientInfo ==
-void setClientInfo(void {{{*}}}clientinfo);
+void setClientInfo(void `*`clientinfo);
 
 Associates client info with the unit. The client is responsible for the allocation and deallocation of the client info pointer.
 
 == getClientInfo ==
-void {{{*}}}getClientInfo();
+void `*`getClientInfo();
 
 Retrieves the client info that was set by [#setClientInfo setClientInfo]. The client is responsible for the allocation and deallocation of the client info pointer.
 
