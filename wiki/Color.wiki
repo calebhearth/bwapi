@@ -38,9 +38,12 @@ The two sets of pixels outlined in green are pixels that change color each frame
 
 === Text Color ===
 Examples using text color:
+{{{
 printf("\x03" "This is yellow text. " "\x06" "This is red text.");
 printf("%cThis is yellow text. %cThis is red text.", 0x03, 0x06);
+}}}
 
+Available control characters:
 {{{
 x01 - Previous
 x02 - Cyan (Default)
