@@ -1,12 +1,19 @@
-== Changes from BWAPI Beta 3.1 (r2796) to Current r2836 ==
+== Changes from BWAPI Beta 3.1 (r2796) to Current r2849 ==
 
 Changes:
 
   * bwapi-errors are now written to the logs folder with a time and date stamp.
+  * Using train or morph(unit) on a hatchery, lair, or hive will automatically issue the order to a larva.
+  * Ordering a Nydus Canal to build a Nydus Canal will allow you to place the Nydus exit.
+  * Changed the palette index for some [Color#Colors Colors] and updated the colors for sendText in Single Player.
 
-Additions:
+New features:
 
   * Added [Unit#getResourceGroup Unit::getResourceGroup] - Returns a group index for a resource to identify which base it belongs to.
+  * Implemented the Nydus Canal. You can now tell a Nydus Canal to build an exit.
+  * Added [Unit#hasPath Unit::hasPath](Unit `*`target), a macro function that calls hasPath for the target unit.
+  * Added the following Color constants: Colors::Brown and Colors::Teal.
+  * Added [Player#getColor Player::getColor] and [Player#getTextColor Player::getTextColor] to retrieve a player's color for drawing and control character for text messages.
 
 Bug fixes:
 
@@ -17,6 +24,8 @@ Bug fixes:
   * Fixed a bug that prevented sending text when no module is loaded.
   * Fixed a bug involving duplicate cheat codes.
   * Fixed a bug where onMorph would sometimes be called when a building finished morphing, rather than when it began morphing.
+  * Fixed a canBuildHere issue involving the message "Couldn't reach building site".
+  * Fix an issue where hasPath failed at cliff edges.
 
 == Changes from BWAPI Beta 3.0.3 (r2639) to BWAPI Beta 3.1 (r2796) ==
 
