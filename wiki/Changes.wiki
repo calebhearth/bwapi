@@ -1,3 +1,15 @@
+== Changes from BWAPI Beta 3.1.1 (r2864) to Head Revision (r2874)
+
+Changes:
+  * None
+
+New Features:
+  * None
+
+Bug Fixes:
+  * None
+
+
 == Changes from BWAPI Beta 3.1 (r2796) to BWAPI Beta 3.1.1 (r2864) ==
 
 Changes:
