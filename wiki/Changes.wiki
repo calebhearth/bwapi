@@ -19,6 +19,7 @@ Changes:
   * Ordering a Nydus Canal to build a Nydus Canal will allow you to place the Nydus exit.
   * Changed the palette index for some [Color#Colors Colors] and updated the colors for sendText in Single Player.
   * The Config button in ChaosLauncherInjector and MPQDraftInjector will now load the BWAPI config file from the Starcraft path obtained by the registry.
+  * Incomplete units being trained now 'exist' according to BWAPI, and thus can generate UnitCreate, UnitShow, and UnitDiscover events when the unit begins training rather than win the unit actually pops out of the factory/barracks/etc. Internal enemy units are still not accessible when Complete Map Info is disabled.
 
 New features:
 
