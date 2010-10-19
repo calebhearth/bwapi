@@ -5,15 +5,13 @@ This page contains links to other projects that make use of BWAPI.
 <wiki:toc max_depth="1" />
 
 = AI Modules =
-
+  * There should be something
 
 = Enhancement Libraries =
-
   * BWTA: http://code.google.com/p/bwta/
   * BWSAL: http://code.google.com/p/bwsal/
 
 = Proxy Bots =
-
   * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
   * BWAPI-HSProxy: http://code.google.com/p/bwapi-hsproxy/ (Haskell)
   * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
