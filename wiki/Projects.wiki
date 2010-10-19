@@ -26,4 +26,3 @@ This page contains links to other projects that make use of BWAPI.
   * JBridge: http://code.google.com/p/bwapi-jbridge/ (Java)
   * BWAPI-Lua: http://code.google.com/p/bwapi-lua/ (Lua)
   * bwapi-mono-bridge: http://code.google.com/p/bwapi-mono-bridge/ (C# or any other .NET 2.0 language)
-  * Updated bwapi-mono-bridge: http://blog.gneu.org/2010/10/updated-mono-bridge-for-bwapi/
