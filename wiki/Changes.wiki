@@ -6,6 +6,7 @@ Changes:
   * Using train or morph(unit) on a hatchery, lair, or hive will automatically issue the order to a larva.
   * Ordering a Nydus Canal to build a Nydus Canal will allow you to place the Nydus exit.
   * Changed the palette index for some [Color#Colors Colors] and updated the colors for sendText in Single Player.
+  * The Config button in ChaosLauncherInjector and MPQDraftInjector will now load the BWAPI config file from the Starcraft path obtained by the registry.
 
 New features:
 
