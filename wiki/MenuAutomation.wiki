@@ -3,6 +3,7 @@
 BWAPI can automate most of the menus in the Starcraft GUI. The following options in the [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/starcraft-folder/bwapi-data/bwapi.ini bwapi.ini] file specify how BWAPI automates the in-game menu system:
 
   * [#auto_menu auto_menu]
+  * [#auto_restart auto_restart]
   * [#map map]
   * [#race race]
   * [#enemy_race enemy_race]
@@ -17,6 +18,12 @@ This specifies what mode the menu system is in. It can have one of the following
   * BATTLE_NET - goes to Battle Net login screen
 
 If auto_menu is set to OFF, menu automation is disabled and none of the other options have any effect.
+
+=== auto_restart ===
+
+This specified what to do at the end of a match or replay. It can have one of the following values:
+  * OFF - Does not automate the Victory/Defeat screen that appears after the end of the match. This lets you see the result of the match and also save the replay before starting the next match.
+  * ON - Automates the Victory/Defeat screen, so BWAPI will proceed to the next match with no manual user input.
 
 === map ===
 Specifies which map to play on, or which replays to watch. The path is relative to the Starcraft folder. If you wish to automate the process of joining a LAN UDP game, set auto_menu to LAN_UDP and set map to nothing (i.e. "map = ").
