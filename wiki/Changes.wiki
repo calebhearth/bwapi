@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.1.1 (r2864) to r2883 ==
+== Changes from BWAPI Beta 3.1.1 (r2864) to r2885 ==
 
 Changes:
   * A Debug build now loads the AI specified by ai_dll_dbg (ai_dll_#_dbg for multiple instances) in bwapi.ini.
@@ -7,7 +7,8 @@ New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
 
 Bug Fixes:
-  * None
+  * Fix a bug where canMake would fail to work correctly when units of a different race are owned.
+  * Fix an issue where ChaosLauncherInjector and MPQDraftInjector were using a non-standard registry call.
 
 
 == Changes from BWAPI Beta 3.1 (r2796) to BWAPI Beta 3.1.1 (r2864) ==
