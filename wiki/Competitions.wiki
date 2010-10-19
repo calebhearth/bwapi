@@ -1,0 +1,27 @@
+#summary Competitions held for BWAPI
+
+This page contains a list of competitions using BWAPI.
+
+----
+= In Progress =
+
+ == AIIDE 2011 ==
+  No details available.
+
+
+----
+= Finished =
+
+ == AIIDE 2010 ==
+
+ === Info ===
+  * *Hosted by:* University of California, Santa Cruz
+  * *Official Competition Website:* http://eis.ucsc.edu/StarCraftAICompetition
+
+ === Related Websites ===
+  * http://twitter.com/StarCraftAIComp
+
+ === Dates ===
+  * *Registration Deadline:* September 1st, 2010
+  * *Submission Deadline:* September 15th, 2010
+  * *Competition:* September 15th to October 15th, 2010
