@@ -34,14 +34,11 @@ _Note: Only perform steps 3 and 4 if you want to use Chaos Launcher as a loader.
 == How To Create a New Release of BWAPI ==
 
   # Check out BWAPI and compile as Release mode and Debug mode.
-  # Compile BWTA from latest BWAPI header files.
-  # Copy BWTA libs and header files into Release_Binary/libs/
+  # Compile BWTA from latest BWAPI header files as Release mode and Debug mode.
+  # Copy BWTA libs and header files into Release_Binary/libs/ and Release_Binary/include/
   # Update the ChangeLog file with info from the [Changes] page.
   # Update the README file so it has the name of the new release at the top of the file.
-  # Compile and test Example AI Module in Release mode and Debug mode. Type /analyze to test BWTA.
-  # Compile and test the Example AI Client in Release mode and Debug mode.
-  # Remove any extra files that get automatically generated when you open/build the projects.
-  # Export the Release_Binary SVN folder to some other folder to remove the .svn folders.
+  # Export the Release_Binary SVN folder to some other folder like BWAPI_Beta_X.Y.Z to remove the .svn folders.
   # Compress the folder to zip archive.
   # Upload to the Downloads page and mark as Featured.
   # Update Project Home page.
