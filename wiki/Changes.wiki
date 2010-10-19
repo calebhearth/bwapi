@@ -4,7 +4,7 @@ Changes:
   * None
 
 New Features:
-  * None
+  * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
 
 Bug Fixes:
   * None
