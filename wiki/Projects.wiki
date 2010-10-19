@@ -5,7 +5,11 @@ This page contains links to other projects that make use of BWAPI.
 <wiki:toc max_depth="1" />
 
 = AI Modules =
-  * There should be something
+  * BTHAI: http://code.google.com/p/bthai/
+  * sqlitebot: http://code.google.com/p/sqlitebot/
+  * Manolobot: http://code.google.com/p/manolobot/
+  * BroodwarBotQ: http://github.com/SnippyHolloW/BroodwarBotQ
+  * Overmind: http://overmind.cs.berkeley.edu/
 
 = Enhancement Libraries =
   * BWTA: http://code.google.com/p/bwta/
