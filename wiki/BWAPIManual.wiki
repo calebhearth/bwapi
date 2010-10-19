@@ -7,6 +7,8 @@
   * [MenuAutomation Menu Automation]
   * [MultiInstance Multiple Instances]
   * [Changes]
+  * [Projects Projects Using BWAPI]
+  * [Competitions]
   * [contact Contact Information]
 
   * [AIModule]
