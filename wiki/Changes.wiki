@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.1 (r2796) to Current r2849 ==
+== Changes from BWAPI Beta 3.1 (r2796) to BWAPI Beta 3.1.1 (r2864) ==
 
 Changes:
 
