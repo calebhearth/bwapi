@@ -7,7 +7,7 @@ Changes:
 
 New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
-  * Added[Game#getReplayFrameCount Game::getReplayFrameCount] - Retrieves the maximum number of frames in a replay.
+  * Added [Game#getReplayFrameCount Game::getReplayFrameCount] - Retrieves the maximum number of frames in a replay.
 
 Bug Fixes:
   * Fix a bug where canMake would fail to work correctly when units of a different race are owned.
