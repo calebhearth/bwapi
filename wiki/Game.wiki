@@ -98,6 +98,11 @@ int getFrameCount();
 
 Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
 
+== getReplayFrameCount ==
+int getReplayFrameCount();
+
+Returns the maximum number of frames for a replay. To get the replay progress as a percentage, you can use {{{getFrameCount()*100/getReplayFrameCount()}}}.
+
 == getFPS ==
 int getFPS();
 
