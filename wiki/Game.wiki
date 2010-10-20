@@ -113,6 +113,11 @@ int getAverageFPS();
 
 Returns the average number of frames per second that the game is running at.
 
+== getRevision ==
+int getRevision();
+
+Retrieves the revision number for the current BWAPI build.
+
 == getMouseX ==
 int getMouseX();
 
@@ -345,6 +350,11 @@ bool isReplay();
 
 Returns true if Broodwar is in a replay.
 
+== isDebug ==
+bool isDebug();
+
+Returns true if the current build is DEBUG, and false if the current build is RELEASE.
+
 == startGame ==
 void startGame();
 
@@ -458,13 +468,3 @@ Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
   * void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 
 Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the outline of the triangle will be drawn.
-
-== getRevision ==
-int getRevision();
-
-Retrieves the revision number for the current BWAPI build.
-
-== isDebug ==
-bool isDebug();
-
-Returns true if the current build is DEBUG, and false if the current build is RELEASE.
