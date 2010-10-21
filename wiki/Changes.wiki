@@ -5,7 +5,7 @@ Changes:
   * When the user selects a unit, the command is not processed unless it is given an order. (Decrease action count)
   * [Misc#Position Position] and [Misc#TilePosition TilePosition] conversions are now explicit.
   * Issuing Stop, Hold Position, Siege, Unsiege, Cloak, Decloak, Burrow, or Unburrow for multiple units in the same frame will perform the commands in groups instead of individually. (Decrease APM).
-  * canUpgrade and canResearch with a Unit* specified will now fail if the unit is busy.
+  * canUpgrade and canResearch with a Unit`*` specified will now fail if the unit is busy.
 
 New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
