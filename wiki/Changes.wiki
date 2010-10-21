@@ -1,18 +1,25 @@
-== Changes from BWAPI Beta 3.1.1 (r2864) to r2894 ==
+== Changes from BWAPI Beta 3.1.1 (r2864) to r2909 ==
 
 Changes:
   * A Debug build now loads the AI specified by ai`_`dll`_`dbg (ai`_`dll`_`#`_`dbg for multiple instances) in bwapi.ini.
   * When the user selects a unit, the command is not processed unless it is given an order. (Decrease action count)
   * [Misc#Position Position] and [Misc#TilePosition TilePosition] conversions are now explicit.
+  * Issuing Stop, Hold Position, Siege, Unsiege, Cloak, Decloak, Burrow, or Unburrow for multiple units in the same frame will perform the commands in groups instead of individually. (Decrease APM).
+  * canUpgrade and canResearch with a Unit* specified will now fail if the unit is busy.
 
 New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
   * Added [Game#getReplayFrameCount Game::getReplayFrameCount] - Retrieves the maximum number of frames in a replay.
+  * Added a save_replay option to bwapi.ini which copies LastReplay.rep to the destination specified.
 
 Bug Fixes:
   * Fix a bug where canMake would fail to work correctly when units of a different race are owned.
   * Fix an issue where ChaosLauncherInjector and MPQDraftInjector were using a non-standard registry call.
   * Fix an issue where an MPQDraft executable failed to find the bwapi-folder when launched from a different directory.
+  * Fix an issue that prevented Player::getUpgradeLevel() from working correctly.
+  * Fix an issue that performed auto-menu key presses outside of Starcraft.
+  * Fix an issue where the neutral player was not being processed correctly.
+
 
 == Changes from BWAPI Beta 3.1 (r2796) to BWAPI Beta 3.1.1 (r2864) ==
 
