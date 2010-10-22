@@ -191,6 +191,8 @@ void setGUI(bool enabled);
 
 Disables or enables GUI rendering. This includes all rendering both within the game and BWAPI.
 
+Calling [#setLocalSpeed Game::setLocalSpeed(0)] increases the speed of Starcraft. Disabling the GUI with this command can increase the speed even more.
+
 == isLatComEnabled ==
 bool isLatComEnabled();
 
