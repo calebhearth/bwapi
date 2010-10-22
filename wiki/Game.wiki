@@ -392,6 +392,8 @@ void setLocalSpeed(int speed);
 
 Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed Starcraft can handle (which is about as fast as the fastest speed you can view a replay at). Any negative value will reset the speed to the starcraft default.
 
+See also: [Game#setGUI Game::setGUI].
+
 == getSelectedUnits ==
 std::set<[Unit]{{{*}}}>& getSelectedUnits();
 
