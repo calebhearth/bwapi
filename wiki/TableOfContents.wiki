@@ -5,7 +5,6 @@
   * [Projects Projects Using BWAPI]
   * [Competitions]
   * [contact Contact Information]
-  * [Interfaces]
   * Tutorials
     * [Debugging]
     * [MenuAutomation Menu Automation]
