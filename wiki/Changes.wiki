@@ -3,6 +3,7 @@
 Bug Fixes:
 
   * Fixed a bug where [Unit#hasPath Unit::hasPath] would not work correctly in BWAPI Client programs.
+  * Fixed a bug where [Unit#getResourceGroup Unit::getResourceGroup] would not work correctly in BWAPI Client programs.
 
 == Changes from BWAPI Beta 3.1.1 (r2864) to BWAPI Beta 3.2 (r2917) ==
 
