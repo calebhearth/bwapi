@@ -3,8 +3,35 @@
 = Using [http://winner.cspsx.de/Starcraft/ Chaoslauncher] =
 Chaoslauncher is the preferred loading tool because of the ability to use its [http://wiki.teamliquid.net/starcraft/APMAlert APM Alert] and [http://wiki.teamliquid.net/starcraft/W-Mode W-MODE] plugins.
 
-= Using [http://sourceforge.net/projects/mpqdraft/ MPQDraft] =
+How to:
+  * Download and unzip ChaosLauncher
+  * Copy the BWAPI files from the {{{BWAPI\ChaosLauncher\}}] folder to your ChaosLauncher folder.
+  * Run ChaosLauncher
+  * Enable the BWAPI injector with any other plugins
 
+= Using [http://sourceforge.net/projects/mpqdraft/ MPQDraft] =
+MPQDraft may be preferred by some users, but is the least preferred option.
+
+How to:
+  * Download and Unzip MPQDraft
+  * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}] folder to your MPQDraft folder.
+  * Run MPQDraft
+
+Create a self-executing loader:
+  * Select _CREATE SELF EXECUTING MPQ_
+  * (Step 1 of 3) Set the paths for the input archive and output executable, then click _Next_
+  * (Step 2 of 3) Select Starcraft, specify any command line parameters, and click _Next_
+  * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
+  * Run the newly created executable
+
+Immediately load BWAPI:
+  * Select _LOAD MPQ PATCH_
+  * (Step 1 of 3) Select Starcraft, specify any command line parameters, and click _Next_
+  * (Step 2 of 3) Select any MPQ archives you want to load and click _Next_
+  * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
 
 = Using a [http://www.google.com/search?q=DLL+injector DLL Injector] =
-A DLL injector may be preferred to load other hacks such as the Resolution Expander.
+A DLL injector may be preferred to load other hacks such as the [http://www.battlehacks.com/forums/starcraft-hacks/663-starcraft-resolution-expander-6-a.html Resolution Expander] and [http://www.starcraftresolutionhack.kilu.de/ McBanes's Resolution Hack].
+
+How to:
+  * Follow the instructions provided by the DLL Injector using BWAPI.dll
