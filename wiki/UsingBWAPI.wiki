@@ -2,7 +2,7 @@
 
 To program AIs using BWAPI you will need to have the following installed:
   * [http://www.blizzard.com/us/broodwar/ Starcraft: Broodwar] [http://us.blizzard.com/support/article.xml?locale=en_US&articleId=21149 1.16.1]
-  * [http://www.teamliquid.net/forum/viewmessage.php?topic_id=65196 Chaoslauncher]
+  * [Injection A hack loader]
   * A C++ compiler (such as Visual Studio 2008 [http://www.microsoft.com/downloads/details.aspx?FamilyId=FBEE1648-7106-44A7-9649-6D9F6D58056E&displaylang=en SP1] or [http://www.microsoft.com/express/download/#webInstall Visual C++ 2008 Express Edition])
 
 Once you have those, download the latest version of BWAPI from [http://code.google.com/p/bwapi/downloads/list] and follow the instructions in the readme on how to build the example AI module. It will explain where to place files and how to compile a sort of "Hello World"-like AI Module for BWAPI, which you can work from to start making your own custom Broodwar AI.
