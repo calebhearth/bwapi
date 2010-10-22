@@ -89,7 +89,7 @@ bool hasPath([Misc#Position Position] target);
 
 bool hasPath([Unit Unit] `*`target);
 
-Returns true if the target is on the same island as the unit, and false if the unit supposedly can't reach the destination target.
+Returns true if the target is on the same island as the unit, and false if the unit supposedly can't reach the destination target. This is based on static map data.
 
 == getLastOrderFrame ==
 int getLastOrderFrame();
