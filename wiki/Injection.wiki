@@ -1,0 +1,10 @@
+#summary How to inject BWAPI into the Broodwar process
+
+= Using [http://winner.cspsx.de/Starcraft/ Chaoslauncher] =
+Chaoslauncher is the preferred loading tool because of the ability to use its [http://wiki.teamliquid.net/starcraft/APMAlert APM Alert] and [http://wiki.teamliquid.net/starcraft/W-Mode W-MODE] plugins.
+
+= Using [http://sourceforge.net/projects/mpqdraft/ MPQDraft] =
+
+
+= Using a [http://www.google.com/search?q=DLL+injector DLL Injector] =
+A DLL injector may be preferred to load other hacks such as the Resolution Expander.
