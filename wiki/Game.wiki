@@ -186,6 +186,11 @@ void enableFlag([Misc#Flag::Enum Flag::Enum] flag);
 
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule#onStart AIModule::onStart] callback, or during the [AIModule#onFrame AIModule::onFrame] callback on the first frame (frame 0).
 
+== setGUI ==
+void setGUI(bool enabled);
+
+Disables or enables GUI rendering. This includes all rendering both within the game and BWAPI.
+
 == isLatComEnabled ==
 bool isLatComEnabled();
 
