@@ -1,14 +1,16 @@
 #sidebar TableOfContents
 
-BWAPI can automate most of the menus in the Starcraft GUI. The following options in the [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/starcraft-folder/bwapi-data/bwapi.ini bwapi.ini] file specify how BWAPI automates the in-game menu system:
+BWAPI can automate most of the menus in the Starcraft GUI. The following options in the [http://code.google.com/p/bwapi/source/browse/trunk/Release_Binary/Starcraft/bwapi-data/bwapi.ini bwapi.ini] file specify how BWAPI automates the in-game menu system:
 
   * [#auto_menu auto_menu]
   * [#auto_restart auto_restart]
   * [#map map]
+  * [#save_replay save_replay]
   * [#race race]
   * [#enemy_race enemy_race]
   * [#enemy_count enemy_count]
   * [#game_type game_type]
+  * [#sound sound]
 
 === auto_menu ===
 This specifies what mode the menu system is in. It can have one of the following values:
@@ -21,7 +23,7 @@ If auto_menu is set to OFF, menu automation is disabled and none of the other op
 
 === auto_restart ===
 
-This specified what to do at the end of a match or replay. It can have one of the following values:
+This specifies what to do at the end of a match or replay. It can have one of the following values:
   * OFF - Does not automate the Victory/Defeat screen that appears after the end of the match. This lets you see the result of the match and also save the replay before starting the next match.
   * ON - Automates the Victory/Defeat screen, so BWAPI will proceed to the next match with no manual user input.
 
@@ -33,6 +35,15 @@ Examples:
   * map = maps\(2)Boxer.scm
   * map = maps\BroodWar\WebMaps\(8)Big Game Hunters.scm
   * map = maps\replays\LastReplay.rep
+
+=== save_replay ===
+This specifies where to save the replay to.
+
+Example:
+
+  * save_replay = maps\replays\BWAPI_LastReplay.rep
+
+Variables will be added in a later release.
 
 === race ===
 Specifies which race to select for the player. Can have one of the following values:
@@ -66,3 +77,10 @@ Specifies the GameType. Sub-type selection is not implemented at this time (add 
   * TEAM_MELEE
   * TEAM_FREE_FOR_ALL
   * TEAM_CAPTURE_THE_FLAG
+
+=== sound ===
+Specifies whether or not Starcraft should run the sound engine. Disabling the sound engine can give Starcraft a slight speed increase. It can have one of the following values:
+  * OFF - disable sound
+  * ON - run normally
+
+Also check out [Game#setLocalSpeed Game::setLocalSpeed] and [Game#setGUI Game::setGUI] for other ways of increasing the speed of Starcraft.
