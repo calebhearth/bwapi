@@ -1,20 +1,25 @@
 #labels Featured
 #sidebar TableOfContents
 
-== Contents ==
-  * [UsingBWAPI Using BWAPI]
+= Contents =
   * [BWAPIOverview BWAPI Overview]
-  * [MenuAutomation Menu Automation]
-  * [MultiInstance Multiple Instances]
   * [Changes]
   * [Projects Projects Using BWAPI]
   * [Competitions]
   * [contact Contact Information]
-  * [CodingStandard Coding Standard]
-  * [Debugging]
-  * [BWAPIDevelopment Developing BWAPI]
   * [Interfaces]
+  
+== Tutorials ==
+  * [UsingBWAPI Using BWAPI]
+  * [Debugging]
+  * [MenuAutomation Menu Automation]
+  * [MultiInstance Multiple Instances]
 
+== Development == 
+  * [BWAPIDevelopment Developing BWAPI]
+  * [CodingStandard Coding Standard]
+
+== API ==
   * [AIModule]
   * [Bullet]
   * [BulletType]
