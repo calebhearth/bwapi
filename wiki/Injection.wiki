@@ -5,7 +5,7 @@ Chaoslauncher is the preferred loading tool because of the ability to use its [h
 
 How to:
   * Download and unzip ChaosLauncher
-  * Copy the BWAPI files from the {{{BWAPI\ChaosLauncher\}}] folder to your ChaosLauncher folder.
+  * Copy the BWAPI files from the {{{BWAPI\ChaosLauncher\}}} folder to your ChaosLauncher folder.
   * Run ChaosLauncher
   * Enable the BWAPI injector with any other plugins
 
@@ -14,7 +14,7 @@ MPQDraft may be preferred by some users, but is the least preferred option.
 
 How to:
   * Download and Unzip MPQDraft
-  * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}] folder to your MPQDraft folder.
+  * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}} folder to your MPQDraft folder.
   * Run MPQDraft
 
 Create a self-executing loader:
