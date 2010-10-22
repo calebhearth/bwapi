@@ -10,6 +10,7 @@
     * [Debugging]
     * [MenuAutomation Menu Automation]
     * [MultiInstance Multiple Instances]
+    * [Injection Injecting BWAPI into Starcraft]
   * Development
     * [BWAPIDevelopment Developing BWAPI]
     * [CodingStandard Coding Standard]
