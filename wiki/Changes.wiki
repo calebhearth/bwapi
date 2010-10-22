@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.1.1 (r2864) to r2919 ==
+== Changes from BWAPI Beta 3.1.1 (r2864) to BWAPI Beta 3.2 (r2917) ==
 
 Changes:
   * A Debug build now loads the AI specified by ai`_`dll`_`dbg (ai`_`dll`_`#`_`dbg for multiple instances) in bwapi.ini.
