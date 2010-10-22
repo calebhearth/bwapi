@@ -10,6 +10,10 @@
   * [Projects Projects Using BWAPI]
   * [Competitions]
   * [contact Contact Information]
+  * [CodingStandard Coding Standard]
+  * [Debugging]
+  * [BWAPIDevelopment Developing BWAPI]
+  * [Interfaces]
 
   * [AIModule]
   * [Bullet]
