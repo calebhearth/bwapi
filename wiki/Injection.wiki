@@ -1,37 +1,53 @@
 #summary How to inject BWAPI into the Broodwar process
 
-= Using [http://winner.cspsx.de/Starcraft/ Chaoslauncher] =
-Chaoslauncher is the preferred loading tool because of the ability to use its [http://wiki.teamliquid.net/starcraft/APMAlert APM Alert] and [http://wiki.teamliquid.net/starcraft/W-Mode W-MODE] plugins.
+<wiki:toc max_depth="1" />
 
-How to:
-  * Download and unzip ChaosLauncher
-  * Copy the BWAPI files from the {{{BWAPI\ChaosLauncher\}}} folder to your ChaosLauncher folder.
-  * Run ChaosLauncher
-  * Enable the BWAPI injector with any other plugins
+= General Information =
 
-= Using [http://sourceforge.net/projects/mpqdraft/ MPQDraft] =
-MPQDraft may be preferred by some users, but is the least used among AI and BWAPI developers.
+  == When BWAPI can be injected ==
+  BWAPI can be injected at any time, though you *can NOT inject BWAPI during a game*. Some locations that BWAPI can be injected include:
+    * Main Menu
+    * Game Lobby
+    * Mission Briefing
+    * Battle.net
 
-How to:
-  * Download and Unzip MPQDraft
-  * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}} folder to your MPQDraft folder.
-  * Run MPQDraft
+  == Injection Side-Effects ==
+  When injecting BWAPI, animated graphics (Main Menu and Campaign) will temporarily disappear. This is not expected behaviour, however this does not seem to have an impact on the stability of Starcraft or BWAPI.
 
-Create a self-executing loader:
-  * Select _CREATE SELF EXECUTING MPQ_
-  * (Step 1 of 3) Set the paths for the input archive and output executable, then click _Next_
-  * (Step 2 of 3) Select Starcraft, specify any command line parameters, and click _Next_
-  * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
-  * Run the newly created executable
+= Loaders = 
 
-Immediately load BWAPI:
-  * Select _LOAD MPQ PATCH_
-  * (Step 1 of 3) Select Starcraft, specify any command line parameters, and click _Next_
-  * (Step 2 of 3) Select any MPQ archives you want to load and click _Next_
-  * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
+  == [http://winner.cspsx.de/Starcraft/ Chaoslauncher] ==
+  Chaoslauncher is the preferred loading tool because of the ability to use its [http://wiki.teamliquid.net/starcraft/APMAlert APM Alert] and [http://wiki.teamliquid.net/starcraft/W-Mode W-MODE] plugins.
 
-= Using a [http://www.google.com/search?q=DLL+injector DLL Injector] =
-A DLL injector may be preferred to load other hacks such as the [http://www.battlehacks.com/forums/starcraft-hacks/663-starcraft-resolution-expander-6-a.html Resolution Expander] and [http://www.starcraftresolutionhack.kilu.de/ McBanes's Resolution Hack].
+  How to:
+    * Download and unzip ChaosLauncher
+    * Copy the BWAPI files from the {{{BWAPI\ChaosLauncher\}}} folder to your ChaosLauncher folder.
+    * Run ChaosLauncher
+    * Enable the BWAPI injector with any other plugins
 
-How to:
-  * Follow the instructions provided by the DLL Injector using BWAPI.dll
+  == [http://sourceforge.net/projects/mpqdraft/ MPQDraft] ==
+  MPQDraft may be preferred by some users, but is the least used among AI and BWAPI developers.
+
+  How to:
+    * Download and Unzip MPQDraft
+    * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}} folder to your MPQDraft folder.
+    * Run MPQDraft
+
+  Create a self-executing loader:
+    * Select _CREATE SELF EXECUTING MPQ_
+    * (Step 1 of 3) Set the paths for the input archive and output executable, then click _Next_
+    * (Step 2 of 3) Select Starcraft, specify any command line parameters, and click _Next_
+    * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
+    * Run the newly created executable
+
+  Immediately load BWAPI:
+    * Select _LOAD MPQ PATCH_
+    * (Step 1 of 3) Select Starcraft, specify any command line parameters, and click _Next_
+    * (Step 2 of 3) Select any MPQ archives you want to load and click _Next_
+    * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
+
+  == [http://www.google.com/search?q=DLL+injector DLL Injector] ==
+  A DLL injector may be preferred to load other hacks such as the [http://www.battlehacks.com/forums/starcraft-hacks/663-starcraft-resolution-expander-6-a.html Resolution Expander] and [http://www.starcraftresolutionhack.kilu.de/ McBanes's Resolution Hack].
+
+  How to:
+    * Follow the instructions provided by the DLL Injector using BWAPI.dll
