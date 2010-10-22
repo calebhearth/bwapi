@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.1.1 (r2864) to r2916 ==
+== Changes from BWAPI Beta 3.1.1 (r2864) to r2919 ==
 
 Changes:
   * A Debug build now loads the AI specified by ai`_`dll`_`dbg (ai`_`dll`_`#`_`dbg for multiple instances) in bwapi.ini.
@@ -11,7 +11,8 @@ New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
   * Added [Game#getReplayFrameCount Game::getReplayFrameCount] - Retrieves the maximum number of frames in a replay.
   * Added a save_replay option to bwapi.ini which copies LastReplay.rep to the destination specified.
-  * Added a no_sound option to bwapi.ini which disables all Starcraft sound to increase performance.
+  * Added a "sound" option to bwapi.ini which allows you to disable all Starcraft sound functionality to increase performance.
+  * Added [Game#setGUI Game::setGUI] which allows you to disable all rendering within the game for a huge performance increase.
 
 Bug Fixes:
   * Fix a bug where canMake would fail to work correctly when units of a different race are owned.
