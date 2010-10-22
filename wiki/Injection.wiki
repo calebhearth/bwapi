@@ -10,7 +10,7 @@ How to:
   * Enable the BWAPI injector with any other plugins
 
 = Using [http://sourceforge.net/projects/mpqdraft/ MPQDraft] =
-MPQDraft may be preferred by some users, but is the least preferred option.
+MPQDraft may be preferred by some users, but is the least used among AI and BWAPI developers.
 
 How to:
   * Download and Unzip MPQDraft
