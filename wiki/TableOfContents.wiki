@@ -1,4 +1,5 @@
   * [BWAPIManual ↑ Top]
+  * [UsingBWAPI Using BWAPI]
   * [BWAPIOverview BWAPI Overview]
   * [Changes]
   * [Projects Projects Using BWAPI]
@@ -6,7 +7,6 @@
   * [contact Contact Information]
   * [Interfaces]
   * Tutorials
-    * [UsingBWAPI Using BWAPI]
     * [Debugging]
     * [MenuAutomation Menu Automation]
     * [MultiInstance Multiple Instances]
