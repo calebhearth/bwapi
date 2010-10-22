@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r2925 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r2948 ==
 
 Bug Fixes:
 
