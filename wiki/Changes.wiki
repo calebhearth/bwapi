@@ -10,8 +10,8 @@ Changes:
 New Features:
   * Added [http://code.google.com/p/bwapi/wiki/MenuAutomation#auto_restart auto_restart] option to bwapi.ini.
   * Added [Game#getReplayFrameCount Game::getReplayFrameCount] - Retrieves the maximum number of frames in a replay.
-  * Added a save_replay option to bwapi.ini which copies LastReplay.rep to the destination specified.
-  * Added a "sound" option to bwapi.ini which allows you to disable all Starcraft sound functionality to increase performance.
+  * Added a [http://code.google.com/p/bwapi/wiki/MenuAutomation#save_replay save_replay] option to bwapi.ini which copies LastReplay.rep to the destination specified.
+  * Added a [http://code.google.com/p/bwapi/wiki/MenuAutomation#sound sound] option to bwapi.ini which allows you to disable all Starcraft sound functionality to increase performance.
   * Added [Game#setGUI Game::setGUI] which allows you to disable all rendering within the game for a huge performance increase.
 
 Bug Fixes:
