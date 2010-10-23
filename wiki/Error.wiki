@@ -42,6 +42,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Unit_Busy Unit_Busy]
   * [#Incompatible_UnitType Incompatible_UnitType]
   * [#Incompatible_TechType Incompatible_TechType]
+  * [#Incompatible_State Incompatible_State]
   * [#Already_Researched Already_Researched]
   * [#Fully_Upgraded Fully_Upgraded]
   * [#Currently_Researching Currently_Researching]
@@ -53,6 +54,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Insufficient_Tech Insufficient_Tech]
   * [#Insufficient_Ammo Insufficient_Ammo]
   * [#Unbuildable_Location Unbuildable_Location]
+  * [#Unreachable_Location Unreachable_Location]
   * [#Out_Of_Range Out_Of_Range]
   * [#Unable_To_Hit Unable_To_Hit]
   * [#Access_Denied Access_Denied]
@@ -81,7 +83,11 @@ Returned if you do something weird like try to build a Pylon with an SCV, or tra
 
 === {{{Incompatible_TechType}}} ===
 
-Returned if when trying to use a tech type with the wrong [Unit]::[Unit#useTech useTech] method.
+Returned when trying to use a tech type with the wrong [Unit]::[Unit#useTech useTech] method.
+
+=== {{{Incompatible_State}}} ===
+
+Returned if you to do something like try to cancel an upgrade when the unit isn't upgrading.
 
 === {{{Already_Researched}}} ===
 
@@ -126,6 +132,10 @@ Returned if you do something like try to lay Spider Mines when your Vulture is o
 === {{{Unbuildable_Location}}} ===
 
 Returned if you try to build something on unbuildable terrain (either from the buildability map data or if a unit is in the way). For build tiles that are not visible, we could just use the buildability map data and assume that no units are blocking it (to prevent cheating). 
+
+=== {{{Unreachable_Location}}} ===
+
+Returned if you try to construct a building where the worker cannot reach based on static map data.
 
 === {{{Out_Of_Range}}} ===
 
