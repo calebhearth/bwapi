@@ -296,9 +296,9 @@ bool hasPower([Misc#TilePosition TilePosition] position, int tileWidth, int tile
 Returns true if the given build location is powered by a nearby friendly pylon.
 
 == canBuildHere ==
-bool canBuildHere([Unit]{{{*}}} builder, [Misc#TilePosition TilePosition] position, [UnitType] type);
+bool canBuildHere([Unit]{{{*}}} builder, [Misc#TilePosition TilePosition] position, [UnitType] type, bool checkExplored = false);
 
-Returns true if the given unit type can be built at the given build tile position. Note the tile position specifies the top left tile of the building. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location.
+Returns true if the given unit type can be built at the given build tile position. Note the tile position specifies the top left tile of the building. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location. If checkExplored is specified, then canBuildHere will also verify that the area has been explored first.
 
 == canMake ==
 bool canMake([Unit]{{{*}}} builder, [UnitType] type);
