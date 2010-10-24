@@ -2,7 +2,9 @@
 
 New Features:
 
-  * Added UnitType::cloakingTech
+  * Added UnitType::cloakingTech - returns the tech used to cloak the unit, or TechTypes::None if the unit cannot cloak or is permanently cloaked
+  * Added Unit::getPowerUp - returns the power up the unit is holding, or NULL if the unit is not holding a power up
+  * Added Unit::isInterruptible - returns true if the unit can be interrupted without issuing a stop or one of the cancel commands.
 
 Bug Fixes:
 
