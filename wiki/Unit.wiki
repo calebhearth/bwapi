@@ -516,6 +516,11 @@ Returns true if the unit is not doing anything.
 
 See also: [Unit]::[Unit#stop stop].
 
+== isInterruptible ==
+bool isInterruptible const;
+
+Returns true if the unit can be interrupted by another order like move or attack, otherwise there are very few orders that can be issued such as Unburrow, LiftOff, and Cancel.
+
 == isIrradiated ==
 bool isIrradiated() const;
 
@@ -652,11 +657,6 @@ Returns true if the unit is under a Protoss Psionic Storm.
 bool isUnpowered() const;
 
 Returns true if the unit is a Protoss building that is unpowered because no pylons are in range.
-
-== isInterruptable ==
-bool isInterruptible const;
-
-Returns true if the unit can be interrupted by another order like move or attack, otherwise there are very few orders that can be issued such as Unburrow, LiftOff, and Cancel.
 
 == isUpgrading ==
 bool isUpgrading() const;
