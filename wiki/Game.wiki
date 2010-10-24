@@ -213,6 +213,11 @@ Returns the set of units that are on the given build tile. Only returns accessib
 
 Returns the last error that was set. If you try to order enemy units around, or morph bunkers into lurkers, BWAPI will set error codes, which can be retrieved using this function.
 
+== setLastError ==
+bool setLastError([Error] e);
+
+Sets the last error for BWAPI. For the sake of minimizing code, it will return true when the error is Errors::None and false otherwise.
+
 == mapWidth ==
 int mapWidth();
 
