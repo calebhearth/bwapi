@@ -360,6 +360,11 @@ std::set<[Unit]{{{*}}}> getLarva() const;
 
 Returns the set of larva spawned by this unit. If the unit has no larva, or is not a Hatchery, Lair, or Hive, this function returns an empty set. Equivalent to clicking "Select Larva" from the Starcraft GUI.
 
+== getPowerup ==
+Unit *getPowerup() const;
+
+Returns the powerup a worker is holding (Capture the Flag for example), or NULL if there is none.
+
 == exists ==
 bool exists() const;
 
@@ -642,6 +647,16 @@ Returns true if the unit is under a Protoss Psionic Storm.
 bool isUnpowered() const;
 
 Returns true if the unit is a Protoss building that is unpowered because no pylons are in range.
+
+== isStuck ==
+bool isStuck() const;
+
+Returns true if the unit is "stuck" on another unit, but not stuck behind a wall.
+
+== isInterruptable ==
+bool isInterruptible const;
+
+Returns true if the unit can be interrupted by another order like move or attack, otherwise there are very few orders that can be issued such as Unburrow, LiftOff, and Cancel.
 
 == isUpgrading ==
 bool isUpgrading() const;
