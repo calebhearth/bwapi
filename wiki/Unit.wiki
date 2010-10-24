@@ -360,8 +360,8 @@ std::set<[Unit]{{{*}}}> getLarva() const;
 
 Returns the set of larva spawned by this unit. If the unit has no larva, or is not a Hatchery, Lair, or Hive, this function returns an empty set. Equivalent to clicking "Select Larva" from the Starcraft GUI.
 
-== getPowerup ==
-Unit *getPowerup() const;
+== getPowerUp ==
+Unit `*`getPowerUp() const;
 
 Returns the powerup a worker is holding (Capture the Flag for example), or NULL if there is none.
 
