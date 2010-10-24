@@ -1,5 +1,9 @@
 == Changes from BWAPI Beta 3.2 (r2917) to r2975 ==
 
+Changes:
+
+  * [Game#canBuildHere Game::canBuildHere] now has an additional boolean value that allows the user to specify if the function should consider checking if they have first explored the area.
+
 New Features:
 
   * Added [UnitType#cloakingTech UnitType::cloakingTech] - returns the tech used to cloak the unit, or TechTypes::None if the unit cannot cloak or is permanently cloaked
