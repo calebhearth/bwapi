@@ -256,7 +256,7 @@ Returns true if the specified walk tile is walkable. The values of x and y are i
 == getGroundHeight ==
 int getGroundHeight(int x, int y);
 
-bool getGroundHeight([Misc#TilePosition TilePosition] position);
+int getGroundHeight([Misc#TilePosition TilePosition] position);
 
 Returns the ground height of the given build tile. 0 = normal, 1 = high ground, 2 = very high ground.
 
