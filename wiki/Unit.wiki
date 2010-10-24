@@ -631,6 +631,11 @@ Returns true if the unit is currently stimmed.
 
 See also: [Unit]::[Unit#getStimTimer getStimTimer].
 
+== isStuck ==
+bool isStuck() const;
+
+Returns true if the unit is "stuck" on another unit, but not stuck behind a wall.
+
 == isTraining ==
 bool isTraining() const;
 
@@ -647,11 +652,6 @@ Returns true if the unit is under a Protoss Psionic Storm.
 bool isUnpowered() const;
 
 Returns true if the unit is a Protoss building that is unpowered because no pylons are in range.
-
-== isStuck ==
-bool isStuck() const;
-
-Returns true if the unit is "stuck" on another unit, but not stuck behind a wall.
 
 == isInterruptable ==
 bool isInterruptible const;
