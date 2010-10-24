@@ -7,7 +7,7 @@ Changes:
 New Features:
 
   * Added [UnitType#cloakingTech UnitType::cloakingTech] - returns the tech used to cloak the unit, or TechTypes::None if the unit cannot cloak or is permanently cloaked
-  * Added [Unit#getPowerup Unit::getPowerUp] - returns the power up the unit is holding, or NULL if the unit is not holding a power up
+  * Added [Unit#getPowerUp Unit::getPowerUp] - returns the power up the unit is holding, or NULL if the unit is not holding a power up
   * Added [Unit#isInterruptible Unit::isInterruptible] - returns true if the unit can be interrupted without issuing a stop or one of the cancel commands.
   * Added [Unit#isStuck Unit::isStuck] - Returns true if the unit is "stuck" on other units.
   * Made [Game#setLastError Game::setLastError] available.
