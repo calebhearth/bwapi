@@ -8,6 +8,6 @@ To contact us you simply have to do one of the following:
   * Post on the [http://groups.google.com/group/bwapi BWAPI group]
   * Post on the [http://www.broodwarai.com/forums/index.php?showforum=46 BroodwarAi forum]
   * Create an [http://code.google.com/p/bwapi/issues/list issue]
-  * Send us an email at deathknight13579@aim.com, or lowerlogic@gmail.com with BWAPI in the subject
+  * Send us an email at deathknight13579 (at) aim (dot) com, or lowerlogic (at) gmail (dot) com with BWAPI in the subject
 
 It is not preferable to send us an email directly, but still acceptable.
