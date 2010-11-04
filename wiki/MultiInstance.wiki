@@ -10,7 +10,7 @@
 
 After copying the contents of _{{{starcraft-folder\}}}_ to your Starcraft folder, go to  _{{{\Starcraft\bwapi-data\}}}_ and run _{{{Multiple Instance Hack.bat}}}_.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_00.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_00.gif
 
 The batch file will proceed to run an included patch file and create a new executable called _{{{StarCraft_MultiInstance.exe}}}_.
 
@@ -21,30 +21,30 @@ The batch file will proceed to run an included patch file and create a new execu
 
 After copying the contents of _{{{chaos-launcher-folder\}}}_ to your Chaos Launcher folder, you should run _{{{Chaoslauncher - MultiInstance.exe}}}_.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_01.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_01.gif
 
 There is a drop-down menu that allows you to select the version you want to use. Click on it and select _{{{Starcraft Multi-Instance}}}_.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_02.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_02.gif
 
 Select _{{{BWAPI Injector}}}_ and any other plugins you want to use. _{{{W-MODE}}}_ is also compatible and recommended with multiple instances.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_03.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_03.gif
 
 Some plugins will be greyed out. Don't worry, this is normal behaviour. There is a checkbox available that will enable them.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_04.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_04.gif
 
 
 = BWAPI =
 
 To set up BWAPI for multiple instances, you must configure the AI path for each instance. Browse to _{{{Starcraft\bwapi-data\}}}_ and open _{{{bwapi.ini}}}_.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_05.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_05.gif
 
 Now change the entries _{{{ai_dll_#}}}_ accordingly to load your AI modules.
 
-http://bwapi.googlecode.com/svn/wiki/multi_tut_06.gif
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_06.gif
 
 When running with multiple instances, the original _{{{ai_dll}}}_ entry is ignored, and the _{{{ai_dll_#}}}_ entries specify which AI module belongs to which instance.
 
