@@ -47,7 +47,7 @@
     * (Step 3 of 3) Select the BWAPI injector with any other plugins and click _Finish_
 
   == [http://www.google.com/search?q=DLL+injector DLL Injector] ==
-  A DLL injector may be preferred to load other hacks such as the [http://www.battlehacks.com/forums/starcraft-hacks/663-starcraft-resolution-expander-6-a.html Resolution Expander] and [http://www.starcraftresolutionhack.kilu.de/ McBanes's Resolution Hack].
+  A DLL injector may be preferred to load other hacks such as the [http://www.battlehacks.com/forums/starcraft-hacks/663-starcraft-resolution-expander-6-a.html Resolution Expander] or [http://www.starcraftresolutionhack.kilu.de/ McBanes's Resolution Hack].
 
   How to:
     * Follow the instructions provided by the DLL Injector using BWAPI.dll
