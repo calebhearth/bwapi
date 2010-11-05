@@ -1,8 +1,9 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r2975 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r2999 ==
 
 Changes:
 
   * [Game#canBuildHere Game::canBuildHere] now has an additional boolean value that allows the user to specify if the function should consider checking if they have first explored the area.
+  * Tile position variables in [Game] functions have been clarified.
 
 New Features:
 
@@ -11,6 +12,7 @@ New Features:
   * Added [Unit#isInterruptible Unit::isInterruptible] - returns true if the unit can be interrupted without issuing a stop or one of the cancel commands.
   * Added [Unit#isStuck Unit::isStuck] - Returns true if the unit is "stuck" on other units.
   * Made [Game#setLastError Game::setLastError] available.
+  * [W-Mode] The position of the window in the config now changes when a new multiple-instance compatible client is launched.
 
 Bug Fixes:
 
