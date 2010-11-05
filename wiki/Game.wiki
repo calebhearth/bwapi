@@ -118,16 +118,6 @@ int getRevision();
 
 Retrieves the revision number for the current BWAPI build.
 
-== getMouseX ==
-int getMouseX();
-
-Returns the horizontal coordinate of the mouse on the screen. Returns 0 if Flag::UserInput is disabled.
-
-== getMouseY ==
-int getMouseY();
-
-Returns the vertical coordinate of the mouse on the screen. Returns 0 if Flag::UserInput is disabled.
-
 == getMousePosition ==
 BWAPI::Position getMousePosition();
 
@@ -146,16 +136,6 @@ bool getKeyState([Input#Key Key] key);
 bool getKeyState(int key);
 
 Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. Unfortunately this does not read the raw keyboard input yet - when you hold down a key, the getKeyState function is true for a frame, then false for a few frames, and then alternates between true and false (as if you were holding down the key in a text box). Hopefully this will be fixed in a later version.
-
-== getScreenX ==
-int getScreenX();
-
-Returns the horizontal coordinate of the screen on the map. Returns 0 if Flag::UserInput is disabled.
-
-== getScreenY ==
-int getScreenY();
-
-Returns the vertical coordinate of the screen on the map. Returns 0 if Flag::UserInput is disabled.
 
 == getScreenPosition ==
 BWAPI::Position getScreenPosition();
