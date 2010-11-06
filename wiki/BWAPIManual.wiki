@@ -15,6 +15,7 @@
   * [MenuAutomation Menu Automation]
   * [MultiInstance Multiple Instances]
   * [Injection Injecting BWAPI into Starcraft]
+  * [speed Increasing Starcraft's Performance/Speed]
 
 == Development == 
   * [BWAPIDevelopment Developing BWAPI]
