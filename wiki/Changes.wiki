@@ -1,9 +1,12 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r2999 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3005 ==
 
 Changes:
 
   * [Game#canBuildHere Game::canBuildHere] now has an additional boolean value that allows the user to specify if the function should consider checking if they have first explored the area.
   * Tile position variables in [Game] functions have been clarified.
+  * Game::getMouseX and Game::getMouseY have been removed due to deprecation. Use [Game#getMousePosition Game::getMousePosition] instead.
+  * Game::getScreenX and Game::getScreenY have been removed due to deprecation. Use [Game#getScreenPosition Game::getScreenPosition] instead.
+  * Renamed Unit::setRallyPosition and Unit::setRallyUnit to [Unit#setRallyPoint Unit::setRallyPoint] so that it conforms with the rest of the commands.
 
 New Features:
 
