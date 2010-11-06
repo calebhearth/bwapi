@@ -311,14 +311,14 @@ Returns the secondary [Order] that this unit is currently executing.
 
 Returns the position the building is rallied to. If the building does not produce units, Positions::None is returned.
 
-See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyUnit getRallyUnit].
+See also: [Unit]::[Unit#setRallyPoint setRallyPoint], [Unit]::[Unit#getRallyUnit getRallyUnit].
 
 == getRallyUnit ==
 [Unit]{{{*}}} getRallyUnit() const;
 
 Returns the unit the building is rallied to. If the building is not rallied to any unit, NULL is returned.
 
-See also: [Unit]::[Unit#setRallyPosition setRallyPosition], [Unit]::[Unit#setRallyUnit setRallyUnit], [Unit]::[Unit#getRallyPosition getRallyPosition].
+See also: [Unit]::[Unit#setRallyPoint setRallyPoint], [Unit]::[Unit#getRallyPosition getRallyPosition].
 
 == getAddon ==
 [Unit]{{{*}}} getAddon() const;
@@ -715,7 +715,7 @@ bool train([UnitType] type);
 
 Orders this unit to add the specified unit type to the training queue. Note that the player must have sufficient resources to train. If you wish to make units from a hatchery, use [getLarva] to get the larva associated with the hatchery and then call [morph] on the larva you want to morph. This command can also be used to make interceptors and scarabs.
 
-See also: [Unit#cancelTrain Unit::cancelTrain], [Unit#cancelTrain Unit::cancelTrain(slot)], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue], [Unit#getRemainingTrainTime Unit::getRemainingTrainTime].
+See also: [Unit#cancelTrain Unit::cancelTrain], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue], [Unit#getRemainingTrainTime Unit::getRemainingTrainTime].
 
 == morph ==
 bool morph([UnitType] type);
@@ -738,19 +738,14 @@ Orders the unit to upgrade the given upgrade type.
 
 See also: [Unit#cancelUpgrade Unit::cancelUpgrade], [Unit#isUpgrading Unit::isUpgrading], [Unit#getUpgrade Unit::getUpgrade], [Unit#getRemainingUpgradeTime Unit::getRemainingUpgradeTime].
 
-== setRallyPosition ==
-bool setRallyPosition([Misc#Position Position] target);
+== setRallyPoint ==
+bool setRallyPoint([Misc#Position Position] target);
 
-Orders the unit to set its rally position to the specified position.
+bool setRallyPoint([Unit] target);
 
-See also: [Unit#setRallyUnit Unit::setRallyUnit], [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
+Orders the unit to set its rally position to the specified position or unit.
 
-== setRallyUnit ==
-bool setRallyUnit([Unit] target);
-
-Orders the unit to set its rally unit to the specified unit.
-
-See also: [Unit#setRallyPosition Unit::setRallyPosition], [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
+See also: [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
 
 == move ==
 bool move([Misc#Position Position] target);
@@ -924,18 +919,11 @@ Orders the unit to stop making the addon.
 See also: [Unit#buildAddon Unit::buildAddon].
 
 == cancelTrain ==
-bool cancelTrain();
+bool cancelTrain(int slot = -2);
 
-Orders the unit to remove the last unit from its training queue.
+Orders the unit to remove the specified unit from its training queue. Leaving the default value will remove the last unit from the training queue.
 
-See also: [Unit#train Unit::train], [Unit#cancelTrain Unit::cancelTrain(Slot)], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue].
-
-== cancelTrain ==
-bool cancelTrain(int slot);
-
-Orders the unit to remove the specified unit from its training queue.
-
-See also: [Unit#train Unit::train], [Unit#cancelTrain Unit::cancelTrain], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue].
+See also: [Unit#train Unit::train], [Unit#isTraining Unit::isTraining], [Unit#getTrainingQueue Unit::getTrainingQueue].
 
 == cancelMorph ==
 bool cancelMorph();
