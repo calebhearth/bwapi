@@ -1,7 +1,0 @@
-#labels Phase-Implementation,Deprecated
-= Replay Header Structure =
-
-Matches several structures found in memory, like player structure
-
-
-See http://code.google.com/p/vgce/wiki/starcraftReplayHeader for most recent.
