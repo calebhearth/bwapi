@@ -22,9 +22,9 @@ Disabling CPU Throttling will increase performance as well as CPU usage.
 = Change Game Speed =
   http://bwapi.googlecode.com/svn/wiki/speed_tut_03.gif
 
-Typing {{{ /speed 0 }}} in Starcraft will disable the delay between frames. You can perform the same action from an AI module by calling the function [Game#setLocalSpeed Game::setLocalSpeed](0).
+Typing {{{ /speed 0 }}} in Starcraft will disable the delay between frames. You can perform the same action from an AI module by calling the function [Game#setLocalSpeed Game::setLocalSpeed(0)].
 
 = Disable the GUI =
   http://bwapi.googlecode.com/svn/wiki/speed_tut_04.gif
 
-Typing {{{ /nogui }}} in Starcraft will toggle the display of graphics. Disabling the Graphical User Interface (GUI) will prevent Starcraft from calling its drawing routines and image processing functions. The same action can be performed from an AI module by calling the function [Game#setGUI Game::setGUI](false).
+Typing {{{ /nogui }}} in Starcraft will toggle the display of graphics. Disabling the Graphical User Interface (GUI) will prevent Starcraft from calling its drawing routines and image processing functions. The same action can be performed from an AI module by calling the function [Game#setGUI Game::setGUI(false)].
