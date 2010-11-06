@@ -1,0 +1,28 @@
+#summary Text commands specific to BWAPI
+
+This page contains a list of /commands specified and reserved by BWAPI.
+
+<wiki:toc max_depth="1" />
+
+= Release Commands =
+This list contains commands that are available in both RELEASE and DEBUG modes.
+
+|| *Command* || *Description* ||
+|| {{{/leave}}} || Leaves the game. ||
+|| {{{/speed #}}} || Sets the game speed to the number specified, 0 being fastest. Blank will reset the speed. ||
+|| {{{/cheats}}} || Enters several cheat codes. ||
+|| {{{/restart}}} || Restarts the game. ||
+|| {{{/nogui}}} || Toggles the display of Starcraft's Graphical User Interface (GUI). ||
+
+
+= Debug Commands =
+This list contains commands that are only available in DEBUG mode.
+
+|| *Command* || *Description* ||
+|| {{{/jump}}} || A test for jumping to different menus. ||
+|| {{{/latency}}} || A test that displays results from the latency commands. ||
+|| {{{/dlgdebug}}} || A test for the BW::Dialog class usage. ||
+|| {{{/pathdebug}}} || Toggles debugging of BW-level pathfinding. ||
+|| {{{/unitdebug}}} || Toggles debugging of BW-level unit data. ||
+|| {{{/grid}}} || Toggles the display of the tile grid. ||
+|| {{{/test}}} || Used for quickly testing various temporary things. ||
