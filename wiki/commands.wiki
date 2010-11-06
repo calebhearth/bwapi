@@ -1,9 +1,0 @@
-#labels Phase-Implementation,Deprecated
-=Notes=
-This list has been merged due to the similarity between Replay data and Packet data.
-
-The command opcode is not stored in the Command ID of the packet, but rather in the data, where many commands may stack.
-Command class 1 opcodes are typically those from ~0x37 to ~0x50.
-
-
-See http://code.google.com/p/vgce/wiki/starcraftCommands for updated list.
