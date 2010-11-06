@@ -8,7 +8,8 @@
   * [Competitions]
   * [contact Contact Information]
   * [Interfaces]
-  
+  * [Commands]
+
 == Tutorials ==
   * [UsingBWAPI Using BWAPI]
   * [Debugging]
