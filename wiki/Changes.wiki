@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3028 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3029 ==
 
 Changes:
 
@@ -17,7 +17,7 @@ New Features:
   * Made [Game#setLastError Game::setLastError] available.
   * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
   * *BWAPI can now play networked games between multiple instances using the LOCL (BWAPI_SNPModule.snp) module.*
-  * Added the ability to load different revisions of BWAPI for different modules using ai_dll_rev and ai_dll_#_rev.
+  * Added the ability to load different revisions of BWAPI for different modules using the config options "ai_dll_rev" and "ai_dll_#_rev".
 
 Bug Fixes:
 
