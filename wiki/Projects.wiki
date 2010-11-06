@@ -11,6 +11,16 @@ This page contains links to other projects that make use of BWAPI.
   * [http://github.com/SnippyHolloW/BroodwarBotQ BroodwarBotQ]
   * [http://overmind.cs.berkeley.edu/ Overmind]
   * [http://code.google.com/p/tjstarcraft/ TJDevHouse AI]
+  * [http://code.google.com/p/neoe-bw-ai-missions/ neoe BW Mission Bot]
+  * [http://code.google.com/p/broodai/ Team Photon Rush]
+  * [http://code.google.com/p/starcraftcsharpbot/ csharp bot]
+  * [http://code.google.com/p/frescbot/ Fre SC Bot]
+  * [http://code.google.com/p/ggnore-bwbot/ ggnore bot]
+  * [http://code.google.com/p/bwapizb2000/ Zergling Blood bot]
+  * [http://code.google.com/p/mentat-ai/ mentat AI]
+  * [http://code.google.com/p/mbdp-madp/ mbdp-madp bots]
+  * [http://code.google.com/p/moarhard/ moarhard bot]
+  * [http://code.google.com/p/voidbot/ voidbot]  
 
 = Enhancement Libraries =
   * [http://code.google.com/p/bwta/ BWTA]
