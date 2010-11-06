@@ -5,26 +5,26 @@ This page covers methods of making the Starcraft application run faster.
 <wiki:toc max_depth="1" />
 
 = Run Full Screen =
-  [speed_tut_00.gif]
+  http://bwapi.googlecode.com/svn/wiki/speed_tut_00.gif
 
-  Do not run in windowed mode.
+Do not run in windowed mode.
 
 = Disable Sound =
-  [speed_tut_01.gif]
+  http://bwapi.googlecode.com/svn/wiki/speed_tut_01.gif
 
-  Open the BWAPI config file in {{{ bwapi-data/bwapi.ini }}} and set {{{ sound }}} to {{{ OFF }}}.
+Open the BWAPI config file in {{{ bwapi-data/bwapi.ini }}} and set {{{ sound }}} to {{{ OFF }}}.
 
 = Disable CPU Throttling =
-  [speed_tut_02.gif]
+  http://bwapi.googlecode.com/svn/wiki/speed_tut_02.gif
 
-  Disabling CPU Throttling will increase performance as well as CPU usage.
+Disabling CPU Throttling will increase performance as well as CPU usage.
 
 = Change Game Speed =
-  [speed_tut_03.gif]
+  http://bwapi.googlecode.com/svn/wiki/speed_tut_03.gif
 
-  Typing {{{ /speed 0 }}} in Starcraft will disable the delay between frames. You can perform the same action from an AI module by calling the function [Game#setLocalSpeed Game::setLocalSpeed](0).
+Typing {{{ /speed 0 }}} in Starcraft will disable the delay between frames. You can perform the same action from an AI module by calling the function [Game#setLocalSpeed Game::setLocalSpeed](0).
 
 = Disable the GUI =
-  [speed_tut_04.gif]
+  http://bwapi.googlecode.com/svn/wiki/speed_tut_04.gif
 
-  Typing {{{ /nogui }}} in Starcraft will toggle the display of graphics. Disabling the Graphical User Interface (GUI) will prevent Starcraft from calling its drawing routines and image processing functions. The same action can be performed from an AI module by calling the function [Game#setGUI Game::setGUI](false).
+Typing {{{ /nogui }}} in Starcraft will toggle the display of graphics. Disabling the Graphical User Interface (GUI) will prevent Starcraft from calling its drawing routines and image processing functions. The same action can be performed from an AI module by calling the function [Game#setGUI Game::setGUI](false).
