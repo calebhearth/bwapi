@@ -1,6 +1,6 @@
 #summary How to make Starcraft run faster.
 
-This page covers methods of making the Starcraft application run faster.
+This page covers methods of making the Starcraft application run faster. Note that the speed can also depend on the computer's processing power.
 
 <wiki:toc max_depth="1" />
 
