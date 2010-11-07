@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3052 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3055 ==
 
 Changes:
 
@@ -9,6 +9,7 @@ Changes:
   * Renamed Unit::setRallyPosition and Unit::setRallyUnit to [Unit#setRallyPoint Unit::setRallyPoint] so that it conforms with the other commands.
   * `[`Config`]` Auto-menu options in the configuration file have been moved to the `[`auto_menu`]` group.
   * `[`Config`]` Renamed the auto_menu option _{{{LAN_UDP}}}_ to _{{{LAN}}}_.
+  * Removed UnitType::getSublabel, as it didn't appear to be significant.
 
 New Features:
 
