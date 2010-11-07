@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3043 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3052 ==
 
 Changes:
 
@@ -7,6 +7,8 @@ Changes:
   * Game::getMouseX and Game::getMouseY have been removed due to deprecation. Use [Game#getMousePosition Game::getMousePosition] instead.
   * Game::getScreenX and Game::getScreenY have been removed due to deprecation. Use [Game#getScreenPosition Game::getScreenPosition] instead.
   * Renamed Unit::setRallyPosition and Unit::setRallyUnit to [Unit#setRallyPoint Unit::setRallyPoint] so that it conforms with the other commands.
+  * `[`Config`]` Auto-menu options in the configuration file have been moved to the `[`auto_menu`]` group.
+  * `[`Config`]` Renamed the auto_menu option _{{{LAN_UDP}}}_ to _{{{LAN}}}_.
 
 New Features:
 
@@ -17,7 +19,10 @@ New Features:
   * Made [Game#setLastError Game::setLastError] available.
   * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
   * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Note: Windows XP users may experience failure.
-  * Added the ability to load different revisions of BWAPI for different modules using the config options {{{ai_dll_rev}}} and {{{ai_dll_#_rev}}}.
+  * `[`Config`]` Added the ability to load different revisions of BWAPI for different modules using the config options _{{{ai_dll_rev}}}_ and _{{{ai_dll_#_rev}}}_.
+  * `[`Config`]` Added auto-menu race options RandomTP, RandomTZ, and RandomPZ which allows you to randomly choose one of two races.
+  * `[`Config`]` Added the auto-menu option _{{{lan_mode}}}_ which allows you to choose between the different multiplayer network modes.
+  * `[`Config`]` For auto-menu, added the ability to choose a race for specific enemy players using _{{{enemy_race_#}}}_.
 
 Bug Fixes:
 
