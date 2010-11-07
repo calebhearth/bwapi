@@ -16,7 +16,7 @@ New Features:
   * Added [Unit#isStuck Unit::isStuck] - Returns true if the unit is "stuck" on other units.
   * Made [Game#setLastError Game::setLastError] available.
   * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
-  * *BWAPI can now play networked games between multiple instances using the LOCL (BWAPI_SNPModule.snp) module.* Note: Windows XP users may experience failure.
+  * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Note: Windows XP users may experience failure.
   * Added the ability to load different revisions of BWAPI for different modules using the config options "ai_dll_rev" and "ai_dll_#_rev".
 
 Bug Fixes:
