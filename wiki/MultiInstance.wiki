@@ -48,10 +48,13 @@ Now change the entries _{{{ai_dll_#}}}_ accordingly to load your AI modules.
 
 When running with multiple instances, the original _{{{ai_dll}}}_ entry is ignored, and the _{{{ai_dll_#}}}_ entries specify which AI module belongs to which instance.
 
+You can also specify a revision for older AI binaries provided that revision's BWAPI.dll is copied to the _{{{bwapi-data\revisions\}}}_ folder (as _{{{#.dll}}}_ where # is the revision number) and is compatible with multiple instances.
 
 = Networking =
 
-This is incomplete and has yet to be finished.
+You only need to copy _{{{Starcraft\BWAPI_SNPModule.snp}}}_ to your Starcraft folder. A new network mode called _Local PC_ should now be available after choosing Multiplayer. 
+
+This network mode will allow you to play matches between multiple instances. You can check the issues tracker for known issues when attempting to use this mode.
 
 
 = Conclusion =
