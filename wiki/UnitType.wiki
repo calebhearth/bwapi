@@ -20,11 +20,6 @@ std::string getName() const;
 
 Returns the name of the unit.
 
-== getSubLabel ==
-std::string getSubLabel() const;
-
-Returns the rank/sublabel of the unit, i.e. Private, Captain, Major, etc.
-
 == getRace ==
 [Race] getRace() const;
 
