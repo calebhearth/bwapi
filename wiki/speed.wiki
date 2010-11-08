@@ -17,7 +17,7 @@ Open the BWAPI config file in {{{ bwapi-data/bwapi.ini }}} and set {{{ sound }}}
 = Disable CPU Throttling =
   http://bwapi.googlecode.com/svn/wiki/speed_tut_02.gif
 
-Disabling CPU Throttling will increase performance as well as CPU usage.
+Disabling CPU Throttling will increase performance but will increase CPU usage.
 
 = Change Game Speed =
   http://bwapi.googlecode.com/svn/wiki/speed_tut_03.gif
