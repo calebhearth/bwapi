@@ -9,17 +9,6 @@ This page contains a list of UnitTypes provided by BWAPI.
 = Terran =
 
 == Terran Ground Units ==
-=== Terran Civilian ===
-  * *Max HP*: 40
-  * *Armor*: 0
-  * *Unit Size*: Small
-  * *Space Required*: 1
-  * *Unit Dimensions*: 17 x 20
-  * *Sight Range*: 224 (7)
-  * *Destroy Score*: 10
-  * *Top Speed*: 4.000000
-
-
 === Terran Firebat ===
   * *Max HP*: 50
   * *Armor*: 1
@@ -689,6 +678,17 @@ This page contains a list of UnitTypes provided by BWAPI.
     * [TechTypes#Cloaking_Field Cloaking Field]
 
 
+=== Terran Civilian ===
+  * *Max HP*: 40
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
 
 == Terran Buildings ==
 === Terran Academy ===
@@ -1110,23 +1110,6 @@ This page contains a list of UnitTypes provided by BWAPI.
 = Protoss =
 
 == Protoss Ground Units ==
-=== Hero Dark Templar ===
-  * *Max HP*: 40
-  * *Max Shields*: 80
-  * *Armor*: 0
-  * *Unit Size*: Small
-  * *Supply Required*: 1
-  * *Space Required*: 2
-  * *Unit Dimensions*: 24 x 26
-  * *Sight Range*: 224 (7)
-  * *Destroy Score*: 400
-  * *Top Speed*: 4.920000
-  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(hero) Warp Blades (Hero)]
-
-  ==== Abilities ====
-    * Permanently Cloaked
-
-
 === Protoss Archon ===
   * *Max HP*: 10
   * *Max Shields*: 350
@@ -1624,6 +1607,23 @@ This page contains a list of UnitTypes provided by BWAPI.
   ==== Abilities ====
     * [TechTypes#Recall Recall]
     * [TechTypes#Stasis_Field Stasis Field]
+
+
+=== Hero Dark Templar ===
+  * *Max HP*: 40
+  * *Max Shields*: 80
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Supply Required*: 1
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 26
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(hero) Warp Blades (Hero)]
+
+  ==== Abilities ====
+    * Permanently Cloaked
 
 
 === Hero Fenix Dragoon ===
