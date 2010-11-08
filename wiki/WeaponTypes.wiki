@@ -1,9 +1,11 @@
 #summary WeaponTypes in BWAPI
 #sidebar TableOfContents
 
-= WeaponTypes =
+This page contains a list of WeaponTypes provided by BWAPI.
 
-== Normal Weapons ==
+<wiki:toc max_depth="1" />
+
+= Normal Weapons =
   * Acid_Spore
   * Anti_matter_Missiles
   * Arclite_Cannon
@@ -43,7 +45,7 @@
   * Twin_Autocannons
   * Warp_Blades
 
-== Hero Weapons ==
+= Hero Weapons =
   * Gauss_Rifle_Jim_Raynor
   * C_10_Canister_Rifle_Sarah_Kerrigan
   * C_10_Canister_Rifle_Samir_Duran
@@ -79,7 +81,7 @@
   * Warp_Blades_Hero
   * Warp_Blades_Zeratul
 
-== Special Weapons ==
+= Special Weapons =
   * Consume
   * Dark_Swarm
   * Disruption_Web
@@ -100,6 +102,6 @@
   * Stasis_Field
   * Yamato_Gun
 
-== Misc ==
+= Misc =
   * None
   * Unknown
