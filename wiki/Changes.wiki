@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3071 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3075 ==
 
 Changes:
 
@@ -27,6 +27,7 @@ New Features:
   * Added Heroes, Beacons, and Standard Powerups to UnitTypes. This gives you more flexibility for _*Capture The Flag*_ and _*Use Map Settings*_ (including _*Campaigns*_).
   * Added hero weapons to WeaponTypes.
   * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
+  * Added [Game#getInstanceNumber Game::getInstanceNumber] to identify which instance an AI module belongs to.
 
 Bug Fixes:
 
