@@ -43,6 +43,42 @@
   * Twin_Autocannons
   * Warp_Blades
 
+== Hero Weapons ==
+  * Gauss_Rifle_Jim_Raynor
+  * C_10_Canister_Rifle_Sarah_Kerrigan
+  * C_10_Canister_Rifle_Samir_Duran
+  * C_10_Canister_Rifle_Infested_Duran
+  * C_10_Canister_Rifle_Alexei_Stukov
+  * Fragmentation_Grenade_Jim_Raynor
+  * Twin_Autocannons_Alan_Schezar
+  * Hellfire_Missile_Pack_Alan_Schezar
+  * Arclite_Cannon_Edmund_Duke
+  * Gemini_Missiles_Tom_Kazansky
+  * Burst_Lasers_Tom_Kazansky
+  * ATS_Laser_Battery_Hero
+  * ATS_Laser_Battery_Hyperion
+  * ATA_Laser_Battery_Hero
+  * ATA_Laser_Battery_Hyperion
+  * Flame_Thrower_Gui_Montag
+  * Arclite_Shock_Cannon_Edmund_Duke
+  * Claws_Devouring_One
+  * Claws_Infested_Kerrigan
+  * Needle_Spines_Hunter_Killer
+  * Kaiser_Blades_Torrasque
+  * Acid_Spore_Kukulza
+  * Glave_Wurm_Kukulza
+  * Psi_Blades_Fenix
+  * Phase_Disruptor_Fenix
+  * Psi_Assault
+  * Psionic_Shockwave_TZ_Archon
+  * Dual_Photon_Blasters_Mojo
+  * Dual_Photon_Blasters_Artanis
+  * Anti_Matter_Missiles_Mojo
+  * Anti_Matter_Missiles_Artanis
+  * Phase_Disruptor_Cannon_Danimoth
+  * Warp_Blades_Hero
+  * Warp_Blades_Zeratul
+
 == Special Weapons ==
   * Consume
   * Dark_Swarm
