@@ -1,158 +1,3549 @@
 #summary Unit Types in BWAPI
 #sidebar TableOfContents
 
+This page contains a list of UnitTypes provided by BWAPI.
 
-= UnitTypes =
+<wiki:toc max_depth="3" />
 
-== Terran ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Terran Academy || 112 || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 || 600 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Armory || 123 || Terran || Terran SCV || Terran SCV, Terran Factory || None || 100 || 50 || 1200 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Barracks || 111 || Terran || Terran SCV || Terran SCV, Terran Command Center || None || 150 || 0 || 1200 || 0 || 0 || 255 || 0 || 1000 || 0 || 0 || 1 || None || Large || 4 || 3 || 256 || 1 || None || None ||  || ||
-|| Terran Battlecruiser || 12 || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Physics Lab || None || 400 || 300 || 2000 || 12 || 0 || 255 || 0 || 500 || 0 || 200 || 3 || Terran Ship Plating || Large || 2 || 2 || 352 || 2.5 || ATS Laser Battery || ATA Laser Battery || Terran Ship Plating, Terran Ship Weapons, Colossus Reactor || Yamato Gun||
-|| Terran Bunker || 125 || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 100 || 0 || 450 || 0 || 0 || 255 || 4 || 350 || 0 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None ||  || ||
-|| Terran Command Center || 106 || Terran || Terran SCV || Terran SCV || None || 400 || 0 || 1800 || 0 || 20 || 255 || 0 || 1500 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 1 || None || None ||  || ||
-|| Terran Comsat Station || 107 || Terran || Terran Command Center || Terran Command Center, Terran Academy || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 || 500 || 0 || 200 || 1 || None || Large || 2 || 2 || 320 || 0 || None || None ||  || Scanner Sweep||
-|| Terran Control Tower || 115 || Terran || Terran Starport || Terran Starport || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 || 500 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Covert Ops || 117 || Terran || Terran Science Facility || Terran Science Facility || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Dropship || 11 || Terran || Terran Starport || Terran Starport, Terran Control Tower || None || 100 || 100 || 750 || 4 || 0 || 255 || 8 || 150 || 0 || 0 || 1 || Terran Ship Plating || Large || 2 || 2 || 256 || 5.469 || None || None || Terran Ship Plating || ||
-|| Terran Engineering Bay || 122 || Terran || Terran SCV || Terran SCV, Terran Command Center || None || 125 || 0 || 900 || 0 || 0 || 255 || 0 || 850 || 0 || 0 || 1 || None || Large || 4 || 3 || 256 || 1 || None || None ||  || ||
-|| Terran Factory || 113 || Terran || Terran SCV || Terran SCV, Terran Barracks || None || 200 || 100 || 1200 || 0 || 0 || 255 || 0 || 1250 || 0 || 0 || 1 || None || Large || 4 || 3 || 256 || 1 || None || None ||  || ||
-|| Terran Firebat || 32 || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 360 || 2 || 0 || 1 || 0 || 50 || 0 || 0 || 1 || Terran Infantry Armor || Small || 1 || 1 || 224 || 4 || Flame Thrower || None || Terran Infantry Armor, Terran Infantry Weapons || Stim Packs||
-|| Terran Ghost || 1 || Terran || Terran Barracks || Terran Barracks, Terran Academy, Terran Covert Ops || None || 25 || 75 || 750 || 2 || 0 || 1 || 0 || 45 || 0 || 200 || 0 || Terran Infantry Armor || Small || 1 || 1 || 288 || 4 || C-10 Canister Rifle || C-10 Canister Rifle || Terran Infantry Armor, Terran Infantry Weapons, Ocular Implants, Moebius Reactor || Lockdown, Personnel Cloaking, Nuclear Strike||
-|| Terran Goliath || 3 || Terran || Terran Factory || Terran Factory, Terran Armory || None || 100 || 50 || 600 || 4 || 0 || 2 || 0 || 125 || 0 || 0 || 1 || Terran Vehicle Plating || Large || 1 || 1 || 256 || 4.57 || Twin Autocannons || Hellfire Missile Pack || Terran Vehicle Plating, Terran Vehicle Weapons, Charon Booster || ||
-|| Terran Machine Shop || 120 || Terran || Terran Factory || Terran Factory || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Marine || 0 || Terran || Terran Barracks || Terran Barracks || None || 50 || 0 || 360 || 2 || 0 || 1 || 0 || 40 || 0 || 0 || 0 || Terran Infantry Armor || Small || 1 || 1 || 224 || 4 || Gauss Rifle || Gauss Rifle || Terran Infantry Armor, Terran Infantry Weapons, U-238 Shells || Stim Packs||
-|| Terran Medic || 34 || Terran || Terran Barracks || Terran Barracks, Terran Academy || None || 50 || 25 || 450 || 2 || 0 || 1 || 0 || 60 || 0 || 200 || 1 || Terran Infantry Armor || Small || 1 || 1 || 288 || 4 || None || None || Terran Infantry Armor, Caduceus Reactor || Restoration, Optical Flare, Healing||
-|| Terran Missile Turret || 124 || Terran || Terran SCV || Terran SCV, Terran Engineering Bay || None || 75 || 0 || 450 || 0 || 0 || 255 || 0 || 200 || 0 || 0 || 0 || None || Large || 2 || 2 || 352 || 0 || None || Longbolt Missile ||  || ||
-|| Terran Nuclear Missile || 14 || Terran || Terran Nuclear Silo || Terran Command Center, Terran Nuclear Silo || None || 200 || 200 || 1500 || 16 || 0 || 255 || 0 || 100 || 0 || 0 || 0 || None || Independent || 1 || 1 || 96 || 33.332 || None || None ||  || ||
-|| Terran Nuclear Silo || 108 || Terran || Terran Command Center || Terran Command Center, Terran Science Facility, Terran Covert Ops || None || 100 || 100 || 1200 || 0 || 0 || 255 || 0 || 600 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Physics Lab || 118 || Terran || Terran Science Facility || Terran Science Facility || None || 50 || 50 || 600 || 0 || 0 || 255 || 0 || 600 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Refinery || 110 || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 4 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran SCV || 7 || Terran || Terran Command Center || Terran Command Center || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 || 60 || 0 || 0 || 0 || Terran Infantry Armor || Small || 1 || 1 || 224 || 4.923 || Fusion Cutter || None || Terran Infantry Armor || ||
-|| Terran Science Facility || 116 || Terran || Terran SCV || Terran SCV, Terran Starport || None || 100 || 150 || 900 || 0 || 0 || 255 || 0 || 850 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 1 || None || None ||  || ||
-|| Terran Science Vessel || 9 || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Science Facility || None || 100 || 225 || 1200 || 4 || 0 || 255 || 0 || 200 || 0 || 200 || 1 || Terran Ship Plating || Large || 2 || 2 || 320 || 5 || None || None || Terran Ship Plating, Titan Reactor || EMP Shockwave, Defensive Matrix, Irradiate||
-|| Terran Siege Tank Siege Mode || 30 || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 255 || 0 || 150 || 0 || 0 || 1 || Terran Vehicle Plating || Large || 1 || 1 || 320 || 0 || Arclite Shock Cannon || None || Terran Vehicle Plating, Terran Vehicle Weapons || Tank Siege Mode||
-|| Terran Siege Tank Tank Mode || 5 || Terran || Terran Factory || Terran Factory, Terran Machine Shop || None || 150 || 100 || 750 || 4 || 0 || 4 || 0 || 150 || 0 || 0 || 1 || Terran Vehicle Plating || Large || 1 || 1 || 320 || 4 || Arclite Cannon || None || Terran Vehicle Plating, Terran Vehicle Weapons || Tank Siege Mode||
-|| Terran Starport || 114 || Terran || Terran SCV || Terran SCV, Terran Factory || None || 150 || 100 || 1050 || 0 || 0 || 255 || 0 || 1300 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 1 || None || None ||  || ||
-|| Terran Supply Depot || 109 || Terran || Terran SCV || Terran SCV || None || 100 || 0 || 600 || 0 || 16 || 255 || 0 || 500 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Terran Valkyrie || 58 || Terran || Terran Starport || Terran Starport, Terran Control Tower, Terran Armory || None || 250 || 125 || 750 || 6 || 0 || 255 || 0 || 200 || 0 || 0 || 2 || Terran Ship Plating || Large || 2 || 2 || 256 || 6.602 || None || Halo Rockets || Terran Ship Plating, Terran Ship Weapons || ||
-|| Terran Vulture || 2 || Terran || Terran Factory || Terran Factory || None || 75 || 0 || 450 || 4 || 0 || 2 || 0 || 80 || 0 || 0 || 0 || Terran Vehicle Plating || Medium || 1 || 1 || 256 || 6.4 || Fragmentation Grenade || None || Terran Vehicle Plating, Terran Vehicle Weapons, Ion Thrusters || Spider Mines||
-|| Terran Vulture Spider Mine || 13 || Terran || None ||  || None || 1 || 0 || 1 || 0 || 0 || 255 || 0 || 20 || 0 || 0 || 0 || None || Small || 1 || 1 || 96 || 16 || Spider Mines || None ||  || ||
-|| Terran Wraith || 8 || Terran || Terran Starport || Terran Starport || None || 150 || 100 || 900 || 4 || 0 || 255 || 0 || 120 || 0 || 200 || 0 || Terran Ship Plating || Large || 1 || 1 || 224 || 6.668 || Burst Lasers || Gemini Missiles || Terran Ship Plating, Terran Ship Weapons, Apollo Reactor || Cloaking Field||
 
-== Zerg ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Zerg Broodling || 40 || Zerg || None ||  || None || 1 || 1 || 1 || 0 || 0 || 1 || 0 || 30 || 0 || 0 || 0 || Zerg Carapace || Small || 1 || 1 || 160 || 6 || Toxic Spores || None || Zerg Carapace, Zerg Melee Attacks || ||
-|| Zerg Cocoon || 59 || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 200 || 0 || 0 || 0 || Zerg Carapace || Large || 1 || 1 || 128 || 0 || None || None ||  || ||
-|| Zerg Creep Colony || 143 || Zerg || Zerg Drone || Zerg Drone || None || 75 || 0 || 300 || 0 || 0 || 255 || 0 || 400 || 0 || 0 || 0 || None || Large || 2 || 2 || 320 || 0 || None || None ||  || ||
-|| Zerg Defiler || 46 || Zerg || Zerg Larva || Zerg Larva, Zerg Defiler Mound || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 || 80 || 0 || 200 || 1 || Zerg Carapace || Medium || 1 || 1 || 320 || 4 || None || None || Zerg Carapace, Metasynaptic Node || Burrowing, Dark Swarm, Plague, Consume||
-|| Zerg Defiler Mound || 136 || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 100 || 100 || 900 || 0 || 0 || 255 || 0 || 850 || 0 || 0 || 1 || None || Large || 4 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Devourer || 62 || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 150 || 50 || 600 || 4 || 0 || 255 || 0 || 250 || 0 || 0 || 2 || Zerg Flyer Carapace || Large || 2 || 2 || 320 || 5 || None || Corrosive Acid || Zerg Flyer Carapace, Zerg Flyer Attacks || ||
-|| Zerg Drone || 41 || Zerg || Zerg Larva || Zerg Larva || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 || 40 || 0 || 0 || 0 || Zerg Carapace || Small || 1 || 1 || 224 || 4.923 || Spines || None || Zerg Carapace || Burrowing||
-|| Zerg Egg || 36 || Zerg || Zerg Larva || Zerg Larva || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 200 || 0 || 0 || 10 || Zerg Carapace || Medium || 1 || 1 || 128 || 0 || None || None ||  || ||
-|| Zerg Evolution Chamber || 139 || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 75 || 0 || 600 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Extractor || 149 || Zerg || Zerg Drone || Zerg Drone || None || 50 || 0 || 600 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 4 || 2 || 224 || 0 || None || None ||  || ||
-|| Zerg Greater Spire || 137 || Zerg || Zerg Spire || Zerg Hive, Zerg Spire || None || 100 || 150 || 1800 || 0 || 0 || 255 || 0 || 1000 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Guardian || 44 || Zerg || Zerg Mutalisk || Zerg Mutalisk, Zerg Greater Spire || None || 50 || 100 || 600 || 4 || 0 || 255 || 0 || 150 || 0 || 0 || 2 || Zerg Flyer Carapace || Large || 2 || 2 || 352 || 2.5 || Acid Spore || None || Zerg Flyer Carapace, Zerg Flyer Attacks || ||
-|| Zerg Hatchery || 131 || Zerg || Zerg Drone || Zerg Drone || None || 300 || 0 || 1800 || 0 || 2 || 255 || 0 || 1250 || 0 || 0 || 1 || None || Large || 4 || 3 || 288 || 0 || None || None ||  || ||
-|| Zerg Hive || 133 || Zerg || Zerg Lair || Zerg Lair, Zerg Queen's Nest || None || 200 || 150 || 1800 || 0 || 2 || 255 || 0 || 2500 || 0 || 0 || 1 || None || Large || 4 || 3 || 352 || 0 || None || None ||  || ||
-|| Zerg Hydralisk || 38 || Zerg || Zerg Larva || Zerg Larva, Zerg Hydralisk Den || None || 75 || 25 || 420 || 2 || 0 || 2 || 0 || 80 || 0 || 0 || 0 || Zerg Carapace || Medium || 1 || 1 || 192 || 3.656 || Needle Spines || Needle Spines || Zerg Carapace, Zerg Missile Attacks, Muscular Augments, Grooved Spines || Burrowing||
-|| Zerg Hydralisk Den || 135 || Zerg || Zerg Drone || Zerg Drone, Zerg Spawning Pool || None || 100 || 50 || 600 || 0 || 0 || 255 || 0 || 850 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Infested Command Center || 130 || Zerg || None ||  || None || 1 || 1 || 1800 || 0 || 0 || 255 || 0 || 1500 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 1 || None || None ||  || ||
-|| Zerg Infested Terran || 50 || Zerg || Zerg Infested Command Center || Zerg Infested Command Center || None || 100 || 50 || 600 || 2 || 0 || 1 || 0 || 60 || 0 || 0 || 0 || Zerg Carapace || Small || 1 || 1 || 160 || 5.818 || Suicide Infested Terran || None || Zerg Carapace || ||
-|| Zerg Lair || 132 || Zerg || Zerg Hatchery || Zerg Hatchery, Zerg Spawning Pool || None || 150 || 100 || 1500 || 0 || 2 || 255 || 0 || 1800 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 0 || None || None ||  || ||
-|| Zerg Larva || 35 || Zerg || Zerg Hatchery || Zerg Hatchery || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 25 || 0 || 0 || 10 || Zerg Carapace || Small || 1 || 1 || 128 || 0 || None || None || Zerg Carapace || ||
-|| Zerg Lurker || 103 || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 50 || 100 || 600 || 4 || 0 || 4 || 0 || 125 || 0 || 0 || 1 || Zerg Carapace || Medium || 1 || 1 || 256 || 5.818 || Subterranean Spines || None || Zerg Carapace, Zerg Missile Attacks || Lurker Aspect||
-|| Zerg Lurker Egg || 97 || Zerg || Zerg Hydralisk || Zerg Hydralisk || Lurker Aspect || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 200 || 0 || 0 || 10 || Zerg Carapace || Medium || 1 || 1 || 128 || 0 || None || None ||  || ||
-|| Zerg Mutalisk || 43 || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 100 || 100 || 600 || 4 || 0 || 255 || 0 || 120 || 0 || 0 || 0 || Zerg Flyer Carapace || Small || 2 || 2 || 224 || 6.667 || Glave Wurm || Glave Wurm || Zerg Flyer Carapace, Zerg Flyer Attacks || ||
-|| Zerg Nydus Canal || 134 || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 || 250 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Overlord || 42 || Zerg || Zerg Larva || Zerg Larva || None || 100 || 0 || 600 || 0 || 16 || 255 || 8 || 200 || 0 || 0 || 0 || Zerg Flyer Carapace || Large || 2 || 2 || 288 || 0.832 || None || None || Zerg Flyer Carapace, Ventral Sacs, Antennae, Pneumatized Carapace || ||
-|| Zerg Queen || 45 || Zerg || Zerg Larva || Zerg Larva, Zerg Queen's Nest || None || 100 || 100 || 750 || 4 || 0 || 255 || 0 || 120 || 0 || 200 || 0 || Zerg Flyer Carapace || Medium || 2 || 2 || 320 || 6.667 || None || None || Zerg Flyer Carapace, Gamete Meiosis || Infestation, Spawn Broodlings, Ensnare, Parasite||
-|| Zerg Queen's Nest || 138 || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 || 850 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Scourge || 47 || Zerg || Zerg Larva || Zerg Larva, Zerg Spire || None || 25 || 75 || 450 || 1 || 0 || 255 || 0 || 25 || 0 || 0 || 0 || Zerg Flyer Carapace || Small || 1 || 1 || 160 || 6.668 || None || Suicide Scourge || Zerg Flyer Carapace || ||
-|| Zerg Spawning Pool || 142 || Zerg || Zerg Drone || Zerg Drone, Zerg Hatchery || None || 200 || 0 || 1200 || 0 || 0 || 255 || 0 || 750 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Spire || 141 || Zerg || Zerg Drone || Zerg Drone, Zerg Lair || None || 200 || 150 || 1800 || 0 || 0 || 255 || 0 || 600 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Spore Colony || 144 || Zerg || Zerg Creep Colony || Zerg Evolution Chamber, Zerg Creep Colony || None || 50 || 0 || 300 || 0 || 0 || 255 || 0 || 400 || 0 || 0 || 0 || None || Large || 2 || 2 || 320 || 0 || None || Seeker Spores ||  || ||
-|| Zerg Sunken Colony || 146 || Zerg || Zerg Creep Colony || Zerg Spawning Pool, Zerg Creep Colony || None || 50 || 0 || 300 || 0 || 0 || 255 || 0 || 300 || 0 || 0 || 2 || None || Large || 2 || 2 || 320 || 0 || Subterranean Tentacle || None ||  || ||
-|| Zerg Ultralisk || 39 || Zerg || Zerg Larva || Zerg Larva, Zerg Ultralisk Cavern || None || 200 || 200 || 900 || 8 || 0 || 4 || 0 || 400 || 0 || 0 || 1 || Zerg Carapace || Large || 2 || 2 || 224 || 5.12 || Kaiser Blades || None || Zerg Carapace, Zerg Melee Attacks, Chitinous Plating, Anabolic Synthesis || ||
-|| Zerg Ultralisk Cavern || 140 || Zerg || Zerg Drone || Zerg Drone, Zerg Hive || None || 150 || 200 || 1200 || 0 || 0 || 255 || 0 || 600 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Zerg Zergling || 37 || Zerg || Zerg Larva || Zerg Larva, Zerg Spawning Pool || None || 50 || 0 || 420 || 1 || 0 || 1 || 0 || 35 || 0 || 0 || 0 || Zerg Carapace || Small || 1 || 1 || 160 || 5.486 || Claws || None || Zerg Carapace, Zerg Melee Attacks, Metabolic Boost, Adrenal Glands || Burrowing||
+= Terran =
 
-== Protoss ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Protoss Arbiter || 71 || Protoss || Protoss Stargate || Protoss Stargate, Protoss Arbiter Tribunal || None || 100 || 350 || 2400 || 8 || 0 || 255 || 0 || 200 || 150 || 200 || 1 || Protoss Plating || Large || 2 || 2 || 288 || 5 || Phase Disruptor Cannon || Phase Disruptor Cannon || Protoss Plating, Protoss Air Weapons, Protoss Plasma Shields, Khaydarin Core || Recall, Stasis Field||
-|| Protoss Arbiter Tribunal || 170 || Protoss || Protoss Probe || Protoss Probe, Protoss Templar Archives || None || 200 || 150 || 900 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Archon || 68 || Protoss || Protoss High Templar || Protoss High Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 || 10 || 350 || 0 || 0 || Protoss Armor || Large || 1 || 1 || 256 || 4.923 || Psionic Shockwave || Psionic Shockwave || Protoss Armor, Protoss Plasma Shields || ||
-|| Protoss Assimilator || 157 || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 600 || 0 || 0 || 255 || 0 || 450 || 450 || 0 || 1 || None || Large || 4 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Carrier || 72 || Protoss || Protoss Stargate || Protoss Stargate, Protoss Fleet Beacon || None || 350 || 250 || 2100 || 12 || 0 || 255 || 0 || 300 || 150 || 0 || 4 || Protoss Plating || Large || 2 || 2 || 352 || 3.332 || None || None || Protoss Plating, Protoss Plasma Shields, Carrier Capacity || ||
-|| Protoss Citadel of Adun || 163 || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 100 || 900 || 0 || 0 || 255 || 0 || 450 || 450 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Corsair || 60 || Protoss || Protoss Stargate || Protoss Stargate || None || 150 || 100 || 600 || 4 || 0 || 255 || 0 || 100 || 80 || 200 || 1 || Protoss Plating || Medium || 1 || 1 || 288 || 6.668 || None || Neutron Flare || Protoss Plating, Protoss Air Weapons, Protoss Plasma Shields, Argus Jewel || Disruption Web||
-|| Protoss Cybernetics Core || 164 || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Dark Archon || 63 || Protoss || Protoss Dark Templar || Protoss Dark Templar || None || 0 || 0 || 300 || 8 || 0 || 4 || 0 || 25 || 200 || 200 || 1 || Protoss Armor || Large || 1 || 1 || 320 || 4.923 || None || None || Protoss Armor, Protoss Plasma Shields, Argus Talisman || Mind Control, Feedback, Maelstrom||
-|| Protoss Dark Templar || 61 || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 125 || 100 || 750 || 4 || 0 || 2 || 0 || 80 || 40 || 0 || 1 || Protoss Armor || Small || 1 || 1 || 224 || 4.923 || Warp Blades || None || Protoss Armor, Protoss Ground Weapons, Protoss Plasma Shields || Dark Archon Meld||
-|| Protoss Dragoon || 66 || Protoss || Protoss Gateway || Protoss Gateway, Protoss Cybernetics Core || None || 125 || 50 || 750 || 4 || 0 || 4 || 0 || 100 || 80 || 0 || 1 || Protoss Armor || Large || 1 || 1 || 256 || 5 || Phase Disruptor || Phase Disruptor || Protoss Armor, Protoss Ground Weapons, Protoss Plasma Shields, Singularity Charge || ||
-|| Protoss Fleet Beacon || 169 || Protoss || Protoss Probe || Protoss Probe, Protoss Stargate || None || 300 || 200 || 900 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Forge || 166 || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 600 || 0 || 0 || 255 || 0 || 550 || 550 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Gateway || 160 || Protoss || Protoss Probe || Protoss Probe, Protoss Nexus || None || 150 || 0 || 900 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 4 || 3 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss High Templar || 67 || Protoss || Protoss Gateway || Protoss Gateway, Protoss Templar Archives || None || 50 || 150 || 750 || 4 || 0 || 2 || 0 || 40 || 40 || 200 || 0 || Protoss Armor || Small || 1 || 1 || 224 || 3.2 || None || None || Protoss Armor, Protoss Plasma Shields, Khaydarin Amulet || Psionic Storm, Hallucination, Archon Warp||
-|| Protoss Interceptor || 73 || Protoss || Protoss Carrier || Protoss Carrier || None || 25 || 0 || 300 || 0 || 0 || 255 || 0 || 40 || 40 || 0 || 0 || Protoss Plating || Small || 1 || 1 || 192 || 13.332 || Pulse Cannon || Pulse Cannon || Protoss Plating, Protoss Air Weapons, Protoss Plasma Shields || ||
-|| Protoss Nexus || 154 || Protoss || Protoss Probe || Protoss Probe || None || 400 || 0 || 1800 || 0 || 18 || 255 || 0 || 750 || 750 || 0 || 1 || None || Large || 4 || 3 || 352 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Observatory || 159 || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 50 || 100 || 450 || 0 || 0 || 255 || 0 || 250 || 250 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Observer || 84 || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Observatory || None || 25 || 75 || 600 || 2 || 0 || 255 || 0 || 40 || 20 || 0 || 0 || Protoss Plating || Small || 1 || 1 || 288 || 3.332 || None || None || Protoss Plating, Protoss Plasma Shields, Sensor Array, Gravitic Boosters || ||
-|| Protoss Photon Cannon || 162 || Protoss || Protoss Probe || Protoss Probe, Protoss Forge || None || 150 || 0 || 750 || 0 || 0 || 255 || 0 || 100 || 100 || 0 || 0 || None || Large || 2 || 2 || 352 || 0 || STS Photon Cannon || STA Photon Cannon || Protoss Plasma Shields || ||
-|| Protoss Probe || 64 || Protoss || Protoss Nexus || Protoss Nexus || None || 50 || 0 || 300 || 2 || 0 || 1 || 0 || 20 || 20 || 0 || 0 || Protoss Armor || Small || 1 || 1 || 256 || 4.923 || Particle Beam || None || Protoss Armor, Protoss Plasma Shields || ||
-|| Protoss Pylon || 156 || Protoss || Protoss Probe || Protoss Probe || None || 100 || 0 || 450 || 0 || 16 || 255 || 0 || 300 || 300 || 0 || 0 || None || Large || 2 || 2 || 256 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Reaver || 83 || Protoss || Protoss Robotics Facility || Protoss Robotics Facility, Protoss Robotics Support Bay || None || 200 || 100 || 1050 || 8 || 0 || 4 || 0 || 100 || 80 || 0 || 0 || Protoss Armor || Large || 1 || 1 || 320 || 1.777 || None || None || Protoss Armor, Protoss Plasma Shields, Reaver Capacity || ||
-|| Protoss Robotics Facility || 155 || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 200 || 200 || 1200 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Robotics Support Bay || 171 || Protoss || Protoss Probe || Protoss Probe, Protoss Robotics Facility || None || 150 || 100 || 450 || 0 || 0 || 255 || 0 || 450 || 450 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Scarab || 85 || Protoss || Protoss Reaver || Protoss Reaver || None || 15 || 0 || 105 || 0 || 0 || 255 || 0 || 20 || 10 || 0 || 0 || Protoss Armor || Small || 1 || 1 || 160 || 16 || Scarab || None || Protoss Plasma Shields, Scarab Damage || ||
-|| Protoss Scout || 70 || Protoss || Protoss Stargate || Protoss Stargate || None || 275 || 125 || 1200 || 6 || 0 || 255 || 0 || 150 || 100 || 0 || 0 || Protoss Plating || Large || 2 || 1 || 256 || 5 || Dual Photon Blasters || Anti-Matter Missiles || Protoss Plating, Protoss Air Weapons, Protoss Plasma Shields, Apial Sensors, Gravitic Thrusters || ||
-|| Protoss Shield Battery || 172 || Protoss || Protoss Probe || Protoss Probe, Protoss Gateway || None || 100 || 0 || 450 || 0 || 0 || 255 || 0 || 200 || 200 || 200 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Shuttle || 69 || Protoss || Protoss Robotics Facility || Protoss Robotics Facility || None || 200 || 0 || 900 || 4 || 0 || 255 || 8 || 80 || 60 || 0 || 1 || Protoss Plating || Large || 2 || 1 || 256 || 4.425 || None || None || Protoss Plating, Protoss Plasma Shields, Gravitic Drive || ||
-|| Protoss Stargate || 167 || Protoss || Protoss Probe || Protoss Probe, Protoss Cybernetics Core || None || 150 || 150 || 1050 || 0 || 0 || 255 || 0 || 600 || 600 || 0 || 1 || None || Large || 4 || 3 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Templar Archives || 165 || Protoss || Protoss Probe || Protoss Probe, Protoss Citadel of Adun || None || 150 || 200 || 900 || 0 || 0 || 255 || 0 || 500 || 500 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None || Protoss Plasma Shields || ||
-|| Protoss Zealot || 65 || Protoss || Protoss Gateway || Protoss Gateway || None || 100 || 0 || 600 || 4 || 0 || 2 || 0 || 100 || 60 || 0 || 1 || Protoss Armor || Small || 1 || 1 || 224 || 4 || Psi Blades || None || Protoss Armor, Protoss Ground Weapons, Protoss Plasma Shields, Leg Enhancements || ||
+== Terran Ground Units ==
+=== Terran Marine ===
+  * *Max HP*: 40
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 360
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 50
+  * *Destroy Score*: 100
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#Gauss_Rifle Gauss Rifle]
+  * *Comes from*: [UnitTypes#Terran_Barracks Terran Barracks]
 
-== Special ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Special Cerebrate || 151 || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 || 1500 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Special Cerebrate Daggoth || 152 || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 || 1500 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Special Crashed Norad II || 126 || None || None ||  || None || 800 || 600 || 4800 || 0 || 0 || 255 || 0 || 700 || 0 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None ||  || ||
-|| Special Ion Cannon || 127 || None || None ||  || None || 200 || 0 || 900 || 0 || 0 || 255 || 0 || 2000 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Special Khaydarin Crystal Form || 173 || None || None ||  || None || 250 || 0 || 1 || 0 || 0 || 255 || 0 || 100000 || 0 || 0 || 1 || None || Large || 4 || 3 || 320 || 0 || None || None ||  || ||
-|| Special Mature Chrysalis || 150 || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 || 250 || 0 || 0 || 1 || None || Large || 2 || 2 || 256 || 0 || None || None ||  || ||
-|| Special Overmind || 148 || None || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 2500 || 0 || 0 || 1 || None || Large || 5 || 3 || 256 || 0 || None || None ||  || ||
-|| Special Overmind Cocoon || 201 || None || None ||  || None || 1000 || 500 || 2400 || 0 || 0 || 255 || 0 || 2500 || 0 || 0 || 1 || None || Large || 3 || 2 || 320 || 0 || None || None ||  || ||
-|| Special Overmind With Shell || 147 || None || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 5000 || 0 || 0 || 1 || None || Large || 5 || 3 || 256 || 0 || None || None ||  || ||
-|| Special Power Generator || 200 || None || None ||  || None || 200 || 50 || 2400 || 0 || 0 || 255 || 0 || 800 || 0 || 0 || 1 || None || Large || 4 || 3 || 256 || 0 || None || None ||  || ||
-|| Special Protoss Temple || 174 || None || None ||  || None || 250 || 0 || 1 || 0 || 0 || 255 || 0 || 1500 || 0 || 0 || 1 || None || Large || 7 || 3 || 320 || 0 || None || None ||  || ||
-|| Special Psi Disrupter || 190 || None || None ||  || None || 1000 || 400 || 4800 || 0 || 0 || 255 || 0 || 2000 || 0 || 0 || 1 || None || Large || 5 || 3 || 320 || 0 || None || None ||  || ||
-|| Special Stasis Cell Prison || 168 || None || None ||  || None || 150 || 0 || 1 || 0 || 0 || 255 || 0 || 2000 || 0 || 0 || 1 || None || Large || 4 || 3 || 256 || 0 || None || None ||  || ||
-|| Special Warp Gate || 189 || None || None ||  || None || 600 || 200 || 2400 || 0 || 0 || 255 || 0 || 700 || 0 || 0 || 1 || None || Large || 3 || 2 || 256 || 0 || None || None ||  || ||
-|| Special XelNaga Temple || 175 || None || None ||  || None || 1500 || 500 || 4800 || 0 || 0 || 255 || 0 || 5000 || 0 || 0 || 1 || None || Large || 5 || 4 || 320 || 0 || None || None ||  || ||
+  ==== Abilities ====
+    * [TechTypes#Stim_Packs Stim Packs]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Infantry_Armor Terran Infantry Armor]
+    * [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
+    * [UpgradeTypes#U-238_Shells U-238 Shells]
+
+
+=== Terran Ghost ===
+  * *Max HP*: 45
+  * *Max Energy*: 200
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 25
+  * *Gas Cost*: 75
+  * *Build Time*: 750
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 175
+  * *Destroy Score*: 350
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle C-10 Canister Rifle]
+  * *Comes from*: [UnitTypes#Terran_Barracks Terran Barracks]
+
+  ==== Abilities ====
+    * [TechTypes#Lockdown Lockdown]
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+    * [TechTypes#Nuclear_Strike Nuclear Strike]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+    * [UnitTypes#Terran_Academy Terran Academy]
+    * [UnitTypes#Terran_Covert_Ops Terran Covert Ops]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Infantry_Armor Terran Infantry Armor]
+    * [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
+    * [UpgradeTypes#Ocular_Implants Ocular Implants]
+    * [UpgradeTypes#Moebius_Reactor Moebius Reactor]
+
+
+=== Terran Vulture ===
+  * *Max HP*: 80
+  * *Armor*: 0
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 75
+  * *Gas Cost*: 0
+  * *Build Time*: 450
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 150
+  * *Top Speed*: 6.400000
+  * *Ground Weapon*: [WeaponTypes#Fragmentation_Grenade Fragmentation Grenade]
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Abilities ====
+    * [TechTypes#Spider_Mines Spider Mines]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
+    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+    * [UpgradeTypes#Ion_Thrusters Ion Thrusters]
+
+
+=== Terran Goliath ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 200
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.570000
+  * *Ground Weapon*: [WeaponTypes#Twin_Autocannons Twin Autocannons]
+  * *Air Weapon*: [WeaponTypes#Hellfire_Missile_Pack Hellfire Missile Pack]
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+    * [UnitTypes#Terran_Armory Terran Armory]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
+    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+    * [UpgradeTypes#Charon_Boosters Charon Boosters]
+
+
+=== Terran Siege Tank (Tank Mode) ===
+  * *Max HP*: 150
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 350
+  * *Destroy Score*: 700
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Arclite_Cannon Arclite Cannon]
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Abilities ====
+    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+    * [UnitTypes#Terran_Machine_Shop Terran Machine Shop]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
+    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+
+=== Terran SCV ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 23 x 23
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 50
+  * *Destroy Score*: 100
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Fusion_Cutter Fusion Cutter]
+  * *Comes from*: [UnitTypes#Terran_Command_Center Terran Command Center]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Infantry_Armor Terran Infantry Armor]
+
+
+=== Vulture Spider Mine ===
+  * *Max HP*: 20
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 15 x 15
+  * *Sight Range*: 96 (3)
+  * *Destroy Score*: 25
+  * *Top Speed*: 16.000000
+  * *Ground Weapon*: [WeaponTypes#Spider_Mines Spider Mines]
+
+
+=== Terran Civilian ===
+  * *Max HP*: 40
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
+=== Terran Siege Tank (Siege Mode) ===
+  * *Max HP*: 150
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 700
+  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon Arclite Shock Cannon]
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Abilities ====
+    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+    * [UnitTypes#Terran_Machine_Shop Terran Machine Shop]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
+    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+
+=== Terran Firebat ===
+  * *Max HP*: 50
+  * *Armor*: 1
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 25
+  * *Build Time*: 360
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 23 x 22
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 100
+  * *Destroy Score*: 200
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Flame_Thrower Flame Thrower]
+  * *Comes from*: [UnitTypes#Terran_Barracks Terran Barracks]
+
+  ==== Abilities ====
+    * [TechTypes#Stim_Packs Stim Packs]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+    * [UnitTypes#Terran_Academy Terran Academy]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Infantry_Armor Terran Infantry Armor]
+    * [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
+
+
+=== Terran Medic ===
+  * *Max HP*: 60
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 25
+  * *Build Time*: 450
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 125
+  * *Destroy Score*: 250
+  * *Top Speed*: 4.000000
+  * *Comes from*: [UnitTypes#Terran_Barracks Terran Barracks]
+
+  ==== Abilities ====
+    * [TechTypes#Restoration Restoration]
+    * [TechTypes#Optical_Flare Optical Flare]
+    * [TechTypes#Healing Healing]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+    * [UnitTypes#Terran_Academy Terran Academy]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Infantry_Armor Terran Infantry Armor]
+    * [UpgradeTypes#Caduceus_Reactor Caduceus Reactor]
+
+
+
+== Terran Air Units ==
+=== Terran Wraith ===
+  * *Max HP*: 120
+  * *Max Energy*: 200
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 900
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 38 x 30
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 400
+  * *Destroy Score*: 800
+  * *Top Speed*: 6.670000
+  * *Ground Weapon*: [WeaponTypes#Burst_Lasers Burst Lasers]
+  * *Air Weapon*: [WeaponTypes#Gemini_Missiles Gemini Missiles]
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Abilities ====
+    * [TechTypes#Cloaking_Field Cloaking Field]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Ship_Plating Terran Ship Plating]
+    * [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+    * [UpgradeTypes#Apollo_Reactor Apollo Reactor]
+
+
+=== Terran Science Vessel ===
+  * *Max HP*: 200
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 225
+  * *Build Time*: 1200
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 65 x 50
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 625
+  * *Destroy Score*: 1250
+  * *Top Speed*: 5.000000
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Abilities ====
+    * [TechTypes#EMP_Shockwave EMP Shockwave]
+    * [TechTypes#Defensive_Matrix Defensive Matrix]
+    * [TechTypes#Irradiate Irradiate]
+    * Detector
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+    * [UnitTypes#Terran_Control_Tower Terran Control Tower]
+    * [UnitTypes#Terran_Science_Facility Terran Science Facility]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Ship_Plating Terran Ship Plating]
+    * [UpgradeTypes#Titan_Reactor Titan Reactor]
+
+
+=== Terran Dropship ===
+  * *Max HP*: 150
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Provided*: 8
+  * *Unit Dimensions*: 49 x 37
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 300
+  * *Destroy Score*: 600
+  * *Top Speed*: 5.470000
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+    * [UnitTypes#Terran_Control_Tower Terran Control Tower]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Ship_Plating Terran Ship Plating]
+
+
+=== Terran Battlecruiser ===
+  * *Max HP*: 500
+  * *Max Energy*: 200
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Mineral Cost*: 400
+  * *Gas Cost*: 300
+  * *Build Time*: 2000
+  * *Supply Required*: 12
+  * *Unit Dimensions*: 75 x 59
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 1200
+  * *Destroy Score*: 2400
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery ATS Laser Battery]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery ATA Laser Battery]
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Abilities ====
+    * [TechTypes#Yamato_Gun Yamato Gun]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+    * [UnitTypes#Terran_Control_Tower Terran Control Tower]
+    * [UnitTypes#Terran_Physics_Lab Terran Physics Lab]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Ship_Plating Terran Ship Plating]
+    * [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+    * [UpgradeTypes#Colossus_Reactor Colossus Reactor]
+
+
+=== Nuclear Missile ===
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 200
+  * *Build Time*: 1500
+  * *Supply Required*: 16
+  * *Unit Dimensions*: 15 x 29
+  * *Sight Range*: 96 (3)
+  * *Build Score*: 800
+  * *Top Speed*: 33.330000
+  * *Comes from*: [UnitTypes#Terran_Nuclear_Silo Terran Nuclear Silo]
+
+  ==== Abilities ====
+    * Invincible
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+    * [UnitTypes#Terran_Nuclear_Silo Terran Nuclear Silo]
+
+
+=== Terran Valkyrie ===
+  * *Max HP*: 200
+  * *Armor*: 2
+  * *Unit Size*: Large
+  * *Mineral Cost*: 250
+  * *Gas Cost*: 125
+  * *Build Time*: 750
+  * *Supply Required*: 6
+  * *Unit Dimensions*: 49 x 37
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 400
+  * *Destroy Score*: 800
+  * *Top Speed*: 6.600000
+  * *Air Weapon*: [WeaponTypes#Halo_Rockets Halo Rockets]
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+    * [UnitTypes#Terran_Control_Tower Terran Control Tower]
+    * [UnitTypes#Terran_Armory Terran Armory]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Ship_Plating Terran Ship Plating]
+    * [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+
+
+== Terran Heroes ==
+=== Gui Montag ===
+  * *Max HP*: 160
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 23 x 22
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Flame_Thrower_(Gui_Montag) Flame Thrower (Gui Montag)]
+
+  ==== Abilities ====
+    * [TechTypes#Stim_Packs Stim Packs]
+
+
+=== Sarah Kerrigan ===
+  * *Max HP*: 250
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 700
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Sarah_Kerrigan) C-10 Canister Rifle (Sarah Kerrigan)]
+
+  ==== Abilities ====
+    * [TechTypes#Lockdown Lockdown]
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+
+
+=== Alan Schezar ===
+  * *Max HP*: 300
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Space Required*: 2
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 800
+  * *Top Speed*: 4.570000
+  * *Ground Weapon*: [WeaponTypes#Twin_Autocannons_(Alan_Schezar) Twin Autocannons (Alan Schezar)]
+  * *Air Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(Alan_Schezar) Hellfire Missile Pack (Alan Schezar)]
+
+
+=== Jim Raynor (Vulture) ===
+  * *Max HP*: 300
+  * *Armor*: 3
+  * *Unit Size*: Medium
+  * *Space Required*: 2
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 300
+  * *Top Speed*: 6.400000
+  * *Ground Weapon*: [WeaponTypes#Fragmentation_Grenade_(Jim_Raynor) Fragmentation Grenade (Jim Raynor)]
+
+  ==== Abilities ====
+    * [TechTypes#Spider_Mines Spider Mines]
+
+
+=== Jim Raynor (Marine) ===
+  * *Max HP*: 200
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 200
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#Gauss_Rifle_(Jim_Raynor) Gauss Rifle (Jim Raynor)]
+
+  ==== Abilities ====
+    * [TechTypes#Stim_Packs Stim Packs]
+
+
+=== Tom Kazansky ===
+  * *Max HP*: 500
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 38 x 30
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 1600
+  * *Top Speed*: 6.670000
+  * *Ground Weapon*: [WeaponTypes#Burst_Lasers_(Tom_Kazansky) Burst Lasers (Tom Kazansky)]
+  * *Air Weapon*: [WeaponTypes#Gemini_Missiles_(Tom_Kazansky) Gemini Missiles (Tom Kazansky)]
+
+  ==== Abilities ====
+    * [TechTypes#Cloaking_Field Cloaking Field]
+
+
+=== Magellan ===
+  * *Max HP*: 800
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 65 x 50
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 2500
+  * *Top Speed*: 5.000000
+
+  ==== Abilities ====
+    * [TechTypes#EMP_Shockwave EMP Shockwave]
+    * [TechTypes#Defensive_Matrix Defensive Matrix]
+    * [TechTypes#Irradiate Irradiate]
+    * Detector
+
+
+=== Edmund Duke (Tank Mode) ===
+  * *Max HP*: 400
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 1400
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Arclite_Cannon_(Edmund_Duke) Arclite Cannon (Edmund Duke)]
+
+  ==== Abilities ====
+    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
+
+
+=== Edmund Duke (Siege Mode) ===
+  * *Max HP*: 400
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 1400
+  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon_(Edmund_Duke) Arclite Shock Cannon (Edmund Duke)]
+
+  ==== Abilities ====
+    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
+
+
+=== Arcturus Mengsk ===
+  * *Max HP*: 1000
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 75 x 59
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 4800
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
+
+
+=== Hyperion ===
+  * *Max HP*: 850
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 75 x 59
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 4800
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hyperion) ATS Laser Battery (Hyperion)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hyperion) ATA Laser Battery (Hyperion)]
+
+  ==== Abilities ====
+    * [TechTypes#Yamato_Gun Yamato Gun]
+
+
+=== Norad II ===
+  * *Max HP*: 700
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 75 x 59
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 4800
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
+
+  ==== Abilities ====
+    * [TechTypes#Yamato_Gun Yamato Gun]
+
+
+=== Samir Duran ===
+  * *Max HP*: 200
+  * *Max Energy*: 250
+  * *Armor*: 2
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 700
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Samir_Duran) C-10 Canister Rifle (Samir Duran)]
+
+  ==== Abilities ====
+    * [TechTypes#Lockdown Lockdown]
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+
+
+=== Alexei Stukov ===
+  * *Max HP*: 250
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 700
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Alexei_Stukov) C-10 Canister Rifle (Alexei Stukov)]
+
+  ==== Abilities ====
+    * [TechTypes#Lockdown Lockdown]
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+
+
+=== Gerard DuGalle ===
+  * *Max HP*: 700
+  * *Max Energy*: 250
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 75 x 59
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 4800
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
+
+  ==== Abilities ====
+    * [TechTypes#Yamato_Gun Yamato Gun]
+
+
+
+== Terran Buildings ==
+=== Terran Command Center ===
+  * *Max HP*: 1500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 400
+  * *Gas Cost*: 0
+  * *Build Time*: 1800
+  * *Supply Provided*: 20
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 117 x 83
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 400
+  * *Destroy Score*: 1200
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+
+
+=== Terran Supply Depot ===
+  * *Max HP*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Supply Provided*: 16
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 77 x 49
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+
+
+=== Terran Refinery ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 4 x 2
+  * *Unit Dimensions*: 113 x 64
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+
+
+=== Terran Barracks ===
+  * *Max HP*: 1000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 1200
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 105 x 73
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+
+
+=== Terran Academy ===
+  * *Max HP*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 1200
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 85 x 57
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+
+
+=== Terran Factory ===
+  * *Max HP*: 1250
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 100
+  * *Build Time*: 1200
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 113 x 81
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 200
+  * *Destroy Score*: 600
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+
+
+=== Terran Starport ===
+  * *Max HP*: 1300
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 1050
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 79
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 200
+  * *Destroy Score*: 600
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Factory Terran Factory]
+
+
+=== Terran Science Facility ===
+  * *Max HP*: 850
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 150
+  * *Build Time*: 900
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 77
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 275
+  * *Destroy Score*: 825
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Starport Terran Starport]
+
+
+=== Terran Engineering Bay ===
+  * *Max HP*: 850
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 125
+  * *Gas Cost*: 0
+  * *Build Time*: 900
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 61
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 65
+  * *Destroy Score*: 195
+  * *Top Speed*: 1.000000
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Liftoff
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+
+
+=== Terran Armory ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 50
+  * *Build Time*: 1200
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 55
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Factory Terran Factory]
+
+
+=== Terran Missile Turret ===
+  * *Max HP*: 200
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 75
+  * *Gas Cost*: 0
+  * *Build Time*: 450
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 33 x 49
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Air Weapon*: [WeaponTypes#Longbolt_Missile Longbolt Missile]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Abilities ====
+    * Detector
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Engineering_Bay Terran Engineering Bay]
+
+
+=== Terran Bunker ===
+  * *Max HP*: 350
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 450
+  * *Space Provided*: 4
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 65 x 41
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_SCV Terran SCV]
+    * [UnitTypes#Terran_Barracks Terran Barracks]
+
+
+
+== Terran Addons ==
+=== Terran Comsat Station ===
+  * *Max HP*: 500
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 69 x 42
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Terran_Command_Center Terran Command Center]
+
+  ==== Abilities ====
+    * [TechTypes#Scanner_Sweep Scanner Sweep]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+    * [UnitTypes#Terran_Academy Terran Academy]
+
+
+=== Terran Nuclear Silo ===
+  * *Max HP*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 100
+  * *Build Time*: 1200
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 69 x 42
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Terran_Command_Center Terran Command Center]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Command_Center Terran Command Center]
+    * [UnitTypes#Terran_Science_Facility Terran Science Facility]
+    * [UnitTypes#Terran_Covert_Ops Terran Covert Ops]
+
+
+=== Terran Control Tower ===
+  * *Max HP*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 76 x 47
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Starport Terran Starport]
+
+
+=== Terran Covert Ops ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 76 x 47
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Terran_Science_Facility Terran Science Facility]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Science_Facility Terran Science Facility]
+
+
+=== Terran Physics Lab ===
+  * *Max HP*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 76 x 47
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Terran_Science_Facility Terran Science Facility]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Science_Facility Terran Science Facility]
+
+
+=== Terran Machine Shop ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 71 x 49
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+
+
+
+== Terran Special Buildings ==
+=== Crashed Norad II ===
+  * *Max HP*: 700
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 5000
+
+
+=== Ion Cannon ===
+  * *Max HP*: 2000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 5000
+
+
+=== Psi Disrupter ===
+  * *Max HP*: 2000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 5 x 3
+  * *Unit Dimensions*: 150 x 86
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 3600
+
+
+=== Power Generator ===
+  * *Max HP*: 800
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 120 x 72
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 600
+
+
+
+= Protoss =
+
+== Protoss Ground Units ==
+=== Protoss Dark Templar ===
+  * *Max HP*: 80
+  * *Max Shields*: 40
+  * *Armor*: 1
+  * *Unit Size*: Small
+  * *Mineral Cost*: 125
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 26
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 325
+  * *Destroy Score*: 650
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades Warp Blades]
+  * *Comes from*: [UnitTypes#Protoss_Gateway Protoss Gateway]
+
+  ==== Abilities ====
+    * [TechTypes#Dark_Archon_Meld Dark Archon Meld]
+    * Permanently Cloaked
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+    * [UnitTypes#Protoss_Templar_Archives Protoss Templar Archives]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Dark Archon ===
+  * *Max HP*: 25
+  * *Max Shields*: 200
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Build Time*: 300
+  * *Supply Required*: 8
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 650
+  * *Destroy Score*: 1300
+  * *Top Speed*: 4.920000
+  * *Comes from*: 2 [UnitTypes#Protoss_Dark_Templar Protoss Dark Templar]
+
+  ==== Abilities ====
+    * [TechTypes#Mind_Control Mind Control]
+    * [TechTypes#Feedback Feedback]
+    * [TechTypes#Maelstrom Maelstrom]
+
+  ==== Requirements ====
+    * 2 [UnitTypes#Protoss_Dark_Templar Protoss Dark Templar]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Argus_Talisman Argus Talisman]
+
+
+=== Protoss Probe ===
+  * *Max HP*: 20
+  * *Max Shields*: 20
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 23 x 23
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 50
+  * *Destroy Score*: 100
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Particle_Beam Particle Beam]
+  * *Comes from*: [UnitTypes#Protoss_Nexus Protoss Nexus]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Nexus Protoss Nexus]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Zealot ===
+  * *Max HP*: 100
+  * *Max Shields*: 60
+  * *Armor*: 1
+  * *Unit Size*: Small
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 23 x 19
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 100
+  * *Destroy Score*: 200
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Psi_Blades Psi Blades]
+  * *Comes from*: [UnitTypes#Protoss_Gateway Protoss Gateway]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Leg_Enhancements Leg Enhancements]
+
+
+=== Protoss Dragoon ===
+  * *Max HP*: 100
+  * *Max Shields*: 80
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 125
+  * *Gas Cost*: 50
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 250
+  * *Destroy Score*: 500
+  * *Top Speed*: 5.000000
+  * *Weapon*: [WeaponTypes#Phase_Disruptor Phase Disruptor]
+  * *Comes from*: [UnitTypes#Protoss_Gateway Protoss Gateway]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+    * [UnitTypes#Protoss_Cybernetics_Core Protoss Cybernetics Core]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Singularity_Charge Singularity Charge]
+
+
+=== Protoss High Templar ===
+  * *Max HP*: 40
+  * *Max Shields*: 40
+  * *Max Energy*: 200
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 150
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 24
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 350
+  * *Destroy Score*: 700
+  * *Top Speed*: 3.200000
+  * *Comes from*: [UnitTypes#Protoss_Gateway Protoss Gateway]
+
+  ==== Abilities ====
+    * [TechTypes#Psionic_Storm Psionic Storm]
+    * [TechTypes#Hallucination Hallucination]
+    * [TechTypes#Archon_Warp Archon Warp]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+    * [UnitTypes#Protoss_Templar_Archives Protoss Templar Archives]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Khaydarin_Amulet Khaydarin Amulet]
+
+
+=== Protoss Archon ===
+  * *Max HP*: 10
+  * *Max Shields*: 350
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Build Time*: 300
+  * *Supply Required*: 8
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 700
+  * *Destroy Score*: 1400
+  * *Top Speed*: 4.920000
+  * *Weapon*: [WeaponTypes#Psionic_Shockwave Psionic Shockwave]
+  * *Comes from*: 2 [UnitTypes#Protoss_High_Templar Protoss High Templar]
+
+  ==== Requirements ====
+    * 2 [UnitTypes#Protoss_High_Templar Protoss High Templar]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Dark Templar (Hero) ===
+  * *Max HP*: 40
+  * *Max Shields*: 80
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Supply Required*: 1
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 26
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(Hero) Warp Blades (Hero)]
+
+  ==== Abilities ====
+    * Permanently Cloaked
+
+
+=== Protoss Reaver ===
+  * *Max HP*: 100
+  * *Max Shields*: 80
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 100
+  * *Build Time*: 1050
+  * *Supply Required*: 8
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 400
+  * *Destroy Score*: 800
+  * *Top Speed*: 1.780000
+  * *Comes from*: [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+    * [UnitTypes#Protoss_Robotics_Support_Bay Protoss Robotics Support Bay]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Ground_Armor Protoss Ground Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Reaver_Capacity Reaver Capacity]
+
+
+=== Protoss Scarab ===
+  * *Mineral Cost*: 15
+  * *Gas Cost*: 0
+  * *Build Time*: 105
+  * *Unit Dimensions*: 5 x 5
+  * *Sight Range*: 160 (5)
+  * *Top Speed*: 16.000000
+  * *Ground Weapon*: [WeaponTypes#Scarab Scarab]
+  * *Comes from*: [UnitTypes#Protoss_Reaver Protoss Reaver]
+
+  ==== Abilities ====
+    * Invincible
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Reaver Protoss Reaver]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Scarab_Damage Scarab Damage]
+
+
+
+== Protoss Air Units ==
+=== Protoss Corsair ===
+  * *Max HP*: 100
+  * *Max Shields*: 80
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 36 x 32
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 350
+  * *Destroy Score*: 700
+  * *Top Speed*: 6.670000
+  * *Air Weapon*: [WeaponTypes#Neutron_Flare Neutron Flare]
+  * *Comes from*: [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Abilities ====
+    * [TechTypes#Disruption_Web Disruption Web]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Argus_Jewel Argus Jewel]
+
+
+=== Protoss Shuttle ===
+  * *Max HP*: 80
+  * *Max Shields*: 60
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 0
+  * *Build Time*: 900
+  * *Supply Required*: 4
+  * *Space Provided*: 8
+  * *Unit Dimensions*: 40 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 200
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.430000
+  * *Comes from*: [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Gravitic_Drive Gravitic Drive]
+
+
+=== Protoss Scout ===
+  * *Max HP*: 150
+  * *Max Shields*: 100
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 275
+  * *Gas Cost*: 125
+  * *Build Time*: 1200
+  * *Supply Required*: 6
+  * *Unit Dimensions*: 36 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 650
+  * *Destroy Score*: 1300
+  * *Top Speed*: 5.000000
+  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters Dual Photon Blasters]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles Anti-Matter Missiles]
+  * *Comes from*: [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Apial_Sensors Apial Sensors]
+    * [UpgradeTypes#Gravitic_Thrusters Gravitic Thrusters]
+
+
+=== Protoss Arbiter ===
+  * *Max HP*: 200
+  * *Max Shields*: 150
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 350
+  * *Build Time*: 2400
+  * *Supply Required*: 8
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 1025
+  * *Destroy Score*: 2050
+  * *Top Speed*: 5.000000
+  * *Weapon*: [WeaponTypes#Phase_Disruptor_Cannon Phase Disruptor Cannon]
+  * *Comes from*: [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Abilities ====
+    * [TechTypes#Recall Recall]
+    * [TechTypes#Stasis_Field Stasis Field]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Stargate Protoss Stargate]
+    * [UnitTypes#Protoss_Arbiter_Tribunal Protoss Arbiter Tribunal]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Khaydarin_Core Khaydarin Core]
+
+
+=== Protoss Carrier ===
+  * *Max HP*: 300
+  * *Max Shields*: 150
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Mineral Cost*: 350
+  * *Gas Cost*: 250
+  * *Build Time*: 2100
+  * *Supply Required*: 12
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 950
+  * *Destroy Score*: 1900
+  * *Top Speed*: 3.330000
+  * *Comes from*: [UnitTypes#Protoss_Stargate Protoss Stargate]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Stargate Protoss Stargate]
+    * [UnitTypes#Protoss_Fleet_Beacon Protoss Fleet Beacon]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Carrier_Capacity Carrier Capacity]
+
+
+=== Protoss Interceptor ===
+  * *Max HP*: 40
+  * *Max Shields*: 40
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 25
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Unit Dimensions*: 16 x 16
+  * *Sight Range*: 192 (6)
+  * *Build Score*: 30
+  * *Destroy Score*: 60
+  * *Top Speed*: 13.330000
+  * *Weapon*: [WeaponTypes#Pulse_Cannon Pulse Cannon]
+  * *Comes from*: [UnitTypes#Protoss_Carrier Protoss Carrier]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Carrier Protoss Carrier]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Observer ===
+  * *Max HP*: 40
+  * *Max Shields*: 20
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 25
+  * *Gas Cost*: 75
+  * *Build Time*: 600
+  * *Supply Required*: 2
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 225
+  * *Destroy Score*: 450
+  * *Top Speed*: 3.330000
+  * *Comes from*: [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+
+  ==== Abilities ====
+    * Permanently Cloaked
+    * Detector
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+    * [UnitTypes#Protoss_Observatory Protoss Observatory]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Air_Armor Protoss Air Armor]
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+    * [UpgradeTypes#Sensor_Array Sensor Array]
+    * [UpgradeTypes#Gravitic_Boosters Gravitic Boosters]
+
+
+
+== Protoss Heroes ==
+=== Zeratul ===
+  * *Max HP*: 60
+  * *Max Shields*: 400
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 26
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 800
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(Zeratul) Warp Blades (Zeratul)]
+
+  ==== Abilities ====
+    * Permanently Cloaked
+
+
+=== Tassadar/Zeratul (Archon) ===
+  * *Max HP*: 100
+  * *Max Shields*: 800
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 2800
+  * *Top Speed*: 4.920000
+  * *Weapon*: [WeaponTypes#Psionic_Shockwave_(Tassadar/Zeratul_Archon) Psionic Shockwave (Tassadar/Zeratul Archon)]
+
+
+=== Fenix (Zealot) ===
+  * *Max HP*: 240
+  * *Max Shields*: 240
+  * *Armor*: 2
+  * *Unit Size*: Small
+  * *Space Required*: 2
+  * *Unit Dimensions*: 23 x 19
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 400
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Psi_Blades_(Fenix) Psi Blades (Fenix)]
+
+
+=== Fenix (Dragoon) ===
+  * *Max HP*: 240
+  * *Max Shields*: 240
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 1000
+  * *Top Speed*: 5.000000
+  * *Weapon*: [WeaponTypes#Phase_Disruptor_(Fenix) Phase Disruptor (Fenix)]
+
+
+=== Tassadar ===
+  * *Max HP*: 80
+  * *Max Shields*: 300
+  * *Max Energy*: 250
+  * *Armor*: 2
+  * *Unit Size*: Small
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 24
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 1400
+  * *Top Speed*: 3.200000
+  * *Ground Weapon*: [WeaponTypes#Psi_Assault Psi Assault]
+
+  ==== Abilities ====
+    * [TechTypes#Psionic_Storm Psionic Storm]
+    * [TechTypes#Hallucination Hallucination]
+
+
+=== Mojo ===
+  * *Max HP*: 400
+  * *Max Shields*: 400
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 36 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 2600
+  * *Top Speed*: 5.000000
+  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(Mojo) Dual Photon Blasters (Mojo)]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles_(Mojo) Anti-Matter Missiles (Mojo)]
+
+
+=== Warbringer ===
+  * *Max HP*: 200
+  * *Max Shields*: 400
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 1600
+  * *Top Speed*: 1.780000
+
+
+=== Gantrithor ===
+  * *Max HP*: 800
+  * *Max Shields*: 500
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 288 (9)
+  * *Destroy Score*: 3800
+  * *Top Speed*: 3.330000
+
+
+=== Danimoth ===
+  * *Max HP*: 600
+  * *Max Shields*: 500
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 288 (9)
+  * *Destroy Score*: 4100
+  * *Top Speed*: 5.000000
+  * *Weapon*: [WeaponTypes#Phase_Disruptor_Cannon_(Danimoth) Phase Disruptor Cannon (Danimoth)]
+
+  ==== Abilities ====
+    * [TechTypes#Recall Recall]
+    * [TechTypes#Stasis_Field Stasis Field]
+
+
+=== Aldaris ===
+  * *Max HP*: 80
+  * *Max Shields*: 300
+  * *Max Energy*: 250
+  * *Armor*: 2
+  * *Unit Size*: Small
+  * *Space Required*: 2
+  * *Unit Dimensions*: 24 x 24
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 1400
+  * *Top Speed*: 3.200000
+  * *Ground Weapon*: [WeaponTypes#Psi_Assault Psi Assault]
+
+
+=== Artanis ===
+  * *Max HP*: 250
+  * *Max Shields*: 250
+  * *Armor*: 3
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 36 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 2400
+  * *Top Speed*: 5.000000
+  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(Artanis) Dual Photon Blasters (Artanis)]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles_(Artanis) Anti-Matter Missiles (Artanis)]
+
+
+=== Raszagal ===
+  * *Max HP*: 100
+  * *Max Shields*: 60
+  * *Max Energy*: 250
+  * *Armor*: 0
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 36 x 32
+  * *Sight Range*: 288 (9)
+  * *Destroy Score*: 1300
+  * *Top Speed*: 6.670000
+  * *Air Weapon*: [WeaponTypes#Neutron_Flare Neutron Flare]
+
+  ==== Abilities ====
+    * [TechTypes#Disruption_Web Disruption Web]
+
+
+
+== Protoss Buildings ==
+=== Protoss Nexus ===
+  * *Max HP*: 750
+  * *Max Shields*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 400
+  * *Gas Cost*: 0
+  * *Build Time*: 1800
+  * *Supply Provided*: 18
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 113 x 79
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 400
+  * *Destroy Score*: 1200
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Robotics Facility ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 200
+  * *Build Time*: 1200
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 77 x 37
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 300
+  * *Destroy Score*: 900
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Cybernetics_Core Protoss Cybernetics Core]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Pylon ===
+  * *Max HP*: 300
+  * *Max Shields*: 300
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 450
+  * *Supply Provided*: 16
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 33 x 33
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Assimilator ===
+  * *Max HP*: 450
+  * *Max Shields*: 450
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 4 x 2
+  * *Unit Dimensions*: 97 x 57
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Observatory ===
+  * *Max HP*: 250
+  * *Max Shields*: 250
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 100
+  * *Build Time*: 450
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 89 x 45
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 175
+  * *Destroy Score*: 525
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Gateway ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 900
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 73
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Nexus Protoss Nexus]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Photon Cannon ===
+  * *Max HP*: 100
+  * *Max Shields*: 100
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 750
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 41 x 33
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Ground Weapon*: [WeaponTypes#STS_Photon_Cannon STS Photon Cannon]
+  * *Air Weapon*: [WeaponTypes#STA_Photon_Cannon STA Photon Cannon]
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Abilities ====
+    * Detector
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Forge Protoss Forge]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Citadel of Adun ===
+  * *Max HP*: 450
+  * *Max Shields*: 450
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 65 x 49
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 200
+  * *Destroy Score*: 600
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Cybernetics_Core Protoss Cybernetics Core]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Cybernetics Core ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 0
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 81 x 49
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Templar Archives ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 200
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 65 x 49
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 250
+  * *Destroy Score*: 750
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Citadel_of_Adun Protoss Citadel of Adun]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Forge ===
+  * *Max HP*: 550
+  * *Max Shields*: 550
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 73 x 45
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Nexus Protoss Nexus]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Stargate ===
+  * *Max HP*: 600
+  * *Max Shields*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 150
+  * *Build Time*: 1050
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 73
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 300
+  * *Destroy Score*: 900
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Cybernetics_Core Protoss Cybernetics Core]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Fleet Beacon ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 300
+  * *Gas Cost*: 200
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 88 x 57
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 350
+  * *Destroy Score*: 1050
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Stargate Protoss Stargate]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Arbiter Tribunal ===
+  * *Max HP*: 500
+  * *Max Shields*: 500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 150
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 89 x 57
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 450
+  * *Destroy Score*: 1350
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Templar_Archives Protoss Templar Archives]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Robotics Support Bay ===
+  * *Max HP*: 450
+  * *Max Shields*: 450
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 450
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 65 x 53
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 125
+  * *Destroy Score*: 375
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Robotics_Facility Protoss Robotics Facility]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+=== Protoss Shield Battery ===
+  * *Max HP*: 200
+  * *Max Shields*: 200
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 450
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 65 x 33
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 50
+  * *Destroy Score*: 150
+  * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
+
+  ==== Requirements ====
+    * [UnitTypes#Protoss_Probe Protoss Probe]
+    * [UnitTypes#Protoss_Gateway Protoss Gateway]
+    * Requires Psi Field
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Protoss_Plasma_Shields Protoss Plasma Shields]
+
+
+
+== Protoss Special Buildings ==
+=== Stasis Cell/Prison ===
+  * *Max HP*: 2000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 128 x 96
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 5000
+
+
+=== Khaydarin Crystal Formation ===
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 128 x 96
+  * *Sight Range*: 320 (10)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Protoss Temple ===
+  * *Max HP*: 1500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 7 x 3
+  * *Unit Dimensions*: 224 x 96
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 5000
+
+
+=== XelNaga Temple ===
+  * *Max HP*: 5000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 5 x 4
+  * *Unit Dimensions*: 160 x 98
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 5000
+
+
+=== Warp Gate ===
+  * *Max HP*: 700
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 2000
+
+
+
+= Zerg =
+
+== Zerg Ground Units ==
+=== Zerg Larva ===
+  * *Max HP*: 25
+  * *Armor*: 10
+  * *Unit Size*: Small
+  * *Mineral Cost*: 1
+  * *Gas Cost*: 1
+  * *Build Time*: 1
+  * *Unit Dimensions*: 16 x 16
+  * *Sight Range*: 128 (4)
+  * *Destroy Score*: 10
+  * *Comes from*: [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+
+
+=== Zerg Egg ===
+  * *Max HP*: 200
+  * *Armor*: 10
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 1
+  * *Gas Cost*: 1
+  * *Build Time*: 1
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 128 (4)
+  * *Destroy Score*: 25
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+
+
+=== Zerg Zergling ===
+  * *Max HP*: 35
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 420
+  * *Supply Required*: 1
+  * *Space Required*: 1
+  * *Unit Dimensions*: 16 x 16
+  * *Sight Range*: 160 (5)
+  * *Build Score*: 25
+  * *Destroy Score*: 50
+  * *Top Speed*: 5.490000
+  * *Ground Weapon*: [WeaponTypes#Claws Claws]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Spawning_Pool Zerg Spawning Pool]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
+    * [UpgradeTypes#Metabolic_Boost Metabolic Boost]
+    * [UpgradeTypes#Adrenal_Glands Adrenal Glands]
+
+
+=== Zerg Hydralisk ===
+  * *Max HP*: 80
+  * *Armor*: 0
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 75
+  * *Gas Cost*: 25
+  * *Build Time*: 420
+  * *Supply Required*: 2
+  * *Space Required*: 2
+  * *Unit Dimensions*: 21 x 23
+  * *Sight Range*: 192 (6)
+  * *Build Score*: 125
+  * *Destroy Score*: 350
+  * *Top Speed*: 3.660000
+  * *Weapon*: [WeaponTypes#Needle_Spines Needle Spines]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Hydralisk_Den Zerg Hydralisk Den]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Zerg_Missile_Attacks Zerg Missile Attacks]
+    * [UpgradeTypes#Muscular_Augments Muscular Augments]
+    * [UpgradeTypes#Grooved_Spines Grooved Spines]
+
+
+=== Zerg Ultralisk ===
+  * *Max HP*: 400
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 200
+  * *Build Time*: 900
+  * *Supply Required*: 8
+  * *Space Required*: 4
+  * *Unit Dimensions*: 38 x 32
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 650
+  * *Destroy Score*: 1300
+  * *Top Speed*: 5.120000
+  * *Ground Weapon*: [WeaponTypes#Kaiser_Blades Kaiser Blades]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Ultralisk_Cavern Zerg Ultralisk Cavern]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
+    * [UpgradeTypes#Chitinous_Plating Chitinous Plating]
+    * [UpgradeTypes#Anabolic_Synthesis Anabolic Synthesis]
+
+
+=== Zerg Broodling ===
+  * *Max HP*: 30
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 19 x 19
+  * *Sight Range*: 160 (5)
+  * *Destroy Score*: 25
+  * *Top Speed*: 6.000000
+  * *Ground Weapon*: [WeaponTypes#Toxic_Spores Toxic Spores]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
+
+
+=== Zerg Drone ===
+  * *Max HP*: 40
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 23 x 23
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 50
+  * *Destroy Score*: 100
+  * *Top Speed*: 4.920000
+  * *Ground Weapon*: [WeaponTypes#Spines Spines]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+
+
+=== Zerg Defiler ===
+  * *Max HP*: 80
+  * *Max Energy*: 200
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 150
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Space Required*: 2
+  * *Unit Dimensions*: 27 x 25
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 225
+  * *Destroy Score*: 450
+  * *Top Speed*: 4.000000
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * [TechTypes#Dark_Swarm Dark Swarm]
+    * [TechTypes#Plague Plague]
+    * [TechTypes#Consume Consume]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Defiler_Mound Zerg Defiler Mound]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Metasynaptic_Node Metasynaptic Node]
+
+
+=== Zerg Infested Terran ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Supply Required*: 2
+  * *Space Required*: 1
+  * *Unit Dimensions*: 17 x 20
+  * *Sight Range*: 160 (5)
+  * *Build Score*: 200
+  * *Destroy Score*: 400
+  * *Top Speed*: 5.820000
+  * *Ground Weapon*: [WeaponTypes#Suicide_Infested_Terran Suicide Infested Terran]
+  * *Comes from*: [UnitTypes#Zerg_Infested_Command_Center Zerg Infested Command Center]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Infested_Command_Center Zerg Infested Command Center]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+
+
+=== Zerg Lurker Egg ===
+  * *Max HP*: 200
+  * *Armor*: 10
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 1
+  * *Gas Cost*: 1
+  * *Build Time*: 1
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 128 (4)
+  * *Destroy Score*: 500
+  * *Comes from*: [UnitTypes#Zerg_Hydralisk Zerg Hydralisk]
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Hydralisk Zerg Hydralisk]
+    * [TechTypes#Lurker_Aspect Lurker Aspect]
+
+
+=== Zerg Lurker ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 100
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Space Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 250
+  * *Destroy Score*: 500
+  * *Top Speed*: 5.820000
+  * *Ground Weapon*: [WeaponTypes#Subterranean_Spines Subterranean Spines]
+  * *Comes from*: [UnitTypes#Zerg_Hydralisk Zerg Hydralisk]
+
+  ==== Abilities ====
+    * [TechTypes#Lurker_Aspect Lurker Aspect]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Hydralisk Zerg Hydralisk]
+    * [TechTypes#Lurker_Aspect Lurker Aspect]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Carapace Zerg Carapace]
+    * [UpgradeTypes#Zerg_Missile_Attacks Zerg Missile Attacks]
+
+
+
+== Zerg Air Units ==
+=== Zerg Overlord ===
+  * *Max HP*: 200
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Supply Provided*: 16
+  * *Space Provided*: 8
+  * *Unit Dimensions*: 50 x 50
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 100
+  * *Destroy Score*: 200
+  * *Top Speed*: 0.830000
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * Detector
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+    * [UpgradeTypes#Ventral_Sacs Ventral Sacs]
+    * [UpgradeTypes#Antennae Antennae]
+    * [UpgradeTypes#Pneumatized_Carapace Pneumatized Carapace]
+
+
+=== Zerg Mutalisk ===
+  * *Max HP*: 120
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 100
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 300
+  * *Destroy Score*: 600
+  * *Top Speed*: 6.670000
+  * *Weapon*: [WeaponTypes#Glave_Wurm Glave Wurm]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Spire Zerg Spire]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+    * [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
+
+
+=== Zerg Guardian ===
+  * *Max HP*: 150
+  * *Armor*: 2
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 100
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 550
+  * *Destroy Score*: 1100
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#Acid_Spore Acid Spore]
+  * *Comes from*: [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+    * [UnitTypes#Zerg_Greater_Spire Zerg Greater Spire]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+    * [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
+
+
+=== Zerg Queen ===
+  * *Max HP*: 120
+  * *Max Energy*: 200
+  * *Armor*: 0
+  * *Unit Size*: Medium
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 48 x 48
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 400
+  * *Destroy Score*: 800
+  * *Top Speed*: 6.670000
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * [TechTypes#Infestation Infestation]
+    * [TechTypes#Spawn_Broodlings Spawn Broodlings]
+    * [TechTypes#Ensnare Ensnare]
+    * [TechTypes#Parasite Parasite]
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Queen's_Nest Zerg Queen's Nest]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+    * [UpgradeTypes#Gamete_Meiosis Gamete Meiosis]
+
+
+=== Zerg Scourge ===
+  * *Max HP*: 25
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Mineral Cost*: 25
+  * *Gas Cost*: 75
+  * *Build Time*: 450
+  * *Supply Required*: 1
+  * *Unit Dimensions*: 24 x 24
+  * *Sight Range*: 160 (5)
+  * *Build Score*: 100
+  * *Destroy Score*: 200
+  * *Top Speed*: 6.670000
+  * *Air Weapon*: [WeaponTypes#Suicide_Scourge Suicide Scourge]
+  * *Comes from*: [UnitTypes#Zerg_Larva Zerg Larva]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Larva Zerg Larva]
+    * [UnitTypes#Zerg_Spire Zerg Spire]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+
+
+=== Zerg Cocoon ===
+  * *Max HP*: 200
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 1
+  * *Gas Cost*: 1
+  * *Build Time*: 1
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 128 (4)
+  * *Destroy Score*: 1100
+  * *Comes from*: [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+    * [UnitTypes#Zerg_Greater_Spire Zerg Greater Spire]
+
+
+=== Zerg Devourer ===
+  * *Max HP*: 250
+  * *Armor*: 2
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 550
+  * *Destroy Score*: 1100
+  * *Top Speed*: 5.000000
+  * *Air Weapon*: [WeaponTypes#Corrosive_Acid Corrosive Acid]
+  * *Comes from*: [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
+    * [UnitTypes#Zerg_Greater_Spire Zerg Greater Spire]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Zerg_Flyer_Carapace Zerg Flyer Carapace]
+    * [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
+
+
+
+== Zerg Heroes ==
+=== Torrasque ===
+  * *Max HP*: 800
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Space Required*: 4
+  * *Unit Dimensions*: 38 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 2600
+  * *Top Speed*: 5.120000
+  * *Ground Weapon*: [WeaponTypes#Kaiser_Blades_(Torrasque) Kaiser Blades (Torrasque)]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Matriarch ===
+  * *Max HP*: 300
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 48 x 48
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 1600
+  * *Top Speed*: 6.670000
+
+  ==== Abilities ====
+    * [TechTypes#Infestation Infestation]
+    * [TechTypes#Spawn_Broodlings Spawn Broodlings]
+    * [TechTypes#Ensnare Ensnare]
+    * [TechTypes#Parasite Parasite]
+    * Regenerates Hit Points
+
+
+=== Infested Kerrigan ===
+  * *Max HP*: 400
+  * *Max Energy*: 250
+  * *Armor*: 2
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 288 (9)
+  * *Destroy Score*: 4000
+  * *Top Speed*: 4.000000
+  * *Ground Weapon*: [WeaponTypes#Claws_(Infested_Kerrigan) Claws (Infested Kerrigan)]
+
+  ==== Abilities ====
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+    * [TechTypes#Consume Consume]
+    * [TechTypes#Ensnare Ensnare]
+    * [TechTypes#Psionic_Storm Psionic Storm]
+    * Regenerates Hit Points
+
+
+=== Unclean One ===
+  * *Max HP*: 250
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Medium
+  * *Space Required*: 2
+  * *Unit Dimensions*: 27 x 25
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 900
+  * *Top Speed*: 4.000000
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * [TechTypes#Dark_Swarm Dark Swarm]
+    * [TechTypes#Plague Plague]
+    * [TechTypes#Consume Consume]
+    * Regenerates Hit Points
+
+
+=== Hunter Killer ===
+  * *Max HP*: 160
+  * *Armor*: 2
+  * *Unit Size*: Medium
+  * *Space Required*: 2
+  * *Unit Dimensions*: 21 x 23
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 500
+  * *Top Speed*: 3.660000
+  * *Weapon*: [WeaponTypes#Needle_Spines_(Hunter_Killer) Needle Spines (Hunter Killer)]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * Regenerates Hit Points
+
+
+=== Devouring One ===
+  * *Max HP*: 120
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 16 x 16
+  * *Sight Range*: 160 (5)
+  * *Destroy Score*: 100
+  * *Top Speed*: 5.490000
+  * *Ground Weapon*: [WeaponTypes#Claws_(Devouring_One) Claws (Devouring One)]
+
+  ==== Abilities ====
+    * [TechTypes#Burrowing Burrowing]
+    * Regenerates Hit Points
+
+
+=== Kukulza (Mutalisk) ===
+  * *Max HP*: 300
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 1200
+  * *Top Speed*: 6.670000
+  * *Weapon*: [WeaponTypes#Glave_Wurm_(Kukulza) Glave Wurm (Kukulza)]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Kukulza (Guardian) ===
+  * *Max HP*: 400
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 44 x 44
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 2200
+  * *Top Speed*: 2.500000
+  * *Ground Weapon*: [WeaponTypes#Acid_Spore_(Kukulza) Acid Spore (Kukulza)]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Yggdrasill ===
+  * *Max HP*: 1000
+  * *Armor*: 4
+  * *Unit Size*: Large
+  * *Supply Provided*: 60
+  * *Space Provided*: 8
+  * *Unit Dimensions*: 50 x 50
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 400
+  * *Top Speed*: 0.830000
+
+  ==== Abilities ====
+    * Detector
+    * Regenerates Hit Points
+
+
+=== Infested Duran ===
+  * *Max HP*: 300
+  * *Max Energy*: 250
+  * *Armor*: 3
+  * *Unit Size*: Small
+  * *Space Required*: 1
+  * *Unit Dimensions*: 15 x 22
+  * *Sight Range*: 352 (11)
+  * *Destroy Score*: 700
+  * *Top Speed*: 4.000000
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Infested_Duran) C-10 Canister Rifle (Infested Duran)]
+
+  ==== Abilities ====
+    * [TechTypes#Lockdown Lockdown]
+    * [TechTypes#Personnel_Cloaking Personnel Cloaking]
+    * [TechTypes#Consume Consume]
+    * Regenerates Hit Points
+
+
+
+== Zerg Buildings ==
+=== Zerg Hatchery ===
+  * *Max HP*: 1250
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 300
+  * *Gas Cost*: 0
+  * *Build Time*: 1800
+  * *Supply Provided*: 2
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 99 x 65
+  * *Sight Range*: 288 (9)
+  * *Build Score*: 300
+  * *Destroy Score*: 900
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+
+
+=== Zerg Lair ===
+  * *Max HP*: 1800
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 1500
+  * *Supply Provided*: 2
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 99 x 65
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 100
+  * *Destroy Score*: 1200
+  * *Comes from*: [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+    * [UnitTypes#Zerg_Spawning_Pool Zerg Spawning Pool]
+
+
+=== Zerg Hive ===
+  * *Max HP*: 2500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 150
+  * *Build Time*: 1800
+  * *Supply Provided*: 2
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 99 x 65
+  * *Sight Range*: 352 (11)
+  * *Build Score*: 100
+  * *Destroy Score*: 1500
+  * *Comes from*: [UnitTypes#Zerg_Lair Zerg Lair]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Lair Zerg Lair]
+    * [UnitTypes#Zerg_Queen's_Nest Zerg Queen's Nest]
+
+
+=== Zerg Nydus Canal ===
+  * *Max HP*: 250
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Hive Zerg Hive]
+    * Requires Creep
+
+
+=== Zerg Hydralisk Den ===
+  * *Max HP*: 850
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 50
+  * *Build Time*: 600
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 81 x 57
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 100
+  * *Destroy Score*: 300
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Spawning_Pool Zerg Spawning Pool]
+    * Requires Creep
+
+
+=== Zerg Defiler Mound ===
+  * *Max HP*: 850
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 100
+  * *Build Time*: 900
+  * *Tile Size*: 4 x 2
+  * *Unit Dimensions*: 97 x 37
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 150
+  * *Destroy Score*: 450
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Hive Zerg Hive]
+    * Requires Creep
+
+
+=== Zerg Greater Spire ===
+  * *Max HP*: 1000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 100
+  * *Gas Cost*: 150
+  * *Build Time*: 1800
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 57 x 57
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 200
+  * *Destroy Score*: 1350
+  * *Comes from*: [UnitTypes#Zerg_Spire Zerg Spire]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Spire Zerg Spire]
+    * Requires Creep
+
+
+=== Zerg Queen's Nest ===
+  * *Max HP*: 850
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 900
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 71 x 57
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 175
+  * *Destroy Score*: 525
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Lair Zerg Lair]
+    * Requires Creep
+
+
+=== Zerg Evolution Chamber ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 75
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 77 x 53
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 40
+  * *Destroy Score*: 120
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+    * Requires Creep
+
+
+=== Zerg Ultralisk Cavern ===
+  * *Max HP*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 200
+  * *Build Time*: 1200
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 73 x 64
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 275
+  * *Destroy Score*: 825
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Hive Zerg Hive]
+    * Requires Creep
+
+
+=== Zerg Spire ===
+  * *Max HP*: 600
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 150
+  * *Build Time*: 1800
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 57 x 57
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 250
+  * *Destroy Score*: 750
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Lair Zerg Lair]
+    * Requires Creep
+
+
+=== Zerg Spawning Pool ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 200
+  * *Gas Cost*: 0
+  * *Build Time*: 1200
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 77 x 47
+  * *Sight Range*: 256 (8)
+  * *Build Score*: 75
+  * *Destroy Score*: 225
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * [UnitTypes#Zerg_Hatchery Zerg Hatchery]
+    * Requires Creep
+
+
+=== Zerg Creep Colony ===
+  * *Max HP*: 400
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 75
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 48 x 48
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 40
+  * *Destroy Score*: 120
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+    * Requires Creep
+
+
+=== Zerg Spore Colony ===
+  * *Max HP*: 400
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 48 x 48
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 25
+  * *Destroy Score*: 195
+  * *Air Weapon*: [WeaponTypes#Seeker_Spores Seeker Spores]
+  * *Comes from*: [UnitTypes#Zerg_Creep_Colony Zerg Creep Colony]
+
+  ==== Abilities ====
+    * Detector
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Creep_Colony Zerg Creep Colony]
+    * Requires Creep
+
+
+=== Zerg Sunken Colony ===
+  * *Max HP*: 300
+  * *Armor*: 2
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 300
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 48 x 48
+  * *Sight Range*: 320 (10)
+  * *Build Score*: 40
+  * *Destroy Score*: 240
+  * *Ground Weapon*: [WeaponTypes#Subterranean_Tentacle Subterranean Tentacle]
+  * *Comes from*: [UnitTypes#Zerg_Creep_Colony Zerg Creep Colony]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Creep_Colony Zerg Creep Colony]
+    * Requires Creep
+
+
+=== Zerg Extractor ===
+  * *Max HP*: 750
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 50
+  * *Gas Cost*: 0
+  * *Build Time*: 600
+  * *Tile Size*: 4 x 2
+  * *Unit Dimensions*: 128 x 64
+  * *Sight Range*: 224 (7)
+  * *Build Score*: 25
+  * *Destroy Score*: 75
+  * *Comes from*: [UnitTypes#Zerg_Drone Zerg Drone]
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+  ==== Requirements ====
+    * [UnitTypes#Zerg_Drone Zerg Drone]
+
+
+
+== Zerg Special Buildings ==
+=== Zerg Infested Command Center ===
+  * *Max HP*: 1500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 117 x 83
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 900
+  * *Top Speed*: 1.000000
+
+  ==== Abilities ====
+    * Liftoff
+    * Regenerates Hit Points
+
+
+=== Overmind (With Shell) ===
+  * *Max HP*: 5000
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 5 x 3
+  * *Unit Dimensions*: 160 x 73
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 10000
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Overmind ===
+  * *Max HP*: 2500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 5 x 3
+  * *Unit Dimensions*: 160 x 73
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 10000
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Mature Chrysalis ===
+  * *Max HP*: 250
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 5000
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Cerebrate ===
+  * *Max HP*: 1500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 73 x 64
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 2500
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Cerebrate Daggoth ===
+  * *Max HP*: 1500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 73 x 64
+  * *Sight Range*: 256 (8)
+  * *Destroy Score*: 2500
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+=== Overmind Cocoon ===
+  * *Max HP*: 2500
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 4000
+
+  ==== Abilities ====
+    * Regenerates Hit Points
+
+
+
+= Other =
 
 == Critters ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Critter Bengalaas || 90 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 4 || None || None ||  || ||
-|| Critter Kakaru || 94 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 5 || None || None ||  || ||
-|| Critter Ragnasaur || 95 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 4 || None || None ||  || ||
-|| Critter Rhynadon || 89 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 4 || None || None ||  || ||
-|| Critter Scantid || 93 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 4 || None || None ||  || ||
-|| Critter Ursadon || 96 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 60 || 0 || 0 || 0 || None || Small || 1 || 1 || 224 || 4 || None || None ||  || ||
+=== Rhynadon ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
+=== Bengalaas ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
+=== Scantid ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
+=== Kakaru ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 5.000000
+
+
+=== Ragnasaur ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
+=== Ursadon ===
+  * *Max HP*: 60
+  * *Armor*: 0
+  * *Unit Size*: Small
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+  * *Destroy Score*: 10
+  * *Top Speed*: 4.000000
+
+
 
 == Resources ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Resource Mineral Field || 176 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 100000 || 0 || 0 || 0 || None || Independent || 2 || 1 || 288 || 0 || None || None ||  || ||
-|| Resource Vespene Geyser || 188 || Other || None ||  || None || 1 || 1 || 1 || 0 || 0 || 255 || 0 || 100000 || 0 || 0 || 0 || None || Independent || 4 || 2 || 288 || 0 || None || None ||  || ||
+=== Mineral Field ===
+  * *Tile Size*: 2 x 1
+  * *Unit Dimensions*: 64 x 32
+  * *Sight Range*: 288 (9)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Vespene Geyser ===
+  * *Tile Size*: 4 x 2
+  * *Unit Dimensions*: 128 x 64
+  * *Sight Range*: 288 (9)
+
+  ==== Abilities ====
+    * Invincible
+
+
 
 == Spells ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| Spell Dark Swarm || 202 || Zerg || None ||  || None || 250 || 200 || 2400 || 0 || 0 || 255 || 0 || 800 || 0 || 0 || 0 || None || Independent || 5 || 5 || 256 || 0 || None || None ||  || ||
-|| Spell Disruption Web || 105 || Protoss || None ||  || None || 250 || 250 || 2400 || 0 || 0 || 255 || 0 || 800 || 0 || 0 || 0 || None || Independent || 4 || 3 || 256 || 0 || None || None ||  || ||
-|| Spell Scanner Sweep || 33 || Terran || None ||  || None || 0 || 0 || 1 || 0 || 0 || 255 || 0 || 0 || 0 || 0 || 0 || None || Independent || 1 || 1 || 320 || 0 || None || None ||  || ||
+=== Scanner Sweep ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 27 x 31
+  * *Sight Range*: 320 (10)
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Disruption Web ===
+  * *Unit Dimensions*: 120 x 80
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Dark Swarm ===
+  * *Unit Dimensions*: 160 x 160
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+
+== Beacons ==
+=== Zerg Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Terran Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Protoss Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Zerg Flag Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Terran Flag Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Protoss Flag Beacon ===
+  * *Tile Size*: 3 x 2
+  * *Unit Dimensions*: 96 x 64
+  * *Sight Range*: 256 (8)
+
+  ==== Abilities ====
+    * Invincible
+
+
+
+== Powerups ==
+=== Uraj Crystal ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Khalis Crystal ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Flag ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Young Chrysalis ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Psi Emitter ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Data Disk ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Khaydarin Crystal ===
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+  ==== Abilities ====
+    * Invincible
+
+
 
 == Misc ==
-|| Name || ID || Race || What Builds || Required Units || Required Tech || Mineral Price || Gas Price || Build Time || Supply Required || Supply Provided || Space Required || Space Provided || Max Hit Points || Max Shields || Max Energy || Armor || Armor Upgrade || Size || Tile Width || Tile Height || Sight Range || Top Speed || Ground Weapon || Air Weapon || Upgrades || Special Abilities ||
-|| None || 228 || None || None ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 || 0 || 0 || 0 || 0 || None || None || 0 || 0 || 0 || 0 || None || None ||  || ||
-|| Unknown || 229 || Unknown || Unknown ||  || None || 0 || 0 || 0 || 0 || 0 || 255 || 0 || 0 || 0 || 0 || 0 || None || None || 0 || 0 || 0 || 0 || None || None ||  || ||
+=== None ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
+
+=== Unknown ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
