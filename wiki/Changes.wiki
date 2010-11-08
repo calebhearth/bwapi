@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3064 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3071 ==
 
 Changes:
 
@@ -10,7 +10,6 @@ Changes:
   * `[`Config`]` Auto-menu options in the configuration file have been moved to the `[`auto_menu`]` group.
   * `[`Config`]` Renamed the auto_menu option _{{{LAN_UDP}}}_ to _{{{LAN}}}_.
   * Removed UnitType::getSublabel, as it didn't appear to be significant.
-  * Changed some unit name strings so that they make more sense; in most cases are shorter or have better formatting.
 
 New Features:
 
