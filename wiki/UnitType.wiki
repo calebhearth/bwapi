@@ -335,6 +335,36 @@ bool isNeutral() const;
 
 Returns true if the unit is neutral, such as a critter or mineral field.
 
+== isHero ==
+bool isHero() const;
+
+Returns true if the unit is a Hero unit. Hero units are special units used by the _{{{Campaign}}}_ and _{{{Use Map Settings}}}_.
+
+== isPowerup ==
+bool isPowerup() const;
+
+Returns true if the unit is a powerup. Powerups such as a [UnitTypes#Flag Flag] are used by other game types like _{{{Capture the Flag}}}_ and can be carried by a worker unit.
+
+== isBeacon ==
+bool isBeacon() const;
+
+Returns true if the unit is a Zerg, Terran, or Protoss Beacon. Beacons are used in the _{{{Campaign}}}_ and _{{{Use Map Settings}}}_.
+
+== isFlagBeacon ==
+bool isFlagBeacon() const;
+
+Returns true if the unit is a Zerg, Terran, or Protoss Flag Beacon. Flag beacons will create a flag unit for _{{{Capture the Flag}}}_ mode and allow you to relocate the beacon to another location so that you may hide your flag from the enemy.
+
+== isSpecialBuilding ==
+bool isSpecialBuilding() const;
+
+Returns true if the unit is a special building such as the [UnitTypes#Overmind Overmind].
+
+== isSpell ==
+bool isSpell() const;
+
+Returns true if the unit is either a [UnitTypes#Scanner_Sweep Scanner Sweep], [UnitTypes#Disruption_Web Disruption Web], or [UnitTypes#Dark_Swarm Dark Swarm].
+
 = Non-Member Methods =
 
 == getUnitType ==
