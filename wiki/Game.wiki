@@ -118,6 +118,11 @@ int getRevision();
 
 Retrieves the revision number for the current BWAPI build.
 
+== getInstanceNumber ==
+int getInstanceNumber();
+
+Retrieves the number for the current instance of Starcraft/BWAPI. Used to identify which instance an AI module belongs to.
+
 == getMousePosition ==
 BWAPI::Position getMousePosition();
 
