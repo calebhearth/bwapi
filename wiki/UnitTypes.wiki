@@ -159,6 +159,32 @@ This page contains a list of UnitTypes provided by BWAPI.
     * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
 
 
+=== Terran Siege Tank (siege Mode) ===
+  * *Max HP*: 150
+  * *Armor*: 1
+  * *Unit Size*: Large
+  * *Mineral Cost*: 150
+  * *Gas Cost*: 100
+  * *Build Time*: 750
+  * *Supply Required*: 4
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 320 (10)
+  * *Destroy Score*: 700
+  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon Arclite Shock Cannon]
+  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
+
+  ==== Abilities ====
+    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
+
+  ==== Requirements ====
+    * [UnitTypes#Terran_Factory Terran Factory]
+    * [UnitTypes#Terran_Machine_Shop Terran Machine Shop]
+
+  ==== Upgrades ====
+    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
+    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+
 === Terran Scv ===
   * *Max HP*: 60
   * *Armor*: 0
@@ -203,32 +229,6 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 10
   * *Top Speed*: 4.000000
-
-
-=== Terran Siege Tank (siege Mode) ===
-  * *Max HP*: 150
-  * *Armor*: 1
-  * *Unit Size*: Large
-  * *Mineral Cost*: 150
-  * *Gas Cost*: 100
-  * *Build Time*: 750
-  * *Supply Required*: 4
-  * *Unit Dimensions*: 32 x 32
-  * *Sight Range*: 320 (10)
-  * *Destroy Score*: 700
-  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon Arclite Shock Cannon]
-  * *Comes from*: [UnitTypes#Terran_Factory Terran Factory]
-
-  ==== Abilities ====
-    * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
-
-  ==== Requirements ====
-    * [UnitTypes#Terran_Factory Terran Factory]
-    * [UnitTypes#Terran_Machine_Shop Terran Machine Shop]
-
-  ==== Upgrades ====
-    * [UpgradeTypes#Terran_Vehicle_Plating Terran Vehicle Plating]
-    * [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
 
 
 === Terran Firebat ===
@@ -3546,4 +3546,3 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Unit Size*: None
   * *Unit Dimensions*: 1 x 1
   * *Sight Range*: 0 (0)
-
