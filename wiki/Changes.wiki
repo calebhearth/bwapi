@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3057 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3064 ==
 
 Changes:
 
@@ -27,6 +27,7 @@ New Features:
   * `[`Config`]` For auto-menu, added the ability to choose a race for specific enemy players using _{{{enemy_race_#}}}_.
   * Added Heroes, Beacons, and Standard Powerups to UnitTypes. This gives you more flexibility for _*Capture The Flag*_ and _*Use Map Settings*_ (including _*Campaigns*_).
   * Added hero weapons to WeaponTypes.
+  * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
 
 Bug Fixes:
 
