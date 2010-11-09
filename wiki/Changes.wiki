@@ -19,7 +19,7 @@ New Features:
   * Added [Unit#isStuck Unit::isStuck] - Returns true if the unit is "stuck" on other units.
   * Made [Game#setLastError Game::setLastError] available.
   * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
-  * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Note: Windows XP users may experience failure.
+  * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Bad news: Windows XP users may experience failure. Good news: It can be used with older BWAPI revisions.
   * `[`Config`]` Added the ability to load different revisions of BWAPI for different modules using the config options _{{{ai_dll_rev}}}_ and _{{{ai_dll_#_rev}}}_.
   * `[`Config`]` Added auto-menu race options RandomTP, RandomTZ, and RandomPZ which allows you to randomly choose one of two races.
   * `[`Config`]` Added the auto-menu option _{{{lan_mode}}}_ which allows you to choose between the different multiplayer network modes.
