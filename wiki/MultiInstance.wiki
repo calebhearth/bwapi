@@ -52,9 +52,13 @@ You can also specify a revision for older AI binaries provided that revision's B
 
 = Networking =
 
-You only need to copy _{{{Starcraft\BWAPI_SNPModule.snp}}}_ to your Starcraft folder. A new network mode called _Local PC_ should now be available after choosing Multiplayer. 
+Copy _{{{Starcraft\BWAPI_SNPModule.snp}}}_ to your Starcraft folder.
 
-This network mode will allow you to play matches between multiple instances. You can check the issues tracker for known issues when attempting to use this mode.
+  http://bwapi.googlecode.com/svn/wiki/multi_tut_07.gif
+
+A new network mode called *Local PC* should now be available after choosing Multiplayer. 
+
+    _*Note*: This network mode will allow you to play matches between multiple instances. You can check the issues tracker for known issues when attempting to use this mode._
 
 
 = Conclusion =
