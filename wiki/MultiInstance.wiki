@@ -48,7 +48,7 @@ Now change the entries _{{{ai_dll_#}}}_ accordingly to load your AI modules.
 
 When running with multiple instances, the original _{{{ai_dll}}}_ entry is ignored, and the _{{{ai_dll_#}}}_ entries specify which AI module belongs to which instance.
 
-    _*Note*: You can also specify a revision for older AI binaries provided that revision's BWAPI.dll is copied to the _{{{bwapi-data\revisions\}}}_ folder (as _{{{#.dll}}}_ where # is the revision number) and is compatible with multiple instances._
+You can also specify a revision for older AI binaries provided that revision's BWAPI.dll is copied to the _{{{bwapi-data\revisions\}}}_ folder (as _{{{#.dll}}}_ where # is the revision number) and is revision 2753 or newer._
 
 = Networking =
 
