@@ -152,11 +152,6 @@ bool isUpgrading([UpgradeType] upgrade) const;
 
 Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
 
-== maxEnergy ==
-int maxEnergy([UnitType] unit) const;
-
-Returns the maximum amount of energy for the given unit type, taking into account the upgrades the player has.
-
 == getColor ==
 [Color] getColor() const;
 
@@ -166,3 +161,38 @@ Returns the color of the player, used for drawing to the screen.
 int getTextColor() const;
 
 Returns a control character that represents the player's color. Used for printing text to the screen.
+
+== maxEnergy ==
+int maxEnergy([UnitType] unit) const;
+
+Returns the maximum amount of energy for the given unit type, taking into account the upgrades the player has.
+
+== topSpeed ==
+double topSpeed(UnitType unit) const;
+
+Returns the top speed for the given unit type, taking into account the upgrades the player has.
+
+== groundWeaponMaxRange ==
+int groundWeaponMaxRange(UnitType unit) const;
+
+Returns the maximum range of the given unit type's ground weapon, taking into account the upgrades the player has.
+
+== airWeaponMaxRange ==
+int airWeaponMaxRange(UnitType unit) const;
+
+Returns the maximum range of the given unit type's air weapon, taking into account the upgrades the player has.
+
+== sightRange ==
+int sightRange(UnitType unit) const;
+
+Returns the sight range for the given unit type, taking into account the upgrades the player has.
+
+== groundWeaponDamageCooldown ==
+int groundWeaponDamageCooldown(UnitType unit) const;
+
+Returns the attack cooldown of the given unit type's ground weapon, taking into account the upgrades the player has.
+
+== armor ==
+int armor(UnitType unit) const;
+
+Returns the armor for the given unit type, taking into account the upgrades the player has.
