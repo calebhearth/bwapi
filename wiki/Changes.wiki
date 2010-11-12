@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3081 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3098 ==
 
 Changes:
 
@@ -28,6 +28,7 @@ New Features:
   * Added hero weapons to WeaponTypes.
   * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
   * Added [Game#getInstanceNumber Game::getInstanceNumber] to identify which instance an AI module belongs to.
+  * Added several [Player] functions for obtaining upgraded unit type stats, including [Player#topSpeed Player::topSpeed], [Player#groundWeaponMaxRange Player::groundWeaponMaxRange], [Player#airWeaponMaxRange Player::airWeaponMaxRange], [Player#sightRange Player::sightRange], [Player#groundWeaponDamageCooldown Player::groundWeaponDamageCooldown], and [Player#armor Player::armor].
 
 Bug Fixes:
 
