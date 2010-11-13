@@ -3,6 +3,7 @@
 BWAPI can automate most of the menus in the Starcraft GUI. The following options in the [http://code.google.com/p/bwapi/source/browse/trunk/Release_Binary/Starcraft/bwapi-data/bwapi.ini bwapi.ini] file specify how BWAPI automates the in-game menu system:
 
   * [#auto_menu auto_menu]
+  * [#lan_mode lan_mode]
   * [#auto_restart auto_restart]
   * [#map map]
   * [#save_replay save_replay]
@@ -16,10 +17,17 @@ BWAPI can automate most of the menus in the Starcraft GUI. The following options
 This specifies what mode the menu system is in. It can have one of the following values:
   * OFF - does no menu automation
   * SINGLE_PLAYER - goes to single player screen (also used for replays)
-  * LAN_UDP - goes to LAN UDP screen
+  * LAN - goes to one of the specified local area networks
   * BATTLE_NET - goes to Battle Net login screen
 
 If auto_menu is set to OFF, menu automation is disabled and none of the other options have any effect.
+
+=== lan_mode ===
+This specifies the network mode that is to be used. It should be the same name as the network mode being used. Examples:
+  * Local Area Network (IPX)
+  * Direct Cable Connection
+  * Local Area Network (UDP)
+  * Local PC (UDP)
 
 === auto_restart ===
 
