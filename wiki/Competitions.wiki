@@ -2,14 +2,16 @@
 
 This page contains a list of competitions using BWAPI.
 
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="2" />
 
 ----
 = In Progress =
 
- == AIIDE 2011 ==
-  No details available.
+ == _AIIDE 2011_ ==
 
+ === Info ===
+  * *Hosted by:* University of Alberta
+  _Details have yet to be announced._
 
 ----
 = Finished =
