@@ -13,6 +13,7 @@ This list contains commands that are available in both RELEASE and DEBUG modes.
 || {{{/cheats}}} || Enters several cheat codes. ||
 || {{{/restart}}} || Restarts the game. ||
 || {{{/nogui}}} || Toggles the display of Starcraft's Graphical User Interface (GUI). ||
+|| {{{/wmode}}} || Toggles the display between windowed mode and fullscreen mode. ||
 
 
 = Debug Commands =
@@ -26,3 +27,9 @@ This list contains commands that are only available in DEBUG mode.
 || {{{/unitdebug}}} || Toggles debugging of BW-level unit data. ||
 || {{{/grid}}} || Toggles the display of the tile grid. ||
 || {{{/test}}} || Used for quickly testing various temporary things. ||
+|| {{{/hud}}} || Toggles the display of the HUD (minimap/buttons/stats GUI). ||
+
+
+= Hotkeys =
+|| *Hotkey || *Description * ||
+|| {{{ALT + ENTER))) || Toggles the display between windowed mode and fullscreen mode. ||
