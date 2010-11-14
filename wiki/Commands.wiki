@@ -32,4 +32,4 @@ This list contains commands that are only available in DEBUG mode.
 
 = Hotkeys =
 || *Hotkey || *Description * ||
-|| {{{ALT + ENTER))) || Toggles the display between windowed mode and fullscreen mode. ||
+|| {{{ALT + ENTER}}} || Toggles the display between windowed mode and fullscreen mode. ||
