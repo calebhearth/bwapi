@@ -53,6 +53,7 @@ Returns the set of all the error codes, which are listed below.
   * [#Insufficient_Energy Insufficient_Energy]
   * [#Insufficient_Tech Insufficient_Tech]
   * [#Insufficient_Ammo Insufficient_Ammo]
+  * [#Insufficient_Space Insufficient_Space]
   * [#Invalid_Tile_Position Invalid_Tile_Position]
   * [#Unbuildable_Location Unbuildable_Location]
   * [#Unreachable_Location Unreachable_Location]
@@ -129,6 +130,9 @@ Returned if you do something like try to train Medics when you don't have an Aca
 === {{{Insufficient_Ammo}}} ===
 
 Returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs.
+
+=== {{{Insufficient_Space}}} ===
+Returned if you try to train more Interceptors than the Carrier can hold, try to train more Scarabs than a Reaver can hold, or try to load more units into a transport than there is space.
 
 === {{{Invalid_Tile_Position}}} ===
 
