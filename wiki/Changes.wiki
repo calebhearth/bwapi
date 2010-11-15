@@ -20,8 +20,8 @@ New Functions:
   * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
   * Added [Game#getInstanceNumber Game::getInstanceNumber] to identify which instance an AI module belongs to.
   * Added several [Player] functions for obtaining upgraded unit type stats, including [Player#topSpeed Player::topSpeed], [Player#groundWeaponMaxRange Player::groundWeaponMaxRange], [Player#airWeaponMaxRange Player::airWeaponMaxRange], [Player#sightRange Player::sightRange], [Player#groundWeaponDamageCooldown Player::groundWeaponDamageCooldown], and [Player#armor Player::armor].
-  * Added [TechType TechType::targetsUnit] - returns true if the tech type requires a unit to target.
-  * Added [TechType TechType::targetsPosition] - returns true if the tech type requires a position to target.
+  * Added [TechType#targetsUnit TechType::targetsUnit] - returns true if the tech type requires a unit to target.
+  * Added [TechType#targetsPosition TechType::targetsPosition] - returns true if the tech type requires a position to target.
 
 New Config Features:
   * `[`Config`]` Added the ability to load different revisions of BWAPI for different modules using the config options _{{{ai_dll_rev}}}_ and _{{{ai_dll_#_rev}}}_.
