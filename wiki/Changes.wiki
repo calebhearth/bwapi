@@ -11,27 +11,31 @@ Changes:
   * `[`Config`]` Renamed the auto_menu option _{{{LAN_UDP}}}_ to _{{{LAN}}}_.
   * Removed UnitType::getSublabel, as it didn't appear to be significant.
 
-New Features:
-
+New Functions:
   * Added [UnitType#cloakingTech UnitType::cloakingTech] - returns the tech used to cloak the unit, or TechTypes::None if the unit cannot cloak or is permanently cloaked
   * Added [Unit#getPowerUp Unit::getPowerUp] - returns the power up the unit is holding, or NULL if the unit is not holding a power up
   * Added [Unit#isInterruptible Unit::isInterruptible] - returns true if the unit can be interrupted without issuing a stop or one of the cancel commands.
   * Added [Unit#isStuck Unit::isStuck] - Returns true if the unit is "stuck" on other units.
   * Made [Game#setLastError Game::setLastError] available.
-  * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
-  * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Bad news: Windows XP users may experience failure. Good news: It can be used with older BWAPI revisions.
+  * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
+  * Added [Game#getInstanceNumber Game::getInstanceNumber] to identify which instance an AI module belongs to.
+  * Added several [Player] functions for obtaining upgraded unit type stats, including [Player#topSpeed Player::topSpeed], [Player#groundWeaponMaxRange Player::groundWeaponMaxRange], [Player#airWeaponMaxRange Player::airWeaponMaxRange], [Player#sightRange Player::sightRange], [Player#groundWeaponDamageCooldown Player::groundWeaponDamageCooldown], and [Player#armor Player::armor].
+  * Added [TechType TechType::targetsUnit] - returns true if the tech type requires a unit to target.
+  * Added [TechType TechType::targetsPosition] - returns true if the tech type requires a position to target.
+
+New Config Features:
   * `[`Config`]` Added the ability to load different revisions of BWAPI for different modules using the config options _{{{ai_dll_rev}}}_ and _{{{ai_dll_#_rev}}}_.
   * `[`Config`]` Added auto-menu race options RandomTP, RandomTZ, and RandomPZ which allows you to randomly choose one of two races.
   * `[`Config`]` Added the auto-menu option _{{{lan_mode}}}_ which allows you to choose between the different multiplayer network modes.
   * `[`Config`]` For auto-menu, added the ability to choose a race for specific enemy players using _{{{enemy_race_#}}}_.
+
+Other New Features:
+
+  * `[`W-Mode`]` The position of the window in the config now changes when a new multiple-instance compatible client is launched.
+  * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Bad news: Windows XP users may experience failure. Good news: It can be used with older BWAPI revisions.
   * Added Heroes, Beacons, and Standard Powerups to UnitTypes. This gives you more flexibility for _*Capture The Flag*_ and _*Use Map Settings*_ (including _*Campaigns*_).
   * Added hero weapons to WeaponTypes.
-  * Added several UnitType functions: [UnitType#isHero UnitType::isHero], [UnitType#isPowerup UnitType::isPowerup], [UnitType#isBeacon UnitType::isBeacon], [UnitType#isFlagBeacon UnitType::isFlagBeacon], [UnitType#isSpecialBuilding UnitType::isSpecialBuilding], and [UnitType#isSpell UnitType::isSpell].
-  * Added [Game#getInstanceNumber Game::getInstanceNumber] to identify which instance an AI module belongs to.
-  * Added several [Player] functions for obtaining upgraded unit type stats, including [Player#topSpeed Player::topSpeed], [Player#groundWeaponMaxRange Player::groundWeaponMaxRange], [Player#airWeaponMaxRange Player::airWeaponMaxRange], [Player#sightRange Player::sightRange], [Player#groundWeaponDamageCooldown Player::groundWeaponDamageCooldown], and [Player#armor Player::armor].
   * *BWAPI now supports a native Windowed mode.* Pressing ALT+Enter or typing /wmode will toggle between fullscreen and windowed mode.
-  * Added [TechType TechType::targetsUnit] - returns true if the tech type requires a unit to target.
-  * Added [TechType TechType::targetsPosition] - returns true if the tech type requires a position to target.
   * Added [Error Errors::Invalid_Tile_Position] - returned when you try to build something at an invalid tile position.
 
 Bug Fixes:
@@ -41,6 +45,7 @@ Bug Fixes:
   * Fix several issues for commands that were being sent repetitively and for actions that couldn't actually be performed.
   * Several functions in the BWAPI Client have been updated to match behaviours and fix issues that were once in the BWAPI server.
   * Fixed some unlikely crashes, possibly related to the compatibility with other hacks.
+  * Fixed a bug where unit command error codes wouldn't be generated correctly in BWAPI Client.
 
 == Changes from BWAPI Beta 3.1.1 (r2864) to BWAPI Beta 3.2 (r2917) ==
 
