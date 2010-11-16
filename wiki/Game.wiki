@@ -64,7 +64,7 @@ std::set< [Misc#Position Position] >& getNukeDots();
 Returns the set of all accessible nuke dots.
 
 == getEvents ==
-std::list< Event >& getEvents();
+std::list< [Event] >& getEvents();
 
 Returns the list of events for the current frame. Events correspond to AIModule callbacks, so for example rather than implementing [AIModule#onUnitCreate AIModule::onUnitCreate] you could check the list of events every frame and look for [Event#UnitCreate Event::UnitCreate].
 
