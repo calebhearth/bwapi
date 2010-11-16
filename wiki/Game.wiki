@@ -58,6 +58,11 @@ std::set< [Bullet]`*` >& getBullets();
 
 Returns the set of all accessible bullets.
 
+== getNukeDots ==
+std::set< [Misc#Position Position >& getNukeDots();
+
+Returns the set of all accessible nuke dots.
+
 == getEvents ==
 std::list< Event >& getEvents();
 
