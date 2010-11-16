@@ -36,7 +36,7 @@ Other New Features:
   * *BWAPI can now play networked games between multiple instances using the BWAPI network module (BWAPI_SNPModule.snp) which currently supports winsock UDP on localhost.* Bad news: Windows XP users may experience failure. Good news: It can be used with older BWAPI revisions.
   * Added Heroes, Beacons, and Standard Powerups to UnitTypes. This gives you more flexibility for _*Capture The Flag*_ and _*Use Map Settings*_ (including _*Campaigns*_).
   * Added hero weapons to WeaponTypes.
-  * *BWAPI now supports a native Windowed mode.* Pressing ALT+Enter or typing /wmode will toggle between fullscreen and windowed mode.
+  * *BWAPI now supports a native Windowed mode.* Pressing ALT+Enter or typing /wmode will toggle between fullscreen and windowed mode. (Note that this windowed mode is not compatible with Battle.net)
   * Added [Error#Invalid_Tile_Position Errors::Invalid_Tile_Position] - returned when you try to build something at an invalid tile position.
 
 Bug Fixes:
