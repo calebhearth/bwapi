@@ -391,6 +391,11 @@ Sets the speed of the game to the given number. Lower numbers are faster. 0 is t
 
 See also: [Game#setGUI Game::setGUI].
 
+== issueCommand ==
+bool issueCommand(const std::set<[Unit]{{{*}}}>& units, [UnitCommand] command);
+
+Issues a command to a set of units. Returns true if at least one unit was able to execute the command.
+
 == getSelectedUnits ==
 std::set<[Unit]`*`>& getSelectedUnits();
 
