@@ -23,7 +23,7 @@ New Functions:
   * Added [TechType#targetsUnit TechType::targetsUnit] - returns true if the tech type requires a unit to target.
   * Added [TechType#targetsPosition TechType::targetsPosition] - returns true if the tech type requires a position to target.
   * Added [Game#getNukeDots Game::getNukeDots] - returns the set of accessible nuke dots on the map.
- * Added [Unit#canIssueCommand Unit::canIssueCommand] - use to see if you can issue a command to the given unit, without actually executing it.
+  * Added [Unit#canIssueCommand Unit::canIssueCommand] - use to see if you can issue a command to the given unit, without actually executing it.
 
 New Config Features:
   * `[`Config`]` Added the ability to load different revisions of BWAPI for different modules using the config options _{{{ai_dll_rev}}}_ and _{{{ai_dll_#_rev}}}_.
