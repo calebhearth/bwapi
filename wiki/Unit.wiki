@@ -682,16 +682,12 @@ See also: [Unit]::[Unit#exists exists].
 == canIssueCommand ==
 bool canIssueCommand ([UnitCommand] command);
 
-Returns true if the unit is able to execute the given command, or false if there is an error. For example Unit::canIssueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0))
-
-will return true if the unit can issue the attackMove command to the given position.
+Returns true if the unit is able to execute the given command, or false if there is an error. For example Unit::canIssueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0)) will return true if the unit can issue the attackMove command to the given position.
 
 == issueCommand ==
 bool issueCommand([UnitCommand] command);
 
-Issues the give unit command, or returns false if there is an error. For example Unit::issueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0))
-
-will order the unit to attack move to the Position (50,60).
+Issues the give unit command, or returns false if there is an error. For example Unit::issueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0)) will order the unit to attack move to the Position (50,60).
 
 == attackMove ==
 bool attackMove([Misc#Position Position] target);
