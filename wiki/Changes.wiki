@@ -1,4 +1,4 @@
-== Changes from BWAPI Beta 3.2 (r2917) to r3106 ==
+== Changes from BWAPI Beta 3.2 (r2917) to r3149 ==
 
 Changes:
 
@@ -49,6 +49,7 @@ Bug Fixes:
   * Several functions in the BWAPI Client have been updated to match behaviours and fix issues that were once in the BWAPI server.
   * Fixed some unlikely crashes, possibly related to the compatibility with other hacks.
   * Fixed a bug where unit command error codes wouldn't be generated correctly in BWAPI Client.
+  * Fixed a bug where networked games involving auto_menu would desynchronize.
 
 == Changes from BWAPI Beta 3.1.1 (r2864) to BWAPI Beta 3.2 (r2917) ==
 
