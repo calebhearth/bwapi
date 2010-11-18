@@ -58,7 +58,7 @@ Copy _{{{Starcraft\BWAPI_SNPModule.snp}}}_ to your Starcraft folder.
 
 A new network mode called *Local PC* should now be available after choosing Multiplayer. 
 
-    _*Note*: This network mode will allow you to play matches between multiple instances. You can check the issues tracker for known issues when attempting to use this mode._
+    _*Note*: *This network mode will only appear when BWAPI has been [Injection injected]* and will allow you to play matches between multiple instances. You can check the [http://code.google.com/p/bwapi/issues/list issues tracker] for known issues when attempting to use this mode._
 
 
 = Conclusion =
