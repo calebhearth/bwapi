@@ -50,6 +50,8 @@ Bug Fixes:
   * Fixed some unlikely crashes, possibly related to the compatibility with other hacks.
   * Fixed a bug where unit command error codes wouldn't be generated correctly in BWAPI Client.
   * Fixed a bug where networked games involving auto_menu would desynchronize.
+  * Fixed a bug where calling [Game#restartGame Game::restartGame] would not work correctly during [AIModule#onEnd AIModule::onEnd].
+  * Fixed a bug where restarting the game wouldn't work correctly for BWAPI client programs.
 
 == Changes from BWAPI Beta 3.1.1 (r2864) to BWAPI Beta 3.2 (r2917) ==
 
