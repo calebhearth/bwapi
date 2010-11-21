@@ -1,7 +1,9 @@
 #labels Featured
 == Changes from BWAPI Beta 3.3 (r3163) to Recent (r3167) ==
 
-Nothing yet.
+Bug Fixes:
+
+  * Fixed a bug where canBuildHere would do collision checks with flying and lifted units.
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
 
