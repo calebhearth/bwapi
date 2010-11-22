@@ -1,5 +1,12 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3167) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3178) ==
+
+Changes:
+
+  * [http://code.google.com/p/bwapi/wiki/Misc#Position Position]::getApproxDistance now returns an integer and more accurately resembles the internal Starcraft function.
+
+Additions:
+  * Added [Unit#isInWeaponRange Unit::isInWeaponRange] which returns true if the specified target unit is in the immediate weapon range of the callee.
 
 Bug Fixes:
 
