@@ -110,27 +110,22 @@ Returns how much of the supply is actually being used by units. If a race is pro
 == allUnitCount ==
 int allUnitCount([UnitType] type) const;
 
-Returns the current number of all existing units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is disabled, this will return 0 for enemy players.
-
-== accessibleUnitCount ==
-int accessibleUnitCount([UnitType] type) const;
-
-Returns the current number of all accessible units of the given type owned by this player (both completed units and incomplete units).
+Returns the current number of all accessible units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is disabled, only visible units will be accessible so this function will return the same values as visibleUnitCount.
 
 == visibleUnitCount ==
 int visibleUnitCount([UnitType] type) const;
 
-Returns the current number of all visible units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is disabled, then this function will return the same values as accessibleUnitCount.
+Returns the current number of all visible units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is disabled, then this function will return the same values as allUnitCount.
 
 == completedUnitCount ==
 int completedUnitCount([UnitType] type) const;
 
-Returns the current number of completed units of the given type owned by this player. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
+Returns the current number of completed accessible units of the given type owned by this player.
 
 == incompleteUnitCount ==
 int incompleteUnitCount([UnitType] type) const;
 
-Returns the current number of incomplete units of the given type owned by this player. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
+Returns the current number of incomplete accessible units of the given type owned by this player.
 
 == deadUnitCount ==
 int deadUnitCount([UnitType] unit) const;
