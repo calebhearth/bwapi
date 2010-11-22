@@ -110,7 +110,7 @@ Returns how much of the supply is actually being used by units. If a race is pro
 == allUnitCount ==
 int allUnitCount([UnitType] type) const;
 
-Returns the current number of all existing units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information is disabled, this will return 0 for enemy players.
+Returns the current number of all existing units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
 == accessibleUnitCount ==
 int accessibleUnitCount([UnitType] type) const;
@@ -125,22 +125,22 @@ Returns the current number of all visible units of the given type owned by this 
 == completedUnitCount ==
 int completedUnitCount([UnitType] type) const;
 
-Returns the current number of completed units of the given type owned by this player. If the Complete Map Information is disabled, this will return 0 for enemy players.
+Returns the current number of completed units of the given type owned by this player. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
 == incompleteUnitCount ==
 int incompleteUnitCount([UnitType] type) const;
 
-Returns the current number of incomplete units of the given type owned by this player. If the Complete Map Information is disabled, this will return 0 for enemy players.
+Returns the current number of incomplete units of the given type owned by this player. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
 == deadUnitCount ==
 int deadUnitCount([UnitType] unit) const;
 
-Returns the total number of friendly units of the given type that this player has lost. If the Complete Map Information is disabled, this will return 0 for enemy players.
+Returns the total number of friendly units of the given type that this player has lost. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
 == killedUnitCount ==
 int killedUnitCount([UnitType] unit) const;
 
-Returns the total number of enemy units of the given type that this player has killed. If the Complete Map Information is disabled, this will return 0 for enemy players.
+Returns the total number of enemy units of the given type that this player has killed. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
 == getUpgradeLevel ==
 int getUpgradeLevel([UpgradeType] upgrade) const;
