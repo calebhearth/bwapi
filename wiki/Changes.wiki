@@ -5,6 +5,7 @@ Changes:
 
   * [http://code.google.com/p/bwapi/wiki/Misc#Position Position]::getApproxDistance now returns an integer and more accurately resembles the internal Starcraft function.
   * [Player#allUnitCount Player::allUnitCount] now returns the number of accessible units of the given type for the given player. If complete map information is disabled, this will be equivalent to [Player#visibleUnitCount Player::visibleUnitCount].
+  * [Player#getUpgradeLevel Player::getUpgradeLevel] also works for enemy players when the complete map information flag is disabled if at least one unit owned by that player that uses that upgrade is accessible.
 
 Additions:
   * Added [Unit#isInWeaponRange Unit::isInWeaponRange] which returns true if the specified target unit is in the immediate weapon range of the callee.
@@ -13,6 +14,8 @@ Additions:
 Bug Fixes:
 
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would do collision checks with flying and lifted units.
+  * Fixed a bug where [Game#enemy Game::enemy] would return NULL if the enemy player left the game.
+  * Fixed a bug where [Unit#getUpgradeLevel Unit::getUpgradeLevel] would always return 0 in client programs when complete map information was disabled.
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
 
