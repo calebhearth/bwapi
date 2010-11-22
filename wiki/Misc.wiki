@@ -15,7 +15,7 @@ Methods:
   * int x()
   * int y()
   * double getDistance(Position position) - returns the actual distance to the given position
-  * double getApproxDistance(Position position) - uses Starcraft's approximated distance function, which is reasonably accurate yet avoids a sqrt operation.
+  * int getApproxDistance(Position position) - uses Starcraft's approximated distance function, which is reasonably accurate yet avoids a sqrt operation.
   * bool isValid() - returns true if the position is on the map
   * void makeValid() - moves the position to the closest valid position
 
