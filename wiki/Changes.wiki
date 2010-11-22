@@ -7,6 +7,8 @@ Changes:
 
 Additions:
   * Added [Unit#isInWeaponRange Unit::isInWeaponRange] which returns true if the specified target unit is in the immediate weapon range of the callee.
+  * Added [Player#accessibleUnitCount Player::accessibleUnitCount] which returns the number of accessible units of the given type owned by the player.
+  * Added [Player#visibleUnitCount Player::visibleUnitCount] which returns the number of visible units of the given type owned by the player.
 
 Bug Fixes:
 
