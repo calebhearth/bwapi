@@ -522,7 +522,7 @@ bool isInterruptible() const;
 Returns true if the unit can be interrupted by another order like move or attack, otherwise there are very few orders that can be issued such as Unburrow, LiftOff, and Cancel.
 
 == isInWeaponRange ==
-bool isInWeaponRange(Unit *target) const;
+bool isInWeaponRange(Unit `*`target) const;
 
 Returns true if the unit can immediately attack the target unit without any movement.
 
