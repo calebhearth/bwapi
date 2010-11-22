@@ -115,7 +115,7 @@ Returns the current number of all existing units of the given type owned by this
 == accessibleUnitCount ==
 int accessibleUnitCount([UnitType] type) const;
 
-Returns the current number of all accessible units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is enabled, then this function will return the same values as allUnitCount.
+Returns the current number of all accessible units of the given type owned by this player (both completed units and incomplete units). If the Complete Map Information flag is enabled, then this function will return the same values as allUnitCount, otherwise it will return the same values as visibleUnitCount.
 
 == visibleUnitCount ==
 int visibleUnitCount([UnitType] type) const;
