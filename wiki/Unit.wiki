@@ -284,7 +284,9 @@ If the unit is an SCV that is constructing a building, this will return the buil
 == getTarget ==
 [Unit]{{{*}}} getTarget() const;
 
-Generally returns the appropriate target unit after issuing an order that accepts a target unit (i.e. attack, repair, gather, follow, etc.). To check for a target that has been acquired automatically (without issuing an order) see getOrderTarget.
+After issuing an order to a target unit, this returns the target that the unit should move to and returns NULL after the unit has reached its target.
+
+See also: [Unit]::[Unit#getOrderTarget getOrderTarget], See also: [Unit]::[Unit#isInWeaponRange isInWeaponRange]
 
 == getTargetPosition ==
 [Misc#Position Position] getTargetPosition() const;
@@ -299,7 +301,9 @@ Returns the [Order] that this unit is currently executing.
 == getOrderTarget ==
 [Unit]{{{*}}} getOrderTarget() const;
 
-This is usually set when the low level unit AI acquires a new target automatically. For example if an enemy probe comes in range of your marine, the marine will start attacking it, and getOrderTarget will be set in this case, but not getTarget.
+This is set when your unit has performed an order to a target unit and for targets that are automatically acquired.
+
+See also: [Unit]::[Unit#getTarget getTarget]
 
 == getSecondaryOrder ==
 [Order] getSecondaryOrder() const;
