@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3208) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3211) ==
 
 Changes:
 
@@ -16,8 +16,10 @@ Bug Fixes:
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would do collision checks with flying and lifted units.
   * Fixed a bug where [Game#enemy Game::enemy] would return NULL if the enemy player left the game.
   * Fixed a bug where [Unit#getUpgradeLevel Unit::getUpgradeLevel] would always return 0 in client programs when complete map information was disabled.
-  * Fixed a bug where [Game#printf Game::printf] and [Game#sendText Game::sendText] could cause a crash when called from the BWAPI Client.
+  * Fixed a bug where [Game#printf Game::printf] and [Game#sendText Game::sendText] could cause a crash when called from the BWAPI Client using a formatting character "%" as part of the desired message.
   * Fixed a regression that prevented the use of Nuclear Missiles.
+  * Corrected a mistake where [Color#Colors Colors]::Purple would appear Orange.
+  * Fixed a crash involving a buffer overflow with text formatting for [Game#printf Game::printf], [Game#sendText Game::sendText], and [Game#drawText Game::drawText].
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
 
