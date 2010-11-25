@@ -20,6 +20,7 @@ Bug Fixes:
   * Fixed a regression that prevented the use of Nuclear Missiles.
   * Corrected a mistake where [Color#Colors Colors]::Purple would appear Orange.
   * Fixed a crash involving a buffer overflow with text formatting for [Game#printf Game::printf], [Game#sendText Game::sendText], and [Game#drawText Game::drawText].
+  * Fixed a bug where [Unit#getLastOrderFrame Unit::getLastOrderFrame] would not reset to 0 at the start of a new match.
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
 
