@@ -423,10 +423,10 @@ Sets the size at which text using [#drawText drawText] will be drawn at. The val
 }}}
 
 == drawText ==
-  * void drawText(CoordinateType::Enum ctype, int x, int y, const char`*` text, ...);
-  * void drawTextMap(int x, int y, const char`*` text, ...);
-  * void drawTextMouse(int x, int y, const char`*` text, ...);
-  * void drawTextScreen(int x, int y, const char`*` text, ...);
+  * void drawText(CoordinateType::Enum ctype, int x, int y, const char `*`format, ...);
+  * void drawTextMap(int x, int y, const char `*`format, ...);
+  * void drawTextMouse(int x, int y, const char `*`format, ...);
+  * void drawTextScreen(int x, int y, const char `*`format, ...);
 
 Draws text on the screen at the given position. Text can be drawn in different colors by using the following control characters:
 
