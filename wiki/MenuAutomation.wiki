@@ -82,7 +82,7 @@ You can also specify enemy races individually using the following keys:
   * enemy_race_6
   * enemy_race_7
 
-Or use "Default" to use the race specified in enemy_race.
+Set the race to "Default" and the race specified in [enemy_race] will be used.
 
 === enemy_count ===
 Specifies the number of computer opponents to add to the game. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Must be a value between 0 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
