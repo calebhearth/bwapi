@@ -15,72 +15,73 @@ BWAPI can automate most of the menus in the Starcraft GUI. The following options
 
 === auto_menu ===
 This specifies what mode the menu system is in. It can have one of the following values:
-  * OFF - does no menu automation
-  * SINGLE_PLAYER - goes to single player screen (also used for replays)
-  * LAN - goes to one of the specified local area networks
-  * BATTLE_NET - goes to Battle Net login screen
+  * {{{OFF - does no menu automation}}}
+  * {{{SINGLE_PLAYER - goes to single player screen (also used for replays)}}}
+  * {{{LAN - goes to one of the specified local area networks}}}
+  * {{{BATTLE_NET - goes to Battle Net login screen}}}
 
 If auto_menu is set to OFF, menu automation is disabled and none of the other options have any effect.
 
 === lan_mode ===
 This specifies the network mode that is to be used. It should be the same name as the network mode being used. Examples:
-  * Local Area Network (IPX)
-  * Direct Cable Connection
-  * Local Area Network (UDP)
-  * Local PC (UDP)
+  * {{{Local Area Network (IPX)}}}
+  * {{{Direct Cable Connection}}}
+  * {{{Local Area Network (UDP)}}}
+  * {{{Local PC (UDP)}}}
 
 === auto_restart ===
 
 This specifies what to do at the end of a match or replay. It can have one of the following values:
-  * OFF - Does not automate the Victory/Defeat screen that appears after the end of the match. This lets you see the result of the match and also save the replay before starting the next match.
-  * ON - Automates the Victory/Defeat screen, so BWAPI will proceed to the next match with no manual user input.
+  * {{{OFF - Does not automate the Victory/Defeat screen that appears after the end of the match. This lets you see the result of the match and also save the replay before starting the next match.}}}
+  * {{{ON - Automates the Victory/Defeat screen, so BWAPI will proceed to the next match with no manual user input.}}}
 
 === map ===
 Specifies which map to play on, or which replays to watch. The path is relative to the Starcraft folder. If you wish to automate the process of joining a LAN UDP game, set auto_menu to LAN_UDP and set map to nothing (i.e. "map = ").
 
 Examples:
 
-  * map = maps\(2)Boxer.scm
-  * map = maps\BroodWar\WebMaps\(8)Big Game Hunters.scm
-  * map = maps\replays\LastReplay.rep
+  * {{{map = maps\(2)Boxer.scm}}}
+  * {{{map = maps\BroodWar\WebMaps\(8)Big Game Hunters.scm}}}
+  * {{{map = maps\replays\LastReplay.rep}}}
+  * {{{map = }}}
 
 === save_replay ===
 This specifies where to save the replay to.
 
 Example:
 
-  * save_replay = maps\replays\BWAPI_LastReplay.rep
+  * {{{save_replay = maps\replays\BWAPI_LastReplay.rep}}}
 
 Variables will be added in a later release.
 
 === race ===
 Specifies which race to select for the player. Can have one of the following values:
-  * Terran
-  * Protoss
-  * Zerg
-  * Random
-  * RandomTP
-  * RandomTZ
-  * RandomPZ
+  * {{{Terran}}}
+  * {{{Protoss}}}
+  * {{{Zerg}}}
+  * {{{Random}}}
+  * {{{RandomTP}}}
+  * {{{RandomTZ}}}
+  * {{{RandomPZ}}}
 
 === enemy_race ===
 Specifies which race to select for the computer opponents. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Can have one of the following values:
-  * Terran
-  * Protoss
-  * Zerg
-  * Random
-  * RandomTP
-  * RandomTZ
-  * RandomPZ
+  * {{{Terran}}}
+  * {{{Protoss}}}
+  * {{{Zerg}}}
+  * {{{Random}}}
+  * {{{RandomTP}}}
+  * {{{RandomTZ}}}
+  * {{{RandomPZ}}}
 
 You can also specify enemy races individually using the following keys:
-  * enemy_race_1
-  * enemy_race_2
-  * enemy_race_3
-  * enemy_race_4
-  * enemy_race_5
-  * enemy_race_6
-  * enemy_race_7
+  * {{{enemy_race_1}}}
+  * {{{enemy_race_2}}}
+  * {{{enemy_race_3}}}
+  * {{{enemy_race_4}}}
+  * {{{enemy_race_5}}}
+  * {{{enemy_race_6}}}
+  * {{{enemy_race_7}}}
 
 Set the race to "Default" and the race specified in [MenuAutomation#enemy_race enemy_race] will be used.
 
@@ -90,22 +91,22 @@ Specifies the number of computer opponents to add to the game. This option is on
 === game_type ===
 Specifies the GameType. Sub-type selection is not implemented at this time (add an issue if you want to see it added), so there is limited support for Team Melee, and several other game types which use game sub-type options. Can have one of the following values:
 
-  * TOP_VS_BOTTOM
-  * MELEE
-  * FREE_FOR_ALL
-  * ONE_ON_ONE
-  * USE_MAP_SETTINGS
-  * CAPTURE_THE_FLAG
-  * GREED
-  * SLAUGHTER
-  * SUDDEN_DEATH
-  * TEAM_MELEE
-  * TEAM_FREE_FOR_ALL
-  * TEAM_CAPTURE_THE_FLAG
+  * {{{TOP_VS_BOTTOM}}}
+  * {{{MELEE}}}
+  * {{{FREE_FOR_ALL}}}
+  * {{{ONE_ON_ONE}}}
+  * {{{USE_MAP_SETTINGS}}}
+  * {{{CAPTURE_THE_FLAG}}}
+  * {{{GREED}}}
+  * {{{SLAUGHTER}}}
+  * {{{SUDDEN_DEATH}}}
+  * {{{TEAM_MELEE}}}
+  * {{{TEAM_FREE_FOR_ALL}}}
+  * {{{TEAM_CAPTURE_THE_FLAG}}}
 
 === sound ===
 Specifies whether or not Starcraft should run the sound engine. Disabling the sound engine can give Starcraft a slight speed increase. It can have one of the following values:
-  * OFF - disable sound
-  * ON - run normally
+  * {{{OFF - disable sound}}}
+  * {{{ON - run normally}}}
 
 Also check out [speed this tutorial] for tips on how to increase the game's speed/performance.
