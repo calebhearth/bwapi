@@ -59,6 +59,9 @@ Specifies which race to select for the player. Can have one of the following val
   * Protoss
   * Zerg
   * Random
+  * RandomTP
+  * RandomTZ
+  * RandomPZ
 
 === enemy_race ===
 Specifies which race to select for the computer opponents. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Can have one of the following values:
@@ -66,9 +69,23 @@ Specifies which race to select for the computer opponents. This option is only u
   * Protoss
   * Zerg
   * Random
+  * RandomTP
+  * RandomTZ
+  * RandomPZ
+
+You can also specify enemy races individually using the following keys:
+  * enemy_race_1
+  * enemy_race_2
+  * enemy_race_3
+  * enemy_race_4
+  * enemy_race_5
+  * enemy_race_6
+  * enemy_race_7
+
+Or use "Default" to use the race specified in enemy_race.
 
 === enemy_count ===
-Specifies the number of computer opponents to add to the game. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Must be a value between 1 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
+Specifies the number of computer opponents to add to the game. This option is only used in single player games - currently no computer opponents are automatically added to LAN UDP games. Must be a value between 0 and 7. If the map does not have enough slots for the given number of computer opponents, then BWAPI uses the maximum number possible. For example, if you try to specify 7 computer opponents on a 3 player map, only 2 opponents will be in the game.
 
 === game_type ===
 Specifies the GameType. Sub-type selection is not implemented at this time (add an issue if you want to see it added), so there is limited support for Team Melee, and several other game types which use game sub-type options. Can have one of the following values:
@@ -91,4 +108,4 @@ Specifies whether or not Starcraft should run the sound engine. Disabling the so
   * OFF - disable sound
   * ON - run normally
 
-Also check out [Game#setLocalSpeed Game::setLocalSpeed] and [Game#setGUI Game::setGUI] for other ways of increasing the speed of Starcraft.
+Also check out [speed this tutorial] for tips on how to increase the game's speed/performance.
