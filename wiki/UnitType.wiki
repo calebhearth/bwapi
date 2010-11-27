@@ -378,3 +378,8 @@ For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terr
 std::set<[UnitType]>& allUnitTypes();
 
 Returns the set of all the UnitTypes.
+
+== allMacroTypes ==
+std::set<[UnitType]>& allMacroTypes();
+
+Returns the set of all the macro UnitTypes.
