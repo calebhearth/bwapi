@@ -10,6 +10,9 @@ Changes:
 Additions:
   * Added [Unit#isInWeaponRange Unit::isInWeaponRange] which returns true if the specified target unit is in the immediate weapon range of the callee.
   * Added [Player#visibleUnitCount Player::visibleUnitCount] which returns the number of visible units of the given type owned by the player.
+  * Added [Game#neutral Game::neutral] - returns a pointer to the neutral player.
+  * Added [Game#allies Game::allies] - returns a reference to the set of ally players that have not left or been defeated.
+  * Added [Game#enemies Game::enemies] - returns a reference to the set of enemy players that have not left or been defeated.
 
 Bug Fixes:
 
