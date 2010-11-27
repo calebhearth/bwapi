@@ -975,3 +975,8 @@ bool useTech([TechType] tech, Unit{{{*}}} target);
 
 Orders the unit to use a tech requiring a unit target (i.e. Irradiate).
 Returns true if it is a valid tech.
+
+== placeCOP ==
+bool placeCOP([TilePosition] target);
+
+Moves a Flag Beacon from its current location to the target location.
