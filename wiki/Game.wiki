@@ -409,7 +409,7 @@ Returns a pointer to the player that BWAPI controls. In replays this will return
 == enemy ==
 [Player]`*` enemy();
 
-Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see [#getPlayers getPlayers] and [Player]::[Player#isEnemy isEnemy] to get the other enemies). In replays this will return null.
+Returns a pointer to the enemy player. If there is more than one enemy, use [#enemies enemies()] to get the set of all enemy players that have not left or been defeated. In replays this will return null.
 
 == neutral ==
 [Player]`*` neutral();
