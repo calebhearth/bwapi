@@ -201,3 +201,28 @@ Returns the attack cooldown of the given unit type's ground weapon, taking into 
 int armor(UnitType unit) const;
 
 Returns the armor for the given unit type, taking into account the upgrades the player has.
+
+== getUnitScore ==
+int getUnitScore() const;
+
+Returns the total unit score that the player has accumulated. This excludes buildings.
+
+== getKillScore ==
+int getKillScore() const;
+
+Returns the total kill score that the player has accumulated. This excludes buildings.
+
+== getBuildingScore ==
+int getBuildingScore() const;
+
+Returns the total building score that the player has accumulated.
+
+== getRazingScore ==
+int getRazingScore() const;
+
+Returns the total razings score that the player has accumulated. In other words, the score for buildings destroyed.
+
+== getCustomScore ==
+int getCustomScore() const;
+
+Returns the custom score used in Use Map Settings.
