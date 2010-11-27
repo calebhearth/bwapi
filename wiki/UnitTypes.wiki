@@ -3540,6 +3540,38 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 0 (0)
 
 
+=== All Units ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
+
+=== Men ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
+
+=== Buildings ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
+
+=== Factories ===
+  * *Max HP*: 0
+  * *Armor*: 0
+  * *Unit Size*: None
+  * *Unit Dimensions*: 1 x 1
+  * *Sight Range*: 0 (0)
+
+
 === Unknown ===
   * *Max HP*: 0
   * *Armor*: 0
