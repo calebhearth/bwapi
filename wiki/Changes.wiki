@@ -13,6 +13,9 @@ Additions:
   * Added [Game#neutral Game::neutral] - returns a pointer to the neutral player.
   * Added [Game#allies Game::allies] - returns a reference to the set of ally players that have not left or been defeated.
   * Added [Game#enemies Game::enemies] - returns a reference to the set of enemy players that have not left or been defeated.
+  * BWAPI will attempt to compare its revision/build with the AI revision/build and load the correct BWAPI module for the AI. Note: For the moment this only applies when attaching BWAPI to Starcraft and not when the module is loaded.
+  * Added the following [Player] functions to retrieve player score: [Player#getUnitScore Player::getUnitScore], [Player#getKillScore Player::getKillScore], [Player#getBuildingScore Player::getBuildingScore], [Player#getRazingScore Player::getRazingScore], [Player#getCustomScore Player::getCustomScore].
+  * Added the following UnitTypes which can be used as a macro: [UnitTypes#All_Units UnitTypes::AllUnits], [UnitTypes#Men UnitTypes::Men], [UnitTypes#Structures UnitTypes::Structures], [UnitTypes#Factories UnitTypes::Factories].
 
 Bug Fixes:
 
@@ -24,6 +27,8 @@ Bug Fixes:
   * Corrected a mistake where [Color#Colors Colors]::Purple would appear Orange.
   * Fixed a crash involving a buffer overflow with text formatting for [Game#printf Game::printf], [Game#sendText Game::sendText], and [Game#drawText Game::drawText].
   * Fixed a bug where [Unit#getLastOrderFrame Unit::getLastOrderFrame] would not reset to 0 at the start of a new match.
+  * Fixed a bug where Starcraft would hang when attempting to connect a BWAPI Client to the BWAPI Server during a match.
+
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
 
