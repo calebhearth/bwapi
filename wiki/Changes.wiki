@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3211) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3240) ==
 
 Changes:
 
@@ -15,7 +15,7 @@ Additions:
   * Added [Game#enemies Game::enemies] - returns a reference to the set of enemy players that have not left or been defeated.
   * BWAPI will attempt to compare its revision/build with the AI revision/build and load the correct BWAPI module for the AI. Note: For the moment this only applies when attaching BWAPI to Starcraft and not when the module is loaded.
   * Added the following [Player] functions to retrieve player score: [Player#getUnitScore Player::getUnitScore], [Player#getKillScore Player::getKillScore], [Player#getBuildingScore Player::getBuildingScore], [Player#getRazingScore Player::getRazingScore], [Player#getCustomScore Player::getCustomScore].
-  * Added the following UnitTypes which can be used as a macro: [UnitTypes#All_Units UnitTypes::AllUnits], [UnitTypes#Men UnitTypes::Men], [UnitTypes#Structures UnitTypes::Structures], [UnitTypes#Factories UnitTypes::Factories].
+  * Added the following UnitTypes which can be used as a macro: [UnitTypes#All_Units UnitTypes::AllUnits], [UnitTypes#Men UnitTypes::Men], [UnitTypes#Buildings UnitTypes::Buildings], [UnitTypes#Factories UnitTypes::Factories].
 
 Bug Fixes:
 
