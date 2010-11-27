@@ -3533,49 +3533,20 @@ This page contains a list of UnitTypes provided by BWAPI.
 
 == Misc ==
 === None ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
+A type used to specify that no unit type exists.
 
-
-=== All Units ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
-
+=== AllUnits ===
+A macro type used to specify that we want to obtain data for all the units and buildings.
 
 === Men ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
-
+A macro type used to specify that we want to obtain data for all the units that aren't buildings.
 
 === Buildings ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
-
+A macro type used to specify that we want to obtain data for all the buildings.
 
 === Factories ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
-
+A macro type used to specify that we want to obtain data for only the buildings that can produce units.
 
 === Unknown ===
-  * *Max HP*: 0
-  * *Armor*: 0
-  * *Unit Size*: None
-  * *Unit Dimensions*: 1 x 1
-  * *Sight Range*: 0 (0)
+A type used to specify that we shouldn't know what the unit is, and that it has been made unknown to us.
 
