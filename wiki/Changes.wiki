@@ -18,7 +18,7 @@ Additions:
   * Added the following UnitTypes which can be used as a macro: [UnitTypes#All_Units UnitTypes::AllUnits], [UnitTypes#Men UnitTypes::Men], [UnitTypes#Buildings UnitTypes::Buildings], [UnitTypes#Factories UnitTypes::Factories].
   * Added [UnitType#allMacroTypes UnitTypes::allMacroTypes] for the introduced macros.
   * Added [Unit#placeCOP Unit::placeCOP] which allows you to relocate Flag Beacons in Use Map Settings or Capture the Flag game types.
-
+  * Added [Unit#isAttackFrame Unit::isAttackFrame] - returns true if the unit is performing an attack animation or starting an attack.
 Bug Fixes:
 
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would do collision checks with flying and lifted units.
