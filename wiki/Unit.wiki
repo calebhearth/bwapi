@@ -395,6 +395,11 @@ bool isAttacking() const;
 
 Returns true if the unit is currently attacking.
 
+== isAttackFrame ==
+bool isAttackFrame () const;
+
+Returns true if the unit is currently starting an attack or playing an attack animation. Don't issue the unit another command until this returns false or else the next attack sequence may be interrupted.
+
 == isBeingConstructed ==
 bool isBeingConstructed() const;
 
