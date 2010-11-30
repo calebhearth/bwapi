@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3259) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3261) ==
 
 Changes:
 
@@ -32,6 +32,9 @@ Bug Fixes:
   * Fixed a bug where Starcraft would hang when attempting to connect a BWAPI Client to the BWAPI Server during a match.
   * Fixed a bug where some units were mistakenly considered selected.
   * Fixed a bug that prevented the placement of Infested Command Centers and Zerg Flag Beacons off the creep.
+  * Fixed an issue where loaded units could be given orders.
+  * Fixed an issue where Overlords would accept orders to load units when the Ventral Sacs upgrade was not researched.
+  * Fixed an issue where completed transports would accept orders to load incomplete units and vice-versa.
 
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
