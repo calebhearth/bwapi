@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3261) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3264) ==
 
 Changes:
 
@@ -35,6 +35,8 @@ Bug Fixes:
   * Fixed an issue where loaded units could be given orders.
   * Fixed an issue where Overlords would accept orders to load units when the Ventral Sacs upgrade was not researched.
   * Fixed an issue where completed transports would accept orders to load incomplete units and vice-versa.
+  * Fixed an issue where heroes could not use abilities until the technology was researched.
+  * Fixed an issue where Infested Kerrigan could not use all of her abilities.
 
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
