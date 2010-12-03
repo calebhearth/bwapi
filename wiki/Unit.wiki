@@ -315,6 +315,8 @@ Returns the secondary [Order] that this unit is currently executing.
 
 Returns the position the building is rallied to. If the building does not produce units, Positions::None is returned.
 
+An unset rally position will return (0,0).
+
 See also: [Unit]::[Unit#setRallyPoint setRallyPoint], [Unit]::[Unit#getRallyUnit getRallyUnit].
 
 == getRallyUnit ==
