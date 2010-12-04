@@ -19,9 +19,9 @@ Additions:
   * Added [UnitType#allMacroTypes UnitTypes::allMacroTypes] for the introduced macros.
   * Added [Unit#placeCOP Unit::placeCOP] which allows you to relocate Flag Beacons in Use Map Settings or Capture the Flag game types.
   * Added [Unit#isAttackFrame Unit::isAttackFrame] - returns true if the unit is performing an attack animation or starting an attack.
-Bug Fixes:
   * *Added the LPIP network mode known as "Local PC (Pipes)". This mode is compatible with Windows XP and previous revisions of BWAPI.* However it has the same issue as the other custom network mode. Instructions are the same, copy the SNP file to the Starcraft directory.
 
+Bug Fixes:
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would do collision checks with flying and lifted units.
   * Fixed a bug where [Game#enemy Game::enemy] would return NULL if the enemy player left the game.
   * Fixed a bug where [Unit#getUpgradeLevel Unit::getUpgradeLevel] would always return 0 in client programs when complete map information was disabled.
