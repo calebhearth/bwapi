@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3288) ==
+== Changes from BWAPI Beta 3.3 (r3163) to Recent (r3293) ==
 
 Changes:
 
@@ -38,6 +38,7 @@ Bug Fixes:
   * Fixed an issue where completed transports would accept orders to load incomplete units and vice-versa.
   * Fixed an issue where heroes could not use abilities until the technology was researched.
   * Fixed an issue where Infested Kerrigan could not use all of her abilities.
+  * Fixed an issue where our custom network modes would bring users back to the main menu instead of the game select menu.
 
 
 == Changes from BWAPI Beta 3.2 (r2917) to BWAPI Beta 3.3 (r3163) ==
