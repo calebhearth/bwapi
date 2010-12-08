@@ -1,4 +1,4 @@
-Here is the class diagram of BWAPI: [http://i.imgur.com/zJn6s.png class diagram]. Not all functions are shown for each class, and some classes are not included in the diagram (like Position).
+Here is the class diagram of BWAPI: [http://i.imgur.com/dav0m.png class diagram]. Not all functions are shown for each class, and some classes are not included in the diagram (like Position).
 
 todo: explain overview of BWAPI, what each class does, cheat flags, major concepts, etc
 
