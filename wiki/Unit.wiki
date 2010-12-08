@@ -141,6 +141,11 @@ int getKillCount() const;
 
 Returns the unit's current kill count.
 
+== getAcidSporeCount ==
+int getAcidSporeCount() const;
+
+Returns the unit's acid spore count.
+
 == getInterceptorCount ==
 int getInterceptorCount() const;
 
@@ -531,6 +536,11 @@ See also: [Unit]::[Unit#stop stop].
 bool isInterruptible() const;
 
 Returns true if the unit can be interrupted by another order like move or attack, otherwise there are very few orders that can be issued such as Unburrow, LiftOff, and Cancel.
+
+== isInvincible ==
+bool isInvincible () const;
+
+Return true if the unit is currently invincible (stasis field, preplaced invincible setting(can apply to critters in melee), or Use Map Settings invincible trigger).
 
 == isInWeaponRange ==
 bool isInWeaponRange(Unit `*`target) const;
