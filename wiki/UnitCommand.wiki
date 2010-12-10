@@ -7,18 +7,18 @@ UnitCommand objects are currently used only as arguments to one function - [Unit
 <wiki:toc max_depth="2" />
 
 = Named Constructors =
-  * attackMove([Unit]{{{*}}} unit, [Position] target);
+  * attackMove([Unit]{{{*}}} unit, [Misc#Position Position] target);
   * attackUnit([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
-  * build([Unit]{{{*}}} unit, [TilePosition] target, UnitType type);
+  * build([Unit]{{{*}}} unit, [Misc#TilePosition TilePosition] target, UnitType type);
   * buildAddon([Unit]{{{*}}} unit, UnitType type);
   * train([Unit]{{{*}}} unit, UnitType type);
   * morph([Unit]{{{*}}} unit, UnitType type);
   * research([Unit]{{{*}}} unit, [TechType] tech);
   * upgrade([Unit]{{{*}}} unit, [UpgradeType] upgrade);
-  * setRallyPoint[Position]([Unit]{{{*}}} unit, [Position] target);
+  * setRallyPoint[Position]([Unit]{{{*}}} unit, [Misc#Position Position] target);
   * setRallyPoint([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
-  * move([Unit]{{{*}}} unit, [Position] target);
-  * patrol([Unit]{{{*}}} unit, [Position] target);
+  * move([Unit]{{{*}}} unit, [Misc#Position Position] target);
+  * patrol([Unit]{{{*}}} unit, [Misc#Position Position] target);
   * hold[Position]([Unit]{{{*}}} unit);
   * stop([Unit]{{{*}}} unit);
   * follow([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
@@ -32,12 +32,12 @@ UnitCommand objects are currently used only as arguments to one function - [Unit
   * siege([Unit]{{{*}}} unit);
   * unsiege([Unit]{{{*}}} unit);
   * lift([Unit]{{{*}}} unit);
-  * land([Unit]{{{*}}} unit, [TilePosition] target);
+  * land([Unit]{{{*}}} unit, [Misc#TilePosition TilePosition] target);
   * load([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
   * unload([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
   * unloadAll([Unit]{{{*}}} unit);
-  * unloadAll([Unit]{{{*}}} unit, [Position] target);
-  * rightClick([Unit]{{{*}}} unit, [Position] target);
+  * unloadAll([Unit]{{{*}}} unit, [Misc#Position Position] target);
+  * rightClick([Unit]{{{*}}} unit, [Misc#Position Position] target);
   * rightClick([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
   * haltConstruction([Unit]{{{*}}} unit);
   * cancelConstruction([Unit]{{{*}}} unit);
@@ -47,9 +47,9 @@ UnitCommand objects are currently used only as arguments to one function - [Unit
   * cancelResearch([Unit]{{{*}}} unit);
   * cancelUpgrade([Unit]{{{*}}} unit);
   * useTech([Unit]{{{*}}} unit,[TechType] tech);
-  * useTech([Unit]{{{*}}} unit,[TechType] tech, [Position] target);
+  * useTech([Unit]{{{*}}} unit,[TechType] tech, [Misc#Position Position] target);
   * useTech([Unit]{{{*}}} unit,[TechType] tech, [Unit]{{{*}}} target);
-  * placeCOP([Unit]{{{*}}} unit, [TilePosition] target);
+  * placeCOP([Unit]{{{*}}} unit, [Misc#TilePosition TilePosition] target);
 
 = Methods =
 
