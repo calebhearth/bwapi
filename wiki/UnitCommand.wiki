@@ -86,7 +86,7 @@ Returns the unit type of the command, or UnitTypes::None if the command is not o
 == getTechType ==
 [TechType] getTechType() const;
 
-Returns the tech type of the command, or TechTypes::None if the command is not of type Research.
+Returns the tech type of the command, or TechTypes::None if the command is not of type Research, Use_Tech, Use_Tech_Position, or Use_Tech_Unit.
 
 == getUpgradeType ==
 [UpgradeType] getUpgradeType() const;
