@@ -15,8 +15,8 @@ UnitCommand objects are currently used only as arguments to one function - [Unit
   * morph([Unit]{{{*}}} unit, UnitType type);
   * research([Unit]{{{*}}} unit, [TechType] tech);
   * upgrade([Unit]{{{*}}} unit, [UpgradeType] upgrade);
-  * setRally[Position]([Unit]{{{*}}} unit, [Position] target);
-  * setRallyUnit([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
+  * setRallyPoint[Position]([Unit]{{{*}}} unit, [Position] target);
+  * setRallyPoint([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
   * move([Unit]{{{*}}} unit, [Position] target);
   * patrol([Unit]{{{*}}} unit, [Position] target);
   * hold[Position]([Unit]{{{*}}} unit);
