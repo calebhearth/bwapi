@@ -6,7 +6,7 @@ Changes:
   * [http://code.google.com/p/bwapi/wiki/Misc#Position Position]::getApproxDistance now returns an integer and more accurately resembles the internal Starcraft function.
   * [Player#allUnitCount Player::allUnitCount] now returns the number of accessible units of the given type for the given player. If complete map information is disabled, this will be equivalent to [Player#visibleUnitCount Player::visibleUnitCount].
   * [Player#getUpgradeLevel Player::getUpgradeLevel] now also returns information for enemy players when the Complete Map Information flag is disabled if at least one completed unit owned by that player that uses that upgrade type is accessible.
-  * _There has been a regression involving the optimization of issuing commands to multiple units at the same time (Stop, Hold, Cloak/Decloak, Burrow/Unburrow, Siege/Unsiege). This will not impact the behaviour of the game or the AI. It will however increase the APM of the AI.
+  * There has been a regression involving the optimization of issuing commands to multiple units at the same time (Stop, Hold, Cloak/Decloak, Burrow/Unburrow, Siege/Unsiege). This will not impact the behaviour of the game or the AI. It will however increase the APM of the AI.
   * Renamed Unit::getLastOrderFrame to [Unit#getLastCommandFrame Unit::getLastCommandFrame] to make it consistent with [Unit#getLastCommand Unit::getLastCommand], [Unit#issueCommand Unit::issueCommand], and [Unit#canIssueCommand Unit::canIssueCommand].
 
 Additions:
