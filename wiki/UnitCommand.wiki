@@ -14,12 +14,12 @@ UnitCommand objects are currently used only as arguments to one function - [Unit
 Returns the type of the command
 
 == getUnit ==
-int getUnit() const;
+[Unit]{{{*}}} getUnit() const;
 
 Returns the unit to which the command has been issued.
 
 == getTarget ==
-[Unit]{{*}} getTarget() const;
+[Unit]{{{*}}} getTarget() const;
 
 Returns the target unit of the command, or null if there is no target unit.
 
