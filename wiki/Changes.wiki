@@ -25,6 +25,14 @@ Additions:
   * Added [Unit#getAcidSporeCount Unit::getAcidSporeCount].
   * Added [Unit#isInvincible Unit::isInvincible].
   * Added [Unit#getLastCommand Unit::getLastCommand] - returns the last successful command that BWAPI issued to the unit.
+  * Added [UnitCommand#getUnit  UnitCommand::getUnit] - returns the unit the command is for.
+  * Added [UnitCommand#getTarget  UnitCommand::getTarget] - returns the target unit of the command, or null if there is no target unit.
+  * Added [UnitCommand#getTargetPosition  UnitCommand::getTargetPosition] - returns the target position of the command, or Positions::None if there is no target position.
+  * Added [UnitCommand#getTargetTilePosition  UnitCommand::getTargetTilePosition] - returns the target tile position of the command, or Positions::None if there is no target tile position.
+  * Added [UnitCommand#getUnitType  UnitCommand::getUnitType] - returns the unit type of the command, or UnitTypes::None if the command is not of type Build, Build_Addon, Train, or Morph.
+  * Added [UnitCommand#getTechType  UnitCommand::getTechType] - returns the tech type of the command, or TechTypes::None if the command is not of type Research.
+  * Added [UnitCommand#getUpgradeType  UnitCommand::getUpgradeType] - returns the upgrade type of the command, or UpgradeTypes::None if the command is not of type Upgrade.
+  * Added [UnitCommand#getSlot  UnitCommand::getSlot] - returns the slot of the command, or 0 if the command is not of type Cancel_Slot.
 
 Bug Fixes:
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would do collision checks with flying and lifted units.
