@@ -4,10 +4,51 @@ Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/inc
 
 UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While units can be issued commands the normal way via the [Unit] methods (i.e. [Unit#attackUnit Unit::attackUnit]), in some cases you may want to have a function that can process any unit command, such as when you're writing a proxy for BWAPI.
 
-This class has the following data members:
+<wiki:toc max_depth="2" />
 
-  * UnitCommandType type - the type of the command
-  * Unit{{{*}}} target - can be filled with the target if the UnitCommandType requires a target unit (such as UnitCommandTypes::Attack_Unit).
-  * int x - the x coordinate of a position or tile position (depending on the UnitCommandType)
-  * int y - the y coordinate of a position or tile position (depending on the UnitCommandType)
-  * int extra - used for various things depending on the UnitCommandType, such as a TechType value, UpgradeType value, UnitType value, or slot index number.
+= Methods =
+
+== getType ==
+[UnitCommandType] getType() const;
+
+Returns the type of the command
+
+== getUnit ==
+int getUnit() const;
+
+Returns the unit to which the command has been issued.
+
+== getTarget ==
+[Unit]{{*}} getTarget() const;
+
+Returns the target unit of the command, or null if there is no target unit.
+
+== getTargetPosition ==
+[Misc#Position Position] getTargetPosition() const;
+
+Returns the target position of the command, or Positions::None if there is no target position.
+
+== getTargetTilePosition ==
+[Misc#TilePosition TilePosition] getTargetTilePosition() const;
+
+Returns the target tile position of the command, or Positions::None if there is no target tile position.
+
+== getUnitType ==
+[UnitType] getUnitType() const;
+
+Returns the unit type of the command, or UnitTypes::None if the command is not of type Build, Build_Addon?, Train, or Morph.
+
+== getTechType ==
+[TechType] getTechType() const;
+
+Returns the tech type of the command, or TechTypes::None if the command is not of type Research.
+
+== getUpgradeType ==
+[UpgradeType] getUpgradeType() const;
+
+Returns the upgrade type of the command, or UpgradeTypes::None if the command is not of type Upgrade.
+
+== getSlot ==
+int getSlot() const;
+
+Returns the slot of the command, or -1 if the command is not of type Cancel_Train_Slot. 
