@@ -98,7 +98,7 @@ Returns the frame of the last successful command. For example, issuing a Move co
 
 
 == getLastCommand ==
-int getLastCommand() const;
+[UnitCommand] getLastCommand() const;
 
 Returns the last successful command. For example, issuing a Move command will immediately result in this function returning a Move command (with the same target position).
 
