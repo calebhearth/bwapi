@@ -1,20 +1,20 @@
 #summary Frequently Asked Questions
 
-= Frequently Asked Questions =
-
 This page contains answers to frequent questions.
 
+<wiki:toc max_depth="1" />
 
-== Will there be an API like this for [http://www.battle.net/sc2/ Starcraft II]? ==
+= Will there be an API like this for Starcraft II? =
 
-No. The BWAPI team is not interested in developing an API for [http://www.battle.net/sc2/ Starcraft II]. Some reasons are listed below.
-  * [http://www.blizzard.com Blizzard Entertainment] has a strict [http://www.blizzard.com/support/article.xml?tag=SC2exploitation anti-hacking policy] for [http://www.battle.net/sc2/ Starcraft II].
-  * Creating hacks and freely moving about the binary is far more difficult than doing so with [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
-  * The [http://www.battle.net/sc2/ Starcraft II] engine is not ideal for AI development. Genetic and learning algorithms will see almost no results in comparison.
-  * AI/API developers will need to handle far more information than with BWAPI.
-  * Embarking on such a project will require an exponentially greater amount of time to develop.
-  * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
+  No. The BWAPI team is not interested in developing an API for [http://www.battle.net/sc2/ Starcraft II]. Some reasons are listed below.
+    * [http://www.blizzard.com Blizzard Entertainment] has a strict [http://www.blizzard.com/support/article.xml?tag=SC2exploitation anti-hacking policy] for [http://www.battle.net/sc2/ Starcraft II].
+    * Creating hacks and freely moving about the binary is far more difficult than doing so with [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
+    * The [http://www.battle.net/sc2/ Starcraft II] engine is not ideal for AI development. Genetic and learning algorithms will see almost no results in comparison.
+    * AI/API developers will need to handle far more information than with BWAPI.
+    * Embarking on such a project will require an exponentially greater amount of time to develop.
+    * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
 
-== When are units deleted? When do Unit pointers become invalid? ==
 
-Units are deleted only after the match ends.
+= When are units deleted? When do Unit pointers become invalid? =
+
+  Units are deleted only after the match ends.
