@@ -6,6 +6,7 @@
   * [contact Contact Information]
   * [Interfaces]
   * [Commands]
+  * [FAQ]
   * Tutorials
     * [UsingBWAPI Using BWAPI]
     * [Debugging]
