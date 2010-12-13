@@ -12,7 +12,7 @@ This page contains answers to frequent questions.
     * The [http://www.battle.net/sc2/ Starcraft II] engine is not ideal for AI development. Genetic and learning algorithms will see almost no results in comparison.
     * AI/API developers will need to handle far more information than with BWAPI.
     * Embarking on such a project will require an exponentially greater amount of time to develop.
-    * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
+    * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/support/article.xml?articleId=25801 Starcraft: Broodwar].
 
 
 = When are units deleted? When do Unit pointers become invalid? =
