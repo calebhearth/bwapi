@@ -98,6 +98,34 @@ Latency::Enum getLatency();
 
 Returns the amount of latency the current game has.
 
+== getLatencyFrames ==
+int getLatencyFrames();
+
+Returns the maximum number of frames required for unit commands to be processed by the game.
+
+See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
+
+== getLatencyTime ==
+int getLatencyTime();
+
+Returns the maximum time in milliseconds required for unit commands to be processed by the game.
+
+See also: [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
+
+== getRemainingLatencyFrames ==
+int getRemainingLatencyFrames();
+
+Returns the remaining number of frames before a unit command sent in the current frame can be processed.
+
+See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
+
+== getRemainingLatencyTime ==
+int getRemainingLatencyTime();
+
+Returns the remaining time in milliseconds before a unit command sent in the current frame can be processed.
+
+See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames].
+
 == getFrameCount ==
 int getFrameCount();
 
