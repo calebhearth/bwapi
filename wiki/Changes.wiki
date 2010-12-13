@@ -1,4 +1,13 @@
 #labels Featured
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3359) ==
+
+Changes:
+
+Additions:
+
+Bug Fixes:
+  * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
+
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
 Changes:
