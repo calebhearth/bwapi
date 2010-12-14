@@ -4,7 +4,7 @@
 Changes:
 
 Additions:
-  * Added [Game#getAPM] which retrieves the bot's running actions per minute and ignores user actions.
+  * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
