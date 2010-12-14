@@ -137,7 +137,7 @@ int getReplayFrameCount();
 Returns the maximum number of frames for a replay. To get the replay progress as a percentage, you can use {{{getFrameCount()*100/getReplayFrameCount()}}}.
 
 == getAPM ==
-double getAPM(bool includeSelects);
+double getAPM(bool includeSelects = false);
 
 Returns the bot's running APM. This function ignores all user actions and uses the same formula as [http://wiki.teamliquid.net/starcraft/APMAlert APMAlert].
 
