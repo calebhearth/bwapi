@@ -60,6 +60,8 @@ Returns the set of all the error codes, which are listed below.
   * [#Out_Of_Range Out_Of_Range]
   * [#Unable_To_Hit Unable_To_Hit]
   * [#Access_Denied Access_Denied]
+  * [#File_Not_Found File_Not_Found]
+  * [#Invalid_Parameter Invalid_Parameter]
   * [#None None]
   * [#Unknown Unknown]
 
@@ -157,6 +159,14 @@ Returned if you do something like order a Vulture to attack a flying unit.
 === {{{Access_Denied}}} ===
 
 Returned if you try to get information that is not allowed with the given flag settings. For example, trying to read the enemy's resource counts while the CompleteMapInformation flag is not enabled will return this error. Similarly, trying to read the coordinates of the screen or mouse while the UserInput flag is not enabled will also return this error.
+
+=== {{{File_Not_Found}}} ===
+
+Returned if the function cannot find a required file.
+
+=== {{{Invalid_Parameter}}} ===
+
+A generic error returned for bad parameters such as NULL, empty strings, strings that are too large, a bad index, etc.
 
 === {{{None}}} ===
 
