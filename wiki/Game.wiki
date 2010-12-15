@@ -412,6 +412,11 @@ void leaveGame();
 
 Leaves the current match and goes to the after-game stats screen.
 
+== setMap ==
+bool setMap(const char *mapFileName);
+
+Changes the map file to the one specified. Changes will take effect when the game is [Game#restartGame restarted]. Returns true if successful. If this function fails, it returns false and sets the last error to [Error#Invalid_Parameter Errors::Invalid_Parameter] or [Error#File_Not_Found Errors::File_Not_Found].
+
 == restartGame ==
 void restartGame();
 
