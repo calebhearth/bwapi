@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3370) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3377) ==
 
 Changes:
 
@@ -7,6 +7,8 @@ Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
   * Added the errors [Error#File_Not_Found Errors::File_Not_Found] and [Error#Invalid_Parameter Errors::Invalid_Parameter].
   * Added [Game#setMap Game::setMap] which changes the map for when you next restart the game.
+  * Added [Unit#isUnderAttack Unit::isUnderAttack] which identifies units that have been recently attacked.
+  * Added [Unit#getLastAttackingPlayer Unit::getLastAttackingPlayer] which identifies the player that last attacked this unit.
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
