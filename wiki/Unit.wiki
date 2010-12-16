@@ -96,11 +96,15 @@ int getLastCommandFrame() const;
 
 Returns the frame of the last successful command. For example, issuing a Move command will record the frame it was issued in, and you retrieve the frame with this.
 
-
 == getLastCommand ==
 [UnitCommand] getLastCommand() const;
 
 Returns the last successful command. For example, issuing a Move command will immediately result in this function returning a Move command (with the same target position).
+
+== getLastAttackingPlayer ==
+[Player] `*` getLastAttackingPlayer() const;
+
+Returns the last player that attacked this unit, or NULL if it is not applicable.
 
 == setClientInfo ==
 void setClientInfo(void{{{*}}} clientinfo);
@@ -679,6 +683,11 @@ bool isTraining() const;
 Returns true if the unit is training units (i.e. a Barracks training Marines).
 
 See also: [Unit]::[Unit#train train], [Unit]::[Unit#getTrainingQueue getTrainingQueue], [Unit]::[Unit#cancelTrain cancelTrain], [Unit]::[Unit#getRemainingTrainTime getRemainingTrainTime].
+
+== isUnderAttack ==
+bool isUnderAttack() const;
+
+Returns true if the unit was recently attacked.
 
 == isUnderStorm ==
 bool isUnderStorm() const;
