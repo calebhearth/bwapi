@@ -1,18 +1,37 @@
+= Class Diagram =
+
 Here is the class diagram of BWAPI: [http://i.imgur.com/lppnE.png class diagram]. Not all functions are shown for each class, and some classes are not included in the diagram (like Position).
 
+= Creating an AI =
 
-The 4 classes that get information from BWAPI are [Game], [Force], [Player], and [Unit]. [Game] is your primary interface to BWAPI. [Force] usually not very useful except in certain game modes. [Player] can be used to get information about each player in the current match, and [Unit] can be used to get information about and control individual units.
+You can either create an AI as a DLL [AIModule AI Module] that gets loaded into Starcraft at the start of a match, or as a stand-alone client process that communicates with BWAPI via shared memory. An example of each of these is included in each release of BWAPI.
+
+= Main Classes =
+
+The 5 classes that get information from BWAPI are [Game], [Force], [Player], [Unit], and [Bullet].
+
+[Game] is your primary interface to BWAPI. Using this class you can get sets of forces, players, units, and bullets. You can also issue commands to the game to pause the game, move the screen, and do other things.
+
+[Force] usually not very useful except in certain game modes. Sometimes forces correspond to teams, but not always. This is the least used class that interacts with Broodwar.
+
+[Player] can be used to get information about each player in the current match.
+
+[Unit] can be used to get information about and control individual units.
+
+[Bullet] can be used to get information about individual bullet objects. Not all attack animations generate bullet objects.
 
 = Cheat flags =
 
 There are two cheat flags, each of which are disabled by default: 
 
-    * CompleteMapInformation? - Enable to make all units accessible, not just visible units.
-    * UserInput? - Enable to get information from the user (what units are selected, chat messages the user enters, etc) 
+    * CompleteMapInformation - Enable to make all units accessible, not just visible units.
+    * UserInput - Enable to get information from the user (what units are selected, chat messages the user enters, etc)
 
 = The four tiers of unit accessibility =
 
-=== 1) Full Accessibility ===
+Each unit in the game will be at one of the following levels of accessibility, depending on a number of factors.
+
+== 1) Full Accessibility ==
 
 All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, or if the match is a replay, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()].
 
