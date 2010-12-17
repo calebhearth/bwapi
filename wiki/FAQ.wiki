@@ -18,3 +18,7 @@ This page contains answers to frequent questions.
 = When are units deleted? When do Unit pointers become invalid? =
 
   Units are deleted only after the match ends.
+
+= Should I Make an AI DLL Module or an AI Client Program? =
+
+That depends on what you want to do. Unless you have a specific reason to write your AI as a client program, you probably want to make you AI as a dll module. The client-server connection adds an overhead cost since the entire game state must be copied to shared memory every frame, so AIs written as client programs always run slower than AI DLL modules.
