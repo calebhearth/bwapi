@@ -4,11 +4,11 @@ Here is the class diagram of BWAPI: [http://i.imgur.com/lppnE.png class diagram]
 
 = Creating an AI =
 
-You can either create an AI as a DLL [AIModule AI Module] that gets loaded into Starcraft at the start of a match, or as a stand-alone client process that communicates with BWAPI via shared memory. An example of each of these is included in each release of BWAPI.
+You can either create an AI as an [AIModule AI Module] DLL that gets loaded into Starcraft at the start of a match, or as a stand-alone client process that communicates with BWAPI via shared memory. An example of each of these is included in each release of BWAPI.
 
 = Main Classes =
 
-The 5 classes that get information from BWAPI are [Game], [Force], [Player], [Unit], and [Bullet].
+The 5 main BWAPI classes that get information from Starcraft are [Game], [Force], [Player], [Unit], and [Bullet].
 
 [Game] is your primary interface to BWAPI. Using this class you can get sets of forces, players, units, and bullets. You can also issue commands to the game to pause the game, move the screen, and do other things.
 
