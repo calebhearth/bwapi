@@ -1,5 +1,6 @@
 Here is the class diagram of BWAPI: [http://i.imgur.com/lppnE.png class diagram]. Not all functions are shown for each class, and some classes are not included in the diagram (like Position).
 
+
 The 4 classes that get information from BWAPI are [Game], [Force], [Player], and [Unit]. [Game] is your primary interface to BWAPI. [Force] usually not very useful except in certain game modes. [Player] can be used to get information about each player in the current match, and [Unit] can be used to get information about and control individual units.
 
 = Cheat flags =
@@ -11,7 +12,7 @@ There are two cheat flags, each of which are disabled by default:
 
 = The four tiers of unit accessibility =
 
-== 1) Full Accessibility ==
+=== 1) Full Accessibility ===
 
 All of units owned by the BWAPI player/AI are fully accessible all of the time while they are alive. If the Complete Map Information flag is enabled, or if the match is a replay, then all of the units in the match will be fully accessible, not just the units owned by [Game#self self()].
 
