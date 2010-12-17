@@ -4,7 +4,6 @@
   * [Projects Projects Using BWAPI]
   * [Competitions]
   * [contact Contact Information]
-  * [Interfaces]
   * [Commands]
   * [FAQ]
   * Tutorials
