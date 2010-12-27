@@ -6,6 +6,8 @@ The Client class manages the connection between a BWAPI client program and the B
 
 The BWAPIClient.lib library contains the implementation of the Client class along with classes which implement the [Game], [Force], [Player], [Unit], and [Bullet] interfaces.
 
+Stand-alone programs made with BWAPIClient should keep all interaction with dynamic BWAPI classes (Game, Force, Player, Unit, Bullet) in a single thread that runs synchronously with Starcraft: Broodwar via calls to [#update update()].
+
 Methods:
 
   * [#isConnected isConnected]
@@ -31,4 +33,4 @@ Disconnects the client from the server.
 === update ===
 void update();
 
-Tells the server to process commands sent from the client and proceed to the next frame in the game. Once the server proceeds to the next frame, the client will update some local information and then return so the AI can execute its code for the current frame. Rather than sending callbacks to the client for things like [AIModule#onUnitCreate AIModule::onUnitCreate], BWAPI generates a list of event objects, which can be accessed via [Game#getEvents Game::getEvents]. These events correspond to AIModule callbacks.
+This is a blocking command that tells the server to process commands sent from the client and proceed to the next frame in the game. Thus update() will only return once the next game frame (or if in menus, next menu frame) has been received. Once the server proceeds to the next frame, the client will update some local information and then return so the AI can execute its code for the current frame. Rather than sending callbacks to the client for things like [AIModule#onUnitCreate AIModule::onUnitCreate], BWAPI generates a list of event objects, which can be accessed via [Game#getEvents Game::getEvents]. These events correspond to AIModule callbacks.
