@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3399) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3401) ==
 
 Changes:
 
@@ -12,6 +12,7 @@ Additions:
   * Added [Game#getUnitsInRectangle Game::getUnitsInRectnagle].
   * Added [Game#getUnitsInRadius Game::getUnitsInRadius ].
   * Added [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange].
+  * Added the configuration option "holiday" which allows disabling the once-secret holiday modifications that were activated at the appropriate time.
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
