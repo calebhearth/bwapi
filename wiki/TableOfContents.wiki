@@ -6,6 +6,7 @@
   * [contact Contact Information]
   * [Commands]
   * [FAQ]
+  * [StarcraftGuide Starcraft Guide]
   * Tutorials
     * [UsingBWAPI Using BWAPI]
     * [Debugging]
