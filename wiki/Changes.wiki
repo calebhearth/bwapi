@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3401) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3408) ==
 
 Changes:
 
