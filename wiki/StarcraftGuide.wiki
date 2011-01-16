@@ -1,0 +1,36 @@
+#summary Advanced Information Guide for Starcraft Broodwar
+#sidebar TableOfContents
+
+This page is a guide that contains advanced information about Starcraft Broodwar as a reference for bot developers.
+
+<wiki:toc max_depth="3" />
+
+= Unit Cooldown Guide =
+  == Which Cooldowns are activated? ==
+    When a unit fires a weapon, both its air weapon and ground weapon cooldowns are set. It doesn't matter if the unit fires its air or ground weapon.
+  == Why is the cooldown always different? ==
+    Starcraft randomizes the cooldown.
+    It takes the [WeaponTypes base cooldown] and adds a value between (-1) and (+2).
+
+= Chance to Hit Guide =
+  == Notes ==
+    * No ground/doodad chance can be below 50%.
+    * Hit chance only applies to ranged units.
+    * Splash units will still do splash damage to units that are missed unless that unit is burrowed.
+  == Chance to Hit from Low Ground to High Ground ==
+    The chance to hit from low ground to high ground is roughly 50%. The unit has a 50% chance of missing the target.
+    This includes from low ground to very high ground.
+  == Chance to Hit Unit on Doodad ==
+    Example: Behind a tree.
+    The chance to hit units on a doodad is roughly 50%. The unit has a 50% chance of missing the target.
+  == Chance to Hit Unit on the Same Level ==
+    The chance to hit a unit on equal grounds is roughly 99.9%.
+  == Chance to Hit Unit in Dark Swarm ==
+    The chance to hit a unit inside of a Dark Swarm is 0%.
+
+= Resource Gathering Guide =
+  == Which Worker Gathers the fastest? ==
+    All race's workers move the same. Their gathering speed is also the same.
+    The only difference between the races is the size of their resource depot.
+    Compare the sizes of [UnitTypes#Terran_Command_Center Terran Command Center], [UnitTypes#Protoss_Nexus Protoss Nexus], and [UnitTypes#Zerg_Hatchery Zerg Hatchery]/[UnitTypes#Zerg_Lair Lair]/[UnitTypes#Zerg_Hive Hive].
+    Only the size of their resource depot impacts resource gathering time.
