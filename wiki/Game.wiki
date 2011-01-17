@@ -218,6 +218,8 @@ Calling [#setLocalSpeed Game::setLocalSpeed(0)] increases the speed of Starcraft
 
 Warning: Disabling the GUI may cause Starcraft to desynchronize.
 
+See Also: [Game#setFrameSkip Game::setFrameSkip], [Game#setLocalSpeed Game::setLocalSpeed].
+
 == isLatComEnabled ==
 bool isLatComEnabled();
 
@@ -423,11 +425,19 @@ void restartGame();
 Restarts the match. Works the same way as if you restarted the match from the menu screen. Only available in single player mode.
 
 == setLocalSpeed ==
-void setLocalSpeed(int speed);
+void setLocalSpeed(int speed = -1);
 
 Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed Starcraft can handle (which is about as fast as the fastest speed you can view a replay at). Any negative value will reset the speed to the starcraft default.
 
-See also: [Game#setGUI Game::setGUI].
+See also: [Game#setGUI Game::setGUI], [Game#setFrameSkip Game::setFrameSkip].
+
+
+== setFrameSkip ==
+void setFrameSkip(int frameSkip = 1);
+
+Alters Starcraft's built-in frame skipping. This value is normally only changed during replays on 16x speed. The default value is 1.
+
+See also: [Game#setGUI Game::setGUI], [Game#setLocalSpeed Game::setLocalSpeed].
 
 == issueCommand ==
 bool issueCommand(const std::set<[Unit]{{{*}}}>& units, [UnitCommand] command);
