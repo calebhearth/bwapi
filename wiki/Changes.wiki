@@ -1,7 +1,8 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3412) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3417) ==
 
 Changes:
+  * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
