@@ -285,7 +285,17 @@ int getGroundHeight(int tileX, int tileY);
 
 int getGroundHeight([Misc#TilePosition TilePosition] position);
 
-Returns the ground height of the given build tile. 0 = normal, 1 = high ground, 2 = very high ground.
+Returns the ground height of the given build tile. 
+{{{
+0 = low
+1 = low doodads
+2 = high
+3 = high doodads
+4 = very high
+5 = very high doodads
+}}}
+
+For information about attacking a unit from a lower to higher ground, see the [http://code.google.com/p/bwapi/wiki/StarcraftGuide#Chance_to_Hit_Guide Chance to Hit Guide].
 
 == isBuildable ==
 bool isBuildable(int tileX, int tileY);
