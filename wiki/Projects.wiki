@@ -21,6 +21,7 @@ This page contains links to other projects that make use of BWAPI.
   * [http://code.google.com/p/mbdp-madp/ mbdp-madp bots]
   * [http://code.google.com/p/moarhard/ moarhard bot]
   * [http://code.google.com/p/voidbot/ voidbot]  
+  * [http://eis.ucsc.edu/EISBot/ EISBot]  
 
 = Enhancement Libraries =
   * [http://code.google.com/p/bwta/ BWTA]
