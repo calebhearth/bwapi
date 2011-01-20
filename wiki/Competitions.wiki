@@ -22,6 +22,7 @@ This page contains a list of competitions using BWAPI.
   * *Hosted by:* University of California, Santa Cruz
   * *Official Competition Website:* http://eis.ucsc.edu/StarCraftAICompetition
   * *Results:* http://eis-blog.ucsc.edu/2010/10/starcraft-ai-competition-results/
+  * *Bot Binaries:* http://eis.ucsc.edu/BotInstructions
 
  === Related Websites ===
   * http://twitter.com/StarCraftAIComp
