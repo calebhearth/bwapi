@@ -18,7 +18,7 @@
   * [MultiInstance Multiple Instances]
   * [Injection Injecting BWAPI into Starcraft]
   * [speed Increasing Starcraft's Performance/Speed]
-  * [AutoHotkeyRestart Automating Game Restarts Against your own AI]
+  * [AutoHotkeyRestart Automating Game Restarts in AI vs AI]
 
 == Development == 
   * [BWAPIDevelopment Developing BWAPI]
