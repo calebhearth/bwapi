@@ -14,6 +14,7 @@
     * [MultiInstance Multiple Instances]
     * [Injection Injecting BWAPI into Starcraft]
     * [speed Increasing Starcraft's Performance/Speed]
+    * [AutoHotkeyRestart Automating Game Restarts]
   * Development
     * [BWAPIDevelopment Developing BWAPI]
     * [CodingStandard Coding Standard]
