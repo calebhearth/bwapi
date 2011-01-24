@@ -49,7 +49,7 @@ MouseMove, %xpos%, %ypos%, 0
 
     * You can right click on the .ahk file and create an executable with _Compile Script_ (AutoHotkey compiles it). You will use this executable in the next section. I called mine _startGame.exe_.
 
-  == Tuning your code ==
+= Tuning your code =
     * All that's left is calling the AutoHotkey process that will restart the game when the games end. This code has to be in the *host* code (`HostModule.dll` in the example above). The client will reconnect automatically (thanks to _map = _. Here is the snippet of code I use. I put _myRestartGame()_ in my utils and then just call it in _onEnd(bool isWinner)_.
     {{{
 void myRestartGame()
