@@ -7,112 +7,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
 
 = Normal Weapons =
-== ATA Laser Battery ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 25
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
-
-
-== ATA Laser Battery (Hero) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
-    * [UnitTypes#Hero_Norad_II Hero Norad II]
-    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
-
-
-== ATA Laser Battery (Hyperion) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Hyperion Hero Hyperion]
-
-
-== ATS Laser Battery ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 25
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
-
-
-== ATS Laser Battery (Hero) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
-    * [UnitTypes#Hero_Norad_II Hero Norad II]
-    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
-
-
-== ATS Laser Battery (Hyperion) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Hyperion Hero Hyperion]
-
-
 == Acid Spore ==
   * *Explosion Type*: Normal
   * *Damage Type*: Normal
@@ -266,6 +160,112 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Edmund_Duke_Siege_Mode Hero Edmund Duke Siege Mode]
+
+
+== ATA Laser Battery ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 25
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 30
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Air
+
+  === What Uses ===
+    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
+
+
+== ATA Laser Battery (Hero) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 50
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 30
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Air
+
+  === What Uses ===
+    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
+    * [UnitTypes#Hero_Norad_II Hero Norad II]
+    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
+
+
+== ATA Laser Battery (Hyperion) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 30
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Air
+
+  === What Uses ===
+    * [UnitTypes#Hero_Hyperion Hero Hyperion]
+
+
+== ATS Laser Battery ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 25
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 30
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
+
+
+== ATS Laser Battery (Hero) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 50
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 30
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
+    * [UnitTypes#Hero_Norad_II Hero Norad II]
+    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
+
+
+== ATS Laser Battery (Hyperion) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 30
+  * *Bonus*: 3
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Range*: 0 - 192
+  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Hero_Hyperion Hero Hyperion]
 
 
 == Burst Lasers ==
@@ -1070,36 +1070,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Protoss_Interceptor Protoss Interceptor]
 
 
-== STA Photon Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
-
-
-== STS Photon Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
-
-
 == Scarab ==
   * *Explosion Type*: Enemy Splash
   * *Damage Type*: Normal
@@ -1166,6 +1136,36 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Zerg_Drone Zerg Drone]
+
+
+== STA Photon Cannon ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 20
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Range*: 0 - 224
+
+  === Targets ===
+    * Air
+
+  === What Uses ===
+    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
+
+
+== STS Photon Cannon ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 20
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Range*: 0 - 224
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
 
 
 == Subterranean Spines ==
