@@ -161,7 +161,7 @@ This page contains a list of UnitTypes provided by BWAPI.
     * [UpgradeTypes#Caduceus_Reactor Caduceus Reactor]
 
 
-=== Terran Scv ===
+=== Terran SCV ===
   * *Max HP*: 60
   * *Armor*: 0
   * *Unit Size*: Small
@@ -296,8 +296,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 1200
   * *Destroy Score*: 2400
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Ats_Laser_Battery ATS Laser Battery]
-  * *Air Weapon*: [WeaponTypes#Ata_Laser_Battery ATA Laser Battery]
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery ATS Laser Battery]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery ATA Laser Battery]
   * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
 
   ==== Abilities ====
@@ -374,7 +374,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Comes from*: [UnitTypes#Terran_Starport Terran Starport]
 
   ==== Abilities ====
-    * [TechTypes#Emp_Shockwave EMP Shockwave]
+    * [TechTypes#EMP_Shockwave EMP Shockwave]
     * [TechTypes#Defensive_Matrix Defensive Matrix]
     * [TechTypes#Irradiate Irradiate]
     * Detector
@@ -456,8 +456,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 800
   * *Top Speed*: 4.570000
-  * *Ground Weapon*: [WeaponTypes#Twin_Autocannons_(alan_Schezar) Twin Autocannons (Alan Schezar)]
-  * *Air Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(alan_Schezar) Hellfire Missile Pack (Alan Schezar)]
+  * *Ground Weapon*: [WeaponTypes#Twin_Autocannons_(Alan_Schezar) Twin Autocannons (Alan Schezar)]
+  * *Air Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(Alan_Schezar) Hellfire Missile Pack (Alan Schezar)]
 
 
 === Hero Alexei Stukov ===
@@ -470,7 +470,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 700
   * *Top Speed*: 4.000000
-  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(alexei_Stukov) C-10 Canister Rifle (Alexei Stukov)]
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Alexei_Stukov) C-10 Canister Rifle (Alexei Stukov)]
 
   ==== Abilities ====
     * [TechTypes#Lockdown Lockdown]
@@ -486,8 +486,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 4800
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Ats_Laser_Battery_(hero) ATS Laser Battery (Hero)]
-  * *Air Weapon*: [WeaponTypes#Ata_Laser_Battery_(hero) ATA Laser Battery (Hero)]
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
 
 
 === Hero Edmund Duke Siege Mode ===
@@ -497,7 +497,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Unit Dimensions*: 32 x 32
   * *Sight Range*: 320 (10)
   * *Destroy Score*: 1400
-  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon_(edmund_Duke) Arclite Shock Cannon (Edmund Duke)]
+  * *Ground Weapon*: [WeaponTypes#Arclite_Shock_Cannon_(Edmund_Duke) Arclite Shock Cannon (Edmund Duke)]
 
   ==== Abilities ====
     * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
@@ -512,7 +512,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 320 (10)
   * *Destroy Score*: 1400
   * *Top Speed*: 4.000000
-  * *Ground Weapon*: [WeaponTypes#Arclite_Cannon_(edmund_Duke) Arclite Cannon (Edmund Duke)]
+  * *Ground Weapon*: [WeaponTypes#Arclite_Cannon_(Edmund_Duke) Arclite Cannon (Edmund Duke)]
 
   ==== Abilities ====
     * [TechTypes#Tank_Siege_Mode Tank Siege Mode]
@@ -527,8 +527,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 4800
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Ats_Laser_Battery_(hero) ATS Laser Battery (Hero)]
-  * *Air Weapon*: [WeaponTypes#Ata_Laser_Battery_(hero) ATA Laser Battery (Hero)]
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
 
   ==== Abilities ====
     * [TechTypes#Yamato_Gun Yamato Gun]
@@ -543,7 +543,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 400
   * *Top Speed*: 4.000000
-  * *Ground Weapon*: [WeaponTypes#Flame_Thrower_(gui_Montag) Flame Thrower (Gui Montag)]
+  * *Ground Weapon*: [WeaponTypes#Flame_Thrower_(Gui_Montag) Flame Thrower (Gui Montag)]
 
   ==== Abilities ====
     * [TechTypes#Stim_Packs Stim Packs]
@@ -558,8 +558,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 4800
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Ats_Laser_Battery_(hyperion) ATS Laser Battery (Hyperion)]
-  * *Air Weapon*: [WeaponTypes#Ata_Laser_Battery_(hyperion) ATA Laser Battery (Hyperion)]
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hyperion) ATS Laser Battery (Hyperion)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hyperion) ATA Laser Battery (Hyperion)]
 
   ==== Abilities ====
     * [TechTypes#Yamato_Gun Yamato Gun]
@@ -574,7 +574,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 200
   * *Top Speed*: 4.000000
-  * *Weapon*: [WeaponTypes#Gauss_Rifle_(jim_Raynor) Gauss Rifle (Jim Raynor)]
+  * *Weapon*: [WeaponTypes#Gauss_Rifle_(Jim_Raynor) Gauss Rifle (Jim Raynor)]
 
   ==== Abilities ====
     * [TechTypes#Stim_Packs Stim Packs]
@@ -589,7 +589,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 300
   * *Top Speed*: 6.400000
-  * *Ground Weapon*: [WeaponTypes#Fragmentation_Grenade_(jim_Raynor) Fragmentation Grenade (Jim Raynor)]
+  * *Ground Weapon*: [WeaponTypes#Fragmentation_Grenade_(Jim_Raynor) Fragmentation Grenade (Jim Raynor)]
 
   ==== Abilities ====
     * [TechTypes#Spider_Mines Spider Mines]
@@ -606,13 +606,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Top Speed*: 5.000000
 
   ==== Abilities ====
-    * [TechTypes#Emp_Shockwave EMP Shockwave]
+    * [TechTypes#EMP_Shockwave EMP Shockwave]
     * [TechTypes#Defensive_Matrix Defensive Matrix]
     * [TechTypes#Irradiate Irradiate]
     * Detector
 
 
-=== Hero Norad Ii ===
+=== Hero Norad II ===
   * *Max HP*: 700
   * *Max Energy*: 250
   * *Armor*: 4
@@ -621,8 +621,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 4800
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Ats_Laser_Battery_(hero) ATS Laser Battery (Hero)]
-  * *Air Weapon*: [WeaponTypes#Ata_Laser_Battery_(hero) ATA Laser Battery (Hero)]
+  * *Ground Weapon*: [WeaponTypes#ATS_Laser_Battery_(Hero) ATS Laser Battery (Hero)]
+  * *Air Weapon*: [WeaponTypes#ATA_Laser_Battery_(Hero) ATA Laser Battery (Hero)]
 
   ==== Abilities ====
     * [TechTypes#Yamato_Gun Yamato Gun]
@@ -638,7 +638,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 320 (10)
   * *Destroy Score*: 700
   * *Top Speed*: 4.000000
-  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(samir_Duran) C-10 Canister Rifle (Samir Duran)]
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Samir_Duran) C-10 Canister Rifle (Samir Duran)]
 
   ==== Abilities ====
     * [TechTypes#Lockdown Lockdown]
@@ -655,7 +655,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 700
   * *Top Speed*: 4.000000
-  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(sarah_Kerrigan) C-10 Canister Rifle (Sarah Kerrigan)]
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Sarah_Kerrigan) C-10 Canister Rifle (Sarah Kerrigan)]
 
   ==== Abilities ====
     * [TechTypes#Lockdown Lockdown]
@@ -671,8 +671,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 1600
   * *Top Speed*: 6.670000
-  * *Ground Weapon*: [WeaponTypes#Burst_Lasers_(tom_Kazansky) Burst Lasers (Tom Kazansky)]
-  * *Air Weapon*: [WeaponTypes#Gemini_Missiles_(tom_Kazansky) Gemini Missiles (Tom Kazansky)]
+  * *Ground Weapon*: [WeaponTypes#Burst_Lasers_(Tom_Kazansky) Burst Lasers (Tom Kazansky)]
+  * *Air Weapon*: [WeaponTypes#Gemini_Missiles_(Tom_Kazansky) Gemini Missiles (Tom Kazansky)]
 
   ==== Abilities ====
     * [TechTypes#Cloaking_Field Cloaking Field]
@@ -703,10 +703,10 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Build Score*: 100
   * *Destroy Score*: 300
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Barracks Terran Barracks]
 
 
@@ -722,10 +722,10 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Build Score*: 100
   * *Destroy Score*: 300
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Factory Terran Factory]
 
 
@@ -742,13 +742,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 75
   * *Destroy Score*: 225
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Command_Center Terran Command Center]
 
 
@@ -765,10 +765,10 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 320 (10)
   * *Build Score*: 50
   * *Destroy Score*: 150
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Barracks Terran Barracks]
 
 
@@ -786,13 +786,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 400
   * *Destroy Score*: 1200
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
 
 
 === Terran Engineering Bay ===
@@ -808,13 +808,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 65
   * *Destroy Score*: 195
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Command_Center Terran Command Center]
 
 
@@ -831,13 +831,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 200
   * *Destroy Score*: 600
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Barracks Terran Barracks]
 
 
@@ -854,13 +854,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 50
   * *Destroy Score*: 150
   * *Air Weapon*: [WeaponTypes#Longbolt_Missile Longbolt Missile]
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Detector
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Engineering_Bay Terran Engineering Bay]
 
 
@@ -876,10 +876,10 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Build Score*: 50
   * *Destroy Score*: 150
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
 
 
 === Terran Science Facility ===
@@ -895,13 +895,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 275
   * *Destroy Score*: 825
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Starport Terran Starport]
 
 
@@ -918,13 +918,13 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Build Score*: 200
   * *Destroy Score*: 600
   * *Top Speed*: 1.000000
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Abilities ====
     * Liftoff
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
     * [UnitTypes#Terran_Factory Terran Factory]
 
 
@@ -941,10 +941,10 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Build Score*: 50
   * *Destroy Score*: 150
-  * *Comes from*: [UnitTypes#Terran_Scv Terran SCV]
+  * *Comes from*: [UnitTypes#Terran_SCV Terran SCV]
 
   ==== Requirements ====
-    * [UnitTypes#Terran_Scv Terran SCV]
+    * [UnitTypes#Terran_SCV Terran SCV]
 
 
 
@@ -1066,7 +1066,7 @@ This page contains a list of UnitTypes provided by BWAPI.
 
 
 == Terran Special Buildings ==
-=== Special Crashed Norad Ii ===
+=== Special Crashed Norad II ===
   * *Max HP*: 700
   * *Armor*: 1
   * *Unit Size*: Large
@@ -1523,7 +1523,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 1300
   * *Top Speed*: 5.000000
   * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters Dual Photon Blasters]
-  * *Air Weapon*: [WeaponTypes#Anti-matter_Missiles Anti-Matter Missiles]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles Anti-Matter Missiles]
   * *Comes from*: [UnitTypes#Protoss_Stargate Protoss Stargate]
 
   ==== Requirements ====
@@ -1588,8 +1588,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 320 (10)
   * *Destroy Score*: 2400
   * *Top Speed*: 5.000000
-  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(artanis) Dual Photon Blasters (Artanis)]
-  * *Air Weapon*: [WeaponTypes#Anti-matter_Missiles_(artanis) Anti-Matter Missiles (Artanis)]
+  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(Artanis) Dual Photon Blasters (Artanis)]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles_(Artanis) Anti-Matter Missiles (Artanis)]
 
 
 === Hero Danimoth ===
@@ -1602,7 +1602,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 288 (9)
   * *Destroy Score*: 4100
   * *Top Speed*: 5.000000
-  * *Weapon*: [WeaponTypes#Phase_Disruptor_Cannon_(danimoth) Phase Disruptor Cannon (Danimoth)]
+  * *Weapon*: [WeaponTypes#Phase_Disruptor_Cannon_(Danimoth) Phase Disruptor Cannon (Danimoth)]
 
   ==== Abilities ====
     * [TechTypes#Recall Recall]
@@ -1620,7 +1620,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 400
   * *Top Speed*: 4.920000
-  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(hero) Warp Blades (Hero)]
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(Hero) Warp Blades (Hero)]
 
   ==== Abilities ====
     * Permanently Cloaked
@@ -1636,7 +1636,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 1000
   * *Top Speed*: 5.000000
-  * *Weapon*: [WeaponTypes#Phase_Disruptor_(fenix) Phase Disruptor (Fenix)]
+  * *Weapon*: [WeaponTypes#Phase_Disruptor_(Fenix) Phase Disruptor (Fenix)]
 
 
 === Hero Fenix Zealot ===
@@ -1649,7 +1649,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 400
   * *Top Speed*: 4.000000
-  * *Ground Weapon*: [WeaponTypes#Psi_Blades_(fenix) Psi Blades (Fenix)]
+  * *Ground Weapon*: [WeaponTypes#Psi_Blades_(Fenix) Psi Blades (Fenix)]
 
 
 === Hero Gantrithor ===
@@ -1672,8 +1672,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 320 (10)
   * *Destroy Score*: 2600
   * *Top Speed*: 5.000000
-  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(mojo) Dual Photon Blasters (Mojo)]
-  * *Air Weapon*: [WeaponTypes#Anti-matter_Missiles_(mojo) Anti-Matter Missiles (Mojo)]
+  * *Ground Weapon*: [WeaponTypes#Dual_Photon_Blasters_(Mojo) Dual Photon Blasters (Mojo)]
+  * *Air Weapon*: [WeaponTypes#Anti-Matter_Missiles_(Mojo) Anti-Matter Missiles (Mojo)]
 
 
 === Hero Raszagal ===
@@ -1720,7 +1720,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 2800
   * *Top Speed*: 4.920000
-  * *Weapon*: [WeaponTypes#Psionic_Shockwave_(tassadar/zeratul_Archon) Psionic Shockwave (Tassadar/Zeratul Archon)]
+  * *Weapon*: [WeaponTypes#Psionic_Shockwave_(Tassadar/Zeratul_Archon) Psionic Shockwave (Tassadar/Zeratul Archon)]
 
 
 === Hero Warbringer ===
@@ -1745,7 +1745,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 800
   * *Top Speed*: 4.920000
-  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(zeratul) Warp Blades (Zeratul)]
+  * *Ground Weapon*: [WeaponTypes#Warp_Blades_(Zeratul) Warp Blades (Zeratul)]
 
   ==== Abilities ====
     * Permanently Cloaked
@@ -1979,8 +1979,8 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Build Score*: 100
   * *Destroy Score*: 300
-  * *Ground Weapon*: [WeaponTypes#Sts_Photon_Cannon STS Photon Cannon]
-  * *Air Weapon*: [WeaponTypes#Sta_Photon_Cannon STA Photon Cannon]
+  * *Ground Weapon*: [WeaponTypes#STS_Photon_Cannon STS Photon Cannon]
+  * *Air Weapon*: [WeaponTypes#STA_Photon_Cannon STA Photon Cannon]
   * *Comes from*: [UnitTypes#Protoss_Probe Protoss Probe]
 
   ==== Abilities ====
@@ -2684,7 +2684,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 160 (5)
   * *Destroy Score*: 100
   * *Top Speed*: 5.490000
-  * *Ground Weapon*: [WeaponTypes#Claws_(devouring_One) Claws (Devouring One)]
+  * *Ground Weapon*: [WeaponTypes#Claws_(Devouring_One) Claws (Devouring One)]
 
   ==== Abilities ====
     * [TechTypes#Burrowing Burrowing]
@@ -2700,7 +2700,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
   * *Destroy Score*: 500
   * *Top Speed*: 3.660000
-  * *Weapon*: [WeaponTypes#Needle_Spines_(hunter_Killer) Needle Spines (Hunter Killer)]
+  * *Weapon*: [WeaponTypes#Needle_Spines_(Hunter_Killer) Needle Spines (Hunter Killer)]
 
   ==== Abilities ====
     * [TechTypes#Burrowing Burrowing]
@@ -2717,7 +2717,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 700
   * *Top Speed*: 4.000000
-  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(infested_Duran) C-10 Canister Rifle (Infested Duran)]
+  * *Weapon*: [WeaponTypes#C-10_Canister_Rifle_(Infested_Duran) C-10 Canister Rifle (Infested Duran)]
 
   ==== Abilities ====
     * [TechTypes#Lockdown Lockdown]
@@ -2736,7 +2736,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 288 (9)
   * *Destroy Score*: 4000
   * *Top Speed*: 4.000000
-  * *Ground Weapon*: [WeaponTypes#Claws_(infested_Kerrigan) Claws (Infested Kerrigan)]
+  * *Ground Weapon*: [WeaponTypes#Claws_(Infested_Kerrigan) Claws (Infested Kerrigan)]
 
   ==== Abilities ====
     * [TechTypes#Personnel_Cloaking Personnel Cloaking]
@@ -2754,7 +2754,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 352 (11)
   * *Destroy Score*: 2200
   * *Top Speed*: 2.500000
-  * *Ground Weapon*: [WeaponTypes#Acid_Spore_(kukulza) Acid Spore (Kukulza)]
+  * *Ground Weapon*: [WeaponTypes#Acid_Spore_(Kukulza) Acid Spore (Kukulza)]
 
   ==== Abilities ====
     * Regenerates Hit Points
@@ -2768,7 +2768,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 1200
   * *Top Speed*: 6.670000
-  * *Weapon*: [WeaponTypes#Glave_Wurm_(kukulza) Glave Wurm (Kukulza)]
+  * *Weapon*: [WeaponTypes#Glave_Wurm_(Kukulza) Glave Wurm (Kukulza)]
 
   ==== Abilities ====
     * Regenerates Hit Points
@@ -2801,7 +2801,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 224 (7)
   * *Destroy Score*: 2600
   * *Top Speed*: 5.120000
-  * *Ground Weapon*: [WeaponTypes#Kaiser_Blades_(torrasque) Kaiser Blades (Torrasque)]
+  * *Ground Weapon*: [WeaponTypes#Kaiser_Blades_(Torrasque) Kaiser Blades (Torrasque)]
 
   ==== Abilities ====
     * Regenerates Hit Points
