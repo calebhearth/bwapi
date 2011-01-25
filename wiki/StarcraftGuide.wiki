@@ -8,6 +8,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 = Unit Cooldown Guide =
   == Which Cooldowns are activated? ==
     When a unit fires a weapon, both its air weapon and ground weapon cooldowns are set. It doesn't matter if the unit fires its air or ground weapon.
+
   == Why is the cooldown always different? ==
     Starcraft randomizes the cooldown.
     It takes the [WeaponTypes base cooldown] and adds a value between (-1) and (+2).
@@ -17,14 +18,18 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     * No ground/doodad chance can be below 50%.
     * Hit chance only applies to ranged units.
     * Splash units will still do splash damage to units that are missed unless that unit is burrowed.
+
   == Chance to Hit from Low Ground to High Ground ==
     The chance to hit from low ground to high ground is roughly 50%. The unit has a 50% chance of missing the target.
     This includes from low ground to very high ground.
+
   == Chance to Hit Unit on Doodad ==
     Example: Behind a tree.
     The chance to hit units on a doodad is roughly 50%. The unit has a 50% chance of missing the target.
+
   == Chance to Hit Unit on the Same Level ==
     The chance to hit a unit on equal grounds is roughly 99.9%.
+
   == Chance to Hit Unit in Dark Swarm ==
     The chance to hit a unit inside of a [UnitTypes#Spell_Dark_Swarm Dark Swarm] is 0%. Behaviour is the same as the others.
 
@@ -38,13 +43,25 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 = Unit Existence/Creation Guide =
   == When a unit is morphed, what happens to it? ==
     The unit's type value and stats change. The unit is technically the same. This includes [UnitTypes#Zerg_Drone Zerg Drones] morphing into buildings(with the exception of the [UnitTypes#Zerg_Extractor Zerg Extractor]), units morphing into other units, and buildings morphing into other buildings. A new unit is not created from this.
+
   == What happens when Zerglings and Scourges are made? ==
     When [UnitTypes#Zerg_Zergling Zerg Zerglings] or [UnitTypes#Zerg_Scourge Zerg Scourges] are morphed, the [UnitTypes#Zerg_Larva Larva] becomes one, and the other is created.
+
   == What happens when a Command Center is infested? ==
     The same thing that happens when a unit is morphed.
+
   == What happens when building over a Vespene Geyser? ==
     The [UnitTypes#Resource_Vespene_Geyser Vespene Geyser] becomes (morphs into) the building. When a [UnitTypes#Zerg_Extractor Zerg Extractor] is placed, the [UnitTypes#Zerg_Drone Zerg Drone] used to place it will be removed from the game. Cancelling the Extractor will create a new Drone which has full hit points.
+
   == What happens when I train a unit? ==
     The unit is created, even though it is not visible or finished completing.
+
   == Where do units go when inside of bunkers/transports? ==
     The unit is exactly where it was loaded. Even if you move a transport, the unit remains at the location it was loaded. It is merely hidden from view. Triggers will iterate through the transport's hold instead of detecting the unit directly. This also explains why moving [UnitTypes#Terran_Bunker Terran Bunkers] in Use Map Settings will cause units to fire from where they were originally loaded.
+
+= Unit Behaviour Guide =
+  == Why do units run away? ==
+    Units will run away only if they are idle and attacked by an enemy unit that they can't attack back. This includes being damaged by the [TechTypes#Irradiate Irradiate] ability. This list includes being attacked by undetected cloaked units, invincible units, undetected burrowed units, air units (when we have no air weapon), etc.
+
+  == Why do units move to attack an enemy even when they are not in attack range? ==
+    Units will move when an enemy enters their "target acquisition range", or "[UnitType#seekRange Seek Range]" in BWAPI.
