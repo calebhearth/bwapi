@@ -3367,9 +3367,43 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Top Speed*: 4.000000
 
 
+=== Special Cargo Ship ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+
+
+=== Special Mercenary Gunship ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+
+
 
 == Resources ==
 === Resource Mineral Field ===
+  * *Tile Size*: 2 x 1
+  * *Unit Dimensions*: 64 x 32
+  * *Sight Range*: 288 (9)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Resource Mineral Field Type 2 ===
+  * *Tile Size*: 2 x 1
+  * *Unit Dimensions*: 64 x 32
+  * *Sight Range*: 288 (9)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Resource Mineral Field Type 3 ===
   * *Tile Size*: 2 x 1
   * *Unit Dimensions*: 64 x 32
   * *Sight Range*: 288 (9)
@@ -3506,12 +3540,60 @@ This page contains a list of UnitTypes provided by BWAPI.
     * Invincible
 
 
+=== Powerup Mineral Cluster Type 1 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
+=== Powerup Mineral Cluster Type 2 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
+=== Powerup Protoss Gas Orb Type 1 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
+=== Powerup Protoss Gas Orb Type 2 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
 === Powerup Psi Emitter ===
   * *Unit Dimensions*: 32 x 32
   * *Sight Range*: 160 (5)
 
   ==== Abilities ====
     * Invincible
+
+
+=== Powerup Terran Gas Tank Type 1 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
+=== Powerup Terran Gas Tank Type 2 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
 
 
 === Powerup Uraj Crystal ===
@@ -3530,12 +3612,28 @@ This page contains a list of UnitTypes provided by BWAPI.
     * Invincible
 
 
+=== Powerup Zerg Gas Sac Type 1 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
+=== Powerup Zerg Gas Sac Type 2 ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 160 (5)
+
+
 
 == Misc ==
 === None ===
 A type used to specify that no unit type exists.
 
-=== AllUnits ===
+=== All Units ===
 A macro type used to specify that we want to obtain data for all the units and buildings.
 
 === Men ===
