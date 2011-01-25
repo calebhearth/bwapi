@@ -3367,22 +3367,6 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Top Speed*: 4.000000
 
 
-=== Special Cargo Ship ===
-  * *Max HP*: 125
-  * *Armor*: 1
-  * *Unit Size*: Medium
-  * *Unit Dimensions*: 32 x 32
-  * *Sight Range*: 256 (8)
-
-
-=== Special Mercenary Gunship ===
-  * *Max HP*: 125
-  * *Armor*: 1
-  * *Unit Size*: Medium
-  * *Unit Dimensions*: 32 x 32
-  * *Sight Range*: 224 (7)
-
-
 
 == Resources ==
 === Resource Mineral Field ===
@@ -3629,6 +3613,35 @@ This page contains a list of UnitTypes provided by BWAPI.
 
 
 
+== Special ==
+=== Special Cargo Ship ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 256 (8)
+
+
+=== Special Mercenary Gunship ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+
+
+=== Special Independant Starport ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Tile Size*: 2 x 2
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 288 (9)
+  * *Destroy Score*: 10
+  * *Ground Weapon*: [WeaponTypes#Independant_Laser_Battery Independant Laser Battery]
+
+
+
 == Misc ==
 === None ===
 A type used to specify that no unit type exists.
@@ -3646,5 +3659,5 @@ A macro type used to specify that we want to obtain data for all the buildings.
 A macro type used to specify that we want to obtain data for only the buildings that can produce units.
 
 === Unknown ===
-A type used to specify that we shouldn't know what the unit is, and that it has been made unknown to us.
+A type used to specify that we shouldn't know what the unit is, and that it has been made unknown to us. It is also used for unit types that have not been implemented.
 

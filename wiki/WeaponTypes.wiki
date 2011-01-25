@@ -3,7 +3,7 @@
 
 This page contains a list of WeaponTypes provided by BWAPI.
 
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="2" />
 
 
 = Normal Weapons =
@@ -443,25 +443,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
 
 
-== Consume ==
-  * *Explosion Type*: Consume
-  * *Range*: 0 - 16
-  * *Technology*: [TechTypes#Consume Consume]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Non-Buildings
-    * Organic
-    * Own
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Defiler Zerg Defiler]
-    * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
-    * [UnitTypes#Hero_Unclean_One Hero Unclean One]
-    * [UnitTypes#Hero_Infested_Duran Hero Infested Duran]
-
-
 == Corrosive Acid ==
   * *Explosion Type*: Corrosive Acid
   * *Damage Type*: Explosive
@@ -477,33 +458,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Zerg_Devourer Zerg Devourer]
-
-
-== Dark Swarm ==
-  * *Explosion Type*: Dark Swarm
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Dark_Swarm Dark Swarm]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Defiler Zerg Defiler]
-    * [UnitTypes#Hero_Unclean_One Hero Unclean One]
-
-
-== Disruption Web ==
-  * *Explosion Type*: Disruption Web
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Disruption_Web Disruption Web]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Corsair Protoss Corsair]
-    * [UnitTypes#Hero_Raszagal Hero Raszagal]
 
 
 == Dual Photon Blasters ==
@@ -555,51 +509,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Mojo Hero Mojo]
-
-
-== Emp Shockwave ==
-  * *Explosion Type*: EMP Shockwave
-  * *Range*: 0 - 256
-  * *Technology*: [TechTypes#Emp_Shockwave EMP Shockwave]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Terran_Science_Vessel Terran Science Vessel]
-    * [UnitTypes#Hero_Magellan Hero Magellan]
-
-
-== Ensnare ==
-  * *Explosion Type*: Ensnare
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Ensnare Ensnare]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Queen Zerg Queen]
-    * [UnitTypes#Hero_Matriarch Hero Matriarch]
-    * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
-
-
-== Feedback ==
-  * *Explosion Type*: Feedback
-  * *Range*: 0 - 320
-  * *Technology*: [TechTypes#Feedback Feedback]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Dark_Archon Protoss Dark Archon]
 
 
 == Flame Thrower ==
@@ -862,21 +771,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Special_Independant_Starport Special Independant Starport]
 
 
-== Irradiate ==
-  * *Explosion Type*: Irradiate
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Irradiate Irradiate]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Terran_Science_Vessel Terran Science Vessel]
-    * [UnitTypes#Hero_Magellan Hero Magellan]
-
-
 == Kaiser Blades ==
   * *Explosion Type*: Normal
   * *Damage Type*: Normal
@@ -911,25 +805,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Torrasque Hero Torrasque]
 
 
-== Lockdown ==
-  * *Explosion Type*: Lockdown
-  * *Range*: 0 - 256
-  * *Technology*: [TechTypes#Lockdown Lockdown]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Mechanical
-    * Non-Buildings
-
-  === What Uses ===
-    * [UnitTypes#Terran_Ghost Terran Ghost]
-    * [UnitTypes#Hero_Sarah_Kerrigan Hero Sarah Kerrigan]
-    * [UnitTypes#Hero_Samir_Duran Hero Samir Duran]
-    * [UnitTypes#Hero_Alexei_Stukov Hero Alexei Stukov]
-    * [UnitTypes#Hero_Infested_Duran Hero Infested Duran]
-
-
 == Longbolt Missile ==
   * *Explosion Type*: Normal
   * *Damage Type*: Explosive
@@ -943,34 +818,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Terran_Missile_Turret Terran Missile Turret]
-
-
-== Maelstrom ==
-  * *Explosion Type*: Maelstrom
-  * *Range*: 0 - 320
-  * *Technology*: [TechTypes#Maelstrom Maelstrom]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Dark_Archon Protoss Dark Archon]
-
-
-== Mind Control ==
-  * *Explosion Type*: Mind Control
-  * *Range*: 0 - 256
-  * *Technology*: [TechTypes#Mind_Control Mind Control]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Dark_Archon Protoss Dark Archon]
 
 
 == Needle Spines ==
@@ -1026,55 +873,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
   === What Uses ===
     * [UnitTypes#Protoss_Corsair Protoss Corsair]
     * [UnitTypes#Hero_Raszagal Hero Raszagal]
-
-
-== None ==
-  * *Explosion Type*: None
-  * *Range*: 0 - 0
-
-
-== Nuclear Strike ==
-  * *Explosion Type*: Nuclear Missile
-  * *Damage Type*: Explosive
-  * *Damage*: 600
-  * *Factor*: 1
-  * *Cooldown*: 1
-  * *Range*: 0 - 3
-  * *Technology*: [TechTypes#Nuclear_Strike Nuclear Strike]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Ghost Terran Ghost]
-
-
-== Optical Flare ==
-  * *Explosion Type*: Optical Flare
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Optical_Flare Optical Flare]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Medic Terran Medic]
-
-
-== Parasite ==
-  * *Explosion Type*: Parasite
-  * *Range*: 0 - 384
-  * *Technology*: [TechTypes#Parasite Parasite]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Non-Buildings
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Queen Zerg Queen]
-    * [UnitTypes#Hero_Matriarch Hero Matriarch]
 
 
 == Particle Beam ==
@@ -1162,21 +960,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Danimoth Hero Danimoth]
-
-
-== Plague ==
-  * *Explosion Type*: Plague
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Plague Plague]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Defiler Zerg Defiler]
-    * [UnitTypes#Hero_Unclean_One Hero Unclean One]
 
 
 == Psi Assault ==
@@ -1269,29 +1052,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Tassadar_Zeratul_Archon Hero Tassadar Zeratul Archon]
 
 
-== Psionic Storm ==
-  * *Explosion Type*: Radial Splash
-  * *Damage Type*: Ignore Armor
-  * *Damage*: 14
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 45
-  * *Splash Radius*: 48 - 48 - 48
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Psionic_Storm Psionic Storm]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Non-Buildings
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
-    * [UnitTypes#Protoss_High_Templar Protoss High Templar]
-    * [UnitTypes#Hero_Tassadar Hero Tassadar]
-
-
 == Pulse Cannon ==
   * *Explosion Type*: Normal
   * *Damage Type*: Normal
@@ -1308,20 +1068,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Protoss_Interceptor Protoss Interceptor]
-
-
-== Restoration ==
-  * *Explosion Type*: Restoration
-  * *Range*: 0 - 192
-  * *Technology*: [TechTypes#Restoration Restoration]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Terran_Medic Terran Medic]
 
 
 == Scarab ==
@@ -1355,22 +1101,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Zerg_Spore_Colony Zerg Spore Colony]
-
-
-== Spawn Broodlings ==
-  * *Explosion Type*: Broodlings
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Spawn_Broodlings Spawn Broodlings]
-
-  === Targets ===
-    * Ground
-    * Non-Buildings
-    * Non-Robotic
-    * Organic or Mechanical
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Queen Zerg Queen]
-    * [UnitTypes#Hero_Matriarch Hero Matriarch]
 
 
 == Spider Mines ==
@@ -1421,21 +1151,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
-
-
-== Stasis Field ==
-  * *Explosion Type*: Stasis Field
-  * *Range*: 0 - 288
-  * *Technology*: [TechTypes#Stasis_Field Stasis Field]
-
-  === Targets ===
-    * Air
-    * Ground
-    * Terrain
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Arbiter Protoss Arbiter]
-    * [UnitTypes#Hero_Danimoth Hero Danimoth]
 
 
 == Sts Photon Cannon ==
@@ -1568,11 +1283,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Alan_Schezar Hero Alan Schezar]
 
 
-== Unknown ==
-  * *Explosion Type*: None
-  * *Range*: 0 - 0
-
-
 == Warp Blades ==
   * *Explosion Type*: Normal
   * *Damage Type*: Normal
@@ -1622,465 +1332,10 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Zeratul Hero Zeratul]
-
-
-== Yamato Gun ==
-  * *Explosion Type*: Yamato Gun
-  * *Damage Type*: Explosive
-  * *Damage*: 260
-  * *Cooldown*: 15
-  * *Range*: 0 - 320
-  * *Technology*: [TechTypes#Yamato_Gun Yamato Gun]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
-    * [UnitTypes#Hero_Hyperion Hero Hyperion]
-    * [UnitTypes#Hero_Norad_Ii Hero Norad II]
-    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
 
 
 
 = Special Weapons =
-== Acid Spore ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 256
-  * *Upgrade*: [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Guardian Zerg Guardian]
-
-
-== Acid Spore (kukulza) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 40
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 256
-  * *Upgrade*: [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Kukulza_Guardian Hero Kukulza Guardian]
-
-
-== Anti-matter Missiles ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 14
-  * *Bonus*: 1
-  * *Factor*: 2
-  * *Cooldown*: 22
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Scout Protoss Scout]
-
-
-== Anti-matter Missiles (artanis) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 28
-  * *Bonus*: 1
-  * *Factor*: 2
-  * *Cooldown*: 22
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Artanis Hero Artanis]
-
-
-== Anti-matter Missiles (mojo) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 28
-  * *Bonus*: 1
-  * *Factor*: 2
-  * *Cooldown*: 22
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Mojo Hero Mojo]
-
-
-== Arclite Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 37
-  * *Range*: 0 - 224
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Siege_Tank_Tank_Mode Terran Siege Tank Tank Mode]
-
-
-== Arclite Cannon (edmund Duke) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 70
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 37
-  * *Range*: 0 - 224
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Edmund_Duke_Tank_Mode Hero Edmund Duke Tank Mode]
-
-
-== Arclite Shock Cannon ==
-  * *Explosion Type*: Radial Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 70
-  * *Bonus*: 5
-  * *Factor*: 1
-  * *Cooldown*: 75
-  * *Splash Radius*: 10 - 25 - 40
-  * *Range*: 64 - 384
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Siege_Tank_Siege_Mode Terran Siege Tank Siege Mode]
-
-
-== Arclite Shock Cannon (edmund Duke) ==
-  * *Explosion Type*: Radial Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 150
-  * *Bonus*: 5
-  * *Factor*: 1
-  * *Cooldown*: 75
-  * *Splash Radius*: 10 - 25 - 40
-  * *Range*: 64 - 384
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Edmund_Duke_Siege_Mode Hero Edmund Duke Siege Mode]
-
-
-== Ata Laser Battery ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 25
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
-
-
-== Ata Laser Battery (hero) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
-    * [UnitTypes#Hero_Norad_Ii Hero Norad II]
-    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
-
-
-== Ata Laser Battery (hyperion) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Hyperion Hero Hyperion]
-
-
-== Ats Laser Battery ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 25
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Battlecruiser Terran Battlecruiser]
-
-
-== Ats Laser Battery (hero) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Arcturus_Mengsk Hero Arcturus Mengsk]
-    * [UnitTypes#Hero_Norad_Ii Hero Norad II]
-    * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
-
-
-== Ats Laser Battery (hyperion) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Hyperion Hero Hyperion]
-
-
-== Burst Lasers ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 8
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Wraith Terran Wraith]
-
-
-== Burst Lasers (tom Kazansky) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 16
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Tom_Kazansky Hero Tom Kazansky]
-
-
-== C-10 Canister Rifle ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 10
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 224
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Ghost Terran Ghost]
-
-
-== C-10 Canister Rifle (alexei Stukov) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 30
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Alexei_Stukov Hero Alexei Stukov]
-
-
-== C-10 Canister Rifle (infested Duran) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 25
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Infested_Duran Hero Infested Duran]
-
-
-== C-10 Canister Rifle (samir Duran) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 25
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Samir_Duran Hero Samir Duran]
-
-
-== C-10 Canister Rifle (sarah Kerrigan) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 30
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Sarah_Kerrigan Hero Sarah Kerrigan]
-
-
-== Claws ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 5
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 8
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Zergling Zerg Zergling]
-
-
-== Claws (devouring One) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 10
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 8
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Devouring_One Hero Devouring One]
-
-
-== Claws (infested Kerrigan) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
-
-
 == Consume ==
   * *Explosion Type*: Consume
   * *Range*: 0 - 16
@@ -2098,23 +1353,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Infested_Kerrigan Hero Infested Kerrigan]
     * [UnitTypes#Hero_Unclean_One Hero Unclean One]
     * [UnitTypes#Hero_Infested_Duran Hero Infested Duran]
-
-
-== Corrosive Acid ==
-  * *Explosion Type*: Corrosive Acid
-  * *Damage Type*: Explosive
-  * *Damage*: 25
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 100
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Devourer Zerg Devourer]
 
 
 == Dark Swarm ==
@@ -2142,57 +1380,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
   === What Uses ===
     * [UnitTypes#Protoss_Corsair Protoss Corsair]
     * [UnitTypes#Hero_Raszagal Hero Raszagal]
-
-
-== Dual Photon Blasters ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 8
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Scout Protoss Scout]
-
-
-== Dual Photon Blasters (artanis) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Artanis Hero Artanis]
-
-
-== Dual Photon Blasters (mojo) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Mojo Hero Mojo]
 
 
 == Emp Shockwave ==
@@ -2240,266 +1427,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Protoss_Dark_Archon Protoss Dark Archon]
 
 
-== Flame Thrower ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Concussive
-  * *Damage*: 8
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Splash Radius*: 15 - 20 - 25
-  * *Range*: 0 - 32
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Firebat Terran Firebat]
-
-
-== Flame Thrower (gui Montag) ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Concussive
-  * *Damage*: 16
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Splash Radius*: 15 - 20 - 25
-  * *Range*: 0 - 32
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Gui_Montag Hero Gui Montag]
-
-
-== Fragmentation Grenade ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 20
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Vulture Terran Vulture]
-
-
-== Fragmentation Grenade (jim Raynor) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Concussive
-  * *Damage*: 30
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Jim_Raynor_Vulture Hero Jim Raynor Vulture]
-
-
-== Fusion Cutter ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 5
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 10
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Scv Terran SCV]
-
-
-== Gauss Rifle ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 6
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Marine Terran Marine]
-
-
-== Gauss Rifle (jim Raynor) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 18
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Jim_Raynor_Marine Hero Jim Raynor Marine]
-
-
-== Gemini Missiles ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Wraith Terran Wraith]
-
-
-== Gemini Missiles (tom Kazansky) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 40
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Tom_Kazansky Hero Tom Kazansky]
-
-
-== Glave Wurm ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 9
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 96
-  * *Upgrade*: [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Mutalisk Zerg Mutalisk]
-
-
-== Glave Wurm (kukulza) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 18
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 96
-  * *Upgrade*: [UpgradeTypes#Zerg_Flyer_Attacks Zerg Flyer Attacks]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Kukulza_Mutalisk Hero Kukulza Mutalisk]
-
-
-== Halo Rockets ==
-  * *Explosion Type*: Air Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 6
-  * *Bonus*: 1
-  * *Factor*: 2
-  * *Cooldown*: 64
-  * *Splash Radius*: 5 - 50 - 100
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Ship_Weapons Terran Ship Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Valkyrie Terran Valkyrie]
-
-
-== Hellfire Missile Pack ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 10
-  * *Bonus*: 2
-  * *Factor*: 2
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Goliath Terran Goliath]
-
-
-== Hellfire Missile Pack (alan Schezar) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 2
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Hero_Alan_Schezar Hero Alan Schezar]
-
-
-== Independant Laser Battery ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 7
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 8
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Special_Independant_Starport Special Independant Starport]
-
-
 == Irradiate ==
   * *Explosion Type*: Irradiate
   * *Range*: 0 - 288
@@ -2513,40 +1440,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
   === What Uses ===
     * [UnitTypes#Terran_Science_Vessel Terran Science Vessel]
     * [UnitTypes#Hero_Magellan Hero Magellan]
-
-
-== Kaiser Blades ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 25
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Ultralisk Zerg Ultralisk]
-
-
-== Kaiser Blades (torrasque) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 50
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 25
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Torrasque Hero Torrasque]
 
 
 == Lockdown ==
@@ -2566,21 +1459,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Samir_Duran Hero Samir Duran]
     * [UnitTypes#Hero_Alexei_Stukov Hero Alexei Stukov]
     * [UnitTypes#Hero_Infested_Duran Hero Infested Duran]
-
-
-== Longbolt Missile ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Terran_Missile_Turret Terran Missile Turret]
 
 
 == Maelstrom ==
@@ -2609,66 +1487,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Protoss_Dark_Archon Protoss Dark Archon]
-
-
-== Needle Spines ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 10
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Zerg_Missile_Attacks Zerg Missile Attacks]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Hydralisk Zerg Hydralisk]
-
-
-== Needle Spines (hunter Killer) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Zerg_Missile_Attacks Zerg Missile Attacks]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Hunter_Killer Hero Hunter Killer]
-
-
-== Neutron Flare ==
-  * *Explosion Type*: Air Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 5
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 8
-  * *Splash Radius*: 5 - 50 - 100
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Corsair Protoss Corsair]
-    * [UnitTypes#Hero_Raszagal Hero Raszagal]
-
-
-== None ==
-  * *Explosion Type*: None
-  * *Range*: 0 - 0
 
 
 == Nuclear Strike ==
@@ -2715,93 +1533,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Matriarch Hero Matriarch]
 
 
-== Particle Beam ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 5
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 32
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Probe Protoss Probe]
-
-
-== Phase Disruptor ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Dragoon Protoss Dragoon]
-
-
-== Phase Disruptor (fenix) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 45
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Fenix_Dragoon Hero Fenix Dragoon]
-
-
-== Phase Disruptor Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 10
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 45
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Arbiter Protoss Arbiter]
-
-
-== Phase Disruptor Cannon (danimoth) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 45
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Danimoth Hero Danimoth]
-
-
 == Plague ==
   * *Explosion Type*: Plague
   * *Range*: 0 - 288
@@ -2815,96 +1546,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
   === What Uses ===
     * [UnitTypes#Zerg_Defiler Zerg Defiler]
     * [UnitTypes#Hero_Unclean_One Hero Unclean One]
-
-
-== Psi Assault ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 96
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Tassadar Hero Tassadar]
-    * [UnitTypes#Hero_Aldaris Hero Aldaris]
-
-
-== Psi Blades ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 8
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Zealot Protoss Zealot]
-
-
-== Psi Blades (fenix) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Fenix_Zealot Hero Fenix Zealot]
-
-
-== Psionic Shockwave ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Normal
-  * *Damage*: 30
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 20
-  * *Splash Radius*: 3 - 15 - 30
-  * *Range*: 0 - 64
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Archon Protoss Archon]
-
-
-== Psionic Shockwave (tassadar/zeratul Archon) ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Normal
-  * *Damage*: 60
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 20
-  * *Splash Radius*: 3 - 15 - 30
-  * *Range*: 0 - 64
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Tassadar_Zeratul_Archon Hero Tassadar Zeratul Archon]
 
 
 == Psionic Storm ==
@@ -2930,24 +1571,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Tassadar Hero Tassadar]
 
 
-== Pulse Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 6
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 1
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Protoss_Air_Weapons Protoss Air Weapons]
-
-  === Targets ===
-    * Air
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Interceptor Protoss Interceptor]
-
-
 == Restoration ==
   * *Explosion Type*: Restoration
   * *Range*: 0 - 192
@@ -2960,39 +1583,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Terran_Medic Terran Medic]
-
-
-== Scarab ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Normal
-  * *Damage*: 100
-  * *Bonus*: 25
-  * *Factor*: 1
-  * *Cooldown*: 1
-  * *Splash Radius*: 20 - 40 - 60
-  * *Range*: 0 - 128
-  * *Upgrade*: [UpgradeTypes#Scarab_Damage Scarab Damage]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Scarab Protoss Scarab]
-
-
-== Seeker Spores ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 15
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Spore_Colony Zerg Spore Colony]
 
 
 == Spawn Broodlings ==
@@ -3011,56 +1601,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Matriarch Hero Matriarch]
 
 
-== Spider Mines ==
-  * *Explosion Type*: Radial Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 125
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Splash Radius*: 50 - 75 - 100
-  * *Range*: 0 - 10
-  * *Technology*: [TechTypes#Spider_Mines Spider Mines]
-
-  === Targets ===
-    * Ground
-    * Non-Buildings
-
-  === What Uses ===
-    * [UnitTypes#Terran_Vulture Terran Vulture]
-    * [UnitTypes#Terran_Vulture_Spider_Mine Terran Vulture Spider Mine]
-    * [UnitTypes#Hero_Jim_Raynor_Vulture Hero Jim Raynor Vulture]
-
-
-== Spines ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 5
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 32
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Drone Zerg Drone]
-
-
-== Sta Photon Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
-
-
 == Stasis Field ==
   * *Explosion Type*: Stasis Field
   * *Range*: 0 - 288
@@ -3074,192 +1614,6 @@ This page contains a list of WeaponTypes provided by BWAPI.
   === What Uses ===
     * [UnitTypes#Protoss_Arbiter Protoss Arbiter]
     * [UnitTypes#Hero_Danimoth Hero Danimoth]
-
-
-== Sts Photon Cannon ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon]
-
-
-== Subterranean Spines ==
-  * *Explosion Type*: Enemy Splash
-  * *Damage Type*: Normal
-  * *Damage*: 20
-  * *Bonus*: 2
-  * *Factor*: 1
-  * *Cooldown*: 37
-  * *Splash Radius*: 20 - 20 - 20
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Zerg_Missile_Attacks Zerg Missile Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Lurker Zerg Lurker]
-
-
-== Subterranean Tentacle ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Explosive
-  * *Damage*: 40
-  * *Factor*: 1
-  * *Cooldown*: 32
-  * *Range*: 0 - 224
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Sunken_Colony Zerg Sunken Colony]
-
-
-== Suicide Infested Terran ==
-  * *Explosion Type*: Radial Splash
-  * *Damage Type*: Explosive
-  * *Damage*: 500
-  * *Factor*: 1
-  * *Cooldown*: 1
-  * *Splash Radius*: 20 - 40 - 60
-  * *Range*: 0 - 3
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Infested_Terran Zerg Infested Terran]
-
-
-== Suicide Scourge ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 110
-  * *Factor*: 1
-  * *Cooldown*: 1
-  * *Range*: 0 - 3
-
-  === Targets ===
-    * Air
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Scourge Zerg Scourge]
-
-
-== Toxic Spores ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 4
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 15
-  * *Range*: 0 - 2
-  * *Upgrade*: [UpgradeTypes#Zerg_Melee_Attacks Zerg Melee Attacks]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Zerg_Broodling Zerg Broodling]
-
-
-== Twin Autocannons ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 12
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 192
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Terran_Goliath Terran Goliath]
-
-
-== Twin Autocannons (alan Schezar) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 24
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 160
-  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Alan_Schezar Hero Alan Schezar]
-
-
-== Unknown ==
-  * *Explosion Type*: None
-  * *Range*: 0 - 0
-
-
-== Warp Blades ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 40
-  * *Bonus*: 3
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Protoss_Dark_Templar Protoss Dark Templar]
-
-
-== Warp Blades (hero) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 45
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 30
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Dark_Templar Hero Dark Templar]
-
-
-== Warp Blades (zeratul) ==
-  * *Explosion Type*: Normal
-  * *Damage Type*: Normal
-  * *Damage*: 100
-  * *Bonus*: 1
-  * *Factor*: 1
-  * *Cooldown*: 22
-  * *Range*: 0 - 15
-  * *Upgrade*: [UpgradeTypes#Protoss_Ground_Weapons Protoss Ground Weapons]
-
-  === Targets ===
-    * Ground
-
-  === What Uses ===
-    * [UnitTypes#Hero_Zeratul Hero Zeratul]
 
 
 == Yamato Gun ==
@@ -3280,4 +1634,10 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Norad_Ii Hero Norad II]
     * [UnitTypes#Hero_Gerard_Dugalle Hero Gerard DuGalle]
 
+
+= None =
+A type used to specify that no weapon type exists.
+
+= Unknown =
+A type used to specify that we shouldn't know what the weapon type is, and that it has been made unknown to us. It is also used for weapon types that have not been implemented.
 
