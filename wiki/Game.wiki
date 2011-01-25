@@ -212,11 +212,11 @@ Enables the specified flag. Note that flags can only be enabled at the beginning
 == setGUI ==
 void setGUI(bool enabled);
 
-Disables or enables GUI rendering. This includes all rendering both within the game and BWAPI.
+Disables all drawing functions in BWAPI and uses [Game#setFrameSkip Game::setFrameSkip], specifying the highest frame skip value possible. This prevents the game from leaving its main loop. The game only draws to the screen once it has broken out of its main loop. Note that the game will still leave the loop once every 2 seconds. This alternative approach produces better results than the old setGUI behaviour.
 
-Calling [#setLocalSpeed Game::setLocalSpeed(0)] increases the speed of Starcraft. Disabling the GUI with this command can increase the speed even more.
+Note: You must call [#setLocalSpeed Game::setLocalSpeed(0)] to first increase the game speed to its limits in order to witness any results.
 
-Warning: Disabling the GUI may cause Starcraft to desynchronize.
+What's the difference between this and setFrameSkip(999999)? When setGUI is set to false, it will disable all of BWAPI's drawing functionality. If you've made drawing calls then they will be ignored. It also ignores drawing-related code that is used internally in BWAPI's onFrame.
 
 See Also: [Game#setFrameSkip Game::setFrameSkip], [Game#setLocalSpeed Game::setLocalSpeed].
 
