@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3423) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3442) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -16,11 +16,13 @@ Additions:
   * Added [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange].
   * Added the configuration option "holiday" which allows disabling the once-secret holiday modifications that were activated at the appropriate time.
   * Added [Game#setFrameSkip Game::setFrameSkip] which alters Starcraft's built-in frame skipping value.
+  * Added some more [UnitTypes] that are specific to Use Map Settings games, as well as the [WeaponTypes] to go with them.
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
   * Fixed a crash involving the use of the extended ASCII character set in the drawText functions.
   * Fixed a memory leak that was unique to Starcraft: Broodwar.
+  * Corrected [WeaponType#normalWeaponTypes WeaponTypes::normalWeaponTypes] and [WeaponType#specialWeaponTypes WeaponTypes::specialWeaponTypes] which were returning the wrong sets.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
