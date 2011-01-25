@@ -46,5 +46,5 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     The [UnitTypes#Resource_Vespene_Geyser Vespene Geyser] becomes (morphs into) the building. When a [UnitTypes#Zerg_Extractor Zerg Extractor] is placed, the [UnitTypes#Zerg_Drone Zerg Drone] used to place it will be removed from the game. Cancelling the Extractor will create a new Drone which has full hit points.
   == What happens when I train a unit? ==
     The unit is created, even though it is not visible or finished completing.
-  == Where do units go when inside of bunkers/dropships? ==
-    The unit is exactly where it was loaded. Even if you move a dropship, the unit remains at the location where you loaded it into the dropship. It is merely hidden from view. Triggers will iterate through the transport's hold instead of detecting the unit directly. This also explains why moving bunkers in Use Map Settings will cause units to fire from where they were loaded.
+  == Where do units go when inside of bunkers/transports? ==
+    The unit is exactly where it was loaded. Even if you move a transport, the unit remains at the location it was loaded. It is merely hidden from view. Triggers will iterate through the transport's hold instead of detecting the unit directly. This also explains why moving [UnitTypes#Terran_Bunker Terran Bunkers] in Use Map Settings will cause units to fire from where they were originally loaded.
