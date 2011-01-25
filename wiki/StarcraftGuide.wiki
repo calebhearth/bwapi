@@ -26,7 +26,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
   == Chance to Hit Unit on the Same Level ==
     The chance to hit a unit on equal grounds is roughly 99.9%.
   == Chance to Hit Unit in Dark Swarm ==
-    The chance to hit a unit inside of a Dark Swarm is 0%. Behaviour is the same as the others.
+    The chance to hit a unit inside of a [UnitTypes#Spell_Dark_Swarm Dark Swarm] is 0%. Behaviour is the same as the others.
 
 = Resource Gathering Guide =
   == Which Worker Gathers the fastest? ==
@@ -34,3 +34,17 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     The only difference between the races is the size of their resource depot.
     Compare the sizes of [UnitTypes#Terran_Command_Center Terran Command Center], [UnitTypes#Protoss_Nexus Protoss Nexus], and [UnitTypes#Zerg_Hatchery Zerg Hatchery]/[UnitTypes#Zerg_Lair Lair]/[UnitTypes#Zerg_Hive Hive].
     Only the size of their resource depot impacts resource gathering time.
+
+= Unit Existence/Creation Guide =
+  == When a unit is morphed, what happens to it? ==
+    The unit's type value and stats change. The unit is technically the same. This includes [UnitTypes#Zerg_Drone Zerg Drones] morphing into buildings(with the exception of the [UnitTypes#Zerg_Extractor Zerg Extractor]), units morphing into other units, and buildings morphing into other buildings. A new unit is not created from this.
+  == What happens when Zerglings and Scourges are made? ==
+    When [UnitTypes#Zerg_Zergling Zerg Zerglings] or [UnitTypes#Zerg_Scourge Zerg Scourges] are morphed, the [UnitTypes#Zerg_Larva Larva] becomes one, and the other is created.
+  == What happens when a Command Center is infested? ==
+    The same thing that happens when a unit is morphed.
+  == What happens when building over a Vespene Geyser? ==
+    The [UnitTypes#Resource_Vespene_Geyser Vespene Geyser] becomes (morphs into) the building. When a [UnitTypes#Zerg_Extractor Zerg Extractor] is placed, the [UnitTypes#Zerg_Drone Zerg Drone] used to place it will be removed from the game. Cancelling the Extractor will create a new Drone which has full hit points.
+  == What happens when I train a unit? ==
+    The unit is created, even though it is not visible or finished completing.
+  == Where do units go when inside of bunkers/dropships? ==
+    The unit is exactly where it was loaded. Even if you move a dropship, the unit remains at the location where you loaded it into the dropship. It is merely hidden from view. Triggers will iterate through the transport's hold instead of detecting the unit directly. This also explains why moving bunkers in Use Map Settings will cause units to fire from where they were loaded.
