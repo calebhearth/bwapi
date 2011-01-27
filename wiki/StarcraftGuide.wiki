@@ -15,8 +15,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 
 = Chance to Hit Guide =
   == Notes ==
-    * No ground/doodad chance can be below 50%.
-    * Hit chance only applies to ranged units.
+    * Hit chance only applies to ranged weapons. For advanced users, this guide only applies to the following weapon behaviours: "Fly & Follow Target", "Fly & Don't Follow Target", "Appear on Target Unit", and "Appear on Target Site".
     * Splash units will still do splash damage to units that are missed unless that unit is burrowed.
 
   == Chance to Hit from Low Ground to High Ground ==
