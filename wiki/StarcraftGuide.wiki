@@ -20,15 +20,14 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     * Splash units will still do splash damage to units that are missed unless that unit is burrowed.
 
   == Chance to Hit from Low Ground to High Ground ==
-    The chance to hit from low ground to high ground is roughly 50%. The unit has a 50% chance of missing the target.
-    This includes from low ground to very high ground.
+    The chance to hit from low ground to high ground is exactly 53.125%. This includes from low ground to very high ground.
 
   == Chance to Hit Unit on Doodad ==
     Example: Behind a tree.
-    The chance to hit units on a doodad is roughly 50%. The unit has a 50% chance of missing the target.
+    The chance to hit units on a doodad is exactly 53.125%. It is the same as if Doodads were higher ground.
 
   == Chance to Hit Unit on the Same Level ==
-    The chance to hit a unit on equal grounds is roughly 99.9%.
+    The chance to hit a unit on equal grounds is 99.609375%.
 
   == Chance to Hit Unit in Dark Swarm ==
     The chance to hit a unit inside of a [UnitTypes#Spell_Dark_Swarm Dark Swarm] is 0%. Behaviour is the same as the others.
