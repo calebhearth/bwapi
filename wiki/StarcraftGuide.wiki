@@ -26,7 +26,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     The chance to hit units on a doodad is exactly 53.125%. It is the same as if Doodads were higher ground.
 
   == Chance to Hit Unit on the Same Level ==
-    The chance to hit a unit on equal grounds is 99.609375%.
+    The chance to hit a unit on equal grounds is exactly 99.609375%.
 
   == Chance to Hit Unit in Dark Swarm ==
     The chance to hit a unit inside of a [UnitTypes#Spell_Dark_Swarm Dark Swarm] is 0%. Behaviour is the same as the others.
