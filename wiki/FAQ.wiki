@@ -1,11 +1,11 @@
 #summary Frequently Asked Questions
-
+ 
 This page contains answers to frequent questions.
-
+ 
 <wiki:toc max_depth="1" />
-
+ 
 = Will there be an API like this for Starcraft II? =
-
+ 
   No. The BWAPI team is not interested in developing an API for [http://www.battle.net/sc2/ Starcraft II]. Some reasons are listed below.
     * [http://www.blizzard.com Blizzard Entertainment] has a strict [http://www.blizzard.com/support/article.xml?tag=SC2exploitation anti-hacking policy] for [http://www.battle.net/sc2/ Starcraft II].
     * Creating hacks and freely moving about the binary is far more difficult than doing so with [http://www.blizzard.com/games/sc/ Starcraft: Broodwar].
@@ -13,12 +13,22 @@ This page contains answers to frequent questions.
     * AI/API developers will need to handle far more information than with BWAPI.
     * Embarking on such a project will require an exponentially greater amount of time to develop.
     * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/support/article.xml?articleId=25801 Starcraft: Broodwar].
+ 
+= How come I get an "Injection failed. (newline) This may happen from mixing RELEASE and DEBUG builds." message when launching with Chaoslauncher? =
 
+  This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control," or UAC. As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
 
+  '''To disable the UAC in Windows Vista:'''
+    # Click the '''Start Menu''' and select '''Control Panel.'''
+    # In '''Classic View''', double-click the '''User Accounts''' icon.
+    # Click the link labeled '''Turn User Account Control on or off'''.
+    # Make sure that the '''Use User Account Control (UAC) to help protect your computer''' is ''not'' checked.
+    # Click '''OK''' and restart your computer. After restarting, try launching Starcraft again through Chaoslauncher.
+ 
 = When are units deleted? When do Unit pointers become invalid? =
-
+ 
   Units are deleted only after the match ends.
-
+ 
 = Should I Make an AI DLL Module or an AI Client Program? =
-
+ 
 That depends on what you want to do. Unless you have a specific reason to write your AI as a client program, you probably want to make you AI as a DLL module. The client-server connection adds an overhead cost since the entire game state must be copied to shared memory every frame, so AIs written as client programs always run slower than AI DLL modules. On the other hand, running your AI as a client program allows you to enforce the BWAPI cheat flags by preventing the AI program from accessing Starcraft memory directly (AI DLL modules can easily bypass the BWAPI cheat flags). Any AI DLL module can be run as a client program by loading it into the AI Module Loader or a similar AI client program that just acts as a proxy between the shared memory and AI DLL module.
