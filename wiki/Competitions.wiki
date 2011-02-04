@@ -9,9 +9,12 @@ This page contains a list of competitions using BWAPI.
 
  == _AIIDE 2011_ ==
 
+  _Official details have yet to be announced._
  === Info ===
   * *Hosted by:* University of Alberta
-  _Details have yet to be announced._
+
+ === Dates ===
+  * *Competition:* August 2011 (Estimated, not official)
 
 ----
 = Finished =
