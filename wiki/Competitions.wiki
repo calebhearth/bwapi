@@ -9,12 +9,21 @@ This page contains a list of competitions using BWAPI.
 
  == _AIIDE 2011_ ==
 
-  _Official details have yet to be announced._
  === Info ===
   * *Hosted by:* University of Alberta
+  * *Registration:* Email "mburo (AT) cs (DOT) ualberta (DOT) ca" with "SCAI2011 ENTRY" as the subject. You MUST specify "SCAI2011 ENTRY" as the subject.
+  * *Info:* http://skatgame.net/mburo/sc2011/
+
+ === Binaries ===
+  * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
+  * *Operating System:* Windows XP
 
  === Dates ===
-  * *Competition:* August 2011 (Estimated, not official)
+  * *Registration Deadline:* July 1st, 2011
+  * *Submission Deadline:* July 31st, 2011
+  * *Competition:* August 8th to August 12th, 2011
+
+  _More details will be available soon._
 
 ----
 = Finished =
@@ -26,6 +35,9 @@ This page contains a list of competitions using BWAPI.
   * *Official Competition Website:* http://eis.ucsc.edu/StarCraftAICompetition
   * *Results:* http://eis-blog.ucsc.edu/2010/10/starcraft-ai-competition-results/
   * *Bot Binaries:* http://eis.ucsc.edu/BotInstructions
+
+ === Binaries ===
+  * *Version:* Any BWAPI binary is fine.
 
  === Related Websites ===
   * http://twitter.com/StarCraftAIComp
