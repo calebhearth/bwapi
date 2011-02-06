@@ -298,11 +298,13 @@ Returns the ground height of the given build tile.
 For information about attacking a unit from a lower to higher ground, see the [http://code.google.com/p/bwapi/wiki/StarcraftGuide#Chance_to_Hit_Guide Chance to Hit Guide].
 
 == isBuildable ==
-bool isBuildable(int tileX, int tileY);
+bool isBuildable(int tileX, int tileY, bool includeBuildings = false);
 
-bool isBuildable([Misc#TilePosition TilePosition] position);
+bool isBuildable([Misc#TilePosition TilePosition] position, bool includeBuildings = false);
 
-Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile].
+Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile]. 
+
+This function was updated later to include a boolean that includes all visible buildings. By default it is set to false to maintain the original function's behaviour.
 
 == isVisible ==
 bool isVisible(int tileX, int tileY);
