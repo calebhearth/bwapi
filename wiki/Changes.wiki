@@ -1,9 +1,11 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3442) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3456) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
   * The DEBUG version now checks for memory leaks.
+  * [Game#IsBuildable Game::isBuildable] now includes a boolean to specify whether to check if a visible building is blocking the way. It is false by default.
+  * [Game#canBuildHere Game::canBuildHere] has slightly increased performance.
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
@@ -23,6 +25,7 @@ Bug Fixes:
   * Fixed a crash involving the use of the extended ASCII character set in the drawText functions.
   * Fixed a memory leak that was unique to Starcraft: Broodwar.
   * Corrected [WeaponType#normalWeaponTypes WeaponTypes::normalWeaponTypes] and [WeaponType#specialWeaponTypes WeaponTypes::specialWeaponTypes] which were returning the wrong sets.
+  * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would fail in some cases where buildings can overlap. See issue 302 for more information.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
