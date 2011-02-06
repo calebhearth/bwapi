@@ -4,7 +4,7 @@
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
   * The DEBUG version now checks for memory leaks.
-  * [Game#IsBuildable Game::isBuildable] now includes a boolean to specify whether to check if a visible building is blocking the way. It is false by default.
+  * [Game#isBuildable Game::isBuildable] now includes a boolean to specify whether to check if a visible building is blocking the way. It is false by default.
   * [Game#canBuildHere Game::canBuildHere] has slightly increased performance.
 
 Additions:
