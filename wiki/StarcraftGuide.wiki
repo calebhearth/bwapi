@@ -1,7 +1,7 @@
 #summary Advanced Information Guide for Starcraft Broodwar
 #sidebar TableOfContents
 
-This page is a guide that contains advanced information about Starcraft Broodwar as a reference for bot developers. Please keep in mind that this article mostly covers advanced topics that are not commonly known anywhere else.
+This page is a guide that contains advanced information about Starcraft Broodwar as a reference for bot developers. Please keep in mind that this article mostly covers advanced topics that are not commonly known anywhere else. More common topics should be covered elsewhere. If there is something you'd like to know, then ask Heinermann on the IRC.
 
 <wiki:toc max_depth="3" />
 
