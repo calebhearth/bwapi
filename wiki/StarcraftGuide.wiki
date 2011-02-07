@@ -1,7 +1,7 @@
 #summary Advanced Information Guide for Starcraft Broodwar
 #sidebar TableOfContents
 
-This page is a guide that contains advanced information about Starcraft Broodwar as a reference for bot developers.
+This page is a guide that contains advanced information about Starcraft Broodwar as a reference for bot developers. Please keep in mind that this article mostly covers advanced topics that are not commonly known anywhere else.
 
 <wiki:toc max_depth="3" />
 
@@ -63,3 +63,11 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 
   == Why do units move to attack an enemy even when they are not in attack range? ==
     Units will move when an enemy enters their "target acquisition range", or "[UnitType#seekRange Seek Range]" in BWAPI.
+
+= Unit Ordering Guide =
+  == What are the differences between Stop and Hold Position? ==
+    The difference will impact your unit's rate of fire. Hold position will make your unit's first shot faster, but consecutive shots will be slower, and Stop will make your unit's consecutive shots faster, but your first shot slower. When a unit is ordered to Hold Position, it runs a loop to acquire a target, perform the attack, and then stop moving, the additional command to stop moving requires additional frames, making your unit's consecutive attacks slower, but because Hold Position first acquires a target, its initial attack will be faster. Stop will order your unit to first stop doing everything immediately, which also stops it from acquiring a first target until it goes idle, increasing the time for a first attack, however it will not order your unit to stop moving after every attack, making consecutive attacks faster.
+
+    The above explanation may not represent the exact behaviour, but here is the short version:
+      * *Stop*: Stop -> Go to Idle -> Acquire Target -> Attack -> Attack -> ...
+      * *Hold Position*: Stop -> Acquire Target -> Attack -> Stop -> Attack -> Stop -> ...
