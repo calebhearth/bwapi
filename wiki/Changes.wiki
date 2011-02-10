@@ -14,7 +14,7 @@ Additions:
   * Added [Game#setMap Game::setMap] which changes the map for when you next restart the game.
   * Added [Unit#isUnderAttack Unit::isUnderAttack] which identifies units that have been recently attacked.
   * Added [Unit#getLastAttackingPlayer Unit::getLastAttackingPlayer] which identifies the player that last attacked this unit.
-  * Added [Game#getUnitsInRectangle Game::getUnitsInRectnagle].
+  * Added [Game#getUnitsInRectangle Game::getUnitsInRectangle].
   * Added [Game#getUnitsInRadius Game::getUnitsInRadius ].
   * Added [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange].
   * Added the configuration option "holiday" which allows disabling the once-secret holiday modifications that were activated at the appropriate time.
