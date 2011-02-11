@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3464) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3467) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -7,6 +7,8 @@ Changes:
   * [Game#isBuildable Game::isBuildable] now includes a boolean to specify whether to check if a visible building is blocking the way. It is false by default.
   * [Game#canBuildHere Game::canBuildHere] has slightly increased performance.
   * [Game#drawLine Game::drawLine] has greatly increased performance.
+  * The config values "ai_dll" and "ai_dll_dbg" have been replaced with "ai" and "ai_dbg", the revision and multi-instance entries ("ai_dll_rev", "ai_dll_#", etc.) have been removed. More information in the updated bwapi.ini config file.
+  * Some distance functions now use integers instead of doubles.
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
@@ -15,11 +17,13 @@ Additions:
   * Added [Unit#isUnderAttack Unit::isUnderAttack] which identifies units that have been recently attacked.
   * Added [Unit#getLastAttackingPlayer Unit::getLastAttackingPlayer] which identifies the player that last attacked this unit.
   * Added [Game#getUnitsInRectangle Game::getUnitsInRectangle].
-  * Added [Game#getUnitsInRadius Game::getUnitsInRadius ].
+  * Added [Game#getUnitsInRadius Game::getUnitsInRadius].
+  * Added [Unit#getUnitsInRadius Unit::getUnitsInRadius].
   * Added [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange].
   * Added the configuration option "holiday" which allows disabling the once-secret holiday modifications that were activated at the appropriate time.
   * Added [Game#setFrameSkip Game::setFrameSkip] which alters Starcraft's built-in frame skipping value.
   * Added some more [UnitTypes] that are specific to Use Map Settings games, as well as the [WeaponTypes] to go with them.
+  * Added a new configuration option "screenshots" under "Starcraft" which allows you to specify the format Starcraft saves screenshots in. Defaults to "GIF".
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
