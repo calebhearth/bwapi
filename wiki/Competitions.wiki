@@ -11,17 +11,21 @@ This page contains a list of competitions using BWAPI.
 
  === Info ===
   * *Hosted by:* University of Alberta
-  * *Registration:* Email "mburo (AT) cs (DOT) ualberta (DOT) ca" with "SCAI2011 ENTRY" as the subject. You MUST specify "SCAI2011 ENTRY" as the subject.
+  * *Registration:* Email "mburo (AT) cs (DOT) ualberta (DOT) ca" with "{{{SCAI2011 ENTRY}}}" as the subject. You _MUST_ specify "{{{SCAI2011 ENTRY}}}" as the subject.
   * *Info:* http://skatgame.net/mburo/sc2011/
+  * *Entries:* http://skatgame.net/mburo/sc2011/entries.html
 
  === Binaries ===
   * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
-  * *Operating System:* Windows XP
+  * *Operating System:* Windows XP SP3
+  * *Hardware:* Intel E8500 with 4 GB of RAM
 
  === Dates ===
   * *Registration Deadline:* July 1st, 2011
-  * *Submission Deadline:* July 31st, 2011
-  * *Competition:* August 8th to August 12th, 2011
+  * *Submission Deadline:* August 7th, 2011
+  * *Testing:* August 8th to August 14th, 2011
+  * *Competition:* August 15th to August 19th, 2011
+  * *Prize Ceremony & Exhibition:* October 2011
 
   _More details will be available soon._
 
