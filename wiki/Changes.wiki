@@ -9,7 +9,7 @@ Changes:
   * [Game#drawLine Game::drawLine] has greatly increased performance.
   * The config values "{{{ai_dll}}}" and "{{{ai_dll_dbg}}}" have been replaced with "{{{ai}}}" and "{{{ai_dbg}}}", the revision and multi-instance entries ("{{{ai_dll_rev}}}", "{{{ai_dll_#}}}", etc.) have been removed. More information in the updated bwapi.ini config file.
   * Some distance functions now use integers instead of doubles.
-  * The config option "{{{save_replay}}}" under "{{{auto_menu}}}" now accepts environment variables as well as our user defined variables. (more info soon)
+  * The config option "[MenuAutomation#save_replay save_replay]" under "{{{auto_menu}}}" now accepts environment variables as well as our user defined variables.
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
