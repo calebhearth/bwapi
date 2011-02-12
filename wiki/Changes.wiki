@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3471) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3474) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -9,6 +9,7 @@ Changes:
   * [Game#drawLine Game::drawLine] has greatly increased performance.
   * The config values "{{{ai_dll}}}" and "{{{ai_dll_dbg}}}" have been replaced with "{{{ai}}}" and "{{{ai_dbg}}}", the revision and multi-instance entries ("{{{ai_dll_rev}}}", "{{{ai_dll_#}}}", etc.) have been removed. More information in the updated bwapi.ini config file.
   * Some distance functions now use integers instead of doubles.
+  * The config option "{{{save_replay}}}" under "{{{auto_menu}}}" now accepts environment variables as well as our user defined variables. (more info soon)
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
