@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3474) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3480) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -33,6 +33,7 @@ Bug Fixes:
   * Corrected [WeaponType#normalWeaponTypes WeaponTypes::normalWeaponTypes] and [WeaponType#specialWeaponTypes WeaponTypes::specialWeaponTypes] which were returning the wrong sets.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would fail in some cases where buildings can overlap. See issue 302 for more information.
   * Fixed a bug that would cause the game to freeze for several seconds when invalid positions were passed to [Game#drawLineMap Game::drawLineMap].
+  * Fixed a bug that prevented the usage of known /commands on a Battle.net server.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
