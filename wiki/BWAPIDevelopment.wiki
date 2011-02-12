@@ -33,12 +33,19 @@ _Note: Only perform steps 3 and 4 if you want to use Chaos Launcher as a loader.
 
 == How To Create a New Release of BWAPI ==
 
+=== Release Steps ===
   # Check out BWAPI and compile as Release mode and Debug mode.
   # Compile BWTA from latest BWAPI header files as Release mode and Debug mode.
-  # Copy BWTA libs and header files into Release_Binary/libs/ and Release_Binary/include/
+  # Copy BWTA libs and header files into {{{Release_Binary/libs/}}} and {{{Release_Binary/include/}}}
   # Update the ChangeLog file with info from the [Changes] page.
   # Update the README file so it has the name of the new release at the top of the file.
-  # Export the Release_Binary SVN folder to some other folder like BWAPI_Beta_X.Y.Z to remove the .svn folders.
+  # Export the {{{Release_Binary}}} SVN folder to some other folder like {{{BWAPI_Beta_X.Y.Z}}} to remove the {{{.svn}}} folders.
   # Compress the folder to zip archive.
-  # Upload to the Downloads page and mark as Featured.
-  # Update Project Home page.
+  # Upload to the [http://code.google.com/p/bwapi/downloads/list Downloads] page and mark as Featured.
+  # Update Project [http://code.google.com/p/bwapi/admin Home] page.
+
+=== Post-Release Steps
+  # Copy the lastest release binary to {{{Release_Binary/Starcraft/bwapi-data/revisions}}}.
+  # Rename the binary to the revision number.
+  # Update {{{info.txt}}} with the new revision -> version information.
+  # Commit all the changes made in any of the Release and Post-Release steps.
