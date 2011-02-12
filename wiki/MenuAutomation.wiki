@@ -52,7 +52,23 @@ Example:
 
   * {{{save_replay = maps\replays\BWAPI_LastReplay.rep}}}
 
-Variables will be added in a later release.
+You can also use environment variables as "{{{%VARIABLE%}}}".
+
+Example:
+
+  * {{{save_replay = maps\replays\%OS%_%USERNAME%.rep}}}
+
+Will become "{{{WINDOWS_NT_SYSTEM.rep}}}" or whatever your configuration is.
+
+We have also added our own variables, they are as follows:
+|| Variable || Description || Sample ||
+|| {{{%YEAR%}}} || Prints the year using 4 numeric digits. || 2011 ||
+|| {{{%MONTH%}}} || Prints the month using 2 numeric digits. || 03 ||
+|| {{{%DAY%}}} || Prints the day of the month using 2 numeric digits. || 15 ||
+|| {{{%HOUR%}}} || Prints the hour of the day using 2 numeric digits. || 12 ||
+|| {{{%MINUTE%}}} || Prints the minute of the hour using 2 numeric digits. || 30 ||
+|| {{{%SECOND%}}} || Prints the second of the minute using 2 numeric digits. || 59 ||
+|| {{{%MILLISECOND%}}} || Prints the millisecond of the second using 3 numeric digits. || 666 ||
 
 === race ===
 Specifies which race to select for the player. Can have one of the following values:
