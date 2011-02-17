@@ -268,22 +268,27 @@ Returns true for the four robotic Protoss units - Probe, Shuttle, Reaver, and Ob
 == isDetector ==
 bool isDetector() const;
 
-Returns true for the seven units that can detect cloaked units - Terran Science Vessel, Spell Scanner Sweep, Zerg Overlord, Protoss Observer, Terran Missile Turret, Zerg Spore Colony, and Protoss Photon Cannon.
+Returns true if the unit is capable of detecting cloaked units.
 
 == isResourceContainer ==
 bool isResourceContainer() const;
 
-Returns true for the five units that hold resources - Mineral Field, Vespene Geyser, Terran Refinery, Zerg Extractor, and Protoss Assimilator.
+Returns true for the seven units that hold resources - Mineral Field (Type 1, Type 2, Type 3), Vespene Geyser, Terran Refinery, Zerg Extractor, and Protoss Assimilator.
 
 == isResourceDepot ==
 bool isResourceDepot() const;
 
-Returns true for the five units that can accept resources - Terran Command Center, Protoss Nexus, Zerg Hatchery, Zerg Lair, and Zerg Hive.
+Returns true for the six units that can accept resources - Terran Command Center, Protoss Nexus, Zerg Hatchery, Zerg Lair, Zerg Hive, and Start Location.
 
 == isRefinery ==
 bool isRefinery() const;
 
 Returns true for Terran Refinery, Zerg Extractor, and Protoss Assimilator.
+
+== isMineralField ==
+bool isMineralField() const;
+
+Returns true for the three types of Mineral Fields. BWAPI typically interprets all resources as "Type 1", so this may be used in the future.
 
 == isWorker ==
 bool isWorker() const;
