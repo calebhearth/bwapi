@@ -9,11 +9,14 @@ This page contains a list of competitions using BWAPI.
 
  == _AIIDE 2011_ ==
 
+  _*NOTE: Please visit http://skatgame.net/mburo/sc2011/ to verify the rules and schedules before submitting your application.*_
+
  === Info ===
   * *Hosted by:* University of Alberta
   * *Registration:* Email "mburo (AT) cs (DOT) ualberta (DOT) ca" with "{{{SCAI2011 ENTRY}}}" as the subject. You _MUST_ specify "{{{SCAI2011 ENTRY}}}" as the subject.
   * *Info:* http://skatgame.net/mburo/sc2011/
-  * *Entries:* http://skatgame.net/mburo/sc2011/entries.html
+  * *Entries:* http://skatgame.net/mburo/sc2011/registration.html
+  * *Entries must be submitted as Open Source.* Entries will also be re-released as Open Source under a GNU liscense, the authors retaining a copyright to their code.
 
  === Binaries ===
   * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
@@ -27,7 +30,7 @@ This page contains a list of competitions using BWAPI.
   * *Competition:* August 15th to August 19th, 2011
   * *Prize Ceremony & Exhibition:* October 2011
 
-  _More details will be available soon._
+  _*NOTE: Please visit http://skatgame.net/mburo/sc2011/ to verify the rules and schedules before submitting your application.*_
 
 ----
 = Finished =
