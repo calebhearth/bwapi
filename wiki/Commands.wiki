@@ -33,3 +33,4 @@ This list contains commands that are only available in DEBUG mode.
 = Hotkeys =
 || *Hotkey || *Description * ||
 || {{{ALT + ENTER}}} || Toggles the display between windowed mode and fullscreen mode. ||
+|| {{{ALT}}} || When held down, it will prevent the cursor from leaving the game window. This is only available in Windowed Mode. ||
