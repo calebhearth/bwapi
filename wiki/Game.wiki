@@ -236,16 +236,16 @@ std::set< [Unit]`*` >& unitsOnTile(int tileX, int tileY);
 Returns the set of units that are on the given build tile. Only returns accessible units on accessible tiles.
 
 == getUnitsInRectangle ==
-std::set<[Unit]`*`> getUnitsInRectangle(int left, int top, int right, int bottom);
+std::set<[Unit]`*`>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
 
-std::set<[Unit]`*`> getUnitsInRectangle(BWAPI::[Position] topLeft, BWAPI::[Position] bottomRight)
+std::set<[Unit]`*`>& getUnitsInRectangle(BWAPI::[Position] topLeft, BWAPI::[Position] bottomRight) const;
 
 Retrieves the set of all accessable units within a rectangle.
 
 See Also: [Game#getUnitsInRadius Game::getUnitsInRadius]
 
 == getUnitsInRadius ==
-std::set<[Unit]`*`> getUnitsInRadius(BWAPI::[Position] center, int radius)
+std::set<[Unit]`*`>& getUnitsInRadius(BWAPI::[Position] center, int radius) const;
 
 Retrieves the set of all accessable units within a given radius.
 
