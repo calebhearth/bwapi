@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3494) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3502) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -13,6 +13,7 @@ Changes:
   * Most BWAPILIB objects now have an "operator int() const" as a replacement for all other comparison operators. This allows more flexibility, specifically for the developers of BWAPI, so that a call to ".getID()" does not need to be made.
   * Stretching the window in Windowed Mode will now resize the game screen.
   * Holding ALT in Windowed Mode will now prevent the cursor from leaving the window (same as W-Mode functionality).
+  * The auto-menu map selection no longer loops back and forth with the previous menu in order to select the correct map.
 
 Additions:
   * Added [Game#getAPM Game::getAPM] which retrieves the bot's running actions per minute and ignores user actions.
@@ -40,6 +41,8 @@ Bug Fixes:
   * Fixed a bug that prevented the usage of known /commands on a Battle.net server.
   * Fixed an issue where [UnitTypes#Special_Overmind_With_Shell Overmind With Shell], [UnitTypes#Special_Overmind Overmind], [UnitTypes#Special_Cerebrate Cerebrate], [UnitTypes#Special_Cerebrate_Daggoth Cerebrate Daggoth], and [UnitTypes#Special_Overmind_Cocoon Overmind Cocoon] would return false for isDetector(). They now correctly return true.
   * Fixed a bug in Windowed Mode where the System Cursor was displayed instead of the game cursor.
+  * [Game#restartGame Game::restartGame] no longer freezes/crashes the game when called during multi-player. Instead it silently returns an error.
+  * Fixed an infinite loop involving auto-menu attempting to find the correct map.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
