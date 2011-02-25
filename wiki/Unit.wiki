@@ -297,14 +297,14 @@ See also: [Unit]::[Unit#upgrade upgrade], [Unit]::[Unit#cancelUpgrade cancelUpgr
 If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran building that is being constructed, this will return the SCV that is constructing it.
 
 == getUnitsInRadius ==
-std::set<[Unit]`*`> getUnitsInRadius() const;
+std::set<[Unit]`*`>& getUnitsInRadius() const;
 
 Retrieves the set of all units that are within a certain radius of the unit's bounding box.
 
 See also: [Game#getUnitsInRadius Game::getUnitsInRadius], [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange]
 
 == getUnitsInWeaponRange ==
-std::set<[Unit]`*`> getUnitsInWeaponRange() const;
+std::set<[Unit]`*`>& getUnitsInWeaponRange() const;
 
 Retrieves the set of all units that are within both the ground and air weapon range.
 
