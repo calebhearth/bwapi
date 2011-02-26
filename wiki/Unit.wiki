@@ -708,6 +708,16 @@ bool isUnderStorm() const;
 
 Returns true if the unit is under a Protoss Psionic Storm.
 
+== isUnderDarkSwarm ==
+bool isUnderDarkSwarm() const;
+
+Returns true if the unit is under a Dark Swarm.
+
+== isUnderDisruptionWeb ==
+bool isUnderDisruptionWeb() const;
+
+Returns true if the unit is under a Disruption Web.
+
 == isUnpowered ==
 bool isUnpowered() const;
 
