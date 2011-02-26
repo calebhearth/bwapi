@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3508) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3513) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -31,6 +31,8 @@ Additions:
   * Added some more [UnitTypes] that are specific to Use Map Settings games, as well as the [WeaponTypes] to go with them.
   * Added a new configuration option "screenshots" under "Starcraft" which allows you to specify the format Starcraft saves screenshots in. Defaults to "GIF".
   * Added [UnitType#isMineralField UnitType::isMineralField] which just returns true if the unit is Mineral Field Type 1, 2, and 3. BWAPI currently converts all Mineral Fields to Type 1 for its own purpose, so you don't need to worry too much about it.
+  * Added [Unit#isUnderDarkSwarm Unit::isUnderDarkSwarm].
+  * Added [Unit#isUnderDisruptionWeb Unit::isUnderDisruptionWeb].
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
