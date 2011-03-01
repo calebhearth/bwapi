@@ -62,13 +62,21 @@ Will become "{{{WINDOWS_NT_SYSTEM.rep}}}" or whatever your configuration is.
 
 We have also added our own variables, they are as follows:
 || Variable || Description || Sample ||
-|| {{{%YEAR%}}} || Prints the year using 4 numeric digits. || 2011 ||
+|| {{{%YEAR%}}} || Prints the year using 2 numeric digits. || 11 ||
 || {{{%MONTH%}}} || Prints the month using 2 numeric digits. || 03 ||
 || {{{%DAY%}}} || Prints the day of the month using 2 numeric digits. || 15 ||
 || {{{%HOUR%}}} || Prints the hour of the day using 2 numeric digits. || 12 ||
 || {{{%MINUTE%}}} || Prints the minute of the hour using 2 numeric digits. || 30 ||
 || {{{%SECOND%}}} || Prints the second of the minute using 2 numeric digits. || 59 ||
 || {{{%MILLISECOND%}}} || Prints the millisecond of the second using 3 numeric digits. || 666 ||
+|| {{{%MILLISECOND%}}} || Prints the millisecond of the second using 3 numeric digits. || 666 ||
+|| {{{%BOTNAME%}}} || The name of the BWAPI Player truncated to 6 characters. || MimicB ||
+|| {{{%BOTRACE%}}} || The race of the BWAPI Player represented as a single character. || P ||
+|| {{{%MAP%}}} || The name of the map truncated to 16 characters. || Challenger ||
+|| {{{%ALLYNAMES%}}} || The names of all allied players, each truncated to 6 characters. || krasi0Overmi ||
+|| {{{%ALLYRACES%}}} || The races of all allied players, each race being represented as a single character. || TZ ||
+|| {{{%ENEMYNAMES%}}} || The names of all enemy players, each truncated to 6 characters. || UAlberSkynet ||
+|| {{{%ENEMYRACES%}}} || The races of all enemy players, each race being represented as a single character. || ZP ||
 
 === race ===
 Specifies which race to select for the player. Can have one of the following values:
