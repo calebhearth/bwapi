@@ -69,7 +69,6 @@ We have also added our own variables, they are as follows:
 || {{{%MINUTE%}}} || Prints the minute of the hour using 2 numeric digits. || 30 ||
 || {{{%SECOND%}}} || Prints the second of the minute using 2 numeric digits. || 59 ||
 || {{{%MILLISECOND%}}} || Prints the millisecond of the second using 3 numeric digits. || 666 ||
-|| {{{%MILLISECOND%}}} || Prints the millisecond of the second using 3 numeric digits. || 666 ||
 || {{{%BOTNAME%}}} || The name of the BWAPI Player truncated to 6 characters. || MimicB ||
 || {{{%BOTRACE%}}} || The race of the BWAPI Player represented as a single character. || P ||
 || {{{%MAP%}}} || The name of the map truncated to 16 characters. || Challenger ||
