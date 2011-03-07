@@ -52,13 +52,13 @@ You can also specify a revision for older AI binaries provided that revision's B
 
 = Networking =
 
-Copy _{{{Starcraft\BWAPI_SNPModule.snp}}}_ to your Starcraft folder.
+Copy _{{{Starcraft\SNP_DirectIP.snp}}}_ to your Starcraft folder.
 
   http://bwapi.googlecode.com/svn/wiki/multi_tut_07.gif
 
 A new network mode called *Local PC* should now be available after choosing Multiplayer. 
 
-    _*Note*: *This network mode will only appear when BWAPI has been [Injection injected]* and will allow you to play matches between multiple instances. You can check the [http://code.google.com/p/bwapi/issues/list issues tracker] for known issues when attempting to use this mode._
+    _*Note*: *This network mode will only appear when BWAPI has been [Injection injected]* and will allow you to play matches between multiple instances. For network mode support, visit the [http://bwdi.googlecode.com BWDI project]._
 
 
 = Conclusion =
