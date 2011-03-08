@@ -670,7 +670,7 @@ bool isStartingAttack() const;
 
 Returns true if the unit is starting to attack.
 
-See also: [Unit]::[Unit#attackUnit attackUnit], [Unit]::[Unit#getGroundWeaponCooldown getGroundWeaponCooldown], [Unit]::[Unit#getAirWeaponCooldown getAirWeaponCooldown].
+See also: [Unit]::[Unit#attack attack], [Unit]::[Unit#getGroundWeaponCooldown getGroundWeaponCooldown], [Unit]::[Unit#getAirWeaponCooldown getAirWeaponCooldown].
 
 == isStasised ==
 bool isStasised() const;
@@ -754,15 +754,12 @@ bool issueCommand([UnitCommand] command);
 
 Issues the give unit command, or returns false if there is an error. For example Unit::issueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0)) will order the unit to attack move to the Position (50,60).
 
-== attackMove ==
-bool attackMove([Misc#Position Position] target);
+== attack ==
+bool attack([Misc#Position Position] target);
 
-Orders the unit to attack move to the specified location. After issuing, the unit's order will become Orders::AttackMove.
+bool attack([Unit]{{{*}}} target);
 
-== attackUnit ==
-bool attackUnit([Unit]{{{*}}} target);
-
-Orders the unit to attack the specified unit. After issuing, the unit's order will become Orders::AttackUnit.
+Orders the unit to attack move to a specified location or attack a single unit. After issuing, the unit's order will become Orders::AttackMove or Orders::AttackUnit, depending on how the call was made.
 
 == build ==
 bool build([Misc#TilePosition TilePosition] target, [UnitType] type);
