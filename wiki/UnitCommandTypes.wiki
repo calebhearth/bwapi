@@ -3,16 +3,16 @@
 
 = UnitCommandTypes =
 
-  * Attack_Move - corresponds to [Unit#attackMove Unit::attackMove]
-  * Attack_Unit - corresponds to [Unit#attackUnit Unit::attackUnit]
+  * Attack_Move - corresponds to [Unit#attack Unit::attack]
+  * Attack_Unit - corresponds to [Unit#attack Unit::attack]
   * Build - corresponds to [Unit#build Unit::build]
   * Build_Addon - corresponds to [Unit#buildAddon Unit::buildAddon]
   * Train - corresponds to [Unit#train Unit::train]
   * Morph - corresponds to [Unit#morph Unit::morph]
   * Research - corresponds to [Unit#research Unit::research]
   * Upgrade - corresponds to [Unit#upgrade Unit::upgrade]
-  * Set_Rally_Position - corresponds to [Unit#setRallyPosition Unit::setRallyPosition]
-  * Set_Rally_Unit - corresponds to [Unit#setRallyUnit Unit::setRallyUnit]
+  * Set_Rally_Position - corresponds to [Unit#setRallyPoint Unit::setRallyPoint]
+  * Set_Rally_Unit - corresponds to [Unit#setRallyPoint Unit::setRallyPoint]
   * Move - corresponds to [Unit#move Unit::move]
   * Patrol - corresponds to [Unit#patrol Unit::patrol]
   * Hold_Position - corresponds to [Unit#holdPosition Unit::holdPosition]
