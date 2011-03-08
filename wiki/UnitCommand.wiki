@@ -2,13 +2,13 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/UnitCommand.h# BWAPI/UnitCommand.h]
 
-UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While units can be issued commands the normal way via the [Unit] methods (i.e. [Unit#attackUnit Unit::attackUnit]), in some cases you may want to have a function that can process any unit command, such as when you're writing a proxy for BWAPI.
+UnitCommand objects are currently used only as arguments to one function - [Unit#issueCommand Unit::issueCommand]. While units can be issued commands the normal way via the [Unit] methods (i.e. [Unit#attack Unit::attack]), in some cases you may want to have a function that can process any unit command, such as when you're writing a proxy for BWAPI.
 
 <wiki:toc max_depth="2" />
 
 = Named Constructors =
-  * attackMove([Unit]{{{*}}} unit, [Misc#Position Position] target);
-  * attackUnit([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
+  * attack([Unit]{{{*}}} unit, [Misc#Position Position] target);
+  * attack([Unit]{{{*}}} unit, [Unit]{{{*}}} target);
   * build([Unit]{{{*}}} unit, [Misc#TilePosition TilePosition] target, UnitType type);
   * buildAddon([Unit]{{{*}}} unit, UnitType type);
   * train([Unit]{{{*}}} unit, UnitType type);
