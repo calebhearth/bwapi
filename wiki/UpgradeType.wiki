@@ -24,7 +24,7 @@ Returns the name for the upgrade type.
 
 Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace() will return Races::Terran.
 
-== mineralPriceBase ==
+== mineralPrice ==
 int mineralPrice(int level = 1) const;
 
 Returns the mineral price for the specified upgrade level. For the base price, call {{{mineralPrice(1)}}}.
