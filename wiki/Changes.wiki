@@ -38,6 +38,7 @@ Additions:
   * Added [UnitType#isMineralField UnitType::isMineralField] which just returns true if the unit is Mineral Field Type 1, 2, and 3. BWAPI currently converts all Mineral Fields to Type 1 for its own purpose, so you don't need to worry too much about it.
   * Added [Unit#isUnderDarkSwarm Unit::isUnderDarkSwarm].
   * Added [Unit#isUnderDisruptionWeb Unit::isUnderDisruptionWeb].
+  * Added [UpgradeType#whatsRequired UpgradeType::whatsRequired], which returns the building required to accompany the upgrade at a certain level.
 
 
 Bug Fixes:
