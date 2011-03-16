@@ -6,92 +6,81 @@ The UpgradeType class is used to get information about a particular upgrade.
 
 List of all [UpgradeTypes].
 
-Methods:
+<wiki:toc max_depth="2" />
 
-  * [#getID getID]
-  * [#getName getName]
-  * [#getRace getRace]
-  * [#mineralPriceBase mineralPriceBase]
-  * [#mineralPriceFactor mineralPriceFactor]
-  * [#gasPriceBase gasPriceBase]
-  * [#gasPriceFactor gasPriceFactor]
-  * [#upgradeTimeBase upgradeTimeBase]
-  * [#upgradeTimeFactor upgradeTimeFactor]
-  * [#maxRepeats maxRepeats]
-  * [#whatUpgrades whatUpgrades]
-  * [#whatUses whatUses]
-
-Non-member methods in UpgradeTypes namespace:
-
-  * [#getUpgradeType getUpgradeType]
-  * [#allUpgradeTypes allUpgradeTypes]
-
-=== getID ===
-int getID();
+= Methods =
+== getID ==
+int getID() const;
 
 Returns the unique ID for this upgrade type.
 
-=== getName ===
-std::string getName();
+== getName ==
+std::string getName() const;
 
 Returns the name for the upgrade type.
 
-=== getRace ===
-[Race] getRace();
+== getRace ==
+[Race] getRace() const;
 
 Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace() will return Races::Terran.
 
-=== mineralPriceBase ===
-int mineralPriceBase();
+== mineralPriceBase ==
+int mineralPrice(int level = 1) const;
 
-Returns the mineral price for the first upgrade.
+Returns the mineral price for the specified upgrade level. For the base price, call {{{mineralPrice(1)}}}.
 
-=== mineralPriceFactor ===
-int mineralPriceFactor();
+== mineralPriceFactor ==
+int mineralPriceFactor() const;
 
 Returns the amount that the mineral price increases for each additional upgrade.
 
-=== gasPriceBase ===
-int gasPriceBase();
+== gasPrice ==
+int gasPrice(int level = 1) const;
 
-Returns the vespene gas price for the first upgrade.
+Returns the vespene gas price for the specified upgrade level. For the base price, call {{{gasPrice(1)}}}.
 
-=== gasPriceFactor ===
-int gasPriceFactor();
+== gasPriceFactor ==
+int gasPriceFactor() const;
 
 Returns the amount that the vespene gas price increases for each additional upgrade.
 
-=== upgradeTimeBase ===
-int upgradeTimeBase() const;
+== upgradeTime ==
+int upgradeTime(int level = 1) const;
 
-Returns the number of frames needed to research the first upgrade.
+Returns the number of frames needed to research the specified upgrade level. For the base time, call {{{upgradeTime(1)}}}.
 
-=== upgradeTimeFactor ===
+== upgradeTimeFactor ==
 int upgradeTimeFactor() const;
 
 Returns the number of frames that the upgrade time increases for each additional upgrade.
 
-=== maxRepeats ===
-int maxRepeats();
+== maxRepeats ==
+int maxRepeats() const;
 
 Returns the maximum number of times the upgrade can be researched.
 
-=== whatUpgrades ===
-[UnitType] whatUpgrades();
+== whatUpgrades ==
+[UnitType] whatUpgrades() const;
 
 Returns the type of unit that researches the upgrade.
 
-=== whatUses ===
-const std::set<[UnitType]>& whatUses();
+== whatsRequired ==
+[UnitType] whatsRequired(int level = 1) const;
+
+Returns the type of unit that is required for the specified upgrade level.
+
+== whatUses ==
+const std::set<[UnitType]>& whatUses() const;
 
 Returns the set of units that are affected by this upgrade.
 
-=== getUpgradeType ===
+= Non-Member Methods =
+== getUpgradeType ==
 [UpgradeType] getUpgradeType(std::string name);
 
 Given a string, this will return the upgrade type.
 
-=== allUpgradeTypes ===
+== allUpgradeTypes ==
 std::set<[UpgradeType]>& allUpgradeTypes();
 
 Returns the set of all the UpgradeTypes.
