@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3535) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3543) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -18,6 +18,7 @@ Changes:
   * *BWAPI's custom network module has been marked deprecated and replaced by [http://bwdi.googlecode.com BWDI]'s module. (SNP file)*
   * Unit::attackMove and Unit::attackUnit have been renamed to [Unit#attack Unit::attack] to conform with the other functions. Current users can perform a Find&Replace in all files(a function provided by Visual Studio and Notepad++), or use a #define.
   * Ordering an [UnitTypes#Zerg_Infested_Terran Infested Terran] to Attack a location (Attack Move) will now cause it to explode at that location. (Also known as "Sap Location")
+  * Renamed UpgradeType::mineralPriceBase to [UpgradeType#mineralPrice UpgradeType::mineralPriceBase], UpgradeType::gasPriceBase to [UpgradeType#gasPrice UpgradeType::gasPrice], and UpgradeType::upgradeTimeBase to [UpgradeType#upgradeTime UpgradeType::upgradeTime], as well as added the parameter that specifies the level. These functions now include the cost factors in calculations. To obtain the base value, use 1 as the parameter.
 
 
 Additions:
@@ -54,6 +55,7 @@ Bug Fixes:
   * The new network mode now displays lobby slots correctly.
   * Fixed a bug where [Player#getKillScore Player::getKillScore] returned the unit score instead of the kill score.
   * Fixed an issue where ordering a [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon], [UnitTypes#Terran_Missile_Turret Terran Missile Turret], [UnitTypes#Zerg_Sunken_Colony Zerg Sunken Colony], or [UnitTypes#Zerg_Spore_Colony Zerg Spore Colony] to attack would perform no action.
+  * Fixed a bug where Game::canUpgrade returned false positives when a required building was not present.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
