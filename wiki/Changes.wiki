@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3543) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3551) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -57,6 +57,7 @@ Bug Fixes:
   * Fixed a bug where [Player#getKillScore Player::getKillScore] returned the unit score instead of the kill score.
   * Fixed an issue where ordering a [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon], [UnitTypes#Terran_Missile_Turret Terran Missile Turret], [UnitTypes#Zerg_Sunken_Colony Zerg Sunken Colony], or [UnitTypes#Zerg_Spore_Colony Zerg Spore Colony] to attack would perform no action.
   * Fixed a bug where Game::canUpgrade returned false positives when a required building was not present.
+  * Fixed an issue where some bullet types such as the [BulletTypes#Subterranean_Spines Subterranean Spines] were inaccessible with CompleteMapInformation disabled.
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
