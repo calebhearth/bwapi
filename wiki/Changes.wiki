@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3551) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3554) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -44,7 +44,7 @@ Additions:
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
   * Fixed a crash involving the use of the extended ASCII character set in the drawText functions.
-  * Fixed a memory leak that was unique to Starcraft: Broodwar.
+  * *Fixed a memory leak that was unique to Starcraft: Broodwar.*
   * Corrected [WeaponType#normalWeaponTypes WeaponTypes::normalWeaponTypes] and [WeaponType#specialWeaponTypes WeaponTypes::specialWeaponTypes] which were returning the wrong sets.
   * Fixed a bug where [Game#canBuildHere Game::canBuildHere] would fail in some cases where buildings can overlap. See issue 302 for more information.
   * Fixed a bug that would cause the game to freeze for several seconds when invalid positions were passed to [Game#drawLineMap Game::drawLineMap].
@@ -58,6 +58,7 @@ Bug Fixes:
   * Fixed an issue where ordering a [UnitTypes#Protoss_Photon_Cannon Protoss Photon Cannon], [UnitTypes#Terran_Missile_Turret Terran Missile Turret], [UnitTypes#Zerg_Sunken_Colony Zerg Sunken Colony], or [UnitTypes#Zerg_Spore_Colony Zerg Spore Colony] to attack would perform no action.
   * Fixed a bug where Game::canUpgrade returned false positives when a required building was not present.
   * Fixed an issue where some bullet types such as the [BulletTypes#Subterranean_Spines Subterranean Spines] were inaccessible with CompleteMapInformation disabled.
+  * Fixed an issue where area abilities such as EMP Shockwave could not be used on a unit target (Use_Tech_Unit).
 
 == Changes from BWAPI Beta 3.3 (r3163) to BWAPI Beta 3.4 (r3347) ==
 
