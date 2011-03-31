@@ -31,6 +31,15 @@ This page contains a list of competitions using BWAPI.
 
   _*NOTE: Please visit http://www.StarcraftAICompetition.com to verify the rules and schedules before submitting your application.*_
 
+
+ == _CIG 2011_ ==
+
+ === Dates ===
+  * *Submission Deadline:* August 15th, 2011
+  * *Conference:* August 31st to September 3rd, 2011
+
+  _More information soon._
+
 ----
 = Finished =
 
