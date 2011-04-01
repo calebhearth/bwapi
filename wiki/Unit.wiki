@@ -304,9 +304,9 @@ Retrieves the set of all units that are within a certain radius of the unit's bo
 See also: [Game#getUnitsInRadius Game::getUnitsInRadius], [Unit#getUnitsInWeaponRange Unit::getUnitsInWeaponRange]
 
 == getUnitsInWeaponRange ==
-std::set<[Unit]`*`>& getUnitsInWeaponRange() const;
+std::set<[Unit]`*`>& getUnitsInWeaponRange(WeaponType weapon) const;
 
-Retrieves the set of all units that are within both the ground and air weapon range.
+Retrieves the set of all units that are currently within the given weapon's range.
 
 See also: [Unit#getUnitsInRadius Unit::getUnitsInRadius]
 
