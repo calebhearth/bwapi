@@ -187,6 +187,11 @@ int airWeaponMaxRange(UnitType unit) const;
 
 Returns the maximum range of the given unit type's air weapon, taking into account the upgrades the player has.
 
+== weaponMaxRange ==
+int weaponMaxRange(WeaponType weapon) const;
+
+Returns the maximum range of the given weapon type with the player's upgrades applied.
+
 == sightRange ==
 int sightRange(UnitType unit) const;
 
