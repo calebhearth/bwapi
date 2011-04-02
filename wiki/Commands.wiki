@@ -34,3 +34,4 @@ This list contains commands that are only available in DEBUG mode.
 || *Hotkey || *Description * ||
 || {{{ALT + ENTER}}} || Toggles the display between windowed mode and fullscreen mode. ||
 || {{{ALT}}} || When held down, it will prevent the cursor from leaving the game window. This is only available in Windowed Mode. ||
+|| {{{CTRL}}} || When held down while resizing the window in Windowed Mode, it will maintain its original aspect ratio of 4:3. ||
