@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3559) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3562) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -19,6 +19,8 @@ Changes:
   * Unit::attackMove and Unit::attackUnit have been renamed to [Unit#attack Unit::attack] to conform with the other functions. Current users can perform a Find&Replace in all files(a function provided by Visual Studio and Notepad++), or use a #define.
   * Ordering an [UnitTypes#Zerg_Infested_Terran Infested Terran] to Attack a location (Attack Move) will now cause it to explode at that location. (Also known as "Sap Location")
   * Renamed UpgradeType::mineralPriceBase to [UpgradeType#mineralPrice UpgradeType::mineralPriceBase], UpgradeType::gasPriceBase to [UpgradeType#gasPrice UpgradeType::gasPrice], and UpgradeType::upgradeTimeBase to [UpgradeType#upgradeTime UpgradeType::upgradeTime], as well as added the parameter that specifies the level. These functions now include the cost factors in calculations. To obtain the base value, use 1 as the parameter.
+  * There is a new menu hack that causes menus to load immediately instead of the old one which quickly played the swish-in and swish-out animations.
+  * BWAPI's windowed mode can now be resized smaller than the game's resolution.
 
 
 Additions:
@@ -40,6 +42,7 @@ Additions:
   * Added [Unit#isUnderDisruptionWeb Unit::isUnderDisruptionWeb].
   * Added [UpgradeType#whatsRequired UpgradeType::whatsRequired], which returns the building required to accompany the upgrade at a certain level.
   * Added [Player#weaponMaxRange Player::weaponMaxRange] which takes a WeaponType instead of a UnitType.
+  * Added several configuration options for BWAPI's windowed mode.
 
 
 Bug Fixes:
