@@ -97,3 +97,8 @@ Returns the upgrade type of the command, or UpgradeTypes::None if the command is
 int getSlot() const;
 
 Returns the slot of the command, or -1 if the command is not of type Cancel_Train_Slot. 
+
+== isQueued ==
+bool isQueued() const;
+
+Returns true if the command is a queued command.
