@@ -618,7 +618,7 @@ bool isMoving() const;
 
 Returns true if the unit is moving.
 
-See also: [Unit]::[Unit#attackMove attackMove], [Unit]::[Unit#stop stop].
+See also: [Unit]::[Unit#attack attack], [Unit]::[Unit#stop stop].
 
 == isParasited ==
 bool isParasited() const;
@@ -755,11 +755,13 @@ bool issueCommand([UnitCommand] command);
 Issues the give unit command, or returns false if there is an error. For example Unit::issueCommand(UnitCommand(UnitCommandType::Attack_Position,NULL,50,60,0)) will order the unit to attack move to the Position (50,60).
 
 == attack ==
-bool attack([Misc#Position Position] target);
+bool attack([Misc#Position Position] target, bool shiftQueueCommand = false);
 
-bool attack([Unit]{{{*}}} target);
+bool attack([Unit]{{{*}}} target, bool shiftQueueCommand = false);
 
 Orders the unit to attack move to a specified location or attack a single unit. After issuing, the unit's order will become Orders::AttackMove or Orders::AttackUnit, depending on how the call was made.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 == build ==
 bool build([Misc#TilePosition TilePosition] target, [UnitType] type);
@@ -813,58 +815,74 @@ Orders the unit to set its rally position to the specified position or unit.
 See also: [Unit#getRallyPosition Unit::getRallyPosition], [Unit#getRallyUnit Unit::getRallyUnit].
 
 == move ==
-bool move([Misc#Position Position] target);
+bool move([Misc#Position Position] target, bool shiftQueueCommand = false);
 
 Orders the unit to move to the specified position. After issuing, the unit's order will become Orders::Move.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isMoving Unit::isMoving].
 
 == patrol ==
-bool patrol([Misc#Position Position] target);
+bool patrol([Misc#Position Position] target, bool shiftQueueCommand = false);
 
 Orders the unit to patrol between its current position and the specified position. After issuing, the unit's order will become Orders::Patrol.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isPatrolling Unit::isPatrolling].
 
 == holdPosition ==
-bool holdPosition();
+bool holdPosition(bool shiftQueueCommand = false);
 
 Orders the unit to hold its position. Note: Reavers and Carriers can only hold position if they have at least one Scarab or Interceptor. After issuing, the unit's order will become Orders::HoldPosition.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isHoldingPosition Unit::isHoldingPosition].
 
 == stop ==
-bool stop(); 
+bool stop(bool shiftQueueCommand = false); 
 
 Orders the unit to stop. After issuing, the unit's order will become Orders::Stop.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit]::[Unit#isMoving isMoving], [Unit]::[Unit#isBraking isBraking].
 
 == follow ==
-bool follow([Unit] target);
+bool follow([Unit] target, bool shiftQueueCommand = false);
 
 Orders the unit to follow the specified unit. After issuing, the unit's order will become Orders::Follow.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit]::[Unit#isFollowing isFollowing].
 
 == gather ==
-bool gather([Unit]{{{*}}} target);
+bool gather([Unit]{{{*}}} target, bool shiftQueueCommand = false);
 
 Orders the unit to gather the specified unit. Only workers can be ordered to gather, and the target must be a mineral patch, Refinery, Assimilator, or Extractor.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isGatheringGas Unit::isGatheringGas], [Unit#isGatheringMinerals Unit::isGatheringMinerals].
 
 == returnCargo ==
-bool returnCargo();
+bool returnCargo(bool shiftQueueCommand = false);
 
 Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only workers that are carrying minerals or gas can be ordered to return cargo.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isCarryingGas Unit::isCarryingGas], [Unit#isCarryingMinerals isCarryingMinerals], [Unit#isGatheringGas Unit::isGatheringGas], [Unit#isGatheringMinerals Unit::isGatheringMinerals].
 
 == repair ==
-bool repair([Unit]{{{*}}} target);
+bool repair([Unit]{{{*}}} target, bool shiftQueueCommand = false);
 
 Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building. After issuing, the unit's order will become Orders::Repair.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit#isRepairing Unit::isRepairing].
 
@@ -925,9 +943,11 @@ Orders the unit to land. Note: unit must be a Terran building that is currently 
 See also: [Unit#lift Unit::lift], [Unit#isLifted Unit::isLifted].
 
 == load ==
-bool load([Unit]{{{*}}} target);
+bool load([Unit]{{{*}}} target, bool shiftQueueCommand = false);
 
 Orders the unit to load the target unit.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
@@ -939,28 +959,31 @@ Orders the unit to unload the target unit.
 See also: [Unit]::[Unit#load load], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 == unloadAll ==
-bool unloadAll();
+bool unloadAll(bool shiftQueueCommand = false);
 
 Orders the unit to unload all loaded units at the unit's current position.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 == unloadAll ==
-bool unloadAll([Misc#Position Position] target);
+bool unloadAll([Misc#Position Position] target, bool shiftQueueCommand = false);
 
 Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be unloaded right outside the bunker, like in the first version of unloadAll.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 See also: [Unit]::[Unit#load load], [Unit]::[Unit#unload unload], [Unit]::[Unit#unloadAll unloadAll], [Unit]::[Unit#getLoadedUnits getLoadedUnits], [Unit]:[Unit#isLoaded isLoaded].
 
 == rightClick ==
-bool rightClick([Misc#Position Position] target);
+bool rightClick([Misc#Position Position] target, bool shiftQueueCommand = false);
 
-Works like the right click in the GUI.
-
-== rightClick ==
-bool rightClick([Unit]{{{*}}} target);
+bool rightClick([Unit]{{{*}}} target, bool shiftQueueCommand = false);
 
 Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it.
+
+This command can be queued by setting shiftQueueCommand to true.
 
 == haltConstruction ==
 bool haltConstruction();
