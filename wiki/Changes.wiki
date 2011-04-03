@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3568) ==
+== Changes from BWAPI Beta 3.4 (r3347) to Recent (r3575) ==
 
 Changes:
   * The return values for [Game#getGroundHeight Game::getGroundHeight] have been altered. This allows the inclusion of doodads in terrain height computation (For example: Units behind a tree).
@@ -43,6 +43,8 @@ Additions:
   * Added [UpgradeType#whatsRequired UpgradeType::whatsRequired], which returns the building required to accompany the upgrade at a certain level.
   * Added [Player#weaponMaxRange Player::weaponMaxRange] which takes a WeaponType instead of a UnitType.
   * Added several configuration options for BWAPI's windowed mode.
+  * Added the ability to queue commands like you can in Starcraft. Many command constructors have this addition built-in. Re-read the documentation on them for more information.
+  * Added [UnitCommand#isQueued UnitCommand::isQueued].
 
 Bug Fixes:
   * Corrected the return values for [Game#getLatencyFrames Game::getLatencyFrames], [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], and [Game#getRemainingLatencyTime Game::getRemainingLatencyTime].
