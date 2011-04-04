@@ -34,11 +34,19 @@ This page contains a list of competitions using BWAPI.
 
  == _CIG 2011_ ==
 
+ === Info ===
+  * *Official Competition Website:* http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2011
+  * *Hosted at:* COEX, Seoul, South Korea
+
+ === Binaries ===
+  * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
+  * *Operating System:* Windows XP SP3
+
  === Dates ===
   * *Submission Deadline:* August 15th, 2011
   * *Conference:* August 31st to September 3rd, 2011
 
-  _More information soon._
+  _See official web page for more details._
 
 ----
 = Finished =
