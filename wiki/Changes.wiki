@@ -1,8 +1,9 @@
 #labels Featured
-== Changes from BWAPI 3.5 (r3577) to Recent (r3582) ==
+== Changes from BWAPI 3.5 (r3577) to BWAPI 3.5.1 (r3584) ==
 
 Bug Fixes:
   * Fixed an issue where screenshots were disabled while in Windowed mode.
+  * Fixed a bug/regression that caused replays to crash.
 
 
 == Changes from BWAPI Beta 3.4 (r3347) to BWAPI 3.5 (r3577) ==
