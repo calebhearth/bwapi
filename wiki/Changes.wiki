@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.1 (r3584) to Recent (r3587) ==
+== Changes from BWAPI 3.5.1 (r3584) to BWAPI 3.5.2 (r3586) ==
 
 Bug Fixes:
   * Fixed an issue/regression where auto-menu failed to work for replays.
