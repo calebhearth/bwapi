@@ -3,9 +3,9 @@
 
 Bug Fixes:
   * Fixed a crash on game end involving extended ascii characters in the map name.
-  * Fixed an auto-menu issue where mapPathName returned an incorrect path.
+  * Fixed an auto-menu issue where mapFileName and mapPathName returned an incorrect string.
   * Fixed an issue where restartGame switched to a different map in auto-menu mode.
-  * Fixed a crash involving a rare occurance that causes a unit's hit box to be outside of the playable map area.
+  * Fixed a crash involving a rare occurance that causes a unit's hit box to be partially outside of the playable map area.
 
 == Changes from BWAPI 3.5.2 (r3586) to BWAPI 3.5.3 (r3589) ==
 
