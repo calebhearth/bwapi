@@ -45,7 +45,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     The [UnitTypes#Resource_Vespene_Geyser Vespene Geyser] becomes (morphs into) the building. When a [UnitTypes#Zerg_Extractor Zerg Extractor] is placed, the [UnitTypes#Zerg_Drone Zerg Drone] used to place it will be removed from the game. Cancelling the Extractor will create a new Drone which has full hit points.
 
   == What happens when I train a unit? ==
-    The unit is created, even though it is not visible or finished completing.
+    The unit is created, even though it is not visible or finished completing. Units that are queued are not created until it begins being trained and is updating the progress bar.
 
   == Where do units go when inside of bunkers/transports? ==
     The unit is exactly where it was loaded. Even if you move a transport, the unit remains at the location it was loaded. It is merely hidden from view. Triggers will iterate through the transport's hold instead of detecting the unit directly. This also explains why moving [UnitTypes#Terran_Bunker Terran Bunkers] in Use Map Settings will cause units to fire from where they were originally loaded.
@@ -72,7 +72,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 
 = Engine Guide =
   == What is Starcraft's frame rate? ==
-    The "_frame rate_" in Starcraft refers to how often the game is being updated, *not* how often images are being drawn on the screen. Starcraft does not limit the number of game frames by seconds, rather there is a timer that specifies the number of miliseconds Starcraft should wait before executing the next frame. To calculate the GFPS, we take 1000 (number of milliseconds in one second) and divide it by the value (in milliseconds) that the game waits for. These values depend on the game speed, and are as follows (rounded to nearest hundredth):
+    The "_frame rate_" in Starcraft refers to how often the game is being updated, *not* how often images are being drawn on the screen. Starcraft does not limit the number of game frames by seconds, rather there is a timer that specifies the number of milliseconds Starcraft should wait before executing the next frame. To calculate the GFPS, we take 1000 (number of milliseconds in one second) and divide it by the value (in milliseconds) that the game waits for. These values depend on the game speed, and are as follows (rounded to nearest hundredth):
       * *Slowest*: 1000 / 167 = 5.99 FPS
       * *Slower*:  1000 / 111 = 9.01 FPS
       * *Slow*:    1000 / 83  = 12.05 FPS
