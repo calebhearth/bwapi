@@ -31,13 +31,6 @@ This page is a guide that contains advanced information about Starcraft Broodwar
   == Chance to Hit Unit in Dark Swarm ==
     The chance to hit a unit inside of a [UnitTypes#Spell_Dark_Swarm Dark Swarm] is 0%. Behaviour is the same as the others.
 
-= Resource Gathering Guide =
-  == Which Worker Gathers the fastest? ==
-    All race's workers move the same. Their gathering speed is also the same.
-    The only difference between the races is the size of their resource depot.
-    Compare the sizes of [UnitTypes#Terran_Command_Center Terran Command Center], [UnitTypes#Protoss_Nexus Protoss Nexus], and [UnitTypes#Zerg_Hatchery Zerg Hatchery]/[UnitTypes#Zerg_Lair Lair]/[UnitTypes#Zerg_Hive Hive].
-    Only the size of their resource depot impacts resource gathering time.
-
 = Unit Existence/Creation Guide =
   == When a unit is morphed, what happens to it? ==
     The unit's type value and stats change. The unit is technically the same. This includes [UnitTypes#Zerg_Drone Zerg Drones] morphing into buildings(with the exception of the [UnitTypes#Zerg_Extractor Zerg Extractor]), units morphing into other units, and buildings morphing into other buildings. A new unit is not created from this.
@@ -64,10 +57,36 @@ This page is a guide that contains advanced information about Starcraft Broodwar
   == Why do units move to attack an enemy even when they are not in attack range? ==
     Units will move when an enemy enters their "target acquisition range", or "[UnitType#seekRange Seek Range]" in BWAPI.
 
-= Unit Ordering Guide =
   == What are the differences between Stop and Hold Position? ==
     The difference will impact your unit's rate of fire. Hold position will make your unit's first shot faster, but consecutive shots will be slower, and Stop will make your unit's consecutive shots faster, but your first shot slower. When a unit is ordered to Hold Position, it runs a loop to acquire a target, perform the attack, and then stop moving, the additional command to stop moving requires additional frames, making your unit's consecutive attacks slower, but because Hold Position first acquires a target, its initial attack will be faster. Stop will order your unit to first stop doing everything immediately, which also stops it from acquiring a first target until it goes idle, increasing the time for a first attack, however it will not order your unit to stop moving after every attack, making consecutive attacks faster.
 
     The above explanation may not represent the exact behaviour, but here is the short version:
       * *Stop*: Stop -> Go to Idle -> Acquire Target -> Attack -> Attack -> ...
       * *Hold Position*: Stop -> Acquire Target -> Attack -> Stop -> Attack -> Stop -> ...
+
+  == Which Worker Gathers the fastest? ==
+    All race's workers move the same. Their gathering speed is also the same.
+    The only difference between the races is the size of their resource depot.
+    Compare the sizes of [UnitTypes#Terran_Command_Center Terran Command Center], [UnitTypes#Protoss_Nexus Protoss Nexus], and [UnitTypes#Zerg_Hatchery Zerg Hatchery]/[UnitTypes#Zerg_Lair Lair]/[UnitTypes#Zerg_Hive Hive].
+    Only the size of their resource depot impacts resource gathering time.
+
+= Engine Guide =
+  == What is Starcraft's frame rate? ==
+    The "_frame rate_" in Starcraft refers to how often the game is being updated, *not* how often images are being drawn on the screen. Starcraft does not limit the number of game frames by seconds, rather there is a timer that specifies the number of miliseconds Starcraft should wait before executing the next frame. To calculate the GFPS, we take 1000 (number of milliseconds in one second) and divide it by the value (in milliseconds) that the game waits for. These values depend on the game speed, and are as follows (rounded to nearest hundredth):
+      * *Slowest*: 1000 / 167 = 5.99 FPS
+      * *Slower*:  1000 / 111 = 9.01 FPS
+      * *Slow*:    1000 / 83  = 12.05 FPS
+      * *Normal*:  1000 / 67  = 14.93 FPS
+      * *Fast*:    1000 / 56  = 17.86 FPS
+      * *Faster*:  1000 / 48  = 20.83 FPS
+      * *Fastest*: 1000 / 42  = 23.81 FPS
+
+    BWAPI's [Game#setLocalSpeed setLocalSpeed] function has the ability to change this value.
+
+  == What does Starcraft do when it is not executing the frame? ==
+    Starcraft will draw graphics to the screen, poll for input, update the screen position, update minimap pings, etc.
+
+  == What does frame skip do? ==
+    By default, Starcraft only uses its frame skipping capability for watching a replay on x16 speed. What Starcraft's frame skip does is execute X number of game frames without leaving the game loop to draw graphics or poll for input. This allows Starcraft to exceed the maximum capacity it would have if it would normally try to run at infinite game frames per second.
+
+    BWAPI's [Game#setFrameSkip setFrameSkip] function has the ability to change this value. By default, it is 1, meaning it updates the game 1 time before exiting its loop and drawing graphics.
