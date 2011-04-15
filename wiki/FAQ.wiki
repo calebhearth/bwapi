@@ -13,18 +13,7 @@ This page contains answers to frequent questions.
     * AI/API developers will need to handle far more information than with BWAPI.
     * Embarking on such a project will require an exponentially greater amount of time to develop.
     * The [http://www.blizzard.com/support/article.xml?tag=SC2MINSPEC system requirements] are in another universe compared to those of [http://www.blizzard.com/support/article.xml?articleId=25801 Starcraft: Broodwar].
- 
-= How come I get an "Injection failed. (newline) This may happen from mixing RELEASE and DEBUG builds." message when launching with Chaoslauncher? =
 
-  This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control," or UAC. As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
-
-  '''To disable the UAC in Windows Vista:'''
-    # Click the '''Start Menu''' and select '''Control Panel.'''
-    # In '''Classic View''', double-click the '''User Accounts''' icon.
-    # Click the link labeled '''Turn User Account Control on or off'''.
-    # Make sure that the '''Use User Account Control (UAC) to help protect your computer''' is ''not'' checked.
-    # Click '''OK''' and restart your computer. After restarting, try launching Starcraft again through Chaoslauncher.
- 
 = When are units deleted? When do Unit pointers become invalid? =
  
   Units are deleted only after the match ends.
