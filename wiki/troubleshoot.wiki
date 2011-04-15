@@ -12,9 +12,9 @@ This page helps solve common troubleshooting issues.
 == Error: Injection failed... ==
   This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control"(UAC). As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
 
-  '''To disable the UAC in Windows Vista:'''
-    # Click the '''Start Menu''' and select '''Control Panel.'''
-    # In '''Classic View''', double-click the '''User Accounts''' icon.
-    # Click the link labeled '''Turn User Account Control on or off'''.
-    # Make sure that the '''Use User Account Control (UAC) to help protect your computer''' is ''not'' checked.
-    # Click '''OK''' and restart your computer. After restarting, try launching Starcraft again through Chaoslauncher.
+  === To disable the UAC in Windows Vista: ===
+    # Click the _*Start Menu*_ and select _*Control Panel*_.
+    # In _*Classic View*_, double-click the _*User Accounts*_ icon.
+    # Click the link labeled _*Turn User Account Control on or off*_.
+    # Make sure that the _*Use User Account Control (UAC) to help protect your computer*_ is *not* checked.
+    # Click _*OK*_ and restart your computer. After restarting, try launching Starcraft again through Chaoslauncher.
