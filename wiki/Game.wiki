@@ -9,7 +9,7 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 = Methods =
 
 == getForces ==
-std::set< [Force]`*` >& getForces();
+<pre class="prettyprint">std::set< [Force]`*` >& getForces();</pre>
 
 Returns the set of all forces in the match.
 
