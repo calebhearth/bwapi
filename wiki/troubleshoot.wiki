@@ -1,0 +1,20 @@
+#summary Troubleshooting for BWAPI
+
+This page helps solve common troubleshooting issues.
+
+<wiki:toc max_depth="2" />
+
+= Errors =
+
+== Error: This application has failed to start because the application configuration is incorrect. Reinstalling the application may fix this problem. (14001) ==
+  You are missing some required DLL files, most likely the Visual C++ runtime DLLs. For RELEASE builds you can download and install the [http://code.google.com/p/bwapi/downloads/detail?name=vcredist_x86.exe Visual C++ Redistributables]. For DEBUG builds, you will need to install [http://www.microsoft.com/express/Downloads Visual C++ Express Edition].
+
+== Error: Injection failed... ==
+  This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control"(UAC). As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
+
+  '''To disable the UAC in Windows Vista:'''
+    # Click the '''Start Menu''' and select '''Control Panel.'''
+    # In '''Classic View''', double-click the '''User Accounts''' icon.
+    # Click the link labeled '''Turn User Account Control on or off'''.
+    # Make sure that the '''Use User Account Control (UAC) to help protect your computer''' is ''not'' checked.
+    # Click '''OK''' and restart your computer. After restarting, try launching Starcraft again through Chaoslauncher.
