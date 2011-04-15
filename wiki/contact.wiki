@@ -4,7 +4,7 @@ This page contains contact information for submitting or discussing issues, sugg
 
 To contact us you simply have to do one of the following:
 
-  * Visit the [http://webchat.quakenet.org/?channels=BWAPI IRC channel]
+  * Visit the [http://webchat.quakenet.org/?channels=BWAPI IRC channel], which can be found on [http://www.quakenet.org/serverlist.php QuakeNet]#BWAPI.
   * Post on the [http://groups.google.com/group/bwapi BWAPI group]
   * Post on the [http://www.broodwarai.com/forums/index.php?showforum=46 BroodwarAi forum]
   * Create an [http://code.google.com/p/bwapi/issues/list issue]
