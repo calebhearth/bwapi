@@ -24,6 +24,6 @@ That depends on what you want to do. Unless you have a specific reason to write 
 
 = What is a Force? =
 
-A [Force] is another name for Team. In fact, the term "Team" is never used by Starcraft's Campaign Editor "StarEdit".
+A [Force] is another name for Team. In fact, the term "Team" is never used by Starcraft's Campaign Editor "StarEdit". Default team names are also called "Force #", and thus we use the most common reference.
 
   http://bwapi.googlecode.com/svn/wiki/forces.gif
