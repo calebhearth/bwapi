@@ -2,6 +2,8 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Force.h# BWAPI/Force.h]
 
+A "Force" is another name for "Team". See the [FAQ#What_is_a_Force? FAQ] on why this term is used instead.
+
 The Force class is used to get information about each force in the match, such as the name of the force and the set of players in the force. In team-based [GameTypes], such as GameTypes::Team_Melee, each Force object will correspond to a different team. In non team-based matches, though, it is common for all players to be contained in the same Force.
 
 Methods:
