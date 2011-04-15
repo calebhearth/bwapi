@@ -4,12 +4,13 @@
 = Contents =
   * [BWAPIOverview BWAPI Overview]
   * [Changes]
-  * [Projects Projects Using BWAPI]
+  * [Commands]
   * [Competitions]
   * [contact Contact Information]
-  * [Commands]
   * [FAQ]
+  * [Projects Projects Using BWAPI]
   * [StarcraftGuide Starcraft Guide]
+  * [troubleshoot Troubleshooting]
 
 == Tutorials ==
   * [UsingBWAPI Using BWAPI]
