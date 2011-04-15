@@ -9,256 +9,345 @@ The abstract Game class is implemented by BWAPI and offers many methods for retr
 = Methods =
 
 == getForces ==
-<code>std::set< [Force]`*` >& getForces();</code>
+<code>
+std::set< [Force]`*` >& getForces();</code>
 Returns the set of all forces in the match.
 
+  _See also: [Game#getForce Game::getForce]_
+
 == getPlayers ==
-<code>std::set< [Player]`*` >& getPlayers();</code>
+<code>
+std::set< [Player]`*` >& getPlayers();</code>
 Returns the set of all players in the match. Note that this includes the Neutral player, which owns all the neutral units such as minerals, critters, etc.
 
 == getAllUnits ==
-<code>std::set< [Unit]`*` >& getAllUnits();</code>
+<code>
+std::set< [Unit]`*` >& getAllUnits();</code>
 Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units inside refineries are not included in this set yet.
 
+  _See also: [Player#getUnits Player::getUnits], [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getMinerals ==
-<code>std::set< [Unit]`*` >& getMinerals();</code>
+<code>
+std::set< [Unit]`*` >& getMinerals();</code>
 Returns the set of all accessible mineral patches.
 
+  _See also: [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getGeysers ==
-<code>std::set< [Unit]`*` >& getGeysers();</code>
+<code>
+std::set< [Unit]`*` >& getGeysers();</code>
 Returns the set of all accessible vespene geysers.
 
+  _See also: [Game#getMinerals Game::getMinerals], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getNeutralUnits ==
-<code>std::set< [Unit]`*` >& getNeutralUnits();</code>
+<code>
+std::set< [Unit]`*` >& getNeutralUnits();</code>
 Returns the set of all accessible neutral units.
 
+  _See also: [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getStaticMinerals ==
-<code>std::set< [Unit]`*` >& getStaticMinerals();</code>
+<code>
+std::set< [Unit]`*` >& getStaticMinerals();</code>
 Returns the set of all mineral patches (including mined out and other inaccessible ones).
 
+  _See also: [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getStaticGeysers ==
-<code>std::set< [Unit]`*` >& getStaticGeysers();</code>
+<code>
+std::set< [Unit]`*` >& getStaticGeysers();</code>
 Returns the set of all vespene geysers (including mined out and other inaccessible ones).
 
+  _See also: [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
+
 == getStaticNeutralUnits ==
-<code>std::set< [Unit]`*` >& getStaticNeutralUnits();</code>
+<code>
+std::set< [Unit]`*` >& getStaticNeutralUnits();</code>
 Returns the set of all neutral units (including mined out and other inaccessible ones).
 
+  _See also: [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers]_
+
 == getBullets ==
-<code>std::set< [Bullet]`*` >& getBullets();</code>
+<code>
+std::set< [Bullet]`*` >& getBullets();</code>
 Returns the set of all accessible bullets.
 
 == getNukeDots ==
-<code>std::set< [Misc#Position Position] >& getNukeDots();</code>
+<code>
+std::set< [Misc#Position Position] >& getNukeDots();</code>
 Returns the set of all accessible nuke dots.
 
 == getEvents ==
-<code>std::list< [Event] >& getEvents();</code>
+<code>
+std::list< [Event] >& getEvents();</code>
 Returns the list of events for the current frame. Events correspond to AIModule callbacks, so for example rather than implementing [AIModule#onUnitCreate AIModule::onUnitCreate] you could check the list of events every frame and look for [Event#UnitCreate Event::UnitCreate].
 
 == getForce ==
-<code>[Force]`*` getForce(int forceID);</code>
+<code>
+[Force]`*` getForce(int forceID);</code>
 Returns the [Force] with the given ID, or {{{NULL}}} if no [Force] has the given ID.
 
+  _See also: [Game#getForces Game::getForces]_
+
 == getPlayer ==
-<code>[Player]`*` getPlayer(int playerID);</code>
+<code>
+[Player]`*` getPlayer(int playerID);</code>
 Returns the [Player] with the given ID, or {{{NULL}}} if no [Player] has the given ID.
 
 == getUnit ==
-<code>[Unit]`*` getUnit(int unitID);</code>
+<code>
+[Unit]`*` getUnit(int unitID);</code>
 Returns the [Unit] with the given ID, or {{{NULL}}} if no [Unit] has the given ID.
 
 == indexToUnit ==
-<code>Unit`*` indexToUnit(int unitIndex);</code>
+<code>
+Unit`*` indexToUnit(int unitIndex);</code>
 Given an index value between 0 and 1699, this function will return the Unit`*` currently associated with the index value in Starcraft's internal Unit table. Only available when the Complete Map Information flag is enabled.
 
 == getGameType ==
-<code>[GameType] getGameType();</code>
+<code>
+[GameType] getGameType();</code>
 Returns the game type of the given match, or GameTypes::None if Starcraft is in a replay.
 
 == getLatency ==
-<code>Latency::Enum getLatency();</code>
+<code>
+Latency::Enum getLatency();</code>
 Returns the amount of latency the current game has.
 
+  _Note: This value may be incorrect. Use [Game#getLatencyFrames Game::getLatencyFrames] to obtain an accurate value._
+
 == getLatencyFrames ==
-<code>int getLatencyFrames();</code>
+<code>
+int getLatencyFrames();</code>
 Returns the maximum number of frames required for unit commands to be processed by the game.
 
-_See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
+  _See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
 
 == getLatencyTime ==
-<code>int getLatencyTime();</code>
+<code>
+int getLatencyTime();</code>
 Returns the maximum time in milliseconds required for unit commands to be processed by the game.
 
-_See also: [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
+  _See also: [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
 
 == getRemainingLatencyFrames ==
-<code>int getRemainingLatencyFrames();</code>
+<code>
+int getRemainingLatencyFrames();</code>
 Returns the remaining number of frames before a unit command sent in the current frame can be processed.
 
-_See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
+  _See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyTime Game::getRemainingLatencyTime]_
 
 == getRemainingLatencyTime ==
-<code>int getRemainingLatencyTime();</code>
+<code>
+int getRemainingLatencyTime();</code>
 Returns the remaining time in milliseconds before a unit command sent in the current frame can be processed.
 
-_See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames]_
+  _See also: [Game#getLatencyTime Game::getLatencyTime], [Game#getLatencyFrames Game::getLatencyFrames], [Game#getRemainingLatencyFrames Game::getRemainingLatencyFrames]_
 
 == getFrameCount ==
-<code>int getFrameCount();</code>
+<code>
+int getFrameCount();</code>
 Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
 
+  _See also: [Game#getReplayFrameCount Game::getReplayFrameCount]_
+
 == getReplayFrameCount ==
-<code>int getReplayFrameCount();</code>
+<code>
+int getReplayFrameCount();</code>
 Returns the maximum number of frames for a replay. To get the replay progress as a percentage, you can use {{{getFrameCount()*100/getReplayFrameCount()}}}.
 
+  _See also: [Game#getFrameCount Game::getFrameCount]_
+
 == getAPM ==
-<code>double getAPM(bool includeSelects = false);</code>
+<code>
+double getAPM(bool includeSelects = false);</code>
 Returns the bot's running APM. This function ignores all user actions and uses the same formula as [http://wiki.teamliquid.net/starcraft/APMAlert APMAlert].
 
 == getFPS ==
-<code>int getFPS();</code>
+<code>
+int getFPS();</code>
 Returns the number of frames per second that the game is running at, based on the number of frames that have passed in the last second.
 
+  _See also: [Game#getAverageFPS Game::getAverageFPS]_
+
 == getAverageFPS ==
-<code>int getAverageFPS();</code>
+<code>
+int getAverageFPS();</code>
 Returns the average number of frames per second that the game is running at.
 
+  _See also: [Game#getFPS Game::getFPS]_
+
 == getRevision ==
-<code>int getRevision();</code>
+<code>
+int getRevision();</code>
 Retrieves the revision number for the current BWAPI build.
 
-_See also: [Game#isDebug Game::isDebug]_
+  _See also: [Game#isDebug Game::isDebug]_
 
 == getInstanceNumber ==
-<code>int getInstanceNumber();</code>
+<code>
+int getInstanceNumber();</code>
 Retrieves the number for the current instance of Starcraft/BWAPI. Used to identify which instance an AI module belongs to.
 
 == getMousePosition ==
-<code>BWAPI::Position getMousePosition();</code>
+<code>
+BWAPI::Position getMousePosition();</code>
 Returns the position of the mouse on the screen. Returns Positions::Unknown if Flag::UserInput is disabled.
 
 == getMouseState ==
-<code>bool getMouseState([Input#MouseButton MouseButton] button);
+<code>
+bool getMouseState([Input#MouseButton MouseButton] button);
 bool getMouseState(int button);</code>
 Returns true if the specified mouse button is pressed. Returns false if Flag::UserInput is disabled.
 
 == getKeyState ==
-<code>bool getKeyState([Input#Key Key] key);
+<code>
+bool getKeyState([Input#Key Key] key);
 bool getKeyState(int key);</code>
 Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. Unfortunately this does not read the raw keyboard input yet - when you hold down a key, the getKeyState function is true for a frame, then false for a few frames, and then alternates between true and false (as if you were holding down the key in a text box). Hopefully this will be fixed in a later version.
 
 == getScreenPosition ==
-<code>BWAPI::Position getScreenPosition();</code>
+<code>
+BWAPI::Position getScreenPosition();</code>
 Returns the position of the top left corner of the screen on the map. Returns Positions::Unknown if Flag::UserInput is disabled.
 
+  _See also: [Game#setScreenPosition Game::setScreenPosition]_
+
 == setScreenPosition ==
-<code>void setScreenPosition(int x, int y);
+<code>
+void setScreenPosition(int x, int y);
 void setScreenPosition(BWAPI::Position p);</code>
 Moves the screen to the given position on the map. The position specified where the top left corner of the screen will be.
 
+  _See also: [Game#getScreenPosition Game::getScreenPosition]_
+
 == pingMinimap ==
-<code>void pingMinimap(int x, int y);
+<code>
+void pingMinimap(int x, int y);
 void pingMinimap(BWAPI::Position p);</code>
 Pings the given position on the minimap.
 
 == isFlagEnabled ==
-<code>bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);</code>
+<code>
+bool isFlagEnabled([Misc#Flag::Enum Flag::Enum] flag);</code>
 Returns true if the given flag has been enabled. Note that flags can only be enabled at the beginning of a match, during the [AIModule]::onStart callback.
 
+  _See also: [Game#enableFlag Game::enableFlag]_
+
 == enableFlag ==
-<code>void enableFlag([Misc#Flag::Enum Flag::Enum] flag);</code>
+<code>
+void enableFlag([Misc#Flag::Enum Flag::Enum] flag);</code>
 Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the [AIModule#onStart AIModule::onStart] callback, or during the [AIModule#onFrame AIModule::onFrame] callback on the first frame (frame 0).
 
+  _See also: [Game#isFlagEnabled Game::isFlagEnabled]_
+
 == setGUI ==
-<code>void setGUI(bool enabled);</code>
+<code>
+void setGUI(bool enabled);</code>
 Disables all drawing functions in BWAPI and uses [Game#setFrameSkip Game::setFrameSkip], specifying the highest frame skip value possible. This prevents the game from leaving its main loop. The game only draws to the screen once it has broken out of its main loop. Note that the game will still leave the loop once every 2 seconds. This alternative approach produces better results than the old setGUI behaviour.
 
 Note: You must call [#setLocalSpeed Game::setLocalSpeed(0)] to first increase the game speed to its limits in order to witness any results.
 
 What's the difference between this and setFrameSkip(999999)? When setGUI is set to false, it will disable all of BWAPI's drawing functionality. If you've made drawing calls then they will be ignored. It also ignores drawing-related code that is used internally in BWAPI's onFrame.
 
-_See Also: [Game#setFrameSkip Game::setFrameSkip], [Game#setLocalSpeed Game::setLocalSpeed]_
+  _See also: [Game#setFrameSkip Game::setFrameSkip], [Game#setLocalSpeed Game::setLocalSpeed]_
 
 == isLatComEnabled ==
-<code>bool isLatComEnabled();</code>
+<code>
+bool isLatComEnabled();</code>
 Returns true if latency compensation is enabled. It is enabled by default.
 
 == setLatCom ==
-<code>void setLatCom(bool isEnabled);</code>
+<code>
+void setLatCom(bool isEnabled);</code>
 Use to enable or disable latency compensation. It is enabled by default.
 
 == unitsOnTile ==
-<code>std::set< [Unit]`*` >& unitsOnTile(int tileX, int tileY);</code>
+<code>
+std::set< [Unit]`*` >& unitsOnTile(int tileX, int tileY);</code>
 Returns the set of units that are on the given build tile. Only returns accessible units on accessible tiles.
 
 == getUnitsInRectangle ==
-<code>std::set<[Unit]`*`>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
+<code>
+std::set<[Unit]`*`>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
 std::set<[Unit]`*`>& getUnitsInRectangle(BWAPI::[Position] topLeft, BWAPI::[Position] bottomRight) const;</code>
 Retrieves the set of all accessable units within a rectangle.
 
-_See Also: [Game#getUnitsInRadius Game::getUnitsInRadius]_
+  _See also: [Game#getUnitsInRadius Game::getUnitsInRadius]_
 
 == getUnitsInRadius ==
-<code>std::set<[Unit]`*`>& getUnitsInRadius(BWAPI::[Position] center, int radius) const;</code>
+<code>
+std::set<[Unit]`*`>& getUnitsInRadius(BWAPI::[Position] center, int radius) const;</code>
 Retrieves the set of all accessable units within a given radius.
 
-_See Also: [Unit#getUnitsInRadius Unit::getUnitsInRadius]_
+  _See also: [Unit#getUnitsInRectangle Unit::getUnitsInRectangle]_
 
 == getLastError ==
-<code>[Error] getLastError() const;</code>
+<code>
+[Error] getLastError() const;</code>
 Returns the last error that was set. If you try to order enemy units around, or morph bunkers into lurkers, BWAPI will set error codes, which can be retrieved using this function.
 
-_See also: [Game#setLastError Game::setLastError]_
+  _See also: [Game#setLastError Game::setLastError]_
 
 == setLastError ==
-<code>bool setLastError([Error] e);</code>
+<code>
+bool setLastError([Error] e);</code>
 Sets the last error for BWAPI. For the sake of minimizing code, it will return true when the error is Errors::None and false otherwise.
 
-_See also: [Game#getLastError Game::getLastError]_
+  _See also: [Game#getLastError Game::getLastError]_
 
 == mapWidth ==
-<code>int mapWidth();</code>
+<code>
+int mapWidth();</code>
 Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4. To get the width of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE] (which is 32).
 
-_See also: [Game#mapHeight Game::mapHeight]_
+  _See also: [Game#mapHeight Game::mapHeight]_
 
 == mapHeight ==
-<code>int mapHeight();</code>
+<code>
+int mapHeight();</code>
 Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4. To get the height of the current map in [Misc#Position Position] units, multiply by [Misc#Constants TILE_SIZE] (which is 32).
 
-_See also: [Game#mapWidth Game::mapWidth]_
+  _See also: [Game#mapWidth Game::mapWidth]_
 
 == mapFileName ==
-<code>std::string mapFileName();</code>
+<code>
+std::string mapFileName();</code>
 Returns the file name of the current map.
 
-_See also: [Game#mapPathName Game::mapPathName], [Game#mapName Game::mapName]_
+  _See also: [Game#mapPathName Game::mapPathName], [Game#mapName Game::mapName]_
 
 == mapPathName ==
-<code>std::string mapFileName();</code>
+<code>
+std::string mapFileName();</code>
 Returns the path name of the current map (path + file name).
 
-_See also: [Game#mapFileName Game::mapFileName], [Game#mapName Game::mapName]_
+  _See also: [Game#mapFileName Game::mapFileName], [Game#mapName Game::mapName]_
 
 == mapName ==
-<code>std::string mapName();</code>
+<code>
+std::string mapName();</code>
 Returns the name/title of the current map.
 
-_See also: [Game#mapPathName Game::mapPathName], [Game#mapFileName Game::mapFileName]_
+  _See also: [Game#mapPathName Game::mapPathName], [Game#mapFileName Game::mapFileName]_
 
 == mapHash ==
-<code>std::string mapHash();</code>
+<code>
+std::string mapHash();</code>
 Returns the sha1 hash of the map file in an alpha-numeric string.
 
 == isWalkable ==
-<code>bool isWalkable(int walkX, int walkY);</code>
+<code>
+bool isWalkable(int walkX, int walkY);</code>
 Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
-_See also: [Game#isBuildable Game::isBuildable]_
+  _See also: [Game#isBuildable Game::isBuildable]_
 
 == getGroundHeight ==
-<code>int getGroundHeight(int tileX, int tileY);
+<code>
+int getGroundHeight(int tileX, int tileY);
 int getGroundHeight([Misc#TilePosition TilePosition] position);</code>
 Returns the ground height of the given build tile. 
 {{{
@@ -273,198 +362,233 @@ Returns the ground height of the given build tile.
 For information about attacking a unit from a lower to higher ground, see the [http://code.google.com/p/bwapi/wiki/StarcraftGuide#Chance_to_Hit_Guide Chance to Hit Guide].
 
 == isBuildable ==
-<code>bool isBuildable(int tileX, int tileY, bool includeBuildings = false);
+<code>
+bool isBuildable(int tileX, int tileY, bool includeBuildings = false);
 bool isBuildable([Misc#TilePosition TilePosition] position, bool includeBuildings = false);</code>
 Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units on the tile to see if its currently buildable. To do this, see [#unitsOnTile unitsOnTile]. 
 
 This function was updated later to include a boolean that includes all visible buildings. By default it is set to false to maintain the original function's behaviour.
 
-_See also: [Game#isWalkable Game::isWalkable], [Game#canBuildHere Game::canBuildHere]_
+  _See also: [Game#isWalkable Game::isWalkable], [Game#canBuildHere Game::canBuildHere]_
 
 == isVisible ==
-<code>bool isVisible(int tileX, int tileY);
+<code>
+bool isVisible(int tileX, int tileY);
 bool isVisible([Misc#TilePosition TilePosition] position);</code>
 Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false.
 
-_See also: [Game#isExplored Game::isExplored]_
+  _See also: [Game#isExplored Game::isExplored]_
 
 == isExplored ==
-<code>bool isExplored(int tileX, int tileY);
+<code>
+bool isExplored(int tileX, int tileY);
 bool isExplored([Misc#TilePosition TilePosition] position);</code>
 Returns true if the specified build tile has been explored (i.e. was visible at some point in the match).
 
-_See also: [Game#isVisible Game::isVisible]_
+  _See also: [Game#isVisible Game::isVisible]_
 
 == hasCreep ==
-<code>bool hasCreep(int tileX, int tileY);
+<code>
+bool hasCreep(int tileX, int tileY);
 bool hasCreep([Misc#TilePosition TilePosition] position);</code>
 Returns true if the specified build tile has zerg creep on it. If the tile is concealed by fog of war, the function will return false.
 
-_See also: [Game#hasPower Game::hasPower]_
+  _See also: [Game#hasPower Game::hasPower]_
 
 == hasPower ==
-<code>bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight);
+<code>
+bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight);
 bool hasPower([Misc#TilePosition TilePosition] position, int tileWidth, int tileHeight);</code>
 Returns true if the given build location is powered by a nearby friendly pylon.
 
-_See also: [Game#hasCreep Game::hasCreep]_
+  _See also: [Game#hasCreep Game::hasCreep]_
 
 == canBuildHere ==
-<code>bool canBuildHere([Unit]`*` builder, [Misc#TilePosition TilePosition] position, [UnitType] type, bool checkExplored = false);</code>
+<code>
+bool canBuildHere([Unit]`*` builder, [Misc#TilePosition TilePosition] position, [UnitType] type, bool checkExplored = false);</code>
 Returns true if the given unit type can be built at the given build tile position. Note the tile position specifies the top left tile of the building. If builder is not {{{NULL}}}, the unit will be discarded when determining whether or not any ground units are blocking the build location. If checkExplored is specified, then canBuildHere will also verify that the area has been explored first.
 
 == canMake ==
-<code>bool canMake([Unit]`*` builder, [UnitType] type);</code>
+<code>
+bool canMake([Unit]`*` builder, [UnitType] type);</code>
 Returns true if the AI player has enough resources, supply, tech, and required units in order to make the given unit type. If builder is not {{{NULL}}}, canMake will return true only if the builder unit can build the given unit type.
 
-_See also: [Game#canBuildHere Game::canBuildHere]_
+  _See also: [Game#canBuildHere Game::canBuildHere]_
 
 == canResearch ==
-<code>bool canResearch([Unit]`*` unit, [TechType] type);</code>
+<code>
+bool canResearch([Unit]`*` unit, [TechType] type);</code>
 Returns true if the AI player has enough resources required to research the given tech type. If unit is not {{{NULL}}}, canResearch will return true only if the given unit can research the given tech type.
 
-_See also: [Game#canUpgrade Game::canUpgrade]_
+  _See also: [Game#canUpgrade Game::canUpgrade]_
 
 == canUpgrade ==
-<code>bool canUpgrade([Unit]`*` unit, [UpgradeType] type);</code>
+<code>
+bool canUpgrade([Unit]`*` unit, [UpgradeType] type);</code>
 Returns true if the AI player has enough resources required to upgrade the given upgrade type. If unit is not {{{NULL}}}, canUpgrade will return true only if the given unit can upgrade the given upgrade type.
 
-_See also: [Game#canResearch Game::canResearch]_
+  _See also: [Game#canResearch Game::canResearch]_
 
 == getStartLocations ==
-<code>std::set< [Misc#TilePosition TilePosition] >& getStartLocations();</code>
+<code>
+std::set< [Misc#TilePosition TilePosition] >& getStartLocations();</code>
 Returns the set of starting locations for the given map. To determine the starting location for the players in the current match, see [Player]::[Player#getStartLocation getStartLocation].
 
 == printf ==
-<code>void printf(const char `*`format, ...);</code>
+<code>
+void printf(const char `*`format, ...);</code>
 Prints text on the screen. Text is not sent to other players in multiplayer games.
 
-_See also: [Game#sendText Game::sendText], [Game#drawText Game::drawText]_
+  _See also: [Game#sendText Game::sendText], [Game#drawText Game::drawText]_
 
 == sendText ==
-<code>void sendText(const char `*`format, ...);
+<code>
+void sendText(const char `*`format, ...);
 void sendTextEx(bool toAllies, const char `*`format, ...);</code>
 Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen. If the game is a single player match and not a replay, then this function can be used to execute cheat codes, i.e. Broodwar->sendText("show me the money").
 
-_See also: [Game#printf Game::printf], [Game#drawText Game::drawText]_
+  _See also: [Game#printf Game::printf], [Game#drawText Game::drawText]_
 
 == changeRace ==
-<code>void changeRace([Race] race);</code>
+<code>
+void changeRace([Race] race);</code>
 Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
 == isInGame ==
-<code>bool isInGame();</code>
+<code>
+bool isInGame();</code>
 Returns true if Broodwar is in a match (single player match, replay, or multiplayer match). Returns false if the Broodwar is in a menu screen.
 
 == isMultiplayer ==
-<code>bool isMultiplayer();</code>
+<code>
+bool isMultiplayer();</code>
 Returns true if Broodwar is in a multiplayer game. Returns false for single player games and replays.
 
-_See also: [Game#isBattleNet Game::isBattleNet], [Game#isReplay Game::isReplay]_
+  _See also: [Game#isBattleNet Game::isBattleNet], [Game#isReplay Game::isReplay]_
 
 == isBattleNet ==
-<code>bool isBattleNet();</code>
+<code>
+bool isBattleNet();</code>
 Returns true if Broodwar is in an online game on BattleNet or similar server (like ICCup).
 
-_See also: [Game#isMultiplayer Game::isMultiPlayer], [Game#isReplay Game::isReplay]_
+  _See also: [Game#isMultiplayer Game::isMultiPlayer], [Game#isReplay Game::isReplay]_
 
 == isPaused ==
-<code>bool isPaused();</code>
+<code>
+bool isPaused();</code>
 Returns true if Broodwar is paused. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused.
 
 == isReplay ==
-<code>bool isReplay();</code>
+<code>
+bool isReplay();</code>
 Returns true if Broodwar is in a replay.
 
-_See also: [Game#isMultiplayer Game::isMultiPlayer], [Game#isBattleNet Game::isBattleNet]_
+  _See also: [Game#isMultiplayer Game::isMultiPlayer], [Game#isBattleNet Game::isBattleNet]_
 
 == isDebug ==
-<code>bool isDebug();</code>
+<code>
+bool isDebug();</code>
 Returns true if the current build is DEBUG, and false if the current build is RELEASE.
 
-_See also: [Game#getRevision Game::getRevision]_
+  _See also: [Game#getRevision Game::getRevision]_
 
 == startGame ==
-<code>void startGame();</code>
+<code>
+void startGame();</code>
 Used to start the game while in a lobby. Note that there is no onLobbyEnter callback yet, so this function cannot be used at this time.
 
 == pauseGame ==
-<code>void pauseGame();</code>
+<code>
+void pauseGame();</code>
 Pauses the game. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused.
 
-_See also: [Game#resumeGame Game::resumeGame]_
+  _See also: [Game#resumeGame Game::resumeGame]_
 
 == resumeGame ==
-<code>void resumeGame();</code>
+<code>
+void resumeGame();</code>
 Resumes the game.
 
-_See also: [Game#pauseGame Game::pauseGame]_
+  _See also: [Game#pauseGame Game::pauseGame]_
 
 == leaveGame ==
-<code>void leaveGame();</code>
+<code>
+void leaveGame();</code>
 Leaves the current match and goes to the after-game stats screen.
 
 == setMap ==
-<code>bool setMap(const char `*`mapFileName);</code>
+<code>
+bool setMap(const char `*`mapFileName);</code>
 Changes the map file to the one specified. Changes will take effect when the game is [Game#restartGame restarted]. Returns true if successful. If this function fails, it returns false and sets the last error to [Error#Invalid_Parameter Errors::Invalid_Parameter] or [Error#File_Not_Found Errors::File_Not_Found].
 
 == restartGame ==
-<code>void restartGame();</code>
+<code>
+void restartGame();</code>
 Restarts the match. Works the same way as if you restarted the match from the menu screen. Only available in single player mode.
 
 == setLocalSpeed ==
-<code>void setLocalSpeed(int speed = -1);</code>
+<code>
+void setLocalSpeed(int speed = -1);</code>
 Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed Starcraft can handle (which is about as fast as the fastest speed you can view a replay at). Any negative value will reset the speed to the starcraft default.
 
-_See also: [Game#setGUI Game::setGUI], [Game#setFrameSkip Game::setFrameSkip]_
+  _See also: [Game#setGUI Game::setGUI], [Game#setFrameSkip Game::setFrameSkip]_
 
 
 == setFrameSkip ==
-<code>void setFrameSkip(int frameSkip = 1);</code>
+<code>
+void setFrameSkip(int frameSkip = 1);</code>
 Alters Starcraft's built-in frame skipping. This value is normally only changed during replays on 16x speed. The default value is 1.
 
-_See also: [Game#setGUI Game::setGUI], [Game#setLocalSpeed Game::setLocalSpeed]_
+  _See also: [Game#setGUI Game::setGUI], [Game#setLocalSpeed Game::setLocalSpeed]_
 
 == issueCommand ==
-<code>bool issueCommand(const std::set<[Unit]{{{*}}}>& units, [UnitCommand] command);</code>
+<code>
+bool issueCommand(const std::set<[Unit]{{{*}}}>& units, [UnitCommand] command);</code>
 Issues a command to a set of units. Returns true if at least one unit was able to execute the command.
 
 == getSelectedUnits ==
-<code>std::set<[Unit]`*`>& getSelectedUnits();</code>
+<code>
+std::set<[Unit]`*`>& getSelectedUnits();</code>
 Returns the set of units currently selected by the user in the GUI. If [Flag]::UserInput was not enabled during the [AIModule]::[AIModule#onStart onStart] callback, this function will always return an empty set.
 
 == self ==
-<code>[Player]`*` self();</code>
+<code>
+[Player]`*` self();</code>
 Returns a pointer to the player that BWAPI controls. In replays this will return {{{NULL}}}.
 
-_See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#neutral Game::neutral]_
+  _See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#neutral Game::neutral]_
 
 == enemy ==
-<code>[Player]`*` enemy();</code>
+<code>
+[Player]`*` enemy();</code>
 Returns a pointer to the enemy player. If there is more than one enemy, use [#enemies enemies()] to get the set of all enemy players that have not left or been defeated. In replays this will return {{{NULL}}}.
 
-_See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#neutral Game::neutral], [Game#self Game::self]_
+  _See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#neutral Game::neutral], [Game#self Game::self]_
 
 == neutral ==
-<code>[Player]`*` neutral();</code>
+<code>
+[Player]`*` neutral();</code>
 Returns a pointer to the neutral player.
 
-_See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#self Game::self]_
+  _See also: [Game#allies Game::allies], [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#self Game::self]_
 
 == allies ==
-<code>std::set<[Player]`*`>& allies();</code>
+<code>
+std::set<[Player]`*`>& allies();</code>
 Returns a reference to the set of ally players that have not left or been defeated.
 
-_See also: [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#neutral Game::neutral], [Game#self Game::self]_
+  _See also: [Game#enemies Game::enemies], [Game#enemy Game::enemy], [Game#neutral Game::neutral], [Game#self Game::self]_
 
 == enemies ==
-<code>std::set<[Player]`*`>& enemies();</code>
+<code>
+std::set<[Player]`*`>& enemies();</code>
 Returns a reference to the set of enemy players that have not left or been defeated.
 
-_See also: [Game#allies Game::allies], [Game#enemy Game::enemy], [Game#neutral Game::neutral], [Game#self Game::self]_
+  _See also: [Game#allies Game::allies], [Game#enemy Game::enemy], [Game#neutral Game::neutral], [Game#self Game::self]_
 
 == setTextSize ==
-<code>void setTextSize(int size);</code>
+<code>
+void setTextSize(int size);</code>
 Sets the size at which text using [#drawText drawText] will be drawn at. The values are as follows:
 {{{
 0 = Smallest
@@ -473,10 +597,11 @@ Sets the size at which text using [#drawText drawText] will be drawn at. The val
 3 = Largest
 }}}
 
-_See also: [Game#drawText Game::drawText]_
+  _See also: [Game#drawText Game::drawText]_
 
 == drawText ==
-<code>void drawText(CoordinateType::Enum ctype, int x, int y, const char `*`format, ...);
+<code>
+void drawText(CoordinateType::Enum ctype, int x, int y, const char `*`format, ...);
 void drawTextMap(int x, int y, const char `*`format, ...);
 void drawTextMouse(int x, int y, const char `*`format, ...);
 void drawTextScreen(int x, int y, const char `*`format, ...);</code>
@@ -484,58 +609,64 @@ Draws text on the screen at the given position. Text can be drawn in different c
 
 [http://bwapi.googlecode.com/svn/wiki/pDizc.png]
 
-_See also: [Game#setTextSize Game::setTextSize], [Game#sendText Game::sendText], [Game#printf Game::printf]_
+  _See also: [Game#setTextSize Game::setTextSize], [Game#sendText Game::sendText], [Game#printf Game::printf]_
 
 == drawBox ==
-<code>void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+<code>
+void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawBoxMap(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawBoxMouse(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawBoxScreen(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
 Draws a box on the screen, with the given color. If isSolid is true, the entire box will be rendered, otherwise just the outline will be drawn.
 
-_See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle]_
+  _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle]_
 
 == drawCircle ==
-<code>void drawCircle(CoordinateType::Enum ctype, int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+<code>
+void drawCircle(CoordinateType::Enum ctype, int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawCircleMap(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawCircleMouse(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawCircleScreen(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
 Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn.
 
-_See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawBox Game::drawBox]_
+  _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawBox Game::drawBox]_
 
 == drawEllipse ==
-<code>void drawEllipse(CoordinateType::Enum ctype, int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+<code>
+void drawEllipse(CoordinateType::Enum ctype, int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawEllipseMap(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
 Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn, otherwise just the outline of an ellipse will be drawn.
 
-_See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
+  _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawDot ==
-<code>void drawDot(CoordinateType::Enum ctype, int x, int y, Color color = Color(BWAPI::Colors::Green));
+<code>
+void drawDot(CoordinateType::Enum ctype, int x, int y, Color color = Color(BWAPI::Colors::Green));
 void drawDotMap(int x, int y, Color color = Color(BWAPI::Colors::Green));
 void drawDotMouse(int x, int y, Color color = Color(BWAPI::Colors::Green));
 void drawDotScreen(int x, int y, Color color = Color(BWAPI::Colors::Green));</code>
 Draws a dot on the screen at the given position with the given color.
 
-_See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
+  _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawLine ==
-<code>void drawLine(CoordinateType::Enum ctype, int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
+<code>
+void drawLine(CoordinateType::Enum ctype, int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
 void drawLineMap(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
 void drawLineMouse(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
 void drawLineScreen(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));</code>
 Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
 
-_See also: [Game#drawTriangle Game::drawTriangle], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
+  _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawTriangle ==
-<code>void drawTriangle(CoordinateType::Enum ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
+<code>
+void drawTriangle(CoordinateType::Enum ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
 void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
 Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the outline of the triangle will be drawn.
 
-_See also: [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
+  _See also: [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
