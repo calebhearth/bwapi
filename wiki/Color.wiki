@@ -32,9 +32,9 @@ While any color from the [#Palette palette] can be used, the following colors ar
 === Palette ===
 The 256 color palette used by Starcraft: BroodWar:
 
-[http://imgur.com/RyPjC.png]
+  http://code.google.com/p/bwapi/wiki/colorPalette.gif
 
-The two sets of pixels outlined in green are pixels that change color each frame, (cycle from left to right).
+The blue sets outlined in green are interchangable parts of the palette. They may change based on the tileset and continually change if color cycling is enabled.
 
 === Text Color ===
 Examples using text color:
