@@ -405,7 +405,7 @@ Returns true if the given build location is powered by a nearby friendly pylon.
 
 == hasPath ==
 <code>
-bool hasPath([misc#Position BWAPI::Position] source, [misc#Position BWAPI::Position] destination) const;</code>
+bool hasPath([Misc#Position BWAPI::Position] source, [Misc#Position BWAPI::Position] destination) const;</code>
 Returns true if the source position is in the same body of land as the destination position, and false otherwise. In other words, it returns true if a unit at the source position is able to walk all the way to the destination position. This does not include buildings and units blocking the path. It only looks at static map data.
 
   _See also: [Unit#hasPath Unit::hasPath]_
