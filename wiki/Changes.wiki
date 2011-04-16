@@ -4,6 +4,11 @@
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
 
+Additions:
+  * Added [Game#hasPath Game::hasPath].
+  * Added [Position#hasPath Position::hasPath].
+
+
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
 Bug Fixes:
