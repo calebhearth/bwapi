@@ -6,7 +6,7 @@ Changes:
 
 Additions:
   * Added [Game#hasPath Game::hasPath].
-  * Added [Position#hasPath Position::hasPath].
+  * Added [Misc#Position Position::hasPath].
 
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
