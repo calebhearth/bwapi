@@ -551,7 +551,7 @@ Alters Starcraft's built-in frame skipping. This value is normally only changed 
 == issueCommand ==
 <code>
 bool issueCommand(const std::set<[Unit]{{{*}}}>& units, [UnitCommand] command);</code>
-Issues a command to a set of units. Returns true if at least one unit was able to execute the command.
+Issues a command to a set of units. Returns true if at least one unit was able to execute the command. This will select the units specified in groups of 12 and order them all at once without wasting additional commands.
 
 == getSelectedUnits ==
 <code>
