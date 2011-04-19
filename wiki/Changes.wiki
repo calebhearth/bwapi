@@ -1,13 +1,17 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3602) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3644) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
+  * Some tileset-reserved palette entries were removed.
+  * The constructor for Color(r,g,b) has been optimized for speed.
 
 Additions:
   * Added [Game#hasPath Game::hasPath].
   * Added [Misc#Position Position::hasPath].
 
+Bug Fixes:
+  * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
