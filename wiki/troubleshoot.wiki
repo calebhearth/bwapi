@@ -6,13 +6,13 @@ This page helps solve common troubleshooting issues.
 
 = BWAPI Errors =
 
-== Error: This application has failed to start because the application configuration is incorrect. Reinstalling the application may fix this problem. (14001) ==
+  == Error: This application has failed to start because the application configuration is incorrect. Reinstalling the application may fix this problem. (14001) ==
   You are missing some required DLL files, most likely the Visual C++ runtime DLLs. For RELEASE builds you can download and install the [http://code.google.com/p/bwapi/downloads/detail?name=vcredist_x86.exe Visual C++ Redistributables]. For DEBUG builds, you will need to install [http://www.microsoft.com/express/Downloads Visual C++ Express Edition].
 
 
 = Chaoslauncher Errors =
 
-== Error: Injection failed. This is caused when BWAPI crashes before injecting completely. ==
+  == Error: Injection failed. This is caused when BWAPI crashes before injecting completely. ==
   This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control"(UAC). As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
 
   === To disable the UAC in Windows Vista: ===
