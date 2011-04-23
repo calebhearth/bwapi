@@ -5,14 +5,6 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 
 <wiki:toc max_depth="3" />
 
-= Unit Cooldown Guide =
-  == Which Cooldowns are activated? ==
-    When a unit fires a weapon, both its air weapon and ground weapon cooldowns are set. It doesn't matter if the unit fires its air or ground weapon.
-
-  == Why is the cooldown always different? ==
-    Starcraft randomizes the cooldown.
-    It takes the [WeaponTypes base cooldown] and adds a value between (-1) and (+2).
-
 = Chance to Hit Guide =
   == Notes ==
     * Hit chance only applies to ranged weapons. For advanced users, this guide only applies to the following weapon behaviours: "Fly & Follow Target", "Fly & Don't Follow Target", "Appear on Target Unit", and "Appear on Target Site".
@@ -90,3 +82,28 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     By default, Starcraft only uses its frame skipping capability for watching a replay on x16 speed. What Starcraft's frame skip does is execute X number of game frames without leaving the game loop to draw graphics or poll for input. This allows Starcraft to exceed the maximum capacity it would have if it would normally try to run at infinite game frames per second.
 
     BWAPI's [Game#setFrameSkip setFrameSkip] function has the ability to change this value. By default, it is 1, meaning it updates the game 1 time before exiting its loop and drawing graphics.
+
+= Abilities and Bullets =
+  == Which Cooldowns are activated? ==
+    When a unit fires a weapon, both its air weapon and ground weapon cooldowns are set. It doesn't matter if the unit fires its air or ground weapon.
+
+  == Why is the cooldown always different? ==
+    Starcraft randomizes the cooldown.
+    It takes the [WeaponTypes base cooldown] and adds a value between (-1) and (+2).
+
+  == Why are some abilities and bullets considered units? (Dark Swarm, etc) ==
+    Mostly because of laziness, deadlines, or similar reasons. Blizzard was able to easily implement these abilities and bullets easily without much effort. BWAPI considers them units only because Starcraft does. Some of them include:
+    * [UnitTypes#Terran_Nuclear_Missile Nuclear Missile]
+    * [UnitTypes#Protoss_Scarab Protoss Scarab]
+    * [UnitTypes#Spell_Scanner_Sweep Scanner Sweep]
+    * [UnitTypes#Spell_Dark_Swarm Dark Swarm]
+    * [UnitTypes#Spell_Disruption_Web Disruption Web]
+
+  == Can you tell me about Dark Swarm and Disruption Web? ==
+    When a [UnitTypes#Spell_Dark_Swarm Dark Swarm] or [UnitTypes#Spell_Disruption_Web Disruption Web] is created, it is owned by the Neutral player (Player 12). They do not distinguish between players after that. They run on an already-implemented unit self-destruct timer, as well as set to invincible and unselectable, making the implementation easier.
+
+  == Can you tell me about Scanner Sweep? ==
+    When a [UnitTypes#Spell_Scanner_Sweep Scanner Sweep] is created, it is owned by the player that cast it. The [UnitTypes#Spell_Scanner_Sweep Scanner Sweep] is "invisible", similar to that of units inside a bunker, but retains its sight range, which is the same as a [UnitTypes#Special_Map_Revealer Map Revealer], which is also a Use Map Settings unit that reveals part of the map permanently. The difference is [UnitTypes#Spell_Scanner_Sweep Scanner Sweep] is run on an already-implemented self-destruct timer, and set to be a detector, making the implementation easier.
+
+  == Can you tell me about Protoss Scarab and Nuclear Missile? ==
+    For [UnitTypes#Protoss_Scarab Protoss Scarabs], being in a hangar much like a [UnitTypes#Protoss_Carrier Protoss Carrier] allows it to also use the same implementation, and also allows it to follow collision rules instead of directly travelling to the target, a function which bullets do not have. For the [UnitTypes#Terran_Nuclear_Missile Nuclear Missile], it sports a unique behaviour of launching, disappearing, and re-appearing at a new location, a process which is already available for units. Both the [UnitTypes#Protoss_Scarab Protoss Scarab] and [UnitTypes#Terran_Nuclear_Missile Nuclear Missile] are given a weapon much like an [UnitTypes#Zerg_Infested_Terran Infested Terran][UnitTypes#Zerg_Scourge Zerg Scourge], and [UnitTypes#Terran_Vulture_Spider_Mine Vulture Spider Mine], exploding on impact. Both attacks can also be cancelled, causing them to die (a concept which bullets don't have until they've already reached their target location).
