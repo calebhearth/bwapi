@@ -32,6 +32,7 @@
     * Download and Unzip MPQDraft
     * Copy the BWAPI files from the {{{BWAPI\MPQDraft\}}} folder to your MPQDraft folder.
     * Run MPQDraft
+    * Follow one of the two processes listed below:
 
   Create a self-executing loader:
     * Select _CREATE SELF EXECUTING MPQ_
