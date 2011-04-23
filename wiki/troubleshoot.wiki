@@ -13,6 +13,8 @@ This page helps solve common troubleshooting issues.
 = Chaoslauncher Errors =
 
   == Error: Injection failed. This is caused when BWAPI crashes before injecting completely. ==
+  _Note: The error code given after this message may be uninformative and/or unrelated._
+
   This is likely due to a feature in Windows Vista and its subsequent versions called "User Account Control"(UAC). As such, some Chaoslauncher features may be blocked if the UAC is activated. Other operating systems with similar User Account Control features could also be prone to this behavior.
 
   === To disable the UAC in Windows Vista: ===
