@@ -535,14 +535,14 @@ Restarts the match. Works the same way as if you restarted the match from the me
 
 == setAlliance ==
 <code>
-bool setAlliance(BWAPI::Player *player, bool allied = true, bool alliedVictory = true);</code>
+bool setAlliance(BWAPI::[Player] `*`player, bool allied = true, bool alliedVictory = true);</code>
 Sets the BWAPI player's alliance with the specified player, whether they're allied and allied victory is set. The alliedVictory field is ignored if allied is set to false.
 
   _See also: [Game#setVision Game::setVision]_
 
 == setVision ==
 <code>
-bool setVision(BWAPI::Player *player, bool enabled = true);</code>
+bool setVision(BWAPI::[Player] `*`player, bool enabled = true);</code>
 Sets the BWAPI player's vision with the specified player. Commonly used when setting another player to ally or enemy.
 
   _See also: [Game#setAlliance Game::setAlliance]_
