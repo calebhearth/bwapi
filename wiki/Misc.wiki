@@ -34,6 +34,7 @@ Methods:
   * int y()
   * bool isValid() - returns true if the tile position is on the map
   * void makeValid() - moves the tile position to the closest valid tile position
+  * bool hasPath(TilePosition destination) - Checks if a ground path exists from this tile position to the given destination. See [Game#hasPath Game::hasPath] for more info.
 
 == Special TilePositions ==
   * Invalid
