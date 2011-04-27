@@ -193,7 +193,7 @@ Retrieves the number for the current instance of Starcraft/BWAPI. Used to identi
 
 == getMousePosition ==
 <code>
-BWAPI::Position getMousePosition();</code>
+[Misc#Position Position] getMousePosition();</code>
 Returns the position of the mouse on the screen. Returns Positions::Unknown if Flag::UserInput is disabled.
 
 == getMouseState ==
@@ -210,7 +210,7 @@ Returns true if the specified key is pressed. Returns false if Flag::UserInput i
 
 == getScreenPosition ==
 <code>
-BWAPI::Position getScreenPosition();</code>
+[Misc#Position Position] getScreenPosition();</code>
 Returns the position of the top left corner of the screen on the map. Returns Positions::Unknown if Flag::UserInput is disabled.
 
   _See also: [Game#setScreenPosition Game::setScreenPosition]_
@@ -218,7 +218,7 @@ Returns the position of the top left corner of the screen on the map. Returns Po
 == setScreenPosition ==
 <code>
 void setScreenPosition(int x, int y);
-void setScreenPosition(BWAPI::Position p);</code>
+void setScreenPosition([Misc#Position Position] p);</code>
 Moves the screen to the given position on the map. The position specified where the top left corner of the screen will be.
 
   _See also: [Game#getScreenPosition Game::getScreenPosition]_
@@ -226,7 +226,7 @@ Moves the screen to the given position on the map. The position specified where 
 == pingMinimap ==
 <code>
 void pingMinimap(int x, int y);
-void pingMinimap(BWAPI::Position p);</code>
+void pingMinimap([Misc#Position Position] p);</code>
 Pings the given position on the minimap.
 
 == isFlagEnabled ==
@@ -272,14 +272,14 @@ Returns the set of units that are on the given build tile. Only returns accessib
 == getUnitsInRectangle ==
 <code>
 std::set<[Unit]`*`>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-std::set<[Unit]`*`>& getUnitsInRectangle(BWAPI::[Position] topLeft, BWAPI::[Position] bottomRight) const;</code>
+std::set<[Unit]`*`>& getUnitsInRectangle([Misc#Position Position] topLeft, [Misc#Position Position] bottomRight) const;</code>
 Retrieves the set of all accessable units within a rectangle.
 
   _See also: [Game#getUnitsInRadius Game::getUnitsInRadius]_
 
 == getUnitsInRadius ==
 <code>
-std::set<[Unit]`*`>& getUnitsInRadius(BWAPI::[Position] center, int radius) const;</code>
+std::set<[Unit]`*`>& getUnitsInRadius([Misc#Position Position] center, int radius) const;</code>
 Retrieves the set of all accessable units within a given radius.
 
   _See also: [Unit#getUnitsInRectangle Unit::getUnitsInRectangle]_
@@ -405,7 +405,7 @@ Returns true if the given build location is powered by a nearby friendly pylon.
 
 == hasPath ==
 <code>
-bool hasPath([Misc#Position BWAPI::Position] source, [Misc#Position BWAPI::Position] destination) const;</code>
+bool hasPath([Misc#Position Position] source, [Misc#Position Position] destination) const;</code>
 Returns true if the source position is in the same body of land as the destination position, and false otherwise. In other words, it returns true if a unit at the source position is able to walk all the way to the destination position. This does not include buildings and units blocking the path. It only looks at static map data.
 
   _See also: [Unit#hasPath Unit::hasPath]_
@@ -535,14 +535,14 @@ Restarts the match. Works the same way as if you restarted the match from the me
 
 == setAlliance ==
 <code>
-bool setAlliance(BWAPI::[Player] `*`player, bool allied = true, bool alliedVictory = true);</code>
+bool setAlliance([Player] `*`player, bool allied = true, bool alliedVictory = true);</code>
 Sets the BWAPI player's alliance with the specified player, whether they're allied and allied victory is set. The alliedVictory field is ignored if allied is set to false.
 
   _See also: [Game#setVision Game::setVision]_
 
 == setVision ==
 <code>
-bool setVision(BWAPI::[Player] `*`player, bool enabled = true);</code>
+bool setVision([Player] `*`player, bool enabled = true);</code>
 Sets the BWAPI player's vision with the specified player. Commonly used when setting another player to ally or enemy.
 
   _See also: [Game#setAlliance Game::setAlliance]_
@@ -634,60 +634,60 @@ Draws text on the screen at the given position. Text can be drawn in different c
 
 == drawBox ==
 <code>
-void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawBoxMap(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawBoxMouse(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawBoxScreen(int left, int top, int right, int bottom, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
+void drawBox(CoordinateType::Enum ctype, int left, int top, int right, int bottom, Color color = Color(Colors::Green), bool isSolid = false);
+void drawBoxMap(int left, int top, int right, int bottom, Color color = Color(Colors::Green), bool isSolid = false);
+void drawBoxMouse(int left, int top, int right, int bottom, Color color = Color(Colors::Green), bool isSolid = false);
+void drawBoxScreen(int left, int top, int right, int bottom, Color color = Color(Colors::Green), bool isSolid = false);</code>
 Draws a box on the screen, with the given color. If isSolid is true, the entire box will be rendered, otherwise just the outline will be drawn.
 
   _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle]_
 
 == drawCircle ==
 <code>
-void drawCircle(CoordinateType::Enum ctype, int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawCircleMap(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawCircleMouse(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawCircleScreen(int x, int y, int radius, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
+void drawCircle(CoordinateType::Enum ctype, int x, int y, int radius, Color color = Color(Colors::Green), bool isSolid = false);
+void drawCircleMap(int x, int y, int radius, Color color = Color(Colors::Green), bool isSolid = false);
+void drawCircleMouse(int x, int y, int radius, Color color = Color(Colors::Green), bool isSolid = false);
+void drawCircleScreen(int x, int y, int radius, Color color = Color(Colors::Green), bool isSolid = false);</code>
 Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn.
 
   _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawBox Game::drawBox]_
 
 == drawEllipse ==
 <code>
-void drawEllipse(CoordinateType::Enum ctype, int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawEllipseMap(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
+void drawEllipse(CoordinateType::Enum ctype, int x, int y, int xrad, int yrad, Color color = Color(Colors::Green), bool isSolid = false);
+void drawEllipseMap(int x, int y, int xrad, int yrad, Color color = Color(Colors::Green), bool isSolid = false);
+void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color = Color(Colors::Green), bool isSolid = false);
+void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color = Color(Colors::Green), bool isSolid = false);</code>
 Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn, otherwise just the outline of an ellipse will be drawn.
 
   _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawDot ==
 <code>
-void drawDot(CoordinateType::Enum ctype, int x, int y, Color color = Color(BWAPI::Colors::Green));
-void drawDotMap(int x, int y, Color color = Color(BWAPI::Colors::Green));
-void drawDotMouse(int x, int y, Color color = Color(BWAPI::Colors::Green));
-void drawDotScreen(int x, int y, Color color = Color(BWAPI::Colors::Green));</code>
+void drawDot(CoordinateType::Enum ctype, int x, int y, Color color = Color(Colors::Green));
+void drawDotMap(int x, int y, Color color = Color(Colors::Green));
+void drawDotMouse(int x, int y, Color color = Color(Colors::Green));
+void drawDotScreen(int x, int y, Color color = Color(Colors::Green));</code>
 Draws a dot on the screen at the given position with the given color.
 
   _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawLine Game::drawLine], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawLine ==
 <code>
-void drawLine(CoordinateType::Enum ctype, int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-void drawLineMap(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-void drawLineMouse(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));
-void drawLineScreen(int x1, int y1, int x2, int y2, Color color = Color(BWAPI::Colors::Green));</code>
+void drawLine(CoordinateType::Enum ctype, int x1, int y1, int x2, int y2, Color color = Color(Colors::Green));
+void drawLineMap(int x1, int y1, int x2, int y2, Color color = Color(Colors::Green));
+void drawLineMouse(int x1, int y1, int x2, int y2, Color color = Color(Colors::Green));
+void drawLineScreen(int x1, int y1, int x2, int y2, Color color = Color(Colors::Green));</code>
 Draws a line on the screen from (x1,y1) to (x2,y2) with the given color.
 
   _See also: [Game#drawTriangle Game::drawTriangle], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
 
 == drawTriangle ==
 <code>
-void drawTriangle(CoordinateType::Enum ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);
-void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(BWAPI::Colors::Green), bool isSolid = false);</code>
+void drawTriangle(CoordinateType::Enum ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(Colors::Green), bool isSolid = false);
+void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(Colors::Green), bool isSolid = false);
+void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(Colors::Green), bool isSolid = false);
+void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color = Color(Colors::Green), bool isSolid = false);</code>
 Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the outline of the triangle will be drawn.
 
   _See also: [Game#drawLine Game::drawLine], [Game#drawDot Game::drawDot], [Game#drawEllipse Game::drawEllipse], [Game#drawCircle Game::drawCircle], [Game#drawBox Game::drawBox]_
