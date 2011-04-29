@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3673) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3682) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
@@ -13,6 +13,8 @@ Additions:
   * Added [Misc#TilePosition TilePosition::hasPath].
   * Added [Game#setAlliance Game::setAlliance].
   * Added [Game#setVision Game::setVision].
+  * Added more options and variants to [Game#hasPower Game::hasPower].
+  * Added a new function [Game#hasPowerPrecise Game::hasPowerPrecise] which takes a pixel coordinate instead of a tile position.
 
 Bug Fixes:
   * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
@@ -20,6 +22,7 @@ Bug Fixes:
   * Fixed a bug where the bot's APM counter did not reset between matches.
   * Fixed an issue where BWAPI's Windowed Mode (set in config) would initially start the application in Fullscreen before switching back.
   * Increased compatibility with other hacks, depending on their behaviour.
+  * Fixed an issue where [Game#hasPower Game::hasPower] could return incorrect results.
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
