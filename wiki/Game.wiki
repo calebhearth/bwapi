@@ -400,7 +400,7 @@ Returns true if the specified build tile has zerg creep on it. If the tile is co
 bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
 bool hasPower([Misc#TilePosition TilePosition], UnitType unitType = UnitTypes::None) const;
 bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-virtual bool hasPower([Misc#TilePosition TilePosition] position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;</code>
+bool hasPower([Misc#TilePosition TilePosition] position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;</code>
 Returns true if the given build location is powered by a nearby friendly pylon. If the unitType is specified, it will include the unit's properties in the calculation, so if the type does not require a pylon, it will return true for anywhere. Using the constructors that only take a tile position and unit type, it will use the unit type's width and height for calculation.
 
   _See also: [Game#hasCreep Game::hasCreep], [Game#hasPowerPrecise Game::hasPowerPrecise]_
@@ -410,6 +410,8 @@ Returns true if the given build location is powered by a nearby friendly pylon. 
 bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
 bool hasPowerPrecise([Misc#Position Position] position, UnitType unitType = UnitTypes::None) const;</code>
 Returns true if the given pixel coordinate is powered by a nearby friendly pylon. If the unitType is specified, it will include the unit's properties in the calculation, so if the type does not require a pylon, it will return true for anywhere. The power calculation does not consider the width and height of the unit, as it's not required.
+
+  _See also: [Game#hasPower Game::hasPower]_
 
 == hasPath ==
 <code>
