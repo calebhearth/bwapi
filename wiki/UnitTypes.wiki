@@ -3235,6 +3235,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 2500
 
   ==== Abilities ====
+    * Detector
     * Regenerates Hit Points
 
 
@@ -3248,6 +3249,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 2500
 
   ==== Abilities ====
+    * Detector
     * Regenerates Hit Points
 
 
@@ -3274,6 +3276,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 10000
 
   ==== Abilities ====
+    * Detector
     * Regenerates Hit Points
 
 
@@ -3287,6 +3290,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 4000
 
   ==== Abilities ====
+    * Detector
     * Regenerates Hit Points
 
 
@@ -3300,6 +3304,7 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Destroy Score*: 10000
 
   ==== Abilities ====
+    * Detector
     * Regenerates Hit Points
 
 
@@ -3613,6 +3618,120 @@ This page contains a list of UnitTypes provided by BWAPI.
 
 
 
+== Traps ==
+=== Special Floor Gun Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 192 (6)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Twin_Autocannons_(Floor_Trap) Twin Autocannons (Floor Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Special Floor Missile Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 64 x 64
+  * *Sight Range*: 192 (6)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(Floor_Trap) Hellfire Missile Pack (Floor Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Special Right Wall Flame Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 96 (3)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Flame_Thrower_(Wall_Trap) Flame Thrower (Wall Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Special Right Wall Missile Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 192 (6)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(Wall_Trap) Hellfire Missile Pack (Wall Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Special Wall Flame Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 96 (3)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Flame_Thrower_(Wall_Trap) Flame Thrower (Wall Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+=== Special Wall Missile Trap ===
+  * *Max HP*: 50
+  * *Armor*: 0
+  * *Unit Size*: Large
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 192 (6)
+  * *Destroy Score*: 100
+  * *Ground Weapon*: [WeaponTypes#Hellfire_Missile_Pack_(Wall_Trap) Hellfire Missile Pack (Wall Trap)]
+
+  ==== Abilities ====
+    * Detector
+
+
+
+== Doors ==
+=== Special Pit Door ===
+  * *Unit Dimensions*: 70 x 38
+  * *Sight Range*: 32 (1)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Special Right Pit Door ===
+  * *Unit Dimensions*: 70 x 38
+  * *Sight Range*: 32 (1)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Special Right Upper Level Door ===
+  * *Unit Dimensions*: 70 x 38
+  * *Sight Range*: 32 (1)
+
+  ==== Abilities ====
+    * Invincible
+
+
+=== Special Upper Level Door ===
+  * *Unit Dimensions*: 70 x 38
+  * *Sight Range*: 32 (1)
+
+  ==== Abilities ====
+    * Invincible
+
+
+
 == Special ==
 === Special Cargo Ship ===
   * *Max HP*: 125
@@ -3622,12 +3741,12 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 256 (8)
 
 
-=== Special Mercenary Gunship ===
-  * *Max HP*: 125
-  * *Armor*: 1
-  * *Unit Size*: Medium
-  * *Unit Dimensions*: 32 x 32
+=== Special Floor Hatch ===
+  * *Unit Dimensions*: 256 x 128
   * *Sight Range*: 224 (7)
+
+  ==== Abilities ====
+    * Invincible
 
 
 === Special Independant Starport ===
@@ -3639,6 +3758,31 @@ This page contains a list of UnitTypes provided by BWAPI.
   * *Sight Range*: 288 (9)
   * *Destroy Score*: 10
   * *Ground Weapon*: [WeaponTypes#Independant_Laser_Battery Independant Laser Battery]
+
+
+=== Special Map Revealer ===
+  * *Max HP*: 1
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Unit Dimensions*: 27 x 31
+  * *Sight Range*: 320 (10)
+
+
+=== Special Mercenary Gunship ===
+  * *Max HP*: 125
+  * *Armor*: 1
+  * *Unit Size*: Medium
+  * *Unit Dimensions*: 32 x 32
+  * *Sight Range*: 224 (7)
+
+
+=== Special Start Location ===
+  * *Max HP*: 800
+  * *Armor*: 0
+  * *Unit Size*: Independent
+  * *Tile Size*: 4 x 3
+  * *Unit Dimensions*: 97 x 65
+  * *Sight Range*: 32 (1)
 
 
 

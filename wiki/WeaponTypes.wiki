@@ -547,6 +547,25 @@ This page contains a list of WeaponTypes provided by BWAPI.
     * [UnitTypes#Hero_Gui_Montag Hero Gui Montag]
 
 
+== Flame Thrower (Wall Trap) ==
+  * *Explosion Type*: Enemy Splash
+  * *Damage Type*: Concussive
+  * *Damage*: 8
+  * *Bonus*: 1
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Splash Radius*: 15 - 20 - 25
+  * *Range*: 0 - 64
+  * *Upgrade*: [UpgradeTypes#Terran_Infantry_Weapons Terran Infantry Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Special_Wall_Flame_Trap Special Wall Flame Trap]
+    * [UnitTypes#Special_Right_Wall_Flame_Trap Special Right Wall Flame Trap]
+
+
 == Fragmentation Grenade ==
   * *Explosion Type*: Normal
   * *Damage Type*: Concussive
@@ -753,6 +772,41 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Alan_Schezar Hero Alan Schezar]
+
+
+== Hellfire Missile Pack (Floor Trap) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Explosive
+  * *Damage*: 10
+  * *Bonus*: 1
+  * *Factor*: 2
+  * *Cooldown*: 22
+  * *Range*: 0 - 160
+  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Special_Floor_Missile_Trap Special Floor Missile Trap]
+
+
+== Hellfire Missile Pack (Wall Trap) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Explosive
+  * *Damage*: 10
+  * *Bonus*: 1
+  * *Factor*: 2
+  * *Cooldown*: 22
+  * *Range*: 0 - 160
+  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Special_Wall_Missile_Trap Special Wall Missile Trap]
+    * [UnitTypes#Special_Right_Wall_Missile_Trap Special Right Wall Missile Trap]
 
 
 == Independant Laser Battery ==
@@ -1281,6 +1335,23 @@ This page contains a list of WeaponTypes provided by BWAPI.
 
   === What Uses ===
     * [UnitTypes#Hero_Alan_Schezar Hero Alan Schezar]
+
+
+== Twin Autocannons (Floor Trap) ==
+  * *Explosion Type*: Normal
+  * *Damage Type*: Normal
+  * *Damage*: 10
+  * *Bonus*: 1
+  * *Factor*: 1
+  * *Cooldown*: 22
+  * *Range*: 0 - 160
+  * *Upgrade*: [UpgradeTypes#Terran_Vehicle_Weapons Terran Vehicle Weapons]
+
+  === Targets ===
+    * Ground
+
+  === What Uses ===
+    * [UnitTypes#Special_Floor_Gun_Trap Special Floor Gun Trap]
 
 
 == Warp Blades ==
