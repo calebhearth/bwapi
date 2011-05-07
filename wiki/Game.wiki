@@ -343,6 +343,8 @@ Returns the sha1 hash of the map file in an alpha-numeric string.
 bool isWalkable(int walkX, int walkY);</code>
 Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates). Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its currently walkable. To do this, see [#unitsOnTile unitsOnTile].
 
+Keep in mind that a "walk tile" is a 8x8 pixel tile, and 16 walk tiles make up a build tile.
+
   _See also: [Game#isBuildable Game::isBuildable]_
 
 == getGroundHeight ==
