@@ -1038,21 +1038,11 @@ See also: [Unit#upgrade Unit::upgrade], [Unit#isUpgrading Unit::isUpgrading], [U
 
 == useTech ==
 bool useTech([TechType] tech);
-
-Orders the unit to use a tech not requiring a target (i.e. Stim Pack).
-Returns true if it is a valid tech.
-
-== useTech ==
 bool useTech([TechType] tech, Position position);
-
-Orders the unit to use a tech requiring a position target (i.e. Dark Swarm).
-Returns true if it is a valid tech.
-
-== useTech ==
 bool useTech([TechType] tech, Unit{{{*}}} target);
 
-Orders the unit to use a tech requiring a unit target (i.e. Irradiate).
-Returns true if it is a valid tech.
+Orders the unit to use a technology either not requiring a target (i.e. Stim Pack), a target position (i.e. Spider Mines), or a target unit (i.e. Irradiate).
+Returns true if the tech can be used.
 
 == placeCOP ==
 bool placeCOP([TilePosition] target);
