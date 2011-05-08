@@ -27,3 +27,10 @@ That depends on what you want to do. Unless you have a specific reason to write 
 A [Force] is another name for Team. In fact, the term "Team" is never used by Starcraft's Campaign Editor "StarEdit". Default team names are also called "Force #", and thus we use the most common reference.
 
   http://bwapi.googlecode.com/svn/wiki/forces.gif
+
+= Where is HealMove? =
+
+You can HealMove by using either of the following calls;
+<code>
+pUnit->[Unit#attack attack](position);
+pUnit->[Unit#useTech useTech]([TechTypes#Healing TechTypes::Healing], position);</code>
