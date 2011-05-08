@@ -28,7 +28,7 @@ A [Force] is another name for Team. In fact, the term "Team" is never used by St
 
   http://bwapi.googlecode.com/svn/wiki/forces.gif
 
-= Where is HealMove? =
+= Where is Heal Move? =
 
 You can HealMove by using either of the following calls;
 <code>
