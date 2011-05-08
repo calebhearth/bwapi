@@ -1,0 +1,3 @@
+#summary Medic order
+
+Heal Move is a medic order that causes the medic to heal all units along its path to a target location. It works like Attack Move, which you learn how to do in the Starcraft Tutorial mission, and uses the same hotkey "A".
