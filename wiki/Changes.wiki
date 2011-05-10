@@ -24,8 +24,7 @@ Additions:
   * Added [Unit#getOrderTarget Unit::getOrderTarget].
   * Added [Game#observers Game::observers] which returns the list of observing players in a Use Map Settings.
   * Added [Player#isObserver Player::isObserver].
-  * Added the auto_menu config options {{{wait_for_min_players}}},
-{{{wait_for_max_players}}}, and {{{wait_for_time}}} which change the way BWAPI behaves when hosting a network game.
+  * Added the auto_menu config options {{{wait_for_min_players}}}, {{{wait_for_max_players}}}, and {{{wait_for_time}}} which change the way BWAPI behaves when hosting a network game.
 
 Bug Fixes:
   * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
