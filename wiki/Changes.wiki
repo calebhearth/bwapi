@@ -1,10 +1,14 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3693) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3710) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
   * Some tileset-reserved palette entries were removed.
   * The constructor for Color(r,g,b) has been optimized for speed.
+  * Players that are observing, as well as Start Locations for possible Observer players are excluded from the list of enemies and start locations.
+  * The Unload Unit command now uses less actions by performing the command with no matching select unit.
+  * Several [TechType#targetsUnit TechType::targetsUnit] and [TechType#targetsPosition TechType::targetsPosition] flags have been altered to be consistent with the tech's capabilities.
+  * Logging and the logging_str config option in BWAPI have been removed. Attach the debugger instead.
 
 Additions:
   * Added [Game#hasPath Game::hasPath].
@@ -16,6 +20,12 @@ Additions:
   * Added more options and variants to [Game#hasPower Game::hasPower].
   * Added a new function [Game#hasPowerPrecise Game::hasPowerPrecise] which takes a pixel coordinate instead of a tile position.
   * Added some Use Map Settings [UnitTypes] that were missing, such as [UnitTypes#Special_Map_Revealer Map Revealer], [UnitTypes#Special_Start_Location Start Location], [UnitTypes#Doors Doors], and [UnitTypes#Traps Traps].
+  * Added a new config entry called {{{mapiteration}}} which allows you to specify if wildcard maps will be chosen randomly or in a sequence.
+  * Added [Unit#getOrderTarget Unit::getOrderTarget].
+  * Added [Game#observers Game::observers] which returns the list of observing players in a Use Map Settings.
+  * Added [Player#isObserver Player::isObserver].
+  * Added the auto_menu config options {{{wait_for_min_players}}},
+{{{wait_for_max_players}}}, and {{{wait_for_time}}} which change the way BWAPI behaves when hosting a network game.
 
 Bug Fixes:
   * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
@@ -26,6 +36,7 @@ Bug Fixes:
   * Fixed an issue where [Game#hasPower Game::hasPower] could return incorrect results.
   * Fixed some cases where bad calls could cause a buffer overflow.
   * Fixed an issue where users without administrative privileges were unable to use BWAPI. Limited users will now be able to use BWAPI and an AI DLL, but will not be able to use the Client/Server setup.
+  * Fixed an issue where [TechTypes#Healing Healing](for HealMove) and [TechTypes#Maelstrom Maelstrom] could not be used in [Unit#useTechPosition Unit::useTechPosition].
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
