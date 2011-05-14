@@ -42,11 +42,11 @@ To set up BWAPI for multiple instances, you must configure the AI path for each 
 
   http://bwapi.googlecode.com/svn/wiki/multi_tut_05.gif
 
-Now change the entries _{{{ai_dll_#}}}_ accordingly to load your AI modules.
+Now change the entries in _{{{ai}}}_ accordingly to load your AI modules.
 
   http://bwapi.googlecode.com/svn/wiki/multi_tut_06.gif
 
-When running with multiple instances, the original _{{{ai_dll}}}_ entry is ignored, and the _{{{ai_dll_#}}}_ entries specify which AI module belongs to which instance.
+To specify multiple ai dll's, add the path relative to the StarCraft directory to the dll in a comma separated list.
 
 You can also specify a revision for older AI binaries provided that revision's BWAPI.dll is copied to the _{{{bwapi-data\revisions\}}}_ folder as _{{{#.dll}}}_ (where # is the revision number) and is revision 2753 or newer._
 
