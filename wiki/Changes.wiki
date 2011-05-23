@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3710) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3717) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
@@ -25,6 +25,7 @@ Additions:
   * Added [Game#observers Game::observers] which returns the list of observing players in a Use Map Settings.
   * Added [Player#isObserver Player::isObserver].
   * Added the auto_menu config options {{{wait_for_min_players}}}, {{{wait_for_max_players}}}, and {{{wait_for_time}}} which change the way BWAPI behaves when hosting a network game.
+  * BWAPI now supports a tournament module to control the flow of tournaments.
 
 Bug Fixes:
   * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
