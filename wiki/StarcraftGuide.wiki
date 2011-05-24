@@ -60,7 +60,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     All race's workers move the same. Their gathering speed is also the same.
     The only difference between the races is the size of their resource depot.
     Compare the sizes of [UnitTypes#Terran_Command_Center Terran Command Center], [UnitTypes#Protoss_Nexus Protoss Nexus], and [UnitTypes#Zerg_Hatchery Zerg Hatchery]/[UnitTypes#Zerg_Lair Lair]/[UnitTypes#Zerg_Hive Hive].
-    Only the size of their resource depot impacts resource gathering time.
+    Only the size of their resource depot impacts resource gathering time, with the exception of the Command Center, whose addon script possibly causes a pause for workers returning on the left and right sides. Buildings also seem to favor the top left more than the bottom right, but the difference is unnoticable.
 
 = Engine Guide =
   == What is Starcraft's frame rate? ==
