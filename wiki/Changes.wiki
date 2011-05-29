@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3717) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3724) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
@@ -26,6 +26,7 @@ Additions:
   * Added [Player#isObserver Player::isObserver].
   * Added the auto_menu config options {{{wait_for_min_players}}}, {{{wait_for_max_players}}}, and {{{wait_for_time}}} which change the way BWAPI behaves when hosting a network game.
   * BWAPI now supports a tournament module to control the flow of tournaments.
+  * Added [Game#elapsedTime Game::elapsedTime].
 
 Bug Fixes:
   * Fixed a bug in [Unit#isInWeaponRange Unit::isInWeaponRange] where the minimum range of 0 would be included in the computation.
@@ -37,6 +38,9 @@ Bug Fixes:
   * Fixed some cases where bad calls could cause a buffer overflow.
   * Fixed an issue where users without administrative privileges were unable to use BWAPI. Limited users will now be able to use BWAPI and an AI DLL, but will not be able to use the Client/Server setup.
   * Fixed an issue where [TechTypes#Healing Healing](for HealMove) and [TechTypes#Maelstrom Maelstrom] could not be used in [Unit#useTechPosition Unit::useTechPosition].
+  * Fixed a bug/regression where [Game#mapFileName Game::mapFileName] would return with the full path after using auto-menu.
+  * Fixed a bug/regression where Battle.net Recent Maps would save a map with its path attached after using auto-menu.
+  * Fixed an issue where auto_menu did not start multi-player games on its own.
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
