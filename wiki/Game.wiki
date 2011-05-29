@@ -156,7 +156,7 @@ Returns the time in game seconds that the game has been running for. This is equ
 == getFrameCount ==
 <code>
 int getFrameCount();</code>
-Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second.
+Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused. On Fastest game speed, one frame is equal to 42 milliseconds.
 
   _See also: [Game#getReplayFrameCount Game::getReplayFrameCount]_
 
