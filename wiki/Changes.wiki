@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3724) ==
+== Changes from BWAPI 3.5.4 (r3597) to Recent (r3730) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
@@ -41,6 +41,7 @@ Bug Fixes:
   * Fixed a bug/regression where [Game#mapFileName Game::mapFileName] would return with the full path after using auto-menu.
   * Fixed a bug/regression where Battle.net Recent Maps would save a map with its path attached after using auto-menu.
   * Fixed an issue where auto_menu did not start multi-player games on its own.
+  * Fixed a bug where a unit position returned an incorrect value when it was intended to be Unknown.
 
 == Changes from BWAPI 3.5.3 (r3589) to BWAPI 3.5.4 (r3597) ==
 
