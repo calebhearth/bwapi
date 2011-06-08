@@ -271,6 +271,22 @@ Returns true if latency compensation is enabled. It is enabled by default.
 void setLatCom(bool isEnabled);</code>
 Use to enable or disable latency compensation. It is enabled by default.
 
+== setCommandOptimizationLevel ==
+<code>
+void setCommandOptimizationLevel(int level = 2);</code>
+Use to set the command optimization level. This feature reduces APM and the replay size by grouping units performing the same actions.
+  * 0: No optimization.
+  * 1: Optimize Attack_Unit, Morph (units only), Hold_Position, Stop, Follow, Gather, Return_Cargo, Repair, Burrow, Unburrow, Cloak, Decloak, Siege, Unsiege, Right_Click_Unit, Halt_Construction, Cancel_Train (Carrier/Reaver only), Cancel_Train_Slot (Carrier/Reaver only), Cancel_Morph(units only), Use_Tech, and Use_Tech_Unit. Additionally perform the following transformations:
+    * Attack_Unit becomes Right_Click_Unit if the target is an enemy.
+    * Move becomes Right_Click_Position.
+    * Gather becomes Right_Click_Unit if the target contains resources.
+    * Set_Rally_Position becomes Right_Click_Position for buildings.
+    * Set_Rally_Unit becomes Right_Click_Unit for buildings.
+    * Use_Tech_Unit for a Zerg Queen using Infestation becomes Right_Click_Unit when the target is a Command Center.
+  * 2: Optimize all of the above, as well as Attack_Unit(towers), Train (buildings), Morph (buildings), Set_Rally_Unit, Lift, Unload_All (Bunkers only), Cancel_Construction, Cancel_Addon, Cancel_Train, Cancel_Train_Slot, Cancel_Morph, Cancel_Research, and Cancel_Upgrade. This level will flag BWAPI's commands as hacks in a replay analyzer.
+  * 3: Optimize all of the above, as well as Attack_Move, Set_Rally_Position, Move, Patrol, Unload_All_Position, Right_Click_Position, and Use_Tech_Position. These optimizations may yield a different movement behaviour than without.
+  * 4: Optimize all of the above, but trim positions to be a multiple of 32 so that it may group positions that are near each other. This creates less accurate move positions.
+
 == getUnitsOnTile ==
 <code>
 std::set< [Unit]`*` >& getUnitsOnTile(int tileX, int tileY);</code>
