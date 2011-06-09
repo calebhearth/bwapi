@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.5.4 (r3597) to Recent (r3743) ==
+== Changes from BWAPI 3.5.4 (r3597) to BWAPI 3.6 (r3745) ==
 
 Changes:
   * Starcraft now always uses the saved speed setting in Single Player instead of using Normal speed. This means that Single Player games will always start on fastest if that was your last setting in multi-player.
