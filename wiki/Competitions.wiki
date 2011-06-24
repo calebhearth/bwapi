@@ -48,6 +48,19 @@ This page contains a list of competitions using BWAPI.
 
   _See official web page for more details._
 
+ == All-Open ICCUP Bot Tournament
+ === Info ===
+  * *Details and registration:* http://www.broodwarai.com/forums/index.php?showtopic=901
+  * *Hosted at:* ICCUP Server, Online
+  * *Channel:* BWAPI
+
+ === Binaries ===
+  * *Version:* Version must support the BWAPI Tournament module.
+
+ === Dates ===
+  * *Tournament:* July 3rd, 2011
+  * *Registration Deadline:* Any time before then.
+
 ----
 = Finished =
 
