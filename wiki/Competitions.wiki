@@ -1,4 +1,5 @@
 #summary Competitions held for BWAPI
+#labels Featured
 
 This page contains a list of competitions using BWAPI.
 
