@@ -15,12 +15,14 @@ _Windowed mode uses software rendering which takes significantly more CPU usage 
   http://bwapi.googlecode.com/svn/wiki/speed_tut_01.gif
 
 Open the BWAPI config file in {{{ bwapi-data/bwapi.ini }}} and set {{{ sound }}} to {{{ OFF }}}.
+
 _Muting the sound and music is not the same as disabling the entire sound engine. If the sound is muted, the functions to play sounds are still called and the sounds are still processed at Starcraft's level. When the sound engine is disabled, these are skipped entirely._
 
 = Disable CPU Throttling =
   http://bwapi.googlecode.com/svn/wiki/speed_tut_02.gif
 
 Disabling CPU Throttling will increase performance but will increase CPU usage.
+
 _When CPU throttling is enabled, Starcraft will sleep for 1 millisecond between each draw to the screen in order to reduce CPU usage, and thus slow the game down if we are to immediately execute the next game frame._
 
 = Change Game Speed =
@@ -32,4 +34,5 @@ Typing {{{ /speed 0 }}} in Starcraft will disable the delay between frames. You 
   http://bwapi.googlecode.com/svn/wiki/speed_tut_04.gif
 
 Typing {{{ /nogui }}} in Starcraft will toggle the display of graphics. Disabling the Graphical User Interface (GUI) will prevent Starcraft from calling its drawing routines and image processing functions. The same action can be performed from an AI module by calling the function [Game#setGUI Game::setGUI(false)].
+
 _Using this option will cause the game to remain inside of the game loop instead of returning after every game frame._
