@@ -47,39 +47,51 @@
     * *Exploit*: An exploit is a glitch that must be performed intentionally (it cannot happen by accident). It is usually initiated using a hack to execute actions that are not available to the human user interface.
 
   == Allied Mines ==
-    === Classification ===
-      Game Mechanic
-    === Description ===
-      A [Races#Terran Terran] player places [UnitTypes#Vulture_Spider_Mine Spider Mines] and proceedes to ally the opponent player. When the opponent moves his army over the mines, the player then unallies the opponent. The mines then acquire enemy targets as intended.
-    === Prevention ===
-      See [#Game_Type Game Type] for information on how to regulate this mechanic.
+    * *Classification*: Game Mechanic
+    * *Description*: A [Races#Terran Terran] player places [UnitTypes#Terran_Vulture_Spider_Mine Spider Mines] and proceedes to ally the opponent player. When the opponent moves his army over the mines, the player then unallies the opponent. The mines then acquire enemy targets as intended.
+    * *Prevention*: See [#Game_Type Game Type] for information on how to regulate this mechanic.
 
   == Sliding Terran Buildings ==
-    === Classification ===
-      Exploit
-    === Description ===
-      The player lands a Terran building, and it moves("slides") while on the ground to another destination without needing to Lift Off (for example slide a [UnitTypes#Terran_Command_Center Command Center] closer to minerals than allowable). However this is tedius and unlikely to occur. The method is not public.
+    * *Classification*: Exploit
+    * *Description*: The player lands a Terran building, and it moves("slides") while on the ground to another destination without needing to Lift Off (for example slide a [UnitTypes#Terran_Command_Center Command Center] closer to minerals than allowable). However this is tedius and unlikely to occur. The method is not public.
 
   == Train Units in the Air ==
-    === Classification ===
-      Exploit
-    === Description ===
-      The player trains a unit and lifts off in the same frame. The lifted building retains the unit in the queue. When ordered to land, the unit starts being constructed. When right clicking as the building is landed, the building will lift off once more while still constructing the unit (which will be created where the building lifted off from). This allows, for example, a player to land a [UnitTypes#Terran_Factory Factory] in the opponent's base and construct a [UnitTypes#Terran_Siege_Tank Siege Tank] without needing to build a [UnitTypes#Terran_Machine_Shop Machine Shop].
+    * *Classification*: Exploit
+    * *Description*: The player trains a unit and lifts off in the same frame. The lifted building retains the unit in the queue. When ordered to land, the unit starts being constructed. When right clicking as the building is landed, the building will lift off once more while still constructing the unit (which will be created where the building lifted off from). This allows, for example, a player to land a [UnitTypes#Terran_Factory Factory] in the opponent's base and construct a [UnitTypes#Terran_Siege_Tank Siege Tank] without needing to build a [UnitTypes#Terran_Machine_Shop Machine Shop].
 
   == Float a Drone ==
-    === Classification ===
-      Exploit
-    === Description ===
-      The player uses a Vespene Geyser and waypoints to temporarily disable a [UnitTypes#Zerg_Drone Zerg Drone]'s terrain collision, allowing it to "float" over obstacles (to islands at the beginning of the game for example).
+    * *Classification*: Exploit
+    * *Description*: The player uses a Vespene Geyser and waypoints to temporarily disable a [UnitTypes#Zerg_Drone Zerg Drone]'s terrain collision, allowing it to "float" over obstacles (to islands at the beginning of the game for example).
 
   == Floating Templar ==
-    === Classification ===
-      Non-Existent
-    === Description ===
-      This exploit has since been patched for a long time now.
+    * *Classification*: Non-Existent
+    * *Description*: This exploit has since been patched for a long time now.
 
   == Controlling a Nuke ==
-    === Classification ===
-      Exploit
-    === Description ===
-      A.K.A. "Godly Nuke". This exploit allows a player (with the assistance of an external program) to stop a [UnitTypes#Terran_Nuclear_Missile Nuclear Missile] from launching, and move it around like a regular unit. The player can then proceed to re-launch the nuke at any location on the map (without the need for vision or a nearby ghost). When the nuke lands and deals damage, the nuke death animation can be interrupted and the same nuke can be re-launched infinite times.
+    * *Classification*: Exploit
+    * *Description*: A.K.A. "Godly Nuke". This exploit allows a player (with the assistance of an external program) to stop a [UnitTypes#Terran_Nuclear_Missile Nuclear Missile] from launching, and move it around like a regular unit. The player can then proceed to re-launch the nuke at any location on the map (without the need for vision or a nearby ghost). When the nuke lands and deals damage, the nuke death animation can be interrupted and the same nuke can be re-launched infinite times.
+
+  == Plague on Interceptor ==
+    * *Classification*: Glitch
+    * *Description*: When an [UnitTypes#Protoss_Interceptor Interceptor] is [TechTypes#Plague plagued] and damaged, it will return to the [UnitTypes#Protoss_Carrier Carrier] to repair itself. Once the interceptor receives its one-time repair, the plague causes damage, and the damaged interceptor will "leave and return" to the carrier in the same frame. Since the repair only occurs when an interceptor from outside enters the Carrier, it becomes stuck in an infinite loop, attempted to return to the Carrier even though it did not completely exit.
+
+  == Manner Pylon ==
+    * *Classification*: Game Mechanic
+    * *Description*: A player constructs a [UnitTypes#Protoss_Pylon Pylon] or other structure in the enemy's mineral line to prevent smooth flow of resources and potentially trap some workers, slowing down the opponent's economy.
+
+  == Drops to Defuse Mines ==
+    * *Classification*: Game Mechanic
+    * *Description*: A player uses a transport to unload units above a [UnitTypes#Terran_Vulture_Spider_Mine mine] field. The single unit will attract all nearby mines and the splash damage will kill all the other mines or units that may be nearby. It is possible to load the unit as the mines explode to avoid taking damage while still accomplishing the purpose.
+
+  == Crushing Interceptors ==
+    * *Classification*: Trick
+    * *Description*: When a Terran building lands over an [UnitTypes#Protoss_Interceptor Interceptor], the Interceptor will be destroyed. This was overlooked but not necessarily a glitch since the Interceptor meets all the "getting crushed" requirements. Despite Blizzard knowing this for years, it has remained in the game.
+
+  == Disable Missile Turret ==
+    * *Classification*: Glitch
+    * *Description*: When a turret targets an air unit at the exact same position, the turret may be unable to reach the angle needed to fire missiles and get stuck.
+    * *Prevention*: The owner of the turret can press Stop until the head of the turret faces north. The attack angle requirement will be met and the turret will continue to fire.
+
+  == Filling the Order Buffer ==
+    * *Classification*: Exploit
+    * *Description*: The player sends commands with the assistance of an external program in such a way that they are queued in a ridiculous order, preventing any new orders from being executed. This causes all units to stop moving, as well as other major effects such as units unable to execute the "die" command, resulting in 0 hit point unkillable units, or the "cancel" command, but still being refunded the resources. Cancelling a [UnitTypes#Zerg_Extractor Zerg Extractor] will also refund several drones along with resources.
