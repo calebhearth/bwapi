@@ -1,0 +1,85 @@
+#summary Guideline for tournament rules.
+
+<wiki:toc max_depth="2" />
+
+= Introduction =
+  Some tournaments will include rules that are not required, or refer to an exploit that has already been patched. This guide is to clear some misunderstanding with tournament rules, and become a guide for future tournaments.
+
+  This guide covers the following:
+    * Classifications of various game mechanics, tricks, glitches, and exploits.
+    * Proper game type settings.
+    * LAN Setup
+
+  This guide does not incorperate BWAPI, but tournaments in general.
+
+= Game Type =
+
+  Many of you may have heard of the rule "No Allied Mines", though this rule is not even necessary. It all comes down to using the *correct* game type for your tournament.
+
+  == Game Types with Alliance Enabled ==
+    * Greed
+    * Melee
+    * Sudden Death
+    * Team Melee
+    * Top vs Bottom (TvB)
+
+  == Game Types with Alliance Disabled ==
+    * Capture the Flag (CTF)
+    * Free For All (FFA)
+    * One on One (1v1)
+    * Slaughter
+    * Team Capture the Flag
+    * Team Free For All
+
+  == Use Map Settings ==
+    Use Map Settings (UMS) has Alliance enabled, however you can prevent players from remaining allied by using a StarEdit (Starcraft map editor) trigger. There are several ways to approach this problem, the following is only one solution.
+<code language="xml">
+*Players:*    Force 1
+*Conditions:* Allies Total Points score is at least 1.
+*Actions:*    Set Force 1 to Enemy.
+            Preserve trigger.</code>
+
+= Game Action Classification =
+  == Classification Rules ==
+    * *Game Mechanic*: A game mechanic is something that exists and was meant to be.
+    * *Trick*: A trick is a game mechanic that has been used (or abused) in an unintended manner.
+    * *Glitch*: Also known as a game bug, it is a situation or event that the game's programming clearly did not account for and is usually unintended.
+    * *Exploit*: An exploit is a glitch that must be performed intentionally (it cannot happen by accident). It is usually initiated using a hack to execute actions that are not available to the human user interface.
+
+  == Allied Mines ==
+    === Classification ===
+      Game Mechanic
+    === Description ===
+      A [Races#Terran Terran] player places [UnitTypes#Vulture_Spider_Mine Spider Mines] and proceedes to ally the opponent player. When the opponent moves his army over the mines, the player then unallies the opponent. The mines then acquire enemy targets as intended.
+    === Prevention ===
+      See [#Game_Type Game Type] for information on how to regulate this mechanic.
+
+  == Sliding Terran Buildings ==
+    === Classification ===
+      Exploit
+    === Description ===
+      The player lands a Terran building, and it moves("slides") while on the ground to another destination without needing to Lift Off (for example slide a [UnitTypes#Terran_Command_Center Command Center] closer to minerals than allowable). However this is tedius and unlikely to occur. The method is not public.
+
+  == Train Units in the Air ==
+    === Classification ===
+      Exploit
+    === Description ===
+      The player trains a unit and lifts off in the same frame. The lifted building retains the unit in the queue. When ordered to land, the unit starts being constructed. When right clicking as the building is landed, the building will lift off once more while still constructing the unit (which will be created where the building lifted off from). This allows, for example, a player to land a [UnitTypes#Terran_Factory Factory] in the opponent's base and construct a [UnitTypes#Terran_Siege_Tank Siege Tank] without needing to build a [UnitTypes#Terran_Machine_Shop Machine Shop].
+
+  == Float a Drone ==
+    === Classification ===
+      Exploit
+    === Description ===
+      The player uses a Vespene Geyser and waypoints to temporarily disable a [UnitTypes#Zerg_Drone Zerg Drone]'s terrain collision, allowing it to "float" over obstacles (to islands at the beginning of the game for example).
+
+  == Floating Templar ==
+    === Classification ===
+      Non-Existent
+    === Description ===
+      This exploit has since been patched for a long time now.
+
+  == Controlling a Nuke ==
+    === Classification ===
+      Exploit
+    === Description ===
+      A.K.A. "Godly Nuke". This exploit allows a player (with the assistance of an external program) to stop a [UnitTypes#Terran_Nuclear_Missile Nuclear Missile] from launching, and move it around like a regular unit. The player can then proceed to re-launch the nuke at any location on the map (without the need for vision or a nearby ghost). When the nuke lands and deals damage, the nuke death animation can be interrupted and the same nuke can be re-launched infinite times.
