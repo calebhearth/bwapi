@@ -91,6 +91,15 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     Starcraft randomizes the cooldown.
     It takes the [WeaponTypes base cooldown] and adds a value between (-1) and (+2).
 
+  == What are the cooldowns on units that are unloaded from a transport? ==
+    * Goliaths/Tanks: 15 frames
+    * Reaver: 30 frames
+    * Spell cooldown: 30 frames
+    * Everything else: the default weapon cooldown
+
+  == What is the cooldown on unloading from a transport? ==
+    The cooldown for transports unloading units is 7 frames.
+
   == Why are some abilities and bullets considered units? (Dark Swarm, etc) ==
     Mostly because of laziness, deadlines, or similar reasons. Blizzard was able to easily implement these abilities and bullets without much effort. BWAPI considers them units only because Starcraft does. Some of them include:
     * [UnitTypes#Terran_Nuclear_Missile Nuclear Missile]
