@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.6 (r3745) to Recent (r3762) ==
+== Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
 Changes:
   * The command optimizer now groups some Use_Tech commands correctly.
