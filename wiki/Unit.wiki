@@ -15,6 +15,11 @@ int getID() const;
 
 Returns a unique ID for this unit.
 
+== getReplayID ==
+int getReplayID() const;
+
+Returns the ID of the unit from a replay file's actions. This is only available when CompleteMapInformation is enabled.
+
 == getPlayer ==
 [Player]{{{*}}} getPlayer() const;
 
