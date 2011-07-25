@@ -1,4 +1,13 @@
 #labels Featured
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3777) ==
+
+Changes:
+  * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
+
+Additions:
+  * Added [Unit#getReplayID Unit::getReplayID].
+  * Added the onUnitComplete callback (UnitComplete event).
+
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
 Changes:
