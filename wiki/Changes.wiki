@@ -9,10 +9,10 @@ Changes:
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
   * Added the onUnitComplete callback (UnitComplete event).
-  * Added [Player#refundedMinerals Player::refundedMinerals]
-  * Added [Player#refundedGas Player::refundedGas]
-  * Added [Player#repairedMinerals Player::repairedMinerals]
-  * Added [Player#repairedGas Player::repairedGas]
+  * Added [Player#refundedMinerals Player::refundedMinerals] - returns the cumulative amount of minerals gained from cancelled units, canceled upgrades, and canceled research.
+  * Added [Player#refundedGas Player::refundedGas] - returns the cumulative amount of gasgained from cancelled units, canceled upgrades, and canceled research.
+  * Added [Player#repairedMinerals Player::repairedMinerals] - returns the cumulative amount of minerals spent on repairs.
+  * Added [Player#repairedGas Player::repairedGas] - returns the cumulative amount of gas spent on repairs.
 
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
