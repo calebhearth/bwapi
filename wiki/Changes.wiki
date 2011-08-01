@@ -13,6 +13,10 @@ Additions:
   * Added [Player#refundedGas Player::refundedGas] - returns the cumulative amount of gas refunded from canceled units, canceled upgrades, and canceled research.
   * Added [Player#repairedMinerals Player::repairedMinerals] - returns the cumulative amount of minerals spent on repairs.
   * Added [Player#repairedGas Player::repairedGas] - returns the cumulative amount of gas spent on repairs.
+  * Added [Player#isUnitAvailable Player::isUnitAvailable]. (for Use Map Settings)
+  * Added [Player#isResearchAvailable Player::isResearchAvailable]. (for Use Map Settings)
+  * Added [Player#getMaxUpgradeLevel Player::getMaxUpgradeLevel]. (for Use Map Settings)
+  * Added [Game#getCountdownTimer Game::getCountdownTimer]. (for a few game modes)
 
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
