@@ -83,15 +83,35 @@ int gas() const;
 
 Returns the amount of vespene gas the player has.
 
-== cumulativeMinerals ==
-int cumulativeMinerals() const;
+== gatheredMinerals ==
+int gatheredMinerals() const;
 
 Returns the cumulative amount of minerals the player has mined up to this point (including the 50 minerals at the start of the game).
 
-== cumulativeGas ==
-int cumulativeGas() const;
+== gatheredGas ==
+int gatheredGas() const;
 
 Returns the cumulative amount of gas the player has harvested up to this point.
+
+== repairedMinerals ==
+int repairedMinerals() const;
+
+Returns the cumulative amount of minerals the player has spent on repairs up to this point.
+
+== repairedGas ==
+int repairedGas() const;
+
+Returns the cumulative amount of gas the player has spent on repairs up to this point.
+
+== refundedMinerals ==
+int refundedMinerals() const;
+
+Returns the cumulative amount of minerals refunded from canceled units, canceled upgrades, and canceled research.
+
+== refundedGas ==
+int refundedGas() const;
+
+Returns the cumulative amount of gas refunded from canceled units, canceled upgrades, and canceled research.
 
 == supplyTotal ==
 int supplyTotal() const;
