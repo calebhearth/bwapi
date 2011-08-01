@@ -157,10 +157,25 @@ int killedUnitCount([UnitType] unit) const;
 
 Returns the total number of enemy units of the given type that this player has killed. If the Complete Map Information flag is disabled, this will return 0 for enemy players.
 
+== isUnitAvailable ==
+bool isUnitAvailable([UnitType] unit) const;
+
+Returns true if the player is allowed to build the given unit type. Some Use Map Settings maps can restrict the use of certain units.
+
 == getUpgradeLevel ==
 int getUpgradeLevel([UpgradeType] upgrade) const;
 
-returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+Returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+
+== isUpgrading ==
+bool isUpgrading([UpgradeType] upgrade) const;
+
+Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+
+== getMaxUpgradeLevel ==
+int getMaxUpgradeLevel([UpgradeType] upgrade) const;
+
+Returns the maximum upgrades the player can perform using the specified upgrade. Some Use Map Settings maps can increase or decrease the number of upgrades the player can perform (up to 255).
 
 == hasResearched ==
 bool hasResearched([TechType] tech) const;
@@ -172,10 +187,10 @@ bool isResearching([TechType] tech) const;
 
 Returns true if the player is researching the given tech. To order a unit to research a given tech type, see [Unit]::[Unit#research reseach].
 
-== isUpgrading ==
-bool isUpgrading([UpgradeType] upgrade) const;
+== isResearchAvailable ==
+bool isResearchAvailable([TechType] tech) const
 
-Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see [Unit]::[Unit#upgrade upgrade].
+Returns true if the player is allowed to research the given tech. Some Use Map Settings maps can enforce restrictions on technologies.
 
 == getColor ==
 [Color] getColor() const;
