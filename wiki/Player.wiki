@@ -76,12 +76,16 @@ Returns true if the player left the game.
 == minerals ==
 int minerals() const;
 
-Returns the amount of minerals the player has.
+Returns the amount of minerals the player currently has.
+
+Note that minerals() is equal to [Player#gatheredMinerals gatheredMinerals]() + [Player#refundedMinerals refundedMinerals]() - [Player#repairedMinerals repairedMinerals]() - [Player#spentMinerals spentMinerals]().
 
 == gas ==
 int gas() const;
 
-Returns the amount of vespene gas the player has.
+Returns the amount of vespene gas the player currently has.
+
+Note that gas() is equal to [Player#gatheredGas gatheredGas]() + [Player#refundedGas refundedGas]() - [Player#repairedGas repairedGas]() - [Player#spentGas spentGas]().
 
 == gatheredMinerals ==
 int gatheredMinerals() const;
@@ -112,6 +116,16 @@ Returns the cumulative amount of minerals refunded from canceled units, canceled
 int refundedGas() const;
 
 Returns the cumulative amount of gas refunded from canceled units, canceled upgrades, and canceled research.
+
+== spentMinerals ==
+int spentMinerals() const;
+
+Returns the cumulative amount of minerals spent, not including repairs.
+
+== spentGas ==
+int spentGas() const;
+
+Returns the cumulative amount of gas spent, not including repairs.
 
 == supplyTotal ==
 int supplyTotal() const;
