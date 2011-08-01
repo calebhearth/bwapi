@@ -13,6 +13,8 @@ Additions:
   * Added [Player#refundedGas Player::refundedGas] - returns the cumulative amount of gas refunded from canceled units, canceled upgrades, and canceled research.
   * Added [Player#repairedMinerals Player::repairedMinerals] - returns the cumulative amount of minerals spent on repairs.
   * Added [Player#repairedGas Player::repairedGas] - returns the cumulative amount of gas spent on repairs.
+  * Added [Player#spentMinerals Player::spentMinerals] - returns the cumulative amount of minerals spent, not including repairs.
+  * Added [Player#spentGas Player::spentGas] - returns the cumulative amount of gas spent, not including repairs.
   * Added [Player#isUnitAvailable Player::isUnitAvailable]. (for Use Map Settings)
   * Added [Player#isResearchAvailable Player::isResearchAvailable]. (for Use Map Settings)
   * Added [Player#getMaxUpgradeLevel Player::getMaxUpgradeLevel]. (for Use Map Settings)
