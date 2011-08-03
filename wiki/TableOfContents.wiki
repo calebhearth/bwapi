@@ -37,6 +37,7 @@
     * [Player]
     * [PlayerType]
     * [Race]
+    * [Region]
     * [TechType]
     * [Unit]
     * [UnitCommand]
