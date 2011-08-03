@@ -43,7 +43,7 @@ Returns true if the entire region is walkable.
 
 == getNeighbors ==
 <code>
-const std::set<Region*> &getNeighbors() const;</code>
+const std::set<Region`*`> &getNeighbors() const;</code>
 Returns the set of all neighbor regions. A neighbor is any region that is touching this one.
 
 == getBoundsLeft ==
