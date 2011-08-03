@@ -103,8 +103,13 @@ Returns the [Unit] with the given ID, or {{{NULL}}} if no [Unit] has the given I
 
 == indexToUnit ==
 <code>
-Unit`*` indexToUnit(int unitIndex);</code>
+[Unit]`*` indexToUnit(int unitIndex);</code>
 Given an index value between 0 and 1699, this function will return the Unit`*` currently associated with the index value in Starcraft's internal Unit table. Only available when the Complete Map Information flag is enabled.
+
+== getRegion ==
+<code>
+[Region]`*` getRegion(int regionID);</code>
+Returns the [Region] with the given ID, or {{{NULL}}} if no [Region] has the given ID.
 
 == getGameType ==
 <code>
