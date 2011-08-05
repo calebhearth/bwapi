@@ -33,8 +33,8 @@
   == Use Map Settings ==
     Use Map Settings (UMS) has Alliance enabled, however you can prevent players from remaining allied by using a StarEdit (Starcraft map editor) trigger. There are several ways to approach this problem, the following is only one solution.
 
-<code language="xml">
-*Players:*    Force 1
+  <code language="xml">
+ *Players:*    Force 1
 *Conditions:* Allies Total Points score is at least 1.
 *Actions:*    Set Force 1 to Enemy.
             Preserve trigger.</code>
@@ -44,15 +44,15 @@
   
   A different player does not need to create a new profile. Instead, renaming one will easily and effectively change the name of the player, and that's simply all that needs to be done.
 
-= How should the Rules be Conveyed?
+= How should the Rules be Conveyed? =
   Tournament rules should be conveyed in point form, and keep more detailed explanations separate. This way the list of rules will be easily understood.
   
   A basic rules outline can be seen here:
-    * <Game Company> and any party related to this tournament, including tournament managers, will not be held liable for any damage caused.
-    * <Game> version ### is required.
-    * Attempts to <items that can disqualify players,>cheat or use exploits <with the exception of...> will result in disqualification.
-    * Attempts to <items that can result in a loss,>pause or lag the game will result in a loss.
-    * <Other rules if necessary>
+    * `<`Game Company`>` and any party related to this tournament, including tournament managers, will not be held liable for any damage caused.
+    * `<`Game`>` version ### is required.
+    * Attempts to <items that can disqualify players,>cheat or use exploits `<`with the exception of...`>` will result in disqualification.
+    * Attempts to `<`items that can result in a loss,`>`pause or lag the game will result in a loss.
+    * `<`Other rules if necessary`>`
     
 = Game Action Classification =
   == Classification Rules ==
@@ -78,26 +78,20 @@
     === Allied Mines ===
       * *Description*: A [Races#Terran Terran] player places [UnitTypes#Terran_Vulture_Spider_Mine Spider Mines] and proceedes to ally the opponent player. When the opponent moves his army over the mines, the player then unallies the opponent. The mines then acquire enemy targets as intended.
       * *Prevention*: See [#Game_Type Game Type] for information on how to regulate this mechanic.
-    
     === Manner Pylon ===
       * *Description*: A player constructs a [UnitTypes#Protoss_Pylon Pylon] or other structure in the enemy's mineral line to prevent smooth flow of resources and potentially trap some workers, slowing down the opponent's economy.
-    
     === Drops to Defuse Mines ===
       * *Description*: A player uses a transport to unload units above a [UnitTypes#Terran_Vulture_Spider_Mine Spider Mine] field. The single unit will attract all nearby mines and the splash damage will kill all the other mines or units that may be nearby. It is possible to load the unit as the mines explode to avoid taking damage while still accomplishing the purpose.
 
   == Tricks ==
     === Crushing Interceptors ===
       * *Description*: When a Terran building lands over an [UnitTypes#Protoss_Interceptor Interceptor], the Interceptor will be destroyed. This was overlooked but not necessarily a glitch since the Interceptor meets all the "getting crushed" requirements. Despite Blizzard knowing this for a long time, it has remained in the game.
-    
     === Using Unavailable Commands ===
       * *Description*: A player can not use [Orders#HoldPosition Hold Position] on worker units normally, but when selected in a group this can be done. A glitch can also allow Terran Flying Buildings to patrol, and some other things.
-    
     === Stacking Air Units ===
       * *Description*: When a group of air units are selected and moved, they normally move to a location relative to its current location, instead of stacked at the same target location. When another unit is selected in the group (from far away), this behaviour is nullified and the units then move to the exact position clicked by the mouse cursor.
-    
     === Bypassing Zerg Supply ===
       * *Description*: When a [UnitTypes#Zerg_Drone Zerg Drone] constructs an [UnitTypes#Zerg_Extractor Extractor] or other structure, the supply count will decrease, allowing the creation of more units. The player can then cancel the structures to retrieve their drones, bypassing the maximum supply.
-    
     === Hopping/Pushing ===
       * *Description*: A unit can be "pushed" to hop over obstacles using several different mechanics. This can be abused to hop over obstacles such as walls.
           * Constructing a Protoss or Terran structure.
@@ -110,17 +104,13 @@
   == Glitches ==
     === Plague on Interceptor ===
       * *Description*: When an [UnitTypes#Protoss_Interceptor Interceptor] is [TechTypes#Plague plagued] and damaged, it will return to the [UnitTypes#Protoss_Carrier Carrier] to repair itself. Once the interceptor receives its one-time repair, the plague causes damage, and the damaged interceptor will "leave and return" to the carrier in the same frame. Since the repair only occurs when an interceptor from outside enters the Carrier, it becomes stuck in an infinite loop, attempted to return to the Carrier even though it did not completely exit.
-    
     === Disable Missile Turret ===
       * *Description*: When a turret targets an air unit at the exact same position, the turret may be unable to reach the angle needed to fire missiles and get stuck.
       * *Prevention*: The owner of the turret can press Stop until the head of the turret faces north. The attack angle requirement will be met and the turret will continue to fire.
-    
     === Faster Units ===
       * *Description*: When two units with a speed upgrade collide when trying to pass each other, they will sometimes pass the other in the same direction, leading them all the way to the edge of the map or until they hit something. This is abnormal because they are twice as fast as they would be if they just moved there normally. This is mostly seen with [UnitTypes#Zerg_Zergling Zerglings], [UnitTypes#Zerg_Hydralisk Hydralisks], and [UnitTypes#Protoss_Zealot Zealots].
-    
     === Medic Hold can't be pushed ===
       * *Description*: When a [UnitTypes#Terran_Medic Medic] uses [Orders#HoldPosition Hold Position], the medic will not move from its location, even if they are stacked or pushed by other units. You could order a structure to land, move a Medic under it, and order that Medic to Hold Position. It will never be pushed out.
-    
     === Recall Glitch ===
       * *Description*: [TechTypes#Recall] has a very special property which nullifies some unit proximity checks for a single frame if the exit is blocked. This can cause various side effects such as:
           * Worker units will gather or return a resource from anywhere on the map.
@@ -132,15 +122,11 @@
   == Exploits ==
     === Sliding Terran Buildings ===
       * *Description*: The player lands a Terran building, and it moves("slides") while on the ground to another destination without needing to Lift Off (for example, sliding a [UnitTypes#Terran_Command_Center Command Center] closer to minerals than allowable). However this is tedius and unlikely to occur. The method is not public.
-    
     === Train Units in the Air ===
       * *Description*: The player trains a unit and lifts off in the same frame. The lifted building retains the unit in the queue. When ordered to land, the unit starts being constructed. When right clicking as the building is landed, the building will lift off once more while still constructing the unit (which will be created where the building lifted off from). This allows, for example, a player to land a [UnitTypes#Terran_Factory Factory] in the opponent's base and construct a [UnitTypes#Terran_Siege_Tank Siege Tank] without needing to build a [UnitTypes#Terran_Machine_Shop Machine Shop].
-    
     === Float a Drone ===
       * *Description*: The player uses a Vespene Geyser and waypoints to temporarily disable a [UnitTypes#Zerg_Drone Zerg Drone]'s terrain collision, allowing it to "float" over obstacles (to islands at the beginning of the game for example).
-    
     === Controlling a Nuke ===
       * *Description*: A.K.A. "Godly Nuke" or just "Nuke Hack". This exploit allows a player (with the assistance of an external program) to stop a [UnitTypes#Terran_Nuclear_Missile Nuclear Missile] from launching (or landing), and move it around like a regular unit. The player can then proceed to re-launch the nuke at any location on the map (without the need for vision or a nearby ghost). When the nuke lands and deals damage, the nuke death animation can be interrupted and the same nuke can be re-launched infinite times.
-    
     === Flooding the Order Buffer ===
       * *Description*: The player sends commands with the assistance of an external program in such a way that they are queued in a ridiculous order, preventing any new orders from being executed. This causes all units to stop moving, as well as other major effects such as units unable to execute the "die" command, resulting in 0 hit point unkillable units, or the "cancel" command, but still being refunded the resources. Cancelling a [UnitTypes#Zerg_Extractor Zerg Extractor] will also refund several drones along with resources.
