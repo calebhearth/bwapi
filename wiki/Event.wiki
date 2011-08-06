@@ -2,14 +2,46 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Event.h# BWAPI/Event.h]
 
-Events correspond to [AIModule] callbacks and can be obtained by calling [Game#getEvents Game::getEvents]. Depending on the type of event, the following functions may return information:
+Events correspond to [AIModule] callbacks and can be obtained by calling [Game#getEvents Game::getEvents].
 
-  * EventType::Enum getType() const;
-  * Position getPosition() const;
-  * std::string& getText() const;
-  * Unit{{{*}}} getUnit() const;
-  * Player{{{*}}} getPlayer() const;
-  * bool isWinner() const;
+Methods:
+
+  * [#getType]
+  * [#getPosition]
+  * [#getText]
+  * [#getUnit]
+  * [#getPlayer]
+  * [#isWinner]
+
+=== getType ===
+EventType::Enum getType() const;
+
+Returns the type of the Event.
+
+=== getPosition ===
+Position getPosition() const;
+
+Returns the Position. Used in EventType::NukeDetect.
+
+=== getText ===
+std::string& getText() const;
+
+Returns the text. Used in EventType::SendText, EventType::ReceiveText, EventType::SaveGame.
+
+=== getUnit ===
+Unit{{{*}}} getUnit() const;
+
+Returns the unit. Used in EventType::UnitDiscover, EventType::UnitEvade, EventType::UnitCreate, EventType::UnitDestroy, EventType::UnitShow, EventType::UnitHide, and EventType::UnitComplete.
+
+=== getPlayer ===
+Player{{{*}}} getPlayer() const;
+
+Returns the player. Used in EventType::ReceiveText and EventType::PlayerLeft.
+
+=== isWinner ===
+bool isWinner() const;
+
+Returns true if the BWAPI-controlled player is the winner. Used in EventType::MatchEnd.
 
 === Events ===
 
