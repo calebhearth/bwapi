@@ -6,12 +6,12 @@ Events correspond to [AIModule] callbacks and can be obtained by calling [Game#g
 
 Methods:
 
-  * [#getType]
-  * [#getPosition]
-  * [#getText]
-  * [#getUnit]
-  * [#getPlayer]
-  * [#isWinner]
+  * [#getType getType]
+  * [#getPosition getPosition]
+  * [#getText getText]
+  * [#getUnit getUnit]
+  * [#getPlayer getPlayer]
+  * [#isWinner isWinner]
 
 === getType ===
 EventType::Enum getType() const;
