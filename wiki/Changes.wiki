@@ -1,11 +1,12 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3804) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3817) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
   * Renamed Player::cumulativeMinerals to [Player#gatheredMinerals Player::gatheredMinerals].
   * Renamed Player::cumulativeGas to [Player#gatheredGas Player::gatheredGas].
   * Users are now restricted from deleting interface classes.
+  * Improved the performance when handling event strings.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -22,7 +23,7 @@ Additions:
   * Added [Game#getCountdownTimer Game::getCountdownTimer]. (for a few game modes)
   * Gave all types a {{{<type>::c_str()}}} member to reduce the redundancy of retrieving names (such as {{{type.getName().c_str()}}}, which can now be {{{type.c_str()}}}).
   * Added the [Region] class with several member functions.
-  * Added [Game#getRegion Game::getRegion].
+  * Added [Game#getRegion Game::getRegion], [Game#getAllRegions Game::getAllRegions], and [Game#getRegionAt Game::getRegionAt].
   * Added encapsulation to [Event].
 
 Bug Fixes:
