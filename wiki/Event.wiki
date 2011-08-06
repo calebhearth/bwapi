@@ -6,7 +6,7 @@ Events correspond to [AIModule] callbacks and can be obtained by calling [Game#g
 
   * EventType::Enum getType() const;
   * Position getPosition() const;
-  * std::string getText() const;
+  * std::string& getText() const;
   * Unit{{{*}}} getUnit() const;
   * Player{{{*}}} getPlayer() const;
   * bool isWinner() const;
