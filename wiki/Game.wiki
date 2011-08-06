@@ -111,6 +111,17 @@ Given an index value between 0 and 1699, this function will return the Unit`*` c
 [Region]`*` getRegion(int regionID);</code>
 Returns the [Region] with the given ID, or {{{NULL}}} if no [Region] has the given ID.
 
+== getAllRegions ==
+<code>
+const std::set<[Region]`*`> &getAllRegions() const;</code>
+Returns a set containing all [Region]s on the map.
+
+== getRegionAt ==
+<code>
+[Region] `*`getRegionAt(int x, int y) const;
+[Region] `*`getRegionAt([Position] position) const;</code>
+Returns the [Region] at a given pixel position.
+
 == getGameType ==
 <code>
 [GameType] getGameType();</code>

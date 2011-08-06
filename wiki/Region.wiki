@@ -73,3 +73,22 @@ int getBoundsBottom() const;</code>
 Returns the region's standard bottom boundry position, in pixels. This boundry only considers the full tiles that are part of this region.
 
   _See also: [Region#getBoundsLeft Region::getBoundsLeft], [Region#getBoundsTop Region::getBoundsTop], [Region#getBoundsRight Region::getBoundsRight]_
+  
+== getClosestAccessibleRegion ==
+<code>
+Region `*`getClosestAccessibleRegion() const;</code>
+Retrieves the closest accessable neighbor region.
+
+  _See also: [Region#getClosestInaccessibleRegion Region::getClosestInaccessibleRegion]_
+
+== getClosestInaccessibleRegion ==
+<code>
+Region `*`getClosestInaccessibleRegion() const;</code>
+Retrieves the closest inaccessable neighbor region.
+
+  _See also: [Region#getClosestAccessibleRegion Region::getClosestAccessibleRegion]_
+
+== getDistance ==
+<code>
+int getDistance(BWAPI::Region `*`other) const</code>
+Retrieves the distance between two region centers.

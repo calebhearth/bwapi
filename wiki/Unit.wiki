@@ -35,6 +35,11 @@ Returns the current type of the unit.
 
 Returns the position of the unit on the map.
 
+== getRegion ==
+[Region] `*`getRegion() const;
+
+Returns the [Region] that the unit is currently in.
+
 == getTilePosition ==
 [Misc#TilePosition TilePosition] getTilePosition() const;
 
