@@ -31,7 +31,7 @@ Returns the text. Used in EventType::SendText, EventType::ReceiveText, EventType
 === getUnit ===
 Unit{{{*}}} getUnit() const;
 
-Returns the unit. Used in EventType::UnitDiscover, EventType::UnitEvade, EventType::UnitCreate, EventType::UnitDestroy, EventType::UnitShow, EventType::UnitHide, and EventType::UnitComplete.
+Returns the unit. Used in EventType::UnitDiscover, EventType::UnitEvade, EventType::UnitCreate, EventType::UnitDestroy, EventType::UnitShow, EventType::UnitHide, EventType::UnitMorph, EventType::UnitRenegade, and EventType::UnitComplete.
 
 === getPlayer ===
 Player{{{*}}} getPlayer() const;
@@ -62,5 +62,6 @@ The EventType Enum contains the following values, which have been linked with th
   * [AIModule#onUnitDestroy UnitDestroy]
   * [AIModule#onUnitMorph UnitMorph]
   * [AIModule#onUnitRenegade UnitRenegade]
+  * [AIModule#onUnitComplete UnitComplete]
   * [AIModule#onSaveGame SaveGame]
   * None
