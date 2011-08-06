@@ -202,6 +202,11 @@ Returns the average number of frames per second that the game is running at.
 
   _See also: [Game#getFPS Game::getFPS]_
 
+== getLastEventTime ==
+<code>
+int getLastEventTime() const;</code>
+Returns the time in milliseconds that the loaded AI module spent processing its last event. This is used by the tournament module to identify how long the loaded module spent processing an event. Calling this in a callback will retrieve the time that the process has spent in the same callback of the AI module. For example: calling this in onUnitDestroy retrieves the time spent in the AI's onUnitDestroy.
+
 == getRevision ==
 <code>
 int getRevision();</code>
