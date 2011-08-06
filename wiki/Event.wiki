@@ -2,14 +2,14 @@
 
 Class header file: [http://code.google.com/p/bwapi/source/browse/trunk/bwapi/include/BWAPI/Event.h# BWAPI/Event.h]
 
-Events correspond to [AIModule] callbacks and can be obtained by calling [Game#getEvents Game::getEvents]. Depending on the type of event, the following data members may be filled with information:
+Events correspond to [AIModule] callbacks and can be obtained by calling [Game#getEvents Game::getEvents]. Depending on the type of event, the following functions may return information:
 
-  * EventType::Enum type;
-  * Position position;
-  * std::string text;
-  * Unit{{{*}}} unit;
-  * Player{{{*}}} player;
-  * bool isWinner;
+  * EventType::Enum getType() const;
+  * Position getPosition() const;
+  * std::string getText() const;
+  * Unit{{{*}}} getUnit() const;
+  * Player{{{*}}} getPlayer() const;
+  * bool isWinner() const;
 
 === Events ===
 
