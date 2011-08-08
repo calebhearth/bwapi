@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3832) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3837) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -26,9 +26,12 @@ Additions:
   * Added [Game#getRegion Game::getRegion], [Game#getAllRegions Game::getAllRegions], and [Game#getRegionAt Game::getRegionAt].
   * Added encapsulation to [Event].
   * Added [Game#getLastEventTime Game::getLastEventTime] for tournaments.
+  * Added [BulletTypes#ensnare BulletTypes::Ensnare].
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
+  * Fixed a bug where some Zerg upgrades would return false when a Hatchery or Spire was morphing.
+  * Fixed a bug where cheat codes were treated as case sensitive.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
