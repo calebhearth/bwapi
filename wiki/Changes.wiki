@@ -27,6 +27,7 @@ Additions:
   * Added encapsulation to [Event].
   * Added [Game#getLastEventTime Game::getLastEventTime] for tournaments.
   * Added [BulletTypes#ensnare BulletTypes::Ensnare].
+  * Added [Unit#getRegion].
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
