@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3837) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3841) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -27,7 +27,8 @@ Additions:
   * Added encapsulation to [Event].
   * Added [Game#getLastEventTime Game::getLastEventTime] for tournaments.
   * Added [BulletTypes#ensnare BulletTypes::Ensnare].
-  * Added [Unit#getRegion].
+  * Added [Unit#getRegion Unit::getRegion].
+  * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
