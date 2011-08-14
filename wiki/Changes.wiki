@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3841) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3848) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -7,6 +7,7 @@ Changes:
   * Renamed Player::cumulativeGas to [Player#gatheredGas Player::gatheredGas].
   * Users are now restricted from deleting interface classes.
   * The performance of BWAPI has been improved.
+  * BWAPI now makes more use of constants and references.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -34,6 +35,9 @@ Bug Fixes:
   * Fixed several memory leaks in BWAPI.
   * Fixed a bug where some Zerg upgrades would return false when a Hatchery or Spire was morphing.
   * Fixed a bug where cheat codes were treated as case sensitive.
+  * Fixed a regression where [Game#hasCreep Game::hasCreep] returned false incorrectly for some locations.
+  * Fixed a regression where [TechTypes#Nuclear_Strike Nuclear Strike] did not execute correctly.
+
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
