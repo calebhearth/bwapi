@@ -7,7 +7,6 @@ Changes:
   * Renamed Player::cumulativeGas to [Player#gatheredGas Player::gatheredGas].
   * Users are now restricted from deleting interface classes.
   * The performance of BWAPI has been improved.
-  * BWAPI now makes more use of constants and references.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -37,7 +36,7 @@ Bug Fixes:
   * Fixed a bug where cheat codes were treated as case sensitive.
   * Fixed a regression where [Game#hasCreep Game::hasCreep] returned false incorrectly for some locations.
   * Fixed a regression where [TechTypes#Nuclear_Strike Nuclear Strike] did not execute correctly.
-
+  * Fixed an issue where the frame counter and isPaused would be incorrect or could stop working completely.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
