@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3848) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3858) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -7,6 +7,7 @@ Changes:
   * Renamed Player::cumulativeGas to [Player#gatheredGas Player::gatheredGas].
   * Users are now restricted from deleting interface classes.
   * The performance of BWAPI has been improved.
+  * Multiple instances now display the instance number in the window title.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -37,6 +38,7 @@ Bug Fixes:
   * Fixed a regression where [Game#hasCreep Game::hasCreep] returned false incorrectly for some locations.
   * Fixed a regression where [TechTypes#Nuclear_Strike Nuclear Strike] did not execute correctly.
   * Fixed an issue where the frame counter and isPaused would be incorrect or could stop working completely.
+  * Fixed a bug where {{{auto_menu}}} could not correctly set the bot's race if it was not specifically in slot 0 or slot 1.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
