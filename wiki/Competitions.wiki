@@ -8,33 +8,7 @@ This page contains a list of competitions using BWAPI.
 ----
 = In Progress =
 
- == _AIIDE 2011_ ==
-
-  _*NOTE: Please visit http://www.StarcraftAICompetition.com to verify the rules and schedules before submitting your application.*_
-
- === Info ===
-  * *Hosted by:* University of Alberta
-  * *Registration:* Email "mburo (AT) cs (DOT) ualberta (DOT) ca" with "{{{SCAI2011 ENTRY}}}" as the subject. You _MUST_ specify "{{{SCAI2011 ENTRY}}}" as the subject.
-  * *Info:* http://www.StarcraftAICompetition.com
-  * *Entries must be submitted as Open Source.* Entries will also be re-released as Open Source under a GNU liscense, the authors retaining a copyright to their code.
-
- === Binaries ===
-  * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
-  * *Operating System:* Windows XP SP3
-  * *Hardware:* Intel E8500 with 4 GB of RAM
-
- === Dates ===
-  * *Registration Deadline:* July 1st, 2011
-  * *Submission Deadline:* August 7th, 2011
-  * *Testing:* August 8th to August 14th, 2011
-  * *Competition:* August 15th to August 19th, 2011
-  * *Prize Ceremony & Exhibition:* October 2011
-
-  _*NOTE: Please visit http://www.StarcraftAICompetition.com to verify the rules and schedules before submitting your application.*_
-
-
  == _CIG 2011_ ==
-
  === Info ===
   * *Official Competition Website:* http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2011
   * *Hosted at:* COEX, Seoul, South Korea
@@ -52,8 +26,25 @@ This page contains a list of competitions using BWAPI.
 ----
 = Finished =
 
- == All-Open ICCUP Bot Tournament (July 2011) ==
+ == _AIIDE 2011_ ==
+ === Info ===
+  * *Hosted by:* University of Alberta
+  * *Info:* http://www.StarcraftAICompetition.com
+  * *Entries must be submitted as Open Source.* Entries will also be re-released as Open Source under a GNU liscense, the authors retaining a copyright to their code.
 
+ === Binaries ===
+  * *Version:* The latest BWAPI binary available as of July 1st, 2011. No exceptions.
+  * *Operating System:* Windows XP SP3
+  * *Hardware:* Intel E8500 with 4 GB of RAM
+
+ === Dates ===
+  * *Registration Deadline:* July 1st, 2011
+  * *Submission Deadline:* August 7th, 2011
+  * *Testing:* August 8th to August 14th, 2011
+  * *Competition:* August 15th to August 19th, 2011
+  * *Prize Ceremony & Exhibition:* October 2011
+
+ == All-Open ICCUP Bot Tournament (July 2011) ==
  === Info ===
   * *Details and registration:* http://www.broodwarai.com/forums/index.php?showtopic=901
   * *Hosted at:* ICCUP Server, Online
