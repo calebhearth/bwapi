@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3858) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3863) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -30,6 +30,7 @@ Additions:
   * Added [BulletTypes#ensnare BulletTypes::Ensnare].
   * Added [Unit#getRegion Unit::getRegion].
   * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
+  * BWAPI Client-Server setup is now compatible with multiple instances.
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
@@ -38,6 +39,7 @@ Bug Fixes:
   * Fixed a regression where [Game#hasCreep Game::hasCreep] returned false incorrectly for some locations.
   * Fixed a regression where [TechTypes#Nuclear_Strike Nuclear Strike] did not execute correctly.
   * Fixed an issue where the frame counter and isPaused would be incorrect or could stop working completely.
+  * Fixed a regression where {{{auto_menu}}} could not set the bot's race in multiplayer.
   * Fixed a bug where {{{auto_menu}}} could not correctly set the bot's race if it was not specifically in slot 0 or slot 1.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
