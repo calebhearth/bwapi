@@ -44,7 +44,7 @@ This page contains a list of competitions using BWAPI.
   * *Competition:* August 15th to August 19th, 2011
   * *Prize Ceremony & Exhibition:* October 2011
 
- == All-Open ICCUP Bot Tournament (July 2011) ==
+ == _All-Open ICCUP Bot Tournament (July 2011)_ ==
  === Info ===
   * *Details and registration:* http://www.broodwarai.com/forums/index.php?showtopic=901
   * *Hosted at:* ICCUP Server, Online
