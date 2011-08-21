@@ -8,6 +8,7 @@ Changes:
   * Users are now restricted from deleting interface classes.
   * The performance of BWAPI has been improved.
   * Multiple instances now display the instance number in the window title.
+  * BWAPI Client-Server setup is now compatible with multiple instances.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -30,7 +31,6 @@ Additions:
   * Added [BulletTypes#ensnare BulletTypes::Ensnare].
   * Added [Unit#getRegion Unit::getRegion].
   * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
-  * BWAPI Client-Server setup is now compatible with multiple instances.
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
