@@ -28,6 +28,8 @@ This list contains commands that are only available in DEBUG mode.
 || {{{/test}}} || Used for quickly testing various temporary things. ||
 || {{{/resize}}} || Sets the unfinished resolution hack display resolution to 1024x768. ||
 || {{{/hud}}} || Toggles the display of the HUD (minimap/buttons/stats GUI). ||
+|| {{{/record}}} || Tests Starcraft video recording. ||
+|| {{{/stop}}} || Stop video recording. ||
 
 
 = Hotkeys =
