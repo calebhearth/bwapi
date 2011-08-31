@@ -48,6 +48,9 @@
   === Participants ===
 
 == 2v2 ==
+  === Notes ===
+    You may choose a partner for the Predetermined Pairs category, but it cannot be a bot created by the same author. Developers will have to come up with a standard for bot communication, or look for keywords in the chat. Don't forget to use [Game#sendText Game::sendTextEx] with *toAllies* set to true.
+
   === Map Pool ===
     * [http://www.teamliquid.net/tlpd/korean/maps/404_Circuit_Breaker Circuit Breaker]
     * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
@@ -58,18 +61,18 @@
   === Participants (Random Pairs) ===
 
 == Free For All ==
-=== Map Pool ===
+  === Map Pool ===
     * (8) Big Game Hunters
     * Make some suggestions!
-=== Participants ===
+  === Participants ===
 
 == Adaptability Testing ==
-=== Map Pool ===
-  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
-  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
-  * (8) Primeval Isles
-  * Make some suggestions!
-=== Participants ===
+  === Map Pool ===
+    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
+    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
+    * (8) Primeval Isles
+    * Make some suggestions!
+  === Participants ===
 
 == Use Map Settings ==
   === Super Wraith ===
