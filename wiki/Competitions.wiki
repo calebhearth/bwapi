@@ -23,6 +23,10 @@ This page contains a list of competitions using BWAPI.
 
   _See official web page for more details._
 
+ == _BWAPI Winter Tournament 2012_ ==
+  * See the [http://code.google.com/p/bwapi/wiki/BWAPICodeTournament official page].
+
+
 ----
 = Finished =
 
