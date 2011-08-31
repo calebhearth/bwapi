@@ -1,7 +1,7 @@
 <wiki:toc max_depth="2" />
 
 = Introduction =
-  The BWAPI Winter Code tournament is a fun intermission tournament that allows both open and closed source bots to get together in a wide variety of ways and have fun while testing bot capabilities and limitations.
+  The BWAPI Winter Code tournament is a fun intermission tournament that allows both open and closed source bots to get together in a wide variety of ways to test their capabilities and limitations.
 
   The experimental tournament gives several other game types such as 2v2 and Use Map Settings a chance at becoming more popular for bots to play.
   
