@@ -16,6 +16,8 @@
     * The categories and/or maps that the bot will participate in (see below)
     * Any suggestions for changes or additions to the categories and maps
 
+  If for some reason you cannot participate during the tournament, then send your bot binaries any time prior to the deadline date.
+
 = Live Updates =
   Those in the IRC and ICCUP Battle.net will be updated as the tournament progresses.
   
@@ -33,6 +35,8 @@
 
 = Dates =
   Tournament will be held on January 7th, 2012. The date is subject to change and a time has not yet been specified.
+
+  If you are submitting a bot binary, then do so _before_ January 4th, 2012.
 
 = Categories, Maps, and Participants =
 == 1v1 ==
@@ -72,4 +76,3 @@
   ==== Participants ====
 
   === Suggest Some More ===
-
