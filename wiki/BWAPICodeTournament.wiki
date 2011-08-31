@@ -67,6 +67,7 @@
 === Map Pool ===
   * Fastest Possible Map
   * Maximum Clutter
+  * (8) Primeval Isles
   * Make some suggestions!
 === Participants ===
 
