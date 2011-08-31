@@ -65,8 +65,8 @@
 
 == Adaptability Testing ==
 === Map Pool ===
-  * Fastest Possible Map
-  * Maximum Clutter
+  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
+  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
   * (8) Primeval Isles
   * Make some suggestions!
 === Participants ===
@@ -76,7 +76,7 @@
   ==== Description ====
   Players control a single [UnitTypes#Terran_Wraith Wraith]. Initially, this wraith will repeatedly spawn a Scout that releases a barrage of missiles while the Wraith is being moved freely by the player. The Wraith must avoid touching enemy units or it will be destroyed. The objective is to clear all the enemies on the map. Over time you will gain "level ups" such as increasing the Scouts' spawn, causing more missiles to appear.
   ==== Download ====
-    [http://bwapi.googlecode.com/svn/wiki/Super_Wraith.scx Download]
+    [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Super_Wraith.scx Download]
 
   ==== Participants ====
 
