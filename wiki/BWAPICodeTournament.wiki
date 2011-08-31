@@ -1,0 +1,75 @@
+<wiki:toc max_depth="2" />
+
+= Introduction =
+  The BWAPI Winter Code tournament is a fun intermission tournament that allows both open and closed source bots to get together in a wide variety of ways and have fun while testing bot capabilities and limitations.
+
+  The experimental tournament gives several other game types such as 2v2 and Use Map Settings a chance at becoming more popular for bots to play.
+  
+= Participation =
+  Anyone can participate, as long as you are willing to run the Tournament module provided for this tournament.
+  
+  Both open and closed source bots are welcome.
+  To participate, send an email to deathknight13579 (at) aim (dot) com with BWAPI in the subject, and the following information:
+    * [http://www.iccup.com/ ICCUP] Username
+    * Bot Name
+    * Bot Race (can be Random)
+    * The categories and/or maps that the bot will participate in (see below)
+    * Any suggestions for changes or additions to the categories and maps
+
+= Live Updates =
+  Those in the IRC and ICCUP Battle.net will be updated as the tournament progresses.
+  
+  Tournament games will (attempt to) be streamed live so that anyone can watch.
+
+  If the tournament requires more than a day, then it will continue the following day.
+  
+= Rules =
+  * Blizzard Entertainment and those involved in the BWAPI Winter Code tournament will not be held liable for any damage caused.
+  * Starcraft: Broodwar 1.16.1 is required.
+  * Attempts to cheat or use exploits as classified by the [TournamentGuideline Tournament Guideline] will result in disqualification.
+  * Lagging the game, crashing, or dropping out will result in a loss.
+  * User chat will take place on the IRC.
+  * Rules will be changed, added, or removed at any given time. (Star this wiki page with a google account to be notified of changes)
+
+= Dates =
+  Tournament will be held on January 7th, 2012. The date is subject to change and a time has not yet been specified.
+
+= Categories, Maps, and Participants =
+== 1v1 ==
+  === Map Pool ===
+    * [http://www.teamliquid.net/tlpd/korean/maps/159_Blue_Storm Blue Storm]
+    * [http://www.teamliquid.net/tlpd/korean/maps/3_Tau_Cross Tau Cross]
+    * [http://www.teamliquid.net/tlpd/korean/maps/54_Into_the_Darkness_2 Into the Darkness 2]
+    * [http://www.teamliquid.net/tlpd/korean/maps/199_Heartbreak_Ridge Heartbreak Ridge]
+  === Participants ===
+
+== 2v2 ==
+  === Map Pool ===
+    * [http://www.teamliquid.net/tlpd/korean/maps/404_Circuit_Breaker Circuit Breaker]
+    * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
+    * [http://www.teamliquid.net/tlpd/korean/maps/237_Fighting_Spirit Fighting Spirit]
+    * [http://www.teamliquid.net/tlpd/korean/maps/42_Nostalgia Nostalgia]
+    * [http://www.teamliquid.net/tlpd/korean/maps/157_Zodiac Zodiac]
+  === Participants (Predetermined Pairs) ===
+  === Participants (Random Pairs) ===
+
+== Free For All ==
+=== Map Pool ===
+    * Make some suggestions!
+=== Participants ===
+
+== Adaptability Testing ==
+=== Map Pool ===
+  * Fastest Possible Map
+  * Maximum Clutter
+  * Make some suggestions!
+=== Participants ===
+
+== Use Map Settings ==
+  === Super Wraith ===
+  ==== Description ====
+  Players control a single [UnitTypes#Terran_Wraith Wraith]. Initially, this wraith will repeatedly spawn a Scout that releases a barrage of missiles while the Wraith is being moved freely by the player. The Wraith must avoid touching enemy units or it will be destroyed. The objective is to clear all the enemies on the map. Over time you will gain "level ups" such as increasing the Scouts' spawn, causing more missiles to appear.
+  ==== Participants ====
+
+  === Suggest Some More ===
+
