@@ -28,10 +28,12 @@
 = Rules =
   * Blizzard Entertainment and those involved in the BWAPI Winter Code tournament will not be held liable for any damage caused.
   * Starcraft: Broodwar 1.16.1 is required.
+  * The bot must be compatible with the latest release of BWAPI as of December 1st, 2011.
   * Attempts to cheat or use exploits as classified by the [TournamentGuideline Tournament Guideline] will result in disqualification.
   * Lagging the game, crashing, or dropping out will result in a loss.
   * User chat will take place on the IRC.
   * Rules will be changed, added, or removed at any given time. (Star this wiki page with a google account to be notified of changes)
+  * If a player is not submitting their bot binary, then they must run the tournament module, which will be made available *the same day as the tournament*.
 
 = Dates =
   Tournament will be held on January 7th, 2012. The date is subject to change and a time has not yet been specified.
@@ -60,18 +62,18 @@
   === Participants (Random Pairs) ===
 
 == Free For All ==
-=== Map Pool ===
+  === Map Pool ===
     * (8) Big Game Hunters
     * Make some suggestions!
-=== Participants ===
+  === Participants ===
 
 == Adaptability Testing ==
-=== Map Pool ===
-  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
-  * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
-  * (8) Primeval Isles
-  * Make some suggestions!
-=== Participants ===
+  === Map Pool ===
+    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
+    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
+    * (8) Primeval Isles
+    * Make some suggestions!
+  === Participants ===
 
 == Use Map Settings ==
   === Super Wraith ===
