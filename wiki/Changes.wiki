@@ -1,12 +1,12 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3863) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3896) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
   * Renamed Player::cumulativeMinerals to [Player#gatheredMinerals Player::gatheredMinerals].
   * Renamed Player::cumulativeGas to [Player#gatheredGas Player::gatheredGas].
   * Users are now restricted from deleting interface classes.
-  * The performance of BWAPI has been improved.
+  * The performance of BWAPI has been vastly improved in several places.
   * Multiple instances now display the instance number in the window title.
   * BWAPI Client-Server setup is now compatible with multiple instances.
 
@@ -31,6 +31,7 @@ Additions:
   * Added [BulletTypes#ensnare BulletTypes::Ensnare].
   * Added [Unit#getRegion Unit::getRegion].
   * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
+  * Added [UnitType#maxUnitWidth UnitTypes::maxUnitWidth] and [UnitType#maxUnitHeight UnitTypes::maxUnitHeight].
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
@@ -41,6 +42,8 @@ Bug Fixes:
   * Fixed an issue where the frame counter and isPaused would be incorrect or could stop working completely.
   * Fixed a regression where {{{auto_menu}}} could not set the bot's race in multiplayer.
   * Fixed a bug where {{{auto_menu}}} could not correctly set the bot's race if it was not specifically in slot 0 or slot 1.
+  * Fixed a bug where getUnitsIn functions could not find large units in a small location.
+  * Fixed an issue where Position and TilePosition's isValid member always returned false if the Broodwar pointer was not initialized.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
