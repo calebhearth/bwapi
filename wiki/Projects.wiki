@@ -24,6 +24,9 @@ This page contains links to other projects that make use of BWAPI.
   * [http://eis.ucsc.edu/EISBot/ EISBot]
   * [http://code.google.com/p/skynetbot/ Skynet]
 
+= AI Source Packages =
+  * [http://code.google.com/p/bwapi/downloads/detail?name=Bots-src.7z AIIDE 2011 bot source code]
+
 = Enhancement Libraries =
   * [http://code.google.com/p/bwta/ BWTA]
   * [http://code.google.com/p/bwsal/ BWSAL]
