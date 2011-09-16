@@ -23,6 +23,7 @@ This page contains links to other projects that make use of BWAPI.
   * [http://code.google.com/p/voidbot/ voidbot]  
   * [http://eis.ucsc.edu/EISBot/ EISBot]
   * [http://code.google.com/p/skynetbot/ Skynet]
+  * [http://www.planiart.usherbrooke.ca/projects/spar/ SPAR]
 
 = AI Source Packages =
   * [http://code.google.com/p/bwapi/downloads/detail?name=Bots-src.7z AIIDE 2011 bot source code]
