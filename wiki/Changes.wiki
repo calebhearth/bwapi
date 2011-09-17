@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3896) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3910) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -32,6 +32,7 @@ Additions:
   * Added [Unit#getRegion Unit::getRegion].
   * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
   * Added [UnitType#maxUnitWidth UnitTypes::maxUnitWidth] and [UnitType#maxUnitHeight UnitTypes::maxUnitHeight].
+  * Added [Unit#getLeft Unit::getLeft], [Unit#getTop Unit::getTop], [Unit#getRight Unit::getRight], and [Unit#getBottom Unit::getBottom]. 
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
