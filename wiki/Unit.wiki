@@ -45,6 +45,26 @@ Returns the [Region] that the unit is currently in.
 
 Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building.
 
+== getLeft ==
+int getLeft() const;
+
+Returns the x position for the unit's left collision boundry.
+
+== getTop ==
+int getTop() const;
+
+Returns the y position for the unit's top collision boundry.
+
+== getRight ==
+int getRight() const;
+
+Returns the x position for the unit's right collision boundry.
+
+== getBottom ==
+int getBottom() const;
+
+Returns the y position for the unit's bottom collision boundry.
+
 == getAngle ==
 double getAngle() const;
 
