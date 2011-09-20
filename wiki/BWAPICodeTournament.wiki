@@ -5,12 +5,11 @@
 
   The experimental tournament gives several other game types such as 2v2 and Use Map Settings a chance at becoming more popular for bots to play.
   
-= Participation =
+= Participation/Registration =
   Anyone can participate, as long as you are willing to run the Tournament module provided for this tournament.
   
   Both open and closed source bots are welcome.
   To participate, send an email to deathknight13579 (at) aim (dot) com with BWAPI in the subject, and the following information:
-    * [http://www.iccup.com/ ICCUP] Username
     * Bot Name
     * Bot Race (can be Random)
     * The categories and/or maps that the bot will participate in (see below)
@@ -19,7 +18,7 @@
   If for some reason you cannot participate during the tournament, then send your bot binaries any time prior to the deadline date.
 
 = Live Updates =
-  Those in the IRC and ICCUP Battle.net will be updated as the tournament progresses.
+  Those in the IRC will be updated as the tournament progresses.
   
   Tournament games will (attempt to) be streamed live so that anyone can watch.
 
@@ -40,6 +39,9 @@
 
   If you are submitting a bot binary, then do so _before_ January 4th, 2012.
 
+= Location =
+  Not yet settled.
+
 = Categories, Maps, and Participants =
   If a category does not have enough participants by January 4th, 2012, then it will be dropped.
 
@@ -51,6 +53,7 @@
     * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
   === Participants ===
     * Aiur (Protoss)
+    * krasi0 (Terran)
 
 == 2v2 ==
   === Map Pool ===
