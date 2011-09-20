@@ -8,6 +8,13 @@ This page contains a list of competitions using BWAPI.
 ----
 = In Progress =
 
+ == _BWAPI Winter Tournament 2012_ ==
+  * See the [http://code.google.com/p/bwapi/wiki/BWAPICodeTournament official page].
+
+
+----
+= Finished =
+
  == _CIG 2011_ ==
  === Info ===
   * *Official Competition Website:* http://ls11-www.cs.uni-dortmund.de/rts-competition/starcraft-cig2011
@@ -20,15 +27,6 @@ This page contains a list of competitions using BWAPI.
  === Dates ===
   * *Submission Deadline:* August 15th, 2011
   * *Conference:* August 31st to September 3rd, 2011
-
-  _See official web page for more details._
-
- == _BWAPI Winter Tournament 2012_ ==
-  * See the [http://code.google.com/p/bwapi/wiki/BWAPICodeTournament official page].
-
-
-----
-= Finished =
 
  == _AIIDE 2011_ ==
  === Info ===
