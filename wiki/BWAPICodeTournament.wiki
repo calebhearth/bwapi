@@ -45,11 +45,12 @@
 
 == 1v1 ==
   === Map Pool ===
-    * [http://www.teamliquid.net/tlpd/korean/maps/159_Blue_Storm Blue Storm]
     * [http://www.teamliquid.net/tlpd/korean/maps/3_Tau_Cross Tau Cross]
     * [http://www.teamliquid.net/tlpd/korean/maps/54_Into_the_Darkness_2 Into the Darkness 2]
     * [http://www.teamliquid.net/tlpd/korean/maps/199_Heartbreak_Ridge Heartbreak Ridge]
+    * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
   === Participants ===
+    * Aiur (Protoss)
 
 == 2v2 ==
   === Map Pool ===
