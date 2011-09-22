@@ -32,7 +32,7 @@
   * Lagging the game, crashing, or dropping out will result in a loss.
   * User chat will take place on the IRC.
   * Rules will be changed, added, or removed at any given time. (Star this wiki page with a google account to be notified of changes)
-  * If a player is not submitting their bot binary, then they must run the tournament module, which will be made available *the same day as the tournament*.
+  * Players can save persistent data. This means you can record what other bots did in past games and use it to your advantage.
 
 = Dates =
   Tournament will be held on January 7th, 2012. The date is subject to change and a time has not yet been specified.
