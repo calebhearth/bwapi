@@ -39,8 +39,13 @@
 
   If you are submitting a bot binary, then do so _before_ January 4th, 2012.
 
-= Location =
-  Not yet settled.
+= Hardware/Software =
+  Tournament will be run using Oracle VM VirtualBox, with machine resources split between them.
+
+  * *OS*: Windows XP Professional x64 edition, Service pack 2
+  * *Processor*: Intel Core i7 2620M @ 2.70 GHz
+  * *RAM*: 1GB (May be upgraded)
+  * *Disk Space*: 5GB (Free)
 
 = Categories, Maps, and Participants =
   If a category does not have enough participants by January 4th, 2012, then it will be dropped.
@@ -54,6 +59,7 @@
   === Participants ===
     * Aiur (Protoss)
     * krasi0 (Terran)
+    * Exlos (Zerg)
 
 == 2v2 ==
   === Map Pool ===
@@ -64,6 +70,7 @@
     * [http://www.teamliquid.net/tlpd/korean/maps/157_Zodiac Zodiac]
   === Participants (Predetermined Pairs) ===
   === Participants (Random Pairs) ===
+    * Exlos (Zerg)
 
 == Free For All ==
   === Map Pool ===
