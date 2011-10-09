@@ -60,6 +60,7 @@
     * Aiur (Protoss)
     * krasi0 (Terran)
     * Exlos (Zerg)
+    * Cly (Zerg)
 
 == 2v2 ==
   === Map Pool ===
@@ -71,12 +72,14 @@
   === Participants (Predetermined Pairs) ===
   === Participants (Random Pairs) ===
     * Exlos (Zerg)
+    * Cly (Zerg)
 
 == Free For All ==
   === Map Pool ===
     * (8) Big Game Hunters
     * Make some suggestions!
   === Participants ===
+    * Cly (Zerg)
 
 == Adaptability Testing ==
   === Map Pool ===
@@ -85,6 +88,7 @@
     * (8) Primeval Isles
     * Make some suggestions!
   === Participants ===
+    * Cly (Zerg)
 
 == Use Map Settings ==
   === Super Wraith ===
@@ -94,5 +98,6 @@
     [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Super_Wraith.scx Download]
 
   ==== Participants ====
+    * Cly (Zerg)
 
   === Suggest Some More ===
