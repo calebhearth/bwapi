@@ -599,9 +599,21 @@ Sets the BWAPI player's alliance with the specified player, whether they're alli
 == setVision ==
 <code>
 bool setVision([Player] `*`player, bool enabled = true);</code>
-Sets the BWAPI player's vision with the specified player. Commonly used when setting another player to ally or enemy.
+Sets the BWAPI player's vision with the specified player. Commonly used when setting another player to ally or enemy. Returns false if the function failed.
 
   _See also: [Game#setAlliance Game::setAlliance]_
+
+== setReplayVision ==
+<code>
+bool setReplayVision([Player] `*`player, bool enabled = true);</code>
+Sets the visibility of a player when watching a replay. Returns false if the function failed, specifically if it is not a replay.
+
+  _See also: [Game#setVision Game::setVision]_
+
+== setRevealAll ==
+<code>
+bool setRevealAll(bool reveal = true);</code>
+Toggles the fog of war when watching a replay. Returns false if the game is not a replay.
 
 == setLocalSpeed ==
 <code>
