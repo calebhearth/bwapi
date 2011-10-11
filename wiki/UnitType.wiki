@@ -210,6 +210,11 @@ int turnRadius() const;
 
 Related to how fast the unit can turn. What units this quantity is measured in is currently unknown.
 
+== canBuildAddon ==
+bool canBuildAddon() const;
+
+Returns true if the unit type is capable of constructing any addon. This includes the Command Center, Factory, Starport, and Science Facility.
+
 == canProduce ==
 bool canProduce() const;
 
@@ -369,6 +374,7 @@ Returns true if the unit is a special building such as the [UnitTypes#Overmind O
 bool isSpell() const;
 
 Returns true if the unit is either a [UnitTypes#Scanner_Sweep Scanner Sweep], [UnitTypes#Disruption_Web Disruption Web], or [UnitTypes#Dark_Swarm Dark Swarm].
+
 
 = Non-Member Methods =
 
