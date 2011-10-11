@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3929) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3939) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -9,6 +9,7 @@ Changes:
   * The performance of BWAPI has been vastly improved in several places.
   * Multiple instances now display the instance number in the window title.
   * BWAPI Client-Server setup is now compatible with multiple instances.
+  * BWAPI now contains a top level exception filter, which will log more detailed information about a crash.
 
 Additions:
   * Added [Unit#getReplayID Unit::getReplayID].
@@ -33,6 +34,8 @@ Additions:
   * Added the configuration option {{{show_warnings}}} under config to disable BWAPI launch warnings.
   * Added [UnitType#maxUnitWidth UnitTypes::maxUnitWidth] and [UnitType#maxUnitHeight UnitTypes::maxUnitHeight].
   * Added [Unit#getLeft Unit::getLeft], [Unit#getTop Unit::getTop], [Unit#getRight Unit::getRight], and [Unit#getBottom Unit::getBottom]. 
+  * Added [UnitType#canBuildAddon UnitType::canBuildAddon].
+  * Added [Game#setReplayVision Game::setReplayVision] and [Game#setRevealAll Game::setRevealAll].
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
