@@ -36,6 +36,7 @@ Additions:
   * Added [Unit#getLeft Unit::getLeft], [Unit#getTop Unit::getTop], [Unit#getRight Unit::getRight], and [Unit#getBottom Unit::getBottom]. 
   * Added [UnitType#canBuildAddon UnitType::canBuildAddon].
   * Added [Game#setReplayVision Game::setReplayVision] and [Game#setRevealAll Game::setRevealAll].
+  * There is now /record and /stoprecord [Commands] that perform native video recording. It is not fully supported and does not record sound.
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
