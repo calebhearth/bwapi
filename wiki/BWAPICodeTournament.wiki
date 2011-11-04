@@ -59,7 +59,6 @@
   === Participants ===
     * Aiur (Protoss)
     * krasi0 (Terran)
-    * Exlos (Zerg)
     * Cly (Zerg)
 
 == 2v2 ==
@@ -71,7 +70,6 @@
     * [http://www.teamliquid.net/tlpd/korean/maps/157_Zodiac Zodiac]
   === Participants (Predetermined Pairs) ===
   === Participants (Random Pairs) ===
-    * Exlos (Zerg)
     * Cly (Zerg)
 
 == Free For All ==
