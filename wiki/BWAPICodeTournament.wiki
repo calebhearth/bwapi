@@ -60,6 +60,7 @@
     * Aiur (Protoss)
     * krasi0 (Terran)
     * Cly (Zerg)
+    * Daggoth (Zerg)
 
 == 2v2 ==
   === Map Pool ===
