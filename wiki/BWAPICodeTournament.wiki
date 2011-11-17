@@ -15,7 +15,7 @@
     * The categories and/or maps that the bot will participate in (see below)
     * Any suggestions for changes or additions to the categories and maps
 
-  If for some reason you cannot participate during the tournament, then send your bot binaries any time prior to the deadline date.
+  Please send your bot binaries any time prior to the deadline date (but after BWAPI 3.7 is released).
 
 = Live Updates =
   Those in the IRC will be updated as the tournament progresses.
@@ -61,6 +61,7 @@
     * krasi0 (Terran)
     * Cly (Zerg)
     * Daggoth (Zerg)
+    * BTHAI (Terran & Protoss)
 
 == 2v2 ==
   === Map Pool ===
