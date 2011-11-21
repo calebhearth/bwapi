@@ -51,6 +51,7 @@ Bug Fixes:
   * Fixed a bug where getUnitsIn functions could not find large units in a small location.
   * Fixed an issue where Position and TilePosition's isValid member always returned false if the Broodwar pointer was not initialized.
   * Fixed an issue where the Zerg's [UnitTypes#Zerg_Spore_Colony Spore Colony] and [UnitTypes#Zerg_Sunken_Colony Sunken Colony] unit types did not contain the correct requirements.
+  * BWAPI should no longer crash when the Starcraft version is incorrect. Instead it will display a message box and attempt to remain functional.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
