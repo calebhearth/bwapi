@@ -10,8 +10,8 @@ This page contains a list of competitions using BWAPI.
 
  == DAI Inhouse Starcraft AI Tournament 2011 ==
  === Info ===
-  *Official Website:* http://bwapiproject.netii.net/
-  *Important Notes:* Only available to students of the _Fundamentals of AI_ class at the Department of Applied Informatics, Comenius University.
+  * *Official Website:* http://bwapiproject.netii.net/
+  * *Important Notes:* Only available to students of the _Fundamentals of AI_ class at the Department of Applied Informatics, Comenius University.
 
  === Dates ===
   * *Submission Deadline:* December 4th, 2011
