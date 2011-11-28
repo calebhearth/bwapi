@@ -1,5 +1,5 @@
 #labels Featured
-== Changed from BWAPI 3.6.1 (r3769) to recent (r3957) ==
+== Changed from BWAPI 3.6.1 (r3769) to recent (r3964) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
@@ -38,6 +38,7 @@ Additions:
   * Added [Game#setReplayVision Game::setReplayVision] and [Game#setRevealAll Game::setRevealAll].
   * There is now /record and /stoprecord [Commands] that perform native video recording. It is not fully supported and does not record sound.
   * BWAPI now has the ability to join a LAN game by name, specified by the {{{game}}} parameter in the configuration file, under {{{auto_menu}}}.
+  * Added a new configuration option called {{{shared_memory}}} under {{{config}}}, which can disable BWAPI's Server functionality.
 
 Bug Fixes:
   * Fixed several memory leaks in BWAPI.
@@ -52,6 +53,7 @@ Bug Fixes:
   * Fixed an issue where Position and TilePosition's isValid member always returned false if the Broodwar pointer was not initialized.
   * Fixed an issue where the Zerg's [UnitTypes#Zerg_Spore_Colony Spore Colony] and [UnitTypes#Zerg_Sunken_Colony Sunken Colony] unit types did not contain the correct requirements.
   * BWAPI should no longer crash when the Starcraft version is incorrect. Instead it will display a message box and attempt to remain functional.
+  * Partially restored WINE compatibility through a workaround that disables BWAPI's Server functionality using the new config option {{{shared_memory}}}.
 
 == Changes from BWAPI 3.6 (r3745) to BWAPI 3.6.1 (r3769) ==
 
