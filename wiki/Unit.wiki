@@ -126,12 +126,12 @@ See also: [Game#hasPath Game::hasPath]
 == getLastCommandFrame ==
 int getLastCommandFrame() const;
 
-Returns the frame of the last successful command. For example, issuing a Move command will record the frame it was issued in, and you retrieve the frame with this.
+Returns the frame of the last successful command sent using BWAPI. For example, issuing an Attack command with BWAPI will record the frame it was issued in, and you retrieve the frame with this.
 
 == getLastCommand ==
 [UnitCommand] getLastCommand() const;
 
-Returns the last successful command. For example, issuing a Move command will immediately result in this function returning a Move command (with the same target position).
+Returns the last successful command sent using BWAPI. For example, issuing a Move command with BWAPI will immediately result in this function returning a Move command (with the same target position).
 
 == getLastAttackingPlayer ==
 [Player] `*` getLastAttackingPlayer() const;
