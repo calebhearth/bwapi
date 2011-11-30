@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.6.1 (r3769) to BWAPI 3.7 (r3964) ==
+== Changes from BWAPI 3.6.1 (r3769) to BWAPI 3.7 (r3969) ==
 
 Changes:
   * Unload, Unload_All, and Unload_All_Position now return false when the location specified is unwalkable.
