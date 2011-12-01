@@ -1,4 +1,14 @@
 #labels Featured
+== Changes from BWAPI 3.7 (r3969) to Recent (r3980) ==
+
+Changes:
+  * The performance of BWAPI has been improved.
+  * (@TODO: DISCUSS) [Game#getUnitsOnTile Game::getUnitsOnTile] now returns std::vector instead of std::set.
+
+Bug Fixes:
+  * Fixed a bug that caused saving replays to fail, when attempting to save them manually.
+
+
 == Changes from BWAPI 3.6.1 (r3769) to BWAPI 3.7 (r3969) ==
 
 Changes:
