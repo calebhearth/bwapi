@@ -30,21 +30,21 @@ Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the
 == getMinerals ==
 <code>
 std::set< [Unit]`*` >& getMinerals();</code>
-Returns the set of all accessible mineral patches.
+Returns the set of all accessible (visible) mineral patches.
 
   _See also: [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
 
 == getGeysers ==
 <code>
 std::set< [Unit]`*` >& getGeysers();</code>
-Returns the set of all accessible vespene geysers.
+Returns the set of all accessible (visible) vespene geysers.
 
   _See also: [Game#getMinerals Game::getMinerals], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
 
 == getNeutralUnits ==
 <code>
 std::set< [Unit]`*` >& getNeutralUnits();</code>
-Returns the set of all accessible neutral units.
+Returns the set of all accessible (visible) neutral units, including mineral fields, vespene geysers, critters, and possibly other units owned by the neutral player.
 
   _See also: [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
 
