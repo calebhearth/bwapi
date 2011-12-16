@@ -8,6 +8,14 @@ This page contains a list of competitions using BWAPI.
 ----
 = In Progress =
 
+ == _Student StarCraft AI Tournament (SSCAI) 2012_ ==
+ === Info ===
+  * *Official Website:* http://bwapiproject.netii.net/
+  * *Restrictions:* Must be some kind of student (student from anywhere).
+
+ === Dates ===
+  * *Submission Deadline:* December, 2012
+
  == _BWAPI Winter Tournament 2012_ ==
  === Info ===
   * See the [http://code.google.com/p/bwapi/wiki/BWAPICodeTournament official page].
@@ -16,13 +24,14 @@ This page contains a list of competitions using BWAPI.
   * *Submission Deadline:* January 4th, 2012
   * *Tournament Date:* January 7th, 2012
 
- == _DAI Inhouse Starcraft AI Tournament 2011_ ==
+ == _Student StarCraft AI Tournament (SSCAI) 2011_ ==
  === Info ===
   * *Official Website:* http://bwapiproject.netii.net/
-  * *Important Notes:* Only available to students of the _Fundamentals of AI_ class at the Department of Applied Informatics, Comenius University.
+  * *Restrictions:* Must be some kind of student (student from anywhere).
 
  === Dates ===
-  * *Submission Deadline:* December 4th, 2011
+  * *Submission Deadline:* December 10th, 2011
+
 
 ----
 = Finished =
