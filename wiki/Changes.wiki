@@ -1,5 +1,5 @@
 #labels Featured
-== Changes from BWAPI 3.7 (r3969) to Recent (r3998) ==
+== Changes from BWAPI 3.7 (r3969) to Recent (r4000) ==
 
 Changes:
   * Complete map information is now available when the game ends, so that bots may view post-game information.
@@ -12,6 +12,7 @@ Bug Fixes:
   * Fixed a bug that caused saving replays to fail, when attempting to save them manually.
   * Fixed a regression that caused the Command Optimizer to go into an infinite loop.
   * Fixed an issue where [Player#getForce Player::getForce] would return NULL when a player was not in a force (specifically in melee).
+  * Fixed a bug where non-existent client bullets were not handled properly.
 
 
 == Changes from BWAPI 3.6.1 (r3769) to BWAPI 3.7 (r3969) ==
