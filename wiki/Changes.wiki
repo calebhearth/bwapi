@@ -1,5 +1,7 @@
 #labels Featured
-== Changes from BWAPI 3.7 (r3969) to Recent (r4000) ==
+== Changes from BWAPI 3.7.1 (r4000) to Recent ==
+
+== Changes from BWAPI 3.7 (r3969) to BWAPI 3.7.1 (r4000) ==
 
 Changes:
   * Complete map information is now available when the game ends, so that bots may view post-game information.
