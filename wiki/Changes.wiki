@@ -1,5 +1,11 @@
 #labels Featured
-== Changes from BWAPI 3.7.1 (r4000) to Recent ==
+== Changes from BWAPI 3.7.1 (r4000) to Recent (r4003) ==
+
+Changes:
+  * BWAPI's Exception filter now informs of NULL Broodwar pointers when the game crashes.
+
+Bug Fixes:
+  * Fixed a bug that caused a crash in a map where extended players were being used.
 
 == Changes from BWAPI 3.7 (r3969) to BWAPI 3.7.1 (r4000) ==
 
