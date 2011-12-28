@@ -2,7 +2,9 @@
 
 = Introduction =
 
-  The tournament module is a RELEASE-only module that is specifically designed to control and monitor the flow of a tournament game.
+  The tournament module is a RELEASE-only module that is specifically designed to control and monitor the flow of a tournament game. 
+
+  BWAPI's Tournament mode is enabled when a tournament module has been specified in the configuration and loaded by BWAPI successfully.
 
 = Features =
   * Can restrict AI modules from making some specific calls, either partially or completely.
