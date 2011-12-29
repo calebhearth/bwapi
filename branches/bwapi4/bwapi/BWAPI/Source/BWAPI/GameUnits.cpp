@@ -219,7 +219,7 @@ namespace BWAPI
       if ( i->getOriginalRawData->unitType == BW::UnitID::Terran_Ghost)
       {
         if (i->getOriginalRawData->orderID == BW::OrderID::NukePaint)
-          i->nukePosition = Position(i->getOriginalRawData->orderTargetPos.x, i->getOriginalRawData->orderTargetPos.y);
+          i->nukePosition = i->getOriginalRawData->orderTargetPos;
         if (i->getOriginalRawData->orderID != BW::OrderID::NukeTrack)
           i->nukeDetected = false;
         else

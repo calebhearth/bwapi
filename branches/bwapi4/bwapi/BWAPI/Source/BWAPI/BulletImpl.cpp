@@ -65,7 +65,7 @@ namespace BWAPI
         else if ( BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) )
           self->isVisible[i] = true;
         else
-          self->isVisible[i] = BroodwarImpl.isVisible(bwOriginalBullet->sprite->position.x/32, bwOriginalBullet->sprite->position.y/32);
+          self->isVisible[i] = BroodwarImpl.isVisible(bwOriginalBullet->sprite->position);
       }
     }
     else
@@ -89,8 +89,8 @@ namespace BWAPI
       self->source  = (_getSource && _getSource->exists()) ? _getSource->getID() : -1;
 
       // position
-      self->positionX = bwOriginalBullet->position.x;
-      self->positionY = bwOriginalBullet->position.y;
+      self->positionX = bwOriginalBullet->position.x();
+      self->positionY = bwOriginalBullet->position.y();
 
       // angle, velocity
       int d = (int)bwOriginalBullet->currentDirection - 64;
@@ -102,8 +102,8 @@ namespace BWAPI
 
       // target, targetPosition
       self->target          = (_getTarget && _getTarget->exists()) ? _getTarget->getID() : -1;
-      self->targetPositionX = bwOriginalBullet->targetPosition.x;
-      self->targetPositionY = bwOriginalBullet->targetPosition.y;
+      self->targetPositionX = bwOriginalBullet->targetPosition.x();
+      self->targetPositionY = bwOriginalBullet->targetPosition.y();
 
       // removeTimer
       self->removeTimer = bwOriginalBullet->time_remaining;

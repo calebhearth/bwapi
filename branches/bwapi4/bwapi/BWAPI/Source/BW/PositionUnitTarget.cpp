@@ -10,6 +10,10 @@ namespace BW
       : position(position)
   {
   }
+  PositionUnitTarget::PositionUnitTarget(int x, int y)
+      : position((u16)x,(u16)y)
+  {
+  }
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
   PositionUnitTarget::PositionUnitTarget(const UnitTarget& target)
       : target(target)

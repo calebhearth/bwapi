@@ -136,12 +136,7 @@ namespace BWAPI
       //------------------------------------------------------------------------------------------------------
       //_getPosition
       if ( _getTransport )
-      {
-        BW::Position transRawPos = ((UnitImpl*)_getTransport)->getOriginalRawData->position;
-        _getPosition = Position(transRawPos.x, transRawPos.y);
-      }
-      else
-        _getPosition = Position(o->position.x, o->position.y);
+        _getPosition = _getTransport ? ((UnitImpl*)_getTransport)->getOriginalRawData->position : o->position;
 
       _getHitPoints = (int)ceil(o->hitPoints / 256.0); //_getHitPoints
       //------------------------------------------------------------------------------------------------------
@@ -335,10 +330,10 @@ namespace BWAPI
                        self->order == BW::OrderID::NukeTrain    ||
                        self->order == BW::OrderID::Larva;
       self->target               = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveToUnit)); //getTarget
-      self->targetPositionX      = o->moveToPos.x;  //getTargetPosition
-      self->targetPositionY      = o->moveToPos.y;  //getTargetPosition
-      self->orderTargetPositionX = o->orderTargetPos.x;
-      self->orderTargetPositionY = o->orderTargetPos.y;
+      self->targetPositionX      = o->moveToPos.x();  //getTargetPosition
+      self->targetPositionY      = o->moveToPos.y();  //getTargetPosition
+      self->orderTargetPositionX = o->orderTargetPos.x();
+      self->orderTargetPositionY = o->orderTargetPos.y();
       self->orderTarget          = BroodwarImpl.server.getUnitID(UnitImpl::BWUnitToBWAPIUnit(o->orderTargetUnit));  //getOrderTarget
       //------------------------------------------------------------------------------------------------------
       //getAddon

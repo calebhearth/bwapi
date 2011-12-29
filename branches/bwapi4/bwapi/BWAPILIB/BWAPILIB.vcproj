@@ -233,10 +233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Source\TilePosition.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Source\Type.cpp"
 				>
 			</File>

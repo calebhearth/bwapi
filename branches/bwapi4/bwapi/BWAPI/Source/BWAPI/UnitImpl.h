@@ -11,7 +11,6 @@
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/UnitCommand.h>
-#include <BW/TilePosition.h>
 #include <BW/OrderID.h>
 #include <BWAPI/Client/UnitData.h>
 

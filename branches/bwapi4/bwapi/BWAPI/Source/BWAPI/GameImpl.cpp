@@ -212,9 +212,8 @@ namespace BWAPI
     x &= 0xFFFFFFF8;
     y &= 0xFFFFFFF8;
     *BW::BWDATA_MoveToX = x;
-    BW::BWDATA_MoveToTile->x = (u16)(x >> 5); //  /32
     *BW::BWDATA_MoveToY = y;
-    BW::BWDATA_MoveToTile->y = (u16)(y >> 5); //  /32
+    *BW::BWDATA_MoveToTile = Position(x,y);
     BW::BWFXN_UpdateScreenPosition();
   }
   //------------------------------------------- SET SCREEN POSITION ------------------------------------------
@@ -942,8 +941,8 @@ namespace BWAPI
 
     if ( BW::BWDATA_SAIPathing )
     {
-      BW::region *srcRgn = BW::Position((u16)source.x(), (u16)source.y()).getRegion();
-      BW::region *dstRgn = BW::Position((u16)destination.x(), (u16)destination.y()).getRegion();
+      BW::region *srcRgn = BW::getRegionAt(source);
+      BW::region *dstRgn = BW::getRegionAt(destination);
 
       // Return true if the locations are valid and connected
       if ( srcRgn && dstRgn && srcRgn->groupIndex == dstRgn->groupIndex )
@@ -980,7 +979,7 @@ namespace BWAPI
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
       return NULL;
     }
-    BW::region *rgn = BW::Position((u16)x, (u16)y).getRegion();
+    BW::region *rgn = BW::getRegionAt(x,y);
     if ( !rgn )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);

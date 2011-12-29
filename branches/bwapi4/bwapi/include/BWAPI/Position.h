@@ -1,43 +1,151 @@
 #pragma once
+#include <math.h>
+#include <algorithm>
+
+//#include <BWAPI/Game.h>
+
+#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) class _n : public BWAPI::Point<_t,_s>               \
+                                          { public:                                           \
+                                            _n();                                             \
+                                            template<typename _nt, int __ns> _n(const BWAPI::Point<_nt,__ns> &pt) : BWAPI::Point<_t,_s>(pt) {};   \
+                                            _n(_t x, _t y);                                   \
+                                          };                                                  \
+                                          namespace _n ## s                                   \
+                                          { const _n Invalid(32000/_s,32000/_s);              \
+                                            const _n None(32000/_s,32032/_s);                 \
+                                            const _n Unknown(32000/_s,32064/_s);              \
+                                          }
 
 namespace BWAPI
 {
-  class TilePosition;
+  // Declaration
+  template<typename _T, int __Scale = 1>
+  class Point;
 
-  // TODO: Add doxygen documentation
-  class Position
+  // Restrictions
+  template<typename _T> class Point<_T, 0> {};
+  template<int __Scale> class Point<char, __Scale> {};
+  template<int __Scale> class Point<unsigned char, __Scale> {};
+
+  // Primary template
+  template<typename _T, int __Scale>
+  class Point
   {
-    public :
-      Position();
-      explicit Position(const TilePosition& position);
-      Position(int x, int y);
-      bool operator == (const Position& position) const;
-      bool operator != (const Position& position) const;
-      bool operator  < (const Position& position) const;
-      operator bool() const;
-      bool isValid() const;
-      Position operator+(const Position& position) const;
-      Position operator-(const Position& position) const;
-      Position& makeValid();
-      Position& operator+=(const Position& position);
-      Position& operator-=(const Position& position);
-      double getDistance(const Position& position) const;
-      int    getApproxDistance(const Position& position) const;
-      double getLength() const;
-      bool   hasPath(const Position& destination) const;
-      int& x();
-      int& y();
-      int x() const;
-      int y() const;
-    private :
-      int _x;
-      int _y;
+  public:
+    // Constructors
+    Point() : _x(0), _y(0) {};
+    template<typename _NT, int __NScale> Point(const Point<_NT, __NScale> &pt)
+      : _x( (_T)(__NScale > __Scale ? pt.x()*(__NScale/__Scale) : pt.x()/(__Scale/__NScale)) )
+      , _y( (_T)(__NScale > __Scale ? pt.y()*(__NScale/__Scale) : pt.y()/(__Scale/__NScale)) ) { };
+    template<typename _NT> Point(const Point<_NT, 0> &pt) : _x(0), _y(0) {};
+    Point(_T x, _T y) : _x(x), _y(y) {};
+
+    // Operators
+    bool operator == (const Point &position) const
+    { 
+      return this->x() == position.x() &&
+             this->y() == position.y();
+    };
+    bool operator != (const Point &position) const
+    {
+      return this->x() != position.x() ||
+             this->y() != position.y();
+    };
+    bool operator  < (const Point &position) const
+    {
+      return this->x() < position.x() ||
+           (this->x() == position.x() && this->y() < position.y());
+    };
+    operator bool() const { return this->isValid(); };
+    Point operator+(const Point &position) const
+    {
+      return Point(this->x() + position.x(), this->y() + position.y());
+    };
+    Point operator-(const Point &position) const
+    {
+      return Point(this->x() - position.x(), this->y() - position.y());
+    };
+    Point& operator+=(const Point &position)
+    {
+      this->_x += position->x();
+      this->_y += position->y();
+      return *this;
+    };
+    Point &operator-=(const Point &position)
+    {
+      this->_x -= position->x();
+      this->_y -= position->y();
+      return *this;
+    };
+
+    // Functions
+    bool isValid() const
+    {
+      if ( this->x() < 0 || this->y() < 0 )
+        return false;
+      //if ( !Broodwar )
+        return true;
+      //return this->x() < (Broodwar->mapWidth()  * 32)/__Scale && 
+        //     this->y() < (Broodwar->mapHeight() * 32)/__Scale;
+    };
+    
+    Point &makeValid()
+    {
+      if ( this->_x < 0 ) this->_x = 0;
+      if ( this->_y < 0 ) this->_y = 0;
+
+      /*if ( !Broodwar ) return *this;
+
+      _T max = (Broodwar->mapWidth() * 32)/__Scale - 1;
+      if ( this->_x > max ) this->_x = max;
+
+      max = (Broodwar->mapHeight() * 32)/__Scale - 1;
+      if ( this->_y > max ) this->_y = max;
+*/
+      return *this;
+    };
+    double getDistance(const Point &position) const
+    {
+      return ((*this) - position).getLength();
+    };
+    double getLength() const
+    {
+      double x = (double)this->x();
+      double y = (double)this->y();
+      return sqrt(x * x + y * y);
+    };
+    bool hasPath(const Point &destination) const
+    {
+      //if ( !Broodwar )
+        return this->isValid() && destination.isValid();
+      //return Broodwar->hasPath(Position((int)this->x(),(int)this->y()), Position((int)destination.x(),(int)destination.y()));
+    };
+
+    int getApproxDistance(const Point &position) const
+    {
+      unsigned int min = abs((int)(this->x() - position.x()));
+      unsigned int max = abs((int)(this->y() - position.y()));
+      if ( max < min )
+        std::swap<unsigned int>(min,max);
+
+      if ( min < (max >> 2) )
+        return max;
+
+      unsigned int minCalc = (3*min) >> 3;
+      return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
+    };
+
+    // member retrieval
+    _T &x() { return this->_x; };
+    _T &y() { return this->_y; };
+    _T x() const { return this->_x; };
+    _T y() const { return this->_y; };
+  private:
+    _T _x, _y;
   };
-  namespace Positions
-  {
-    extern const Position Invalid;
-    extern const Position None;
-    extern const Position Unknown;
-  }
-};
+
+  _MAKE_POSITION_TEMPLATE(WalkPosition,int,8)
+  _MAKE_POSITION_TEMPLATE(Position,int,1)
+  _MAKE_POSITION_TEMPLATE(TilePosition,int,32)
+}
 

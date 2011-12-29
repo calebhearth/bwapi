@@ -31,15 +31,7 @@ namespace BW
     }
     Attack::Attack(int x, int y, int OrderID, bool queued)
         : always0x15(0x15)
-        , target(BW::Position((u16)x, (u16)y))
-        , always0xe4(BW::UnitID::None)
-        , order((u8)OrderID)
-        , type(queued ? 1 : 0)
-    {
-    }
-    Attack::Attack(const BWAPI::Position& target, int OrderID, bool queued)
-        : always0x15(0x15)
-        , target(BW::Position((u16)target.x(), (u16)target.y()))
+        , target(x,y)
         , always0xe4(BW::UnitID::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
@@ -72,7 +64,7 @@ namespace BW
     }
     RightClick::RightClick(int x, int y, bool queued)
         : always0x14(0x14)
-        , target( BW::Position((u16)x, (u16)y) )
+        , target(x,y)
         , always0xe4(BW::UnitID::None)
         , type(queued ? 1 : 0)
     {
@@ -189,7 +181,7 @@ namespace BW
     }
     MakeBuilding::MakeBuilding(int tileX, int tileY, int type)
         : always0x0c(0x0c)
-        , position(BW::TilePosition((u16)tileX, (u16)tileY))
+        , position((u16)tileX, (u16)tileY)
         , type((u16)type)
         , raceDependant(0)
     {
@@ -244,17 +236,10 @@ namespace BW
         , type((u16)type)
     {
     }
-    MakeAddon::MakeAddon(BWAPI::TilePosition position, int type)
-        : always0x0c(0x0c)
-        , always0x24(BW::OrderID::PlaceAddon)
-        , position((u16)position.x(), (u16)position.y())
-        , type((u16)type)
-    {
-    }
     MakeAddon::MakeAddon(int tileX, int tileY, int type)
         : always0x0c(0x0c)
         , always0x24(BW::OrderID::PlaceAddon)
-        , position(BW::TilePosition((u16)tileX, (u16)tileY))
+        , position((u16)tileX, (u16)tileY)
         , type((u16)type)
     {
     }
@@ -269,7 +254,7 @@ namespace BW
     MakeNydusExit::MakeNydusExit(int tileX, int tileY)
         : always0x0c(0x0c)
         , always0x2E(BW::OrderID::BuildNydusExit)
-        , position(BW::TilePosition((u16)tileX, (u16)tileY))
+        , position((u16)tileX, (u16)tileY)
         , type(BW::UnitID::Zerg_NydusCanal)
     {
     }
@@ -331,11 +316,6 @@ namespace BW
     MinimapPing::MinimapPing(BW::Position position)
         : always0x58(0x58)
         , position(position)
-    {
-    }
-    MinimapPing::MinimapPing(BWAPI::Position position)
-        : always0x58(0x58)
-        , position((u16)position.x(), (u16)position.y())
     {
     }
     MinimapPing::MinimapPing(int x, int y)

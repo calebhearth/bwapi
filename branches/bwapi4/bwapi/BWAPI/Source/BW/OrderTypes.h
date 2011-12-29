@@ -8,7 +8,6 @@
 
 #include "PositionUnitTarget.h"
 #include "Race.h"
-#include <BW/TilePosition.h>
 
 namespace BWAPI { class UnitImpl; }
 #pragma pack(1)
@@ -24,7 +23,6 @@ namespace BW
         /** Attack Location on position. */
         Attack(const BW::Position& target, int order, bool queued = false);
         Attack(int x, int y, int order, bool queued = false);
-        Attack(const BWAPI::Position& target, int order, bool queued = false);
         /** Attack Location on unit. */
         Attack(BWAPI::Unit* target, int order, bool queued = false);
         /** Attack Location on general target. */
@@ -151,7 +149,6 @@ namespace BW
     {
       public :
         MakeAddon(BW::TilePosition position, int type);
-        MakeAddon(BWAPI::TilePosition position, int type);
         MakeAddon(int tileX, int tileY, int type);
         /** 0x0c = make building Command-code in bw */
         u8 always0x0c;
@@ -283,7 +280,6 @@ namespace BW
     {
       public :
         MinimapPing(BW::Position position);
-        MinimapPing(BWAPI::Position position);
         MinimapPing(int x, int y);
       private :
         /** 0x58 = Command code for Minimap Ping. */

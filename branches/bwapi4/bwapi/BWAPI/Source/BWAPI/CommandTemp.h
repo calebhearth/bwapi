@@ -516,13 +516,13 @@ namespace BWAPI
         return;
       if (!unit->getType().canMove())
         return;
-      unit->self->order           = Orders::Move;
-      unit->self->targetPositionX = position.x();
-      unit->self->targetPositionY = position.y();
-	  unit->self->orderTargetPositionX = position.x();
-	  unit->self->orderTargetPositionY = position.y();
-      unit->self->isMoving        = true;
-      unit->self->isIdle          = false;
+      unit->self->order                 = Orders::Move;
+      unit->self->targetPositionX       = position.x();
+      unit->self->targetPositionY       = position.y();
+      unit->self->orderTargetPositionX  = position.x();
+      unit->self->orderTargetPositionY  = position.y();
+      unit->self->isMoving              = true;
+      unit->self->isIdle                = false;
     }
     else if (command.type == UnitCommandTypes::Patrol)
     {
@@ -886,12 +886,12 @@ namespace BWAPI
         return;
       if (techType == TechTypes::Consume)
       {
-        unit->self->order           = Orders::CastConsume;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x();
-        unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+        unit->self->order                 = Orders::CastConsume;
+        unit->self->orderTarget           = getUnitID(target);
+        unit->self->targetPositionX       = target->getPosition().x();
+        unit->self->targetPositionY       = target->getPosition().y();
+        unit->self->orderTargetPositionX  = target->getPosition().x();
+        unit->self->orderTargetPositionY  = target->getPosition().y();
       }
       else if (techType == TechTypes::Defensive_Matrix)
       {

@@ -1,8 +1,8 @@
 #pragma once
 #include <BWAPI.h>
 
-#define TOURNAMENT_NAME "AIIDE 2011"
-#define SPONSORS "the BWAPI Project Team"
+#define TOURNAMENT_NAME "AIIDE 2012"
+#define SPONSORS "the BWAPI Project Team, and Blizzard Entertainment"
 #define MINIMUM_COMMAND_OPTIMIZATION 1
 
 class ExampleTournamentModule : public BWAPI::TournamentModule

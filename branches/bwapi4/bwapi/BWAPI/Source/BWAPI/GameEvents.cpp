@@ -195,7 +195,7 @@ namespace BWAPI
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
       // Skip Start Locations that don't exist
-      if ( StartLocs[i].x == 0 && StartLocs[i].y == 0 )
+      if ( StartLocs[i] == Position(0, 0) )
         continue;
 
       // If the game is UMS and player is observer and race is not (UserSelect OR invalid player type), skip
@@ -209,8 +209,7 @@ namespace BWAPI
         continue;
 
       // add start location
-      startLocations.insert(BWAPI::TilePosition( (StartLocs[i].x - 64) / TILE_SIZE,
-                                                 (StartLocs[i].y - 48) / TILE_SIZE) );
+      startLocations.insert(StartLocs[i] - Position(64, 48) );
     }
 
     // Get Player Objects
@@ -856,7 +855,7 @@ namespace BWAPI
     if ( pathDebug && BW::BWDATA_SAIPathing )
     {
       BWAPI::Position mouse   = getMousePosition() + getScreenPosition();
-      BW::region *selectedRgn = BW::Position((u16)mouse.x(), (u16)mouse.y()).getRegion();
+      BW::region *selectedRgn = BW::getRegionAt(mouse);
       int scrx = (getScreenPosition().x()/32 - 1)*32;
       int scry = (getScreenPosition().y()/32 - 1)*32;
       for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x() + BW::BWDATA_ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
@@ -865,7 +864,7 @@ namespace BWAPI
         {
           BW::TilePosition tp((u16)x/32, (u16)y/32);
 
-          u16 idx = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y][tp.x];
+          u16 idx = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y()][tp.x()];
           if ( idx & 0x2000 )
           {
             BW::split *t = &BW::BWDATA_SAIPathing->splitTiles[idx & 0x1FFF];
@@ -922,10 +921,10 @@ namespace BWAPI
         {
           BW::region *neighbor = r->getNeighbor(n);
           if ( r->accessabilityFlags != 0x1FFD && neighbor->accessabilityFlags != 0x1FFD )
-            drawLineMap(r->getCenter().x, r->getCenter().y, neighbor->getCenter().x, neighbor->getCenter().y, neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
+            drawLineMap(r->getCenter().x(), r->getCenter().y(), neighbor->getCenter().x(), neighbor->getCenter().y(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
         }
         if ( r == selectedRgn )
-          drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
+          drawTextMap(r->getCenter().x(), r->getCenter().y(), "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
       }
       for ( int i = 0; i < 4; ++i )
       {

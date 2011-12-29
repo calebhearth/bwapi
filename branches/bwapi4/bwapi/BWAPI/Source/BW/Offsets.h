@@ -6,7 +6,6 @@
 #include "../Storm/storm.h"
 
 #include "Position.h"
-#include "TilePosition.h"
 #include "Dialog.h"
 #include "Pathing.h"
 
@@ -317,7 +316,7 @@ namespace BW
   static void (__cdecl *BWFXN_UpdateScreenPosition)()    = (void(__cdecl*)()) 0x0049BFD0;
   static u32            *BWDATA_MoveToX                  = (u32*)             0x0062848C;
   static u32            *BWDATA_MoveToY                  = (u32*)             0x006284A8;
-  static Position       *BWDATA_MoveToTile               = (Position*)        0x0057F1D0;
+  static TilePosition   *BWDATA_MoveToTile               = (TilePosition*)    0x0057F1D0;
 
   static POINT          *BWDATA_Mouse                    = (POINT*) 0x006CDDC4;
   static u32            *BWDATA_ScreenX                  = (u32*)   0x00628448;

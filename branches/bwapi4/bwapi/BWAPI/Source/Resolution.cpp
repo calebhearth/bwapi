@@ -173,7 +173,7 @@ void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
 
 void updateImageDrawingData()
 {
-  for ( int y = 0; y < BW::BWDATA_MapSize->y; ++y )
+  for ( int y = 0; y < BW::BWDATA_MapSize->y(); ++y )
   {
     for ( BW::Sprite *s = BW::BWDATA_spriteGroups[y]; s; s = s->next )
     {

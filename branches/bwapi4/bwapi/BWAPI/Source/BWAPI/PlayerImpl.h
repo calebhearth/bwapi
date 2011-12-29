@@ -19,7 +19,6 @@ namespace BW { class Unit; };
 
 #include <BW/Offsets.h>
 #include <BW/Race.h>
-#include <BW/TilePosition.h>
 
 namespace BWAPI
 {
