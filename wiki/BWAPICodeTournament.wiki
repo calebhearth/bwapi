@@ -29,22 +29,22 @@
   * Starcraft: Broodwar 1.16.1 is required.
   * The bot must be compatible with the latest release of BWAPI as of December 1st, 2011.
   * Attempts to cheat or use exploits as classified by the [TournamentGuideline Tournament Guideline] will result in disqualification.
-  * Lagging the game, crashing, or dropping out will result in a loss.
+  * Lagging the game (timeout dialog goes to 0), crashing, or dropping out will result in a loss. *This does not include terrain analysis at the start of the match.*
   * User chat will take place on the IRC.
   * Rules will be changed, added, or removed at any given time. (Star this wiki page with a google account to be notified of changes)
   * Players can save persistent data. This means you can record what other bots did in past games and use it to your advantage.
 
 = Dates =
-  Tournament will be held on January 7th, 2012. The date is subject to change and a time has not yet been specified.
+  Tournament will be held on *January 7th, and January 8th, 2012*. No time is specified, but a video stream will be available for viewing the progress, and the IRC will be active during those days (the time is very loose, so time zone does not really matter).
 
-  If you are submitting a bot binary, then do so _before_ January 4th, 2012.
+  If you are submitting a bot binary, then it is preferred to do so _before_ January 4th, 2012. Submission deadlines will be lenient, so if you don't get it in on time, you can submit it before the 7th, but don't expect as much testing and feedback of the bot and its setup before the tournament date.
 
 = Hardware/Software =
   Tournament will be run using Oracle VM VirtualBox, with machine resources split between them.
 
   * *OS*: Windows XP Professional x64 edition, Service pack 2
   * *Processor*: Intel Core i7 2620M @ 2.70 GHz
-  * *RAM*: 1GB (May be upgraded)
+  * *RAM*: 1GB
   * *Disk Space*: 5GB (Free)
 
 = Categories, Maps, and Participants =
@@ -62,6 +62,7 @@
     * Cly (Zerg)
     * Daggoth (Zerg)
     * BTHAI (Terran & Protoss)
+    * Dreadbot (Protoss)
 
 == 2v2 ==
   === Map Pool ===
