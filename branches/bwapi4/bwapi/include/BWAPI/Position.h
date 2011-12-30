@@ -20,6 +20,27 @@
 #define _DEFINE_POSITION_TEMPLATE(_n,_t,_s) _n::_n() : Point<_t,_s>(0,0) { };                     \
                                             _n::_n(_t x, _t y) : Point<_t,_s>(x,y) { };
 
+
+#define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const                      \
+                            { return Point(this->x() op pos.x(), this->y() op pos.y()); };  \
+                            Point &operator op= (const Point &pos) const                    \
+                            { this->_x op= pos.x(); this->_y op= pos.y();                   \
+                              return *this; }; 
+
+#define _OPERATOR_OP_VAL(op) Point operator op (const _T &val) const                  \
+                             { return Point(this->x() op val, this->y() op val); };   \
+                             Point &operator op= (const _T &val) const                \
+                             { this->_x op= val; this->_y op= val;                    \
+                              return *this; }; 
+
+#define _OPERATOR_OP_VAL_CHK(op) Point operator op (const _T &val) const                                  \
+                                 {  if ( val == 0 ) return Point(32000/__Scale,32000/__Scale);            \
+                                    return Point(this->x() op val, this->y() op val); };                  \
+                                 Point &operator op= (const _T &val) const                                \
+                                 {  if ( val == 0 ) this->_x = 32000/__Scale; this->_y = 32000/__Scale;   \
+                                    else this->_x op= val; this->_y op= val;                              \
+                                  return *this; }; 
+
 #endif
 
 namespace BWAPI
@@ -32,6 +53,7 @@ namespace BWAPI
   template<typename _T> class Point<_T, 0> {};
   template<int __Scale> class Point<char, __Scale> {};
   template<int __Scale> class Point<unsigned char, __Scale> {};
+  template<int __Scale> class Point<bool, __Scale> {};
 
   // Primary template
   template<typename _T, int __Scale>
@@ -42,53 +64,48 @@ namespace BWAPI
     Point() : _x(0), _y(0) {};
 
 #pragma warning( disable: 4723 )
-
+    // Conversion constructor
     template<typename _NT, int __NScale> Point(const Point<_NT, __NScale> &pt)
       : _x( (_T)(__NScale > __Scale ? pt.x()*(__NScale/__Scale) : pt.x()/(__Scale/__NScale)) )
       , _y( (_T)(__NScale > __Scale ? pt.y()*(__NScale/__Scale) : pt.y()/(__Scale/__NScale)) ) { };
 
 #pragma warning( default: 4723 )
-
+    // Conversion restriction constructor
     template<typename _NT> Point(const Point<_NT, 0> &pt) : _x(0), _y(0) {};
     Point(_T x, _T y) : _x(x), _y(y) {};
 
     // Operators
-    bool operator == (const Point &position) const
+    operator bool() const { return this->isValid(); };
+    
+    bool operator == (const Point &pos) const
     { 
-      return this->x() == position.x() &&
-             this->y() == position.y();
-    };
-    bool operator != (const Point &position) const
-    {
-      return this->x() != position.x() ||
-             this->y() != position.y();
-    };
+      return this->x() == pos.x() &&
+             this->y() == pos.y();
+    }; 
+    bool operator != (const Point &pos) const
+    { 
+      return this->x() != pos.x() ||
+             this->y() != pos.y();
+    }; 
+
     bool operator  < (const Point &position) const
     {
       return this->x() < position.x() ||
            (this->x() == position.x() && this->y() < position.y());
     };
-    operator bool() const { return this->isValid(); };
-    Point operator+(const Point &position) const
-    {
-      return Point(this->x() + position.x(), this->y() + position.y());
-    };
-    Point operator-(const Point &position) const
-    {
-      return Point(this->x() - position.x(), this->y() - position.y());
-    };
-    Point& operator+=(const Point &position)
-    {
-      this->_x += position->x();
-      this->_y += position->y();
-      return *this;
-    };
-    Point &operator-=(const Point &position)
-    {
-      this->_x -= position->x();
-      this->_y -= position->y();
-      return *this;
-    };
+
+    _OPERATOR_OP_PT(+)
+    _OPERATOR_OP_PT(-)
+
+    _OPERATOR_OP_VAL(*)
+    _OPERATOR_OP_VAL(&)
+    _OPERATOR_OP_VAL(|)
+    _OPERATOR_OP_VAL(^)
+    _OPERATOR_OP_VAL(>>)
+    _OPERATOR_OP_VAL(<<)
+
+    _OPERATOR_OP_VAL_CHK(/)
+    _OPERATOR_OP_VAL_CHK(%)
 
     // Functions
     bool isValid() const
