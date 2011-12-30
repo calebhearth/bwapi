@@ -5,14 +5,6 @@
 
 using namespace BWAPI;
 
-typedef struct __spell
-{
-  Unit      *pUnit;
-  TechType  tech;
-} spell;
-
-extern std::vector<spell> spellsCast;
-
 class UnitProc
 {
 public:
@@ -23,6 +15,7 @@ public:
   void Init(Unit *pUnit);
   void EmulateIdleOrder();
   void execute();
+  void StandardUnitProc();
 
   int       iEmulatedOrder;
   Position  guardLocation;
@@ -30,7 +23,7 @@ public:
   Unit      *thisUnit;
   bool      initialized;
   int       dwState;
-
+  int       aiCaptain;
 };
 
 UnitProc *getUnitProc(BWAPI::Unit *pUnit);

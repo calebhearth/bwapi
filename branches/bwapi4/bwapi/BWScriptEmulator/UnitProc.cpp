@@ -2,12 +2,11 @@
 #include "BWScriptEmulator.h"
 #include "UType.h"
 #include "OrderID.h"
-#include "Starcraft.h"
 #include "UnitID.h"
 
 UnitProc *getUnitProc(BWAPI::Unit *pUnit)
 {
-  if ( pUnit->getPlayer() != self )
+  if ( !pUnit || pUnit->getPlayer() != self )
     return NULL;
 
   switch ( pUnit->getType() )
@@ -34,6 +33,7 @@ void UnitProc::Init()
   this->initialized     = false;
   this->dwState         = 0;
   this->iEmulatedOrder  = Orders::Guard;
+  this->aiCaptain       = 0;
 }
 void UnitProc::Init(Unit *pUnit)
 {
@@ -42,6 +42,7 @@ void UnitProc::Init(Unit *pUnit)
   this->destLocation  = Positions::None;
   this->initialized   = false;
   this->dwState       = 0;
+  this->aiCaptain     = 0;
 }
 
 UnitProc::~UnitProc()
@@ -56,24 +57,33 @@ void UnitProc::EmulateIdleOrder()
   switch ( this->iEmulatedOrder )
   {
   case OrderID::AIPatrol:
-    if ( !thisUnit->isIdle() )
+    if ( thisUnit->isIdle() )
     {
+      // Get the region
       BWAPI::Region *r = thisUnit->getRegion();
       std::vector<BWAPI::Region*> movetoRgnList;
+
+      // iterate all regions neighboring this unit
       for ( std::set<BWAPI::Region*>::const_iterator i = r->getNeighbors().begin(); i != r->getNeighbors().end(); ++i )
       {
-        std::set<BWAPI::Unit*> units = BWAPI::Broodwar->getUnitsInRectangle((*i)->getBoundsLeft(), (*i)->getBoundsTop(), (*i)->getBoundsRight(), (*i)->getBoundsBottom() );
-        for ( std::set<BWAPI::Unit*>::const_iterator u = units.begin(); u != units.end(); ++u )
+        // iterate all units within the bounds of the current region
+        for ( std::set<BWAPI::Unit*>::const_iterator u = self->getUnits().begin(), uend = self->getUnits().end(); u != uend; ++u )
         {
-          if ( (*u)->getPlayer() != self )
+          UnitType ut = (*u)->getType();
+          if ( !ut.isBuilding() )
             continue;
 
-          movetoRgnList.push_back(*i);
-          break;
+          // Save the region if its center is within sight range of a building
+          if ( (*u)->getDistance( Position((*i)->getCenter()) ) <= ut.sightRange() )
+          {
+            movetoRgnList.push_back(*i);
+            break;
+          }
         }
       }
+      // choose a random region to move to
       if ( !movetoRgnList.empty() )
-        thisUnit->move(movetoRgnList[Random(0, movetoRgnList.size())]->getCenter());
+        thisUnit->move(movetoRgnList[rand() % movetoRgnList.size()]->getCenter());
     }
     break;
   default:
@@ -81,7 +91,17 @@ void UnitProc::EmulateIdleOrder()
   }
 }
 
+void UnitProc::StandardUnitProc()
+{
+  this->EmulateIdleOrder();
+}
+
 void UnitProc::execute()
 {
-  
+  switch ( this->aiCaptain )
+  {
+  case 0:
+    this->StandardUnitProc();
+    break;
+  }
 }
