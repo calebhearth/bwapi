@@ -17,6 +17,489 @@
 
 namespace BWAPI
 {
+  std::string unitLongNames[UnitTypes::Enum::MAX];
+  std::string unitLocalNames[UnitTypes::Enum::MAX];
+
+  static const std::string unitTypeNames[UnitTypes::Enum::MAX] = 
+  {
+    "Terran_Marine",
+    "Terran_Ghost",
+    "Terran_Vulture",
+    "Terran_Goliath",
+    "Terran_Goliath_Turret",
+    "Terran_Siege_Tank_Tank_Mode",
+    "Terran_Siege_Tank_Tank_Mode_Turret",
+    "Terran_SCV",
+    "Terran_Wraith",
+    "Terran_Science_Vessel",
+    "Hero_Gui_Montag",
+    "Terran_Dropship",
+    "Terran_Battlecruiser",
+    "Terran_Vulture_Spider_Mine",
+    "Terran_Nuclear_Missile",
+    "Terran_Civilian",
+    "Hero_Sarah_Kerrigan",
+    "Hero_Alan_Schezar",
+    "Hero_Alan_Schezar_Turret",
+    "Hero_Jim_Raynor_Vulture",
+    "Hero_Jim_Raynor_Marine",
+    "Hero_Tom_Kazansky",
+    "Hero_Magellan",
+    "Hero_Edmund_Duke_Tank_Mode",
+    "Hero_Edmund_Duke_Tank_Mode_Turret",
+    "Hero_Edmund_Duke_Siege_Mode",
+    "Hero_Edmund_Duke_Siege_Mode_Turret",
+    "Hero_Arcturus_Mengsk",
+    "Hero_Hyperion",
+    "Hero_Norad_II",
+    "Terran_Siege_Tank_Siege_Mode",
+    "Terran_Siege_Tank_Siege_Mode_Turret",
+    "Terran_Firebat",
+    "Spell_Scanner_Sweep",
+    "Terran_Medic",
+    "Zerg_Larva",
+    "Zerg_Egg",
+    "Zerg_Zergling",
+    "Zerg_Hydralisk",
+    "Zerg_Ultralisk",
+    "Zerg_Broodling",
+    "Zerg_Drone",
+    "Zerg_Overlord",
+    "Zerg_Mutalisk",
+    "Zerg_Guardian",
+    "Zerg_Queen",
+    "Zerg_Defiler",
+    "Zerg_Scourge",
+    "Hero_Torrasque",
+    "Hero_Matriarch",
+    "Zerg_Infested_Terran",
+    "Hero_Infested_Kerrigan",
+    "Hero_Unclean_One",
+    "Hero_Hunter_Killer",
+    "Hero_Devouring_One",
+    "Hero_Kukulza_Mutalisk",
+    "Hero_Kukulza_Guardian",
+    "Hero_Yggdrasill",
+    "Terran_Valkyrie",
+    "Zerg_Cocoon",
+    "Protoss_Corsair",
+    "Protoss_Dark_Templar",
+    "Zerg_Devourer",
+    "Protoss_Dark_Archon",
+    "Protoss_Probe",
+    "Protoss_Zealot",
+    "Protoss_Dragoon",
+    "Protoss_High_Templar",
+    "Protoss_Archon",
+    "Protoss_Shuttle",
+    "Protoss_Scout",
+    "Protoss_Arbiter",
+    "Protoss_Carrier",
+    "Protoss_Interceptor",
+    "Hero_Dark_Templar",
+    "Hero_Zeratul",
+    "Hero_Tassadar_Zeratul_Archon",
+    "Hero_Fenix_Zealot",
+    "Hero_Fenix_Dragoon",
+    "Hero_Tassadar",
+    "Hero_Mojo",
+    "Hero_Warbringer",
+    "Hero_Gantrithor",
+    "Protoss_Reaver",
+    "Protoss_Observer",
+    "Protoss_Scarab",
+    "Hero_Danimoth",
+    "Hero_Aldaris",
+    "Hero_Artanis",
+    "Critter_Rhynadon",
+    "Critter_Bengalaas",
+    "Special_Cargo_Ship",
+    "Special_Mercenary_Gunship",
+    "Critter_Scantid",
+    "Critter_Kakaru",
+    "Critter_Ragnasaur",
+    "Critter_Ursadon",
+    "Zerg_Lurker_Egg",
+    "Hero_Raszagal",
+    "Hero_Samir_Duran",
+    "Hero_Alexei_Stukov",
+    "Special_Map_Revealer",
+    "Hero_Gerard_DuGalle",
+    "Zerg_Lurker",
+    "Hero_Infested_Duran",
+    "Spell_Disruption_Web",
+    "Terran_Command_Center",
+    "Terran_Comsat_Station",
+    "Terran_Nuclear_Silo",
+    "Terran_Supply_Depot",
+    "Terran_Refinery",
+    "Terran_Barracks",
+    "Terran_Academy",
+    "Terran_Factory",
+    "Terran_Starport",
+    "Terran_Control_Tower",
+    "Terran_Science_Facility",
+    "Terran_Covert_Ops",
+    "Terran_Physics_Lab",
+    "Unused_Terran1",
+    "Terran_Machine_Shop",
+    "Unused_Terran2",
+    "Terran_Engineering_Bay",
+    "Terran_Armory",
+    "Terran_Missile_Turret",
+    "Terran_Bunker",
+    "Special_Crashed_Norad_II",
+    "Special_Ion_Cannon",
+    "Powerup_Uraj_Crystal",
+    "Powerup_Khalis_Crystal",
+    "Zerg_Infested_Command_Center",
+    "Zerg_Hatchery",
+    "Zerg_Lair",
+    "Zerg_Hive",
+    "Zerg_Nydus_Canal",
+    "Zerg_Hydralisk_Den",
+    "Zerg_Defiler_Mound",
+    "Zerg_Greater_Spire",
+    "Zerg_Queens_Nest",
+    "Zerg_Evolution_Chamber",
+    "Zerg_Ultralisk_Cavern",
+    "Zerg_Spire",
+    "Zerg_Spawning_Pool",
+    "Zerg_Creep_Colony",
+    "Zerg_Spore_Colony",
+    "Unused_Zerg1",
+    "Zerg_Sunken_Colony",
+    "Special_Overmind_With_Shell",
+    "Special_Overmind",
+    "Zerg_Extractor",
+    "Special_Mature_Chrysalis",
+    "Special_Cerebrate",
+    "Special_Cerebrate_Daggoth",
+    "Unused_Zerg2",
+    "Protoss_Nexus",
+    "Protoss_Robotics_Facility",
+    "Protoss_Pylon",
+    "Protoss_Assimilator",
+    "Unused_Protoss1",
+    "Protoss_Observatory",
+    "Protoss_Gateway",
+    "Unused_Protoss2",
+    "Protoss_Photon_Cannon",
+    "Protoss_Citadel_of_Adun",
+    "Protoss_Cybernetics_Core",
+    "Protoss_Templar_Archives",
+    "Protoss_Forge",
+    "Protoss_Stargate",
+    "Special_Stasis_Cell_Prison",
+    "Protoss_Fleet_Beacon",
+    "Protoss_Arbiter_Tribunal",
+    "Protoss_Robotics_Support_Bay",
+    "Protoss_Shield_Battery",
+    "Special_Khaydarin_Crystal_Form",
+    "Special_Protoss_Temple",
+    "Special_XelNaga_Temple",
+    "Resource_Mineral_Field",
+    "Resource_Mineral_Field_Type_2",
+    "Resource_Mineral_Field_Type_3",
+    "Unused_Cave",
+    "Unused_Cave_In",
+    "Unused_Cantina",
+    "Unused_Mining_Platform",
+    "Unused_Independant_Command_Center",
+    "Special_Independant_Starport",
+    "Unused_Independant_Jump_Gate",
+    "Unused_Ruins",
+    "Unused_Khaydarin_Crystal_Formation",
+    "Resource_Vespene_Geyser",
+    "Special_Warp_Gate",
+    "Special_Psi_Disrupter",
+    "Unused_Zerg_Marker",
+    "Unused_Terran_Marker",
+    "Unused_Protoss_Marker",
+    "Special_Zerg_Beacon",
+    "Special_Terran_Beacon",
+    "Special_Protoss_Beacon",
+    "Special_Zerg_Flag_Beacon",
+    "Special_Terran_Flag_Beacon",
+    "Special_Protoss_Flag_Beacon",
+    "Special_Power_Generator",
+    "Special_Overmind_Cocoon",
+    "Spell_Dark_Swarm",
+    "Special_Floor_Missile_Trap",
+    "Special_Floor_Hatch",
+    "Special_Upper_Level_Door",
+    "Special_Right_Upper_Level_Door",
+    "Special_Pit_Door",
+    "Special_Right_Pit_Door",
+    "Special_Floor_Gun_Trap",
+    "Special_Wall_Missile_Trap",
+    "Special_Wall_Flame_Trap",
+    "Special_Right_Wall_Missile_Trap",
+    "Special_Right_Wall_Flame_Trap",
+    "Special_Start_Location",
+    "Powerup_Flag",
+    "Powerup_Young_Chrysalis",
+    "Powerup_Psi_Emitter",
+    "Powerup_Data_Disk",
+    "Powerup_Khaydarin_Crystal",
+    "Powerup_Mineral_Cluster_Type_1",
+    "Powerup_Mineral_Cluster_Type_2",
+    "Powerup_Protoss_Gas_Orb_Type_1",
+    "Powerup_Protoss_Gas_Orb_Type_2",
+    "Powerup_Zerg_Gas_Sac_Type_1",
+    "Powerup_Zerg_Gas_Sac_Type_2",
+    "Powerup_Terran_Gas_Tank_Type_1",
+    "Powerup_Terran_Gas_Tank_Type_2",
+
+    "None",
+    "AllUnits",
+    "Men",
+    "Buildings",
+    "Factories",
+    "Unknown"
+  };
+  
+  static const std::string unitShortNames[UnitTypes::Enum::MAX] = 
+  {
+    "marine",
+    "ghost",
+    "vulture",
+    "goliath",
+    "",
+    "siege_tank",
+    "",
+    "scv",
+    "wraith",
+    "science_vessel",
+    "gui_montag",
+    "dropship",
+    "battlecruiser",
+    "spider_mine",
+    "nuke",
+    "civilian",
+    "sarah_kerrigan",
+    "alan_schezar",
+    "",
+    "jim_raynor_vulture",
+    "jim_raynor_marine",
+    "tom_kazansky",
+    "magellan",
+    "edmund_duke",
+    "",
+    "edmund_duke_sieged",
+    "",
+    "arcturus_mengsk",
+    "hyperion",
+    "norad_2",
+    "siege_tank_sieged",
+    "",
+    "firebat",
+    "",
+    "medic",
+    "larva",
+    "egg",
+    "zergling",
+    "hydralisk",
+    "ultralisk",
+    "broodling",
+    "drone",
+    "overlord",
+    "mutalisk",
+    "guardian",
+    "queen",
+    "defiler",
+    "scourge",
+    "torrasque",
+    "matriarch",
+    "infested_terran",
+    "infested_kerrigan",
+    "unclean_one",
+    "hunter_killer",
+    "devouring_one",
+    "kukulza",
+    "kukulza_guardian",
+    "yggdrasill",
+    "valkyrie",
+    "cocoon",
+    "corsair",
+    "dark_templar",
+    "devourer",
+    "dark_archon",
+    "probe",
+    "zealot",
+    "dragoon",
+    "high_templar",
+    "archon",
+    "shuttle",
+    "scout",
+    "arbiter",
+    "carrier",
+    "interceptor",
+    "dark_templar_hero",
+    "zeratul",
+    "tassadar_zeratul",
+    "fenix_zealot",
+    "fenix_dragoon",
+    "tassadar",
+    "mojo",
+    "warbringer",
+    "gantrithor",
+    "reaver",
+    "observer",
+    "scarab",
+    "danimoth",
+    "aldaris",
+    "artanis",
+    "rhynadon",
+    "bengalaas",
+    "",
+    "",
+    "scantid",
+    "kakaru",
+    "ragnasaur",
+    "ursadon",
+    "lurker_egg",
+    "raszagal",
+    "samir_duran",
+    "alexei_stukov",
+    "",
+    "gerard_dugalle",
+    "lurker",
+    "infested_duran",
+    "",
+    "command_center",
+    "comsat_station",
+    "nuke_silo",
+    "supply_depot",
+    "refinery",
+    "barracks",
+    "academy",
+    "factory",
+    "starport",
+    "control_tower",
+    "science_facility",
+    "covert_ops",
+    "physics_lab",
+    "",
+    "machine_shop",
+    "",
+    "engineering_bay",
+    "armory",
+    "missile_turret",
+    "bunker",
+    "",
+    "",
+    "",
+    "",
+    "infested_command_center",
+    "hatchery",
+    "lair",
+    "hive",
+    "nydus_canal",
+    "hydralisk_den",
+    "defiler_mound",
+    "greater_spire",
+    "queens_nest",
+    "evolution_chamber",
+    "ultralisk_cavern",
+    "spire",
+    "spawning_pool",
+    "creep_colony",
+    "spore_colony",
+    "",
+    "sunken_colony",
+    "",
+    "",
+    "extractor",
+    "",
+    "",
+    "",
+    "",
+    "nexus",
+    "robotics_facility",
+    "pylon",
+    "assimilator",
+    "",
+    "observatory",
+    "gateway",
+    "",
+    "photon_cannon",
+    "citadel_of_adun",
+    "cybernetics_core",
+    "templar_archives",
+    "forge",
+    "stargate",
+    "",
+    "fleet_beacon",
+    "arbiter_tribunal",
+    "robotics_support",
+    "shield_battery",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "none",
+    "all",
+    "men"
+    "buildings",
+    "factories",
+    "unknown"
+  };
+
+
+
+
   bool initializingUnitType = true;
   class UnitTypeInternal
   {
@@ -215,241 +698,6 @@ namespace BWAPI
   int maxHeight;
   namespace UnitTypes
   {
-    const UnitType Terran_Marine(0);
-    const UnitType Terran_Ghost(1);
-    const UnitType Terran_Vulture(2);
-    const UnitType Terran_Goliath(3);
-    // goliath turret (4)
-    const UnitType Terran_Siege_Tank_Tank_Mode(5);
-    // siege tank turret (6)
-    const UnitType Terran_SCV(7);
-    const UnitType Terran_Wraith(8);
-    const UnitType Terran_Science_Vessel(9);
-    const UnitType Hero_Gui_Montag(10);
-    const UnitType Terran_Dropship(11);
-    const UnitType Terran_Battlecruiser(12);
-    const UnitType Terran_Vulture_Spider_Mine(13);
-    const UnitType Terran_Nuclear_Missile(14);
-    const UnitType Terran_Civilian(15);
-    const UnitType Hero_Sarah_Kerrigan(16);
-    const UnitType Hero_Alan_Schezar(17);
-    // alan turret (18)
-    const UnitType Hero_Jim_Raynor_Vulture(19);
-    const UnitType Hero_Jim_Raynor_Marine(20);
-    const UnitType Hero_Tom_Kazansky(21);
-    const UnitType Hero_Magellan(22);
-    const UnitType Hero_Edmund_Duke_Tank_Mode(23);
-    // edmund duke turret (24)
-    const UnitType Hero_Edmund_Duke_Siege_Mode(25);
-    // edmund duke turret siege mode (26)
-    const UnitType Hero_Arcturus_Mengsk(27);
-    const UnitType Hero_Hyperion(28);
-    const UnitType Hero_Norad_II(29);
-    const UnitType Terran_Siege_Tank_Siege_Mode(30);
-    // siege tank siege mode turret (31)
-    const UnitType Terran_Firebat(32);
-    const UnitType Spell_Scanner_Sweep(33);
-    const UnitType Terran_Medic(34);
-    const UnitType Zerg_Larva(35);
-    const UnitType Zerg_Egg(36);
-    const UnitType Zerg_Zergling(37);
-    const UnitType Zerg_Hydralisk(38);
-    const UnitType Zerg_Ultralisk(39);
-    const UnitType Zerg_Broodling(40);
-    const UnitType Zerg_Drone(41);
-    const UnitType Zerg_Overlord(42);
-    const UnitType Zerg_Mutalisk(43);
-    const UnitType Zerg_Guardian(44);
-    const UnitType Zerg_Queen(45);
-    const UnitType Zerg_Defiler(46);
-    const UnitType Zerg_Scourge(47);
-    const UnitType Hero_Torrasque(48);
-    const UnitType Hero_Matriarch(49);
-    const UnitType Zerg_Infested_Terran(50);
-    const UnitType Hero_Infested_Kerrigan(51);
-    const UnitType Hero_Unclean_One(52);
-    const UnitType Hero_Hunter_Killer(53);
-    const UnitType Hero_Devouring_One(54);
-    const UnitType Hero_Kukulza_Mutalisk(55);
-    const UnitType Hero_Kukulza_Guardian(56);
-    const UnitType Hero_Yggdrasill(57);
-    const UnitType Terran_Valkyrie(58);
-    const UnitType Zerg_Cocoon(59);
-    const UnitType Protoss_Corsair(60);
-    const UnitType Protoss_Dark_Templar(61);
-    const UnitType Zerg_Devourer(62);
-    const UnitType Protoss_Dark_Archon(63);
-    const UnitType Protoss_Probe(64);
-    const UnitType Protoss_Zealot(65);
-    const UnitType Protoss_Dragoon(66);
-    const UnitType Protoss_High_Templar(67);
-    const UnitType Protoss_Archon(68);
-    const UnitType Protoss_Shuttle(69);
-    const UnitType Protoss_Scout(70);
-    const UnitType Protoss_Arbiter(71);
-    const UnitType Protoss_Carrier(72);
-    const UnitType Protoss_Interceptor(73);
-    const UnitType Hero_Dark_Templar(74);
-    const UnitType Hero_Zeratul(75);
-    const UnitType Hero_Tassadar_Zeratul_Archon(76);
-    const UnitType Hero_Fenix_Zealot(77);
-    const UnitType Hero_Fenix_Dragoon(78);
-    const UnitType Hero_Tassadar(79);
-    const UnitType Hero_Mojo(80);
-    const UnitType Hero_Warbringer(81);
-    const UnitType Hero_Gantrithor(82);
-    const UnitType Protoss_Reaver(83);
-    const UnitType Protoss_Observer(84);
-    const UnitType Protoss_Scarab(85);
-    const UnitType Hero_Danimoth(86);
-    const UnitType Hero_Aldaris(87);
-    const UnitType Hero_Artanis(88);
-    const UnitType Critter_Rhynadon(89);
-    const UnitType Critter_Bengalaas(90);
-    const UnitType Special_Cargo_Ship(91);
-    const UnitType Special_Mercenary_Gunship(92);
-    const UnitType Critter_Scantid(93);
-    const UnitType Critter_Kakaru(94);
-    const UnitType Critter_Ragnasaur(95);
-    const UnitType Critter_Ursadon(96);
-    const UnitType Zerg_Lurker_Egg(97);
-    const UnitType Hero_Raszagal(98);
-    const UnitType Hero_Samir_Duran(99);
-    const UnitType Hero_Alexei_Stukov(100);
-    const UnitType Special_Map_Revealer(101);
-    const UnitType Hero_Gerard_DuGalle(102);
-    const UnitType Zerg_Lurker(103);
-    const UnitType Hero_Infested_Duran(104);
-    const UnitType Spell_Disruption_Web(105);
-    const UnitType Terran_Command_Center(106);
-    const UnitType Terran_Comsat_Station(107);
-    const UnitType Terran_Nuclear_Silo(108);
-    const UnitType Terran_Supply_Depot(109);
-    const UnitType Terran_Refinery(110);
-    const UnitType Terran_Barracks(111);
-    const UnitType Terran_Academy(112);
-    const UnitType Terran_Factory(113);
-    const UnitType Terran_Starport(114);
-    const UnitType Terran_Control_Tower(115);
-    const UnitType Terran_Science_Facility(116);
-    const UnitType Terran_Covert_Ops(117);
-    const UnitType Terran_Physics_Lab(118);
-    // starbase (119)
-    const UnitType Terran_Machine_Shop(120);
-    // repair bay (121)
-    const UnitType Terran_Engineering_Bay(122);
-    const UnitType Terran_Armory(123);
-    const UnitType Terran_Missile_Turret(124);
-    const UnitType Terran_Bunker(125);
-    const UnitType Special_Crashed_Norad_II(126);
-    const UnitType Special_Ion_Cannon(127);
-    const UnitType Powerup_Uraj_Crystal(128);
-    const UnitType Powerup_Khalis_Crystal(129);
-    const UnitType Zerg_Infested_Command_Center(130);
-    const UnitType Zerg_Hatchery(131);
-    const UnitType Zerg_Lair(132);
-    const UnitType Zerg_Hive(133);
-    const UnitType Zerg_Nydus_Canal(134);
-    const UnitType Zerg_Hydralisk_Den(135);
-    const UnitType Zerg_Defiler_Mound(136);
-    const UnitType Zerg_Greater_Spire(137);
-    const UnitType Zerg_Queens_Nest(138);
-    const UnitType Zerg_Evolution_Chamber(139);
-    const UnitType Zerg_Ultralisk_Cavern(140);
-    const UnitType Zerg_Spire(141);
-    const UnitType Zerg_Spawning_Pool(142);
-    const UnitType Zerg_Creep_Colony(143);
-    const UnitType Zerg_Spore_Colony(144);
-    // unused zerg 1 (145)
-    const UnitType Zerg_Sunken_Colony(146);
-    const UnitType Special_Overmind_With_Shell(147);
-    const UnitType Special_Overmind(148);
-    const UnitType Zerg_Extractor(149);
-    const UnitType Special_Mature_Chrysalis(150);
-    const UnitType Special_Cerebrate(151);
-    const UnitType Special_Cerebrate_Daggoth(152);
-    // unused zerg 2 (153)
-    const UnitType Protoss_Nexus(154);
-    const UnitType Protoss_Robotics_Facility(155);
-    const UnitType Protoss_Pylon(156);
-    const UnitType Protoss_Assimilator(157);
-    // unused protoss 1 (158)
-    const UnitType Protoss_Observatory(159);
-    const UnitType Protoss_Gateway(160);
-    // unused protoss 2 (161)
-    const UnitType Protoss_Photon_Cannon(162);
-    const UnitType Protoss_Citadel_of_Adun(163);
-    const UnitType Protoss_Cybernetics_Core(164);
-    const UnitType Protoss_Templar_Archives(165);
-    const UnitType Protoss_Forge(166);
-    const UnitType Protoss_Stargate(167);
-    const UnitType Special_Stasis_Cell_Prison(168);
-    const UnitType Protoss_Fleet_Beacon(169);
-    const UnitType Protoss_Arbiter_Tribunal(170);
-    const UnitType Protoss_Robotics_Support_Bay(171);
-    const UnitType Protoss_Shield_Battery(172);
-    const UnitType Special_Khaydarin_Crystal_Form(173);
-    const UnitType Special_Protoss_Temple(174);
-    const UnitType Special_XelNaga_Temple(175);
-    const UnitType Resource_Mineral_Field(176);
-    const UnitType Resource_Mineral_Field_Type_2(177);
-    const UnitType Resource_Mineral_Field_Type_3(178);
-    // cave (179)
-    // cave-in (180)
-    // cantina (181)
-    // mining platform (182)
-    // independant command center (183)
-    const UnitType Special_Independant_Starport(184);
-    // independant jump gate (185)
-    // ruins (186)
-    // unused khaydarin crystal formation (187)
-    const UnitType Resource_Vespene_Geyser(188);
-    const UnitType Special_Warp_Gate(189);
-    const UnitType Special_Psi_Disrupter(190);
-    // zerg marker (191)
-    // terran marker (192)
-    // protoss marker (193)
-    const UnitType Special_Zerg_Beacon(194);
-    const UnitType Special_Terran_Beacon(195);
-    const UnitType Special_Protoss_Beacon(196);
-    const UnitType Special_Zerg_Flag_Beacon(197);
-    const UnitType Special_Terran_Flag_Beacon(198);
-    const UnitType Special_Protoss_Flag_Beacon(199);
-    const UnitType Special_Power_Generator(200);
-    const UnitType Special_Overmind_Cocoon(201);
-    const UnitType Spell_Dark_Swarm(202);
-    const UnitType Special_Floor_Missile_Trap(203);
-    const UnitType Special_Floor_Hatch(204);
-    const UnitType Special_Upper_Level_Door(205);
-    const UnitType Special_Right_Upper_Level_Door(206);
-    const UnitType Special_Pit_Door(207);
-    const UnitType Special_Right_Pit_Door(208);
-    const UnitType Special_Floor_Gun_Trap(209);
-    const UnitType Special_Wall_Missile_Trap(210);
-    const UnitType Special_Wall_Flame_Trap(211);
-    const UnitType Special_Right_Wall_Missile_Trap(212);
-    const UnitType Special_Right_Wall_Flame_Trap(213);
-    const UnitType Special_Start_Location(214);
-    const UnitType Powerup_Flag(215);
-    const UnitType Powerup_Young_Chrysalis(216);
-    const UnitType Powerup_Psi_Emitter(217);
-    const UnitType Powerup_Data_Disk(218);
-    const UnitType Powerup_Khaydarin_Crystal(219);
-    const UnitType Powerup_Mineral_Cluster_Type_1(220);
-    const UnitType Powerup_Mineral_Cluster_Type_2(221);
-    const UnitType Powerup_Protoss_Gas_Orb_Type_1(222);
-    const UnitType Powerup_Protoss_Gas_Orb_Type_2(223);
-    const UnitType Powerup_Zerg_Gas_Sac_Type_1(224);
-    const UnitType Powerup_Zerg_Gas_Sac_Type_2(225);
-    const UnitType Powerup_Terran_Gas_Tank_Type_1(226);
-    const UnitType Powerup_Terran_Gas_Tank_Type_2(227);
-    const UnitType None(228);
-    const UnitType AllUnits(229);
-    const UnitType Men(230);
-    const UnitType Buildings(231);
-    const UnitType Factories(232);
-    const UnitType Unknown(233);
-
     void init()
     {
       unitTypeData[Terran_Marine].set("Terran Marine", Races::Terran, 0, Terran_Barracks, 1, None, None, TechTypes::None, TechTypes::Stim_Packs, TechTypes::None, TechTypes::None, TechTypes::None, UpgradeTypes::Terran_Infantry_Armor, 40, 0, 0, 0, 50, 0, 360, 2, 0, 1, 0, 50, 100, UnitSizeTypes::Small, 1, 1, 8, 9, 8, 10, 128, 224, WeaponTypes::Gauss_Rifle, 1, WeaponTypes::Gauss_Rifle, 1, 4, 1, 1, 40, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
