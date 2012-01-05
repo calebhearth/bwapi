@@ -66,41 +66,41 @@
     * BroodwarBotQ (Protoss)
     * Skynet (Protoss)
 
-== 2v2 (Dropped) ==
-  === Map Pool ===
-    * [http://www.teamliquid.net/tlpd/korean/maps/404_Circuit_Breaker Circuit Breaker]
-    * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
-    * [http://www.teamliquid.net/tlpd/korean/maps/237_Fighting_Spirit Fighting Spirit]
-    * [http://www.teamliquid.net/tlpd/korean/maps/42_Nostalgia Nostalgia]
-    * [http://www.teamliquid.net/tlpd/korean/maps/157_Zodiac Zodiac]
-  === Participants (Predetermined Pairs) ===
-  === Participants (Random Pairs) ===
+== ~~2v2~~ (Dropped) ==
+  === ~~Map Pool~~ ===
+    * ~~[http://www.teamliquid.net/tlpd/korean/maps/404_Circuit_Breaker Circuit Breaker]~~
+    * ~~[http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]~~
+    * ~~[http://www.teamliquid.net/tlpd/korean/maps/237_Fighting_Spirit Fighting Spirit]~~
+    * ~~[http://www.teamliquid.net/tlpd/korean/maps/42_Nostalgia Nostalgia]~~
+    * ~~[http://www.teamliquid.net/tlpd/korean/maps/157_Zodiac Zodiac]~~
+  === ~~Participants (Predetermined Pairs)~~ ===
+  === ~~Participants (Random Pairs)~~ ===
     * Cly (Zerg)
 
-== Free For All (Dropped) ==
-  === Map Pool ===
-    * (8) Big Game Hunters
-    * Make some suggestions!
-  === Participants ===
+== ~~Free For All~~ (Dropped) ==
+  === ~~Map Pool~~ ===
+    * ~~(8) Big Game Hunters~~
+    * ~~Make some suggestions!~~
+  === ~~Participants~~ ===
     * Cly (Zerg)
 
-== Adaptability Testing (Dropped) ==
-  === Map Pool ===
-    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]
-    * [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]
-    * (8) Primeval Isles
-    * Make some suggestions!
-  === Participants ===
+== ~~Adaptability Testing~~ (Dropped) ==
+  === ~~Map Pool~~ ===
+    * ~~[http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Fastest.scx Fastest Possible Map]~~
+    * ~~[http://bwapi.googlecode.com/svn/wiki/TournamentMaps/MaximumClutter.scx Maximum Clutter]~~
+    * ~~(8) Primeval Isles~~
+    * ~~Make some suggestions!~~
+  === ~~Participants~~ ===
     * Cly (Zerg)
 
-== Use Map Settings (Dropped) ==
-  === Super Wraith ===
-  ==== Description ====
-    Players control a single [UnitTypes#Hero_Tom_Kazansky Hero Wraith]. Initially, this wraith will repeatedly spawn a Scout that releases a barrage of missiles while the Wraith is being moved freely by the player. The Wraith must avoid touching enemy units or it will be destroyed. The objective is to survive until the time runs out, while getting as many kills as you can. Over time you will gain "level ups" such as increasing the Scouts' spawn, causing more missiles to appear.
-  ==== Download ====
+== ~~Use Map Settings~~ (Dropped) ==
+  === ~~Super Wraith~~ ===
+  ==== ~~Description~~ ====
+    ~~Players control a single [UnitTypes#Hero_Tom_Kazansky Hero Wraith]. Initially, this wraith will repeatedly spawn a Scout that releases a barrage of missiles while the Wraith is being moved freely by the player. The Wraith must avoid touching enemy units or it will be destroyed. The objective is to survive until the time runs out, while getting as many kills as you can. Over time you will gain "level ups" such as increasing the Scouts' spawn, causing more missiles to appear.~~
+  ==== ~~Download~~ ====
     [http://bwapi.googlecode.com/svn/wiki/TournamentMaps/Super_Wraith.scx Download]
 
-  ==== Participants ====
+  ==== ~~Participants~~ ====
     * Cly (Zerg)
 
   === Suggest Some More ===
