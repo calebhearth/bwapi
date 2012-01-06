@@ -57,14 +57,14 @@
     * [http://www.teamliquid.net/tlpd/korean/maps/199_Heartbreak_Ridge Heartbreak Ridge]
     * [http://www.teamliquid.net/tlpd/korean/maps/147_Python Python]
   === Participants ===
-    * Aiur (Protoss)
-    * krasi0 (Terran)
+    * Aiur (Protoss) [Received]
+    * krasi0 (Terran) [Received]
     * Cly (Zerg)
     * Daggoth (Zerg)
     * BTHAI (Terran & Protoss)
-    * Dreadbot (Protoss)
+    * Dreadbot (Protoss) [Received]
     * BroodwarBotQ (Protoss)
-    * Skynet (Protoss)
+    * Skynet (Protoss) [Received]
 
 == ~~2v2~~ (Dropped) ==
   === ~~Map Pool~~ ===
