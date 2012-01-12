@@ -5,21 +5,12 @@
 //#include <BWAPI/Game.h>
 
 #ifndef _MAKE_POSITION_TEMPLATE
-#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) class _n : public BWAPI::Point<_t,_s>               \
-                                          { public:                                           \
-                                            _n();                                             \
-                                            template<typename _nt, int __ns> _n(const BWAPI::Point<_nt,__ns> &pt) : BWAPI::Point<_t,_s>(pt) {};   \
-                                            _n(_t x, _t y);                                   \
-                                          };                                                  \
+#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;                     \
                                           namespace _n ## s                                   \
                                           { const _n Invalid(32000/_s,32000/_s);              \
                                             const _n None(32000/_s,32032/_s);                 \
                                             const _n Unknown(32000/_s,32064/_s);              \
                                           }
-
-#define _DEFINE_POSITION_TEMPLATE(_n,_t,_s) _n::_n() : Point<_t,_s>(0,0) { };                     \
-                                            _n::_n(_t x, _t y) : Point<_t,_s>(x,y) { };
-
 
 #define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const                      \
                             { return Point(this->x() op pos.x(), this->y() op pos.y()); };  \

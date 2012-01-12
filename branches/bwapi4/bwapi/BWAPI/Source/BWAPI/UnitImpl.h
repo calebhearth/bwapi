@@ -20,7 +20,6 @@
     return BroodwarImpl.setLastError(Errors::Unit_Not_Owned);\
 }
 
-namespace BW    { class Position; };
 namespace BW    { class Unit; };
 namespace BWAPI { class UnitPrototype;  };
 namespace BWAPI { class AbilityPrototype;  };
