@@ -338,12 +338,6 @@ namespace BWAPI
     else
       setFrameSkip(999999); // IT'S OVER NINE THOUSAND!!11one11one111eleven21
   }
-  inline void swap(int& a0, int& a1)
-  {
-    int tmpx = a0;
-    a0 = a1;
-    a1 = tmpx;
-  }
   // Fixed precision conversions
   // Uses * and / for compatibility with negative numbers
   #define fixed2Int( x ) ( ((x) + (1 << 15)) / (1 << 16) )
@@ -394,9 +388,9 @@ namespace BWAPI
           y3 = data->shapes[i].extra2;
           if(isSolid)
           {
-            if(y1 > y2) { swap(x1, x2); swap(y1, y2); }
-            if(y1 > y3) { swap(x1, x3); swap(y1, y3); }
-            if(y2 > y3) { swap(x2, x3); swap(y2, y3); }
+            if(y1 > y2) { std::swap(x1, x2); std::swap(y1, y2); }
+            if(y1 > y3) { std::swap(x1, x3); std::swap(y1, y3); }
+            if(y2 > y3) { std::swap(x2, x3); std::swap(y2, y3); }
 
             if (y2 - y1 > 0) dx1 = int2Fixed(x2 - x1) / (y2 - y1); else dx1 = int2Fixed(x2 - x1);
             if (y3 - y1 > 0) dx2 = int2Fixed(x3 - x1) / (y3 - y1); else dx2 = 0;

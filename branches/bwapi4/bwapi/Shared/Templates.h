@@ -1,6 +1,7 @@
 #pragma once
 #include <BWAPI.h>
 #include <Util/Foreach.h>
+#include <iterator>
 namespace BWAPI
 {
   namespace Templates
@@ -47,7 +48,7 @@ namespace BWAPI
     void swapIfLarger(_T &smaller, _T &larger)
     {
       if ( smaller > larger )
-        std::swap<_T>(smaller, larger);
+        std::swap(smaller, larger);
     }
     //-------------------------------------------- UNIT FINDER -----------------------------------------------
     template <class finder>
@@ -64,10 +65,10 @@ namespace BWAPI
     {
       // Clear the set
       finderSet.clear();
-
+      
       Templates::swapIfLarger<int>(left, right);
       Templates::swapIfLarger<int>(top, bottom);
-
+      
       // Declare some variables
       int r = right, b = bottom;
       bool isWidthExtended  = right - left + 1 < UnitTypes::maxUnitWidth();
@@ -84,7 +85,7 @@ namespace BWAPI
       int iTop    = Templates::getUnitFinderIndex<finder>(finder_y, top);
       int iRight  = Templates::getUnitFinderIndex<finder>(finder_x, r + 1, iLeft);
       int iBottom = Templates::getUnitFinderIndex<finder>(finder_y, b + 1, iTop);
-
+      
       // Iterate the X entries of the finder
       for ( int x = iLeft; x < iRight; ++x )
       {

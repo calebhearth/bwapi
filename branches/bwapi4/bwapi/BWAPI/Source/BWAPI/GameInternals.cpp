@@ -71,6 +71,9 @@ namespace BWAPI
       , botAPMCounter_noselects(0)
       , textSize(1)
       , externalModuleConnected(false)
+      , isHost(false)
+      , actStartedGame(false)
+      , actRaceSel(false)
   {
     MemZero(savedUnitSelection);
     MemZero(flags);

@@ -2,6 +2,7 @@
 
 #include <set>
 #include <vector>
+#include <iterator>
 
 using namespace BWAPI;
 

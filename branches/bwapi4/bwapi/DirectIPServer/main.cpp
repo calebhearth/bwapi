@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <list>
+#include <iterator>
 
 std::list<GameStruc> serverMsg;
 std::list<GameStruc> gamelist;

@@ -3,6 +3,7 @@
 #include "../../svnrev.h"
 #include "GameImpl.h"
 
+#include <iterator>
 #include <stdio.h>
 #include <windows.h>
 #include <string>
@@ -90,7 +91,7 @@ namespace BWAPI
   //---------------------------------------------- GET LATENCY -----------------------------------------------
   int GameImpl::getLatency()
   {
-    /* Returns the real latency values */
+    // Returns the real latency values
     if (_isSinglePlayer())
       return BWAPI::Latency::SinglePlayer;
 
@@ -197,7 +198,7 @@ namespace BWAPI
   {
     if ( !data->hasGUI ) return;
     rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
-    /* Sets the screen's position relative to the map */
+    // Sets the screen's position relative to the map
     if (x < 0)
       x = 0;
     if (y < 0)
@@ -250,9 +251,9 @@ namespace BWAPI
   //----------------------------------------------- ENABLE FLAG ----------------------------------------------
   void  GameImpl::enableFlag(int flag)
   {
-    /* Enable the specified flag */
+    // Enable the specified flag
 
-    /* Error checking */
+    // Error checking 
     this->setLastError(Errors::None);
     if ( this->frameCount > 0 )
     {
@@ -271,7 +272,7 @@ namespace BWAPI
     if ( !this->tournamentCheck(Tournament::EnableFlag, &flag) )
       return;
 
-    /* Modify flag state */
+    // Modify flag state 
     this->flags[flag] = true;
     if ( !this->hTournamentModule )
     {
@@ -289,7 +290,7 @@ namespace BWAPI
   //--------------------------------------------- GET UNITS ON TILE ------------------------------------------
   std::set<Unit*>& GameImpl::getUnitsOnTile(int x, int y)
   {
-    /* Retrieves a set of units that are on the specified tile */
+    // Retrieves a set of units that are on the specified tile 
     if (x < 0 || y < 0 || x >= this->mapWidth() || y >= this->mapHeight())
       return this->emptySet;
     
@@ -604,7 +605,7 @@ namespace BWAPI
   //----------------------------------------------- START GAME -----------------------------------------------
   void GameImpl::startGame()
   {
-    /* Starts the game as a lobby host */
+    // Starts the game as a lobby host 
     this->setLastError(Errors::None);
     if ( !this->tournamentCheck(Tournament::StartGame) )
       return;
@@ -613,7 +614,7 @@ namespace BWAPI
   //----------------------------------------------- PAUSE GAME -----------------------------------------------
   void GameImpl::pauseGame()
   {
-    /* Pauses the game */
+    // Pauses the game 
     this->setLastError(Errors::None);
     if ( !this->tournamentCheck(Tournament::PauseGame) )
       return;
@@ -622,7 +623,7 @@ namespace BWAPI
   //---------------------------------------------- RESUME GAME -----------------------------------------------
   void GameImpl::resumeGame()
   {
-    /* Resumes the game */
+    // Resumes the game 
     this->setLastError(Errors::None);
     if ( !this->tournamentCheck(Tournament::ResumeGame) )
       return;
@@ -631,7 +632,7 @@ namespace BWAPI
   //---------------------------------------------- LEAVE GAME ------------------------------------------------
   void GameImpl::leaveGame()
   {
-    /* Leaves the current game. Moves directly to the post-game score screen */
+    // Leaves the current game. Moves directly to the post-game score screen 
     this->setLastError(Errors::None);
     if ( !this->tournamentCheck(Tournament::LeaveGame) )
       return;
@@ -641,8 +642,8 @@ namespace BWAPI
   //--------------------------------------------- RESTART GAME -----------------------------------------------
   void GameImpl::restartGame()
   {
-    /* Restarts the current match 
-       Does not work on Battle.net */
+    // Restarts the current match 
+    // Does not work on Battle.net
     if ( this->isMultiplayer() )
     {
       this->setLastError(Errors::Invalid_Parameter);
@@ -657,7 +658,7 @@ namespace BWAPI
   //--------------------------------------------- SET ALLIANCE -----------------------------------------------
   bool GameImpl::setAlliance(BWAPI::Player *player, bool allied, bool alliedVictory)
   {
-    /* Set the current player's alliance status */
+    // Set the current player's alliance status 
     if ( !BWAPIPlayer || isReplay() || !player || player == BWAPIPlayer )
       return this->setLastError(Errors::Invalid_Parameter);
 
@@ -676,7 +677,7 @@ namespace BWAPI
   //----------------------------------------------- SET VISION -----------------------------------------------
   bool GameImpl::setVision(BWAPI::Player *player, bool enabled)
   {
-    /* Set the current player's vision status */
+    // Set the current player's vision status 
     if ( !BWAPIPlayer || isReplay() || !player || player == BWAPIPlayer )
       return this->setLastError(Errors::Invalid_Parameter);
 
@@ -691,12 +692,12 @@ namespace BWAPI
   //--------------------------------------------------- GAME SPEED -------------------------------------------
   void  GameImpl::setLocalSpeed(int speed)
   {
-    /* Sets the frame rate of the client */
+    // Sets the frame rate of the client 
     if ( !this->tournamentCheck(Tournament::SetLocalSpeed, &speed) )
       return;
     if (speed < 0)
     {
-      /* Reset the speed if it is negative */
+      // Reset the speed if it is negative 
       for ( int i = 0; i < 7; ++i )
       {
         BW::BWDATA_GameSpeedModifiers[i]    = BW::OriginalSpeedModifiers[i];
@@ -705,7 +706,7 @@ namespace BWAPI
     }
     else
     {
-      /* Set all speeds if it is positive */
+      // Set all speeds if it is positive */
       for ( int i = 0; i < 7; ++i )
       {
         BW::BWDATA_GameSpeedModifiers[i]    = speed;
@@ -765,7 +766,7 @@ namespace BWAPI
     // Return if no units to command
     if ( groupsOf12.empty() )
       return false;
-
+    
     // Iterate our groups of 12
     for ( std::vector< std::vector<UnitImpl*> >::iterator i = groupsOf12.begin(), 
           iend = groupsOf12.end(); 
@@ -816,42 +817,42 @@ namespace BWAPI
   //----------------------------------------------------- SELF -----------------------------------------------
   Player*  GameImpl::self()
   {
-    /* Retrieves the object for the current player */
+    // Retrieves the object for the current player 
     this->setLastError(Errors::None);
     return (Player*)this->BWAPIPlayer;
   }
   //----------------------------------------------------- ENEMY ----------------------------------------------
   Player *GameImpl::enemy()
   {
-    /* Retrieves the object for the first opponent player */
+    // Retrieves the object for the first opponent player 
     this->setLastError(Errors::None);
     return (Player*)this->enemyPlayer;
   }
   //----------------------------------------------------- NEUTRAL --------------------------------------------
   Player *GameImpl::neutral()
   {
-    /* Retrieves the object for the neutral player */
+    // Retrieves the object for the neutral player 
     this->setLastError(Errors::None);
     return (Player*)players[11];
   }
   //----------------------------------------------------- ALLIES ---------------------------------------------
   std::set<Player*>& GameImpl::allies()
   {
-    /* Returns a set of all the ally players that have not left or been defeated. Does not include self. */
+    // Returns a set of all the ally players that have not left or been defeated. Does not include self. 
     this->setLastError(Errors::None);
     return _allies;
   }
   //----------------------------------------------------- ENEMIES --------------------------------------------
   std::set<Player*>& GameImpl::enemies()
   {
-    /* Returns a set of all the enemy players that have not left or been defeated. */
+    // Returns a set of all the enemy players that have not left or been defeated. */
     this->setLastError(Errors::None);
     return _enemies;
   }
   //---------------------------------------------------- OBSERVERS -------------------------------------------
   std::set<Player*>& GameImpl::observers()
   {
-    /* Returns a set of all the enemy players that have not left or been defeated. */
+    // Returns a set of all the enemy players that have not left or been defeated. 
     this->setLastError(Errors::None);
     return _observers;
   }

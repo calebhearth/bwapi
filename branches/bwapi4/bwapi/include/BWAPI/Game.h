@@ -4,6 +4,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <iterator>
 
 #include <BWAPI/Color.h>
 #include <BWAPI/CoordinateType.h>

@@ -2,6 +2,7 @@
 #include <BWAPI.h>
 #include <windows.h>
 #include <algorithm>
+#include <iterator>
 
 #include "Wiki.h"
 

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <iterator>
 #include <time.h>
 
 #include <Dbghelp.h>
@@ -222,7 +223,7 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
       DWORD dwSize = 0;
       for (;;)
       {
-        int iResult = fscanf(hBWSymbols, "%512s %x %x", szSymbolName, &dwAddress, &dwSize);
+        int iResult = fscanf(hBWSymbols, "%512s %8x %8x", szSymbolName, &dwAddress, &dwSize);
         if ( iResult == EOF || iResult == 0 )
           break;
         _customSymbolStore sym = { szSymbolName, dwAddress, dwAddress + dwSize };
