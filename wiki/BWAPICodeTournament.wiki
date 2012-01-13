@@ -1,3 +1,5 @@
+*Note: This tournament has been completed. Because there were very few submissions, the actual "tournament" was dropped, although some games still took place. It was not for nothing though, since we have come up with some new ideas and features (you will probably like) which will be mentioned soon. We have also fixed a bug in the latest revision that caused a crash.*
+
 <wiki:toc max_depth="2" />
 
 = Introduction =
