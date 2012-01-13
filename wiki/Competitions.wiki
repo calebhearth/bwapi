@@ -10,6 +10,10 @@ _Note: In most cases you do not need to be present at the tournament location, s
 ----
 = In Progress =
 
+ == _AIIDE 2012_ ==
+   * Details to be announced. *
+
+
  == _SSCAI Tournament 2012_ ==
  === Info ===
   * *Official Website:* http://bwapiproject.netii.net/
@@ -19,6 +23,9 @@ _Note: In most cases you do not need to be present at the tournament location, s
  === Dates ===
   * *Submission Deadline:* December, 2012
 
+----
+= Finished =
+
  == _BWAPI Winter Tournament 2012_ ==
  === Info ===
   * See the [http://code.google.com/p/bwapi/wiki/BWAPICodeTournament official page].
@@ -26,6 +33,7 @@ _Note: In most cases you do not need to be present at the tournament location, s
  === Dates ===
   * *Submission Deadline:* January 4th, 2012
   * *Tournament Date:* January 7th, 2012
+
 
  == _SSCAI Tournament 2011_ ==
  === Info ===
@@ -36,9 +44,6 @@ _Note: In most cases you do not need to be present at the tournament location, s
  === Dates ===
   * *Submission Deadline:* December 10th, 2011
 
-
-----
-= Finished =
 
  == _CIG 2011_ ==
  === Info ===
@@ -52,6 +57,7 @@ _Note: In most cases you do not need to be present at the tournament location, s
  === Dates ===
   * *Submission Deadline:* August 15th, 2011
   * *Conference:* August 31st to September 3rd, 2011
+
 
  == _AIIDE 2011_ ==
  === Info ===
@@ -70,6 +76,7 @@ _Note: In most cases you do not need to be present at the tournament location, s
   * *Testing:* August 8th to August 14th, 2011
   * *Competition:* August 15th to August 19th, 2011
   * *Prize Ceremony & Exhibition:* October 2011
+
 
  == _All-Open ICCUP Bot Tournament (July 2011)_ ==
  === Info ===
