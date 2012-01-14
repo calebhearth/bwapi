@@ -88,7 +88,7 @@ namespace BWAPI
       if ( isUnitAlive(u) )
       {
         u->isAlive = true;
-        aliveUnits.push_back(u);
+        aliveUnits.insert(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -98,7 +98,7 @@ namespace BWAPI
       if ( isUnitAlive(u, true) )
       {
         u->isAlive = true;
-        aliveUnits.push_back(u);
+        aliveUnits.insert(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -108,7 +108,7 @@ namespace BWAPI
       if ( isUnitAlive(u) )
       {
         u->isAlive = true;
-        aliveUnits.push_back(u);
+        aliveUnits.insert(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -143,7 +143,7 @@ namespace BWAPI
         }
         if ( !u->wasAccessible )
         {
-          discoverUnits.push_back(u);
+          discoverUnits.insert(u);
           events.push_back(Event::UnitDiscover(u));
         }
         if ( u->isVisible() )
@@ -158,7 +158,7 @@ namespace BWAPI
             events.push_back(Event::UnitHide(u));
           u->wasVisible = false;
         }
-        accessibleUnits.push_back(u);
+        accessibleUnits.insert(u);
       }
       else
       {
@@ -169,7 +169,7 @@ namespace BWAPI
             u->wasVisible = false;
             events.push_back(Event::UnitHide(u));
           }
-          evadeUnits.push_back(u);
+          evadeUnits.insert(u);
           events.push_back(Event::UnitEvade(u));
         }
       }
@@ -183,7 +183,7 @@ namespace BWAPI
           u->wasVisible = false;
           events.push_back(Event::UnitHide(u));
         }
-        evadeUnits.push_back(u);
+        evadeUnits.insert(u);
         events.push_back(Event::UnitEvade(u));
         events.push_back(Event::UnitDestroy(u));
       }
@@ -275,12 +275,12 @@ namespace BWAPI
       if ( i->getHatchery() )
       {
         UnitImpl* hatchery = (UnitImpl*)i->getHatchery();
-        hatchery->connectedUnits.push_back((Unit*)i);
+        hatchery->connectedUnits.insert((Unit*)i);
         if (hatchery->connectedUnits.size() >= 3)
           hatchery->self->remainingTrainTime = 0;
       }
       if ( i->getCarrier() )
-        ((UnitImpl*)i->getCarrier())->connectedUnits.push_back(i);
+        ((UnitImpl*)i->getCarrier())->connectedUnits.insert(i);
 
     }
   }
@@ -345,8 +345,15 @@ namespace BWAPI
     // Clear the units on tile data
     SIZE mapSize = { Map::getWidth(), Map::getHeight() };
     for ( unsigned int x = 0; x < (unsigned int)mapSize.cx; ++x )
-      for ( unsigned int y = 0; y < (unsigned int)mapSize.cy; ++y )
-        unitsOnTileData[x][y].clear();
+    {
+      for ( unsigned int y = 0; y < (unsigned int)mapSize.cy; y += 4 )
+      {
+        unitsOnTileData[x][y+0].clear();
+        unitsOnTileData[x][y+1].clear();
+        unitsOnTileData[x][y+2].clear();
+        unitsOnTileData[x][y+3].clear();
+      }
+    }
 
     foreach(UnitImpl* i, accessibleUnits)
     {

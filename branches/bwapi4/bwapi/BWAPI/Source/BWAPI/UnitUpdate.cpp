@@ -40,18 +40,18 @@ namespace BWAPI
       _getPlayer = (Player*)BroodwarImpl._getPlayer(getOriginalRawData->playerID); //_getPlayer
       //------------------------------------------------------------------------------------------------------
       //isVisible
-      for(int i = 0; i < 9; ++i)
+      for ( int i = 0; i < 9; ++i )
       {
-        if (i == selfPlayerID)
+        if ( i == selfPlayerID )
           continue;
         PlayerImpl* player = (PlayerImpl*)Broodwar->getPlayer(i);
         if ( !o->sprite || !player )
           self->isVisible[i] = false;
         else if (!BroodwarImpl._isReplay() && !BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation))
           self->isVisible[i] = false;
-        else if (_getPlayer == (Player*)player)
+        else if ( _getPlayer == (Player*)player )
           self->isVisible[i] = true;
-        else if (player->isNeutral())
+        else if ( player->isNeutral() )
           self->isVisible[i] = o->sprite->visibilityFlags > 0;
         else
           self->isVisible[i] = (o->sprite->visibilityFlags & (1 << player->getIndex())) != 0;
@@ -90,8 +90,14 @@ namespace BWAPI
       else
       {
         self->isDetected = false;
-        for(int i = 0; i < 9; ++i)
-          if (self->isVisible[i]) self->isDetected = true;
+        for(unsigned int i = 0; i < 9; ++i)
+        {
+          if (self->isVisible[i])
+          {
+            self->isDetected = true;
+            break;
+          }
+        }
       }
       //------------------------------------------------------------------------------------------------------
       //_getType
@@ -103,7 +109,7 @@ namespace BWAPI
         _getType = UnitTypes::Resource_Mineral_Field;
 
       getBuildQueueSlot = o->buildQueueSlot; //getBuildQueueSlot
-      for ( int i = 0; i < 5; ++i )
+      for ( unsigned int i = 0; i < 5; ++i )
         getBuildQueue[i] = BWAPI::UnitType(o->buildQueue[i]);  //getBuildQueue
 
       if (_getType.isBuilding())
@@ -151,8 +157,7 @@ namespace BWAPI
     {
       //------------------------------------------------------------------------------------------------------
       //isVisible
-      for(int i = 0; i < 9; ++i)
-        self->isVisible[i] = false;
+      MemZero(self->isVisible);
 
       _getPlayer          = NULL;               //_getPlayer
       _getType            = UnitTypes::Unknown; //_getType
@@ -161,7 +166,7 @@ namespace BWAPI
       _getHitPoints       = 0;                  //_getHitPoints
       _getResources       = 0;                  //_getResources
       getBuildQueueSlot   = 0;                  //getBuildQueueSlot
-      for ( int i = 0; i < 5; ++i )
+      for ( unsigned int i = 0; i < 5; ++i )
         getBuildQueue[i]  = UnitTypes::None;               //getBuildQueue
       hasEmptyBuildQueue  = true;               //hasEmptyBuildQueue
       _isCompleted        = false;              //_isCompleted

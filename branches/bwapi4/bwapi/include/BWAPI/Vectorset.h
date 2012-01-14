@@ -24,11 +24,11 @@ namespace BWAPI
     iterator(_T *ptr) : __val(ptr) {};
     bool operator ==(const iterator<_T> &other) const
     {
-      return *this->__val == *other;
+      return this->__val == &other;
     };
     bool operator !=(const iterator<_T> &other) const
     {
-      return *this->__val != *other;
+      return this->__val != &other;
     };
     bool operator ==(const _T &element) const
     {
@@ -147,8 +147,30 @@ namespace BWAPI
     {
       free(this->__valArray);
     };
+    ///////////////////////////////////////////////////////////// custom functions (modify)
+    void erase_once(const _T &val)
+    {
+      // declare iterators
+      _T *i = this->__valArray, *iend = this->__last;
 
-    ///////////////////////////////////////////////////////////// some functions
+      // iterate everything
+      while ( i != iend )
+      {
+        if ( val == *i )  // if values are equal
+          break;  
+        ++i; // iterate to next one if it is not found
+      }
+      
+      if ( i == iend )  // ignore if not found
+        return;
+
+      // replace existing entry and assign the new last position
+      --iend;
+      *i = *iend;
+      this->__last = iend;
+    }
+
+    ///////////////////////////////////////////////////////////// custom functions (const)
     bool exists(const _T &element) const
     {
       _T *i = this->__valArray, *iend = this->__last;
@@ -159,6 +181,20 @@ namespace BWAPI
         ++i;
       }
       return false;
+    };
+    size_t max_size_hint() const
+    {
+      return this->__maxSizeHint;
+    };
+    size_t max_size() const
+    {
+      return this->__totSize;
+    };
+
+    ///////////////////////////////////////////////////////////// stl spinoffs (modify)
+    void clear()
+    {
+      this->__last = this->__valArray;
     };
     void erase(const _T &val)
     {
@@ -192,11 +228,28 @@ namespace BWAPI
         *i = i[1];
       --this->__last;
     }
-    ///////////////////////////////////////////////////////////// stl spinoffs
-    void clear()
+
+    // element insertion
+    void insert(const _T &val)
     {
-      this->__last = this->__valArray;
+      if ( !this->exists(val) )
+        this->push_back(val);
     };
+    void insert(const iterator &val)
+    {
+      this->insert(*val);
+    };
+    void push_back(const _T val)
+    {
+      if ( this->__last == this->__end )
+        this->expand();
+      *__last++ = val;
+    };
+    void push_back(const iterator &val)
+    {
+      this->push_back(*val);
+    };
+    ///////////////////////////////////////////////////////////// stl spinoffs (const)
     size_t size() const
     {
       return ((size_t)this->__last - (size_t)this->__valArray)/sizeof(_T);
@@ -204,14 +257,6 @@ namespace BWAPI
     bool empty() const
     {
       return this->__last == this->__valArray;
-    };
-    size_t max_size_hint() const
-    {
-      return this->__maxSizeHint;
-    };
-    size_t max_size() const
-    {
-      return this->__totSize;
     };
 
     // iterators
@@ -243,33 +288,13 @@ namespace BWAPI
       return iend;
     };
 
-    // element insertion
-    void insert(const _T &val)
-    {
-      if ( !this->exists(val) )
-        this->push_back(val);
-    };
-    void insert(const iterator &val)
-    {
-      this->insert(*val);
-    };
-    void push_back(const _T val)
-    {
-      if ( this->__last == this->__end )
-        this->expand();
-      *__last++ = val;
-    };
-    void push_back(const iterator &val)
-    {
-      this->push_back(*val);
-    };
   private: /////////////////////////////////////////////// private
     // expand container when full
     void expand()
     {
       // localize the variables
       size_t size = this->__totSize;
-      size_t oldsize = size;
+      size_t oldsize = this->size();
 
       // double the size, but don't exceed the maxSizeHint unless it is equal or already over
       if ( size == this->__maxSizeHint || size * 2 < this->__maxSizeHint )
