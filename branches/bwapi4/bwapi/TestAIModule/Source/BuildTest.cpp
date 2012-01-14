@@ -98,8 +98,8 @@ void BuildTest::update()
   nextFrame++;
   if (unitType==UnitTypes::Zerg_Extractor && builder->exists()==false)
   {
-    std::set<Unit*> buildingsOnTile;
-    std::set<Unit*> unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
+    Unitset buildingsOnTile;
+    Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
     for each(Unit* u in unitsOnTile)
     {
       if (u->getType()==unitType)
@@ -183,8 +183,8 @@ void BuildTest::update()
     building = builder->getAddon();
   }
 
-  std::set<Unit*> buildingsOnTile;
-  std::set<Unit*> unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
+  Unitset buildingsOnTile;
+  Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
   for each(Unit* u in unitsOnTile)
   {
     if (u->getType()==unitType)

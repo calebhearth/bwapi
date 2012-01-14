@@ -104,7 +104,7 @@ namespace BWAPI
       virtual Position getTargetPosition() const;
       virtual Order    getOrder() const;
       virtual Unit*    getOrderTarget() const;
-	  virtual Position getOrderTargetPosition() const;
+      virtual Position getOrderTargetPosition() const;
       virtual Order    getSecondaryOrder() const;
       virtual Position getRallyPosition() const;
       virtual Unit*    getRallyUnit() const;
@@ -112,14 +112,15 @@ namespace BWAPI
       virtual Unit*    getNydusExit() const;
       virtual Unit*    getPowerUp() const;
 
-      virtual Unit*           getTransport() const;
-      virtual std::set<Unit*> getLoadedUnits() const;
-      virtual Unit*           getCarrier() const;
-      virtual std::set<Unit*> getInterceptors() const;
-      virtual Unit*           getHatchery() const;
-      virtual std::set<Unit*> getLarva() const;
-      virtual std::set<Unit*>& getUnitsInRadius(int radius) const;
-      virtual std::set<Unit*>& getUnitsInWeaponRange(WeaponType weapon) const;
+      virtual Unit*    getTransport() const;
+      virtual Unitset  getLoadedUnits() const;
+      virtual Unit*    getCarrier() const;
+      virtual Unitset  getInterceptors() const;
+      virtual Unit*    getHatchery() const;
+      virtual Unitset  getLarva() const;
+      virtual Unitset& getUnitsInRadius(int radius) const;
+      virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const;
+
       virtual void *getClientInfo() const;
       virtual void setClientInfo(void* clientinfo);
 
@@ -286,8 +287,8 @@ namespace BWAPI
       bool wasAccessible;
       bool wasVisible;
 
-      std::set<Unit*> connectedUnits;
-      std::set<Unit*> loadedUnits;
+      Unitset connectedUnits;
+      Unitset loadedUnits;
 
       int lastCommandFrame;
       UnitCommand lastCommand;

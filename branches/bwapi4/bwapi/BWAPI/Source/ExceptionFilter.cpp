@@ -12,6 +12,7 @@
 
 #include "Config.h"
 #include "NewHackUtil.h"
+#include "Resolution.h"
 
 BOOL  (WINAPI *_SymInitialize)(HANDLE hProcess,PCSTR UserSearchPath,BOOL fInvadeProcess);
 DWORD (WINAPI *_SymSetOptions)(DWORD SymOptions);
@@ -88,6 +89,7 @@ void GetCurrentProductVersion(WORD &w1, WORD &w2, WORD &w3, WORD &w4)
 // The primary exception filter
 LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 {
+  DDrawDestroy();
   ShowCursor(TRUE);
 
   SYSTEMTIME st;

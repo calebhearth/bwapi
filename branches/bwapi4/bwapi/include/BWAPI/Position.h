@@ -2,8 +2,6 @@
 #include <math.h>
 #include <algorithm>
 
-//#include <BWAPI/Game.h>
-
 #ifndef _MAKE_POSITION_TEMPLATE
 #define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;                     \
                                           namespace _n ## s                                   \
@@ -98,22 +96,29 @@ namespace BWAPI
     _OPERATOR_OP_VAL_CHK(/)
     _OPERATOR_OP_VAL_CHK(%)
 
+    // @TODO WORKAROUND
     // Functions
     bool isValid() const
     {
       if ( this->x() < 0 || this->y() < 0 )
         return false;
       //if ( !Broodwar )
-        return true;
+      /*  return this->x() < (256 * 32)/__Scale &&
+               this->y() < (256 * 32)/__Scale;*/
+      return true;
       //return this->x() < (Broodwar->mapWidth()  * 32)/__Scale && 
         //     this->y() < (Broodwar->mapHeight() * 32)/__Scale;
     };
-    
+    // @TODO WORKAROUND
     Point &makeValid()
     {
       if ( this->_x < 0 ) this->_x = 0;
       if ( this->_y < 0 ) this->_y = 0;
-
+      /*
+      _T max = (256*32)/__Scale - 1;
+      if ( this->_x > max ) this->_x = max;
+      if ( this->_y > max ) this->_y = max;
+      */
       /*if ( !Broodwar ) return *this;
 
       _T max = (Broodwar->mapWidth() * 32)/__Scale - 1;
@@ -133,12 +138,6 @@ namespace BWAPI
       double x = (double)this->x();
       double y = (double)this->y();
       return sqrt(x * x + y * y);
-    };
-    bool hasPath(const Point &destination) const
-    {
-      //if ( !Broodwar )
-        return this->isValid() && destination.isValid();
-      //return Broodwar->hasPath(Position((int)this->x(),(int)this->y()), Position((int)destination.x(),(int)destination.y()));
     };
 
     int getApproxDistance(const Point &position) const

@@ -1,5 +1,8 @@
 #include "TransportTest.h"
 #include "BWAssert.h"
+
+#include <BWAPI/Unitset.h>
+
 using namespace std;
 using namespace BWAPI;
 TransportTest::TransportTest(BWAPI::UnitType unitType) : transportType(unitType),
@@ -63,7 +66,7 @@ void TransportTest::start()
 bool TransportTest::verifyLoadedUnits()
 {
   BWAssertF(transport!=NULL,{fail=true;return false;});
-  std::set<Unit*> actualLoadedUnits = transport->getLoadedUnits();
+  Unitset actualLoadedUnits = transport->getLoadedUnits();
   BWAssertF(actualLoadedUnits.size()==loadedUnits.size(),{fail=true;return false;});
   for each(Unit* u in loadedUnits)
   {

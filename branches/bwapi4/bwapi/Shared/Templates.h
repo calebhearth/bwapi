@@ -2,6 +2,8 @@
 #include <BWAPI.h>
 #include <Util/Foreach.h>
 #include <iterator>
+
+#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
   namespace Templates
@@ -20,7 +22,7 @@ namespace BWAPI
       { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 }
     };
     template < class UnitImpl >
-    bool hasPower(int x, int y, UnitType unitType, const std::set<UnitImpl*> &pylons)
+    bool hasPower(int x, int y, UnitType unitType, const Unitset &pylons)
     {
       if ( unitType >= 0 && unitType < UnitTypes::None && (!unitType.requiresPsi() || !unitType.isBuilding()) )
         return true;
@@ -61,7 +63,7 @@ namespace BWAPI
     }
     
     template <class finder>
-    void manageUnitFinder(finder *finder_x, finder *finder_y, DWORD *pdwFinderFlags, int left, int top, int right, int bottom, bool (__fastcall *callback)(Unit *uIterator), std::set<Unit*> &finderSet)
+    void manageUnitFinder(finder *finder_x, finder *finder_y, DWORD *pdwFinderFlags, int left, int top, int right, int bottom, bool (__fastcall *callback)(Unit *uIterator), Unitset &finderSet)
     {
       // Clear the set
       finderSet.clear();
@@ -124,7 +126,7 @@ namespace BWAPI
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
           if ( u && u->exists() && callback(u) )
-            finderSet.insert(u);
+            finderSet.push_back(u);
         }
         // Reset finderFlags so it can be reused without incident
         pdwFinderFlags[iUnitIndex] = 0;
@@ -865,14 +867,14 @@ namespace BWAPI
         // check if there is space available
         int thisUnitFreeSpace = thisUnitSpaceProvided;
         int targetFreeSpace   = targetSpaceProvided;
-        std::set<Unit*> loadedUnits = thisUnit->getLoadedUnits();
+        Unitset loadedUnits = thisUnit->getLoadedUnits();
         foreach(Unit* u, loadedUnits)
         {
           int r = u->getType().spaceRequired();
           if (r > 0 && r < 8)
             thisUnitFreeSpace -= r;
         }
-        std::set<Unit*> targetLoadedUnits = c.target->getLoadedUnits();
+        Unitset targetLoadedUnits = c.target->getLoadedUnits();
         foreach(Unit* u, targetLoadedUnits)
         {
           int r = u->getType().spaceRequired();

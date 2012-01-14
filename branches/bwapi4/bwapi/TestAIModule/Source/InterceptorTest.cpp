@@ -47,7 +47,7 @@ void InterceptorTest::onFrame()
   {
     if (u->getType()==UnitTypes::Protoss_Carrier)
     {
-      std::set<Unit*> interceptors = u->getInterceptors();
+      Unitset interceptors = u->getInterceptors();
       for each(Unit* i in interceptors)
       {
         Unit* c=i->getCarrier();

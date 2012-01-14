@@ -2,7 +2,6 @@
 #include <set>
 #include <string>
 
-#include <BWAPI/TilePosition.h>
 #include <BWAPI/Race.h>
 #include <BWAPI/TechType.h>
 #include <BWAPI/UpgradeType.h>
@@ -10,6 +9,9 @@
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Client/PlayerData.h>
 #include <BWAPI/Color.h>
+#include <BWAPI/Position.h>
+
+#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
   class Unit;
@@ -31,7 +33,7 @@ namespace BWAPI
     /** Returns the set of units the player own. Note that units loaded into Terran dropships, Terran
      * bunkers, Terran refineries, Protoss assimilators, and Zerg extractors are not yet included in the
      * set. */
-    virtual const std::set<Unit*>& getUnits() const = 0;
+    virtual const Unitset& getUnits() const = 0;
 
     /** Returns the race of the player. */
     virtual Race getRace() const = 0;

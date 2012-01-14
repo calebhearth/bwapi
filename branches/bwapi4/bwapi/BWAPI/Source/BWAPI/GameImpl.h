@@ -17,6 +17,7 @@ namespace BWAPI { class  AIModule; }
 #include <BWAPI/Map.h>
 #include <BWAPI/Client/Shape.h>
 #include <BWAPI/Client/GameData.h>
+#include <BWAPI/Unitset.h>
 
 #include <BW/Dialog.h>
 #include <BW/OrderTypes.h>
@@ -33,14 +34,14 @@ namespace BWAPI
     public :
       virtual std::set< Force* >&  getForces();
       virtual std::set< Player* >& getPlayers();
-      virtual std::set< Unit* >&   getAllUnits();
-      virtual std::set< Unit* >&   getMinerals();
-      virtual std::set< Unit* >&   getGeysers();
-      virtual std::set< Unit* >&   getNeutralUnits();
+      virtual Unitset&   getAllUnits();
+      virtual Unitset&   getMinerals();
+      virtual Unitset&   getGeysers();
+      virtual Unitset&   getNeutralUnits();
  
-      virtual std::set< Unit* >&   getStaticMinerals();
-      virtual std::set< Unit* >&   getStaticGeysers();
-      virtual std::set< Unit* >&   getStaticNeutralUnits();
+      virtual Unitset&   getStaticMinerals();
+      virtual Unitset&   getStaticGeysers();
+      virtual Unitset&   getStaticNeutralUnits();
 
       virtual std::set< Bullet* >& getBullets();
       virtual std::set< Position >& getNukeDots();
@@ -76,10 +77,10 @@ namespace BWAPI
       virtual bool     isFlagEnabled(int flag);
       virtual void     enableFlag(int flag);
 
-      virtual std::set<Unit*>& getUnitsOnTile(int x, int y);
-      virtual std::set<Unit*>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-      virtual std::set<Unit*>& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
-      virtual std::set<Unit*>& getUnitsInRadius(BWAPI::Position center, int radius) const;
+      virtual Unitset& getUnitsOnTile(int x, int y);
+      virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
+      virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
+      virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
 
       virtual Error       getLastError() const;
       virtual bool        setLastError(BWAPI::Error e);
@@ -145,8 +146,8 @@ namespace BWAPI
       virtual void leaveGame();
       virtual void restartGame();
       virtual void setLocalSpeed(int speed = -1);
-      virtual bool issueCommand(const std::set<BWAPI::Unit*>& units, UnitCommand command);
-      virtual std::set<BWAPI::Unit*>& getSelectedUnits();
+      virtual bool issueCommand(const Unitset& units, UnitCommand command);
+      virtual const Unitset& getSelectedUnits();
       virtual Player *self();
       virtual Player *enemy();
       virtual Player *neutral();
@@ -288,7 +289,7 @@ namespace BWAPI
       int bulletCount;
       BW::dialog *myDlg;
       Server server;
-      std::vector<BWAPI::UnitImpl*> lastEvadedUnits;
+      Unitset lastEvadedUnits;
       bool onStartCalled;
       std::string lastMapGen;
       bool outOfGame;
@@ -331,31 +332,33 @@ namespace BWAPI
 
       PlayerImpl *players[PLAYER_COUNT];
 
-      std::set<BWAPI::UnitImpl*> aliveUnits; //units alive on current frame
-      std::set<BWAPI::UnitImpl*> dyingUnits; //units leaving aliveUnits set on current frame
+      Unitset aliveUnits; //units alive on current frame
+      Unitset dyingUnits; //units leaving aliveUnits set on current frame
 
-      std::vector<BWAPI::UnitImpl*> discoverUnits; //units entering accessibleUnits set on current frame
-      std::set<BWAPI::Unit*> accessibleUnits; //units that are accessible to the client on current frame
-      std::vector<BWAPI::UnitImpl*> evadeUnits; //units leaving accessibleUnits set on current frame
+      Unitset discoverUnits; //units entering accessibleUnits set on current frame
+      Unitset accessibleUnits; //units that are accessible to the client on current frame
+      Unitset evadeUnits; //units leaving accessibleUnits set on current frame
 
-      std::set<BWAPI::Unit*>  selectedUnitSet;
+      Unitset  selectedUnitSet;
       std::set<BWAPI::Unit*>  emptySet;
+      Unitset emptyUnitset;
+
       std::set<TilePosition>  startLocations;
 
       std::set<BWAPI::Force*>  forces;
       std::set<BWAPI::Player*> playerSet;
 
-      std::set<BWAPI::Unit*>   minerals;
-      std::set<BWAPI::Unit*>   geysers;
-      std::set<BWAPI::Unit*>   neutralUnits;
+      Unitset   minerals;
+      Unitset   geysers;
+      Unitset   neutralUnits;
       std::set<BWAPI::Bullet*> bullets;
       std::set<Position>       nukeDots;
-      std::set<BWAPI::UnitImpl*> pylons;
-      Util::RectangleArray<std::set<Unit*> > unitsOnTileData;
+      Unitset pylons;
+      Util::RectangleArray< Unitset > unitsOnTileData;
 
-      std::set<BWAPI::Unit*> staticMinerals;
-      std::set<BWAPI::Unit*> staticGeysers;
-      std::set<BWAPI::Unit*> staticNeutralUnits;
+      Unitset staticMinerals;
+      Unitset staticGeysers;
+      Unitset staticNeutralUnits;
 
       std::set<BWAPI::Region*> regionsList;
 

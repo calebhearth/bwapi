@@ -88,7 +88,7 @@ namespace BWAPI
       if ( isUnitAlive(u) )
       {
         u->isAlive = true;
-        aliveUnits.insert(u);
+        aliveUnits.push_back(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -98,7 +98,7 @@ namespace BWAPI
       if ( isUnitAlive(u, true) )
       {
         u->isAlive = true;
-        aliveUnits.insert(u);
+        aliveUnits.push_back(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -108,7 +108,7 @@ namespace BWAPI
       if ( isUnitAlive(u) )
       {
         u->isAlive = true;
-        aliveUnits.insert(u);
+        aliveUnits.push_back(u);
         dyingUnits.erase(u);
         u->updateInternalData();
       }
@@ -158,7 +158,7 @@ namespace BWAPI
             events.push_back(Event::UnitHide(u));
           u->wasVisible = false;
         }
-        accessibleUnits.insert(u);
+        accessibleUnits.push_back(u);
       }
       else
       {
@@ -270,17 +270,17 @@ namespace BWAPI
         j->self->buildType      = j->self->type;
       }
       if ( i->getTransport() )
-        ((UnitImpl*)i->getTransport())->loadedUnits.insert(i);
+        ((UnitImpl*)i->getTransport())->loadedUnits.push_back(i);
 
       if ( i->getHatchery() )
       {
         UnitImpl* hatchery = (UnitImpl*)i->getHatchery();
-        hatchery->connectedUnits.insert((Unit*)i);
+        hatchery->connectedUnits.push_back((Unit*)i);
         if (hatchery->connectedUnits.size() >= 3)
           hatchery->self->remainingTrainTime = 0;
       }
       if ( i->getCarrier() )
-        ((UnitImpl*)i->getCarrier())->connectedUnits.insert(i);
+        ((UnitImpl*)i->getCarrier())->connectedUnits.push_back(i);
 
     }
   }
@@ -358,7 +358,7 @@ namespace BWAPI
         SIZE typeTileSize = { i->getType().tileWidth(), i->getType().tileHeight() };
         for(int x = tx; x < tx + typeTileSize.cx && x < mapSize.cx; ++x)
           for(int y = ty; y < ty + typeTileSize.cy && y < mapSize.cy; ++y)
-            unitsOnTileData[x][y].insert(i);
+            unitsOnTileData[x][y].push_back(i);
       }
       else
       {
@@ -370,7 +370,7 @@ namespace BWAPI
         int endY   = (i->getBottom() + TILE_SIZE - 1) / TILE_SIZE;
         for (int x = startX; x < endX && x < mapSize.cx; ++x)
           for (int y = startY; y < endY && y < mapSize.cy; ++y)
-            unitsOnTileData[x][y].insert(i);
+            unitsOnTileData[x][y].push_back(i);
       }
       if (i->lastType != i->_getType && i->lastType != UnitTypes::Unknown && i->_getType != UnitTypes::Unknown)
       {
@@ -390,7 +390,7 @@ namespace BWAPI
       {
         events.push_back(Event::UnitRenegade(i));
         ((PlayerImpl*)i->lastPlayer)->units.erase(i);
-        ((PlayerImpl*)i->_getPlayer)->units.insert(i);
+        ((PlayerImpl*)i->_getPlayer)->units.push_back(i);
       }
       int allUnits  = UnitTypes::AllUnits;
       int men       = UnitTypes::Men;
@@ -446,11 +446,11 @@ namespace BWAPI
         if (i->_getPlayer->isNeutral())
         {
           i->saveInitialState();
-          this->staticNeutralUnits.insert(i);
+          this->staticNeutralUnits.push_back(i);
           if ( i->_getType.isMineralField() )
-            this->staticMinerals.insert(i);
+            this->staticMinerals.push_back(i);
           else if (i->_getType == UnitTypes::Resource_Vespene_Geyser)
-            this->staticGeysers.insert(i);
+            this->staticGeysers.push_back(i);
         }
       }
     }
@@ -458,7 +458,7 @@ namespace BWAPI
   //---------------------------------------------- UPDATE UNITS ----------------------------------------------
   void GameImpl::updateUnits()
   {
-    static std::set<Unit*> selectedU;
+    static Unitset selectedU;
 
     // Update all unit data
     computeUnitExistence();
@@ -476,7 +476,7 @@ namespace BWAPI
       if ( u )
       {
         if ( u->exists() )
-          selectedUnitSet.insert(u);
+          selectedUnitSet.push_back(u);
         else
         {
           u->setSelected(false);

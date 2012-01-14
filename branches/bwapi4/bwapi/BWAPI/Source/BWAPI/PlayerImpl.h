@@ -17,6 +17,8 @@ namespace BW { class Unit; };
 #include <string>
 #include <Util/Types.h>
 
+#include <BWAPI/Unitset.h>
+
 #include <BW/Offsets.h>
 #include <BW/Race.h>
 
@@ -47,7 +49,7 @@ namespace BWAPI
       virtual bool isDefeated() const;
       virtual bool leftGame() const;
 
-      virtual const std::set<Unit*>& getUnits() const;
+      virtual const Unitset& getUnits() const;
       virtual TilePosition  getStartLocation() const;
 
       virtual int  minerals() const;
@@ -126,7 +128,7 @@ namespace BWAPI
       PlayerData data;
       PlayerData* self;
       void onGameEnd();
-      std::set<Unit*> units;
+      Unitset units;
 
       s32 _repairedMinerals;
       s32 _repairedGas;

@@ -145,6 +145,16 @@ namespace BW
       targCount = (u8)finalCount;
       size      = 2 + targCount * 2;
     }
+    Select::Select(const BWAPI::Unitset &unitset)
+    {
+      unsigned int finalCount = 0;
+      for ( unsigned int i = 0; i < unitset.size() && i < 12; ++i )
+        if ( unitset[i] )
+          targets[finalCount++] = UnitTarget((BWAPI::UnitImpl*)unitset[i]);
+
+      targCount = (u8)finalCount;
+      size      = 2 + targCount * 2;
+    }
     //---------------------------------------- TRAIN UNIT CONSTRUCTOR ----------------------------------------
     TrainUnit::TrainUnit(int type)
         : always0x1f(0x1f)

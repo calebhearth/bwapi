@@ -8,7 +8,7 @@ namespace BWAPI
     return id;
   }
   //--------------------------------------------- GET UNITS --------------------------------------------------
-  const std::set<Unit*>& PlayerImpl::getUnits() const
+  const Unitset& PlayerImpl::getUnits() const
   {
     return units;
   }

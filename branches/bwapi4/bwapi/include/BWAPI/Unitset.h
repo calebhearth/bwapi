@@ -1,9 +1,10 @@
 #pragma once
 #include <BWAPI/Vectorset.h>
-#include <BWAPI/Unit.h>
+//#include <BWAPI/Unit.h>
 
 namespace BWAPI
 {
+  class Unit;
   class Unitset : public Vectorset<BWAPI::Unit*>
   {
   public:

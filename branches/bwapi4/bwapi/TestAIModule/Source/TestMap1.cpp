@@ -22,7 +22,7 @@ int assert_fail_count;
 #define findAndRemoveType(T,S,V)\
 {\
   bool found=false;\
-  for(std::set<T*>::iterator i=S.begin();i!=S.end();i++)\
+  for(auto i=S.begin();i!=S.end();++i)\
   {\
     if ((*i)->getType()==V)\
     {\
@@ -34,6 +34,7 @@ int assert_fail_count;
   if (!found)\
     BWAssert(false);\
 }
+
 
 void TestMap1::onStart()
 {
@@ -72,7 +73,7 @@ void TestMap1::onStart()
   BWAssert(neutral->isNeutral()==true);
 
   BWAssert(Broodwar->self()->getUnits().size()==24);
-  std::set<Unit*> units = Broodwar->self()->getUnits();
+  Unitset units = Broodwar->self()->getUnits();
   for each(Unit* unit in units)
   {
     BWAssert(unit->exists()==true);

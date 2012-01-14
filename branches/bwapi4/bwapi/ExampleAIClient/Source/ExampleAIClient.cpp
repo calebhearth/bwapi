@@ -83,12 +83,12 @@ int main(int argc, const char* argv[])
         Broodwar->enemy()->getRace().getName().c_str());
 
       //send each worker to the mineral field that is closest to it
-      for(std::set<Unit*>::const_iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
+      for(Unitset::iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
       {
         if ((*i)->getType().isWorker())
         {
           Unit* closestMineral=NULL;
-          for(std::set<Unit*>::iterator m=Broodwar->getMinerals().begin();m!=Broodwar->getMinerals().end();m++)
+          for(Unitset::iterator m=Broodwar->getMinerals().begin();m!=Broodwar->getMinerals().end();m++)
           {
             if (closestMineral==NULL || (*i)->getDistance(*m)<(*i)->getDistance(closestMineral))
               closestMineral=*m;
@@ -221,7 +221,7 @@ int main(int argc, const char* argv[])
       if (analyzed && Broodwar->getFrameCount()%30==0)
       {
         //order one of our workers to guard our chokepoint.
-        for(std::set<Unit*>::const_iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
+        for(Unitset::iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
         {
           if ((*i)->getType().isWorker())
           {
@@ -289,7 +289,7 @@ DWORD WINAPI AnalyzeThread()
 */
 void drawStats()
 {
-  std::set<Unit*> myUnits;
+  Unitset myUnits;
   if (Broodwar->isReplay())
     myUnits = Broodwar->getAllUnits();
   else
@@ -297,7 +297,7 @@ void drawStats()
 
   Broodwar->drawTextScreen(5,0,"I have %d units:",myUnits.size());
   std::map<UnitType, int> unitTypeCounts;
-  for(std::set<Unit*>::iterator i=myUnits.begin();i!=myUnits.end();i++)
+  for(Unitset::iterator i=myUnits.begin();i!=myUnits.end();i++)
   {
     if (unitTypeCounts.find((*i)->getType())==unitTypeCounts.end())
     {
@@ -365,14 +365,14 @@ void drawTerrainData()
     Broodwar->drawBox(CoordinateType::Map,p.x()*32,p.y()*32,p.x()*32+4*32,p.y()*32+3*32,Colors::Blue,false);
 
     //draw a circle at each mineral patch
-    for(std::set<BWAPI::Unit*>::const_iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();j++)
+    for(Unitset::iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();j++)
     {
       Position q=(*j)->getInitialPosition();
       Broodwar->drawCircle(CoordinateType::Map,q.x(),q.y(),30,Colors::Cyan,false);
     }
 
     //draw the outlines of vespene geysers
-    for(std::set<BWAPI::Unit*>::const_iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();j++)
+    for(Unitset::iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();j++)
     {
       TilePosition q=(*j)->getInitialTilePosition();
       Broodwar->drawBox(CoordinateType::Map,q.x()*32,q.y()*32,q.x()*32+4*32,q.y()*32+2*32,Colors::Orange,false);

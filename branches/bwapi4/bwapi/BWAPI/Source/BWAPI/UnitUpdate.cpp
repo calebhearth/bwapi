@@ -135,8 +135,7 @@ namespace BWAPI
 
       //------------------------------------------------------------------------------------------------------
       //_getPosition
-      if ( _getTransport )
-        _getPosition = _getTransport ? ((UnitImpl*)_getTransport)->getOriginalRawData->position : o->position;
+      _getPosition = _getTransport ? ((UnitImpl*)_getTransport)->getOriginalRawData->position : o->position;
 
       _getHitPoints = (int)ceil(o->hitPoints / 256.0); //_getHitPoints
       //------------------------------------------------------------------------------------------------------

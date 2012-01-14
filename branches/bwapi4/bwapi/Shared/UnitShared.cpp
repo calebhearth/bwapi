@@ -178,10 +178,10 @@ namespace BWAPI
   {
     return unitsInRadius_Unit != uIterator && unitsInRadius_Unit->getDistance(uIterator) <= unitsInRadius_Radius;
   }
-  std::set<Unit*>& UnitImpl::getUnitsInRadius(int radius) const
+  Unitset& UnitImpl::getUnitsInRadius(int radius) const
   {
     // Initialize static variables
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     unitFinderResults.clear();
 
@@ -241,10 +241,10 @@ namespace BWAPI
 
     return true;
   }
-  std::set<Unit*>& UnitImpl::getUnitsInWeaponRange(WeaponType weapon) const
+  Unitset& UnitImpl::getUnitsInWeaponRange(WeaponType weapon) const
   {
     // Initialize static variables
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     unitFinderResults.clear();
 
@@ -538,7 +538,7 @@ namespace BWAPI
     return Broodwar->getUnit(self->transport);
   }
   //--------------------------------------------- GET LOADED UNITS -------------------------------------------
-  std::set<Unit*> UnitImpl::getLoadedUnits() const
+  Unitset UnitImpl::getLoadedUnits() const
   {
     return loadedUnits;
   }
@@ -548,9 +548,9 @@ namespace BWAPI
     return Broodwar->getUnit(self->carrier);
   }
   //--------------------------------------------- GET INTERCEPTORS -------------------------------------------
-  std::set<Unit*> UnitImpl::getInterceptors() const
+  Unitset UnitImpl::getInterceptors() const
   {
-    std::set<Unit*> nothing;
+    Unitset nothing;
     if (getType() != UnitTypes::Protoss_Carrier && getType() != UnitTypes::Hero_Gantrithor)
       return nothing;
     return connectedUnits;
@@ -561,9 +561,9 @@ namespace BWAPI
     return Broodwar->getUnit(self->hatchery);
   }
   //--------------------------------------------- GET LARVA --------------------------------------------------
-  std::set<Unit*> UnitImpl::getLarva() const
+  Unitset UnitImpl::getLarva() const
   {
-    std::set<Unit*> nothing;
+    Unitset nothing;
     if (!getType().producesLarva())
         return nothing;
     return connectedUnits;

@@ -2,7 +2,6 @@
 
 #include <BWAPI/UnitCommandType.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/TilePosition.h>
 #include <BWAPI/TechType.h>
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/UnitType.h>

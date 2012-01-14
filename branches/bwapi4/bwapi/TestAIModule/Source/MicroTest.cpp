@@ -10,8 +10,8 @@ void MicroTest::onFrame()
 {
   Position goal=Broodwar->getMousePosition()+Broodwar->getScreenPosition();
   std::map<Unit*, int> targetAdjustedHP;
-  std::map<Unit*, std::set<Unit*> > targetsInRange;
-  std::map<Unit*, std::set<Unit*> > targetGetAttackers;
+  std::map<Unit*, Unitset > targetsInRange;
+  std::map<Unit*, Unitset > targetGetAttackers;
   for each(Unit* e in Broodwar->enemy()->getUnits())
   {
     targetAdjustedHP[e]=e->getHitPoints();
@@ -58,7 +58,7 @@ void MicroTest::onFrame()
   {
     if (maxCoolDown == 0)
     {
-      for each(std::pair<Unit*,std::set<Unit*> > p in targetGetAttackers)
+      for each(std::pair<Unit*,Unitset > p in targetGetAttackers)
       {
         Unit* e = p.first;
         for each(Unit* s in p.second)

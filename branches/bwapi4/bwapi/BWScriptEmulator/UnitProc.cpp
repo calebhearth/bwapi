@@ -67,7 +67,7 @@ void UnitProc::EmulateIdleOrder()
       for ( std::set<BWAPI::Region*>::const_iterator i = r->getNeighbors().begin(); i != r->getNeighbors().end(); ++i )
       {
         // iterate all units within the bounds of the current region
-        for ( std::set<BWAPI::Unit*>::const_iterator u = self->getUnits().begin(), uend = self->getUnits().end(); u != uend; ++u )
+        for ( Unitset::iterator u = self->getUnits().begin(), uend = self->getUnits().end(); u != uend; ++u )
         {
           UnitType ut = (*u)->getType();
           if ( !ut.isBuilding() )

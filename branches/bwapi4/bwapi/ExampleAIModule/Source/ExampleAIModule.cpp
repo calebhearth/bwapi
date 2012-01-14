@@ -92,7 +92,7 @@ void ExampleAIModule::onFrame()
 
 
   // Iterate through all the units that we own
-  for ( std::set<Unit*>::const_iterator i = Broodwar->self()->getUnits().begin(); i != Broodwar->self()->getUnits().end(); ++i )
+  for ( Unitset::iterator i = Broodwar->self()->getUnits().begin(); i != Broodwar->self()->getUnits().end(); ++i )
   {
     // Get a direct pointer to our unit so we do not have to continuously dereference the iterator
     Unit *u = *i;
@@ -139,7 +139,7 @@ void ExampleAIModule::onFrame()
           // Declare some variables to help with obtaining the closest unit
           Unit *closest = NULL;
           int   closestDistance = 999999;
-          for ( std::set<Unit*>::iterator m = Broodwar->getMinerals().begin(); m != Broodwar->getMinerals().end(); ++m )
+          for ( Unitset::iterator m = Broodwar->getMinerals().begin(); m != Broodwar->getMinerals().end(); ++m )
           {
             int newDistance = u->getDistance(*m);
 

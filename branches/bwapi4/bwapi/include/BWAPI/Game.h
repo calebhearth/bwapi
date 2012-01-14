@@ -16,11 +16,11 @@
 #include <BWAPI/Region.h>
 #include <BWAPI/Order.h>
 #include <BWAPI/Latency.h>
-#include <BWAPI/TilePosition.h>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/TechType.h>
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/Input.h>
+#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
   class Force;
@@ -47,25 +47,25 @@ namespace BWAPI
     /** Returns all the visible units. If Flag::CompleteMapInformation is enabled, the set of all units
      * is returned, not just visible ones. Note that units inside refineries are not included in this set
      * yet. */
-    virtual std::set< Unit* >& getAllUnits() = 0;
+    virtual Unitset& getAllUnits() = 0;
 
     /** Returns the set of all accessible mineral patches. */
-    virtual std::set< Unit* >& getMinerals() = 0;
+    virtual Unitset& getMinerals() = 0;
 
     /** Returns the set of all accessible vespene geysers. */
-    virtual std::set< Unit* >& getGeysers() = 0;
+    virtual Unitset& getGeysers() = 0;
 
     /** Returns the set of all accessible neutral units. */
-    virtual std::set< Unit* >& getNeutralUnits() = 0;
+    virtual Unitset& getNeutralUnits() = 0;
 
     /** Returns the set of all mineral patches (including mined out and other inaccessible ones). */
-    virtual std::set< Unit* >& getStaticMinerals() = 0;
+    virtual Unitset& getStaticMinerals() = 0;
 
     /** Returns the set of all vespene geysers (including mined out and other inaccessible ones). */
-    virtual std::set< Unit* >& getStaticGeysers() = 0;
+    virtual Unitset& getStaticGeysers() = 0;
 
     /** Returns the set of all neutral units (including mined out and other inaccessible ones). */
-    virtual std::set< Unit* >& getStaticNeutralUnits() = 0;
+    virtual Unitset& getStaticNeutralUnits() = 0;
 
     /** Returns all visible bullets. If Flag::CompleteMapInformation is enabled, the set of all bullets is
      * returned, not just visible ones. */
@@ -156,14 +156,14 @@ namespace BWAPI
     virtual void enableFlag(int flag) = 0;
 
     /** Returns the set of accessible units that are on the given build tile. */
-    virtual std::set<Unit*>& getUnitsOnTile(int tileX, int tileY) = 0;
+    virtual Unitset& getUnitsOnTile(int tileX, int tileY) = 0;
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
-    virtual std::set<Unit*>& getUnitsInRectangle(int left, int top, int right, int bottom) const = 0;
-    virtual std::set<Unit*>& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const = 0;
+    virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const = 0;
+    virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const = 0;
 
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
-    virtual std::set<Unit*>& getUnitsInRadius(BWAPI::Position center, int radius) const = 0;
+    virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const = 0;
 
     /** Returns the last error that was set. If you try to order enemy units around, or morph bunkers into
      * lurkers, BWAPI will set error codes, which can be retrieved using this function. */
@@ -321,11 +321,11 @@ namespace BWAPI
     virtual void setLocalSpeed(int speed = -1) = 0;
 
     /** Issues a command to a group of units */
-    virtual bool issueCommand(const std::set<BWAPI::Unit*>& units, UnitCommand command) = 0;
+    virtual bool issueCommand(const Unitset& units, UnitCommand command) = 0;
 
     /** Returns the set of units currently selected by the user in the GUI. If Flag?::UserInput? was not
      * enabled during the AIModule::onStart callback, this function will always return an empty set. */
-    virtual std::set<Unit*>& getSelectedUnits() = 0;
+    virtual const Unitset& getSelectedUnits() = 0;
 
     /** Returns a pointer to the player that BWAPI controls. In replays this will return null. */
     virtual Player* self() = 0;

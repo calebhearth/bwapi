@@ -26,6 +26,8 @@
 #include <BWAPI/Flag.h>
 #include <BWAPI.h>
 
+#include <BWAPI/Unitset.h>
+
 #include <BW/Unit.h>
 #include <BW/Bullet.h>
 #include <BW/Offsets.h>
@@ -288,14 +290,14 @@ namespace BWAPI
     }
   }
   //--------------------------------------------- GET UNITS ON TILE ------------------------------------------
-  std::set<Unit*>& GameImpl::getUnitsOnTile(int x, int y)
+  Unitset& GameImpl::getUnitsOnTile(int x, int y)
   {
     // Retrieves a set of units that are on the specified tile 
     if (x < 0 || y < 0 || x >= this->mapWidth() || y >= this->mapHeight())
-      return this->emptySet;
+      return this->emptyUnitset;
     
     if (!this->isFlagEnabled(Flag::CompleteMapInformation) && !isVisible(x,y))
-      return this->emptySet;
+      return this->emptyUnitset;
     return unitsOnTileData[x][y];
   }
   //--------------------------------------------- GET UNITS IN RECTANGLE -------------------------------------
@@ -307,10 +309,10 @@ namespace BWAPI
   {
     return ((UnitImpl*)uIterator)->canAccess();
   }
-  std::set<Unit*> &GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
+  Unitset &GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
   {
     // Initialize static variables
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     static int lastLeft   = -1;
     static int lastRight  = -1;
@@ -342,7 +344,7 @@ namespace BWAPI
     return unitFinderResults;
   }
   //--------------------------------------------- GET UNITS IN RECTANGLE -------------------------------------
-  std::set<Unit*> &GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
+  Unitset &GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
   {
     return getUnitsInRectangle(topLeft.x(),topLeft.y(),bottomRight.x(),bottomRight.y());
   }
@@ -353,10 +355,10 @@ namespace BWAPI
   {
     return ((UnitImpl*)uIterator)->canAccess() && uIterator->getDistance(unitsInRadius_compare) <= unitsInRadius_radius;
   }
-  std::set<Unit*> &GameImpl::getUnitsInRadius(Position center, int radius) const
+  Unitset &GameImpl::getUnitsInRadius(Position center, int radius) const
   {
     // Initialize static variables
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     static Position lastPosition = Positions::Invalid;
     static int lastRadius        = -1;
@@ -728,11 +730,11 @@ namespace BWAPI
     setLastError(Errors::Invalid_Parameter);
   }
   //------------------------------------------ ISSUE COMMAND -------------------------------------------------
-  bool GameImpl::issueCommand(const std::set<BWAPI::Unit*>& units, UnitCommand command)
+  bool GameImpl::issueCommand(const Unitset& units, UnitCommand command)
   {
-    std::vector< std::vector<UnitImpl*> > groupsOf12;
-    std::vector<UnitImpl* > nextGroup;
-    nextGroup.reserve(12);
+    std::vector< BWAPI::Unitset > groupsOf12;
+    BWAPI::Unitset nextGroup(12, 12);
+    //nextGroup.reserve(12);
 
     // Iterate the set of units
     foreach(Unit* u, units)
@@ -768,13 +770,13 @@ namespace BWAPI
       return false;
     
     // Iterate our groups of 12
-    for ( std::vector< std::vector<UnitImpl*> >::iterator i = groupsOf12.begin(), 
+    for ( std::vector< BWAPI::Unitset >::iterator i = groupsOf12.begin(), 
           iend = groupsOf12.end(); 
           i != iend; 
           ++i)
     {
       // Get the first unit available
-      command.unit  = i->front();
+      command.unit  = *i->begin(); //i->front();
 
       // Command optimization (no select) for unit unloading, but only if optimizer level >= 2
       if ( command.type != BWAPI::UnitCommandTypes::Unload || commandOptimizerLevel < 2 )
@@ -804,13 +806,13 @@ namespace BWAPI
     return true;
   }
   //------------------------------------------ GET SELECTED UNITS --------------------------------------------
-  std::set<BWAPI::Unit*>& GameImpl::getSelectedUnits()
+  const Unitset& GameImpl::getSelectedUnits()
   {
     this->setLastError(Errors::None);
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
     {
       this->setLastError(Errors::Access_Denied);
-      return emptySet;
+      return emptyUnitset;
     }
     return selectedUnitSet;
   }

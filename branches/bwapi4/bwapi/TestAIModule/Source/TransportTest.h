@@ -3,6 +3,8 @@
 #include <BWAPI.h>
 #include <vector>
 
+#include <BWAPi/Unitset.h>
+
 class TransportTest : public TestCase
 {
   public:
@@ -17,8 +19,8 @@ class TransportTest : public TestCase
     BWAPI::UnitType transportType;
     BWAPI::Unit* transport;
     BWAPI::Unit* currentUnit;
-    std::set<BWAPI::Unit*> unloadedUnits;
-    std::set<BWAPI::Unit*> loadedUnits;
+    BWAPI::Unitset unloadedUnits;
+    BWAPI::Unitset loadedUnits;
     int waitFrameStart;
     enum LoadState
     {

@@ -12,6 +12,8 @@
 #include <string>
 #include <cassert>
 
+#include <BWAPI/Unitset.h>
+
 namespace BWAPI
 {
   Game* Broodwar = NULL;
@@ -284,7 +286,7 @@ namespace BWAPI
     }
     foreach(Unit* u_, accessibleUnits)
     {
-	  UnitImpl* u = static_cast<UnitImpl*>(u_);
+      UnitImpl* u = static_cast<UnitImpl*>(u_);
       u->connectedUnits.clear();
       u->loadedUnits.clear();
     }
@@ -461,7 +463,7 @@ namespace BWAPI
       addCommand(BWAPIC::Command(BWAPIC::CommandType::EnableFlag,flag));
   }
   //----------------------------------------------- GET UNITS ON TILE ----------------------------------------
-  std::set<Unit*>& GameImpl::getUnitsOnTile(int x, int y)
+  Unitset& GameImpl::getUnitsOnTile(int x, int y)
   {
     return unitsOnTileData[x][y];
   }
@@ -470,9 +472,9 @@ namespace BWAPI
   {
     return true;
   }
-  std::set<Unit*>& GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
+  Unitset& GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
   {
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     static int lastLeft   = -1;
     static int lastRight  = -1;
@@ -502,7 +504,7 @@ namespace BWAPI
     return unitFinderResults;
   }
   //----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
-  std::set<Unit*>& GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
+  Unitset& GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
   {
     return getUnitsInRectangle(topLeft.x(), topLeft.y(), bottomRight.x(), bottomRight.y());
   }
@@ -513,9 +515,9 @@ namespace BWAPI
   {
     return uIterator->getDistance(unitsInRadius_compare) <= unitsInRadius_radius;
   }
-  std::set<Unit*>& GameImpl::getUnitsInRadius(BWAPI::Position center, int radius) const
+  Unitset& GameImpl::getUnitsInRadius(BWAPI::Position center, int radius) const
   {
-    static std::set<Unit*> unitFinderResults;
+    static Unitset unitFinderResults;
     static DWORD g_dwFinderFlags[1701] = { 0 };
     static Position lastPosition = Positions::Invalid;
     static int lastRadius        = -1;
@@ -754,7 +756,7 @@ namespace BWAPI
     lastError = Errors::Invalid_Parameter;
   }
   //------------------------------------------- ISSUE COMMAND ------------------------------------------------
-  bool GameImpl::issueCommand(const std::set<BWAPI::Unit*>& units, UnitCommand command)
+  bool GameImpl::issueCommand(const Unitset& units, UnitCommand command)
   {
     bool success = false;
     //FIX FIX FIX naive implementation
@@ -765,7 +767,7 @@ namespace BWAPI
     return success;
   }
   //------------------------------------------ GET SELECTED UNITS --------------------------------------------
-  std::set<Unit*>& GameImpl::getSelectedUnits()
+  const Unitset& GameImpl::getSelectedUnits()
   {
     lastError = Errors::None;
     return selectedUnits;

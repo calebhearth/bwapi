@@ -5,6 +5,7 @@
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Position.h>
 #include <BWAPI/Unit.h>
+#include <BWAPI/Unitset.h>
 
 #include "PositionUnitTarget.h"
 #include "Race.h"
@@ -73,6 +74,7 @@ namespace BW
         Select(int count, BW::Unit **units);
         Select(const std::vector<BW::Unit*> &vUnits);
         Select(const std::vector<BWAPI::UnitImpl*> &vUnits);
+        Select(const BWAPI::Unitset &unitset);
         /** 0x09 = Select command-code in bw */
         u8         always0x09;
         u8         targCount;

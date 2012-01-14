@@ -25,37 +25,37 @@ namespace BWAPI
     return playerSet;
   }
   //------------------------------------------------- GET UNITS ----------------------------------------------
-  std::set< Unit* >& GameImpl::getAllUnits()
+  Unitset& GameImpl::getAllUnits()
   {
     return accessibleUnits;
   }
   //------------------------------------------------- GET MINERALS -------------------------------------------
-  std::set< Unit* >& GameImpl::getMinerals()
+  Unitset& GameImpl::getMinerals()
   {
     return minerals;
   }
   //------------------------------------------------- GET GEYSERS --------------------------------------------
-  std::set< Unit* >& GameImpl::getGeysers()
+  Unitset& GameImpl::getGeysers()
   {
     return geysers;
   }
   //------------------------------------------------- GET NEUTRAL UNITS --------------------------------------
-  std::set< Unit* >& GameImpl::getNeutralUnits()
+  Unitset& GameImpl::getNeutralUnits()
   {
     return neutralUnits;
   }
   //------------------------------------------------- GET STATIC MINERALS ------------------------------------
-  std::set< Unit* >& GameImpl::getStaticMinerals()
+  Unitset& GameImpl::getStaticMinerals()
   {
     return staticMinerals;
   }
   //------------------------------------------------- GET STATIC GEYSERS -------------------------------------
-  std::set< Unit* >& GameImpl::getStaticGeysers()
+  Unitset& GameImpl::getStaticGeysers()
   {
     return staticGeysers;
   }
   //------------------------------------------------- GET STATIC NEUTRAL UNITS -------------------------------
-  std::set< Unit* >& GameImpl::getStaticNeutralUnits()
+  Unitset& GameImpl::getStaticNeutralUnits()
   {
     return staticNeutralUnits;
   }

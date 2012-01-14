@@ -20,7 +20,7 @@ namespace BWAPI
   {
   public:
     iterator() : __val(0) {};
-    iterator(const iterator &i) : __val(*i) {};
+    iterator(const iterator<_T> &other) : __val(&other) {};
     iterator(_T *ptr) : __val(ptr) {};
     bool operator ==(const iterator<_T> &other) const
     {
@@ -64,6 +64,10 @@ namespace BWAPI
     {
       return *__val;
     };
+    _T *operator &() const
+    {
+      return __val;
+    };
     _T operator ->() const
     {
       return *__val;
@@ -78,7 +82,6 @@ namespace BWAPI
   public:
     typedef iterator<_T> iterator;
     ///////////////////////////////////////////////////////////// Constructors
-    //Vectorset() : Vectorset(,) { };
     Vectorset(size_t initialSize = 16, size_t maxSizeHint = UINT_MAX)
       : __totSize( initialSize )
       , __maxSizeHint( maxSizeHint )
@@ -132,6 +135,13 @@ namespace BWAPI
       return !this->empty();
     };
 
+    _T operator [](unsigned int index) const
+    {
+      if ( index < this->size() )
+        return this->__valArray[index];
+      return __valArray[0];
+    };
+
     ///////////////////////////////////////////////////////////// Destructors
     ~Vectorset()
     {
@@ -139,35 +149,49 @@ namespace BWAPI
     };
 
     ///////////////////////////////////////////////////////////// some functions
-    bool exists(const _T &val) const
+    bool exists(const _T &element) const
     {
       _T *i = this->__valArray, *iend = this->__last;
-      do
+      while ( i != iend )
       {
-        if ( val == *i )
+        if ( element == *i )
           return true;
-      } while ( ++i != iend );
+        ++i;
+      }
       return false;
     };
-    void erase(const _T &val) const
+    void erase(const _T &val)
     {
       // declare iterators
       _T *i = this->__valArray, *iend = this->__last;
 
-      // iterate everything and store the size diff
-      size_t sizediff = 0;
-      do
+      // iterate everything
+      while ( i != iend )
       {
-        while ( val == *(i + sizediff) && i + sizediff != iend ) ++sizediff;
-
-        if ( i + sizediff != iend )
-          *i = *(i + sizediff);
-      } while ( ++i != iend );
+        if ( val == *i )  // if values are equal
+        {
+          --iend; // subtract the end iterator
+          *i = *iend; // overwrite value with value that would be at the end
+        }
+        else
+        {
+          ++i;  // if values are not eq. then iterate to next one
+        }
+      }
       
-      // decrease by sizediff
-      this->__last -= sizediff;
-      return false;
+      // assign the new last position
+      this->__last = iend;
     };
+    void erase(const iterator &iter)
+    {
+      _T *i = &iter, *iend = this->__last;
+      if ( i < this->__valArray || i >= iend )  // small error checking
+        return;
+
+      while ( i+1 != iend )
+        *i = i[1];
+      --this->__last;
+    }
     ///////////////////////////////////////////////////////////// stl spinoffs
     void clear()
     {
@@ -193,7 +217,7 @@ namespace BWAPI
     // iterators
     iterator begin() const
     {
-      return iterator(this->__valArray);
+      return this->__valArray;
     };
     iterator rbegin() const
     {
@@ -207,9 +231,20 @@ namespace BWAPI
     {
       return this->__valArray - 1;
     };
+    iterator find(const _T &element) const
+    {
+      _T *i = this->__valArray, *iend = this->__last;
+      while ( i != iend )
+      {
+        if ( element == *i )
+          return i;
+        ++i;
+      }
+      return iend;
+    };
 
     // element insertion
-    void insert(const _T val)
+    void insert(const _T &val)
     {
       if ( !this->exists(val) )
         this->push_back(val);

@@ -8,9 +8,10 @@
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Position.h>
 #include <BWAPI/Region.h>
-#include <BWAPI/TilePosition.h>
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Client/UnitData.h>
+
+#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
   class Player;
@@ -299,7 +300,7 @@ namespace BWAPI
 
     /** Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg
      * Overlord. */
-    virtual std::set<Unit*> getLoadedUnits() const = 0;
+    virtual Unitset getLoadedUnits() const = 0;
 
     /** For Protoss Interceptors, this returns the Carrier unit this Interceptor is controlled by. For all
      * other unit types this function returns NULL. */
@@ -307,7 +308,7 @@ namespace BWAPI
 
     /** Returns the set of interceptors controlled by this unit. If the unit has no interceptors, or is not
      * a Carrier, this function returns an empty set. */
-    virtual std::set<Unit*> getInterceptors() const = 0;
+    virtual Unitset getInterceptors() const = 0;
 
     /** For Zerg Larva, this returns the Hatchery, Lair, or Hive unit this Larva was spawned from. For all
      * other unit types this function returns NULL. */
@@ -316,13 +317,13 @@ namespace BWAPI
     /** Returns the set of larva spawned by this unit. If the unit has no larva, or is not a Hatchery, Lair,
      * or Hive, this function returns an empty set. Equivalent to clicking "Select Larva" from the Starcraft
      * GUI. */
-    virtual std::set<Unit*> getLarva() const = 0;
+    virtual Unitset getLarva() const = 0;
 
     /** Returns the set of units within the given radius of this unit */
-    virtual std::set<Unit*>& getUnitsInRadius(int radius) const = 0;
+    virtual Unitset& getUnitsInRadius(int radius) const = 0;
 
     /** Returns the set of units within weapon range of this unit. */
-    virtual std::set<Unit*>& getUnitsInWeaponRange(WeaponType weapon) const = 0;
+    virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const = 0;
 
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
     virtual void* getClientInfo() const = 0;

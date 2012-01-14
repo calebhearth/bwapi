@@ -4,6 +4,8 @@
 #include <set>
 #include <string>
 
+#include <BWAPI/Unitset.h>
+
 namespace BWAPI
 {
   class Unit;
@@ -14,12 +16,12 @@ namespace BWAPI
       int id;
     public:
       PlayerData* self;
-      std::set<Unit*> units;
+      Unitset units;
       void clear();
       PlayerImpl(int id);
       virtual int getID() const;
       virtual std::string getName() const;
-      virtual const std::set<Unit*>& getUnits() const;
+      virtual const Unitset& getUnits() const;
       virtual Race getRace() const;
       virtual PlayerType getType() const;
       virtual Force* getForce() const;

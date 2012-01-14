@@ -39,8 +39,14 @@ void DevAIModule::onFrame()
   int tFPS = bw->getFPS();
   if ( tFPS > bestFPS )
     bestFPS = tFPS;
-  //bw->printf("Best: %d FPS", bestFPS);
-    bw->printf("%u", bw->getBullets().size());
+  bw->drawTextScreen(4, 4, "Best: %d FPS", bestFPS);
+
+  bw->drawTextScreen(4, 20, "(%d, %d)", bw->getScreenPosition().x(), bw->getScreenPosition().y());
+
+  for ( Unitset::iterator i = self->getUnits().begin(), iend = self->getUnits().end(); i != iend; ++i )
+  {
+    bw->drawTextMap(i->getPosition().x(), i->getPosition().y(), "%s", i->getType().c_str());
+  }
 }
 
 void DevAIModule::onSendText(std::string text)

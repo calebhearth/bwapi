@@ -15,6 +15,8 @@
 #include <set>
 #include <vector>
 
+#include <BWAPI/Unitset.h>
+
 namespace BWAPI
 {
   class Force;
@@ -38,19 +40,19 @@ namespace BWAPI
 
       std::set<Force*> forces;
       std::set<Player*> playerSet;
-      std::set<Unit*> accessibleUnits;//all units that are accessible (and definitely alive)
+      Unitset accessibleUnits;//all units that are accessible (and definitely alive)
       //notDestroyedUnits - accessibleUnits = all units that may or may not be alive (status unknown)
-      std::set<Unit*> minerals;
-      std::set<Unit*> geysers;
-      std::set<Unit*> neutralUnits;
-      std::set<Unit*> staticMinerals;
-      std::set<Unit*> staticGeysers;
-      std::set<Unit*> staticNeutralUnits;
+      Unitset minerals;
+      Unitset geysers;
+      Unitset neutralUnits;
+      Unitset staticMinerals;
+      Unitset staticGeysers;
+      Unitset staticNeutralUnits;
       std::set<Bullet*> bullets;
       std::set<Position> nukeDots;
-      std::set<Unit*> selectedUnits;
-      std::set<Unit*> pylons;
-      std::set<Unit*> unitsOnTileData[256][256];
+      Unitset selectedUnits;
+      Unitset pylons;
+      Unitset unitsOnTileData[256][256];
       std::set<Region*> regionsList;
 
       std::set< TilePosition > startLocations;
@@ -78,14 +80,14 @@ namespace BWAPI
 
       virtual std::set< Force* >& getForces();
       virtual std::set< Player* >& getPlayers();
-      virtual std::set< Unit* >& getAllUnits();
-      virtual std::set< Unit* >& getMinerals();
-      virtual std::set< Unit* >& getGeysers();
-      virtual std::set< Unit* >& getNeutralUnits();
+      virtual Unitset& getAllUnits();
+      virtual Unitset& getMinerals();
+      virtual Unitset& getGeysers();
+      virtual Unitset& getNeutralUnits();
 
-      virtual std::set< Unit* >& getStaticMinerals();
-      virtual std::set< Unit* >& getStaticGeysers();
-      virtual std::set< Unit* >& getStaticNeutralUnits();
+      virtual Unitset& getStaticMinerals();
+      virtual Unitset& getStaticGeysers();
+      virtual Unitset& getStaticNeutralUnits();
 
       virtual std::set< Bullet* >& getBullets();
       virtual std::set< Position >& getNukeDots();
@@ -116,10 +118,10 @@ namespace BWAPI
 
       virtual bool  isFlagEnabled(int flag);
       virtual void  enableFlag(int flag);
-      virtual std::set<Unit*>& getUnitsOnTile(int x, int y);
-      virtual std::set<Unit*>& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-      virtual std::set<Unit*>& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
-      virtual std::set<Unit*>& getUnitsInRadius(BWAPI::Position center, int radius) const;
+      virtual Unitset& getUnitsOnTile(int x, int y);
+      virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
+      virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
+      virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
       virtual Error getLastError() const;
       virtual bool  setLastError(BWAPI::Error e);
 
@@ -171,8 +173,8 @@ namespace BWAPI
       virtual void leaveGame();
       virtual void restartGame();
       virtual void setLocalSpeed(int speed = -1);
-      virtual bool issueCommand(const std::set<BWAPI::Unit*>& units, UnitCommand command);
-      virtual std::set<BWAPI::Unit*>& getSelectedUnits();
+      virtual bool issueCommand(const Unitset& units, UnitCommand command);
+      virtual const Unitset& getSelectedUnits();
       virtual Player* self();
       virtual Player* enemy();
       virtual Player* neutral();
