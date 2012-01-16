@@ -44,10 +44,8 @@ namespace BWAPI
       virtual int spentMinerals() const;
       virtual int spentGas() const;
 
-      virtual int supplyTotal() const;
-      virtual int supplyUsed() const;
-      virtual int supplyTotal(Race race) const;
-      virtual int supplyUsed(Race race) const;
+      virtual int supplyTotal(Race race = Races::None) const;
+      virtual int supplyUsed(Race race = Races::None) const;
 
       virtual int allUnitCount(UnitType unit) const;
       virtual int visibleUnitCount(UnitType unit) const;

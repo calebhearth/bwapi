@@ -540,8 +540,7 @@ namespace BWAPI
     /** Returns true if the unit is visible. If the CompleteMapInformation?  cheat flag is enabled, existing
      * units hidden by the fog of war will be accessible, but isVisible will still return false.
      * \see Unit::exists. */
-    virtual bool isVisible() const = 0;
-    virtual bool isVisible(Player* player) const = 0;
+    virtual bool isVisible(Player* player = NULL) const = 0;
 
     /** Returns true if the unit is able to execute the given command, or false if there is an error */
     virtual bool canIssueCommand(UnitCommand command) const = 0;
@@ -708,14 +707,10 @@ namespace BWAPI
     /** Orders the unit to cancel an upgrade in progress.
      * \see Unit::upgrade, Unit::isUpgrading, Unit::getUpgrade. */
     virtual bool cancelUpgrade() = 0;
-
-    /** Orders the unit to use a tech not requiring a target (ie Stim Pack). Returns true if it is a valid
-     * tech. */
-    virtual bool useTech(TechType tech) = 0;
-
+    
     /** Orders the unit to use a tech requiring a position target (ie Dark Swarm). Returns true if it is a
      * valid tech.*/
-    virtual bool useTech(TechType tech, Position target) = 0;
+    virtual bool useTech(TechType tech, Position target = Positions::None) = 0;
 
     /** Orders the unit to use a tech requiring a unit target (ie Irradiate). Returns true if it is a valid
      * tech.*/

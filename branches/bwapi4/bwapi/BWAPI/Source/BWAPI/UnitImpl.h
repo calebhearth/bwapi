@@ -177,8 +177,7 @@ namespace BWAPI
       virtual bool isUnderStorm() const;
       virtual bool isUnpowered() const;
       virtual bool isUpgrading() const;
-      virtual bool isVisible() const;
-      virtual bool isVisible(Player* player) const;
+      virtual bool isVisible(Player* player = NULL) const;
 
       virtual bool canIssueCommand(UnitCommand c) const;
       virtual bool issueCommand(UnitCommand command);
@@ -222,8 +221,7 @@ namespace BWAPI
       virtual bool cancelMorph();
       virtual bool cancelResearch();
       virtual bool cancelUpgrade();
-      virtual bool useTech(TechType tech);
-      virtual bool useTech(TechType tech, Position target);
+      virtual bool useTech(TechType tech, Position target = Positions::None);
       virtual bool useTech(TechType tech, Unit* target);
       virtual bool placeCOP(TilePosition target);
 

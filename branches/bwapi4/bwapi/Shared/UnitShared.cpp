@@ -948,25 +948,20 @@ namespace BWAPI
     return self->order == Orders::Upgrade;
   }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
-  bool UnitImpl::isVisible() const
-  {
-    if (!Broodwar->self())
-    {
-      for(int i = 0; i < 9; ++i)
-      {
-        if (self->isVisible[i])
-          return true;
-      }
-      return false;
-    }
-    return self->isVisible[Broodwar->self()->getID()];
-  }
-  //--------------------------------------------- IS VISIBLE -------------------------------------------------
   bool UnitImpl::isVisible(Player* player) const
   {
-    if ( !player )
-      return false;
-    return self->isVisible[player->getID()];
+    if ( player )
+      return self->isVisible[player->getID()];
+
+    if ( Broodwar->self() )     // isVisible for current player
+      return self->isVisible[Broodwar->self()->getID()];
+
+    for(int i = 0; i < 9; ++i)
+    {
+      if (self->isVisible[i])
+        return true;
+    }
+    return false;
   }
   //--------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
   bool UnitImpl::canIssueCommand(UnitCommand command) const
@@ -1169,13 +1164,10 @@ namespace BWAPI
     return issueCommand(UnitCommand::cancelUpgrade(this));
   }
   //--------------------------------------------- USE TECH ---------------------------------------------------
-  bool UnitImpl::useTech(TechType tech)
-  {
-    return issueCommand(UnitCommand::useTech(this,tech));
-  }
-  //--------------------------------------------- USE TECH ---------------------------------------------------
   bool UnitImpl::useTech(TechType tech, Position target)
   {
+    if ( target == Positions::None )
+      return issueCommand(UnitCommand::useTech(this,tech));
     return issueCommand(UnitCommand::useTech(this,tech,target));
   }
   //--------------------------------------------- USE TECH ---------------------------------------------------

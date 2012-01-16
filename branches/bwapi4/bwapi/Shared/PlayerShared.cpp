@@ -65,72 +65,62 @@ namespace BWAPI
   //--------------------------------------------- SUPPLY TOTAL -----------------------------------------------
   int PlayerImpl::supplyTotal(Race race) const
   {
-    if ( race < 0 || race >= 3 )
+    if ( race == Races::None )  // Get current race's supply if None is specified
+      race = getRace();
+
+    if ( race < 0 || race >= 3 )  // bounds checking
       return 0;
     return self->supplyTotal[race];
   }
   //--------------------------------------------- SUPPLY USED ------------------------------------------------
   int PlayerImpl::supplyUsed(Race race) const
   {
-    if ( race < 0 || race >= 3 )
+    if ( race == Races::None )  // Get current race's supply if None is specified
+      race = getRace();
+
+    if ( race < 0 || race >= 3 )  // bounds checking
       return 0;
     return self->supplyUsed[race];
-  }
-  //--------------------------------------------- SUPPLY TOTAL -----------------------------------------------
-  int PlayerImpl::supplyTotal() const
-  {
-    BWAPI::Race r = getRace();
-    if ( r < 0 || r >= 3 )
-      return 0;
-    return self->supplyTotal[r];
-  }
-  //--------------------------------------------- SUPPLY USED ------------------------------------------------
-  int PlayerImpl::supplyUsed() const
-  {
-    BWAPI::Race r = getRace();
-    if ( r < 0 || r >= 3 )
-      return 0;
-    return self->supplyUsed[r];
   }
   //--------------------------------------------- ALL UNIT COUNT ---------------------------------------------
   int PlayerImpl::allUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->allUnitCount[unit];
   }
   //--------------------------------------------- VISIBLE UNIT COUNT -----------------------------------------
   int PlayerImpl::visibleUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->visibleUnitCount[unit];
   }
   //--------------------------------------------- COMPLETED UNIT COUNT ---------------------------------------
   int PlayerImpl::completedUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->completedUnitCount[unit];
   }
   //--------------------------------------------- INCOMPLETE UNIT COUNT --------------------------------------
   int PlayerImpl::incompleteUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->allUnitCount[unit] - self->completedUnitCount[unit];
   }
   //--------------------------------------------- DEAD UNIT COUNT --------------------------------------------
   int PlayerImpl::deadUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->deadUnitCount[unit];
   }
   //--------------------------------------------- KILLED UNIT COUNT ------------------------------------------
   int PlayerImpl::killedUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )
+    if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )  // bounds checking
       return 0;
     return self->killedUnitCount[unit];
   }

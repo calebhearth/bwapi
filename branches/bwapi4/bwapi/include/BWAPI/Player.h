@@ -102,16 +102,14 @@ namespace BWAPI
      * given race will be returned, otherwise the player's initial race will be used. Supply counts returned
      * by BWAPI are double what you would expect to see from playing the game. This is because zerglings
      * take up 0.5 in-game supply. */
-    virtual int supplyTotal() const = 0;
-    virtual int supplyTotal(Race race) const = 0;
+    virtual int supplyTotal(Race race = Races::None) const = 0;
 
 
     /** Returns how much of the supply is actually being used by units. If a race is provided, the used
      * supply for the given race will be returned, otherwise the player's initial race will be used. Supply
      * counts returned by BWAPI are double what you would expect to see from playing the game. This is
      * because zerglings take up 0.5 in-game supply. */
-    virtual int supplyUsed() const = 0;
-    virtual int supplyUsed(Race race) const = 0;
+    virtual int supplyUsed(Race race = Races::None) const = 0;
 
     /** Returns the number of all accessible units of the given type. */
     virtual int allUnitCount(UnitType unit) const = 0;

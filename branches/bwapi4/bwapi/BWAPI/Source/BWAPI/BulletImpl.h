@@ -30,8 +30,7 @@ namespace BWAPI
       virtual Position   getTargetPosition() const;
       virtual int        getRemoveTimer() const;
       virtual bool       exists() const;
-      virtual bool       isVisible() const;
-      virtual bool       isVisible(Player* player) const;
+      virtual bool       isVisible(Player* player = NULL) const;
 
       BulletImpl(BW::Bullet* originalBullet, u16 index);
       ~BulletImpl();
