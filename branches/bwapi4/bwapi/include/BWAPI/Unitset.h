@@ -1,6 +1,5 @@
 #pragma once
 #include <BWAPI/Vectorset.h>
-//#include <BWAPI/Unit.h>
 
 namespace BWAPI
 {

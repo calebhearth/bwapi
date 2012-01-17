@@ -770,10 +770,7 @@ namespace BWAPI
       return false;
     
     // Iterate our groups of 12
-    for ( std::vector< BWAPI::Unitset >::iterator i = groupsOf12.begin(), 
-          iend = groupsOf12.end(); 
-          i != iend; 
-          ++i)
+    for ( auto i = groupsOf12.begin(); i != groupsOf12.end(); ++i )
     {
       // Get the first unit available
       command.unit  = *i->begin(); //i->front();

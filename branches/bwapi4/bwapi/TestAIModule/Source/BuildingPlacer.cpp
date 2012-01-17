@@ -65,7 +65,7 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
         BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(x, y);
         for( BWAPI::Unitset::iterator i = units.begin(); i != units.end(); ++i )
         {
-          if ( !(*i)->isLifted() && (*i)->getType().canBuildAddon() )
+          if ( !i->isLifted() && i->getType().canBuildAddon() )
             return false;
         }
       }
@@ -145,7 +145,7 @@ bool BuildingPlacer::buildable(int x, int y) const
   if (!BWAPI::Broodwar->isBuildable(x,y)) return false;
   BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(x, y);
   for(BWAPI::Unitset::iterator i = units.begin(); i != units.end(); ++i)
-    if ((*i)->getType().isBuilding() && !(*i)->isLifted())
+    if (i->getType().isBuilding() && !i->isLifted())
       return false;
   return true;
 }

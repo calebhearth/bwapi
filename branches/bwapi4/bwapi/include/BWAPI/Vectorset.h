@@ -90,38 +90,44 @@ namespace BWAPI
       , __last(__valArray)
     { };
     Vectorset(const Vectorset &other)
-      : __totSize( other.size() )
+      : __totSize( other.max_size() )
       , __maxSizeHint( other.max_size_hint() )
-      , __valArray( (_T*)malloc(__totSize*sizeof(_T)) )
-      , __end(__valArray + __totSize)
+      , __valArray( (_T*)malloc(other.max_size()*sizeof(_T)) )
+      , __end(__valArray + other.max_size())
       , __last(__valArray + other.size())
-    { };
+    { 
+      memcpy(this->__valArray, &(other.begin()), other.size()*sizeof(_T));
+    };
     ///////////////////////////////////////////////////////////// Operators
     Vectorset &operator =(const Vectorset &set)
     {
+      // localize variables
+      size_t nSize = set.size();
+
       // manage existing set
       this->clear();
-      this->expand(set.size());
+      this->expand(nSize);
 
       // copy the data to this set
-      size_t copysize = set.size()*sizeof(_T);
-      memcpy(this->__valArray, set, copysize);
+      memcpy(this->__valArray, set, nSize*sizeof(_T));
 
       // update variables in this set
-      this->__last = this->__valArray + set.size();
+      this->__last = this->__valArray + nSize;
       return *this;
     };
     Vectorset &operator +=(const Vectorset &set)
     {
+      // localize variables
+      size_t nSize = set.size();
+
       // manage existing set
-      this->expand(this->size() + set.size());
+      this->expand(nSize);
       
       // copy the data to this set
-      size_t copysize = set.size()*sizeof(_T);
-      memcpy(this->__last, set, copysize);
+      memcpy( this->__last, set, nSize*sizeof(_T) );
 
       // update variables in this set
-      this->__last += set.size();
+      this->__last += nSize;
       return *this;
     };
 
@@ -310,8 +316,21 @@ namespace BWAPI
     };
     void expand(size_t expectedSize)
     {
-      while ( expectedSize > this->__totSize )
-        this->expand();
+      // localize the variables
+      size_t size    = this->__totSize;
+      size_t oldsize = this->size();
+
+      // expand to expected size
+      if ( size > (oldsize + expectedSize + 1) )
+        return;
+
+      size = (oldsize + expectedSize + 1);
+
+      // Reallocate and store the new values
+      this->__valArray  = (_T*)realloc( this->__valArray, size*sizeof(_T) );
+      this->__end       = __valArray + size;
+      this->__last      = __valArray + oldsize;
+      this->__totSize   = size;
     };
 
     // Variables

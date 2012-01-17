@@ -327,10 +327,10 @@ namespace BWAPI
 
       HMODULE hTournamentModule;
       AIModule *tournamentAI;
-    private :
-      Map map;
 
       PlayerImpl *players[PLAYER_COUNT];
+    private :
+      Map map;
 
       Unitset aliveUnits; //units alive on current frame
       Unitset dyingUnits; //units leaving aliveUnits set on current frame
@@ -382,7 +382,7 @@ namespace BWAPI
       TournamentModule  *tournamentController;
       bool              bTournamentMessageAppeared;
       BWAPI::Error lastError;
-      std::list<UnitImpl*> deadUnits;
+      Unitset deadUnits;
       u32 cheatFlags;
       std::string autoMenuLanMode;
       std::string autoMenuRace;
