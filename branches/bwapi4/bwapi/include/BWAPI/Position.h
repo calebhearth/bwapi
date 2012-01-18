@@ -34,6 +34,8 @@
 
 namespace BWAPI
 {
+  inline bool testIsValid(int x, int y);
+
   // Declaration
   template<typename _T, int __Scale = 1>
   class Point;
@@ -96,39 +98,10 @@ namespace BWAPI
     _OPERATOR_OP_VAL_CHK(/)
     _OPERATOR_OP_VAL_CHK(%)
 
-    // @TODO WORKAROUND
     // Functions
-    bool isValid() const
-    {
-      if ( this->x() < 0 || this->y() < 0 )
-        return false;
-      //if ( !Broodwar )
-      /*  return this->x() < (256 * 32)/__Scale &&
-               this->y() < (256 * 32)/__Scale;*/
-      return true;
-      //return this->x() < (Broodwar->mapWidth()  * 32)/__Scale && 
-        //     this->y() < (Broodwar->mapHeight() * 32)/__Scale;
-    };
-    // @TODO WORKAROUND
-    Point &makeValid()
-    {
-      if ( this->_x < 0 ) this->_x = 0;
-      if ( this->_y < 0 ) this->_y = 0;
-      /*
-      _T max = (256*32)/__Scale - 1;
-      if ( this->_x > max ) this->_x = max;
-      if ( this->_y > max ) this->_y = max;
-      */
-      /*if ( !Broodwar ) return *this;
+    bool isValid() const;
+    Point &makeValid();
 
-      _T max = (Broodwar->mapWidth() * 32)/__Scale - 1;
-      if ( this->_x > max ) this->_x = max;
-
-      max = (Broodwar->mapHeight() * 32)/__Scale - 1;
-      if ( this->_y > max ) this->_y = max;
-*/
-      return *this;
-    };
     double getDistance(const Point &position) const
     {
       return ((*this) - position).getLength();
