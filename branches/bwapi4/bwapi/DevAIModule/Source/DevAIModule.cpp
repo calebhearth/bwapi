@@ -57,7 +57,7 @@ void DevAIModule::onSendText(std::string text)
   }
   else if ( text == "/races" )
   {
-    for ( std::set<Player*>::const_iterator p = bw->getPlayers().begin(),
+    for ( auto p = bw->getPlayers().begin(),
           pend = bw->getPlayers().end();
           p != pend;
           ++p )

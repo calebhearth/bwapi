@@ -1,7 +1,7 @@
 #pragma once
 
-#include <set>
 #include <BWAPI/Position.h>
+#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
@@ -29,7 +29,7 @@ namespace BWAPI
     virtual bool isWalkable() const = 0;
 
     /** Retrieves the set of neighbors that this region is connected to. */
-    virtual const std::set<Region*> &getNeighbors() const = 0;
+    virtual const Regionset &getNeighbors() const = 0;
 
     /** Retrieves the approximate region boundry as specified by Broodwar. */
     virtual int getBoundsLeft() const = 0;

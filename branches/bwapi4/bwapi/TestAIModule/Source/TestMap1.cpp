@@ -7,7 +7,7 @@ int assert_fail_count;
 #define findAndRemove(T,S,V)\
 {\
   bool found=false;\
-  for(std::set<T*>::iterator i=S.begin();i!=S.end();i++)\
+  for(auto i=S.begin();i!=S.end();i++)\
   {\
     if (*i==V)\
     {\
@@ -65,7 +65,7 @@ void TestMap1::onStart()
   BWAssert(Broodwar->self()!=Broodwar->enemy());
 
   BWAssert(Broodwar->getPlayers().size()==3);
-  std::set<Player*> players = Broodwar->getPlayers();
+  Playerset players = Broodwar->getPlayers();
   findAndRemove(Player,players,Broodwar->self());
   findAndRemove(Player,players,Broodwar->enemy());
   BWAssert(players.size()==1);

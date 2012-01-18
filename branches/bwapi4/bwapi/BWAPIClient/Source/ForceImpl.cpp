@@ -15,9 +15,9 @@ namespace BWAPI
   {
     return std::string(this->self->name);
   }
-  std::set<Player*> ForceImpl::getPlayers() const
+  Playerset ForceImpl::getPlayers() const
   {
-    std::set<Player*> players;
+    Playerset players;
     for( int i = 0; i < 12; ++i )
       if ( BWAPI::BWAPIClient.data->players[i].force == id )
         players.insert( ((GameImpl*)Broodwar)->getPlayer(i) );

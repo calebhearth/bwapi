@@ -39,7 +39,7 @@ void ExampleAIModule::onStart()
     
 
     // Iterate all the players in the game using a std:: iterator
-    for(std::set<Player*>::iterator p = Broodwar->getPlayers().begin(); p != Broodwar->getPlayers().end(); ++p)
+    for(auto p = Broodwar->getPlayers().begin(); p != Broodwar->getPlayers().end(); ++p)
     {
 
       // Only print the player if they are not an observer

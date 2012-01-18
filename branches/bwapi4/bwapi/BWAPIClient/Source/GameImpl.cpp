@@ -265,7 +265,7 @@ namespace BWAPI
       else if (data->events[e].type==EventType::UnitRenegade)
       {
         Unit* u = &unitVector[id];
-        for (std::set<Player*>::iterator p = playerSet.begin(); p != playerSet.end(); ++p )
+        for (auto p = playerSet.begin(); p != playerSet.end(); ++p )
           ((PlayerImpl*)*p)->units.erase(u);
         ((PlayerImpl*)u->getPlayer())->units.insert(u);
       }
@@ -589,6 +589,10 @@ namespace BWAPI
       return 0;
     return data->isWalkable[x][y];
   }
+  bool GameImpl::isWalkable(WalkPosition pos)
+  {
+    return isWalkable(pos.x(), pos.y());
+  }
   //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
   int GameImpl::getGroundHeight(int x, int y)
   {
@@ -791,21 +795,21 @@ namespace BWAPI
     return theNeutral;
   }
   //--------------------------------------------- ALLIES -----------------------------------------------------
-  std::set<Player*>& GameImpl::allies()
+  Playerset& GameImpl::allies()
   {
     /* Returns a set of all the ally players that have not left or been defeated. Does not include self. */
     lastError = Errors::None;
     return _allies;
   }
   //--------------------------------------------- ENEMIES ----------------------------------------------------
-  std::set<Player*>& GameImpl::enemies()
+  Playerset& GameImpl::enemies()
   {
     /* Returns a set of all the enemy players that have not left or been defeated. */
     lastError = Errors::None;
     return _enemies;
   }
   //-------------------------------------------- OBSERVERS ---------------------------------------------------
-  std::set<Player*>& GameImpl::observers()
+  Playerset& GameImpl::observers()
   {
     /* Returns a set of all the enemy players that have not left or been defeated. */
     lastError = Errors::None;

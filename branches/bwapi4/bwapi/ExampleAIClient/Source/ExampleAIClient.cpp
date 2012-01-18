@@ -68,7 +68,7 @@ int main(int argc, const char* argv[])
     if (Broodwar->isReplay())
     {
       Broodwar->printf("The following players are in this replay:");
-      for(std::set<Player*>::iterator p=Broodwar->getPlayers().begin();p!=Broodwar->getPlayers().end();p++)
+      for(auto p=Broodwar->getPlayers().begin();p!=Broodwar->getPlayers().end();p++)
       {
         if (!(*p)->getUnits().empty() && !(*p)->isNeutral())
         {
@@ -315,8 +315,8 @@ void drawStats()
 
 void drawBullets()
 {
-  std::set<Bullet*> bullets = Broodwar->getBullets();
-  for(std::set<Bullet*>::iterator i=bullets.begin();i!=bullets.end();i++)
+  Bulletset bullets = Broodwar->getBullets();
+  for(Bulletset::iterator i=bullets.begin();i!=bullets.end();i++)
   {
     Position p=(*i)->getPosition();
     double velocityX = (*i)->getVelocityX();
@@ -409,8 +409,8 @@ void drawTerrainData()
 */
 void showPlayers()
 {
-  std::set<Player*> players=Broodwar->getPlayers();
-  for(std::set<Player*>::iterator i=players.begin();i!=players.end();i++)
+  Playerset players=Broodwar->getPlayers();
+  for(Playerset::iterator i=players.begin();i!=players.end();i++)
   {
     Broodwar->printf("Player [%d]: %s is in force: %s",(*i)->getID(),(*i)->getName().c_str(), (*i)->getForce()->getName().c_str());
   }
@@ -418,12 +418,12 @@ void showPlayers()
 
 void showForces()
 {
-  std::set<Force*> forces=Broodwar->getForces();
-  for(std::set<Force*>::iterator i=forces.begin();i!=forces.end();i++)
+  Forceset forces=Broodwar->getForces();
+  for(Forceset::iterator i=forces.begin();i!=forces.end();i++)
   {
-    std::set<Player*> players=(*i)->getPlayers();
+    Playerset players = (*i)->getPlayers();
     Broodwar->printf("Force %s has the following players:",(*i)->getName().c_str());
-    for(std::set<Player*>::iterator j=players.begin();j!=players.end();j++)
+    for(Playerset::iterator j=players.begin();j!=players.end();j++)
     {
       Broodwar->printf("  - Player [%d]: %s",(*j)->getID(),(*j)->getName().c_str());
     }

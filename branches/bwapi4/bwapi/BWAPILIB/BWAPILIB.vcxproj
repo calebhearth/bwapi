@@ -107,6 +107,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AIModule.cpp" />
+    <ClCompile Include="Source\Bulletset.cpp" />
     <ClCompile Include="Source\BulletType.cpp" />
     <ClCompile Include="Source\BWAPI.cpp" />
     <ClCompile Include="Source\Color.cpp" />
@@ -115,11 +116,14 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClCompile Include="Source\Error.cpp" />
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\ExplosionType.cpp" />
+    <ClCompile Include="Source\Forceset.cpp" />
     <ClCompile Include="Source\GameType.cpp" />
     <ClCompile Include="Source\Order.cpp" />
+    <ClCompile Include="Source\Playerset.cpp" />
     <ClCompile Include="Source\PlayerType.cpp" />
     <ClCompile Include="Source\Position.cpp" />
     <ClCompile Include="Source\Race.cpp" />
+    <ClCompile Include="Source\Regionset.cpp" />
     <ClCompile Include="Source\TechType.cpp" />
     <ClCompile Include="Source\Type.cpp" />
     <ClCompile Include="Source\Unitset.cpp" />
@@ -133,8 +137,12 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\AIModule.h" />
+    <ClInclude Include="..\include\BWAPI\Bulletset.h" />
     <ClInclude Include="..\include\BWAPI\BulletType.h" />
     <ClInclude Include="..\include\BWAPI\Color.h" />
+    <ClInclude Include="..\include\BWAPI\Forceset.h" />
+    <ClInclude Include="..\include\BWAPI\Playerset.h" />
+    <ClInclude Include="..\include\BWAPI\Regionset.h" />
     <ClInclude Include="..\include\BWAPI\Unitset.h" />
     <ClInclude Include="..\include\BWAPI\Vectorset.h" />
     <ClInclude Include="Source\Common.h" />

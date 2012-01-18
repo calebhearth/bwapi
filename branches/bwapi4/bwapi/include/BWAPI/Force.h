@@ -2,6 +2,8 @@
 #include <set>
 #include <string>
 
+#include <BWAPI/Playerset.h>
+
 namespace BWAPI
 {
   class Player;
@@ -20,6 +22,6 @@ namespace BWAPI
     virtual std::string getName() const = 0;
 
     /** Returns the set of players in the force. */
-    virtual std::set<Player*> getPlayers() const = 0;
+    virtual Playerset getPlayers() const = 0;
   };
 }

@@ -18,6 +18,8 @@ namespace BWAPI { class  AIModule; }
 #include <BWAPI/Client/Shape.h>
 #include <BWAPI/Client/GameData.h>
 #include <BWAPI/Unitset.h>
+#include <BWAPI/Bulletset.h>
+#include <BWAPI/Playerset.h>
 
 #include <BW/Dialog.h>
 #include <BW/OrderTypes.h>
@@ -32,8 +34,8 @@ namespace BWAPI
   class GameImpl : public Game
   {
     public :
-      virtual std::set< Force* >&  getForces();
-      virtual std::set< Player* >& getPlayers();
+      virtual Forceset&  getForces();
+      virtual Playerset& getPlayers();
       virtual Unitset&   getAllUnits();
       virtual Unitset&   getMinerals();
       virtual Unitset&   getGeysers();
@@ -43,7 +45,7 @@ namespace BWAPI
       virtual Unitset&   getStaticGeysers();
       virtual Unitset&   getStaticNeutralUnits();
 
-      virtual std::set< Bullet* >& getBullets();
+      virtual Bulletset& getBullets();
       virtual std::set< Position >& getNukeDots();
       virtual std::list< Event >&  getEvents();
 
@@ -93,6 +95,7 @@ namespace BWAPI
       virtual std::string mapHash();
 
       virtual bool isWalkable(int x, int y);
+      virtual bool isWalkable(WalkPosition position);
       virtual int  getGroundHeight(int x, int y);
       virtual int  getGroundHeight(TilePosition position);
       virtual bool isBuildable(int x, int y, bool includeBuildings = false);
@@ -151,9 +154,9 @@ namespace BWAPI
       virtual Player *self();
       virtual Player *enemy();
       virtual Player *neutral();
-      virtual std::set<BWAPI::Player*>& allies();
-      virtual std::set<BWAPI::Player*>& enemies();
-      virtual std::set<BWAPI::Player*>& observers();
+      virtual Playerset& allies();
+      virtual Playerset& enemies();
+      virtual Playerset& observers();
 
       virtual void setTextSize(int size = 1);
       virtual void drawText(int ctype, int x, int y, const char *format, ...);
@@ -220,7 +223,7 @@ namespace BWAPI
       virtual void setCommandOptimizationLevel(int level = 2);
       virtual int  countdownTimer() const;
 
-      virtual const std::set<BWAPI::Region*> &getAllRegions() const;
+      virtual const Regionset &getAllRegions() const;
       virtual BWAPI::Region *getRegionAt(int x, int y) const;
       virtual BWAPI::Region *getRegionAt(BWAPI::Position position) const;
 
@@ -340,18 +343,17 @@ namespace BWAPI
       Unitset evadeUnits; //units leaving accessibleUnits set on current frame
 
       Unitset  selectedUnitSet;
-      std::set<BWAPI::Unit*>  emptySet;
       Unitset emptyUnitset;
 
       std::set<TilePosition>  startLocations;
 
-      std::set<BWAPI::Force*>  forces;
-      std::set<BWAPI::Player*> playerSet;
+      Forceset  forces;
+      Playerset playerSet;
 
       Unitset   minerals;
       Unitset   geysers;
       Unitset   neutralUnits;
-      std::set<BWAPI::Bullet*> bullets;
+      Bulletset bullets;
       std::set<Position>       nukeDots;
       Unitset pylons;
       Util::RectangleArray< Unitset > unitsOnTileData;
@@ -360,7 +362,7 @@ namespace BWAPI
       Unitset staticGeysers;
       Unitset staticNeutralUnits;
 
-      std::set<BWAPI::Region*> regionsList;
+      Regionset regionsList;
 
       BulletImpl* bulletArray[BULLET_ARRAY_MAX_LENGTH];
       std::vector<std::vector<Command *> > commandBuffer;
@@ -405,23 +407,23 @@ namespace BWAPI
       std::string rn_EnemiesNames;
       std::string rn_EnemiesRaces;
       DWORD endTick;
-      std::set<Player*> _allies;
-      std::set<Player*> _enemies;
-      std::set<Player*> _observers;
+      Playerset _allies;
+      Playerset _enemies;
+      Playerset _observers;
 
       bool inGame;
       bool actStartedGame;
       bool actRaceSel;
 
-      DWORD  startTickCount;
-      DWORD  lastTickCount;
-      int    accumulatedFrames;
-      int    fps;
-      double averageFPS;
-      int botAPM_noselects;
-      int botAPM_selects;
-      double botAPMCounter_noselects;
-      double botAPMCounter_selects;
+      DWORD   startTickCount;
+      DWORD   lastTickCount;
+      int     accumulatedFrames;
+      int     fps;
+      double  averageFPS;
+      int     botAPM_noselects;
+      int     botAPM_selects;
+      double  botAPMCounter_noselects;
+      double  botAPMCounter_selects;
 
       int  textSize;
 

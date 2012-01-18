@@ -64,7 +64,7 @@ void UnitProc::EmulateIdleOrder()
       std::vector<BWAPI::Region*> movetoRgnList;
 
       // iterate all regions neighboring this unit
-      for ( std::set<BWAPI::Region*>::const_iterator i = r->getNeighbors().begin(); i != r->getNeighbors().end(); ++i )
+      for ( auto i = r->getNeighbors().begin(); i != r->getNeighbors().end(); ++i )
       {
         // iterate all units within the bounds of the current region
         for ( Unitset::iterator u = self->getUnits().begin(), uend = self->getUnits().end(); u != uend; ++u )

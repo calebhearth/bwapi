@@ -15,12 +15,12 @@ namespace BWAPI
     return getKeyState((int)key);
   }
   //----------------------------------------------- GET FORCES -----------------------------------------------
-  std::set< Force* >& GameImpl::getForces()
+  Forceset& GameImpl::getForces()
   {
     return forces;
   }
   //----------------------------------------------- GET PLAYERS ----------------------------------------------
-  std::set< Player* >& GameImpl::getPlayers()
+  Playerset& GameImpl::getPlayers()
   {
     return playerSet;
   }
@@ -60,7 +60,7 @@ namespace BWAPI
     return staticNeutralUnits;
   }
   //------------------------------------------------ GET BULLETS ---------------------------------------------
-  std::set< Bullet* >& GameImpl::getBullets()
+  Bulletset& GameImpl::getBullets()
   {
     return bullets;
   }
@@ -165,7 +165,7 @@ namespace BWAPI
     return getRegionAt(position.x(), position.y());
   }
   //----------------------------------------------- GET ALL REGIONS ------------------------------------------
-  const std::set<BWAPI::Region*> &GameImpl::getAllRegions() const
+  const Regionset &GameImpl::getAllRegions() const
   {
     return this->regionsList;
   }

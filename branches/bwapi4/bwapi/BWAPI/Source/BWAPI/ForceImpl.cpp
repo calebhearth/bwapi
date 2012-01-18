@@ -18,7 +18,7 @@ namespace BWAPI
   {
     return this->name;
   }
-  std::set<Player*> ForceImpl::getPlayers() const
+  Playerset ForceImpl::getPlayers() const
   {
     return this->players;
   }

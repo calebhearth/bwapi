@@ -1,10 +1,10 @@
 #pragma once
-#include <set>
-#include <vector>
 #include <BWAPI/Region.h>
 #include <BWAPI/Position.h>
 
 #include <BWAPI/Client/RegionData.h>
+
+#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
@@ -18,7 +18,7 @@ namespace BWAPI
     virtual int getDefensePriority() const;
     virtual bool isWalkable() const;
 
-    virtual const std::set<BWAPI::Region*> &getNeighbors() const;
+    virtual const Regionset &getNeighbors() const;
 
     virtual int getBoundsLeft() const;
     virtual int getBoundsTop() const;
@@ -38,7 +38,7 @@ namespace BWAPI
     RegionData data;
     RegionData *self;
     
-    std::set<BWAPI::Region*> neighbors;
+    Regionset neighbors;
     BWAPI::Region *closestAccessibleRgn;
     BWAPI::Region *closestInaccessibleRgn;
   };

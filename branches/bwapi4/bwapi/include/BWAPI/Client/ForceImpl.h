@@ -18,6 +18,6 @@ namespace BWAPI
       ForceImpl(int id);
       virtual int getID() const;
       virtual std::string getName() const;
-      virtual std::set<Player*> getPlayers() const;
+      virtual Playerset getPlayers() const;
   };
 }

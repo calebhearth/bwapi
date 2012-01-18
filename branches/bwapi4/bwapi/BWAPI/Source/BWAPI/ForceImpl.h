@@ -11,8 +11,8 @@ namespace BWAPI
       ForceImpl(std::string name);
       virtual int getID() const;
       virtual std::string getName() const;
-      virtual std::set<Player*> getPlayers() const;
-      std::set<Player*> players;
+      virtual Playerset getPlayers() const;
+      Playerset players;
       std::string name;
       void setID(int newID);
     private:

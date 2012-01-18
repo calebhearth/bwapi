@@ -50,7 +50,7 @@ namespace BWAPI
     return self->bottomMost;
   }
   // ---------------------------------- NEIGHBOURS -----------------------------------------------------------
-  const std::set<BWAPI::Region*> &RegionImpl::getNeighbors() const
+  const Regionset &RegionImpl::getNeighbors() const
   {
     return this->neighbors;
   }

@@ -16,6 +16,10 @@
 #include <vector>
 
 #include <BWAPI/Unitset.h>
+#include <BWAPI/Bulletset.h>
+#include <BWAPI/Playerset.h>
+#include <BWAPI/Forceset.h>
+#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
@@ -38,8 +42,8 @@ namespace BWAPI
       std::vector<BulletImpl> bulletVector;
       RegionImpl *regionArray[5000];
 
-      std::set<Force*> forces;
-      std::set<Player*> playerSet;
+      Forceset forces;
+      Playerset playerSet;
       Unitset accessibleUnits;//all units that are accessible (and definitely alive)
       //notDestroyedUnits - accessibleUnits = all units that may or may not be alive (status unknown)
       Unitset minerals;
@@ -48,12 +52,12 @@ namespace BWAPI
       Unitset staticMinerals;
       Unitset staticGeysers;
       Unitset staticNeutralUnits;
-      std::set<Bullet*> bullets;
+      Bulletset bullets;
       std::set<Position> nukeDots;
       Unitset selectedUnits;
       Unitset pylons;
       Unitset unitsOnTileData[256][256];
-      std::set<Region*> regionsList;
+      Regionset regionsList;
 
       std::set< TilePosition > startLocations;
       std::list< Event > events;
@@ -61,9 +65,9 @@ namespace BWAPI
       Player* thePlayer;
       Player* theEnemy;
       Player* theNeutral;
-      std::set<Player*> _allies;
-      std::set<Player*> _enemies;
-      std::set<Player*> _observers;
+      Playerset _allies;
+      Playerset _enemies;
+      Playerset _observers;
       Error lastError;
       int textSize;
 
@@ -78,8 +82,8 @@ namespace BWAPI
       const GameData* getGameData() const;
       Unit *_unitFromIndex(int index);
 
-      virtual std::set< Force* >& getForces();
-      virtual std::set< Player* >& getPlayers();
+      virtual Forceset& getForces();
+      virtual Playerset& getPlayers();
       virtual Unitset& getAllUnits();
       virtual Unitset& getMinerals();
       virtual Unitset& getGeysers();
@@ -89,14 +93,14 @@ namespace BWAPI
       virtual Unitset& getStaticGeysers();
       virtual Unitset& getStaticNeutralUnits();
 
-      virtual std::set< Bullet* >& getBullets();
+      virtual Bulletset& getBullets();
       virtual std::set< Position >& getNukeDots();
       virtual std::list< Event>& getEvents();
 
-      virtual Force* getForce(int forceID);
+      virtual Force*  getForce(int forceID);
       virtual Player* getPlayer(int playerID);
-      virtual Unit* getUnit(int unitID);
-      virtual Unit* indexToUnit(int unitIndex);
+      virtual Unit*   getUnit(int unitID);
+      virtual Unit*   indexToUnit(int unitIndex);
       virtual Region* getRegion(int regionID);
 
       virtual GameType getGameType();
@@ -133,6 +137,7 @@ namespace BWAPI
       virtual std::string mapHash();
 
       virtual bool isWalkable(int x, int y);
+      virtual bool isWalkable(WalkPosition position);
       virtual int  getGroundHeight(int x, int y);
       virtual int  getGroundHeight(TilePosition position);
       virtual bool isBuildable(int x, int y, bool includeBuildings = false);
@@ -178,9 +183,9 @@ namespace BWAPI
       virtual Player* self();
       virtual Player* enemy();
       virtual Player* neutral();
-      virtual std::set<BWAPI::Player*>& allies();
-      virtual std::set<BWAPI::Player*>& enemies();
-      virtual std::set<BWAPI::Player*>& observers();
+      virtual Playerset& allies();
+      virtual Playerset& enemies();
+      virtual Playerset& observers();
 
       virtual void setTextSize(int size = 1);
       virtual void drawText(int ctype, int x, int y, const char *format, ...);
@@ -239,7 +244,7 @@ namespace BWAPI
       virtual int  elapsedTime() const;
       virtual void setCommandOptimizationLevel(int level = 2);
       virtual int  countdownTimer() const;
-      virtual const std::set<BWAPI::Region*> &getAllRegions() const;
+      virtual const Regionset &getAllRegions() const;
       virtual BWAPI::Region *getRegionAt(int x, int y) const;
       virtual BWAPI::Region *getRegionAt(BWAPI::Position position) const;
       virtual int getLastEventTime() const;

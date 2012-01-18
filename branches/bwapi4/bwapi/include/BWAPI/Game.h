@@ -20,7 +20,11 @@
 #include <BWAPI/TechType.h>
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/Input.h>
+
 #include <BWAPI/Unitset.h>
+#include <BWAPI/Playerset.h>
+#include <BWAPI/Bulletset.h>
+#include <BWAPI/Forceset.h>
 namespace BWAPI
 {
   class Force;
@@ -38,11 +42,11 @@ namespace BWAPI
     virtual ~Game() {};
   public :
     /** Returns the set of all forces in the match. */
-    virtual std::set< Force* >& getForces() = 0;
+    virtual Forceset& getForces() = 0;
 
     /** Returns the set of all players in the match. Note that this includes the Neutral player, which owns
      * all the neutral units such as minerals, critters, etc. */
-    virtual std::set< Player* >& getPlayers() = 0;
+    virtual Playerset& getPlayers() = 0;
 
     /** Returns all the visible units. If Flag::CompleteMapInformation is enabled, the set of all units
      * is returned, not just visible ones. Note that units inside refineries are not included in this set
@@ -69,7 +73,7 @@ namespace BWAPI
 
     /** Returns all visible bullets. If Flag::CompleteMapInformation is enabled, the set of all bullets is
      * returned, not just visible ones. */
-    virtual std::set< Bullet* >& getBullets() = 0;
+    virtual Bulletset& getBullets() = 0;
 
    /** Returns all visible nuke dots. If Flag::CompleteMapInformation is enabled, the set of all nuke dots
      * is returned, not just visible ones. */
@@ -199,6 +203,7 @@ namespace BWAPI
      * You will also need to make sure no ground units are on the coresponding build tile to see if its
      * currently walkable. To do this, see unitsOnTile. */
     virtual bool isWalkable(int walkX, int walkY) = 0;
+    virtual bool isWalkable(BWAPI::WalkPosition position) = 0;
 
     /** Returns the ground height of the given build tile. 0 = normal, 1 = high ground.  2 = very high ground. */
     virtual int  getGroundHeight(int tileX, int tileY) = 0;
@@ -339,13 +344,13 @@ namespace BWAPI
     virtual Player* neutral() = 0;
 
     /** Returns a set of all the ally players that have not left or been defeated. Does not include self. */
-    virtual std::set<BWAPI::Player*>& allies() = 0;
+    virtual Playerset& allies() = 0;
 
     /** Returns a set of all the enemy players that have not left or been defeated. */
-    virtual std::set<BWAPI::Player*>& enemies() = 0;
+    virtual Playerset& enemies() = 0;
 
     /** Returns a set of all the observer players that have not left. */
-    virtual std::set<BWAPI::Player*>& observers() = 0;
+    virtual Playerset& observers() = 0;
 
     virtual void setTextSize(int size = 1) = 0;
     /** Draws text on the screen at the given position. Text can be drawn in different colors by using the
@@ -457,7 +462,7 @@ namespace BWAPI
     virtual int  countdownTimer() const = 0;
 
     /** Returns the set of all map regions. */
-    virtual const std::set<BWAPI::Region*> &getAllRegions() const = 0;
+    virtual const Regionset &getAllRegions() const = 0;
 
     /** Returns the region at a position. */
     virtual BWAPI::Region *getRegionAt(int x, int y) const = 0;

@@ -1145,7 +1145,6 @@ namespace BWAPI
     evadeUnits.clear();
     lastEvadedUnits.clear();
     selectedUnitSet.clear();
-    emptySet.clear();
     startLocations.clear();
     foreach(Force* f, forces)
       delete ((ForceImpl*)f);

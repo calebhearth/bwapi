@@ -499,7 +499,6 @@ namespace BWAPI
 
 
 
-
   bool initializingUnitType = true;
   class UnitTypeInternal
   {
