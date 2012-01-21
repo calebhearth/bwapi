@@ -19,6 +19,7 @@ _Note: In most cases you do not need to be present at the tournament location, s
   * *Official Website:* http://bwapiproject.netii.net/
   * *Restrictions:* Must be some kind of student (any student from anywhere).
   * *Hosted by:* Comenius University, Bratislava
+  * *Fundraising/Sponsorship:* http://www.indiegogo.com/Student-StarCraft-Artificial-Intelligence-Tournament
 
  === Dates ===
   * *Submission Deadline:* December, 2012
