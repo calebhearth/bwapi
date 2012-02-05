@@ -2,8 +2,6 @@
 #pragma pack(1)
 #include "Position.h"
 #include <Util/Types.h>
-#include <set>
-#include <list>
 #include <vector>
 
 #define getRegionFromId(x) (&(BW::BWDATA_SAIPathing->regions[(x)&0x1FFF]))

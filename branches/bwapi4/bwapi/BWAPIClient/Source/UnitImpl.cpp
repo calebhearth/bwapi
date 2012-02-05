@@ -1,8 +1,9 @@
 #include <BWAPI.h>
-#include "GameImpl.h"
-#include "ForceImpl.h"
-#include "PlayerImpl.h"
-#include "UnitImpl.h"
+#include <BWAPI/Client/GameImpl.h>
+#include <BWAPI/Client/ForceImpl.h>
+#include <BWAPI/Client/PlayerImpl.h>
+#include <BWAPI/Client/UnitImpl.h>
+
 #include "TemplatesImpl.h"
 #include "Command.h"
 #include <Util/Foreach.h>

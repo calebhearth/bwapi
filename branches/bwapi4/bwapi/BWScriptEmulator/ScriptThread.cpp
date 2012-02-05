@@ -470,14 +470,17 @@ void aithread::execute()
         continue;
       }
     case AISCRIPT::PLAYER_ENEMY:  // COMPLETED
+	{
       this->saveDebug("\x07", bOpcode);
-      for each ( Unit *u in bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom) )
+	  Unitset unitsInRect = bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom);
+      for ( Unitset::iterator u = unitsInRect.begin(); u != unitsInRect.end(); ++u )
       {
         Player *pl = u->getPlayer();
         if ( pl != self )
           bw->setAlliance(pl, false);
       }
       continue;
+	}
     case AISCRIPT::PLAYER_ALLY:  // COMPLETED
       this->saveDebug("\x07", bOpcode);
       for each ( Unit *u in bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom) )

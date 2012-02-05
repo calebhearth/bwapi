@@ -1,7 +1,7 @@
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Unit.h>
 
-#include "../../Debug.h"
+#include "../Debug.h"
 
 namespace BWAPI
 {

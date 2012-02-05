@@ -5,7 +5,7 @@
 
 #include "Config.h"
 
-#include "Holiday/Holiday.h"
+#include "Holiday.h"
 #include "WMode.h"
 
 char szConfigPath[MAX_PATH];

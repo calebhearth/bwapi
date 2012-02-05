@@ -10,7 +10,7 @@
 
 #include <Util/Foreach.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

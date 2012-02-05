@@ -1,6 +1,6 @@
 #define WIN32_LEAN_AND_MEAN   // Exclude rarely-used stuff from Windows headers
 
-#include "../../svnrev.h"
+#include "../../../svnrev.h"
 #include "GameImpl.h"
 
 #include <iterator>
@@ -41,13 +41,13 @@
 #include <BW/Dialog.h>
 
 #include "BWAPI/AIModule.h"
-#include "DLLMain.h"
-#include "Config.h"
-#include "Detours.h"
+#include "../DLLMain.h"
+#include "../Config.h"
+#include "../Detours.h"
 #include "../NewHackUtil.h"
 #include "BWtoBWAPI.h"
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

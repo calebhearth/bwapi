@@ -2,10 +2,10 @@
 #include <Util/Foreach.h>
 #include <math.h>
 
-#include "Detours.h"
-#include "DLLMain.h"
-#include "Config.h"
-#include "Recording.h"
+#include "../Detours.h"
+#include "../DLLMain.h"
+#include "../Config.h"
+#include "../Recording.h"
 
 #include <BWAPI/PlayerImpl.h>
 #include <BWAPI/RegionImpl.h>
@@ -15,8 +15,8 @@
 #include <BW/PlayerType.h>
 #include <BW/UnitID.h>
 
-#include "../../svnrev.h"
-#include "../../Debug.h"
+#include "../../../svnrev.h"
+#include "../../../Debug.h"
 
 #define TOURNAMENT_STR "BWAPI r" SVN_REV_STR " Tournament Mode Engaged!"
 

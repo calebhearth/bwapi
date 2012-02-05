@@ -1,11 +1,12 @@
 #include "BulletImpl.h"
 #include <BW/Bullet.h>
 #include <BW/Offsets.h>
-#include "BWAPI/GameImpl.h"
-#include "BWAPI/PlayerImpl.h"
-#include "BWAPI/UnitImpl.h"
 
-#include "../../Debug.h"
+#include "GameImpl.h"
+#include "PlayerImpl.h"
+#include "UnitImpl.h"
+
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

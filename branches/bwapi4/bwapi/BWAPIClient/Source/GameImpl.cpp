@@ -1,11 +1,12 @@
 #include <BWAPI.h>
-#include "GameImpl.h"
-#include "ForceImpl.h"
-#include "PlayerImpl.h"
-#include "RegionImpl.h"
-#include "UnitImpl.h"
+#include <BWAPI/Client/GameImpl.h>
+#include <BWAPI/Client/ForceImpl.h>
+#include <BWAPI/Client/PlayerImpl.h>
+#include <BWAPI/Client/RegionImpl.h>
+#include <BWAPI/Client/UnitImpl.h>
+#include <BWAPI/Client/BulletImpl.h>
+
 #include "TemplatesImpl.h"
-#include "BulletImpl.h"
 
 #include <Util/Foreach.h>
 #include <Util/Types.h>

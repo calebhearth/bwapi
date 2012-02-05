@@ -8,7 +8,7 @@
 #include "WMode.h"
 #include "DLLMain.h"
 #include "Resolution.h"
-#include "Holiday/Holiday.h"
+#include "Holiday.h"
 
 #include "Detours.h"
 #include "BWAPI/GameImpl.h"

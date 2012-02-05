@@ -1,13 +1,13 @@
 #include "GameImpl.h"
 
-#include "Config.h"
-#include "DLLMain.h"
-#include "NewHackUtil.h"
+#include "../Config.h"
+#include "../DLLMain.h"
+#include "../NewHackUtil.h"
 
 #include <BW/MenuPosition.h>
 #include <BW/PlayerType.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

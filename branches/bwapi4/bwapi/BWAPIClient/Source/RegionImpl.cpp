@@ -1,5 +1,5 @@
-#include "Client.h"
-#include "RegionImpl.h"
+#include <BWAPI/Client/Client.h>
+#include <BWAPI/Client/RegionImpl.h>
 
 namespace BWAPI
 {

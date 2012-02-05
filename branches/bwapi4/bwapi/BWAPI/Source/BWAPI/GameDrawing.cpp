@@ -2,10 +2,10 @@
 #include "GameImpl.h"
 
 #include <windows.h>
-#include "Graphics.h"
+#include "../Graphics.h"
 #include <cassert>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

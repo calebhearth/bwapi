@@ -10,10 +10,10 @@
 #include "RegionImpl.h"
 #include <BWAPI/Client/GameData.h>
 
-#include "Config.h"
-#include "../../svnrev.h"
+#include "../Config.h"
+#include "../../../svnrev.h"
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 #include <stdio.h>
 #include <time.h>

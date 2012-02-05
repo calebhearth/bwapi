@@ -5,11 +5,11 @@
 #include <string>
 #include <Util/Strings.h>
 
-#include "WMode.h"
-#include "Detours.h"
-#include "DLLMain.h"
-#include "Recording.h"
-#include "Resolution.h"
+#include "../WMode.h"
+#include "../Detours.h"
+#include "../DLLMain.h"
+#include "../Recording.h"
+#include "../Resolution.h"
 
 #include <BWAPI/BWtoBWAPI.h>
 #include <BWAPI/UnitImpl.h>
@@ -18,7 +18,7 @@
 
 #include <BW/Bullet.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 /*
   This files holds all functions of the GameImpl class that are not part of the Game interface.

@@ -1,6 +1,6 @@
 #include "Map.h"
-#include "DLLMain.h"
-#include "Config.h"
+#include "../DLLMain.h"
+#include "../Config.h"
 
 #include <BW/TileSet.h>
 #include <BW/TileType.h>
@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 #include <Util/sha1.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 using namespace std;
 namespace BWAPI

@@ -1,12 +1,12 @@
 #include "GameImpl.h"
-#include "DLLMain.h"
+#include "../DLLMain.h"
 
 #include <BWAPI/Command.h>
 
 #include <BW/TechID.h>
 #include <BW/UnitID.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

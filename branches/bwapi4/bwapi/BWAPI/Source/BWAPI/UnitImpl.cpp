@@ -1,4 +1,5 @@
 #include "UnitImpl.h"
+#include "GameImpl.h"
 
 #include <math.h>
 #include <limits>
@@ -9,11 +10,11 @@
 
 #include <BWAPI/Player.h>
 #include <BWAPI/Order.h>
-#include "BWAPI/GameImpl.h"
 #include <BWAPI/WeaponType.h>
+
 #include "Command.h"
-#include "DLLMain.h"
-#include "Detours.h"
+#include "../DLLMain.h"
+#include "../Detours.h"
 #include "TemplatesImpl.h"
 
 #include <BW/Unit.h>
@@ -21,7 +22,7 @@
 #include <BW/Offsets.h>
 #include <BW/UnitID.h>
 
-#include "../../Debug.h"
+#include "../../../Debug.h"
 
 namespace BWAPI
 {

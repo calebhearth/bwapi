@@ -1,4 +1,4 @@
-#include "Client.h"
+#include <BWAPI/Client/Client.h>
 #include <windows.h>
 #include <sstream>
 #include <iostream>
