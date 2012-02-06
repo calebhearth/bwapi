@@ -16,11 +16,11 @@ namespace BWAPI
 {
 	//--------------------------------------------- CONSTRUCTOR ------------------------------------------------
 	PlayerImpl::PlayerImpl(u8 index)
-			: index(index)
-			, id(-1)
-			, self(&data)
-			, force(NULL)
-			, wasSeenByBWAPIPlayer(false)
+	: index(index)
+	, id(-1)
+	, self(&data)
+	, force(NULL)
+	, wasSeenByBWAPIPlayer(false)
 	{
 		MemZero(data);
 		resetResources();

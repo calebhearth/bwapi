@@ -140,7 +140,7 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 		PVOID pExceptionAddr = ep->ExceptionRecord->ExceptionAddress;
 
 		// Print offending module info
-		fprintf(hFile, "FAULT:     0x%08X    %s\n", pExceptionAddr, getModuleNameFrom(pExceptionAddr).c_str());
+		fprintf(hFile, "FAULT:     0x%p    %s\n", pExceptionAddr, getModuleNameFrom(pExceptionAddr).c_str());
 
 		// Print register information
 		fprintf(hFile, "REGISTERS:\n");
@@ -248,7 +248,7 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 													NULL) )
 			{
 				DWORD dwOffset = sf.AddrPC.Offset;
-				fprintf(hFile, "	%-16s	0x%p		", getModuleNameFrom((LPCVOID)dwOffset).c_str(), dwOffset);
+				fprintf(hFile, "	%-16s	0x%08X		", getModuleNameFrom((LPCVOID)dwOffset).c_str(), dwOffset);
 				bool foundSomething = false;
 				if ( dwOffset )
 				{

@@ -17,13 +17,13 @@ public:
 	void execute();
 	void StandardUnitProc();
 
-	int			 iEmulatedOrder;
 	Position	guardLocation;
 	Position	destLocation;
-	Unit			*thisUnit;
-	bool			initialized;
-	int			 dwState;
-	int			 aiCaptain;
+	Unit		*thisUnit;
+	int			iEmulatedOrder;
+	int			dwState;
+	int			aiCaptain;
+	bool		initialized;
 };
 
 UnitProc *getUnitProc(BWAPI::Unit *pUnit);

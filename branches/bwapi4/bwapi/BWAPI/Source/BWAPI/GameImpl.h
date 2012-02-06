@@ -113,10 +113,10 @@ namespace BWAPI
 			virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
 			virtual bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
 
-			virtual bool canBuildHere(const Unit* builder, TilePosition position, UnitType type, bool checkExplored = false);
-			virtual bool canMake(const Unit* builder, UnitType type);
-			virtual bool canResearch(const Unit* unit, TechType type);
-			virtual bool canUpgrade(const Unit* unit, UpgradeType type);
+			virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = NULL, bool checkExplored = false);
+			virtual bool canMake(UnitType type, const Unit* builder = NULL);
+			virtual bool canResearch(TechType type, const Unit* unit = NULL);
+			virtual bool canUpgrade(UpgradeType type, const Unit* unit = NULL);
 
 			virtual std::set< TilePosition >& getStartLocations();
 

@@ -631,7 +631,7 @@ namespace BWAPI
 					 UnitCommandTypes::Train			 == ct )
 			{
 				UnitType uType = c.getUnitType();
-				if ( !Broodwar->canMake(thisUnit, uType) )
+				if ( !Broodwar->canMake(uType, thisUnit) )
 					return false;
 
 				if ( thisUnit->isConstructing() || 
@@ -645,7 +645,7 @@ namespace BWAPI
 					if ( !uType.isBuilding() )
 						return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
-					if ( !uType.isAddon() && !Broodwar->canBuildHere(thisUnit, BWAPI::TilePosition(c.x, c.y), uType, true) )
+					if ( !uType.isAddon() && !Broodwar->canBuildHere(BWAPI::TilePosition(c.x, c.y), uType, thisUnit, true) )
 						return false;
 				}
 				else if ( UnitCommandTypes::Build_Addon == ct )
@@ -656,7 +656,7 @@ namespace BWAPI
 					if ( thisUnit->getAddon() )
 						return Broodwar->setLastError(Errors::Incompatible_State);
 
-					if ( !Broodwar->canBuildHere(thisUnit, BWAPI::TilePosition(thisUnit->getTilePosition().x() + 4, thisUnit->getTilePosition().y() + 1), uType) )
+					if ( !Broodwar->canBuildHere(thisUnit->getTilePosition() + BWAPI::TilePosition(4, 1), uType, thisUnit) )
 						return false;
 				}
 				else
@@ -667,9 +667,9 @@ namespace BWAPI
 			} // build/train
 
 			// Research/Upgrade requirements
-			if ( UnitCommandTypes::Research == ct && !Broodwar->canResearch(thisUnit, c.getTechType()) )
+			if ( UnitCommandTypes::Research == ct && !Broodwar->canResearch(c.getTechType(), thisUnit) )
 				return false;
-			if ( UnitCommandTypes::Upgrade	== ct && !Broodwar->canUpgrade(thisUnit, c.getUpgradeType()) )
+			if ( UnitCommandTypes::Upgrade	== ct && !Broodwar->canUpgrade(c.getUpgradeType(), thisUnit) )
 				return false;
 
 			// Set Rally 
@@ -982,7 +982,7 @@ namespace BWAPI
 				if ( ((UnitImpl*)thisUnit)->self->buttonset == 228 || thisUnit->getOrder() != BWAPI::Orders::CTFCOPInit )
 					return Broodwar->setLastError(Errors::Incompatible_State);
 
-				if ( !Broodwar->canBuildHere(thisUnit, BWAPI::TilePosition(c.x, c.y), thisUnit->getType(), true) )
+				if ( !Broodwar->canBuildHere(BWAPI::TilePosition(c.x, c.y), thisUnit->getType(), thisUnit, true) )
 					return false;
 			}
 			return true;

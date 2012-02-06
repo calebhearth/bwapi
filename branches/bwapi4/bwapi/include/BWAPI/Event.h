@@ -48,11 +48,11 @@ namespace BWAPI
 			Event& setWinner(bool isWinner);
 			//static Event TriggerAction();
 		private:
-			Position			position;
+			Position		position;
 			std::string		*text;
-			Unit				*unit;
+			Unit			*unit;
 			Player			*player;
 			EventType::Enum	type;
-			bool				winner;
+			bool			winner;
 	};
 }

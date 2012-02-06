@@ -250,6 +250,9 @@
     <ClInclude Include="Source\Holiday.h">
       <Filter>Hacks\Header FIles</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\BWAPI\Region.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">

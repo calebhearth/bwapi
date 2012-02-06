@@ -140,6 +140,7 @@ $(SolutionDir)\revisionUpdate.bat
     <ClInclude Include="..\include\BWAPI\Force.h" />
     <ClInclude Include="..\include\BWAPI\Game.h" />
     <ClInclude Include="..\include\BWAPI\Player.h" />
+    <ClInclude Include="..\include\BWAPI\Region.h" />
     <ClInclude Include="..\include\BWAPI\Unit.h" />
     <ClInclude Include="..\Shared\Templates.h" />
     <ClInclude Include="..\Shared\TemplatesImpl.h" />

@@ -131,22 +131,22 @@ namespace BWAPI
 		return hasPowerPrecise(position.x(), position.y(), unitType);
 	}
 	//--------------------------------------------- CAN BUILD HERE ---------------------------------------------
-	bool GameImpl::canBuildHere(const Unit* builder, TilePosition position, UnitType type, bool checkExplored)
+	bool GameImpl::canBuildHere(TilePosition position, UnitType type, const Unit* builder, bool checkExplored)
 	{
 		return Templates::canBuildHere(builder,position,type,checkExplored);
 	}
 	//--------------------------------------------- CAN MAKE ---------------------------------------------------
-	bool GameImpl::canMake(const Unit* builder, UnitType type)
+	bool GameImpl::canMake(UnitType type, const Unit* builder)
 	{
 		return Templates::canMake(builder,type);
 	}
 	//--------------------------------------------- CAN RESEARCH -----------------------------------------------
-	bool GameImpl::canResearch(const Unit* unit, TechType type)
+	bool GameImpl::canResearch(TechType type, const Unit* unit)
 	{
 		return Templates::canResearch(unit,type);
 	}
 	//--------------------------------------------- CAN UPGRADE ------------------------------------------------
-	bool GameImpl::canUpgrade(const Unit* unit, UpgradeType type)
+	bool GameImpl::canUpgrade(UpgradeType type, const Unit* unit)
 	{
 		return Templates::canUpgrade(unit,type);
 	}

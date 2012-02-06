@@ -62,11 +62,11 @@ void MapTest::onStart()
 	}
 
 	//briefly check some of these functions. Can add more test cases later if needed
-	BWAssert(Broodwar->canBuildHere(NULL,TilePosition(18,12),UnitTypes::Protoss_Pylon));
-	BWAssert(Broodwar->canBuildHere(NULL,TilePosition(18,12),UnitTypes::Protoss_Gateway));
-	BWAssert(Broodwar->canMake(NULL,UnitTypes::Protoss_Gateway)==false);
-	BWAssert(Broodwar->canResearch(NULL,TechTypes::Psionic_Storm)==false);
-	BWAssert(Broodwar->canUpgrade(NULL,UpgradeTypes::Gravitic_Thrusters)==false);
+	BWAssert(Broodwar->canBuildHere(TilePosition(18,12),UnitTypes::Protoss_Pylon));
+	BWAssert(Broodwar->canBuildHere(TilePosition(18,12),UnitTypes::Protoss_Gateway));
+	BWAssert(Broodwar->canMake(UnitTypes::Protoss_Gateway)==false);
+	BWAssert(Broodwar->canResearch(TechTypes::Psionic_Storm)==false);
+	BWAssert(Broodwar->canUpgrade(UpgradeTypes::Gravitic_Thrusters)==false);
 
 	//check start locations
 	set<TilePosition> startLocations = Broodwar->getStartLocations();
