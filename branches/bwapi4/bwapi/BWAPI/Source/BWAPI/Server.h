@@ -8,45 +8,45 @@
 #include <map>
 namespace BWAPI
 {
-  class Server
-  {
-  public:
-    Server();
-    ~Server();
-    void update();
-    bool isConnected();
-    int addEvent(BWAPI::Event e);
-    int addString(const char* text);
-    int getForceID(Force* force);
-    Force* getForce(int id);
-    int getPlayerID(Player* player);
-    Player* getPlayer(int id);
-    int getUnitID(Unit* unit);
-    Unit* getUnit(int id);
-    GameData* data;
-    void clearAll();
-  private:
-    void onMatchStart();
-    void checkForConnections();
-    void initializeSharedMemory();
-    void updateSharedMemory();
-    void callOnFrame();
-    void processCommands();
-    void setWaitForResponse(bool wait);
-    HANDLE pipeObjectHandle;
-    HANDLE mapFileHandle;
-    HANDLE gameTableFileHandle;
-    GameTable* gameTable;
-    int gameTableIndex;
-    bool connected;
-    bool localOnly;
-    std::vector<Force*> forceVector;
-    std::map<Force*, int> forceLookup;
+	class Server
+	{
+	public:
+		Server();
+		~Server();
+		void update();
+		bool isConnected();
+		int addEvent(BWAPI::Event e);
+		int addString(const char* text);
+		int getForceID(Force* force);
+		Force* getForce(int id);
+		int getPlayerID(Player* player);
+		Player* getPlayer(int id);
+		int getUnitID(Unit* unit);
+		Unit* getUnit(int id);
+		GameData* data;
+		void clearAll();
+	private:
+		void onMatchStart();
+		void checkForConnections();
+		void initializeSharedMemory();
+		void updateSharedMemory();
+		void callOnFrame();
+		void processCommands();
+		void setWaitForResponse(bool wait);
+		HANDLE pipeObjectHandle;
+		HANDLE mapFileHandle;
+		HANDLE gameTableFileHandle;
+		GameTable* gameTable;
+		int gameTableIndex;
+		bool connected;
+		bool localOnly;
+		std::vector<Force*> forceVector;
+		std::map<Force*, int> forceLookup;
 
-    std::vector<Player*> playerVector;
-    std::map<Player*, int> playerLookup;
+		std::vector<Player*> playerVector;
+		std::map<Player*, int> playerLookup;
 
-    std::vector<Unit*> unitVector;
-    std::map<Unit*, int> unitLookup;
-  };
+		std::vector<Unit*> unitVector;
+		std::map<Unit*, int> unitLookup;
+	};
 }

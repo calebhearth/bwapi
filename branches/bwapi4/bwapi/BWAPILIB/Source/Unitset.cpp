@@ -3,8 +3,8 @@
 
 namespace BWAPI
 {
-  Unitset::Unitset(size_t initialSize, size_t maxSizeHint) : Vectorset(initialSize, maxSizeHint) { };
-  Unitset::Unitset(const Unitset &other) : Vectorset(other) { };
+	Unitset::Unitset(size_t initialSize, size_t maxSizeHint) : Vectorset(initialSize, maxSizeHint) { };
+	Unitset::Unitset(const Unitset &other) : Vectorset(other) { };
 
 
 }

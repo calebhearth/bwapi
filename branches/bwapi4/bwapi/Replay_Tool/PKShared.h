@@ -7,18 +7,18 @@
 
 typedef struct __Part
 {
-  DWORD dwCrc32Sum;
-  DWORD dwSectionCount;
+	DWORD dwCrc32Sum;
+	DWORD dwSectionCount;
 } _Part;
 
 typedef struct __Param
 {
-  char  *pCompressedData;
-  DWORD dwReadPos;
-  char  *pDecompressedData;
-  DWORD dwWritePos;
-  DWORD dwMaxRead;
-  DWORD dwMaxWrite;
+	char	*pCompressedData;
+	DWORD dwReadPos;
+	char	*pDecompressedData;
+	DWORD dwWritePos;
+	DWORD dwMaxRead;
+	DWORD dwMaxWrite;
 } _Param;
 
 

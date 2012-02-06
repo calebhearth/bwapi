@@ -4,10 +4,10 @@
 
 namespace BWAPI
 {
-  int ForceImpl::getID() const
-  {
-    return id;
-  }
+	int ForceImpl::getID() const
+	{
+		return id;
+	}
 
 }
 

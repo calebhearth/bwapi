@@ -4,18 +4,18 @@
 
 class GatherTest : public TestCase
 {
-  public:
-    GatherTest();
-    virtual void start();
-    virtual void update();
-    virtual void stop();
-  private:
-    int startFrame;
-    int nextFrame;
-    BWAPI::Unit* worker;
-    BWAPI::Unit* mineral;
-    BWAPI::Unit* refinery;
-    int initialMinerals;
-    int initialGas;
-    int state;
+	public:
+		GatherTest();
+		virtual void start();
+		virtual void update();
+		virtual void stop();
+	private:
+		int startFrame;
+		int nextFrame;
+		BWAPI::Unit* worker;
+		BWAPI::Unit* mineral;
+		BWAPI::Unit* refinery;
+		int initialMinerals;
+		int initialGas;
+		int state;
 };

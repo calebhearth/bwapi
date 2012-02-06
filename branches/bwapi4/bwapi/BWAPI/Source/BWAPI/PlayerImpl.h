@@ -24,121 +24,121 @@ namespace BW { class Unit; };
 
 namespace BWAPI
 {
-  class Unit;
-  class Force;
-  /** Represents one player in game. Note that there is always player 12 who owns resources. */
-  class PlayerImpl : public Player
-  {
-    public :
+	class Unit;
+	class Force;
+	/** Represents one player in game. Note that there is always player 12 who owns resources. */
+	class PlayerImpl : public Player
+	{
+		public :
 
-      /**
-       * Gets the name of the player
-       * @return Pointer directly to bw memory where the name is represented.
-       */
-      virtual int         getID() const;
-      virtual std::string getName() const;
-      virtual Race        getRace() const;
-      virtual PlayerType  getType() const;
-      virtual Force*      getForce() const;
+			/**
+			 * Gets the name of the player
+			 * @return Pointer directly to bw memory where the name is represented.
+			 */
+			virtual int				 getID() const;
+			virtual std::string getName() const;
+			virtual Race				getRace() const;
+			virtual PlayerType	getType() const;
+			virtual Force*			getForce() const;
 
-      virtual bool isAlly(Player* player) const;
-      virtual bool isEnemy(Player* player) const;
-      virtual bool isNeutral() const;
+			virtual bool isAlly(Player* player) const;
+			virtual bool isEnemy(Player* player) const;
+			virtual bool isNeutral() const;
 
-      virtual bool isVictorious() const;
-      virtual bool isDefeated() const;
-      virtual bool leftGame() const;
+			virtual bool isVictorious() const;
+			virtual bool isDefeated() const;
+			virtual bool leftGame() const;
 
-      virtual const Unitset& getUnits() const;
-      virtual TilePosition  getStartLocation() const;
+			virtual const Unitset& getUnits() const;
+			virtual TilePosition	getStartLocation() const;
 
-      virtual int  minerals() const;
-      virtual int  gas() const;
+			virtual int	minerals() const;
+			virtual int	gas() const;
 
-      virtual int  gatheredMinerals() const;
-      virtual int  gatheredGas() const;
-      virtual int  repairedMinerals() const;
-      virtual int  repairedGas() const;
-      virtual int  refundedMinerals() const;
-      virtual int  refundedGas() const;
-      virtual int  spentMinerals() const;
-      virtual int  spentGas() const;
+			virtual int	gatheredMinerals() const;
+			virtual int	gatheredGas() const;
+			virtual int	repairedMinerals() const;
+			virtual int	repairedGas() const;
+			virtual int	refundedMinerals() const;
+			virtual int	refundedGas() const;
+			virtual int	spentMinerals() const;
+			virtual int	spentGas() const;
 
-      virtual int  supplyTotal(Race race = Races::None) const;
-      virtual int  supplyUsed(Race race = Races::None) const;
+			virtual int	supplyTotal(Race race = Races::None) const;
+			virtual int	supplyUsed(Race race = Races::None) const;
 
-      virtual int  allUnitCount(UnitType unit) const;
-      virtual int  visibleUnitCount(UnitType unit) const;
-      virtual int  completedUnitCount(UnitType unit) const;
-      virtual int  incompleteUnitCount(UnitType unit) const;
-      virtual int  deadUnitCount(UnitType unit) const;
-      virtual int  killedUnitCount(UnitType unit) const;
+			virtual int	allUnitCount(UnitType unit) const;
+			virtual int	visibleUnitCount(UnitType unit) const;
+			virtual int	completedUnitCount(UnitType unit) const;
+			virtual int	incompleteUnitCount(UnitType unit) const;
+			virtual int	deadUnitCount(UnitType unit) const;
+			virtual int	killedUnitCount(UnitType unit) const;
 
-      virtual int  getUpgradeLevel(UpgradeType upgrade) const;
-      virtual bool hasResearched(TechType tech) const;
-      virtual bool isResearching(TechType tech) const;
-      virtual bool isUpgrading(UpgradeType upgrade) const;
+			virtual int	getUpgradeLevel(UpgradeType upgrade) const;
+			virtual bool hasResearched(TechType tech) const;
+			virtual bool isResearching(TechType tech) const;
+			virtual bool isUpgrading(UpgradeType upgrade) const;
 
-      virtual BWAPI::Color getColor() const;
-      virtual int getTextColor() const;
+			virtual BWAPI::Color getColor() const;
+			virtual int getTextColor() const;
 
-      virtual int maxEnergy(UnitType unit) const;
-      virtual double topSpeed(UnitType unit) const;
-      virtual int groundWeaponMaxRange(UnitType unit) const;
-      virtual int airWeaponMaxRange(UnitType unit) const;
-      virtual int weaponMaxRange(WeaponType weapon) const;
-      virtual int sightRange(UnitType unit) const;
-      virtual int groundWeaponDamageCooldown(UnitType unit) const;
-      virtual int armor(UnitType unit) const;
+			virtual int maxEnergy(UnitType unit) const;
+			virtual double topSpeed(UnitType unit) const;
+			virtual int groundWeaponMaxRange(UnitType unit) const;
+			virtual int airWeaponMaxRange(UnitType unit) const;
+			virtual int weaponMaxRange(WeaponType weapon) const;
+			virtual int sightRange(UnitType unit) const;
+			virtual int groundWeaponDamageCooldown(UnitType unit) const;
+			virtual int armor(UnitType unit) const;
 
-      virtual int getUnitScore() const;
-      virtual int getKillScore() const;
-      virtual int getBuildingScore() const;
-      virtual int getRazingScore() const;
-      virtual int getCustomScore() const;
+			virtual int getUnitScore() const;
+			virtual int getKillScore() const;
+			virtual int getBuildingScore() const;
+			virtual int getRazingScore() const;
+			virtual int getCustomScore() const;
 
-      virtual bool isObserver() const;
+			virtual bool isObserver() const;
 
-      virtual int  getMaxUpgradeLevel(UpgradeType upgrade) const;
-      virtual bool isResearchAvailable(TechType tech) const;
-      virtual bool isUnitAvailable(UnitType unit) const;
+			virtual int	getMaxUpgradeLevel(UpgradeType upgrade) const;
+			virtual bool isResearchAvailable(TechType tech) const;
+			virtual bool isUnitAvailable(UnitType unit) const;
 
-      //Internal BWAPI commands:
-      /**
-       * Constructs new player
-       * @param id 0-based Index of the player (11 for resources as it is player 12)
-       */
-      PlayerImpl(u8 index);
-      ~PlayerImpl();
-      int getIndex() const;
-      /** Gets 0-based index of the player. (11 for neutral) */
-      char* getForceName() const;
-      void setID(int newID);
-      ForceImpl* force;
+			//Internal BWAPI commands:
+			/**
+			 * Constructs new player
+			 * @param id 0-based Index of the player (11 for resources as it is player 12)
+			 */
+			PlayerImpl(u8 index);
+			~PlayerImpl();
+			int getIndex() const;
+			/** Gets 0-based index of the player. (11 for neutral) */
+			char* getForceName() const;
+			void setID(int newID);
+			ForceImpl* force;
 
-      /** Gets the bw mapping of synchronised version of selected unit for current player */
-      BW::Unit** selectedUnit();
-      /**
-       * Updates localData according to bw values. (Should be called every frame before local data updates are
-       * performed
-       */
-      void updateData();
-      PlayerData data;
-      PlayerData* self;
-      void onGameEnd();
-      Unitset units;
+			/** Gets the bw mapping of synchronised version of selected unit for current player */
+			BW::Unit** selectedUnit();
+			/**
+			 * Updates localData according to bw values. (Should be called every frame before local data updates are
+			 * performed
+			 */
+			void updateData();
+			PlayerData data;
+			PlayerData* self;
+			void onGameEnd();
+			Unitset units;
 
-      s32 _repairedMinerals;
-      s32 _repairedGas;
-      s32 _refundedMinerals;
-      s32 _refundedGas;
+			s32 _repairedMinerals;
+			s32 _repairedGas;
+			s32 _refundedMinerals;
+			s32 _refundedGas;
 
-      void setParticipating(bool isParticipating = true);
-      void resetResources();
+			void setParticipating(bool isParticipating = true);
+			void resetResources();
 
-      bool wasSeenByBWAPIPlayer;
-    private :
-      int id;
-      u8 index;  /**< Order of the player, is used to load player's information from the memory */
-  };
+			bool wasSeenByBWAPIPlayer;
+		private :
+			int id;
+			u8 index;	/**< Order of the player, is used to load player's information from the memory */
+	};
 };

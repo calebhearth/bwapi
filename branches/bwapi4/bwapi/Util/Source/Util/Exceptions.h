@@ -7,16 +7,16 @@ class MultiString;
  */
 class GeneralException
 {
-  private :
-    /**
-     * Represents the property key of the exception message, but in some special
-     *   cases, the messageKey can contain the message itself
-     */
-   std::string message;
-  public:
-    /** Creates exception with the specified message */
-    GeneralException(const std::string &messageKey);
-    const std::string getMessage(void);
+	private :
+		/**
+		 * Represents the property key of the exception message, but in some special
+		 *	 cases, the messageKey can contain the message itself
+		 */
+	 std::string message;
+	public:
+		/** Creates exception with the specified message */
+		GeneralException(const std::string &messageKey);
+		const std::string getMessage(void);
 };
 
 /**
@@ -25,29 +25,29 @@ class GeneralException
  */
 class ConfigException : public GeneralException
 {
-  public :
-    ConfigException(const std::string &message);
+	public :
+		ConfigException(const std::string &message);
 };
 
 /** Can be thrown when some required files are not found. */
 class FileException : public GeneralException
 {
-  public :
-   FileException(const std::string &message);
+	public :
+	 FileException(const std::string &message);
 };
 
 /** Can be thrown when the xml file structure is invalid. */
 class XmlException : public GeneralException
 {
-    std::string fileName;
-    long lineNumber;
-  public :
-    XmlException(const std::string& message, const std::string& fileName = "", const long lineNumber = 0);
+		std::string fileName;
+		long lineNumber;
+	public :
+		XmlException(const std::string& message, const std::string& fileName = "", const long lineNumber = 0);
 };
 
 /** Can be thrown during parsin (non integer paremters that should be numbers for example) */
 class ParseException : public GeneralException
 {
-  public :
-    ParseException(const std::string& message);
+	public :
+		ParseException(const std::string& message);
 };

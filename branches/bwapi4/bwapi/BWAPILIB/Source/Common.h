@@ -3,6 +3,6 @@
 
 namespace BWAPI
 {
-  void fixName(std::string *name);
-  const char *underscoresToSpaces(const char *pszTypename);
+	void fixName(std::string *name);
+	const char *underscoresToSpaces(const char *pszTypename);
 }

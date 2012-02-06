@@ -1,22 +1,22 @@
 #pragma once
 /**
- *  Used in UnitCommand
+ *	Used in UnitCommand
  */
 
 namespace BWAPIC
 {
-  namespace ShapeType
-  {
-    enum Enum
-    {
-      None,
-      Text,
-      Box,
-      Triangle,
-      Circle,
-      Ellipse,
-      Dot,
-      Line
-    };
-  }
+	namespace ShapeType
+	{
+		enum Enum
+		{
+			None,
+			Text,
+			Box,
+			Triangle,
+			Circle,
+			Ellipse,
+			Dot,
+			Line
+		};
+	}
 }
