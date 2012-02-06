@@ -1,0 +1,73 @@
+#summary The coding standard for development of BWAPI4.
+#labels Phase-Implementation
+
+In BWAPI4, a new coding standard is being introduced to
+  # Abolish uncommon standards that most people don't follow.
+  # Allow new developers to transition to the standard more easily.
+  # Address important issues that were in most revisions previously.
+
+For comparison, you can view the outdated coding standard [CodingStandard here].
+
+<wiki:toc max_depth="2" />
+
+= Spacing =
+Spacing is important. Don't be afraid of spacing.
+
+  # Use tabs instead of spaces. Spaces conflict with the common and default tab settings of several applications. If you wish to change the spacing then you can do so by changing the width of tabs in your editor's settings dialog.
+  # Always indent for each scope level.
+  # Always put a space between all arithmetic, binary, and conditional operators.
+  # Don't put a space between function names and the open parenthesis.
+  # Put a space after a comma.
+
+Examples of spacing
+<code>
+// bad, can't tell if assignment is a typo, and
+// there is a space between the member function and its parameters
+if(Broodwar()->canMake (UnitTypes::Terran_Marine, builder))
+	reservedMinerals=-UnitTypes::Terran_Marine.mineralPrice();
+
+// good, the arithmetic is clear
+if(Broodwar()->canMake(UnitTypes::Terran_Marine, builder))
+	reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();
+
+// bad, the scope is not indented, no space following the comma
+if ( Broodwar()->canMake(UnitTypes::Terran_Marine,builder) )
+reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();
+
+// good, alternative spacing style for if statements
+if ( Broodwar()->canMake(UnitTypes::Terran_Marine, builder) )
+	reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();</code>
+
+= Formatting =
+  # Use [http://en.wikipedia.org/wiki/Indent_style#Allman_style ANSI style] braces.
+  # Break up large single-line if statements to be multi-line if statements.
+  # Format constructor initializer lists as follows:
+<code>Player::Player()
+:unitCount(0)
+,pFirstUnit(NULL)
+,name("")
+,isWinner(false)
+{
+  // additional constructor code
+}</code>
+
+= Naming =
+  # Try to use meaningful names. If a variable name cannot be resolved by another project member, then the variable needs to be renamed.
+  # In local looping scopes, single-letter variable names are generally used as follows:
+    * *b* for Bullet
+    * *f* for Force
+    * *p* for Player
+    * *r* for Region
+    * *u* for Unit
+    * *i* for iterator/index
+  # Member variables and member function names should be in [http://en.wikipedia.org/wiki/CamelCase lower camel case]. Examples: {{{getUnitsInRectangle}}}, {{{wasSeenByBWAPIPlayer}}}.
+  # Constants and macros should (in most cases) be in ALL CAPS. Example: {{{PLAYER_COUNT}}}
+  # Use [http://en.wikipedia.org/wiki/CamelCase upper Camel Case] for class names and namespaces. Do not use underscores in class names. Instead put it inside of a namespace.
+  # Enumerations should be in [http://en.wikipedia.org/wiki/CamelCase upper Camel Case].
+
+= Hacking =
+  # Offsets should be in hexadecimal, and all offsets are to be separate from the coding itself.
+  # Use inline assembly only when necessary.
+  # Perform version checking before making code patches, to ensure that BWAPI is compatible with all versions of Starcraft: Broodwar.
+
+= Documentation =
