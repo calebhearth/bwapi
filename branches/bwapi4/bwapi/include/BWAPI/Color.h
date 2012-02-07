@@ -7,7 +7,7 @@ namespace BWAPI
 	// TODO: Add color palette image and info about text color
 	/** StarCraft uses a 256 color palette to render everything, so the colors we can use to draw shapes using
 	 * BWAPI is limited to the colors available in the Palette. */
-	class Color : public Type
+	class Color : public Type<Color>
 	{
 		public:
 			Color();

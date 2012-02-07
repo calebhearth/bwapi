@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <set>
 
 #include <Util/Foreach.h>
 
@@ -617,11 +616,12 @@ namespace BWAPI
 
 			std::pair<UnitType, int> whatBuilds;
 			std::map<UnitType, int>	requiredUnits;
-			TechType								 requiredTech;
-			TechType								 cloakingTech;
-			std::set<TechType>			 abilities;
-			std::set<UpgradeType>		upgrades;
-			UpgradeType							armorUpgrade;
+
+			TechType			requiredTech;
+			TechType			cloakingTech;
+			TechType::set		abilities;
+			UpgradeType::set	upgrades;
+			UpgradeType			armorUpgrade;
 
 			int maxHitPoints;
 			int maxShields;
@@ -691,8 +691,8 @@ namespace BWAPI
 	};
 	UnitTypeInternal unitTypeData[245];
 	std::map<std::string, UnitType> unitTypeMap;
-	std::set< UnitType > unitTypeSet;
-	std::set< UnitType > macroTypeSet;
+	UnitType::set unitTypeSet;
+	UnitType::set macroTypeSet;
 	int maxWidth;
 	int maxHeight;
 	namespace UnitTypes
@@ -1201,11 +1201,11 @@ namespace BWAPI
 	{
 		return unitTypeData[this->getID()].cloakingTech;
 	}
-	const std::set< TechType >& UnitType::abilities() const
+	const TechType::set& UnitType::abilities() const
 	{
 		return unitTypeData[this->getID()].abilities;
 	}
-	const std::set< UpgradeType >& UnitType::upgrades() const
+	const UpgradeType::set& UnitType::upgrades() const
 	{
 		return unitTypeData[this->getID()].upgrades;
 	}

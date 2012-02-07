@@ -4,7 +4,7 @@
 #include "Type.h"
 namespace BWAPI
 {
-	class GameType : public Type
+	class GameType : public Type<GameType>
 	{
 		public:
 			GameType();

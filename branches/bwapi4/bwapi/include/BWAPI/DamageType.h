@@ -4,7 +4,7 @@
 #include "Type.h"
 namespace BWAPI
 {
-	class DamageType : public Type
+	class DamageType : public Type<DamageType>
 	{
 		public:
 			DamageType();

@@ -5,7 +5,7 @@
 namespace BWAPI
 {
 	class UnitType;
-	class Race : public Type
+	class Race : public Type<Race>
 	{
 		public:
 			Race();

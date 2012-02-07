@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <map>
-#include <set>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitSizeType.h>
 #include "Type.h"
@@ -17,7 +16,7 @@ namespace BWAPI
 
 	/** The UnitType class is used to get information about a particular type of unit, such as the build time
 	 * of a Lurker, or the mineral price of an Ultralisk. TODO Add the unittype table from the wiki*/
-	class UnitType : public Type
+	class UnitType : public Type<UnitType>
 	{
 	public:
 		UnitType();
@@ -55,10 +54,10 @@ namespace BWAPI
 
 		/** Returns the set of tech types this unit can use, provided the tech types have been researched and
 		 * the unit has enough energy. */
-		const std::set< TechType >& abilities() const;
+		const Typeset<TechType>& abilities() const;
 
 		/** Returns the set of upgrade types that can affect this unit. */
-		const std::set< UpgradeType >& upgrades() const;
+		const Typeset<UpgradeType>& upgrades() const;
 
 		/** Returns the upgrade that increase's the unit's armor, or UpgradeTypes::None if no upgrade
 		 * increase's this unit's armor. For example UnitTypes::Terran_Marine.armorUpgrade() will return a
@@ -293,10 +292,10 @@ namespace BWAPI
 		int maxUnitHeight();
 
 		/** Returns the set of all the UnitTypes. */
-		const std::set<UnitType>& allUnitTypes();
+		const UnitType::set& allUnitTypes();
 
 		/** Returns the set of all the MacroTypes. */
-		const std::set<UnitType>& allMacroTypes();
+		const UnitType::set& allMacroTypes();
 		void init();
 
 		namespace Enum

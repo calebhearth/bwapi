@@ -8,7 +8,7 @@ namespace BWAPI
 	class UpgradeType;
 	class DamageType;
 	class ExplosionType;
-	class WeaponType : public Type
+	class WeaponType : public Type<WeaponType>
 	{
 		public:
 			WeaponType();

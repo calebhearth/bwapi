@@ -5,7 +5,7 @@
 
 namespace BWAPI
 {
-	class BulletType : public Type
+	class BulletType : public Type<BulletType>
 	{
 		public:
 			BulletType();

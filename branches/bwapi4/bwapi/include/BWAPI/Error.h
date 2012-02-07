@@ -7,7 +7,7 @@ namespace BWAPI
 	class UnitType;
 
 	/** Functions in BWAPI may set an error code. To retrieve the error code, call Game::getLastError. */
-	class Error : public Type
+	class Error : public Type<Error>
 	{
 	public:
 		Error();

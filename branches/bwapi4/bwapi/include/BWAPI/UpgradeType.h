@@ -6,7 +6,7 @@
 namespace BWAPI
 {
 	class UnitType;
-	class UpgradeType : public Type
+	class UpgradeType : public Type<UpgradeType>
 	{
 	public:
 		UpgradeType();

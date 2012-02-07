@@ -4,7 +4,7 @@
 #include "Type.h"
 namespace BWAPI
 {
-	class ExplosionType : public Type
+	class ExplosionType : public Type<ExplosionType>
 	{
 		public:
 			ExplosionType();

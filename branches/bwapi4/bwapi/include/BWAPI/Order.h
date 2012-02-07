@@ -9,7 +9,7 @@ namespace BWAPI
 	 * orders ( MoveToMinerals, HarvestMinerals2, MiningMinerals, ReturnMinerals, etc) which will indicate what
 	 * state the unit is in while executing the command. For information about how to issue commands to units,
 	 * go to Unit. */
-	class Order : public Type
+	class Order : public Type<Order>
 	{
 		public:
 			Order();

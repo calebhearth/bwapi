@@ -9,7 +9,7 @@ namespace BWAPI
 {
 	class UnitType;
 	class WeaponType;
-	class TechType : public Type
+	class TechType : public Type<TechType>
 	{
 		public:
 			TechType();

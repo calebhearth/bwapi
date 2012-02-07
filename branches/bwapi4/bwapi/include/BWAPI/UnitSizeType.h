@@ -4,7 +4,7 @@
 #include "Type.h"
 namespace BWAPI
 {
-	class UnitSizeType : public Type
+	class UnitSizeType : public Type<UnitSizeType>
 	{
 	public:
 		UnitSizeType();

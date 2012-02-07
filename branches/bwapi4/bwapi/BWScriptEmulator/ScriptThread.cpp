@@ -696,7 +696,7 @@ void aithread::execute()
 				this->saveDebug("\x06", bOpcode, "%3u %s", bCount, AISCRIPT::getUnitName(wType) );
 				if ( GetStandardUnitCount(wType) < bCount )
 				{
-					MainController->wWaitForType = wType + 1;
+					MainController->wWaitForType = (int)wType + 1;
 					this->retry();
 					return;
 				}
@@ -757,7 +757,7 @@ void aithread::execute()
 				UnitType wType	= UnitType(this->read<WORD>());
 				
 				if ( GetStandardUnitCount(wType) < bCount )
-					MainController->wWaitForType = wType + 1;
+					MainController->wWaitForType = (int)wType + 1;
 
 				this->saveDebug("\x07", bOpcode, "%3u %s", bCount, AISCRIPT::getUnitName(wType));
 				continue;
@@ -927,7 +927,7 @@ void aithread::execute()
 				this->saveDebug("\x07", bOpcode, "%3u %s", bCount, AISCRIPT::getUnitName(wType));
 				if ( GetStandardUnitCount(wType, false) < bCount )
 				{
-					MainController->wWaitForType = wType + 1;
+					MainController->wWaitForType = (int)wType + 1;
 					this->retry();
 					return;
 				}

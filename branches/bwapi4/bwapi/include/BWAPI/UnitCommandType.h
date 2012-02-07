@@ -6,7 +6,7 @@
 
 namespace BWAPI
 {
-	class UnitCommandType : public Type
+	class UnitCommandType : public Type<UnitCommandType>
 	{
 	public:
 		UnitCommandType();
