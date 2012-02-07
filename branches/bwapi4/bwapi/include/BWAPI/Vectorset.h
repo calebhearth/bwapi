@@ -82,16 +82,14 @@ namespace BWAPI
 	public:
 		typedef iterator<_T> iterator;
 		///////////////////////////////////////////////////////////// Constructors
-		Vectorset(size_t initialSize = 16, size_t maxSizeHint = UINT_MAX)
+		Vectorset(size_t initialSize = 16)
 			: __totSize( initialSize )
-			, __maxSizeHint( maxSizeHint )
 			, __valArray( (_T*)malloc(initialSize*sizeof(_T)) )
 			, __end(__valArray + initialSize)
 			, __last(__valArray)
 		{ };
 		Vectorset(const Vectorset &other)
 			: __totSize( other.max_size() )
-			, __maxSizeHint( other.max_size_hint() )
 			, __valArray( (_T*)malloc(other.max_size()*sizeof(_T)) )
 			, __end(__valArray + other.max_size())
 			, __last(__valArray + other.size())
@@ -188,15 +186,44 @@ namespace BWAPI
 			}
 			return false;
 		};
-		size_t max_size_hint() const
-		{
-			return this->__maxSizeHint;
-		};
 		size_t max_size() const
 		{
 			return this->__totSize;
 		};
-
+		_T rand() const
+		{
+			size_t size = this->size();
+			switch ( size )
+			{
+			case 0:
+				return NULL;
+			case 1:
+				return this->__valArray[0];
+			case 2:
+				return this->__valArray[::rand()%2];
+			case 4:
+				return this->__valArray[::rand()%4];
+			case 8:
+				return this->__valArray[::rand()%8];
+			case 16:
+				return this->__valArray[::rand()%16];
+			case 32:
+				return this->__valArray[::rand()%32];
+			case 64:
+				return this->__valArray[::rand()%64];
+			case 128:
+				return this->__valArray[::rand()%128];
+			case 256:
+				return this->__valArray[::rand()%256];
+			case 512:
+				return this->__valArray[::rand()%512];
+			case 1024:
+				return this->__valArray[::rand()%1024];
+			case 2048:
+				return this->__valArray[::rand()%2048];
+			}
+			return this->__valArray[::rand()%size];
+		};
 		///////////////////////////////////////////////////////////// stl spinoffs (modify)
 		void clear()
 		{
@@ -299,38 +326,36 @@ namespace BWAPI
 		void expand()
 		{
 			// localize the variables
-			size_t size = this->__totSize;
-			size_t oldsize = this->size();
+			size_t size 	= this->__totSize;
+			size_t oldsize 	= this->size();
 
 			// double the size, but don't exceed the maxSizeHint unless it is equal or already over
-			if ( size == this->__maxSizeHint || size * 2 < this->__maxSizeHint )
-				size *= 2;
-			else
-				size = this->__maxSizeHint;
-
+			size *= 2;
+			
 			// Reallocate and store the new values
 			this->__valArray	= (_T*)realloc(__valArray, size*sizeof(_T));
-			this->__end			 = __valArray + size;
-			this->__last			= __valArray + oldsize;
-			this->__totSize = size;
+			this->__end			= __valArray + size;
+			this->__last		= __valArray + oldsize;
+			this->__totSize 	= size;
 		};
 		void expand(size_t expectedSize)
 		{
 			// localize the variables
 			size_t size		= this->__totSize;
-			size_t oldsize = this->size();
+			size_t oldsize 	= this->size();
 
 			// expand to expected size
-			if ( size > (oldsize + expectedSize + 1) )
+			if ( size >= oldsize + expectedSize )
 				return;
 
-			size = (oldsize + expectedSize + 1);
+			// expand to desired size
+			size = oldsize + expectedSize;
 
 			// Reallocate and store the new values
 			this->__valArray	= (_T*)realloc( this->__valArray, size*sizeof(_T) );
-			this->__end			 = __valArray + size;
-			this->__last			= __valArray + oldsize;
-			this->__totSize	 = size;
+			this->__end			= __valArray + size;
+			this->__last		= __valArray + oldsize;
+			this->__totSize	 	= size;
 		};
 
 		// Variables
@@ -338,7 +363,6 @@ namespace BWAPI
 		_T *__last;
 		_T *__end;
 		size_t __totSize;
-		size_t __maxSizeHint;
 	};
 
 }

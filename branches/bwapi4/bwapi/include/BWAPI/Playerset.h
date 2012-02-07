@@ -7,7 +7,7 @@ namespace BWAPI
 	class Playerset : public Vectorset<BWAPI::Player*>
 	{
 	public:
-		Playerset(size_t initialSize = 16, size_t maxSizeHint = 1700);
+		Playerset(size_t initialSize = 16);
 		Playerset(const Playerset &other);
 	};
 }

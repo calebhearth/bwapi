@@ -738,8 +738,7 @@ namespace BWAPI
 	bool GameImpl::issueCommand(const Unitset& units, UnitCommand command)
 	{
 		std::vector< BWAPI::Unitset > groupsOf12;
-		BWAPI::Unitset nextGroup(12, 12);
-		//nextGroup.reserve(12);
+		BWAPI::Unitset nextGroup(12);
 
 		// Iterate the set of units
 		foreach(Unit* u, units)
@@ -797,7 +796,7 @@ namespace BWAPI
 			{
 				// Set the last unit command info
 				j->lastCommandFrame = BroodwarImpl.frameCount;
-				j->lastCommand			= command;
+				j->lastCommand		= command;
 
 				// Add the unit command to the latency compensation buffer 
 				// for each unit individually

@@ -7,7 +7,7 @@ namespace BWAPI
 	class Unitset : public Vectorset<BWAPI::Unit*>
 	{
 	public:
-		Unitset(size_t initialSize = 16, size_t maxSizeHint = 1700);
+		Unitset(size_t initialSize = 16);
 		Unitset(const Unitset &other);
 	};
 }

@@ -7,7 +7,7 @@ namespace BWAPI
 	class Bulletset : public Vectorset<BWAPI::Bullet*>
 	{
 	public:
-		Bulletset(size_t initialSize = 16, size_t maxSizeHint = 1700);
+		Bulletset(size_t initialSize = 16);
 		Bulletset(const Bulletset &other);
 	};
 }
