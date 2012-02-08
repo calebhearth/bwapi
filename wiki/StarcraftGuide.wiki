@@ -64,7 +64,7 @@ This page is a guide that contains advanced information about Starcraft Broodwar
 
 = Engine Guide =
   == What is Starcraft's frame rate? ==
-    The "_frame rate_" in Starcraft refers to how often the game is being updated, *not* how often images are being drawn on the screen. This is more commonly known as the *logical frame rate*. Starcraft does not limit the logical frame rate by seconds, rather there is a timer that specifies the number of milliseconds Starcraft should wait before executing the next frame. To calculate the logical frame rate, we take 1000 (number of milliseconds in one second) and divide it by the value (in milliseconds) that the game waits for. These values depend on the game speed, and are as follows (rounded to nearest hundredth):
+    The "_frame rate_" in Starcraft refers to how often the game is being updated, *not* how often images are being drawn on the screen (technically, Starcraft has an infinite frame rate for graphics). This is more commonly known as the *logical frame rate*. Starcraft does not limit the logical frame rate by seconds, rather there is a timer that specifies the number of milliseconds Starcraft should wait before executing the next frame. To calculate the logical frame rate, we take 1000 (number of milliseconds in one second) and divide it by the value (in milliseconds) that the game waits for. These values depend on the game speed, and are as follows (rounded to nearest hundredth):
       * *Slowest*: 1000ms/s ÷ 167ms/frame = 5.99 FPS
       * *Slower*:  1000ms/s ÷ 111ms/frame = 9.01 FPS
       * *Slow*:    1000ms/s ÷ 83ms/frame  = 12.05 FPS
