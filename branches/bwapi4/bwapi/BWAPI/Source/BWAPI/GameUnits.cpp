@@ -532,18 +532,8 @@ namespace BWAPI
 	//------------------------------------------- CENTER ON SELECTED -------------------------------------------
 	void GameImpl::moveToSelectedUnits()
 	{
-		// Retrieve the number of selected units
-		int count = this->selectedUnitSet.size();
-
-		// Create a local position to use in calculations
-		Position pos(0,0);
-
-		// Add the unit positions to create a cumulative position value
-		foreach(BWAPI::UnitImpl *u, this->selectedUnitSet)
-			pos += u->getPosition();
-
-		// Divide the position by the count to obtain the average position
-		pos /= count;
+		// Retrieve the average position of the entire unit set
+		Position pos( this->selectedUnitSet.getPosition() );
 
 		// Move the position to the center of the screen
 		pos -= Position(BW::BWDATA_GameScreenBuffer->wid / 2, BW::BWDATA_GameScreenBuffer->ht / 2 - 40);

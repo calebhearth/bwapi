@@ -35,88 +35,88 @@ namespace BWAPI
 	{
 		public :
 			virtual Forceset&	getForces();
-			virtual Playerset& getPlayers();
-			virtual Unitset&	 getAllUnits();
-			virtual Unitset&	 getMinerals();
-			virtual Unitset&	 getGeysers();
-			virtual Unitset&	 getNeutralUnits();
+			virtual Playerset&	getPlayers();
+			virtual Unitset&	getAllUnits();
+			virtual Unitset&	getMinerals();
+			virtual Unitset&	getGeysers();
+			virtual Unitset&	getNeutralUnits();
  
-			virtual Unitset&	 getStaticMinerals();
-			virtual Unitset&	 getStaticGeysers();
-			virtual Unitset&	 getStaticNeutralUnits();
+			virtual Unitset&	getStaticMinerals();
+			virtual Unitset&	getStaticGeysers();
+			virtual Unitset&	getStaticNeutralUnits();
 
-			virtual Bulletset& getBullets();
+			virtual Bulletset&	getBullets();
 			virtual std::set< Position >& getNukeDots();
 			virtual std::list< Event >&	getEvents();
 
-			virtual Force	 *getForce(int forceID);
-			virtual Player	*getPlayer(int playerID);
+			virtual Force		*getForce(int forceID);
+			virtual Player		*getPlayer(int playerID);
 			virtual Unit		*getUnit(int unitID);
 			virtual Unit		*indexToUnit(int unitIndex);
-			virtual Region	*getRegion(int regionID);
+			virtual Region		*getRegion(int regionID);
 
-			virtual GameType getGameType();
+			virtual GameType	getGameType();
 
 			virtual int			getLatency();
 			virtual int			getFrameCount();
 			virtual int			getReplayFrameCount();
 			virtual int			getFPS();
-			virtual double	 getAverageFPS();
+			virtual double		getAverageFPS();
 
-			virtual Position getMousePosition();
-			virtual bool		 getMouseState(MouseButton button);
-			virtual bool		 getMouseState(int button);
-			virtual bool		 getKeyState(Key key);
-			bool						 getKeyState(int key);
+			virtual Position	getMousePosition();
+			virtual bool		getMouseState(MouseButton button);
+			virtual bool		getMouseState(int button);
+			virtual bool		getKeyState(Key key);
+			bool				getKeyState(int key);
 
-			virtual Position getScreenPosition();
-			virtual void		 setScreenPosition(int x, int y);
-			virtual void		 setScreenPosition(BWAPI::Position p);
+			virtual Position	getScreenPosition();
+			virtual void		setScreenPosition(int x, int y);
+			virtual void		setScreenPosition(BWAPI::Position p);
 
-			virtual void		 pingMinimap(int x, int y);
-			virtual void		 pingMinimap(BWAPI::Position p);
+			virtual void		pingMinimap(int x, int y);
+			virtual void		pingMinimap(BWAPI::Position p);
 
-			virtual bool		 isFlagEnabled(int flag);
-			virtual void		 enableFlag(int flag);
+			virtual bool		isFlagEnabled(int flag);
+			virtual void		enableFlag(int flag);
 
 			virtual Unitset& getUnitsOnTile(int x, int y);
 			virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
 			virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
 			virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
 
-			virtual Error			 getLastError() const;
-			virtual bool				setLastError(BWAPI::Error e);
+			virtual Error		getLastError() const;
+			virtual bool		setLastError(BWAPI::Error e);
 
-			virtual int				 mapWidth();
-			virtual int				 mapHeight();
+			virtual int			mapWidth();
+			virtual int			mapHeight();
 			virtual std::string mapFileName();
 			virtual std::string mapPathName();
 			virtual std::string mapName();
 			virtual std::string mapHash();
 
-			virtual bool isWalkable(int x, int y);
-			virtual bool isWalkable(WalkPosition position);
-			virtual int	getGroundHeight(int x, int y);
-			virtual int	getGroundHeight(TilePosition position);
-			virtual bool isBuildable(int x, int y, bool includeBuildings = false);
-			virtual bool isBuildable(TilePosition position, bool includeBuildings = false);
-			virtual bool isVisible(int x, int y);
-			virtual bool isVisible(TilePosition position);
-			virtual bool isExplored(int x, int y);
-			virtual bool isExplored(TilePosition position);
-			virtual bool hasCreep(int x, int y);
-			virtual bool hasCreep(TilePosition position);
-			virtual bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
-			virtual bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
-			virtual bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-			virtual bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-			virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
-			virtual bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
+			virtual bool	isWalkable(int x, int y);
+			virtual bool	isWalkable(WalkPosition position);
+			virtual int		getGroundHeight(int x, int y);
+			virtual int		getGroundHeight(TilePosition position);
+			virtual bool	isBuildable(int x, int y, bool includeBuildings = false);
+			virtual bool	isBuildable(TilePosition position, bool includeBuildings = false);
+			virtual bool	isVisible(int x, int y);
+			virtual bool	isVisible(TilePosition position);
+			virtual bool	isExplored(int x, int y);
+			virtual bool	isExplored(TilePosition position);
+			virtual bool	hasCreep(int x, int y);
+			virtual bool	hasCreep(TilePosition position);
+			virtual bool	hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
+			virtual bool	hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
+			virtual bool	hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
+			virtual bool	hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
+			virtual bool	hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
+			virtual bool	hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
 
-			virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = NULL, bool checkExplored = false);
-			virtual bool canMake(UnitType type, const Unit* builder = NULL);
-			virtual bool canResearch(TechType type, const Unit* unit = NULL);
-			virtual bool canUpgrade(UpgradeType type, const Unit* unit = NULL);
+			virtual bool	canBuildHere(TilePosition position, UnitType type, const Unit* builder = NULL, bool checkExplored = false);
+			virtual bool	canMake(UnitType type, const Unit* builder = NULL);
+			virtual bool	canResearch(TechType type, const Unit* unit = NULL);
+			virtual bool	canUpgrade(UpgradeType type, const Unit* unit = NULL);
 
 			virtual std::set< TilePosition >& getStartLocations();
 

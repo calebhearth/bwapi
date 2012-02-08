@@ -12,22 +12,22 @@
 
 #define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const						\
 							{ return Point(this->x() op pos.x(), this->y() op pos.y()); };	\
-							Point &operator op= (const Point &pos)							\
-							{ this->_x op= pos.x(); this->_y op= pos.y();					\
+							Point &operator op ## = (const Point &pos)							\
+							{ this->_x op ## = pos.x(); this->_y op ## = pos.y();					\
 								return *this; }; 
 
 #define _OPERATOR_OP_VAL(op) Point operator op (const _T &val) const				\
 							{ return Point(this->x() op val, this->y() op val); };	\
-							Point &operator op= (const _T &val)						\
-							{ this->_x op= val; this->_y op= val;					\
+							Point &operator op ## = (const _T &val)						\
+							{ this->_x op ## = val; this->_y op ## = val;					\
 								return *this; }; 
 
 #define _OPERATOR_OP_VAL_CHK(op) Point operator op (const _T &val) const									\
 								{ if ( val == 0 ) return Point(32000/__Scale,32000/__Scale);				\
 									return Point(this->x() op val, this->y() op val); };					\
-								Point &operator op= (const _T &val)											\
+								Point &operator op ## = (const _T &val)											\
 								{ if ( val == 0 ) { this->_x = 32000/__Scale; this->_y = 32000/__Scale; }	\
-									else { this->_x op= val; this->_y op= val; }							\
+									else { this->_x op ## = val; this->_y op ## = val; }							\
 									return *this; }; 
 
 #endif

@@ -7,7 +7,7 @@ TestModule::TestModule() : currentTestCase(NULL), lastEndFrame(-10)
 
 TestModule::~TestModule()
 {
-	for(std::list<TestCase*>::iterator i=testCases.begin();i!=testCases.end();i++)
+	for(std::list<TestCase*>::iterator i=testCases.begin();i!=testCases.end();++i)
 	{
 		delete *i;
 	}

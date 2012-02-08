@@ -7,7 +7,7 @@ int assert_fail_count;
 #define findAndRemove(T,S,V)\
 {\
 	bool found=false;\
-	for(auto i=S.begin();i!=S.end();i++)\
+	for(auto i=S.begin();i!=S.end();++i)\
 	{\
 		if (*i==V)\
 		{\
@@ -43,11 +43,11 @@ void TestMap1::onStart()
 	BWAssert(Broodwar->mapFileName()=="testmap1.scm");
 	BWAssert(Broodwar->mapWidth()==128);
 	BWAssert(Broodwar->mapHeight()==128);
-	for(int x=0;x<128;x++)
+	for(int x=0;x<128;++x)
 	{
 		BWAssert(Broodwar->isBuildable(x,0)==true);
 	}
-	for(int x=0;x<512;x++)
+	for(int x=0;x<512;++x)
 	{
 		BWAssert(Broodwar->isWalkable(x,0)==true);
 	}

@@ -63,9 +63,9 @@ namespace BWAPI
 			virtual BWAPI::Player *getLastAttackingPlayer() const;
 			virtual int					getUpgradeLevel(UpgradeType upgrade) const;
 
-			virtual UnitType		 getInitialType() const;
-			virtual Position		 getInitialPosition() const;
-			virtual TilePosition getInitialTilePosition() const;
+			virtual UnitType			getInitialType() const;
+			virtual Position			getInitialPosition() const;
+			virtual TilePosition		getInitialTilePosition() const;
 			virtual int					getInitialHitPoints() const;
 			virtual int					getInitialResources() const;
 
@@ -90,36 +90,36 @@ namespace BWAPI
 			virtual int getStasisTimer() const;
 			virtual int getStimTimer() const;
 
-			virtual UnitType						getBuildType() const;
-			virtual std::list<UnitType> getTrainingQueue() const;
-			virtual TechType						getTech() const;
-			virtual UpgradeType				 getUpgrade() const;
-			virtual int								 getRemainingBuildTime() const;
-			virtual int								 getRemainingTrainTime() const;
-			virtual int								 getRemainingResearchTime() const;
-			virtual int								 getRemainingUpgradeTime() const;
-			virtual Unit*							 getBuildUnit() const;
+			virtual UnitType				getBuildType() const;
+			virtual std::list<UnitType>		getTrainingQueue() const;
+			virtual TechType				getTech() const;
+			virtual UpgradeType				getUpgrade() const;
+			virtual int						getRemainingBuildTime() const;
+			virtual int						getRemainingTrainTime() const;
+			virtual int						getRemainingResearchTime() const;
+			virtual int						getRemainingUpgradeTime() const;
+			virtual Unit*					getBuildUnit() const;
 
 			virtual Unit*		getTarget() const;
-			virtual Position getTargetPosition() const;
+			virtual Position	getTargetPosition() const;
 			virtual Order		getOrder() const;
 			virtual Unit*		getOrderTarget() const;
-			virtual Position getOrderTargetPosition() const;
+			virtual Position	getOrderTargetPosition() const;
 			virtual Order		getSecondaryOrder() const;
-			virtual Position getRallyPosition() const;
+			virtual Position	getRallyPosition() const;
 			virtual Unit*		getRallyUnit() const;
 			virtual Unit*		getAddon() const;
 			virtual Unit*		getNydusExit() const;
 			virtual Unit*		getPowerUp() const;
 
 			virtual Unit*		getTransport() const;
-			virtual Unitset	getLoadedUnits() const;
+			virtual Unitset		getLoadedUnits() const;
 			virtual Unit*		getCarrier() const;
-			virtual Unitset	getInterceptors() const;
+			virtual Unitset		getInterceptors() const;
 			virtual Unit*		getHatchery() const;
-			virtual Unitset	getLarva() const;
-			virtual Unitset& getUnitsInRadius(int radius) const;
-			virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const;
+			virtual Unitset		getLarva() const;
+			virtual Unitset&	getUnitsInRadius(int radius) const;
+			virtual Unitset&	getUnitsInWeaponRange(WeaponType weapon) const;
 
 			virtual void *getClientInfo() const;
 			virtual void setClientInfo(void* clientinfo);

@@ -68,12 +68,11 @@ int main(int argc, const char* argv[])
 		if (Broodwar->isReplay())
 		{
 			Broodwar->printf("The following players are in this replay:");
-			for(auto p=Broodwar->getPlayers().begin();p!=Broodwar->getPlayers().end();p++)
+			Playerset players = Broodwar->getPlayers();
+			for(Playerset::iterator p = players.begin(); p != players.end(); ++p )
 			{
 				if (!(*p)->getUnits().empty() && !(*p)->isNeutral())
-				{
 					Broodwar->printf("%s, playing as a %s",(*p)->getName().c_str(),(*p)->getRace().getName().c_str());
-				}
 			}
 		}
 		else
@@ -83,29 +82,32 @@ int main(int argc, const char* argv[])
 				Broodwar->enemy()->getRace().getName().c_str());
 
 			//send each worker to the mineral field that is closest to it
-			for(Unitset::iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
+			Unitset units		= Broodwar->self()->getUnits();
+			Unitset minerals	= Broodwar->getMinerals();
+			for ( Unitset::iterator i = units.begin(); i != units.end(); ++i )
 			{
-				if ((*i)->getType().isWorker())
+				if ( i->getType().isWorker() )
 				{
-					Unit* closestMineral=NULL;
-					for(Unitset::iterator m=Broodwar->getMinerals().begin();m!=Broodwar->getMinerals().end();m++)
+					Unit* closestMineral = NULL;
+
+					for( Unitset::iterator m = minerals.begin(); m != minerals.end(); ++m )
 					{
-						if (closestMineral==NULL || (*i)->getDistance(*m)<(*i)->getDistance(closestMineral))
-							closestMineral=*m;
+						if ( !closestMineral || i->getDistance(*m) < i->getDistance(closestMineral))
+							closestMineral = *m;
 					}
-					if (closestMineral!=NULL)
-						(*i)->rightClick(closestMineral);
+					if ( closestMineral )
+						i->rightClick(closestMineral);
 				}
-				else if ((*i)->getType().isResourceDepot())
+				else if ( i->getType().isResourceDepot() )
 				{
 					//if this is a center, tell it to build the appropiate type of worker
-					(*i)->train(Broodwar->self()->getRace().getWorker());
+					i->train(Broodwar->self()->getRace().getWorker());
 				}
 			}
 		}
 		while(Broodwar->isInGame())
 		{
-			for(std::list<Event>::iterator e=Broodwar->getEvents().begin();e!=Broodwar->getEvents().end();e++)
+			for(std::list<Event>::iterator e = Broodwar->getEvents().begin(); e != Broodwar->getEvents().end(); ++e)
 			{
 				switch(e->getType())
 				{
@@ -221,7 +223,7 @@ int main(int argc, const char* argv[])
 			if (analyzed && Broodwar->getFrameCount()%30==0)
 			{
 				//order one of our workers to guard our chokepoint.
-				for(Unitset::iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();i++)
+				for(Unitset::iterator i=Broodwar->self()->getUnits().begin();i!=Broodwar->self()->getUnits().end();++i)
 				{
 					if ((*i)->getType().isWorker())
 					{
@@ -231,7 +233,7 @@ int main(int argc, const char* argv[])
 						BWTA::Chokepoint* choke=NULL;
 
 						//iterate through all chokepoints and look for the one with the smallest gap (least width)
-						for(std::set<BWTA::Chokepoint*>::iterator c=chokepoints.begin();c!=chokepoints.end();c++)
+						for(std::set<BWTA::Chokepoint*>::iterator c=chokepoints.begin();c!=chokepoints.end();++c)
 						{
 							double length=(*c)->getWidth();
 							if (length<min_length || choke==NULL)
@@ -289,47 +291,36 @@ DWORD WINAPI AnalyzeThread()
 */
 void drawStats()
 {
-	Unitset myUnits;
-	if (Broodwar->isReplay())
-		myUnits = Broodwar->getAllUnits();
-	else
-		myUnits = Broodwar->self()->getUnits();
-
-	Broodwar->drawTextScreen(5,0,"I have %d units:",myUnits.size());
-	std::map<UnitType, int> unitTypeCounts;
-	for(Unitset::iterator i=myUnits.begin();i!=myUnits.end();i++)
+	int line = 0;
+	Broodwar->drawTextScreen(5, 0, "I have %d units:", Broodwar->self()->allUnitCount(UnitTypes::AllUnits) );
+	for ( UnitType::set::iterator i = UnitTypes::allUnitTypes().begin(); i != UnitTypes::allUnitTypes().end(); ++i )
 	{
-		if (unitTypeCounts.find((*i)->getType())==unitTypeCounts.end())
+		int count = Broodwar->self()->allUnitCount(*i);
+		if ( count )
 		{
-			unitTypeCounts.insert(std::make_pair((*i)->getType(),0));
+			Broodwar->drawTextScreen(5, 16*line, "- %d %s%c", count, (*i).c_str(), count == 1 ? ' ' : 's');
+			++line;
 		}
-		unitTypeCounts.find((*i)->getType())->second++;
-	}
-	int line=1;
-	for(std::map<UnitType,int>::iterator i=unitTypeCounts.begin();i!=unitTypeCounts.end();i++)
-	{
-		Broodwar->drawTextScreen(5,16*line,"- %d %ss",(*i).second, (*i).first.getName().c_str());
-		line++;
 	}
 }
 
 void drawBullets()
 {
 	Bulletset bullets = Broodwar->getBullets();
-	for(Bulletset::iterator i=bullets.begin();i!=bullets.end();i++)
+	for(Bulletset::iterator i = bullets.begin(); i != bullets.end(); ++i)
 	{
-		Position p=(*i)->getPosition();
-		double velocityX = (*i)->getVelocityX();
-		double velocityY = (*i)->getVelocityY();
-		if ((*i)->getPlayer()==Broodwar->self())
+		Position p = i->getPosition();
+		double velocityX = i->getVelocityX();
+		double velocityY = i->getVelocityY();
+		if ( i->getPlayer() == Broodwar->self() )
 		{
-			Broodwar->drawLineMap(p.x(),p.y(),p.x()+(int)velocityX,p.y()+(int)velocityY,Colors::Green);
-			Broodwar->drawTextMap(p.x(),p.y(),"\x07%s",(*i)->getType().getName().c_str());
+			Broodwar->drawLineMap(p.x(), p.y(), p.x()+(int)velocityX, p.y()+(int)velocityY, Colors::Green);
+			Broodwar->drawTextMap(p.x(), p.y(), "\x07%s", i->getType().c_str());
 		}
 		else
 		{
-			Broodwar->drawLineMap(p.x(),p.y(),p.x()+(int)velocityX,p.y()+(int)velocityY,Colors::Red);
-			Broodwar->drawTextMap(p.x(),p.y(),"\x06%s",(*i)->getType().getName().c_str());
+			Broodwar->drawLineMap(p.x(), p.y(), p.x()+(int)velocityX, p.y()+(int)velocityY, Colors::Red);
+			Broodwar->drawTextMap(p.x(), p.y(), "\x06%s", i->getType().c_str());
 		}
 	}
 }
@@ -342,13 +333,12 @@ void drawVisibilityData()
 		{
 			if (Broodwar->isExplored(x,y))
 			{
-				if (Broodwar->isVisible(x,y))
-					Broodwar->drawDotMap(x*32+16,y*32+16,Colors::Green);
-				else
-					Broodwar->drawDotMap(x*32+16,y*32+16,Colors::Blue);
+				Broodwar->drawDotMap(x*32+16, y*32+16, Broodwar->isVisible(x,y) ? Colors::Green : Colors::Blue);
 			}
 			else
+			{
 				Broodwar->drawDotMap(x*32+16,y*32+16,Colors::Red);
+			}
 		}
 	}
 }
@@ -356,7 +346,7 @@ void drawVisibilityData()
 void drawTerrainData()
 {
 	//we will iterate through all the base locations, and draw their outlines.
-	for(std::set<BWTA::BaseLocation*>::const_iterator i=BWTA::getBaseLocations().begin();i!=BWTA::getBaseLocations().end();i++)
+	for(std::set<BWTA::BaseLocation*>::const_iterator i=BWTA::getBaseLocations().begin();i!=BWTA::getBaseLocations().end();++i)
 	{
 		TilePosition p=(*i)->getTilePosition();
 		Position c=(*i)->getPosition();
@@ -365,14 +355,14 @@ void drawTerrainData()
 		Broodwar->drawBox(CoordinateType::Map,p.x()*32,p.y()*32,p.x()*32+4*32,p.y()*32+3*32,Colors::Blue,false);
 
 		//draw a circle at each mineral patch
-		for(Unitset::iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();j++)
+		for(Unitset::iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();++j)
 		{
 			Position q=(*j)->getInitialPosition();
 			Broodwar->drawCircle(CoordinateType::Map,q.x(),q.y(),30,Colors::Cyan,false);
 		}
 
 		//draw the outlines of vespene geysers
-		for(Unitset::iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();j++)
+		for(Unitset::iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();++j)
 		{
 			TilePosition q=(*j)->getInitialTilePosition();
 			Broodwar->drawBox(CoordinateType::Map,q.x()*32,q.y()*32,q.x()*32+4*32,q.y()*32+2*32,Colors::Orange,false);
@@ -384,10 +374,10 @@ void drawTerrainData()
 	}
 
 	//we will iterate through all the regions and draw the polygon outline of it in green.
-	for(std::set<BWTA::Region*>::const_iterator r=BWTA::getRegions().begin();r!=BWTA::getRegions().end();r++)
+	for(std::set<BWTA::Region*>::const_iterator r=BWTA::getRegions().begin();r!=BWTA::getRegions().end();++r)
 	{
 		BWTA::Polygon p=(*r)->getPolygon();
-		for(int j=0;j<(int)p.size();j++)
+		for(int j=0;j<(int)p.size();++j)
 		{
 			Position point1=p[j];
 			Position point2=p[(j+1) % p.size()];
@@ -396,9 +386,9 @@ void drawTerrainData()
 	}
 
 	//we will visualize the chokepoints with red lines
-	for(std::set<BWTA::Region*>::const_iterator r=BWTA::getRegions().begin();r!=BWTA::getRegions().end();r++)
+	for(std::set<BWTA::Region*>::const_iterator r=BWTA::getRegions().begin();r!=BWTA::getRegions().end();++r)
 	{
-		for(std::set<BWTA::Chokepoint*>::const_iterator c=(*r)->getChokepoints().begin();c!=(*r)->getChokepoints().end();c++)
+		for(std::set<BWTA::Chokepoint*>::const_iterator c=(*r)->getChokepoints().begin();c!=(*r)->getChokepoints().end();++c)
 		{
 			Position point1=(*c)->getSides().first;
 			Position point2=(*c)->getSides().second;
@@ -409,23 +399,19 @@ void drawTerrainData()
 */
 void showPlayers()
 {
-	Playerset players=Broodwar->getPlayers();
-	for(Playerset::iterator i=players.begin();i!=players.end();i++)
-	{
-		Broodwar->printf("Player [%d]: %s is in force: %s",(*i)->getID(),(*i)->getName().c_str(), (*i)->getForce()->getName().c_str());
-	}
+	Playerset players = Broodwar->getPlayers();
+	for(Playerset::iterator i = players.begin(); i != players.end(); ++i)
+		Broodwar->printf("Player [%d]: %s is in force: %s", i->getID(), i->getName().c_str(), i->getForce()->getName().c_str());
 }
 
 void showForces()
 {
 	Forceset forces=Broodwar->getForces();
-	for(Forceset::iterator i=forces.begin();i!=forces.end();i++)
+	for(Forceset::iterator i = forces.begin(); i != forces.end(); ++i)
 	{
-		Playerset players = (*i)->getPlayers();
-		Broodwar->printf("Force %s has the following players:",(*i)->getName().c_str());
-		for(Playerset::iterator j=players.begin();j!=players.end();j++)
-		{
-			Broodwar->printf("	- Player [%d]: %s",(*j)->getID(),(*j)->getName().c_str());
-		}
+		Playerset players = i->getPlayers();
+		Broodwar->printf("Force %s has the following players:", i->getName().c_str());
+		for(Playerset::iterator j = players.begin(); j != players.end(); ++j)
+			Broodwar->printf("	- Player [%d]: %s", j->getID(), j->getName().c_str());
 	}
 }

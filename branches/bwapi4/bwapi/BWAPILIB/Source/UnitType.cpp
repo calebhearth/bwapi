@@ -1494,11 +1494,11 @@ namespace BWAPI
 			return UnitTypes::Unknown;
 		return (*i).second;
 	}
-	const std::set<UnitType>& UnitTypes::allUnitTypes()
+	const UnitType::set& UnitTypes::allUnitTypes()
 	{
 		return unitTypeSet;
 	}
-	const std::set<UnitType>& UnitTypes::allMacroTypes()
+	const UnitType::set& UnitTypes::allMacroTypes()
 	{
 		return macroTypeSet;
 	}
