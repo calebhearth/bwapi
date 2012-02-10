@@ -17,17 +17,39 @@ namespace BWAPI
 	class Unit;
 	class Force;
 
-	/** Each player in a match will have his or her own player instance. There is also a neutral player which
-	 * owns all the neutral units. */
+	/// The Player represents a unique controller in the game.
+	/// Each player in a match will have his or her own player
+	/// instance. There is also a neutral player which owns 
+	/// all the neutral units.
+	///
+	/// @see Playerset, PlayerType, Race
 	class Player
 	{
 	protected:
 		virtual ~Player() {};
 	public :
-		/** Returns a unique ID for the player. */
+		/// @~English
+		/// Retrieves a unique ID that represents the player.
+		///
+		/// @returns The ID of the player.
+		/// @~
 		virtual int getID() const = 0;
 
-		/** Returns the name of the player. */
+		/// @~English
+		/// Retrieves the name of the player as a string object.
+		///
+		/// @returns The player name.
+		///
+		/// @note Don't forget to use std::string::c_str() when 
+		/// passing this parameter to Game::sendText and other
+		/// variadic functions.
+		///
+		/// @par Example:
+		/// @~
+		/// @code
+		///		std::string name = Broodwar->self()->getName();
+		///		Broodwar->sendText("Hello, my name is %s", name.c_str());
+		/// @endcode
 		virtual std::string getName() const = 0;
 
 		/** Returns the set of units the player own. Note that units loaded into Terran dropships, Terran
@@ -97,7 +119,7 @@ namespace BWAPI
 
 		/** Returns the cumulative amount of gas the player has spent up to this point (not including repairs). */
 		virtual int spentGas() const = 0;
-		// TODO: ground methods
+
 		/** Returns the total amount of supply the player has. If a race is provided, the total supply for the
 		 * given race will be returned, otherwise the player's initial race will be used. Supply counts returned
 		 * by BWAPI are double what you would expect to see from playing the game. This is because zerglings
@@ -156,12 +178,6 @@ namespace BWAPI
 
 		/** Returns the top speed of the given unit type, includes upgrades */
 		virtual double topSpeed(UnitType unit) const = 0;
-
-		/** Returns the max ground weapon range of the given unit type, includes upgrades */
-		virtual int groundWeaponMaxRange(UnitType unit) const = 0;
-
-		/** Returns the max air weapon range of the given unit type, includes upgrades */
-		virtual int airWeaponMaxRange(UnitType unit) const = 0;
 
 		/** Returns the max range of the given weapon with upgrades */
 		virtual int weaponMaxRange(WeaponType weapon) const = 0;

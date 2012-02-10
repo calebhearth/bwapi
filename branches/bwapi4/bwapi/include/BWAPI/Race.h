@@ -11,8 +11,11 @@ namespace BWAPI
 			Race();
 			Race(int id);
 
-			/** Returns the name of the race. For example Races::Terran.getName() will return a std::string object
-			 * containing "Terran". */
+			/// Returns the name of the race as a std::string object.
+			///
+			/// Example: Races::Terran.getName()
+			///
+			///
 			const std::string &getName() const;
 			const char *c_str() const;
 

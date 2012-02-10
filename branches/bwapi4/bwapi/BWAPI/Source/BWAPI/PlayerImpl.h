@@ -84,8 +84,6 @@ namespace BWAPI
 
 			virtual int maxEnergy(UnitType unit) const;
 			virtual double topSpeed(UnitType unit) const;
-			virtual int groundWeaponMaxRange(UnitType unit) const;
-			virtual int airWeaponMaxRange(UnitType unit) const;
 			virtual int weaponMaxRange(WeaponType weapon) const;
 			virtual int sightRange(UnitType unit) const;
 			virtual int groundWeaponDamageCooldown(UnitType unit) const;

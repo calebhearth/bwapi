@@ -7,12 +7,12 @@ namespace BWAPI
 	class Unit;
 	class Player;
 
-	/** AIModule is a virtual class that is intended to be implemented or inherited by a custom AI class.
-	 *
-	 * \note
-	 * Using BWAPI in a different thread than the default one will produce unexpected results and possibly crash
-	 * the program. Multi-threaded AIs are possible so long as all BWAPI interaction is limited to the default
-	 * thread (during one of the call-backs). */
+	/// AIModule is a virtual class that is intended to be implemented or inherited by a custom AI class.
+	///
+	/// @note
+	/// Using BWAPI in a different thread than the default one will produce unexpected results and possibly crash
+	/// the program. Multi-threaded AIs are possible so long as all BWAPI interaction is limited to the default
+	/// thread (during one of the call-backs).
 	class AIModule
 	{
 		public:

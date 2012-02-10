@@ -216,30 +216,6 @@ namespace BWAPI
 		}
 		return speed;
 	}
-	//--------------------------------------------- GROUND WEAPON MAX RANGE ------------------------------------
-	int PlayerImpl::groundWeaponMaxRange(UnitType unit) const
-	{
-		int range = unit.groundWeapon().maxRange();
-		if ( (unit == UnitTypes::Terran_Marine	&& getUpgradeLevel(UpgradeTypes::U_238_Shells)	 > 0) ||
-				 (unit == UnitTypes::Zerg_Hydralisk && getUpgradeLevel(UpgradeTypes::Grooved_Spines) > 0) )
-			range += 1*32;
-		if (unit == UnitTypes::Protoss_Dragoon && getUpgradeLevel(UpgradeTypes::Singularity_Charge) > 0)
-			range += 2*32;
-		return range;
-	}
-	//--------------------------------------------- AIR WEAPON MAX RANGE ---------------------------------------
-	int PlayerImpl::airWeaponMaxRange(UnitType unit) const
-	{
-		int range = unit.airWeapon().maxRange();
-		if ( (unit == UnitTypes::Terran_Marine	&& getUpgradeLevel(UpgradeTypes::U_238_Shells)	 > 0) ||
-				 (unit == UnitTypes::Zerg_Hydralisk && getUpgradeLevel(UpgradeTypes::Grooved_Spines) > 0) )
-			range += 1*32;
-		if (unit == UnitTypes::Protoss_Dragoon && getUpgradeLevel(UpgradeTypes::Singularity_Charge) > 0)
-			range += 2*32;
-		if (unit == UnitTypes::Terran_Goliath	&& getUpgradeLevel(UpgradeTypes::Charon_Boosters) > 0)
-			range += 3*32;
-		return range;
-	}
 	//----------------------------------------------- WEAPON MAX RANGE -----------------------------------------
 	int PlayerImpl::weaponMaxRange(WeaponType weapon) const
 	{
