@@ -146,19 +146,24 @@ namespace BWAPI
 	//--------------------------------------------- GET START POSITION -----------------------------------------
 	TilePosition PlayerImpl::getStartLocation() const
 	{
-		/* error checking */
+		// Clear last error
 		BroodwarImpl.setLastError(Errors::None);
-		if ( this->isNeutral() )
+
+		// Return None if there is no start location
+		if ( BW::BWDATA_startPositions[index] == BW::Position(0,0) )
 			return TilePositions::None;
+
+		// Return unknown and set Access_Denied if the start location
+		// should not be made available.
 		if ( !BroodwarImpl._isReplay() &&
-				 BroodwarImpl.self()->isEnemy((Player*)this) &&
-				 !BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) )
+			 BroodwarImpl.self()->isEnemy((Player*)this) &&
+			 !BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) )
 		{
 			BroodwarImpl.setLastError(Errors::Access_Denied);
 			return TilePositions::Unknown;
 		}
-		/* return the start location as a tile position */
-		return BW::BWDATA_startPositions[index] - Position(TILE_SIZE * 2, (int)(TILE_SIZE * 1.5));
+		// return the start location as a tile position
+		return BW::BWDATA_startPositions[index] - BW::Position((TILE_SIZE * 4) / 2, (TILE_SIZE * 3) / 2);
 	}
 	//--------------------------------------------- IS VICTORIOUS ----------------------------------------------
 	bool PlayerImpl::isVictorious() const

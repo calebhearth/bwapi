@@ -6,7 +6,7 @@
 #include "Type.h"
 #define BWAPI_UNIT_TYPE_MAX_COUNT 234
 
-#define BWAPI_UNITDEF(x) static const UnitType x(Enum::x)
+#define BWAPI_UNITDEF(x) static const UnitType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {
@@ -281,14 +281,18 @@ namespace BWAPI
 				This consists of Command Center, Factory, Starport, and Science Facility. */
 		bool canBuildAddon() const;
 	};
+
+	/// Namespace containing unit types
 	namespace UnitTypes
 	{
-
 		/** Given the name of a unit type, this function will return the unit type.
 		 * For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terran_Marine. */
 		UnitType getUnitType(std::string name);
 
+		/// max unit width
 		int maxUnitWidth();
+		
+		/// max unit height
 		int maxUnitHeight();
 
 		/** Returns the set of all the UnitTypes. */
@@ -298,11 +302,12 @@ namespace BWAPI
 		const UnitType::set& allMacroTypes();
 		void init();
 
+		/// Enumeration of unit types
 		namespace Enum
 		{
 			enum Enum
 			{
-				Terran_Marine,
+				Terran_Marine = 0,
 				Terran_Ghost,
 				Terran_Vulture,
 				Terran_Goliath,
@@ -539,7 +544,7 @@ namespace BWAPI
 				Unknown,
 				MAX
 			};
-		}
+		};
 		BWAPI_UNITDEF(Terran_Marine);
 		BWAPI_UNITDEF(Terran_Ghost);
 		BWAPI_UNITDEF(Terran_Vulture);

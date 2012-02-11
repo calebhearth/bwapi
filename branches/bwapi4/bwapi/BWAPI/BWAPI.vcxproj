@@ -136,6 +136,7 @@ $(SolutionDir)\revisionUpdate.bat
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\BWAPI\AIModule.h" />
     <ClInclude Include="..\include\BWAPI\Bullet.h" />
     <ClInclude Include="..\include\BWAPI\Force.h" />
     <ClInclude Include="..\include\BWAPI\Game.h" />

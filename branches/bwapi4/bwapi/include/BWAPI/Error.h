@@ -18,6 +18,7 @@ namespace BWAPI
 		std::string toString() const;
 		const char *c_str() const;
 	};
+	/// Random namespace documentation
 	namespace Errors
 	{
 		/** Given the name of an error, this function will return the error code. For example:
