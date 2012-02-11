@@ -88,8 +88,8 @@ namespace BWAPI
 			if ( isUnitAlive(u) )
 			{
 				u->isAlive = true;
-				aliveUnits.insert(u);
-				dyingUnits.erase(u);
+				aliveUnits.push_back(u);
+				dyingUnits.erase_once(u);
 				u->updateInternalData();
 			}
 		}
@@ -98,8 +98,8 @@ namespace BWAPI
 			if ( isUnitAlive(u, true) )
 			{
 				u->isAlive = true;
-				aliveUnits.insert(u);
-				dyingUnits.erase(u);
+				aliveUnits.push_back(u);
+				dyingUnits.erase_once(u);
 				u->updateInternalData();
 			}
 		}
@@ -108,8 +108,8 @@ namespace BWAPI
 			if ( isUnitAlive(u) )
 			{
 				u->isAlive = true;
-				aliveUnits.insert(u);
-				dyingUnits.erase(u);
+				aliveUnits.push_back(u);
+				dyingUnits.erase_once(u);
 				u->updateInternalData();
 			}
 		}

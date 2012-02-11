@@ -1,11 +1,10 @@
 #pragma once
 
-#include <limits.h>
-
 #include <set>
 #include <vector>
 #include <deque>
 #include <list>
+#include <algorithm>
 
 namespace BWAPI
 {
@@ -97,36 +96,46 @@ namespace BWAPI
 			memcpy(this->__valArray, &(other.begin()), other.size()*sizeof(_T));
 		};
 		///////////////////////////////////////////////////////////// Operators
-		Vectorset &operator =(const Vectorset &set)
+		Vectorset &operator =(const Vectorset &other)
 		{
 			// localize variables
-			size_t nSize = set.size();
+			size_t nSize = other.size();
 
 			// manage existing set
 			this->clear();
 			this->expand(nSize);
 
 			// copy the data to this set
-			memcpy(this->__valArray, set, nSize*sizeof(_T));
+			memcpy(this->__valArray, other, nSize*sizeof(_T));
 
 			// update variables in this set
 			this->__last = this->__valArray + nSize;
 			return *this;
 		};
-		Vectorset &operator +=(const Vectorset &set)
+		Vectorset &operator +=(const Vectorset &other)
 		{
 			// localize variables
-			size_t nSize = set.size();
+			size_t nSize = other.size();
 
 			// manage existing set
 			this->expand(nSize);
 			
 			// copy the data to this set
-			memcpy( this->__last, set, nSize*sizeof(_T) );
+			memcpy( this->__last, other, nSize*sizeof(_T) );
 
 			// update variables in this set
 			this->__last += nSize;
 			return *this;
+		};
+
+		bool operator ==(const Vectorset &other) const
+		{
+			if ( this->empty() && other.empty() )
+				return true;
+			else if ( this->empty() || other.empty() )
+				return false;
+
+			return memcmp( this->__valArray, other, std::min(this->size(), other.size())*sizeof(_T)) == 0;
 		};
 
 		// Misc usage
@@ -172,7 +181,7 @@ namespace BWAPI
 			--iend;
 			*i = *iend;
 			this->__last = iend;
-		}
+		};
 
 		///////////////////////////////////////////////////////////// custom functions (const)
 		bool exists(const _T &element) const
@@ -260,7 +269,7 @@ namespace BWAPI
 			while ( i+1 != iend )
 				*i = i[1];
 			--this->__last;
-		}
+		};
 
 		// element insertion
 		void insert(const _T &val)
@@ -276,11 +285,47 @@ namespace BWAPI
 		{
 			if ( this->__last == this->__end )
 				this->expand();
-			*__last++ = val;
+			*(this->__last++) = val;
 		};
 		void push_back(const iterator &val)
 		{
 			this->push_back(*val);
+		};
+		void push_front(const _T val)
+		{
+			if ( this->__last == this->__end )
+				this->expand();
+			memmove(this->__valArray+1, this->__valArray, this->size()*sizeof(_T));
+			this->__last++;
+			*this->__valArray = val;
+		};
+		void push_front(const iterator &val)
+		{
+			this->push_front(*val);
+		};
+		void pop_back()
+		{
+			if ( !this->empty() )	// remove last element if non-empty
+				--this->__last;
+		};
+		void pop_front()
+		{
+			if ( this->empty() )	// return if empty
+				return;
+			
+			--this->__last; // subtract the last element (not removing it)
+			size_t size = this->size();	// localize the new size
+			switch ( size )
+			{
+			case 0:	// just ignore it if it was the only element
+				break;
+			case 1: // if only one element should remain
+				*this->__valArray = *this->__last;
+				break;
+			default: // otherwise move all elements up
+				memmove(this->__valArray, this->__valArray+1, size*sizeof(_T));
+				break;
+			}
 		};
 		///////////////////////////////////////////////////////////// stl spinoffs (const)
 		size_t size() const
@@ -320,7 +365,14 @@ namespace BWAPI
 			}
 			return iend;
 		};
-
+		_T front() const
+		{
+			return *this->__valArray;
+		};
+		_T back() const
+		{
+			return *(this->__last - 1);
+		};
 	private: /////////////////////////////////////////////// private
 		// expand container when full
 		void expand()
@@ -359,9 +411,9 @@ namespace BWAPI
 		};
 
 		// Variables
-		_T *__valArray;
-		_T *__last;
-		_T *__end;
+		_T *__valArray;	// ptr to beginning of array
+		_T *__last;		// ptr to last element + 1
+		_T *__end;		// ptr to end of allocation
 		size_t __totSize;
 	};
 

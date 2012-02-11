@@ -17,12 +17,14 @@ namespace BWAPI
 	class Unit;
 	class Force;
 
+	/// @~English
 	/// The Player represents a unique controller in the game.
 	/// Each player in a match will have his or her own player
 	/// instance. There is also a neutral player which owns 
 	/// all the neutral units (such as mineral patches and
 	/// vespene geysers).
 	///
+	/// @~
 	/// @see Playerset, PlayerType, Race
 	class Player
 	{

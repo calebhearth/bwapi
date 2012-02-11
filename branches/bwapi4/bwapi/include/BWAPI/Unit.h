@@ -216,9 +216,9 @@ namespace BWAPI
 		 * incomplete building, this returns the UnitType the unit is about to become upon completion.*/
 		virtual UnitType getBuildType() const = 0;
 
-	 /** Returns the list of units queued up to be trained.
+		/** Returns the list of units queued up to be trained.
 		 * \see Unit::train, Unit::cancelTrain, Unit::isTraining. */
-		virtual std::list<UnitType > getTrainingQueue() const = 0;
+		virtual UnitType::set getTrainingQueue() const = 0;
 
 		/** Returns the tech that the unit is currently researching. If the unit is not researching anything,
 		 * TechTypes::None is returned.
@@ -329,7 +329,7 @@ namespace BWAPI
 		virtual void* getClientInfo() const = 0;
 
 		/** Sets the unit's custom client info. The client is responsible for deallocation. */
-		virtual void setClientInfo(void* clientinfo) = 0;
+		virtual void setClientInfo(void* clientinfo = NULL) = 0;
 
 		/**
 		 * 3 cases to consider:

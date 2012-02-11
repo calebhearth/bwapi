@@ -20,8 +20,6 @@ void DevAIModule::onStart()
 	// save map info
 	mapH = bw->mapHeight();
 	mapW = bw->mapWidth();
-
-	bw->printf("%u", bw->getBullets().size());
 }
 
 void DevAIModule::onEnd(bool isWinner)
@@ -85,42 +83,42 @@ void DevAIModule::onNukeDetect(BWAPI::Position target)
 
 void DevAIModule::onUnitDiscover(BWAPI::Unit* unit)
 {
-	bw->printf("%s discovered", unit->getType().c_str());
+	//bw->printf("%s discovered", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitEvade(BWAPI::Unit* unit)
 {
-	bw->printf("%s evaded", unit->getType().c_str());
+	//bw->printf("%s evaded", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitShow(BWAPI::Unit* unit)
 {
-	bw->printf("%s shown", unit->getType().c_str());
+	//bw->printf("%s shown", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitHide(BWAPI::Unit* unit)
 {
-	bw->printf("%s hidden", unit->getType().c_str());
+	//bw->printf("%s hidden", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitCreate(BWAPI::Unit* unit)
 {
-	bw->printf("%s created", unit->getType().c_str());
+	//bw->printf("%s created", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitDestroy(BWAPI::Unit* unit)
 {
-	bw->printf("%s destroyed", unit->getType().c_str());
+	//bw->printf("%s destroyed", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitMorph(BWAPI::Unit* unit)
 {
-	bw->printf("%s morphed", unit->getType().c_str());
+	//bw->printf("%s morphed", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitRenegade(BWAPI::Unit* unit)
 {
-	bw->printf("%s renegaded", unit->getType().c_str());
+	//bw->printf("%s renegaded", unit->getType().c_str());
 }
 
 void DevAIModule::onSaveGame(std::string gameName)
@@ -129,5 +127,5 @@ void DevAIModule::onSaveGame(std::string gameName)
 
 void DevAIModule::onUnitComplete(BWAPI::Unit *unit)
 {
-	bw->printf("%s completed", unit->getType().c_str());
+	//bw->printf("%s completed", unit->getType().c_str());
 }

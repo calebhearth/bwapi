@@ -14,13 +14,21 @@ namespace BWAPI
 	{
 		// Declare the local position
 		Position retPosition(0,0);
+		unsigned int validPosCount = 0;
 
 		// Add up the positions for all units in the set
 		for ( Unitset::iterator i = this->begin(); i != this->end(); ++i )
-			retPosition += i->getPosition();
+		{
+			Position pos(i->getPosition());
+			if ( pos.isValid() )
+			{
+				retPosition += pos;
+				++validPosCount;
+			}
+		}
 
 		// Divides the position by the size of the set and returns it
-		retPosition /= this->size();
+		retPosition /= validPosCount;
 		return retPosition;
 	}
 	////////////////////////////////////////////////////////// sets

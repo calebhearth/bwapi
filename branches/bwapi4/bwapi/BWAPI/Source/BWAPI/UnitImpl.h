@@ -2,8 +2,6 @@
 
 #include "BWAPI/Unit.h"
 
-#include <list>
-
 #include <Util/Types.h>
 #include <BWAPI/Order.h>
 #include <BWAPI/Region.h>
@@ -20,7 +18,7 @@
 		return BroodwarImpl.setLastError(Errors::Unit_Not_Owned);\
 }
 
-namespace BW		{ class Unit; };
+namespace BW	{ class Unit; };
 namespace BWAPI { class UnitPrototype;	};
 namespace BWAPI { class AbilityPrototype;	};
 namespace BWAPI { class Player;	};
@@ -34,40 +32,40 @@ namespace BWAPI
 	class UnitImpl : public Unit
 	{
 		public:
-			virtual int					getID() const;
-			virtual int					getReplayID() const;
+			virtual int				getID() const;
+			virtual int				getReplayID() const;
 			virtual Player*			getPlayer() const;
-			virtual UnitType		 getType() const;
-			virtual Position		 getPosition() const;
-			virtual TilePosition getTilePosition() const;
-			virtual double			 getAngle() const;
-			virtual double			 getVelocityX() const;
-			virtual double			 getVelocityY() const;
-			virtual BWAPI::Region *getRegion() const;
-			virtual int					getLeft() const;
-			virtual int					getTop() const;
-			virtual int					getRight() const;
-			virtual int					getBottom() const;
-			virtual int					getHitPoints() const;
-			virtual int					getShields() const;
-			virtual int					getEnergy() const;
-			virtual int					getResources() const;
-			virtual int					getResourceGroup() const;
+			virtual UnitType		getType() const;
+			virtual Position		getPosition() const;
+			virtual TilePosition	getTilePosition() const;
+			virtual double			getAngle() const;
+			virtual double			getVelocityX() const;
+			virtual double			getVelocityY() const;
+			virtual BWAPI::Region	*getRegion() const;
+			virtual int				getLeft() const;
+			virtual int				getTop() const;
+			virtual int				getRight() const;
+			virtual int				getBottom() const;
+			virtual int				getHitPoints() const;
+			virtual int				getShields() const;
+			virtual int				getEnergy() const;
+			virtual int				getResources() const;
+			virtual int				getResourceGroup() const;
 
-			virtual int					getDistance(Unit* target) const;
-			virtual int					getDistance(Position target) const;
-			virtual bool				 hasPath(Unit* target) const;
-			virtual bool				 hasPath(Position target) const;
-			virtual int					getLastCommandFrame() const;
-			virtual UnitCommand	getLastCommand() const;
-			virtual BWAPI::Player *getLastAttackingPlayer() const;
-			virtual int					getUpgradeLevel(UpgradeType upgrade) const;
+			virtual int				getDistance(Unit* target) const;
+			virtual int				getDistance(Position target) const;
+			virtual bool			hasPath(Unit* target) const;
+			virtual bool			hasPath(Position target) const;
+			virtual int				getLastCommandFrame() const;
+			virtual UnitCommand		getLastCommand() const;
+			virtual BWAPI::Player	*getLastAttackingPlayer() const;
+			virtual int				getUpgradeLevel(UpgradeType upgrade) const;
 
-			virtual UnitType			getInitialType() const;
-			virtual Position			getInitialPosition() const;
-			virtual TilePosition		getInitialTilePosition() const;
-			virtual int					getInitialHitPoints() const;
-			virtual int					getInitialResources() const;
+			virtual UnitType		getInitialType() const;
+			virtual Position		getInitialPosition() const;
+			virtual TilePosition	getInitialTilePosition() const;
+			virtual int				getInitialHitPoints() const;
+			virtual int				getInitialResources() const;
 
 			virtual int getKillCount() const;
 			virtual int getAcidSporeCount() const;
@@ -90,15 +88,15 @@ namespace BWAPI
 			virtual int getStasisTimer() const;
 			virtual int getStimTimer() const;
 
-			virtual UnitType				getBuildType() const;
-			virtual std::list<UnitType>		getTrainingQueue() const;
-			virtual TechType				getTech() const;
-			virtual UpgradeType				getUpgrade() const;
-			virtual int						getRemainingBuildTime() const;
-			virtual int						getRemainingTrainTime() const;
-			virtual int						getRemainingResearchTime() const;
-			virtual int						getRemainingUpgradeTime() const;
-			virtual Unit*					getBuildUnit() const;
+			virtual UnitType		getBuildType() const;
+			virtual UnitType::set	getTrainingQueue() const;
+			virtual TechType		getTech() const;
+			virtual UpgradeType		getUpgrade() const;
+			virtual int				getRemainingBuildTime() const;
+			virtual int				getRemainingTrainTime() const;
+			virtual int				getRemainingResearchTime() const;
+			virtual int				getRemainingUpgradeTime() const;
+			virtual Unit*			getBuildUnit() const;
 
 			virtual Unit*		getTarget() const;
 			virtual Position	getTargetPosition() const;
@@ -122,7 +120,7 @@ namespace BWAPI
 			virtual Unitset&	getUnitsInWeaponRange(WeaponType weapon) const;
 
 			virtual void *getClientInfo() const;
-			virtual void setClientInfo(void* clientinfo);
+			virtual void setClientInfo(void* clientinfo = NULL);
 
 			virtual bool exists() const;
 			virtual bool hasNuke() const;
