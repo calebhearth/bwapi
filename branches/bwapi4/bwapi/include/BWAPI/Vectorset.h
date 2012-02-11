@@ -5,6 +5,7 @@
 #include <deque>
 #include <list>
 #include <algorithm>
+#include <initializer_list>
 
 namespace BWAPI
 {
@@ -95,6 +96,22 @@ namespace BWAPI
 		{ 
 			memcpy(this->__valArray, &(other.begin()), other.size()*sizeof(_T));
 		};
+		Vectorset(const _T *pArray, size_t arrSize)
+			: __totSize( arrSize )
+			, __valArray( (_T*)malloc(arrSize*sizeof(_T)) )
+			, __end( __valArray + arrSize )
+			, __last( __valArray + arrSize )
+		{
+			memcpy(this->__valArray, pArray, arrSize*sizeof(_T) );
+		};
+		vectorset(std::initializer_list<_T> l)
+			: __totSize( l.size() )
+			, __valArray( (_T*)malloc(__totSize*sizeof(_T)) )
+			, __end( __valArray + __totSize )
+			, __last( __valArray + __totSize )
+		{
+			// @TODO when intellisense is not broken
+		}
 		///////////////////////////////////////////////////////////// Operators
 		Vectorset &operator =(const Vectorset &other)
 		{

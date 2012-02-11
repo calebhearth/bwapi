@@ -437,10 +437,7 @@ namespace BWAPI
 	//--------------------------------------------- GET TRAINING QUEUE -----------------------------------------
 	UnitType::set UnitImpl::getTrainingQueue() const
 	{
-		UnitType::set trainingQueue;
-		for (int i = 0; i < self->trainingQueueCount; ++i)
-			trainingQueue.push_back(self->trainingQueue[i]);
-		return trainingQueue;
+		return UnitType::set(self->trainingQueue, self->trainingQueueCount);
 	}
 	//--------------------------------------------- GET TECH ---------------------------------------------------
 	TechType UnitImpl::getTech() const

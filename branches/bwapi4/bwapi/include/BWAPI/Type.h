@@ -1,6 +1,8 @@
 #pragma once
 #include "Vectorset.h"
 
+#include <initializer_list>
+
 namespace BWAPI
 {
 	template<class _T>
@@ -13,6 +15,9 @@ namespace BWAPI
 		Typeset(const Typeset &other) : Vectorset(other) {};
 		// type ctor
 		Typeset(const _T &val) : Vectorset() { this->push_back(val); };
+		// array ctor
+		Typeset(const _T *pArray, size_t size) : Vectorset(pArray, size) {};
+		Typeset(const int *pArray, size_t size) : Vectorset((const _T*)pArray, size) {};
 
 		// Operators (adding elements)
 		Typeset operator +(const _T &other)
