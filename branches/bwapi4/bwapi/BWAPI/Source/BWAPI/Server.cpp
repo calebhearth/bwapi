@@ -552,7 +552,7 @@ namespace BWAPI
 					p->supplyTotal[j]	= p2->supplyTotal[j];
 					p->supplyUsed[j]	= p2->supplyUsed[j];
 				}
-				for(int j = 0; j < BWAPI_UNIT_TYPE_MAX_COUNT; ++j)
+				for(int j = 0; j < UnitTypes::Enum::MAX; ++j)
 				{
 					p->allUnitCount[j]			= p2->allUnitCount[j];
 					p->visibleUnitCount[j]		= p2->visibleUnitCount[j];

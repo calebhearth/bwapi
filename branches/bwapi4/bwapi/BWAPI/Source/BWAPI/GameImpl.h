@@ -250,7 +250,7 @@ namespace BWAPI
 			 * @param slot Desired state of the slot (Open/Closed/Computer)
 			 * @param slotID Order of the slot (0 based)
 			 */
-			void changeSlot(BW::Orders::ChangeSlot::Slot slot, u8 slotID);
+			void changeSlot(BW::Orders::ChangeSlot::SlotType slot, u8 slotID);
 			void addToCommandBuffer(Command* command);
 			void onGameStart();
 			void onGameEnd();

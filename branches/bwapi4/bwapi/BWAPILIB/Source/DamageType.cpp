@@ -11,57 +11,33 @@
 
 namespace BWAPI
 {
-	bool initializingDamageType = true;
-	std::string damageTypeName[7];
+	static const std::string damageTypeName[DamageTypes::Enum::MAX] = 
+	{
+		"Independent",
+		"Explosive",
+		"Concussive",
+		"Normal",
+		"Ignore_Armor",
+		"None",
+		"Unknown"
+	};
+
 	std::map<std::string, DamageType> damageTypeMap;
-	std::set< DamageType > damageTypeSet;
 	namespace DamageTypes
 	{
-		const DamageType Independent(0);
-		const DamageType Explosive(1);
-		const DamageType Concussive(2);
-		const DamageType Normal(3);
-		const DamageType Ignore_Armor(4);
-		const DamageType None(5);
-		const DamageType Unknown(6);
-
+		static const DamageType dmgTypeArr[] = { Independent, Explosive, Concussive, Normal, Ignore_Armor, None, Unknown };
+		static const DamageType::set damageTypeSet(dmgTypeArr, countof(dmgTypeArr));
 		void init()
 		{
-			damageTypeName[Independent]	= "Independent";
-			damageTypeName[Explosive]		= "Explosive";
-			damageTypeName[Concussive]	 = "Concussive";
-			damageTypeName[Normal]			 = "Normal";
-			damageTypeName[Ignore_Armor] = "Ignore Armor";
-			damageTypeName[None]				 = "None";
-			damageTypeName[Unknown]			= "Unknown";
-
-			damageTypeSet.insert(Independent);
-			damageTypeSet.insert(Explosive);
-			damageTypeSet.insert(Concussive);
-			damageTypeSet.insert(Normal);
-			damageTypeSet.insert(Ignore_Armor);
-			damageTypeSet.insert(None);
-			damageTypeSet.insert(Unknown);
-
 			foreach(DamageType i, damageTypeSet)
 			{
 				std::string name(i.getName());
 				fixName(&name);
 				damageTypeMap.insert(std::make_pair(name, i));
 			}
-			initializingDamageType = false;
 		}
 	}
-	DamageType::DamageType() : Type(DamageTypes::None)
-	{
-	}
-	int getValidDamageTypeID(int id)
-	{
-		if ( !initializingDamageType && (id < 0 || id >= 7) ) 
-			return DamageTypes::Unknown;
-		return id;
-	}
-	DamageType::DamageType(int id) : Type( getValidDamageTypeID(id) )
+	DamageType::DamageType(int id) : Type( id )
 	{
 	}
 	const std::string &DamageType::getName() const
@@ -80,8 +56,8 @@ namespace BWAPI
 			return DamageTypes::Unknown;
 		return (*i).second;
 	}
-	const std::set<DamageType>& DamageTypes::allDamageTypes()
+	const DamageType::set& DamageTypes::allDamageTypes()
 	{
-		return damageTypeSet;
+		return DamageTypes::damageTypeSet;
 	}
 }

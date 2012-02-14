@@ -176,12 +176,12 @@ namespace BW
 									union													// 10
 									{ 
 										struct
-										{ u16			 resourceCount;	// amount of resources
-											u8				resourceIscript;
-											u8				gatherQueueCount;
+										{	u16			resourceCount;	// amount of resources
+											u8			resourceIscript;
+											u8			gatherQueueCount;
 											BW::Unit	*nextGatherer;		// 14	// pointer to the next workerunit waiting in line to gather
-											u8				resourceGroup;		// 18
-											u8				resourceBelongsToAI;
+											u8			resourceGroup;		// 18
+											u8			resourceBelongsToAI;
 										} resource;	/** When the unit is resource container */
 										struct { BW::Unit *exit; } nydus; /** connected nydius canal */
 										struct { BW::Sprite *nukeDot; } ghost;
@@ -191,10 +191,10 @@ namespace BW
 											u32 hasNuke;		 // 14
 										} silo;
 										struct
-										{ u16 harvestValue1;
-											u16 harvestValue2;
-											u16 _unknown_14;		// 14
-											u16 harvestValue3;
+										{	u16 harvestValueLeft;
+											u16 harvestValueTop;
+											u16 harvestValueRight;	// 14
+											u16 harvestValueBottom;
 										} hatchery; // wtf???
 										struct { POINTS origin; } powerup;
 									};

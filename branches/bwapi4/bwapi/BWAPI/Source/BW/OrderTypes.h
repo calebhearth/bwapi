@@ -177,26 +177,26 @@ namespace BW
 		class ChangeSlot
 		{
 			public :
-			typedef enum Slot
-				{
-					Computer = 0,
-					Open = 1,
-					Closed = 2
-				};
-				ChangeSlot(Slot slot, int slotID);
+			typedef enum __SlotType
+			{
+				Computer = 0,
+				Open,
+				Closed
+			} SlotType;
+			ChangeSlot(int slotID, SlotType type);
 			private :
 				/** 0x44 = Change slot command-code in bw */
 				u8 always0x44;
 				/** Order of the slot to change (0 for the 1st slot) */
 				u8 slotID;
 				/** Target slot state. */
-				Slot slot;
+				u8 slotType;
 		};
 		/** Change race command in bw. */
 		class RequestChangeRace
 		{
 			public :
-				RequestChangeRace(int slot, int slotID);
+				RequestChangeRace(int slot, int race);
 			private :
 				/** 0x41 = Command code for change race in bw. */
 				u8 always0x41;

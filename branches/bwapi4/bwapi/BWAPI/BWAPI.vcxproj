@@ -92,7 +92,7 @@ $(SolutionDir)\revisionUpdate.bat
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../Shared;Source/BWAPI;../Util/Source;Source;../include;../Storm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_ITERATOR_DEBUG_LEVEL 0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -157,6 +157,7 @@ $(SolutionDir)\revisionUpdate.bat
     <ClInclude Include="Source\BWAPI\RegionImpl.h" />
     <ClInclude Include="Source\BWAPI\Server.h" />
     <ClInclude Include="Source\BWAPI\UnitImpl.h" />
+    <ClInclude Include="Source\BW\AIController.h" />
     <ClInclude Include="Source\BW\BNETCommands.h" />
     <ClInclude Include="Source\BW\Bullet.h" />
     <ClInclude Include="Source\BW\CheatFlags.h" />

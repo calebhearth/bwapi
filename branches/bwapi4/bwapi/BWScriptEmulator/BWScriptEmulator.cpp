@@ -39,7 +39,7 @@ void BWScriptEmulator::onStart()
 
 	if ( !self )
 		return;
-
+	
 	if ( !LoadAIBinary("bwapi-data\\AISCRIPT.BIN") )
 		Broodwar->printf("%cFailed to load AISCRIPT binary!", 6);
 

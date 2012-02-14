@@ -269,17 +269,17 @@ namespace BW
 		{
 		}
 		//------------------------------------------- MOVE CONSTRUCTOR -------------------------------------------
-		ChangeSlot::ChangeSlot(Slot slot, int slotID)
-				: slot(slot)
-				, slotID((u8)slotID)
-				, always0x44(0x44)
+		ChangeSlot::ChangeSlot(int slotID, SlotType type)
+		: always0x44(0x44)
+		, slotID((u8)slotID)
+		, slotType((u8)type)
 		{
 		}
 		//--------------------------------------- CHANGE RACE CONSTRUCTOR ----------------------------------------
-		RequestChangeRace::RequestChangeRace(int race, int slotID)
-				: race((u8)race)
-				, slotID((u8)slotID)
-				, always0x41(0x41)
+		RequestChangeRace::RequestChangeRace(int slot, int race)
+		: always0x41(0x41)
+		, slotID((u8)slot)
+		, race((u8)race)
 		{
 		}
 		UpdateSlot::UpdateSlot(int slot, int stormPlayerID, int owner, int newRace, int team)

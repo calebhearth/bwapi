@@ -4,7 +4,6 @@
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitSizeType.h>
 #include "Type.h"
-#define BWAPI_UNIT_TYPE_MAX_COUNT 234
 
 #define BWAPI_UNITDEF(x) static const UnitType x(Enum::x) /** ref x */
 

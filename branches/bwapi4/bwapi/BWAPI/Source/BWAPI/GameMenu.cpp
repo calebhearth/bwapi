@@ -75,8 +75,8 @@ namespace BWAPI
 			lastAutoMapEntry = 0;
 		}
 
-		autoMenuLanMode			 = LoadConfigString("auto_menu", "lan_mode", "Local Area Network (UDP)");
-		autoMenuRace					= LoadConfigString("auto_menu", "race", "RANDOM");
+		autoMenuLanMode			= LoadConfigString("auto_menu", "lan_mode", "Local Area Network (UDP)");
+		autoMenuRace			= LoadConfigString("auto_menu", "race", "RANDOM");
 		autoMenuEnemyRace[0]	= LoadConfigString("auto_menu", "enemy_race", "RANDOM");
 		for ( int i = 1; i < 8; ++i )
 		{
@@ -248,13 +248,15 @@ namespace BWAPI
 					if ( isAutoSingle )
 					{
 						// get race
-						Race playerRace = Races::getRace(this->autoMenuRace);
+						Race playerRace;
 						if ( this->autoMenuRace == "RANDOMTP" )
 							playerRace = rand() % 2 == 0 ? Races::Terran : Races::Protoss;
 						else if ( this->autoMenuRace == "RANDOMTZ" )
 							playerRace = rand() % 2 == 0 ? Races::Terran : Races::Zerg;
 						else if ( this->autoMenuRace == "RANDOMPZ" )
 							playerRace = rand() % 2 == 0 ? Races::Protoss : Races::Zerg;
+						else
+							playerRace = Races::getRace(this->autoMenuRace);
 
 						// set race dropdown
 						if ( playerRace != Races::Unknown && playerRace != Races::None )
@@ -365,30 +367,34 @@ namespace BWAPI
 			if ( !actRaceSel && BW::FindDialogGlobal("Chat") )
 			{
 				// Determine the current player's race
-				Race playerRace = Races::getRace(this->autoMenuRace);
+				Race playerRace;
 				if ( this->autoMenuRace == "RANDOMTP" )
 					playerRace = rand() % 2 == 0 ? Races::Terran : Races::Protoss;
 				else if ( this->autoMenuRace == "RANDOMTZ" )
 					playerRace = rand() % 2 == 0 ? Races::Terran : Races::Zerg;
 				else if ( this->autoMenuRace == "RANDOMPZ" )
 					playerRace = rand() % 2 == 0 ? Races::Protoss : Races::Zerg;
+				else
+					playerRace = Races::getRace(this->autoMenuRace);
 
 				if ( playerRace != Races::Unknown && playerRace != Races::None )
 				{
 					// Check if the race was selected correctly, and prevent further changing afterwords
 					u8 currentRace = BW::BWDATA_Players[_currentPlayerId()].nRace;
 					if ( (currentRace == playerRace ||
-								(this->autoMenuRace == "RANDOMTP" &&
-								( currentRace == Races::Terran ||
-									currentRace == Races::Protoss)) ||
-								(this->autoMenuRace == "RANDOMTZ" &&
-								( currentRace == Races::Terran ||
-									currentRace == Races::Zerg)) ||
-								(this->autoMenuRace == "RANDOMPZ" &&
-								( currentRace == Races::Protoss ||
-									currentRace == Races::Zerg))
-							 ) )
+						(this->autoMenuRace == "RANDOMTP" &&
+						( currentRace == Races::Terran ||
+							currentRace == Races::Protoss)) ||
+						(this->autoMenuRace == "RANDOMTZ" &&
+						( currentRace == Races::Terran ||
+							currentRace == Races::Zerg)) ||
+						(this->autoMenuRace == "RANDOMPZ" &&
+						( currentRace == Races::Protoss ||
+							currentRace == Races::Zerg))
+						 ) )
+					{
 						actRaceSel = true;
+					}
 
 					// Set the race
 					if ( !actRaceSel )
@@ -446,13 +452,13 @@ namespace BWAPI
 		} // menu switch
 	}
 	//---------------------------------------------- CHANGE SLOT -----------------------------------------------
-	void GameImpl::changeSlot(BW::Orders::ChangeSlot::Slot slot, u8 slotID)
+	void GameImpl::changeSlot(BW::Orders::ChangeSlot::SlotType slotType, u8 slotID)
 	{
 		// Send the Change Slot command for multi-player
-		QUEUE_COMMAND(BW::Orders::ChangeSlot, slot, slotID);
+		QUEUE_COMMAND(BW::Orders::ChangeSlot, slotID, slotType);
 	}
 	//---------------------------------------------- CHANGE RACE -----------------------------------------------
-	void	GameImpl::_changeRace(int slot, BWAPI::Race race)
+	void GameImpl::_changeRace(int slot, BWAPI::Race race)
 	{
 		// Obtain the single player dialog
 		BW::dialog *custom = BW::FindDialogGlobal("Create");
@@ -481,7 +487,7 @@ namespace BWAPI
 			return; // return if the countdown is less than 2
 		
 		// Send the change race command for multi-player
-		QUEUE_COMMAND(BW::Orders::RequestChangeRace, race, slot);
+		QUEUE_COMMAND(BW::Orders::RequestChangeRace, slot, race);
 	}
 	//-------------------------------------------- GET LOBBY RACE ----------------------------------------------
 	int GameImpl::_getLobbyRace(int slot)

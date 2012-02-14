@@ -256,6 +256,9 @@
     <ClInclude Include="..\include\BWAPI\AIModule.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BW\AIController.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">

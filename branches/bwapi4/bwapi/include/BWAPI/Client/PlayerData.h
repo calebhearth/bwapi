@@ -29,11 +29,11 @@ namespace BWAPI
 		int supplyTotal[3];
 		int supplyUsed[3];
 
-		int allUnitCount[BWAPI_UNIT_TYPE_MAX_COUNT];
-		int visibleUnitCount[BWAPI_UNIT_TYPE_MAX_COUNT];
-		int completedUnitCount[BWAPI_UNIT_TYPE_MAX_COUNT];
-		int deadUnitCount[BWAPI_UNIT_TYPE_MAX_COUNT];
-		int killedUnitCount[BWAPI_UNIT_TYPE_MAX_COUNT];
+		int allUnitCount[UnitTypes::Enum::MAX];
+		int visibleUnitCount[UnitTypes::Enum::MAX];
+		int completedUnitCount[UnitTypes::Enum::MAX];
+		int deadUnitCount[UnitTypes::Enum::MAX];
+		int killedUnitCount[UnitTypes::Enum::MAX];
 
 		int	upgradeLevel[63];
 		bool hasResearched[47];

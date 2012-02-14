@@ -1,8 +1,6 @@
 #pragma once
 #include "Vectorset.h"
 
-#include <initializer_list>
-
 namespace BWAPI
 {
 	template<class _T>
@@ -47,14 +45,20 @@ namespace BWAPI
 	};
 
 
-	template<class _T>
+	template<class _T, int __unk>
 	class Type
 	{
 	private:
 		int _id;
 	public:
 		// Constructor
-		Type(int id) : _id(id) {}
+		Type(int id)
+		{
+			if ( id < 0 || id > __unk )
+				this->_id = __unk;
+			else
+				this->_id = id;
+		}
 		
 		// Types
 		typedef Typeset<_T> set;

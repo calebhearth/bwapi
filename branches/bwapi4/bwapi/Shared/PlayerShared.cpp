@@ -85,42 +85,42 @@ namespace BWAPI
 	//--------------------------------------------- ALL UNIT COUNT ---------------------------------------------
 	int PlayerImpl::allUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->allUnitCount[unit];
 	}
 	//--------------------------------------------- VISIBLE UNIT COUNT -----------------------------------------
 	int PlayerImpl::visibleUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->visibleUnitCount[unit];
 	}
 	//--------------------------------------------- COMPLETED UNIT COUNT ---------------------------------------
 	int PlayerImpl::completedUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->completedUnitCount[unit];
 	}
 	//--------------------------------------------- INCOMPLETE UNIT COUNT --------------------------------------
 	int PlayerImpl::incompleteUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->allUnitCount[unit] - self->completedUnitCount[unit];
 	}
 	//--------------------------------------------- DEAD UNIT COUNT --------------------------------------------
 	int PlayerImpl::deadUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->deadUnitCount[unit];
 	}
 	//--------------------------------------------- KILLED UNIT COUNT ------------------------------------------
 	int PlayerImpl::killedUnitCount(UnitType unit) const
 	{
-		if ( unit < 0 || unit >= BWAPI_UNIT_TYPE_MAX_COUNT )	// bounds checking
+		if ( unit < 0 || unit >= UnitTypes::Enum::MAX )	// bounds checking
 			return 0;
 		return self->killedUnitCount[unit];
 	}

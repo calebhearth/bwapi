@@ -2,13 +2,32 @@
 #include <string>
 #include <set>
 #include "Type.h"
+
+#define BWAPI_DAMAGETYPEDEF(x) static const DamageType x(Enum::x) /** ref x */
+
 namespace BWAPI
 {
-	class DamageType : public Type<DamageType>
+	namespace DamageTypes
+	{
+		namespace Enum
+		{
+			enum Enum
+			{
+				Independent = 0,
+				Explosive,
+				Concussive,
+				Normal,
+				Ignore_Armor,
+				None,
+				Unknown,
+				MAX
+			};
+		}
+	}
+	class DamageType : public Type<DamageType, DamageTypes::Enum::Unknown>
 	{
 		public:
-			DamageType();
-			DamageType(int id);
+			DamageType(int id = DamageTypes::Enum::None);
 
 			/** Returns the name of this damage type. For example DamageTypes::Explosive.getName() will return
 			 * std::string("Explosive"). */
@@ -22,15 +41,16 @@ namespace BWAPI
 		DamageType getDamageType(std::string name);
 
 		/** Returns the set of all the DamageTypes. */
-		const std::set<DamageType>& allDamageTypes();
+		const DamageType::set& allDamageTypes();
 
 		void init();
-		extern const DamageType Independent;
-		extern const DamageType Explosive;
-		extern const DamageType Concussive;
-		extern const DamageType Normal;
-		extern const DamageType Ignore_Armor;
-		extern const DamageType None;
-		extern const DamageType Unknown;
+
+		BWAPI_DAMAGETYPEDEF(Independent);
+		BWAPI_DAMAGETYPEDEF(Explosive);
+		BWAPI_DAMAGETYPEDEF(Concussive);
+		BWAPI_DAMAGETYPEDEF(Normal);
+		BWAPI_DAMAGETYPEDEF(Ignore_Armor);
+		BWAPI_DAMAGETYPEDEF(None);
+		BWAPI_DAMAGETYPEDEF(Unknown);
 	}
 }

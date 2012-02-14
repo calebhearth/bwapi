@@ -33,36 +33,36 @@ namespace BW
 	class region
 	{
 	public:
-		bool									isConnectedTo(region *target);
-		bool									isConnectedTo(u16 index);
+		bool					isConnectedTo(region *target);
+		bool					isConnectedTo(u16 index);
 		std::vector<region*>	&getAccessibleNeighbours();
-		int									 getAirDistance(region *dst);
-		region								*getNeighbor(u8 index);
-		Position							getCenter();
-		u16									 getIndex();
+		int						getAirDistance(region *dst);
+		region					*getNeighbor(u8 index);
+		Position				getCenter();
+		u16						getIndex();
 
-		/*0x00*/u16			 accessabilityFlags;
-											// 0x1FF9 = High ground		1001
-											// 0x1FFB = Low ground		 1011
-											// 0x1FFD = Inaccessible	 1101
-		/*0x02*/u16			 groupIndex; // Identifies connected regions
-		/*0x04*/u16			 tileCount;
-		/*0x06*/u8				pathCount;
-		/*0x07*/u8				neighborCount;
-		/*0x08*/u32			 unk_8;
-		/*0x0C*/u16			 *neighbors; // allocated array of IDs for neighbors
-		/*0x10*/u32			 rgnCenterX; // must >> 8; in pixels
-		/*0x14*/u32			 rgnCenterY; // must >> 8; in pixels
+		/*0x00*/u16			accessabilityFlags;
+								// 0x1FF9 = High ground		1001
+								// 0x1FFB = Low ground		 1011
+								// 0x1FFD = Inaccessible	 1101
+		/*0x02*/u16			groupIndex; // Identifies connected regions
+		/*0x04*/u16			tileCount;
+		/*0x06*/u8			pathCount;
+		/*0x07*/u8			neighborCount;
+		/*0x08*/u32			unk_8;
+		/*0x0C*/u16			*neighbors; // allocated array of IDs for neighbors
+		/*0x10*/u32			rgnCenterX; // must >> 8; in pixels
+		/*0x14*/u32			rgnCenterY; // must >> 8; in pixels
 		/*0x18*/pathRect	rgnBox; // in pixels
-		/*0x20*/u32			 properties; // flags
-											/*
-												0x001 = Key Point
-												0x002 = Choke Point/Corridor
-												0x100 = Map Bottom
-											*/
-		/*0x24*/u32			 unk_24;
-		/*0x28*/u32			 unk_28;
-		/*0x2C*/u16			 localBuffer[10]; // local array of IDs for neighbors
+		/*0x20*/u32			properties; // flags
+							/*
+								0x001 = Key Point
+								0x002 = Choke Point/Corridor
+								0x100 = Map Bottom
+							*/
+		/*0x24*/u32			unk_24;
+		/*0x28*/u32			unk_28;
+		/*0x2C*/u16			localBuffer[10]; // local array of IDs for neighbors
 	};
 
 	CTASSERT( sizeof(region) == 64 );
@@ -110,14 +110,14 @@ namespace BW
 
 	struct SAI_Paths
 	{
-		u32				regionCount;
-		void			 *globalBuffer_ptr;
-		void			 *splitTiles_end;
-		u16				mapTileRegionId[256][256];	 // rgnId is &0x1FFF; split = &0x2000, 
-		split			splitTiles[25000];		 // 0x2000C
-		region		 regions[5000];				 // 0x449FC
-		u16				globalBuffer[10000];	 // 0x92BFC; extra buffer used for large neighbor ID arrays
-		contourHub *contours;						 // 0x97A1C
+		u32			regionCount;
+		void		*globalBuffer_ptr;
+		void		*splitTiles_end;
+		u16			mapTileRegionId[256][256];	 // rgnId is &0x1FFF; split = &0x2000, 
+		split		splitTiles[25000];		 // 0x2000C
+		region		regions[5000];				 // 0x449FC
+		u16			globalBuffer[10000];	 // 0x92BFC; extra buffer used for large neighbor ID arrays
+		contourHub	*contours;						 // 0x97A1C
 	};
 
 	bool isCollidingWithContour(contourHub *hub, int x, int y, int left, int top, int right, int bottom);
