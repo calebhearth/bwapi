@@ -61,11 +61,11 @@ namespace BWAPI
 		};
 		_T operator *() const
 		{
-			return __val;
+			return *__val;
 		};
 		_T *operator &() const
 		{
-			return *__val;
+			return __val;
 		};
 		_T operator ->() const
 		{

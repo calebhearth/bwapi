@@ -43,7 +43,7 @@ namespace BWAPI
 	class Race : public Type<Race, Races::Enum::Unknown>
 	{
 		public:
-			Race(int id = Races::None);
+			Race(int id = Races::Enum::None);
 
 			/// @~English
 			/// Retrieves the name of a race.

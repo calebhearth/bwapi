@@ -1,16 +1,71 @@
 #pragma once
 #include <string>
-#include <set>
 #include "Type.h"
-#define BWAPI_UNIT_COMMAND_TYPE_COUNT 46
+
+#define BWAPI_UNITCMDTYPEDEF(x) static const UnitSizeType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {
-	class UnitCommandType : public Type<UnitCommandType>
+	namespace UnitCommandTypes
+	{
+		namespace Enum
+		{
+			enum Enum
+			{
+				Attack_Move = 0,
+				Attack_Unit,
+				Build,
+				Build_Addon,
+				Train,
+				Morph,
+				Research,
+				Upgrade,
+				Set_Rally_Position,
+				Set_Rally_Unit,
+				Move,
+				Patrol,
+				Hold_Position,
+				Stop,
+				Follow,
+				Gather,
+				Return_Cargo,
+				Repair,
+				Burrow,
+				Unburrow,
+				Cloak,
+				Decloak,
+				Siege,
+				Unsiege,
+				Lift,
+				Land,
+				Load,
+				Unload,
+				Unload_All,
+				Unload_All_Position,
+				Right_Click_Position,
+				Right_Click_Unit,
+				Halt_Construction,
+				Cancel_Construction,
+				Cancel_Addon,
+				Cancel_Train,
+				Cancel_Train_Slot,
+				Cancel_Morph,
+				Cancel_Research,
+				Cancel_Upgrade,
+				Use_Tech,
+				Use_Tech_Position,
+				Use_Tech_Unit,
+				Place_COP,
+				None,
+				Unknown,
+				MAX
+			};
+		};
+	};
+	class UnitCommandType : public Type<UnitCommandType, UnitCommandTypes::Enum::Unknown>
 	{
 	public:
-		UnitCommandType();
-		UnitCommandType(int id);
+		UnitCommandType(int id = UnitCommandTypes::Enum::None);
 		/** Returns the string corresponding to the UnitCommandType object. For example,
 		 * UnitCommandTypes::Set_Rally_Position.getName() returns std::string("Set Rally Position")*/
 		const std::string &getName() const;
@@ -23,53 +78,54 @@ namespace BWAPI
 		UnitCommandType getUnitCommandType(std::string name);
 
 		/** Returns the set of all the sizes, which are listed below: */
-		const std::set<UnitCommandType>& allUnitCommandTypes();
+		const UnitCommandType::set& allUnitCommandTypes();
 		void init();
-		extern const UnitCommandType Attack_Move;
-		extern const UnitCommandType Attack_Unit;
-		extern const UnitCommandType Build;
-		extern const UnitCommandType Build_Addon;
-		extern const UnitCommandType Train;
-		extern const UnitCommandType Morph;
-		extern const UnitCommandType Research;
-		extern const UnitCommandType Upgrade;
-		extern const UnitCommandType Set_Rally_Position;
-		extern const UnitCommandType Set_Rally_Unit;
-		extern const UnitCommandType Move;
-		extern const UnitCommandType Patrol;
-		extern const UnitCommandType Hold_Position;
-		extern const UnitCommandType Stop;
-		extern const UnitCommandType Follow;
-		extern const UnitCommandType Gather;
-		extern const UnitCommandType Return_Cargo;
-		extern const UnitCommandType Repair;
-		extern const UnitCommandType Burrow;
-		extern const UnitCommandType Unburrow;
-		extern const UnitCommandType Cloak;
-		extern const UnitCommandType Decloak;
-		extern const UnitCommandType Siege;
-		extern const UnitCommandType Unsiege;
-		extern const UnitCommandType Lift;
-		extern const UnitCommandType Land;
-		extern const UnitCommandType Load;
-		extern const UnitCommandType Unload;
-		extern const UnitCommandType Unload_All;
-		extern const UnitCommandType Unload_All_Position;
-		extern const UnitCommandType Right_Click_Position;
-		extern const UnitCommandType Right_Click_Unit;
-		extern const UnitCommandType Halt_Construction;
-		extern const UnitCommandType Cancel_Construction;
-		extern const UnitCommandType Cancel_Addon;
-		extern const UnitCommandType Cancel_Train;
-		extern const UnitCommandType Cancel_Train_Slot;
-		extern const UnitCommandType Cancel_Morph;
-		extern const UnitCommandType Cancel_Research;
-		extern const UnitCommandType Cancel_Upgrade;
-		extern const UnitCommandType Use_Tech;
-		extern const UnitCommandType Use_Tech_Position;
-		extern const UnitCommandType Use_Tech_Unit;
-		extern const UnitCommandType Place_COP;
-		extern const UnitCommandType None;
-		extern const UnitCommandType Unknown;
+		
+		BWAPI_UNITCMDTYPEDEF(Attack_Move);
+		BWAPI_UNITCMDTYPEDEF(Attack_Unit);
+		BWAPI_UNITCMDTYPEDEF(Build);
+		BWAPI_UNITCMDTYPEDEF(Build_Addon);
+		BWAPI_UNITCMDTYPEDEF(Train);
+		BWAPI_UNITCMDTYPEDEF(Morph);
+		BWAPI_UNITCMDTYPEDEF(Research);
+		BWAPI_UNITCMDTYPEDEF(Upgrade);
+		BWAPI_UNITCMDTYPEDEF(Set_Rally_Position);
+		BWAPI_UNITCMDTYPEDEF(Set_Rally_Unit);
+		BWAPI_UNITCMDTYPEDEF(Move);
+		BWAPI_UNITCMDTYPEDEF(Patrol);
+		BWAPI_UNITCMDTYPEDEF(Hold_Position);
+		BWAPI_UNITCMDTYPEDEF(Stop);
+		BWAPI_UNITCMDTYPEDEF(Follow);
+		BWAPI_UNITCMDTYPEDEF(Gather);
+		BWAPI_UNITCMDTYPEDEF(Return_Cargo);
+		BWAPI_UNITCMDTYPEDEF(Repair);
+		BWAPI_UNITCMDTYPEDEF(Burrow);
+		BWAPI_UNITCMDTYPEDEF(Unburrow);
+		BWAPI_UNITCMDTYPEDEF(Cloak);
+		BWAPI_UNITCMDTYPEDEF(Decloak);
+		BWAPI_UNITCMDTYPEDEF(Siege);
+		BWAPI_UNITCMDTYPEDEF(Unsiege);
+		BWAPI_UNITCMDTYPEDEF(Lift);
+		BWAPI_UNITCMDTYPEDEF(Land);
+		BWAPI_UNITCMDTYPEDEF(Load);
+		BWAPI_UNITCMDTYPEDEF(Unload);
+		BWAPI_UNITCMDTYPEDEF(Unload_All);
+		BWAPI_UNITCMDTYPEDEF(Unload_All_Position);
+		BWAPI_UNITCMDTYPEDEF(Right_Click_Position);
+		BWAPI_UNITCMDTYPEDEF(Right_Click_Unit);
+		BWAPI_UNITCMDTYPEDEF(Halt_Construction);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Construction);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Addon);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Train);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Train_Slot);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Morph);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Research);
+		BWAPI_UNITCMDTYPEDEF(Cancel_Upgrade);
+		BWAPI_UNITCMDTYPEDEF(Use_Tech);
+		BWAPI_UNITCMDTYPEDEF(Use_Tech_Position);
+		BWAPI_UNITCMDTYPEDEF(Use_Tech_Unit);
+		BWAPI_UNITCMDTYPEDEF(Place_COP);
+		BWAPI_UNITCMDTYPEDEF(None);
+		BWAPI_UNITCMDTYPEDEF(Unknown);
 	}
 }

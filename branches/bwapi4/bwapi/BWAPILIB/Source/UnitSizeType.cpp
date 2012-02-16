@@ -10,35 +10,22 @@
 
 namespace BWAPI
 {
-	bool initializingUnitSizeType = true;
-	std::string unitSizeTypeName[6];
+	static const std::string unitSizeTypeName[UnitSizeTypes::Enum::MAX] =
+	{
+		"Independent",
+		"Small",
+		"Medium",
+		"Large",
+		"None",
+		"Unknown"	
+	};
 	std::map<std::string, UnitSizeType> unitSizeTypeMap;
-	std::set< UnitSizeType > unitSizeTypeSet;
 	namespace UnitSizeTypes
 	{
-		const UnitSizeType Independent(0);
-		const UnitSizeType Small(1);
-		const UnitSizeType Medium(2);
-		const UnitSizeType Large(3);
-		const UnitSizeType None(4);
-		const UnitSizeType Unknown(5);
-
+		static const UnitSizeType uSizeTypeArr[] = { Independent, Small, Medium, Large, None, Unknown };
+		static const UnitSizeType::set unitSizeTypeSet(uSizeTypeArr, countof(uSizeTypeArr));
 		void init()
 		{
-			unitSizeTypeName[Independent] = "Independent";
-			unitSizeTypeName[Small]			 = "Small";
-			unitSizeTypeName[Medium]			= "Medium";
-			unitSizeTypeName[Large]			 = "Large";
-			unitSizeTypeName[None]				= "None";
-			unitSizeTypeName[Unknown]		 = "Unknown";
-
-			unitSizeTypeSet.insert(Independent);
-			unitSizeTypeSet.insert(Small);
-			unitSizeTypeSet.insert(Medium);
-			unitSizeTypeSet.insert(Large);
-			unitSizeTypeSet.insert(None);
-			unitSizeTypeSet.insert(Unknown);
-
 			foreach(UnitSizeType i, unitSizeTypeSet)
 			{
 				std::string name(i.getName());
@@ -48,16 +35,7 @@ namespace BWAPI
 			initializingUnitSizeType = false;
 		}
 	}
-	UnitSizeType::UnitSizeType() : Type(UnitSizeTypes::None)
-	{
-	}
-	int getValidUnitSizeTypeID(int id)
-	{
-		if ( !initializingUnitSizeType && (id < 0 || id >= 6) )
-			return UnitSizeTypes::Unknown;
-		return id;
-	}
-	UnitSizeType::UnitSizeType(int id) : Type( getValidUnitSizeTypeID(id) )
+	UnitSizeType::UnitSizeType(int id) : Type( id )
 	{
 	}
 	const std::string &UnitSizeType::getName() const
@@ -76,9 +54,9 @@ namespace BWAPI
 			return UnitSizeTypes::Unknown;
 		return (*i).second;
 	}
-	const std::set<UnitSizeType>& UnitSizeTypes::allUnitSizeTypes()
+	const UnitSizeType::set& UnitSizeTypes::allUnitSizeTypes()
 	{
-		return unitSizeTypeSet;
+		return UnitSizeTypes::unitSizeTypeSet;
 	}
 }
 

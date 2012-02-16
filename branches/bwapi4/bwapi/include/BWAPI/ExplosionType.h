@@ -1,14 +1,51 @@
 #pragma once
 #include <string>
-#include <set>
 #include "Type.h"
+
+#define BWAPI_EXPLOTYPEDEF(x) static const ExplosionType x(Enum::x) /** ref x */
+
 namespace BWAPI
 {
-	class ExplosionType : public Type<ExplosionType>
+	namespace ExplosionTypes
+	{
+		namespace Enum
+		{
+			enum Enum
+			{
+				None = 0,
+				Normal,
+				Radial_Splash,
+				Enemy_Splash,
+				Lockdown,
+				Nuclear_Missile,
+				Parasite,
+				Broodlings,
+				EMP_Shockwave,
+				Irradiate,
+				Ensnare,
+				Plague,
+				Stasis_Field,
+				Dark_Swarm,
+				Consume,
+				Yamato_Gun,
+				Restoration,
+				Disruption_Web,
+				Corrosive_Acid,
+				Mind_Control,
+				Feedback,
+				Optical_Flare,
+				Maelstrom,
+				Unused,
+				Air_Splash,
+				Unknown,
+				MAX
+			};
+		};
+	};
+	class ExplosionType : public Type<ExplosionType, ExplosionTypes::Enum::Unknown>
 	{
 		public:
-			ExplosionType();
-			ExplosionType(int id);
+			ExplosionType(int id = ExplosionTypes::Enum::None);
 
 			/** Returns the name of this explosion type. */
 			const std::string &getName() const;
@@ -20,33 +57,34 @@ namespace BWAPI
 		ExplosionType getExplosionType(std::string name);
 
 		/** Returns the set of all ExplosionTypes. */
-		const std::set<ExplosionType>& allExplosionTypes();
+		const ExplosionType::set& allExplosionTypes();
 
 		void init();
-		extern const ExplosionType None;
-		extern const ExplosionType Normal;
-		extern const ExplosionType Radial_Splash;
-		extern const ExplosionType Enemy_Splash;
-		extern const ExplosionType Lockdown;
-		extern const ExplosionType Nuclear_Missile;
-		extern const ExplosionType Parasite;
-		extern const ExplosionType Broodlings;
-		extern const ExplosionType EMP_Shockwave;
-		extern const ExplosionType Irradiate;
-		extern const ExplosionType Ensnare;
-		extern const ExplosionType Plague;
-		extern const ExplosionType Stasis_Field;
-		extern const ExplosionType Dark_Swarm;
-		extern const ExplosionType Consume;
-		extern const ExplosionType Yamato_Gun;
-		extern const ExplosionType Restoration;
-		extern const ExplosionType Disruption_Web;
-		extern const ExplosionType Corrosive_Acid;
-		extern const ExplosionType Mind_Control;
-		extern const ExplosionType Feedback;
-		extern const ExplosionType Optical_Flare;
-		extern const ExplosionType Maelstrom;
-		extern const ExplosionType Air_Splash;
-		extern const ExplosionType Unknown;
+
+		BWAPI_EXPLOTYPEDEF(None);
+		BWAPI_EXPLOTYPEDEF(Normal);
+		BWAPI_EXPLOTYPEDEF(Radial_Splash);
+		BWAPI_EXPLOTYPEDEF(Enemy_Splash);
+		BWAPI_EXPLOTYPEDEF(Lockdown);
+		BWAPI_EXPLOTYPEDEF(Nuclear_Missile);
+		BWAPI_EXPLOTYPEDEF(Parasite);
+		BWAPI_EXPLOTYPEDEF(Broodlings);
+		BWAPI_EXPLOTYPEDEF(EMP_Shockwave);
+		BWAPI_EXPLOTYPEDEF(Irradiate);
+		BWAPI_EXPLOTYPEDEF(Ensnare);
+		BWAPI_EXPLOTYPEDEF(Plague);
+		BWAPI_EXPLOTYPEDEF(Stasis_Field);
+		BWAPI_EXPLOTYPEDEF(Dark_Swarm);
+		BWAPI_EXPLOTYPEDEF(Consume);
+		BWAPI_EXPLOTYPEDEF(Yamato_Gun);
+		BWAPI_EXPLOTYPEDEF(Restoration);
+		BWAPI_EXPLOTYPEDEF(Disruption_Web);
+		BWAPI_EXPLOTYPEDEF(Corrosive_Acid);
+		BWAPI_EXPLOTYPEDEF(Mind_Control);
+		BWAPI_EXPLOTYPEDEF(Feedback);
+		BWAPI_EXPLOTYPEDEF(Optical_Flare);
+		BWAPI_EXPLOTYPEDEF(Maelstrom);
+		BWAPI_EXPLOTYPEDEF(Air_Splash);
+		BWAPI_EXPLOTYPEDEF(Unknown);
 	}
 }
