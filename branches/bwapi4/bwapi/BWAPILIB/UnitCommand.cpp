@@ -10,8 +10,8 @@ namespace BWAPI
 	, extra(0)
 	, unit(NULL)
 	{
-		x		 = Positions::None.x();
-		y		 = Positions::None.y();
+		x		= Positions::None.x();
+		y		= Positions::None.y();
 		type	= UnitCommandTypes::None;
 	}
 	UnitCommand::UnitCommand(Unit* _unit, UnitCommandType _type, Unit* _target, int _x, int _y, int _extra)
@@ -22,24 +22,25 @@ namespace BWAPI
 	, y(_y)
 	, extra(_extra)
 	{}
-	UnitCommand UnitCommand::attack(Unit* unit, Position target, bool shiftQueueCommand)
+	UnitCommand UnitCommand::attack(Unit* unit, PositionOrUnit target, bool shiftQueueCommand)
 	{
 		UnitCommand c;
 		c.unit	= unit;
-		c.type	= UnitCommandTypes::Attack_Move;
-		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
+
+		if ( target.isPosition() )
+		{
+			c.type	= UnitCommandTypes::Attack_Move;
+			Position targPos = target.getPosition();
+			targPos.makeValid();
+			c.x	= targPos.x();
+			c.y	= targPos.y();
+		}
+		else
+		{
+			c.type	 = UnitCommandTypes::Attack_Unit;
+			c.target = target.getUnit();
+		}
 		c.extra = shiftQueueCommand ? 1 : 0;
-		return c;
-	}
-	UnitCommand UnitCommand::attack(Unit* unit, Unit* target, bool shiftQueueCommand)
-	{
-		UnitCommand c;
-		c.unit	 = unit;
-		c.type	 = UnitCommandTypes::Attack_Unit;
-		c.target = target;
-		c.extra	= shiftQueueCommand ? 1 : 0;
 		return c;
 	}
 	UnitCommand UnitCommand::build(Unit* unit, TilePosition target, UnitType type)
@@ -93,22 +94,23 @@ namespace BWAPI
 		c.extra = upgrade;
 		return c;
 	}
-	UnitCommand UnitCommand::setRallyPoint(Unit* unit, Position target)
+	UnitCommand UnitCommand::setRallyPoint(Unit* unit, PositionOrUnit target)
 	{
 		UnitCommand c;
 		c.unit = unit;
-		c.type = UnitCommandTypes::Set_Rally_Position;
-		target.makeValid();
-		c.x		= target.x();
-		c.y		= target.y();
-		return c;
-	}
-	UnitCommand UnitCommand::setRallyPoint(Unit* unit, Unit* target)
-	{
-		UnitCommand c;
-		c.unit	 = unit;
-		c.type	 = UnitCommandTypes::Set_Rally_Unit;
-		c.target = target;
+		if ( target.isPosition() )
+		{
+			c.type = UnitCommandTypes::Set_Rally_Position;
+			Position targPos = target.getPosition();
+			targPos.makeValid();
+			c.x		= targPos.x();
+			c.y		= targPos.y();
+		}
+		else
+		{
+			c.type	 = UnitCommandTypes::Set_Rally_Unit;
+			c.target = target.getUnit();
+		}
 		return c;
 	}
 	UnitCommand UnitCommand::move(Unit* unit, Position target, bool shiftQueueCommand)
@@ -279,23 +281,24 @@ namespace BWAPI
 		c.extra	= shiftQueueCommand ? 1 : 0;
 		return c;
 	}
-	UnitCommand UnitCommand::rightClick(Unit* unit, Position target, bool shiftQueueCommand)
+	UnitCommand UnitCommand::rightClick(Unit* unit, PositionOrUnit target, bool shiftQueueCommand)
 	{
 		UnitCommand c;
 		c.unit = unit;
-		c.type = UnitCommandTypes::Right_Click_Position;
-		target.makeValid();
-		c.x		= target.x();
-		c.y		= target.y();
-		c.extra	= shiftQueueCommand ? 1 : 0;
-		return c;
-	}
-	UnitCommand UnitCommand::rightClick(Unit* unit, Unit* target, bool shiftQueueCommand)
-	{
-		UnitCommand c;
-		c.unit	 = unit;
-		c.type	 = UnitCommandTypes::Right_Click_Unit;
-		c.target = target;
+
+		if ( target.isPosition() )
+		{
+			c.type = UnitCommandTypes::Right_Click_Position;
+			Position targPos = target.getPosition();
+			targPos.makeValid();
+			c.x		= targPos.x();
+			c.y		= targPos.y();
+		}
+		else
+		{
+			c.type	 = UnitCommandTypes::Right_Click_Unit;
+			c.target = target.getUnit();
+		}
 		c.extra	= shiftQueueCommand ? 1 : 0;
 		return c;
 	}
@@ -355,47 +358,33 @@ namespace BWAPI
 		c.unit	= unit;
 		c.type	= UnitCommandTypes::Use_Tech;
 		c.extra = tech;
-		if (tech==TechTypes::Burrowing)
-		{
-			if (unit->isBurrowed())
-				c.type = UnitCommandTypes::Unburrow;
-			else
-				c.type = UnitCommandTypes::Burrow;
-		}
-		else if (tech==TechTypes::Cloaking_Field || tech==TechTypes::Personnel_Cloaking)
-		{
-			if (unit->isCloaked())
-				c.type = UnitCommandTypes::Decloak;
-			else
-				c.type = UnitCommandTypes::Cloak;
-		}
-		else if (tech==TechTypes::Tank_Siege_Mode)
-		{
-			if (unit->isSieged())
-				c.type = UnitCommandTypes::Unsiege;
-			else
-				c.type = UnitCommandTypes::Siege;
-		}
+		if ( tech == TechTypes::Burrowing )
+			c.type = unit->isBurrowed() ? UnitCommandTypes::Unburrow : UnitCommandTypes::Burrow;
+		else if ( tech == TechTypes::Cloaking_Field || tech == TechTypes::Personnel_Cloaking )
+			c.type = unit->isCloaked() ? UnitCommandTypes::Decloak : UnitCommandTypes::Cloak;
+		else if ( tech == TechTypes::Tank_Siege_Mode )
+			c.type = unit->isSieged() ? UnitCommandTypes::Unsiege : UnitCommandTypes::Siege;
 		return c;
 	}
-	UnitCommand UnitCommand::useTech(Unit* unit, TechType tech, Position target)
+	UnitCommand UnitCommand::useTech(Unit* unit, TechType tech, PositionOrUnit target)
 	{
 		UnitCommand c;
 		c.unit	= unit;
-		c.type	= UnitCommandTypes::Use_Tech_Position;
 		c.extra = tech;
-		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
-		return c;
-	}
-	UnitCommand UnitCommand::useTech(Unit* unit,TechType tech, Unit* target)
-	{
-		UnitCommand c;
-		c.unit	 = unit;
-		c.type	 = UnitCommandTypes::Use_Tech_Unit;
-		c.extra	= tech;
-		c.target = target;
+
+		if ( target.isPosition() )
+		{
+			c.type	= UnitCommandTypes::Use_Tech_Position;
+			Position targPos = target.getPosition();
+			targPos.makeValid();
+			c.x	= targPos.x();
+			c.y	= targPos.y();
+		}
+		else
+		{
+			c.type	 = UnitCommandTypes::Use_Tech_Unit;
+			c.target = target.getUnit();
+		}
 		return c;
 	}
 	UnitCommand UnitCommand::placeCOP(Unit* unit, TilePosition target)

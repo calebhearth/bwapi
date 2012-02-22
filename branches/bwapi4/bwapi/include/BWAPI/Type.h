@@ -18,7 +18,7 @@ namespace BWAPI
 		Typeset(const int *pArray, size_t size) : Vectorset((const _T*)pArray, size) {};
 
 		// Operators (adding elements)
-		Typeset operator +(const _T &other)
+		Typeset operator +(const _T &other) const
 		{
 			Typeset newset(*this);
 			newset.insert(other);
@@ -29,7 +29,7 @@ namespace BWAPI
 			this->insert(other);
 			return *this;
 		};
-		Typeset operator |(const _T &other)
+		Typeset operator |(const _T &other) const
 		{
 			Typeset newset(*this);
 			newset.insert(other);
@@ -58,27 +58,27 @@ namespace BWAPI
 				this->_id = __unk;
 			else
 				this->_id = id;
-		}
+		};
 		
 		// Types
 		typedef Typeset<_T> set;
 
 		// Operators
-		operator int() const { return _id; }
-		set operator +(const _T &other)
+		operator int() const { return _id; };
+		set operator +(const _T &other) const
 		{
 			set rset(this->_id);
 			rset.insert(other.getID());
 			return rset;
-		}
-		set operator |(const _T &other)
+		};
+		set operator |(const _T &other) const
 		{
 			set rset(this->_id);
 			rset.insert(other.getID());
 			return rset;
-		}
+		};
 		
 		// Members
-		int getID() const { return _id; }
+		int getID() const { return _id; };
 	};
 }

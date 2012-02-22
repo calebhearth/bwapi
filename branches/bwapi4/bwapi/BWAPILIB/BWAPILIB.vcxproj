@@ -122,6 +122,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClCompile Include="Source\Playerset.cpp" />
     <ClCompile Include="Source\PlayerType.cpp" />
     <ClCompile Include="Source\Position.cpp" />
+    <ClCompile Include="Source\PositionUnit.cpp" />
     <ClCompile Include="Source\Race.cpp" />
     <ClCompile Include="Source\Regionset.cpp" />
     <ClCompile Include="Source\TechType.cpp" />
@@ -142,6 +143,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClInclude Include="..\include\BWAPI\Color.h" />
     <ClInclude Include="..\include\BWAPI\Forceset.h" />
     <ClInclude Include="..\include\BWAPI\Playerset.h" />
+    <ClInclude Include="..\include\BWAPI\PositionUnit.h" />
     <ClInclude Include="..\include\BWAPI\Regionset.h" />
     <ClInclude Include="..\include\BWAPI\Unitset.h" />
     <ClInclude Include="..\include\BWAPI\Vectorset.h" />

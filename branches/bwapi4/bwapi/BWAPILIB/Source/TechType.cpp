@@ -133,12 +133,45 @@ namespace BWAPI
 	namespace techInternalUsage
 	{
 		using namespace UnitTypes;
-		/*static const UnitType techWhatUsesArr[TechTypes::Enum::MAX][] = 
-		{	{ Terran_Marine, Terran_Firebat, Hero_Jim_Raynor_Marine, Hero_Gui_Montag},
-			{ Terran_Ghost, Hero_Alexei_Stukov, Hero_Infested_Duran, Hero_Samir_Duran, Hero_Sarah_Kerrigan }
-		};*/
-		static const UnitType usesStim[] = { Terran_Marine, Terran_Firebat, Hero_Jim_Raynor_Marine, Hero_Gui_Montag };
-		static const UnitType::set techWhatUses[TechTypes::Enum::MAX] = { UnitType::set(usesStim, countof(usesStim)) };
+		static const UnitType::set techWhatUses[TechTypes::Enum::MAX] =
+		{	Terran_Marine | Terran_Firebat | Hero_Jim_Raynor_Marine | Hero_Gui_Montag,
+			Terran_Ghost | Hero_Alexei_Stukov | Hero_Infested_Duran | Hero_Samir_Duran | Hero_Sarah_Kerrigan,
+			Terran_Science_Vessel | Hero_Magellan,
+			Terran_Vulture | Hero_Jim_Raynor_Vulture,
+			Terran_Comsat_Station,
+			Terran_Siege_Tank_Tank_Mode | Terran_Siege_Tank_Siege_Mode | Hero_Edmund_Duke_Tank_Mode | Hero_Edmund_Duke_Siege_Mode,
+			Terran_Science_Vessel | Hero_Magellan,
+			Terran_Science_Vessel | Hero_Magellan,
+			Terran_Battlecruiser | Hero_Gerard_DuGalle | Hero_Hyperion | Hero_Norad_II,
+			Terran_Wraith | Hero_Tom_Kazansky,
+			Terran_Ghost | Hero_Alexei_Stukov | Hero_Infested_Duran | Hero_Samir_Duran | Hero_Sarah_Kerrigan | Hero_Infested_Kerrigan,
+			Zerg_Zergling | Zerg_Hydralisk | Zerg_Drone | Zerg_Defiler | Zerg_Infested_Terran | Hero_Unclean_One | Hero_Hunter_Killer | Hero_Devouring_One | Zerg_Lurker,
+			Zerg_Queen | Hero_Matriarch,
+			Zerg_Queen | Hero_Matriarch,
+			Zerg_Defiler | Hero_Unclean_One,
+			Zerg_Defiler | Hero_Unclean_One,
+			Zerg_Defiler | Hero_Unclean_One | Hero_Infested_Kerrigan | Hero_Infested_Duran,
+			Zerg_Queen | Hero_Matriarch | Hero_Infested_Kerrigan,
+			Zerg_Queen | Hero_Matriarch,
+			Protoss_High_Templar | Hero_Tassadar | Hero_Infested_Kerrigan,
+			Protoss_High_Templar | Hero_Tassadar,
+			Protoss_Arbiter | Hero_Danimoth,
+			Protoss_Arbiter | Hero_Danimoth,
+			Protoss_High_Templar,
+			Terran_Medic,
+			Protoss_Corsair | Hero_Raszagal,
+			UnitType::set(),
+			Protoss_Dark_Archon,
+			Protoss_Dark_Templar,
+			Protoss_Dark_Archon,
+			Terran_Medic,
+			Protoss_Dark_Archon,
+			Zerg_Hydralisk,
+			UnitType::set(),
+			Terran_Medic,
+			UnitType::set(), UnitType::set(), UnitType::set(), UnitType::set(), UnitType::set(), UnitType::set(),
+			UnitType::set(), UnitType::set(), UnitType::set(), UnitType::set(), Terran_Ghost, UnitType::set()
+		};
 	}
 
 	std::map<std::string, TechType> techTypeMap;

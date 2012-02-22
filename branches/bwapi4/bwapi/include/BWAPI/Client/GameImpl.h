@@ -120,17 +120,17 @@ namespace BWAPI
 			virtual void pingMinimap(int x, int y);
 			virtual void pingMinimap(BWAPI::Position p);
 
-			virtual bool	isFlagEnabled(int flag);
-			virtual void	enableFlag(int flag);
-			virtual Unitset& getUnitsOnTile(int x, int y);
-			virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-			virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
-			virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
-			virtual Error getLastError() const;
-			virtual bool	setLastError(BWAPI::Error e);
+			virtual bool		isFlagEnabled(int flag);
+			virtual void		enableFlag(int flag);
+			virtual Unitset&	getUnitsOnTile(int x, int y);
+			virtual Unitset&	getUnitsInRectangle(int left, int top, int right, int bottom) const;
+			virtual Unitset&	getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
+			virtual Unitset&	getUnitsInRadius(BWAPI::Position center, int radius) const;
+			virtual Error		getLastError() const;
+			virtual bool		setLastError(BWAPI::Error e = Errors::None);
 
-			virtual int				 mapWidth();
-			virtual int				 mapHeight();
+			virtual int			mapWidth();
+			virtual int			mapHeight();
 			virtual std::string mapFileName();
 			virtual std::string mapPathName();
 			virtual std::string mapName();
@@ -138,8 +138,8 @@ namespace BWAPI
 
 			virtual bool isWalkable(int x, int y);
 			virtual bool isWalkable(WalkPosition position);
-			virtual int	getGroundHeight(int x, int y);
-			virtual int	getGroundHeight(TilePosition position);
+			virtual int	 getGroundHeight(int x, int y);
+			virtual int	 getGroundHeight(TilePosition position);
 			virtual bool isBuildable(int x, int y, bool includeBuildings = false);
 			virtual bool isBuildable(TilePosition position, bool includeBuildings = false);
 			virtual bool isVisible(int x, int y);

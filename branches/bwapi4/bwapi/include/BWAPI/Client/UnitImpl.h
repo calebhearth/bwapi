@@ -46,10 +46,8 @@ namespace BWAPI
 			virtual int				getResources() const;
 			virtual int				getResourceGroup() const;
 
-			virtual int				getDistance(Unit* target) const;
-			virtual int				getDistance(Position target) const;
-			virtual bool			hasPath(Unit* target) const;
-			virtual bool			hasPath(Position target) const;
+			virtual int				getDistance(PositionOrUnit target) const;
+			virtual bool			hasPath(PositionOrUnit target) const;
 			virtual int				getLastCommandFrame() const;
 			virtual UnitCommand		getLastCommand() const;
 			virtual BWAPI::Player	*getLastAttackingPlayer() const;
@@ -173,16 +171,14 @@ namespace BWAPI
 			virtual bool canIssueCommand(UnitCommand command) const;
 			virtual bool issueCommand(UnitCommand command);
 
-			virtual bool attack(Position target, bool shiftQueueCommand = false);
-			virtual bool attack(Unit* target, bool shiftQueueCommand = false);
+			virtual bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
 			virtual bool build(TilePosition target, UnitType type);
 			virtual bool buildAddon(UnitType type);
 			virtual bool train(UnitType type);
 			virtual bool morph(UnitType type);
 			virtual bool research(TechType tech);
 			virtual bool upgrade(UpgradeType upgrade);
-			virtual bool setRallyPoint(Position target);
-			virtual bool setRallyPoint(Unit* target);
+			virtual bool setRallyPoint(PositionOrUnit target);
 			virtual bool move(Position target, bool shiftQueueCommand = false);
 			virtual bool patrol(Position target, bool shiftQueueCommand = false);
 			virtual bool holdPosition(bool shiftQueueCommand = false);
@@ -203,8 +199,7 @@ namespace BWAPI
 			virtual bool unload(Unit* target);
 			virtual bool unloadAll(bool shiftQueueCommand = false);
 			virtual bool unloadAll(Position target, bool shiftQueueCommand = false);
-			virtual bool rightClick(Position target, bool shiftQueueCommand = false);
-			virtual bool rightClick(Unit* target, bool shiftQueueCommand = false);
+			virtual bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false);
 			virtual bool haltConstruction();
 			virtual bool cancelConstruction();
 			virtual bool cancelAddon();
@@ -212,8 +207,7 @@ namespace BWAPI
 			virtual bool cancelMorph();
 			virtual bool cancelResearch();
 			virtual bool cancelUpgrade();
-			virtual bool useTech(TechType tech, Position target = Positions::None);
-			virtual bool useTech(TechType tech, Unit* target);
+			virtual bool useTech(TechType tech, PositionOrUnit target = NULL);
 			virtual bool placeCOP(TilePosition target);
 	};
 }

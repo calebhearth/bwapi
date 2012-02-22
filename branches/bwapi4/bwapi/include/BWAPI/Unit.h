@@ -10,6 +10,7 @@
 #include <BWAPI/Region.h>
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Client/UnitData.h>
+#include <BWAPI/PositionUnit.h>
 
 #include <BWAPI/Unitset.h>
 namespace BWAPI
@@ -106,17 +107,11 @@ namespace BWAPI
 		/** Retrieves the group ID of a resource. Can be used to identify which resources belong to an expansion. */
 		virtual int getResourceGroup() const = 0;
 
-		/** Returns the edge-to-edge distance between the current unit and the target unit. */
-		virtual int getDistance(Unit* target) const = 0;
-
 		/** Returns the distance from the edge of the current unit to the target position. */
-		virtual int getDistance(Position target) const = 0;
+		virtual int getDistance(PositionOrUnit target) const = 0;
 
 		/** Returns true if the unit is able to move to the target unit */
-		virtual bool hasPath(Unit* target) const = 0;
-
-		/** Returns true if the unit is able to move to the target position */
-		virtual bool hasPath(Position target) const = 0;
+		virtual bool hasPath(PositionOrUnit target) const = 0;
 
 		/** Returns the frame of the last successful command. Frame is comparable to Game::getFrameCount(). */
 		virtual int getLastCommandFrame() const = 0;
@@ -549,10 +544,7 @@ namespace BWAPI
 		virtual bool issueCommand(UnitCommand command) = 0;
 
 		/** Orders the unit to attack move to the specified location. */
-		virtual bool attack(Position target, bool shiftQueueCommand = false) = 0;
-
-		/** Orders the unit to attack the specified unit. */
-		virtual bool attack(Unit* target, bool shiftQueueCommand = false) = 0;
+		virtual bool attack(PositionOrUnit target, bool shiftQueueCommand = false) = 0;
 
 		/** Orders the unit to build the given unit type at the given position. Note that if the player does not
 		 * have enough resources when the unit attempts to place the building down, the order will fail. The
@@ -583,11 +575,7 @@ namespace BWAPI
 
 		/** Orders the unit to set its rally position to the specified position.
 		 * \see Unit::getRallyPosition, Unit::getRallyUnit. */
-		virtual bool setRallyPoint(Position target) = 0;
-
-		/** Orders the unit to set its rally unit to the specified unit.
-		 * \see Unit::setRallyPosition, Unit::getRallyPosition, Unit::getRallyUnit. */
-		virtual bool setRallyPoint(Unit* target) = 0;
+		virtual bool setRallyPoint(PositionOrUnit target) = 0;
 
 		/** Orders the unit to move from its current position to the specified position.
 		 * \see Unit::isMoving.	*/
@@ -674,11 +662,7 @@ namespace BWAPI
 		virtual bool unloadAll(Position target, bool shiftQueueCommand = false) = 0;
 
 		/** Works like the right click in the GUI. */
-		virtual bool rightClick(Position target, bool shiftQueueCommand = false) = 0;
-
-		/** Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine,
-		 * right click on an enemy to attack it. */
-		virtual bool rightClick(Unit* target, bool shiftQueueCommand = false) = 0;
+		virtual bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false) = 0;
 
 		/** Orders the SCV to stop constructing the building, and the building is left in a partially complete
 		 * state until it is canceled, destroyed, or completed.
@@ -710,14 +694,9 @@ namespace BWAPI
 		
 		/** Orders the unit to use a tech requiring a position target (ie Dark Swarm). Returns true if it is a
 		 * valid tech.*/
-		virtual bool useTech(TechType tech, Position target = Positions::None) = 0;
-
-		/** Orders the unit to use a tech requiring a unit target (ie Irradiate). Returns true if it is a valid
-		 * tech.*/
-		virtual bool useTech(TechType tech, Unit* target) = 0;
+		virtual bool useTech(TechType tech, PositionOrUnit target = NULL) = 0;
 
 		/** Moves a Flag Beacon to the target location. */
 		virtual bool placeCOP(TilePosition target) = 0;
-
 	};
 }

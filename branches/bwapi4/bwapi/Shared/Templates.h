@@ -4,6 +4,8 @@
 #include <iterator>
 
 #include <BWAPI/Unitset.h>
+#include <BWAPI/PositionUnit.h>
+
 namespace BWAPI
 {
 	namespace Templates
@@ -989,47 +991,58 @@ namespace BWAPI
 		}
 	}
 	//--------------------------------------------- COMPUTE DISTANCE -------------------------------------------
-	static inline int computeDistance(const Unit *src, const Unit *targ)
+	static inline int computeDistance(const Unit* src, PositionOrUnit targ)
 	{
-		if ( src == targ || !src || !targ )
+		// return if source is invalid
+		if ( !src ) 
 			return 0;
 
-		int xDist = src->getLeft() - (targ->getRight() + 1);
+		// retrieve left/top/right/bottom values for calculations
+		int left, right, top, bottom;
+
+		if ( targ.isPosition() )
+		{
+			// Retrieve the target position if it is so
+			Position targPos = targ.getPosition();
+			left	= targPos.x() - 1;
+			top		= targPos.y() - 1;
+			right	= targPos.x() + 1;
+			bottom	= targPos.y() + 1;
+		}
+		else
+		{
+			// Retrieve the target unit if it's not a position
+			Unit *pUnit = targ.getUnit();
+
+			// return if target is invalid
+			if ( !pUnit || src == pUnit )
+				return 0;
+
+			left	= pUnit->getLeft() - 1;
+			top		= pUnit->getTop() - 1;
+			right	= pUnit->getRight() + 1;
+			bottom	= pUnit->getBottom() + 1;
+		}
+
+		// compute x distance
+		int xDist = src->getLeft() - right;
 		if ( xDist < 0 )
 		{
-			xDist = targ->getLeft() - (src->getRight() + 1);
+			xDist = left - src->getRight();
 			if ( xDist < 0 )
 				xDist = 0;
 		}
-		int yDist = src->getTop() - (targ->getBottom() + 1);
-		if ( yDist < 0 )
-		{
-			yDist = targ->getTop() - (src->getBottom() + 1);
-			if ( yDist < 0 )
-				yDist = 0;
-		}
-		return Position(0, 0).getApproxDistance(Position(xDist, yDist));
-	}
-	//--------------------------------------------- COMPUTE DISTANCE -------------------------------------------
-	static inline int computeDistance(const Unit* src, Position targ)
-	{
-		if ( !src )
-			return 0;
 
-		int xDist = src->getLeft() - (targ.x() + 1);
-		if ( xDist < 0 )
-		{
-			xDist = targ.x() - (src->getRight() + 1);
-			if ( xDist < 0 )
-				xDist = 0;
-		}
-		int yDist = src->getTop() - (targ.y() + 1);
+		// compute y distance
+		int yDist = src->getTop() - bottom;
 		if ( yDist < 0 )
 		{
-			yDist = targ.y() - (src->getBottom() + 1);
+			yDist = top - src->getBottom();
 			if ( yDist < 0 )
 				yDist = 0;
 		}
+
+		// compute actual distance
 		return Position(0, 0).getApproxDistance(Position(xDist, yDist));
 	}
 }

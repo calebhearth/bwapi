@@ -85,7 +85,7 @@ namespace BWAPI
 			virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
 
 			virtual Error		getLastError() const;
-			virtual bool		setLastError(BWAPI::Error e);
+			virtual bool		setLastError(BWAPI::Error e = Errors::None);
 
 			virtual int			mapWidth();
 			virtual int			mapHeight();

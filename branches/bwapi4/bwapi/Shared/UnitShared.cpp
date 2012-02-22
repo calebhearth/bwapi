@@ -128,48 +128,45 @@ namespace BWAPI
 		return self->resourceGroup;
 	}
 	//--------------------------------------------- GET DISTANCE -----------------------------------------------
-	int UnitImpl::getDistance(Unit* target) const
+	int UnitImpl::getDistance(PositionOrUnit target) const
 	{
-		if ( !exists() || !target || !target->exists() )
-			return MAXINT;
-
-		if (this == target)
-			return 0;
-		
-		return computeDistance(this, target);
-	}
-	//--------------------------------------------- GET DISTANCE -----------------------------------------------
-	int UnitImpl::getDistance(Position target) const
-	{
+		// If this unit does not exist
 		if ( !exists() )
 			return MAXINT;
+
+		// Must be something valid
+		if ( !target.getUnit() && !target.getPosition() )
+			return MAXINT;
+
+		// if target is a unit but doesn't exist
+		if ( target.getUnit() && !target.getUnit()->exists() )
+			return MAXINT;
+
+		// If target is the same as the source
+		if ( this == target.getUnit() )
+			return MAXINT;
+
+		// Compute distance
 		return computeDistance(this, target);
 	}
 	//--------------------------------------------- HAS PATH ---------------------------------------------------
-	bool UnitImpl::hasPath(Unit* target) const
+	bool UnitImpl::hasPath(PositionOrUnit target) const
 	{
 		Broodwar->setLastError(Errors::None);
-		if ( !target )
+		// Return error if the position is invalid
+		if ( !target.getPosition() )
 			return Broodwar->setLastError(Errors::Invalid_Parameter);
-		if ( !target->exists() || !exists() )
-			return Broodwar->setLastError(Errors::Unit_Not_Visible);
 
+		// Return true if this unit is an air unit
 		if ( this->getType().isFlyer() || this->isLifted() )
 			return true;
 
-		return Broodwar->hasPath(this->getPosition(), target->getPosition());
-	}
-	//--------------------------------------------- HAS PATH ---------------------------------------------------
-	bool UnitImpl::hasPath(Position target) const
-	{
-		Broodwar->setLastError(Errors::None);
-		if (!exists())
+		// Return error if either this or the target does not "exist"
+		if ( (target.getUnit() && !target.getUnit()->exists()) || !exists() )
 			return Broodwar->setLastError(Errors::Unit_Not_Visible);
 
-		if ( this->getType().isFlyer() || this->isLifted() )
-			return true;
-
-		return Broodwar->hasPath(this->getPosition(), target);
+		// return result of Game::hasPath
+		return Broodwar->hasPath(this->getPosition(), target.getPosition());
 	}
 	//--------------------------------------------- GET LAST COMMAND FRAME -------------------------------------
 	int UnitImpl::getLastCommandFrame() const
@@ -861,12 +858,7 @@ namespace BWAPI
 		return Templates::canIssueCommand(this,command);
 	}
 	//--------------------------------------------- ATTACK MOVE ------------------------------------------------
-	bool UnitImpl::attack(Position target, bool shiftQueueCommand)
-	{
-		return issueCommand(UnitCommand::attack(this, target, shiftQueueCommand));
-	}
-	//--------------------------------------------- ATTACK UNIT ------------------------------------------------
-	bool UnitImpl::attack(Unit* target, bool shiftQueueCommand)
+	bool UnitImpl::attack(PositionOrUnit target, bool shiftQueueCommand)
 	{
 		return issueCommand(UnitCommand::attack(this, target, shiftQueueCommand));
 	}
@@ -901,14 +893,9 @@ namespace BWAPI
 		return issueCommand(UnitCommand::upgrade(this,upgrade));
 	}
 	//--------------------------------------------- SET RALLY POSITION -----------------------------------------
-	bool UnitImpl::setRallyPoint(Position target)
+	bool UnitImpl::setRallyPoint(PositionOrUnit target)
 	{
-		return issueCommand(UnitCommand::setRallyPoint(this,target));
-	}
-	//--------------------------------------------- SET RALLY UNIT ---------------------------------------------
-	bool UnitImpl::setRallyPoint(Unit* target)
-	{
-		return issueCommand(UnitCommand::setRallyPoint(this,target));
+		return issueCommand( UnitCommand::setRallyPoint(this, target) );
 	}
 	//--------------------------------------------- MOVE -------------------------------------------------------
 	bool UnitImpl::move(Position target, bool shiftQueueCommand)
@@ -1011,12 +998,7 @@ namespace BWAPI
 		return issueCommand(UnitCommand::unloadAll(this,target, shiftQueueCommand));
 	}
 	//--------------------------------------------- RIGHT CLICK ------------------------------------------------
-	bool UnitImpl::rightClick(Position target, bool shiftQueueCommand)
-	{
-		return issueCommand(UnitCommand::rightClick(this,target, shiftQueueCommand));
-	}
-	//--------------------------------------------- RIGHT CLICK ------------------------------------------------
-	bool UnitImpl::rightClick(Unit* target, bool shiftQueueCommand)
+	bool UnitImpl::rightClick(PositionOrUnit target, bool shiftQueueCommand)
 	{
 		return issueCommand(UnitCommand::rightClick(this,target, shiftQueueCommand));
 	}
@@ -1056,15 +1038,10 @@ namespace BWAPI
 		return issueCommand(UnitCommand::cancelUpgrade(this));
 	}
 	//--------------------------------------------- USE TECH ---------------------------------------------------
-	bool UnitImpl::useTech(TechType tech, Position target)
+	bool UnitImpl::useTech(TechType tech, PositionOrUnit target)
 	{
-		if ( target == Positions::None )
+		if ( target.isUnit() && target.getUnit() == NULL )
 			return issueCommand(UnitCommand::useTech(this,tech));
-		return issueCommand(UnitCommand::useTech(this,tech,target));
-	}
-	//--------------------------------------------- USE TECH ---------------------------------------------------
-	bool UnitImpl::useTech(TechType tech, Unit* target)
-	{
 		return issueCommand(UnitCommand::useTech(this,tech,target));
 	}
 	//--------------------------------------------- PLACE COP --------------------------------------------------
