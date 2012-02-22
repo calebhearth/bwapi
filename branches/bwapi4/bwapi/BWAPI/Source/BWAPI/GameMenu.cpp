@@ -364,7 +364,7 @@ namespace BWAPI
 			}
 			break;
 		case BW::GLUE_CHAT:
-			if ( !actRaceSel && BW::FindDialogGlobal("Chat") )
+			if ( !actRaceSel && BW::FindDialogGlobal("Chat") && _currentPlayerId() >= 0 && _currentPlayerId() < 8 )
 			{
 				// Determine the current player's race
 				Race playerRace;
@@ -381,6 +381,7 @@ namespace BWAPI
 				{
 					// Check if the race was selected correctly, and prevent further changing afterwords
 					u8 currentRace = BW::BWDATA_Players[_currentPlayerId()].nRace;
+
 					if ( (currentRace == playerRace ||
 						(this->autoMenuRace == "RANDOMTP" &&
 						( currentRace == Races::Terran ||
@@ -395,10 +396,10 @@ namespace BWAPI
 					{
 						actRaceSel = true;
 					}
-
+					
 					// Set the race
 					if ( !actRaceSel )
-						this->_changeRace(_currentPlayerId(), playerRace);
+						this->_changeRace(8, playerRace);
 				}// if player race is valid
 			} // if dialog "chat" exists
 

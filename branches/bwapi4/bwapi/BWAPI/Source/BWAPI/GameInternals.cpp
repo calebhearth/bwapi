@@ -358,7 +358,7 @@ namespace BWAPI
 	}
 	int GameImpl::_currentPlayerId()
 	{
-		return (int)*BW::BWDATA_g_LocalHumanID;
+		return *BW::BWDATA_g_LocalHumanID;
 	}
 	bool GameImpl::tournamentCheck(int type, void *parameter)
 	{
