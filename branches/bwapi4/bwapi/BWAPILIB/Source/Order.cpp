@@ -502,16 +502,7 @@ namespace BWAPI
 		}
 	}
 
-	Order::Order() : Type(Orders::None)
-	{
-	}
-	int getValidOrderID(int id)
-	{
-		if ( !initializingOrder && (id < 0 || id >= 191 || orderName[id].length() == 0) )
-			return Orders::Unknown;
-		return id;
-	}
-	Order::Order(int id) : Type( getValidOrderID(id) )
+	Order::Order(int id) : Type( id )
 	{
 	}
 	const std::string &Order::getName() const

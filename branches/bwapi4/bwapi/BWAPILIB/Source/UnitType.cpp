@@ -496,120 +496,114 @@ namespace BWAPI
 		"unknown"
 	};
 
-
-
-	bool initializingUnitType = true;
 	class UnitTypeInternal
 	{
 		public:
 			UnitTypeInternal() {valid = false;}
 			void set(const char* name, Race race, bool isHero, UnitType whatBuilds, int whatBuildsAmt, UnitType requiredUnit1, UnitType requiredUnit2, TechType requiredTech, TechType ability1, TechType ability2, TechType ability3, TechType ability4, UpgradeType armorUpgrade, int maxHitPoints, int maxShields, int maxEnergy, int armor,	int mineralPrice, int gasPrice, int buildTime, int supplyRequired, int supplyProvided, int spaceRequired, int spaceProvided, int buildScore, int destroyScore, UnitSizeType unitSizeType, int tileWidth, int tileHeight, int dimensionLeft, int dimensionUp, int dimensionRight, int dimensionDown,	int seekRange, int sightRange, WeaponType groundWeapon, int maxGroundHits, WeaponType airWeapon, int maxAirHits, double topSpeed, int acceleration, int haltDistance, int turnRadius, bool canProduce, bool canMove, bool isFlyer, bool regeneratesHP, bool hasPermanentCloak, bool isInvincible, bool isOrganic, bool isMechanical, bool isRobotic, bool isDetector, bool isResourceContainer, bool isResourceDepot, bool isWorker, bool requiresPsi, bool requiresCreep, bool isTwoUnitsInOneEgg, bool isBurrowable, bool isCloakable, bool isBuilding, bool isAddon, bool isFlyingBuilding, bool isNeutral, bool isRefinery)
 			{
-				if (initializingUnitType)
-				{
-					this->name	 = name;
-					this->race	 = race;
-					this->isHero = isHero;
+				this->name	 = name;
+				this->race	 = race;
+				this->isHero = isHero;
 
-					this->whatBuilds = std::make_pair(whatBuilds, whatBuildsAmt);
+				this->whatBuilds = std::make_pair(whatBuilds, whatBuildsAmt);
 
-					if ( whatBuilds != UnitTypes::None && whatBuildsAmt > 0 )
-						this->requiredUnits.insert(this->whatBuilds);
+				if ( whatBuilds != UnitTypes::None && whatBuildsAmt > 0 )
+					this->requiredUnits.insert(this->whatBuilds);
 
-					if ( requiredUnit1 != UnitTypes::None )
-						this->requiredUnits.insert(std::make_pair(requiredUnit1, 1));
+				if ( requiredUnit1 != UnitTypes::None )
+					this->requiredUnits.insert(std::make_pair(requiredUnit1, 1));
 
-					if ( requiredUnit2 != UnitTypes::None )
-						this->requiredUnits.insert(std::make_pair(requiredUnit2, 1));
+				if ( requiredUnit2 != UnitTypes::None )
+					this->requiredUnits.insert(std::make_pair(requiredUnit2, 1));
 
-					this->requiredTech = requiredTech;
-					if (ability1 != TechTypes::None)
-						this->abilities.insert(ability1);
+				this->requiredTech = requiredTech;
+				if (ability1 != TechTypes::None)
+					this->abilities.insert(ability1);
 
-					if (ability2 != TechTypes::None)
-						this->abilities.insert(ability2);
+				if (ability2 != TechTypes::None)
+					this->abilities.insert(ability2);
 
-					if (ability3 != TechTypes::None)
-						this->abilities.insert(ability3);
+				if (ability3 != TechTypes::None)
+					this->abilities.insert(ability3);
 
-					if (ability4 != TechTypes::None)
-						this->abilities.insert(ability4);
+				if (ability4 != TechTypes::None)
+					this->abilities.insert(ability4);
 
-					this->cloakingTech = TechTypes::None;
+				this->cloakingTech = TechTypes::None;
 
-					if ( this->abilities.find(TechTypes::Cloaking_Field) != this->abilities.end() )
-						cloakingTech = TechTypes::Cloaking_Field;
-					if ( this->abilities.find(TechTypes::Personnel_Cloaking) != this->abilities.end() )
-						cloakingTech = TechTypes::Personnel_Cloaking;
+				if ( this->abilities.find(TechTypes::Cloaking_Field) != this->abilities.end() )
+					cloakingTech = TechTypes::Cloaking_Field;
+				if ( this->abilities.find(TechTypes::Personnel_Cloaking) != this->abilities.end() )
+					cloakingTech = TechTypes::Personnel_Cloaking;
 
-					this->armorUpgrade = armorUpgrade;
-					this->maxHitPoints = maxHitPoints;
-					this->maxShields	 = maxShields;
-					this->maxEnergy		= maxEnergy;
-					this->armor				= armor;
+				this->armorUpgrade = armorUpgrade;
+				this->maxHitPoints = maxHitPoints;
+				this->maxShields	 = maxShields;
+				this->maxEnergy		= maxEnergy;
+				this->armor				= armor;
 
-					this->mineralPrice = mineralPrice;
-					this->gasPrice		 = gasPrice;
-					this->buildTime		= buildTime;
+				this->mineralPrice = mineralPrice;
+				this->gasPrice		 = gasPrice;
+				this->buildTime		= buildTime;
 
-					this->supplyRequired = supplyRequired;
-					this->supplyProvided = supplyProvided;
-					this->spaceRequired	= spaceRequired;
-					this->spaceProvided	= spaceProvided;
-					this->buildScore		 = buildScore;
-					this->destroyScore	 = destroyScore;
+				this->supplyRequired = supplyRequired;
+				this->supplyProvided = supplyProvided;
+				this->spaceRequired	= spaceRequired;
+				this->spaceProvided	= spaceProvided;
+				this->buildScore		 = buildScore;
+				this->destroyScore	 = destroyScore;
 
-					this->unitSizeType	 = unitSizeType;
-					this->tileWidth			= tileWidth;
-					this->tileHeight		 = tileHeight;
-					this->dimensionLeft	= dimensionLeft;
-					this->dimensionUp		= dimensionUp;
-					this->dimensionRight = dimensionRight;
-					this->dimensionDown	= dimensionDown;
+				this->unitSizeType	 = unitSizeType;
+				this->tileWidth			= tileWidth;
+				this->tileHeight		 = tileHeight;
+				this->dimensionLeft	= dimensionLeft;
+				this->dimensionUp		= dimensionUp;
+				this->dimensionRight = dimensionRight;
+				this->dimensionDown	= dimensionDown;
 
-					this->seekRange		 = seekRange;
-					this->sightRange		= sightRange;
-					this->groundWeapon	= groundWeapon;
-					this->maxGroundHits = maxGroundHits;
-					this->airWeapon		 = airWeapon;
-					this->maxAirHits		= maxAirHits;
+				this->seekRange		 = seekRange;
+				this->sightRange		= sightRange;
+				this->groundWeapon	= groundWeapon;
+				this->maxGroundHits = maxGroundHits;
+				this->airWeapon		 = airWeapon;
+				this->maxAirHits		= maxAirHits;
 
-					this->topSpeed		 = topSpeed;
-					this->acceleration = acceleration;
-					this->haltDistance = haltDistance;
-					this->turnRadius	 = turnRadius;
+				this->topSpeed		 = topSpeed;
+				this->acceleration = acceleration;
+				this->haltDistance = haltDistance;
+				this->turnRadius	 = turnRadius;
 
-					this->canProduce = canProduce;
-					this->canAttack	= groundWeapon != WeaponTypes::None || airWeapon != WeaponTypes::None;
-					this->canMove		= canMove;
+				this->canProduce = canProduce;
+				this->canAttack	= groundWeapon != WeaponTypes::None || airWeapon != WeaponTypes::None;
+				this->canMove		= canMove;
 
-					this->isFlyer						 = isFlyer;
-					this->regeneratesHP			 = regeneratesHP;
-					this->isSpellcaster			 = maxEnergy > 0;
-					this->hasPermanentCloak	 = hasPermanentCloak;
-					this->isInvincible				= isInvincible;
-					this->isOrganic					 = isOrganic;
-					this->isMechanical				= isMechanical;
-					this->isRobotic					 = isRobotic;
-					this->isDetector					= isDetector;
-					this->isResourceContainer = isResourceContainer;
-					this->isResourceDepot		 = isResourceDepot;
-					this->isWorker						= isWorker;
-					this->requiresPsi				 = requiresPsi;
-					this->requiresCreep			 = requiresCreep;
-					this->isTwoUnitsInOneEgg	= isTwoUnitsInOneEgg;
-					this->isBurrowable				= isBurrowable;
-					this->isCloakable				 = isCloakable;
-					this->isBuilding					= isBuilding;
-					this->isAddon						 = isAddon;
-					this->isFlyingBuilding		= isFlyingBuilding;
-					this->isNeutral					 = isNeutral;
-					this->isRefinery					= isRefinery;
+				this->isFlyer						 = isFlyer;
+				this->regeneratesHP			 = regeneratesHP;
+				this->isSpellcaster			 = maxEnergy > 0;
+				this->hasPermanentCloak	 = hasPermanentCloak;
+				this->isInvincible				= isInvincible;
+				this->isOrganic					 = isOrganic;
+				this->isMechanical				= isMechanical;
+				this->isRobotic					 = isRobotic;
+				this->isDetector					= isDetector;
+				this->isResourceContainer = isResourceContainer;
+				this->isResourceDepot		 = isResourceDepot;
+				this->isWorker						= isWorker;
+				this->requiresPsi				 = requiresPsi;
+				this->requiresCreep			 = requiresCreep;
+				this->isTwoUnitsInOneEgg	= isTwoUnitsInOneEgg;
+				this->isBurrowable				= isBurrowable;
+				this->isCloakable				 = isCloakable;
+				this->isBuilding					= isBuilding;
+				this->isAddon						 = isAddon;
+				this->isFlyingBuilding		= isFlyingBuilding;
+				this->isNeutral					 = isNeutral;
+				this->isRefinery					= isRefinery;
 
-					this->isSpecialBuilding = this->isBuilding && this->whatBuilds.second == 0;
+				this->isSpecialBuilding = this->isBuilding && this->whatBuilds.second == 0;
 
-					this->valid = true;
-				}
+				this->valid = true;
 			}
 			std::string name;
 			Race				race;
@@ -1158,19 +1152,9 @@ namespace BWAPI
 				fixName(&name);
 				unitTypeMap.insert(std::make_pair(name, i));
 			}
-			initializingUnitType = false;
 		}
 	}
-	UnitType::UnitType() : Type(UnitTypes::None)
-	{
-	}
-	int getValidUnitTypeID(int id)
-	{
-		if ( !initializingUnitType && (id < 0 || id >= UnitTypes::Enum::MAX || !unitTypeData[id].valid) )
-			return UnitTypes::Unknown;
-		return id;
-	}
-	UnitType::UnitType(int id) : Type( getValidUnitTypeID(id) )
+	UnitType::UnitType(int id) : Type( id )
 	{
 	}
 	const std::string &UnitType::getName() const

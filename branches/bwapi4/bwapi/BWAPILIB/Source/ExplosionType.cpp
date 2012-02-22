@@ -42,12 +42,11 @@ namespace BWAPI
 	std::map<std::string, ExplosionType> explosionTypeMap;
 	namespace ExplosionTypes
 	{
-		static const ExplosionType expTypeArr[] = { None, Normal, Radial_Splash, Enemy_Splash, Lockdown, Nuclear_Missile,
-													Parasite, Broodlings, EMP_Shockwave, Irradiate, Ensnare, Plague, 
-													Stasis_Field, Dark_Swarm, Consume, Yamato_Gun, Restoration, Disruption_Web,
-													Corrosive_Acid, Mind_Control, Feedback, Optical_Flare, Maelstrom,
-													Air_Splash, Unknown };
-		static const ExplosionType::set explosionTypeSet(expTypeArr, countof(expTypeArr));
+		static const ExplosionType::set explosionTypeSet(None | Normal | Radial_Splash | Enemy_Splash | Lockdown | Nuclear_Missile |
+														Parasite | Broodlings | EMP_Shockwave | Irradiate | Ensnare | Plague | 
+														Stasis_Field | Dark_Swarm | Consume | Yamato_Gun | Restoration | Disruption_Web |
+														Corrosive_Acid | Mind_Control | Feedback | Optical_Flare | Maelstrom |
+														Air_Splash | Unknown);
 		void init()
 		{
 			foreach(ExplosionType i, explosionTypeSet)

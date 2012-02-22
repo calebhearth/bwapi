@@ -434,7 +434,7 @@ namespace BWAPI
 			bool externalModuleConnected;
 			bool calledMatchEnd;
 			bool tournamentCheck(int type, void *parameter = NULL);
-			std::vector<UnitCommand> commandOptimizer[BWAPI_UNIT_COMMAND_TYPE_COUNT];
+			std::vector<UnitCommand> commandOptimizer[UnitCommandTypes::Enum::MAX];
 
 			int lastEventTime;
 			int addShape(const BWAPIC::Shape &s);

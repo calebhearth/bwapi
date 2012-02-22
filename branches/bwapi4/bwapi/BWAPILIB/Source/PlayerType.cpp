@@ -29,9 +29,8 @@ namespace BWAPI
 	std::map<std::string, PlayerType> playerTypeMap;
 	namespace PlayerTypes
 	{
-		static const PlayerType arrPlayerSet[] = { None, Computer, Player, RescuePassive, EitherPreferComputer, EitherPreferHuman,
-												Neutral, Closed, PlayerLeft, ComputerLeft, Unknown };
-		static const PlayerType::set playerTypeSet(arrPlayerSet, countof(arrPlayerSet);
+		static const PlayerType::set playerTypeSet( None | Computer | Player | RescuePassive | EitherPreferComputer | EitherPreferHuman |
+													Neutral | Closed | PlayerLeft | ComputerLeft | Unknown );
 		void init()
 		{
 			foreach(PlayerType i, playerTypeSet)

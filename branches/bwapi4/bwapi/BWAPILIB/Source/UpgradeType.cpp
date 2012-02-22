@@ -332,16 +332,7 @@ namespace BWAPI
 			initializingUpgradeType = false;
 		}
 	}
-	UpgradeType::UpgradeType() : Type(UpgradeTypes::None)
-	{
-	}
-	int getValidUpgradeTypeID(int id)
-	{
-		if ( !initializingUpgradeType && (id < 0 || id >= 63 || !upgradeTypeData[id].valid) )
-			return UpgradeTypes::Unknown;
-		return id;
-	}
-	UpgradeType::UpgradeType(int id) : Type( getValidUpgradeTypeID(id) )
+	UpgradeType::UpgradeType(int id) : Type( id )
 	{
 	}
 	const std::string &UpgradeType::getName() const

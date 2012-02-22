@@ -17,7 +17,8 @@ namespace BWAPI
 				Medium,
 				Large,
 				None,
-				Unknown
+				Unknown,
+				MAX
 			};
 		};
 	};

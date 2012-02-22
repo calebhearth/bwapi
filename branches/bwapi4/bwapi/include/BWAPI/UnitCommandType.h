@@ -2,7 +2,7 @@
 #include <string>
 #include "Type.h"
 
-#define BWAPI_UNITCMDTYPEDEF(x) static const UnitSizeType x(Enum::x) /** ref x */
+#define BWAPI_UNITCMDTYPEDEF(x) static const UnitCommandType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {

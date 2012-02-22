@@ -10,7 +10,6 @@
 
 namespace BWAPI
 {
-	bool initializingBulletType = true;
 	std::string bulletTypeName[211];
 	std::map<std::string, BulletType> bulletTypeMap;
 	std::set< BulletType > bulletTypeSet;
@@ -137,20 +136,10 @@ namespace BWAPI
 				fixName(&name);
 				bulletTypeMap.insert(std::make_pair(name, i));
 			}
-			initializingBulletType = false;
 		}
 	}
 
-	BulletType::BulletType() : Type(BulletTypes::None)
-	{
-	}
-	int getValidBulletTypeID(int id)
-	{
-		if ( !initializingBulletType && (id < 0 || id >= 211 || bulletTypeName[id].length() == 0) )
-			return BulletTypes::Unknown;
-		return id;
-	}
-	BulletType::BulletType(int id) : Type( getValidBulletTypeID(id) )
+	BulletType::BulletType(int id) : Type( id )
 	{
 	}
 	const std::string &BulletType::getName() const

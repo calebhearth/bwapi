@@ -15,41 +15,37 @@
 
 namespace BWAPI
 {
-	bool initializingWeaponType = true;
 	class WeaponTypeInternal
 	{
 		public:
 			WeaponTypeInternal() {valid = false;}
 			void set(const char* name, TechType techType, int damageAmount, int damageBonus, int damageCooldown, int damageFactor, UpgradeType upgradeType, DamageType damageType, ExplosionType explosionType, int minRange, int maxRange, int innerSplashRadius, int medianSplashRadius, int outerSplashRadius, bool targetsAir, bool targetsGround, bool targetsMechanical, bool targetsOrganic, bool targetsNonBuilding, bool targetsNonRobotic, bool targetsTerrain, bool targetsOrgOrMech, bool targetsOwn, UnitType whatUses)
 			{
-				if (initializingWeaponType)
-				{
-					this->name							 = name;
-					this->techType					 = techType;
-					this->damageAmount			 = damageAmount;
-					this->damageBonus				= damageBonus;
-					this->damageCooldown		 = damageCooldown;
-					this->damageFactor			 = damageFactor;
-					this->upgradeType				= upgradeType;
-					this->damageType				 = damageType;
-					this->explosionType			= explosionType;
-					this->minRange					 = minRange;
-					this->maxRange					 = maxRange;
-					this->innerSplashRadius	= innerSplashRadius;
-					this->medianSplashRadius = medianSplashRadius;
-					this->outerSplashRadius	= outerSplashRadius;
-					this->targetsAir				 = targetsAir;
-					this->targetsGround			= targetsGround;
-					this->targetsMechanical	= targetsMechanical;
-					this->targetsOrganic		 = targetsOrganic;
-					this->targetsNonBuilding = targetsNonBuilding;
-					this->targetsNonRobotic	= targetsNonRobotic;
-					this->targetsTerrain		 = targetsTerrain;
-					this->targetsOrgOrMech	 = targetsOrgOrMech;
-					this->targetsOwn				 = targetsOwn;
-					this->whatUses					 = whatUses;
-					this->valid							= true;
-				}
+				this->name							 = name;
+				this->techType					 = techType;
+				this->damageAmount			 = damageAmount;
+				this->damageBonus				= damageBonus;
+				this->damageCooldown		 = damageCooldown;
+				this->damageFactor			 = damageFactor;
+				this->upgradeType				= upgradeType;
+				this->damageType				 = damageType;
+				this->explosionType			= explosionType;
+				this->minRange					 = minRange;
+				this->maxRange					 = maxRange;
+				this->innerSplashRadius	= innerSplashRadius;
+				this->medianSplashRadius = medianSplashRadius;
+				this->outerSplashRadius	= outerSplashRadius;
+				this->targetsAir				 = targetsAir;
+				this->targetsGround			= targetsGround;
+				this->targetsMechanical	= targetsMechanical;
+				this->targetsOrganic		 = targetsOrganic;
+				this->targetsNonBuilding = targetsNonBuilding;
+				this->targetsNonRobotic	= targetsNonRobotic;
+				this->targetsTerrain		 = targetsTerrain;
+				this->targetsOrgOrMech	 = targetsOrgOrMech;
+				this->targetsOwn				 = targetsOwn;
+				this->whatUses					 = whatUses;
+				this->valid							= true;
 			}
 			std::string name;
 			TechType techType;
@@ -507,19 +503,9 @@ namespace BWAPI
 				fixName(&name);
 				weaponTypeMap.insert(std::make_pair(name, i));
 			}
-			initializingWeaponType = false;
 		}
 	}
-	WeaponType::WeaponType() : Type(WeaponTypes::None)
-	{
-	}
-	int getValidWeaponTypeID(int id)
-	{
-		if ( !initializingWeaponType && (id < 0 || id >= 132 || !weaponTypeData[id].valid) )
-			return WeaponTypes::Unknown;
-		return id;
-	}
-	WeaponType::WeaponType(int id) : Type( getValidWeaponTypeID(id) )
+	WeaponType::WeaponType(int id) : Type( id )
 	{
 	}
 	const std::string &WeaponType::getName() const

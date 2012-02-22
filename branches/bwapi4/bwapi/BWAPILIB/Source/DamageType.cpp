@@ -25,8 +25,7 @@ namespace BWAPI
 	std::map<std::string, DamageType> damageTypeMap;
 	namespace DamageTypes
 	{
-		static const DamageType dmgTypeArr[] = { Independent, Explosive, Concussive, Normal, Ignore_Armor, None, Unknown };
-		static const DamageType::set damageTypeSet(dmgTypeArr, countof(dmgTypeArr));
+		static const DamageType::set damageTypeSet(Independent | Explosive | Concussive | Normal | Ignore_Armor | None | Unknown);
 		void init()
 		{
 			foreach(DamageType i, damageTypeSet)

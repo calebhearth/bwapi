@@ -32,7 +32,6 @@ namespace BWAPI
 				fixName(&name);
 				unitSizeTypeMap.insert(std::make_pair(name, i));
 			}
-			initializingUnitSizeType = false;
 		}
 	}
 	UnitSizeType::UnitSizeType(int id) : Type( id )

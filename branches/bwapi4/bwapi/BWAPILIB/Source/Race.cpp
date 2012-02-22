@@ -19,15 +19,9 @@ namespace BWAPI
 		// NAMES
 		static const std::string raceNames[Races::Enum::MAX] =
 		{
-			"Zerg",
-			"Terran",
-			"Protoss",
-			"",
-			"",
-			"",
-			"Random",
-			"None",
-			"Unknown"
+			"Zerg", "Terran", "Protoss",
+			"", "", "",
+			"Random", "None", "Unknown"
 		};
 	
 		// LOCALIZATION
@@ -83,8 +77,7 @@ namespace BWAPI
 	namespace Races
 	{
 		// The race set initialization
-		static const Race raceSetArr[] = { Zerg, Terran, Protoss, None, Unknown };
-		static const Race::set raceSet(raceSetArr, countof(raceSetArr));
+		static const Race::set raceSet( Zerg | Terran | Protoss | None | Unknown );
 
 		void init()
 		{
@@ -127,14 +120,8 @@ namespace BWAPI
 	{
 		return RaceInternal::supplyTypes[this->getID()];
 	}
-	Race Races::getRace(const std::string &name)
+	Race Races::getRace(std::string &name)
 	{
-		const char *pszName = name.c_str();
-		for ( Race::set::iterator i = Races::raceSet.begin(); i != Races::raceSet.end(); ++i )
-		{
-			if ( strcmpi(pszName, i.getName().c_str()) )
-
-		}
 		fixName(&name);
 		std::map<std::string, Race>::iterator i = raceMap.find(name);
 		if (i == raceMap.end())

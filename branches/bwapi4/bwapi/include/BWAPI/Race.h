@@ -134,7 +134,7 @@ namespace BWAPI
 		/// @returns Race object that was found using
 		/// \p name .
 		/// @~
-		Race getRace(const std::string &name);
+		Race getRace(std::string &name);
 
 		/// @~English
 		/// Retrieves the set of all races.
