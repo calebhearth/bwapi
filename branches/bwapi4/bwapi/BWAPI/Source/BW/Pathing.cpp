@@ -175,11 +175,11 @@ namespace BW
 	BW::region *getRegionAt(int x, int y)
 	{
 		BWAPI::TilePosition tp(x/32, y/32);
-		if ( tp.x() >= 256 && tp.y() >= 256 )
+		if ( tp.x >= 256 && tp.y >= 256 )
 			return NULL;
 
 		// Obtain the region IDs from the positions
-		u16 id = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y()][tp.x()];
+		u16 id = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y][tp.x];
 
 		if ( id & 0x2000 )
 		{
@@ -197,7 +197,7 @@ namespace BW
 	}
 	BW::region *getRegionAt(Position pos)
 	{
-		return getRegionAt(pos.x(), pos.y());
+		return getRegionAt(pos.x, pos.y);
 	}
 };
 

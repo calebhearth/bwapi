@@ -13,8 +13,8 @@ bool BuildingPlacer::canBuildHere(BWAPI::TilePosition position, BWAPI::UnitType 
 	//returns true if we can build this type of unit here. Takes into account reserved tiles.
 	if (!BWAPI::Broodwar->canBuildHere(position, type))
 		return false;
-	for(int x = position.x(); x < position.x() + type.tileWidth(); ++x)
-		for(int y = position.y(); y < position.y() + type.tileHeight(); ++y)
+	for(int x = position.x; x < position.x + type.tileWidth(); ++x)
+		for(int y = position.y; y < position.y + type.tileHeight(); ++y)
 			if (reserveMap[x][y])
 				return false;
 	return true;
@@ -40,14 +40,14 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
 	{
 		width+=2;
 	}
-	int startx = position.x() - buildDist;
+	int startx = position.x - buildDist;
 	if (startx < 0) return false;
-	int starty = position.y() - buildDist;
+	int starty = position.y - buildDist;
 	if (starty < 0) return false;
-	int endx = position.x() + width + buildDist;
+	int endx = position.x + width + buildDist;
 	if (endx>BWAPI::Broodwar->mapWidth()) return false;
-	if (endx<position.x() + width) return false;
-	int endy = position.y() + height + buildDist;
+	if (endx<position.x + width) return false;
+	int endy = position.y + height + buildDist;
 	if (endy>BWAPI::Broodwar->mapHeight()) return false;
 
 	for(int x = startx; x < endx; x++)
@@ -55,7 +55,7 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
 			if ( !type.isRefinery() && (!buildable(x, y) || reserveMap[x][y]) )
 				return false;
 
-	if (position.x() > 3)
+	if (position.x > 3)
 	{
 		int startx2 = startx - 2;
 		if (startx2 < 0) startx2 = 0;
@@ -91,8 +91,8 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
 {
 	//returns a valid build location near the specified tile position.
 	//searches outward in a spiral.
-	int x			= position.x();
-	int y			= position.y();
+	int x			= position.x;
+	int y			= position.y;
 	int length = 1;
 	int j			= 0;
 	bool first = true;
@@ -152,15 +152,15 @@ bool BuildingPlacer::buildable(int x, int y) const
 
 void BuildingPlacer::reserveTiles(BWAPI::TilePosition position, int width, int height)
 {
-	for(int x = position.x(); x < position.x() + width && x < (int)reserveMap.getWidth(); ++x)
-		for(int y = position.y(); y < position.y() + height && y < (int)reserveMap.getHeight(); ++y)
+	for(int x = position.x; x < position.x + width && x < (int)reserveMap.getWidth(); ++x)
+		for(int y = position.y; y < position.y + height && y < (int)reserveMap.getHeight(); ++y)
 			reserveMap[x][y] = true;
 }
 
 void BuildingPlacer::freeTiles(BWAPI::TilePosition position, int width, int height)
 {
-	for(int x = position.x(); x < position.x() + width && x < (int)reserveMap.getWidth(); ++x)
-		for(int y = position.y(); y < position.y() + height && y < (int)reserveMap.getHeight(); ++y)
+	for(int x = position.x; x < position.x + width && x < (int)reserveMap.getWidth(); ++x)
+		for(int y = position.y; y < position.y + height && y < (int)reserveMap.getHeight(); ++y)
 			reserveMap[x][y] = false;
 }
 

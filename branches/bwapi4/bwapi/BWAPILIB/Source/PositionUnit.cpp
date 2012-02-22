@@ -8,8 +8,8 @@ namespace BWAPI
 	// ctors
 	PositionOrUnit::PositionOrUnit(Position pos)
 	{
-		this->position.x = pos.x();
-		this->position.y = pos.y();
+		this->position.x = pos.x;
+		this->position.y = pos.y;
 	}
 	PositionOrUnit::PositionOrUnit(Unit *pUnit)
 	{
@@ -26,8 +26,8 @@ namespace BWAPI
 	}
 	PositionOrUnit &PositionOrUnit::operator =(Position pos)
 	{
-		this->position.x = pos.x();
-		this->position.y = pos.y();
+		this->position.x = pos.x;
+		this->position.y = pos.y;
 		return *this;
 	}
 

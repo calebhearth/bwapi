@@ -21,8 +21,8 @@ namespace BWAPI
 
 		// Assign common region properties
 		self->islandID				= r->groupIndex;
-		self->center_x				= r->getCenter().x();
-		self->center_y				= r->getCenter().y();
+		self->center_x				= r->getCenter().x;
+		self->center_y				= r->getCenter().y;
 
 		self->isWalkable		= r->accessabilityFlags != 0x1FFD;
 		self->isHigherGround	= r->accessabilityFlags == 0x1FF9;

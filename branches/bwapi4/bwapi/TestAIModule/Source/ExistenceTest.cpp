@@ -12,7 +12,7 @@ void ExistenceTest::onFrame()
 {
 	for each(Unit* u in Broodwar->getAllUnits())
 	{
-		Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y(),"%x",u->getID());
+		Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y,"%x",u->getID());
 	}
 }
 void ExistenceTest::onUnitCreate(Unit* unit)

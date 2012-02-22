@@ -11,23 +11,23 @@
 											}
 
 #define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const						\
-							{ return Point(this->x() op pos.x(), this->y() op pos.y()); };	\
+							{ return Point(this->x op pos.x, this->y op pos.y); };	\
 							Point &operator op ## = (const Point &pos)							\
-							{ this->_x op ## = pos.x(); this->_y op ## = pos.y();					\
+							{ this->x op ## = pos.x; this->y op ## = pos.y;					\
 								return *this; }; 
 
 #define _OPERATOR_OP_VAL(op) Point operator op (const _T &val) const				\
-							{ return Point(this->x() op val, this->y() op val); };	\
+							{ return Point(this->x op val, this->y op val); };	\
 							Point &operator op ## = (const _T &val)						\
-							{ this->_x op ## = val; this->_y op ## = val;					\
+							{ this->x op ## = val; this->y op ## = val;					\
 								return *this; }; 
 
 #define _OPERATOR_OP_VAL_CHK(op) Point operator op (const _T &val) const									\
 								{ if ( val == 0 ) return Point(32000/__Scale,32000/__Scale);				\
-									return Point(this->x() op val, this->y() op val); };					\
+									return Point(this->x op val, this->y op val); };					\
 								Point &operator op ## = (const _T &val)											\
-								{ if ( val == 0 ) { this->_x = 32000/__Scale; this->_y = 32000/__Scale; }	\
-									else { this->_x op ## = val; this->_y op ## = val; }							\
+								{ if ( val == 0 ) { this->x = 32000/__Scale; this->y = 32000/__Scale; }	\
+									else { this->x op ## = val; this->y op ## = val; }							\
 									return *this; }; 
 
 #endif
@@ -52,37 +52,36 @@ namespace BWAPI
 	{
 	public:
 		// Constructors
-		Point() : _x(0), _y(0) {};
+		Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};
 
 #pragma warning( disable: 4723 )
 		// Conversion constructor
 		template<typename _NT, int __NScale> Point(const Point<_NT, __NScale> &pt)
-			: _x( (_T)(__NScale > __Scale ? pt.x()*(__NScale/__Scale) : pt.x()/(__Scale/__NScale)) )
-			, _y( (_T)(__NScale > __Scale ? pt.y()*(__NScale/__Scale) : pt.y()/(__Scale/__NScale)) ) { };
+			: x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
+			, y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
 
 #pragma warning( default: 4723 )
 		// Conversion restriction constructor
-		template<typename _NT> Point(const Point<_NT, 0> &pt) : _x(0), _y(0) {};
-		Point(_T x, _T y) : _x(x), _y(y) {};
+		template<typename _NT> Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
 
 		// Operators
 		operator bool() const { return this->isValid(); };
 		
 		bool operator == (const Point &pos) const
 		{ 
-			return this->x() == pos.x() &&
-						 this->y() == pos.y();
+			return	this->x == pos.x &&
+					this->y == pos.y;
 		}; 
 		bool operator != (const Point &pos) const
 		{ 
-			return this->x() != pos.x() ||
-						 this->y() != pos.y();
+			return	this->x != pos.x ||
+					this->y != pos.y;
 		}; 
 
 		bool operator	< (const Point &position) const
 		{
-			return this->x() < position.x() ||
-					 (this->x() == position.x() && this->y() < position.y());
+			return	this->x < position.x ||
+					(this->x == position.x && this->y < position.y);
 		};
 
 		_OPERATOR_OP_PT(+)
@@ -108,15 +107,15 @@ namespace BWAPI
 		};
 		double getLength() const
 		{
-			double x = (double)this->x();
-			double y = (double)this->y();
+			double x = (double)this->x;
+			double y = (double)this->y;
 			return sqrt(x * x + y * y);
 		};
 
 		int getApproxDistance(const Point &position) const
 		{
-			unsigned int min = abs((int)(this->x() - position.x()));
-			unsigned int max = abs((int)(this->y() - position.y()));
+			unsigned int min = abs((int)(this->x - position.x));
+			unsigned int max = abs((int)(this->y - position.y));
 			if ( max < min )
 				std::swap(min, max);
 
@@ -127,13 +126,8 @@ namespace BWAPI
 			return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
 		};
 
-		// member retrieval
-		_T &x() { return this->_x; };
-		_T &y() { return this->_y; };
-		_T x() const { return this->_x; };
-		_T y() const { return this->_y; };
-	private:
-		_T _x, _y;
+		// members
+		_T x, y;
 	};
 
 	_MAKE_POSITION_TEMPLATE(WalkPosition,int,8)

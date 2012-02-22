@@ -436,7 +436,7 @@ namespace BWAPI
 	//-------------------------------------------- SET SCREEN POSITION -----------------------------------------
 	void GameImpl::setScreenPosition(Position p)
 	{
-		addCommand(BWAPIC::Command(BWAPIC::CommandType::SetScreenPosition,p.x(),p.y()));
+		addCommand(BWAPIC::Command(BWAPIC::CommandType::SetScreenPosition,p.x,p.y));
 	}
 	//----------------------------------------------- PING MINIMAP ---------------------------------------------
 	void GameImpl::pingMinimap(int x, int y)
@@ -446,7 +446,7 @@ namespace BWAPI
 	//----------------------------------------------- PING MINIMAP ---------------------------------------------
 	void GameImpl::pingMinimap(Position p)
 	{
-		addCommand(BWAPIC::Command(BWAPIC::CommandType::PingMinimap,p.x(),p.y()));
+		addCommand(BWAPIC::Command(BWAPIC::CommandType::PingMinimap,p.x,p.y));
 	}
 	//----------------------------------------------- IS FLAG ENABLED ------------------------------------------
 	bool GameImpl::isFlagEnabled(int flag)
@@ -507,7 +507,7 @@ namespace BWAPI
 	//----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
 	Unitset& GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
 	{
-		return getUnitsInRectangle(topLeft.x(), topLeft.y(), bottomRight.x(), bottomRight.y());
+		return getUnitsInRectangle(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
 	}
 	//----------------------------------------------- GET UNITS IN RADIUS --------------------------------------
 	BWAPI::Position unitsInRadius_compare;
@@ -531,10 +531,10 @@ namespace BWAPI
 		lastFrame		 = data->frameCount;
 
 		// Set rectangular values
-		int left		= center.x() - radius;
-		int top		 = center.y() - radius;
-		int right	 = center.x() + radius;
-		int bottom	= center.y() + radius;
+		int left		= center.x - radius;
+		int top		 = center.y - radius;
+		int right	 = center.x + radius;
+		int bottom	= center.y + radius;
 
 		// Store the data we are comparing found units to
 		unitsInRadius_compare = center;
@@ -592,7 +592,7 @@ namespace BWAPI
 	}
 	bool GameImpl::isWalkable(WalkPosition pos)
 	{
-		return isWalkable(pos.x(), pos.y());
+		return isWalkable(pos.x, pos.y);
 	}
 	//--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
 	int GameImpl::getGroundHeight(int x, int y)
@@ -604,7 +604,7 @@ namespace BWAPI
 	//--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
 	int GameImpl::getGroundHeight(TilePosition position)
 	{
-		return getGroundHeight(position.x(),position.y());
+		return getGroundHeight(position.x,position.y);
 	}
 	//--------------------------------------------- IS BUILDABLE -----------------------------------------------
 	bool GameImpl::isBuildable(int x, int y, bool includeBuildings)
@@ -1071,15 +1071,15 @@ namespace BWAPI
 
 		if ( data )
 		{
-			unsigned short srcIdx = data->mapTileRegionId[source.x()/32][source.y()/32];
-			unsigned short dstIdx = data->mapTileRegionId[destination.x()/32][destination.y()/32];
+			unsigned short srcIdx = data->mapTileRegionId[source.x/32][source.y/32];
+			unsigned short dstIdx = data->mapTileRegionId[destination.x/32][destination.y/32];
 
 			unsigned short srcGroup = 0;
 			unsigned short dstGroup = 0;
 			if ( srcIdx & 0x2000 )
 			{
-				int minitilePosX = (source.x()&0x1F)/8;
-				int minitilePosY = (source.y()&0x1F)/8;
+				int minitilePosX = (source.x&0x1F)/8;
+				int minitilePosY = (source.y&0x1F)/8;
 				int minitileShift = minitilePosX + minitilePosY * 4;
 				unsigned short miniTileMask = data->mapSplitTilesMiniTileMask[srcIdx&0x1FFF];
 				unsigned short rgn1				 = data->mapSplitTilesRegion1[srcIdx&0x1FFF];
@@ -1096,8 +1096,8 @@ namespace BWAPI
 
 			if ( dstIdx & 0x2000 )
 			{
-				int minitilePosX = (destination.x()&0x1F)/8;
-				int minitilePosY = (destination.y()&0x1F)/8;
+				int minitilePosX = (destination.x&0x1F)/8;
+				int minitilePosY = (destination.y&0x1F)/8;
 				int minitileShift = minitilePosX + minitilePosY * 4;
 
 				unsigned short miniTileMask = data->mapSplitTilesMiniTileMask[dstIdx&0x1FFF];

@@ -70,7 +70,7 @@ void TrainTest::update()
 	BWAssert(thisFrame==nextFrame);
 	BWAssertF(producer!=NULL,{fail=true;return;});
 	nextFrame++;
-	Broodwar->setScreenPosition(producer->getPosition().x()-320,producer->getPosition().y()-240);
+	Broodwar->setScreenPosition(producer->getPosition().x-320,producer->getPosition().y-240);
 	int correctRemainingTrainTime = startFrame+Broodwar->getLatency()+unitType.buildTime()-thisFrame+1;
 	if (Broodwar->getLatency()==5)
 		correctRemainingTrainTime += 1;

@@ -225,12 +225,12 @@ namespace BWAPI
 				else
 				{
 					Position target=i->nukePosition;
-					if (isFlagEnabled(Flag::CompleteMapInformation) || isVisible(target.x()/32,target.y()/32))
+					if (isFlagEnabled(Flag::CompleteMapInformation) || isVisible(target.x/32,target.y/32))
 						nukeDots.insert(target);
 					if ( !i->nukeDetected )
 					{
 						i->nukeDetected = true;
-						if (isFlagEnabled(Flag::CompleteMapInformation) || isVisible(target.x()/32,target.y()/32))
+						if (isFlagEnabled(Flag::CompleteMapInformation) || isVisible(target.x/32,target.y/32))
 							events.push_back(Event::NukeDetect(target));
 						else
 							events.push_back(Event::NukeDetect(Positions::Unknown));
@@ -368,8 +368,8 @@ namespace BWAPI
 			if ( i->getType().isBuilding() && !i->isLifted() )
 			{
 				// Retrieve the buildings on tile
-				int tx = i->getTilePosition().x();
-				int ty = i->getTilePosition().y();
+				int tx = i->getTilePosition().x;
+				int ty = i->getTilePosition().y;
 				SIZE typeTileSize = { i->getType().tileWidth(), i->getType().tileHeight() };
 				for(int x = tx; x < tx + typeTileSize.cx && x < mapSize.cx; ++x)
 					for(int y = ty; y < ty + typeTileSize.cy && y < mapSize.cy; ++y)
@@ -542,7 +542,7 @@ namespace BWAPI
 		pos.makeValid();
 
 		// Move to the screen position
-		this->setScreenPosition(pos.x(), pos.y());
+		this->setScreenPosition(pos.x, pos.y);
 	}
 
 }

@@ -77,10 +77,10 @@ namespace BWAPI
 			if ( !unit->getType().canMove() )
 				return;
 			unit->self->order					 = Orders::AttackMove;
-			unit->self->targetPositionX = position.x();
-			unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+			unit->self->targetPositionX = position.x;
+			unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 		}
 		else if (command.type == UnitCommandTypes::Attack_Unit)
 		{
@@ -518,10 +518,10 @@ namespace BWAPI
 			if (!unit->getType().canMove())
 				return;
 			unit->self->order								 = Orders::Move;
-			unit->self->targetPositionX			 = position.x();
-			unit->self->targetPositionY			 = position.y();
-			unit->self->orderTargetPositionX	= position.x();
-			unit->self->orderTargetPositionY	= position.y();
+			unit->self->targetPositionX			 = position.x;
+			unit->self->targetPositionY			 = position.y;
+			unit->self->orderTargetPositionX	= position.x;
+			unit->self->orderTargetPositionY	= position.y;
 			unit->self->isMoving							= true;
 			unit->self->isIdle								= false;
 		}
@@ -534,10 +534,10 @@ namespace BWAPI
 			unit->self->order					 = Orders::Patrol;
 			unit->self->isIdle					= false;
 			unit->self->isMoving				= true;
-			unit->self->targetPositionX = position.x();
-			unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+			unit->self->targetPositionX = position.x;
+			unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 		}
 		else if (command.type == UnitCommandTypes::Repair)
 		{
@@ -591,10 +591,10 @@ namespace BWAPI
 					(frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
 			{
 				unit->self->order					 = Orders::Move;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 				unit->self->isMoving				= true;
 				unit->self->isIdle					= false;
 			}
@@ -641,8 +641,8 @@ namespace BWAPI
 			if (!unit->getType().canProduce())
 				return;
 			unit->self->order					= Orders::RallyPointTile;
-			unit->self->rallyPositionX = position.x();
-			unit->self->rallyPositionY = position.y();
+			unit->self->rallyPositionX = position.x;
+			unit->self->rallyPositionY = position.y;
 			unit->self->rallyUnit			= -1;
 		}
 		else if (command.type == UnitCommandTypes::Set_Rally_Unit)
@@ -727,10 +727,10 @@ namespace BWAPI
 			else
 			{
 				unit->self->order = Orders::MoveUnload;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 		}
 		else if (command.type == UnitCommandTypes::Unload_All_Position)
@@ -744,10 +744,10 @@ namespace BWAPI
 			else
 			{
 				unit->self->order					 = Orders::MoveUnload;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 		}
 		else if (command.type == UnitCommandTypes::Unsiege)
@@ -789,96 +789,96 @@ namespace BWAPI
 			if (techType == TechTypes::Dark_Swarm)
 			{
 				unit->self->order					 = Orders::CastDarkSwarm;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Disruption_Web)
 			{
 				unit->self->order					 = Orders::CastDisruptionWeb;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::EMP_Shockwave)
 			{
 				unit->self->order					 = Orders::CastEMPShockwave;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Ensnare)
 			{
 				unit->self->order					 = Orders::CastEnsnare;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Maelstrom)
 			{
 				unit->self->order					 = Orders::CastMaelstrom;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Nuclear_Strike)
 			{
 				unit->self->order					 = Orders::CastNuclearStrike;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Plague)
 			{
 				unit->self->order					 = Orders::CastPlague;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Psionic_Storm)
 			{
 				unit->self->order					 = Orders::CastPsionicStorm;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Recall)
 			{
 				unit->self->order					 = Orders::CastRecall;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Scanner_Sweep)
 			{
 				unit->self->order					 = Orders::CastScannerSweep;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Spider_Mines)
 			{
 				unit->self->order					 = Orders::PlaceMine;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 			else if (techType == TechTypes::Stasis_Field)
 			{
 				unit->self->order					 = Orders::CastStasisField;
-				unit->self->targetPositionX = position.x();
-				unit->self->targetPositionY = position.y();
-		unit->self->orderTargetPositionX = position.x();
-		unit->self->orderTargetPositionY = position.y();
+				unit->self->targetPositionX = position.x;
+				unit->self->targetPositionY = position.y;
+		unit->self->orderTargetPositionX = position.x;
+		unit->self->orderTargetPositionY = position.y;
 			}
 		}
 		else if (command.type == UnitCommandTypes::Use_Tech_Unit)
@@ -889,145 +889,145 @@ namespace BWAPI
 			{
 				unit->self->order								 = Orders::CastConsume;
 				unit->self->orderTarget					 = getUnitID(target);
-				unit->self->targetPositionX			 = target->getPosition().x();
-				unit->self->targetPositionY			 = target->getPosition().y();
-				unit->self->orderTargetPositionX	= target->getPosition().x();
-				unit->self->orderTargetPositionY	= target->getPosition().y();
+				unit->self->targetPositionX			 = target->getPosition().x;
+				unit->self->targetPositionY			 = target->getPosition().y;
+				unit->self->orderTargetPositionX	= target->getPosition().x;
+				unit->self->orderTargetPositionY	= target->getPosition().y;
 			}
 			else if (techType == TechTypes::Defensive_Matrix)
 			{
 				unit->self->order					 = Orders::CastDefensiveMatrix;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Feedback)
 			{
 				unit->self->order					 = Orders::CastFeedback;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Hallucination)
 			{
 				unit->self->order					 = Orders::CastHallucination;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Healing)
 			{
 				unit->self->order					 = Orders::HealMove;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Infestation)
 			{
 				unit->self->order					 = Orders::CastInfestation;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Irradiate)
 			{
 				unit->self->order					 = Orders::CastIrradiate;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Lockdown)
 			{
 				unit->self->order					 = Orders::CastLockdown;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Mind_Control)
 			{
 				unit->self->order					 = Orders::CastMindControl;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Optical_Flare)
 			{
 				unit->self->order					 = Orders::CastOpticalFlare;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Parasite)
 			{
 				unit->self->order					 = Orders::CastParasite;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Restoration)
 			{
 				unit->self->order					 = Orders::CastRestoration;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Spawn_Broodlings)
 			{
 				unit->self->order					 = Orders::CastSpawnBroodlings;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Yamato_Gun)
 			{
 				unit->self->order					 = Orders::FireYamatoGun;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Archon_Warp)
 			{
 				unit->self->order					 = Orders::ArchonWarp;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 			else if (techType == TechTypes::Dark_Archon_Meld)
 			{
 				unit->self->order					 = Orders::DarkArchonMeld;
 				unit->self->orderTarget		 = getUnitID(target);
-				unit->self->targetPositionX = target->getPosition().x();
-				unit->self->targetPositionY = target->getPosition().y();
-		unit->self->orderTargetPositionX = target->getPosition().x();
-		unit->self->orderTargetPositionY = target->getPosition().y();
+				unit->self->targetPositionX = target->getPosition().x;
+				unit->self->targetPositionY = target->getPosition().y;
+		unit->self->orderTargetPositionX = target->getPosition().x;
+		unit->self->orderTargetPositionY = target->getPosition().y;
 			}
 		}
 	}

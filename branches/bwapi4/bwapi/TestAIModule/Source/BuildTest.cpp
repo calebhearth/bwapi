@@ -99,7 +99,7 @@ void BuildTest::update()
 	if (unitType==UnitTypes::Zerg_Extractor && builder->exists()==false)
 	{
 		Unitset buildingsOnTile;
-		Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
+		Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y);
 		for each(Unit* u in unitsOnTile)
 		{
 			if (u->getType()==unitType)
@@ -117,7 +117,7 @@ void BuildTest::update()
 		FAILTEST(builder!=NULL);
 	}
 	FAILTEST(builder->exists());
-	Broodwar->setScreenPosition(builder->getPosition().x()-320,builder->getPosition().y()-240);
+	Broodwar->setScreenPosition(builder->getPosition().x-320,builder->getPosition().y-240);
 
 	if (finishingBuilding==true)
 	{
@@ -184,7 +184,7 @@ void BuildTest::update()
 	}
 
 	Unitset buildingsOnTile;
-	Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x(),buildLocation.y());
+	Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y);
 	for each(Unit* u in unitsOnTile)
 	{
 		if (u->getType()==unitType)

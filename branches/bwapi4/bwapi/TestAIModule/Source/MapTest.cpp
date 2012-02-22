@@ -71,20 +71,20 @@ void MapTest::onStart()
 	//check start locations
 	set<TilePosition> startLocations = Broodwar->getStartLocations();
 	BWAssert(startLocations.size()==4);
-	BWAssert((*startLocations.begin()).x()==0);
-	BWAssert((*startLocations.begin()).y()==0);
+	BWAssert((*startLocations.begin()).x==0);
+	BWAssert((*startLocations.begin()).y==0);
 	startLocations.erase(startLocations.begin());
 	BWAssert(startLocations.size()==3);
-	BWAssert((*startLocations.begin()).x()==4);
-	BWAssert((*startLocations.begin()).y()==3);
+	BWAssert((*startLocations.begin()).x==4);
+	BWAssert((*startLocations.begin()).y==3);
 	startLocations.erase(startLocations.begin());
 	BWAssert(startLocations.size()==2);
-	BWAssert((*startLocations.begin()).x()==8);
-	BWAssert((*startLocations.begin()).y()==6);
+	BWAssert((*startLocations.begin()).x==8);
+	BWAssert((*startLocations.begin()).y==6);
 	startLocations.erase(startLocations.begin());
 	BWAssert(startLocations.size()==1);
-	BWAssert((*startLocations.begin()).x()==12);
-	BWAssert((*startLocations.begin()).y()==9);
+	BWAssert((*startLocations.begin()).x==12);
+	BWAssert((*startLocations.begin()).y==9);
 	startLocations.erase(startLocations.begin());
 	BWAssert(startLocations.empty());
 	Broodwar->printf("Completed all asserts");

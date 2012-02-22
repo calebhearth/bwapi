@@ -151,15 +151,15 @@ int main(int argc, const char* argv[])
 					case EventType::NukeDetect:
 						if (e->getPosition()!=Positions::Unknown)
 						{
-							Broodwar->drawCircleMap(e->getPosition().x(),e->getPosition().y(),40,Colors::Red,true);
-							Broodwar->printf("Nuclear Launch Detected at (%d,%d)",e->getPosition().x(),e->getPosition().y());
+							Broodwar->drawCircleMap(e->getPosition().x,e->getPosition().y,40,Colors::Red,true);
+							Broodwar->printf("Nuclear Launch Detected at (%d,%d)",e->getPosition().x,e->getPosition().y);
 						}
 						else
 							Broodwar->printf("Nuclear Launch Detected");
 						break;
 					case EventType::UnitCreate:
 						if (!Broodwar->isReplay())
-							Broodwar->sendText("A %s [%x] has been created at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x(),e->getUnit()->getPosition().y());
+							Broodwar->sendText("A %s [%x] has been created at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
 						else
 						{
 							/*if we are in a replay, then we will print out the build order
@@ -175,11 +175,11 @@ int main(int argc, const char* argv[])
 						break;
 					case EventType::UnitDestroy:
 						if (!Broodwar->isReplay())
-							Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x(),e->getUnit()->getPosition().y());
+							Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
 						break;
 					case EventType::UnitMorph:
 						if (!Broodwar->isReplay())
-							Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x(),e->getUnit()->getPosition().y());
+							Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
 						else
 						{
 							/*if we are in a replay, then we will print out the build order
@@ -195,11 +195,11 @@ int main(int argc, const char* argv[])
 						break;
 					case EventType::UnitShow:
 						if (!Broodwar->isReplay())
-							Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x(),e->getUnit()->getPosition().y());
+							Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
 						break;
 					case EventType::UnitHide:
 						if (!Broodwar->isReplay())
-							Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x(),e->getUnit()->getPosition().y());
+							Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
 						break;
 					case EventType::UnitRenegade:
 						if (!Broodwar->isReplay())
@@ -314,13 +314,13 @@ void drawBullets()
 		double velocityY = i->getVelocityY();
 		if ( i->getPlayer() == Broodwar->self() )
 		{
-			Broodwar->drawLineMap(p.x(), p.y(), p.x()+(int)velocityX, p.y()+(int)velocityY, Colors::Green);
-			Broodwar->drawTextMap(p.x(), p.y(), "\x07%s", i->getType().c_str());
+			Broodwar->drawLineMap(p.x, p.y, p.x+(int)velocityX, p.y+(int)velocityY, Colors::Green);
+			Broodwar->drawTextMap(p.x, p.y, "\x07%s", i->getType().c_str());
 		}
 		else
 		{
-			Broodwar->drawLineMap(p.x(), p.y(), p.x()+(int)velocityX, p.y()+(int)velocityY, Colors::Red);
-			Broodwar->drawTextMap(p.x(), p.y(), "\x06%s", i->getType().c_str());
+			Broodwar->drawLineMap(p.x, p.y, p.x+(int)velocityX, p.y+(int)velocityY, Colors::Red);
+			Broodwar->drawTextMap(p.x, p.y, "\x06%s", i->getType().c_str());
 		}
 	}
 }
@@ -352,25 +352,25 @@ void drawTerrainData()
 		Position c=(*i)->getPosition();
 
 		//draw outline of center location
-		Broodwar->drawBox(CoordinateType::Map,p.x()*32,p.y()*32,p.x()*32+4*32,p.y()*32+3*32,Colors::Blue,false);
+		Broodwar->drawBox(CoordinateType::Map,p.x*32,p.y*32,p.x*32+4*32,p.y*32+3*32,Colors::Blue,false);
 
 		//draw a circle at each mineral patch
 		for(Unitset::iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();++j)
 		{
 			Position q=(*j)->getInitialPosition();
-			Broodwar->drawCircle(CoordinateType::Map,q.x(),q.y(),30,Colors::Cyan,false);
+			Broodwar->drawCircle(CoordinateType::Map,q.x,q.y,30,Colors::Cyan,false);
 		}
 
 		//draw the outlines of vespene geysers
 		for(Unitset::iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();++j)
 		{
 			TilePosition q=(*j)->getInitialTilePosition();
-			Broodwar->drawBox(CoordinateType::Map,q.x()*32,q.y()*32,q.x()*32+4*32,q.y()*32+2*32,Colors::Orange,false);
+			Broodwar->drawBox(CoordinateType::Map,q.x*32,q.y*32,q.x*32+4*32,q.y*32+2*32,Colors::Orange,false);
 		}
 
 		//if this is an island expansion, draw a yellow circle around the base location
 		if ((*i)->isIsland())
-			Broodwar->drawCircle(CoordinateType::Map,c.x(),c.y(),80,Colors::Yellow,false);
+			Broodwar->drawCircle(CoordinateType::Map,c.x,c.y,80,Colors::Yellow,false);
 	}
 
 	//we will iterate through all the regions and draw the polygon outline of it in green.
@@ -381,7 +381,7 @@ void drawTerrainData()
 		{
 			Position point1=p[j];
 			Position point2=p[(j+1) % p.size()];
-			Broodwar->drawLine(CoordinateType::Map,point1.x(),point1.y(),point2.x(),point2.y(),Colors::Green);
+			Broodwar->drawLine(CoordinateType::Map,point1.x,point1.y,point2.x,point2.y,Colors::Green);
 		}
 	}
 
@@ -392,7 +392,7 @@ void drawTerrainData()
 		{
 			Position point1=(*c)->getSides().first;
 			Position point2=(*c)->getSides().second;
-			Broodwar->drawLine(CoordinateType::Map,point1.x(),point1.y(),point2.x(),point2.y(),Colors::Red);
+			Broodwar->drawLine(CoordinateType::Map,point1.x,point1.y,point2.x,point2.y,Colors::Red);
 		}
 	}
 }

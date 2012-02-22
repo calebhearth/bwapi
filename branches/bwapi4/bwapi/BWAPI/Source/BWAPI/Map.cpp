@@ -33,12 +33,12 @@ namespace BWAPI
 	//----------------------------------------------- GET WIDTH ------------------------------------------------
 	u16 Map::getWidth()
 	{
-		return BW::BWDATA_MapSize->x();
+		return BW::BWDATA_MapSize->x;
 	}
 	//----------------------------------------------- GET HEIGHT -----------------------------------------------
 	u16 Map::getHeight()
 	{
-		return BW::BWDATA_MapSize->y();
+		return BW::BWDATA_MapSize->y;
 	}
 	//---------------------------------------------- GET PATH NAME ---------------------------------------------
 	std::string Map::getPathName()

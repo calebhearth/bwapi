@@ -216,8 +216,8 @@ namespace BWAPI
 			e2->v2	= addString(e.getText().c_str());
 			break;
 		case BWAPI::EventType::NukeDetect:
-			e2->v1 = e.getPosition().x();
-			e2->v2 = e.getPosition().y();
+			e2->v1 = e.getPosition().x;
+			e2->v2 = e.getPosition().y;
 			break;
 		case BWAPI::EventType::UnitDiscover:
 		case BWAPI::EventType::UnitEvade:
@@ -336,8 +336,8 @@ namespace BWAPI
 		int i = 0;
 		foreach(TilePosition t, Broodwar->getStartLocations())
 		{
-			data->startLocations[i].x = t.x();
-			data->startLocations[i].y = t.y();
+			data->startLocations[i].x = t.x;
+			data->startLocations[i].y = t.y;
 			i++;
 		}
 		//static force data
@@ -372,8 +372,8 @@ namespace BWAPI
 				p->isEnemy[getPlayerID(j)]	= i->isEnemy(j);
 			}
 			p->isNeutral		= i->isNeutral();
-			p->startLocationX	= i->getStartLocation().x();
-			p->startLocationY	= i->getStartLocation().y();
+			p->startLocationX	= i->getStartLocation().x;
+			p->startLocationY	= i->getStartLocation().y;
 		}
 
 		data->forceCount		= forceVector.size();
@@ -496,8 +496,8 @@ namespace BWAPI
 		data->elapsedTime				= Broodwar->elapsedTime();
 		data->countdownTimer			= Broodwar->countdownTimer();
 		data->averageFPS				= Broodwar->getAverageFPS();
-		data->mouseX					= Broodwar->getMousePosition().x();
-		data->mouseY					= Broodwar->getMousePosition().y();
+		data->mouseX					= Broodwar->getMousePosition().x;
+		data->mouseY					= Broodwar->getMousePosition().y;
 		data->isInGame					= Broodwar->isInGame();
 		if (Broodwar->isInGame())
 		{
@@ -513,8 +513,8 @@ namespace BWAPI
 				data->keyState[i]	= Broodwar->getKeyState(i);
 
 			// Copy the screen position
-			data->screenX	= Broodwar->getScreenPosition().x();
-			data->screenY	= Broodwar->getScreenPosition().y();
+			data->screenX	= Broodwar->getScreenPosition().x;
+			data->screenY	= Broodwar->getScreenPosition().y;
 
 			for ( int i = 0; i < BWAPI::Flag::Max; ++i )
 				data->flags[i] = Broodwar->isFlagEnabled(i);
@@ -647,8 +647,8 @@ namespace BWAPI
 			data->nukeDotCount = Broodwar->getNukeDots().size();
 			foreach(Position nd, Broodwar->getNukeDots())
 			{
-				data->nukeDots[j].x = nd.x();
-				data->nukeDots[j].y = nd.y();
+				data->nukeDots[j].x = nd.x;
+				data->nukeDots[j].y = nd.y;
 				++j;
 			}
 

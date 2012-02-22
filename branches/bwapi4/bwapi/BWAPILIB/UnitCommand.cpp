@@ -10,8 +10,8 @@ namespace BWAPI
 	, extra(0)
 	, unit(NULL)
 	{
-		x		= Positions::None.x();
-		y		= Positions::None.y();
+		x		= Positions::None.x;
+		y		= Positions::None.y;
 		type	= UnitCommandTypes::None;
 	}
 	UnitCommand::UnitCommand(Unit* _unit, UnitCommandType _type, Unit* _target, int _x, int _y, int _extra)
@@ -32,8 +32,8 @@ namespace BWAPI
 			c.type	= UnitCommandTypes::Attack_Move;
 			Position targPos = target.getPosition();
 			targPos.makeValid();
-			c.x	= targPos.x();
-			c.y	= targPos.y();
+			c.x	= targPos.x;
+			c.y	= targPos.y;
 		}
 		else
 		{
@@ -49,8 +49,8 @@ namespace BWAPI
 		c.unit	= unit;
 		c.type	= UnitCommandTypes::Build;
 		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
+		c.x		 = target.x;
+		c.y		 = target.y;
 		c.extra = type;
 		return c;
 	}
@@ -103,8 +103,8 @@ namespace BWAPI
 			c.type = UnitCommandTypes::Set_Rally_Position;
 			Position targPos = target.getPosition();
 			targPos.makeValid();
-			c.x		= targPos.x();
-			c.y		= targPos.y();
+			c.x		= targPos.x;
+			c.y		= targPos.y;
 		}
 		else
 		{
@@ -119,8 +119,8 @@ namespace BWAPI
 		c.unit	= unit;
 		c.type	= UnitCommandTypes::Move;
 		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
+		c.x		 = target.x;
+		c.y		 = target.y;
 		c.extra = shiftQueueCommand ? 1 : 0;
 		return c;
 	}
@@ -130,8 +130,8 @@ namespace BWAPI
 		c.unit	= unit;
 		c.type	= UnitCommandTypes::Patrol;
 		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
+		c.x		 = target.x;
+		c.y		 = target.y;
 		c.extra = shiftQueueCommand ? 1 : 0;
 		return c;
 	}
@@ -241,8 +241,8 @@ namespace BWAPI
 		c.unit = unit;
 		c.type = UnitCommandTypes::Land;
 		target.makeValid();
-		c.x		= target.x();
-		c.y		= target.y();
+		c.x		= target.x;
+		c.y		= target.y;
 		return c;
 	}
 	UnitCommand UnitCommand::load(Unit* unit, Unit* target, bool shiftQueueCommand)
@@ -276,8 +276,8 @@ namespace BWAPI
 		c.unit = unit;
 		c.type = UnitCommandTypes::Unload_All_Position;
 		target.makeValid();
-		c.x		= target.x();
-		c.y		= target.y();
+		c.x		= target.x;
+		c.y		= target.y;
 		c.extra	= shiftQueueCommand ? 1 : 0;
 		return c;
 	}
@@ -291,8 +291,8 @@ namespace BWAPI
 			c.type = UnitCommandTypes::Right_Click_Position;
 			Position targPos = target.getPosition();
 			targPos.makeValid();
-			c.x		= targPos.x();
-			c.y		= targPos.y();
+			c.x		= targPos.x;
+			c.y		= targPos.y;
 		}
 		else
 		{
@@ -377,8 +377,8 @@ namespace BWAPI
 			c.type	= UnitCommandTypes::Use_Tech_Position;
 			Position targPos = target.getPosition();
 			targPos.makeValid();
-			c.x	= targPos.x();
-			c.y	= targPos.y();
+			c.x	= targPos.x;
+			c.y	= targPos.y;
 		}
 		else
 		{
@@ -393,8 +393,8 @@ namespace BWAPI
 		c.unit	= unit;
 		c.type	= UnitCommandTypes::Place_COP;
 		target.makeValid();
-		c.x		 = target.x();
-		c.y		 = target.y();
+		c.x		 = target.x;
+		c.y		 = target.y;
 		return c;
 	}
 	UnitCommandType UnitCommand::getType() const

@@ -36,13 +36,13 @@ namespace BWAPI
 					continue;
 
 				Position p = i->getPosition();
-				if ( abs(p.x() - x) >= 256 )
+				if ( abs(p.x - x) >= 256 )
 					continue;
 
-				if ( abs(p.y() - y) >= 160 )
+				if ( abs(p.y - y) >= 160 )
 					continue;
 
-				if ( bPsiFieldMask[(y - p.y() + 160) / 32][(x - p.x() + 256) / 32] )
+				if ( bPsiFieldMask[(y - p.y + 160) / 32][(x - p.x + 256) / 32] )
 					return true;
 			}
 			return false;
@@ -141,8 +141,8 @@ namespace BWAPI
 			int width	= type.tileWidth();
 			int height = type.tileHeight();
 
-			int left	 = position.x();
-			int top		= position.y();
+			int left	 = position.x;
+			int top		= position.y;
 			int right	= left + width;
 			int bottom = top + height;
 
@@ -243,22 +243,22 @@ namespace BWAPI
 				{
 			TilePosition tp = m->getInitialTilePosition();
 					if (Broodwar->isVisible(tp) ||
-							Broodwar->isVisible(tp.x() + 1, tp.y()))
+							Broodwar->isVisible(tp.x + 1, tp.y))
 						if (!m->isVisible())
 							continue; // tile position is visible, but mineral is not => mineral does not exist
-					if (tp.x() > left - 5 &&
-							tp.y() > top	- 4 &&
-							tp.x() < left + 7 &&
-							tp.y() < top	+ 6)
+					if (tp.x > left - 5 &&
+							tp.y > top	- 4 &&
+							tp.x < left + 7 &&
+							tp.y < top	+ 6)
 						return false;
 				}
 				foreach (BWAPI::Unit* g, Broodwar->getStaticGeysers())
 				{
 			TilePosition tp = g->getInitialTilePosition();
-					if (tp.x() > left - 7 &&
-							tp.y() > top	- 5 &&
-							tp.x() < left + 7 &&
-							tp.y() < top	+ 6)
+					if (tp.x > left - 7 &&
+							tp.y > top	- 5 &&
+							tp.x < left + 7 &&
+							tp.y < top	+ 6)
 						return false;
 				}
 			}
@@ -679,7 +679,7 @@ namespace BWAPI
 				return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
 			/* Commented out because it breaks RallyTest.
-			if ( UnitCommandTypes::Set_Rally_Position == ct && thisUnit->getRallyPosition().x() == c.x && thisUnit->getRallyPosition().y() == c.y )
+			if ( UnitCommandTypes::Set_Rally_Position == ct && thisUnit->getRallyPosition().x == c.x && thisUnit->getRallyPosition().y == c.y )
 				return false;
 
 			if ( UnitCommandTypes::Set_Rally_Unit == ct && thisUnit == c.target )
@@ -933,7 +933,7 @@ namespace BWAPI
 				if ( thisUnit->getType() != UnitTypes::Terran_Bunker && thisUnit )
 				{
 					BWAPI::Position targDropPos = (UnitCommandTypes::Unload_All_Position == ct ? c.getTargetPosition() : thisUnit->getPosition());
-					if ( !Broodwar->isWalkable(targDropPos.x()/8, targDropPos.y()/8) )
+					if ( !Broodwar->isWalkable(targDropPos.x/8, targDropPos.y/8) )
 						return Broodwar->setLastError(Errors::Unreachable_Location);
 				}
 			} // unload
@@ -1004,10 +1004,10 @@ namespace BWAPI
 		{
 			// Retrieve the target position if it is so
 			Position targPos = targ.getPosition();
-			left	= targPos.x() - 1;
-			top		= targPos.y() - 1;
-			right	= targPos.x() + 1;
-			bottom	= targPos.y() + 1;
+			left	= targPos.x - 1;
+			top		= targPos.y - 1;
+			right	= targPos.x + 1;
+			bottom	= targPos.y + 1;
 		}
 		else
 		{

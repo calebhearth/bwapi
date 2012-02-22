@@ -90,22 +90,22 @@ namespace BWAPI
 	//--------------------------------------------- IS BUILDABLE -----------------------------------------------
 	bool GameImpl::isBuildable(TilePosition position, bool includeBuildings)
 	{
-		return isBuildable(position.x(), position.y(), includeBuildings);
+		return isBuildable(position.x, position.y, includeBuildings);
 	}
 	//--------------------------------------------- IS VISIBLE -------------------------------------------------
 	bool GameImpl::isVisible(TilePosition position)
 	{
-		return isVisible(position.x(),position.y());
+		return isVisible(position.x,position.y);
 	}
 	//--------------------------------------------- IS EXPLORED ------------------------------------------------
 	bool GameImpl::isExplored(TilePosition position)
 	{
-		return isExplored(position.x(),position.y());
+		return isExplored(position.x,position.y);
 	}
 	//--------------------------------------------- HAS CREEP --------------------------------------------------
 	bool GameImpl::hasCreep(TilePosition position)
 	{
-		return hasCreep(position.x(), position.y());
+		return hasCreep(position.x, position.y);
 	}
 	//--------------------------------------------- HAS POWER --------------------------------------------------
 	bool GameImpl::hasPower(int tileX, int tileY, UnitType unitType) const
@@ -116,7 +116,7 @@ namespace BWAPI
 	}
 	bool GameImpl::hasPower(TilePosition position, UnitType unitType) const
 	{
-		return hasPower(position.x(), position.y(), unitType);
+		return hasPower(position.x, position.y, unitType);
 	}
 	bool GameImpl::hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType) const
 	{
@@ -124,11 +124,11 @@ namespace BWAPI
 	}
 	bool GameImpl::hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType) const
 	{
-		return hasPower(position.x(), position.y(), tileWidth, tileHeight, unitType);
+		return hasPower(position.x, position.y, tileWidth, tileHeight, unitType);
 	}
 	bool GameImpl::hasPowerPrecise(Position position, UnitType unitType) const
 	{
-		return hasPowerPrecise(position.x(), position.y(), unitType);
+		return hasPowerPrecise(position.x, position.y, unitType);
 	}
 	//--------------------------------------------- CAN BUILD HERE ---------------------------------------------
 	bool GameImpl::canBuildHere(TilePosition position, UnitType type, const Unit* builder, bool checkExplored)
@@ -162,7 +162,7 @@ namespace BWAPI
 			Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
 			return NULL;
 		}
-		return getRegionAt(position.x(), position.y());
+		return getRegionAt(position.x, position.y);
 	}
 	//----------------------------------------------- GET ALL REGIONS ------------------------------------------
 	const Regionset &GameImpl::getAllRegions() const

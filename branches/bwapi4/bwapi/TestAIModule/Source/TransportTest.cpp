@@ -95,7 +95,7 @@ void TransportTest::update()
 	int thisFrame = Broodwar->getFrameCount();
 	BWAssert(thisFrame==nextFrame);
 	nextFrame++;
-	Broodwar->setScreenPosition(transport->getPosition().x()-320,transport->getPosition().y()-240);
+	Broodwar->setScreenPosition(transport->getPosition().x-320,transport->getPosition().y-240);
 	if (state == Start)
 	{
 		state = WaitForFirstUnit;
@@ -228,7 +228,7 @@ void TransportTest::update()
 			if (verifyLoadedUnits()==false) return;
 			BWAssertF(unloadedUnits.size()==0,{fail=true;return;});
 			BWAssertF(loadedUnits.size()==4,{fail=true;return;});
-			if (!transport->unloadAll(Position(transport->getPosition().x()-32*10,transport->getPosition().y())))
+			if (!transport->unloadAll(Position(transport->getPosition().x-32*10,transport->getPosition().y)))
 				Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
 			state=WaitUnloadAllPosition;
 		}

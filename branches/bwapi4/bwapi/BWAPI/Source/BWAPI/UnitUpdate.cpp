@@ -179,8 +179,8 @@ namespace BWAPI
 		self->isUnderDWeb			= false;
 		if (canAccess())
 		{
-			self->positionX = _getPosition.x(); //getPosition
-			self->positionY = _getPosition.y(); //getPosition
+			self->positionX = _getPosition.x; //getPosition
+			self->positionY = _getPosition.y; //getPosition
 			//------------------------------------------------------------------------------------------------------
 			//getAngle
 			int d = o->currentDirection1;
@@ -231,8 +231,8 @@ namespace BWAPI
 		}
 		else
 		{
-			self->positionX						 = BWAPI::Positions::Unknown.x();	//getPosition
-			self->positionY						 = BWAPI::Positions::Unknown.y();	//getPosition
+			self->positionX						 = BWAPI::Positions::Unknown.x;	//getPosition
+			self->positionY						 = BWAPI::Positions::Unknown.y;	//getPosition
 			self->angle								 = 0;			//getAngle
 			self->velocityX						 = 0;			//getVelocityX
 			self->velocityY						 = 0;			//getVelocityY
@@ -334,10 +334,10 @@ namespace BWAPI
 											 self->order == BW::OrderID::NukeTrain		||
 											 self->order == BW::OrderID::Larva;
 			self->target							 = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveToUnit)); //getTarget
-			self->targetPositionX			= o->moveToPos.x();	//getTargetPosition
-			self->targetPositionY			= o->moveToPos.y();	//getTargetPosition
-			self->orderTargetPositionX = o->orderTargetPos.x();
-			self->orderTargetPositionY = o->orderTargetPos.y();
+			self->targetPositionX			= o->moveToPos.x;	//getTargetPosition
+			self->targetPositionY			= o->moveToPos.y;	//getTargetPosition
+			self->orderTargetPositionX = o->orderTargetPos.x;
+			self->orderTargetPositionY = o->orderTargetPos.y;
 			self->orderTarget					= BroodwarImpl.server.getUnitID(UnitImpl::BWUnitToBWAPIUnit(o->orderTargetUnit));	//getOrderTarget
 			//------------------------------------------------------------------------------------------------------
 			//getAddon
@@ -423,11 +423,11 @@ namespace BWAPI
 			self->isConstructing			= false;	//isConstructing
 			self->isIdle							= false;	//isIdle
 			self->target							= -1;		 //getTarget
-			self->targetPositionX		 = Positions::Unknown.x(); //getTargetPosition
-			self->targetPositionY		 = Positions::Unknown.y(); //getTargetPosition
+			self->targetPositionX		 = Positions::Unknown.x; //getTargetPosition
+			self->targetPositionY		 = Positions::Unknown.y; //getTargetPosition
 			self->orderTarget				 = -1;		 //getOrderTarget
-			self->orderTargetPositionX = Positions::Unknown.x();
-			self->orderTargetPositionY = Positions::Unknown.y();
+			self->orderTargetPositionX = Positions::Unknown.x;
+			self->orderTargetPositionY = Positions::Unknown.y;
 			self->addon							 = -1;		 //getAddon
 			self->nydusExit					 = -1;		 //getNydusExit
 			self->powerUp						 = -1;		 //getPowerUp
@@ -587,8 +587,8 @@ namespace BWAPI
 			}
 			else
 			{
-				self->rallyPositionX = Positions::None.x();
-				self->rallyPositionY = Positions::None.y();
+				self->rallyPositionX = Positions::None.x;
+				self->rallyPositionY = Positions::None.y;
 			}
 			//------------------------------------------------------------------------------------------------------
 			//getRallyUnit
@@ -610,8 +610,8 @@ namespace BWAPI
 			self->remainingTrainTime		= 0;										//getRemainingTrainTime
 			self->remainingResearchTime = 0;										//getRemainingResearchTime
 			self->remainingUpgradeTime	= 0;										//getRemainingUpgradeTime
-			self->rallyPositionX				= Positions::None.x();	//getRallyPosition
-			self->rallyPositionY				= Positions::None.y();	//getRallyPosition
+			self->rallyPositionX				= Positions::None.x;	//getRallyPosition
+			self->rallyPositionY				= Positions::None.y;	//getRallyPosition
 			self->rallyUnit						 = -1;									 //getRallyUnit
 			self->transport						 = -1;									 //getTransport
 			self->carrier							 = -1;									 //getCarrier

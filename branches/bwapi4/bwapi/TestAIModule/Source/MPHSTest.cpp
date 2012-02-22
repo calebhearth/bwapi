@@ -39,7 +39,7 @@ void MPHSTest::update()
 	int thisFrame = Broodwar->getFrameCount();
 	BWAssert(thisFrame==nextFrame);
 	nextFrame++;
-	Broodwar->setScreenPosition(unit->getPosition().x()-320,unit->getPosition().y()-240);
+	Broodwar->setScreenPosition(unit->getPosition().x-320,unit->getPosition().y-240);
 	if (thisFrame<startFrame+30)
 	{
 	}
@@ -52,7 +52,7 @@ void MPHSTest::update()
 		BWAssertF(unit->isHoldingPosition()==false,{fail=true;return;});
 		BWAssertF(unit->isIdle()==true,{fail=true;return;});
 		targetPosition=unit->getPosition();
-		targetPosition.y()+=32*30;
+		targetPosition.y+=32*30;
 		targetPosition.makeValid();
 		BWAssertF(unit->move(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
 		BWAssertF(unit->getOrder()==Orders::Move,{fail=true;return;});
@@ -78,7 +78,7 @@ void MPHSTest::update()
 	else if (thisFrame==startFrame+110)
 	{
 		targetPosition=unit->getPosition();
-		targetPosition.y()-=32*30;
+		targetPosition.y-=32*30;
 		targetPosition.makeValid();
 		BWAssertF(unit->patrol(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
 		BWAssertF(unit->getOrder()==Orders::Patrol,{fail=true;return;});

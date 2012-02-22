@@ -33,7 +33,7 @@ void FollowTest::start()
 	BWAssertF(target!=NULL,{fail=true;return;});
 	BWAssertF(target->exists(),{fail=true;return;});
 	BWAssertF(unit->isIdle()==true,{fail=true;return;});
-	BWAssertF(unit->rightClick(Position(target->getPosition().x()-32*20,target->getPosition().y())),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+	BWAssertF(unit->rightClick(Position(target->getPosition().x-32*20,target->getPosition().y)),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
 	startFrame = Broodwar->getFrameCount();
 	nextFrame = Broodwar->getFrameCount();
 	started=false;
@@ -49,7 +49,7 @@ void FollowTest::update()
 	int thisFrame = Broodwar->getFrameCount();
 	BWAssert(thisFrame==nextFrame);
 	nextFrame++;
-	Broodwar->setScreenPosition(unit->getPosition().x()-320,unit->getPosition().y()-240);
+	Broodwar->setScreenPosition(unit->getPosition().x-320,unit->getPosition().y-240);
 
 	if (unit->getDistance(target)>32*15 && started==false)
 	{

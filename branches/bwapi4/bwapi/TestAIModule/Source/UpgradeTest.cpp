@@ -75,7 +75,7 @@ void UpgradeTest::update()
 	BWAssert(thisFrame==nextUpdateFrame);
 	BWAssertF(upgrader!=NULL,{fail=true;LOGTYPE;return;});
 	nextUpdateFrame++;
-	Broodwar->setScreenPosition(upgrader->getPosition().x()-320,upgrader->getPosition().y()-240);
+	Broodwar->setScreenPosition(upgrader->getPosition().x-320,upgrader->getPosition().y-240);
 	int correctRemainingUpgradeTime = startUpgradeFrame+Broodwar->getLatency()+upgradeType.upgradeTime(previousUpgradeLevel + 1) - thisFrame;
 	if (correctRemainingUpgradeTime>upgradeType.upgradeTime(previousUpgradeLevel + 1))
 		correctRemainingUpgradeTime=upgradeType.upgradeTime(previousUpgradeLevel + 1);

@@ -18,8 +18,8 @@ void DefaultTestModule::onFrame()
 	Broodwar->drawTextScreen(0,0,"FPS: %d",Broodwar->getFPS());
 	for each(Unit* u in Broodwar->getAllUnits())
 	{
-		Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y()-16,"%s",u->getOrder().getName().c_str());
-		Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y(),"%s",u->getType().getName().c_str());
+		Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y-16,"%s",u->getOrder().getName().c_str());
+		Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y,"%s",u->getType().getName().c_str());
 	}
 	for each(Unit* u in Broodwar->getAllUnits())
 	{
@@ -43,7 +43,7 @@ void DefaultTestModule::onFrame()
 		int y=-32;
 		for each(Order o in lastDistinctOrders[u])
 		{
-			Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y()+y,"%s",o.getName().c_str());
+			Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y+y,"%s",o.getName().c_str());
 			y-=16;
 		}
 	}

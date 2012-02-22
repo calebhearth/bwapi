@@ -48,7 +48,7 @@ void CancelResearchTest::update()
 	int thisFrame = Broodwar->getFrameCount();
 	BWAssert(thisFrame==nextFrame);
 	nextFrame++;
-	Broodwar->setScreenPosition(researcher->getPosition().x()-320,researcher->getPosition().y()-240);
+	Broodwar->setScreenPosition(researcher->getPosition().x-320,researcher->getPosition().y-240);
 	BWAssertF(researcher!=NULL,{fail=true;return;});
 	if (thisFrame<startFrame+200)
 	{

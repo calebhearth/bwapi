@@ -96,7 +96,7 @@ void MorphTest::update()
 	BWAssert(thisFrame == nextFrame);
 	FAILTEST(producer != NULL);
 	nextFrame++;
-	Broodwar->setScreenPosition(producer->getPosition().x()-320, producer->getPosition().y()-240);
+	Broodwar->setScreenPosition(producer->getPosition().x-320, producer->getPosition().y-240);
 
 	int correctRemainingTrainTime = startFrame + Broodwar->getLatency() + unitType.buildTime() - thisFrame + 1;
 	if (correctRemainingTrainTime > unitType.buildTime())

@@ -36,12 +36,12 @@ void InterceptorTest::onFrame()
 	for each(Unit* u in Broodwar->self()->getUnits())
 	{
 		if (u->getType()==UnitTypes::Protoss_Interceptor)
-			Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y(),"isLoaded = %d",u->isLoaded());
+			Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y,"isLoaded = %d",u->isLoaded());
 	}
 	for each(Unit* u in Broodwar->self()->getUnits())
 	{
 		if (!u->isLoaded())
-			Broodwar->drawTextMap(u->getPosition().x(),u->getPosition().y()-20,"loaded unit count = %d",u->getLoadedUnits().size());
+			Broodwar->drawTextMap(u->getPosition().x,u->getPosition().y-20,"loaded unit count = %d",u->getLoadedUnits().size());
 	}
 	for each(Unit* u in Broodwar->self()->getUnits())
 	{
@@ -51,7 +51,7 @@ void InterceptorTest::onFrame()
 			for each(Unit* i in interceptors)
 			{
 				Unit* c=i->getCarrier();
-				Broodwar->drawLineMap(i->getPosition().x(),i->getPosition().y(),c->getPosition().x(),c->getPosition().y(),Colors::White);
+				Broodwar->drawLineMap(i->getPosition().x,i->getPosition().y,c->getPosition().x,c->getPosition().y,Colors::White);
 			}
 		}
 	}

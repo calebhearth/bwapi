@@ -7,7 +7,7 @@ namespace BW
 		grpHead	*pGrpHead	= this->GRPFile;
 		grpFrame *pGrpFrame = &pGrpHead->frames[this->frameIndex];
 		
-		int mapX = this->horizontalOffset + this->spriteOwner->position.x();
+		int mapX = this->horizontalOffset + this->spriteOwner->position.x;
 		if ( this->flags & 2 )
 			mapX += (pGrpHead->width >> 1) - pGrpFrame->right - pGrpFrame->left;
 		else
@@ -15,7 +15,7 @@ namespace BW
 		this->mapPosition.x = (u16)mapX;
 
 		if ( !(this->flags & 4) )
-			this->mapPosition.y = this->spriteOwner->position.y() + this->verticalOffset + pGrpFrame->top - (pGrpHead->height >> 1);
+			this->mapPosition.y = this->spriteOwner->position.y + this->verticalOffset + pGrpFrame->top - (pGrpHead->height >> 1);
 		int grpRight	= pGrpFrame->right;
 		int grpBottom = pGrpFrame->bottom;
 		int screenX	 = this->mapPosition.x - (*BW::BWDATA_MoveToX);

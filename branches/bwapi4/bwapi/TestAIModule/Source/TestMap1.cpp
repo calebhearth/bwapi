@@ -300,7 +300,7 @@ void TestMap1::onFrame()
 					u->getType()==UnitTypes::Terran_Science_Facility)
 			{
 				BWAssert(u->isLifted()==true);
-				u->land(TilePosition(u->getTilePosition().x(),u->getTilePosition().y()+2));
+				u->land(TilePosition(u->getTilePosition().x,u->getTilePosition().y+2));
 			}
 			else
 			{

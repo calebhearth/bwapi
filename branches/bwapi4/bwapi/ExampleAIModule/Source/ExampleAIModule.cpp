@@ -174,7 +174,7 @@ void ExampleAIModule::onFrame()
 			{
 
 				// If that fails, draw the error at the location so that you can visibly see what went wrong!
-				Broodwar->drawTextMap( u->getPosition().x(), u->getPosition().y(), "%s", Broodwar->getLastError().c_str() );
+				Broodwar->drawTextMap( u->getPosition().x, u->getPosition().y, "%s", Broodwar->getLastError().c_str() );
 			}
 
 		}
@@ -215,7 +215,7 @@ void ExampleAIModule::onNukeDetect(BWAPI::Position target)
 	{
 
 		// if so, print the location of the nuclear strike target
-		Broodwar->printf("Nuclear Launch Detected at (%d,%d)", target.x(), target.y() );
+		Broodwar->printf("Nuclear Launch Detected at (%d,%d)", target.x, target.y );
 
 	}
 	else 
@@ -233,31 +233,31 @@ void ExampleAIModule::onNukeDetect(BWAPI::Position target)
 void ExampleAIModule::onUnitDiscover(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] has been discovered at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] has been discovered at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 */}
 
 void ExampleAIModule::onUnitEvade(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] was last accessible at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] was last accessible at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 */}
 
 void ExampleAIModule::onUnitShow(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 */}
 
 void ExampleAIModule::onUnitHide(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 */}
 
 void ExampleAIModule::onUnitCreate(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] has been created at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] has been created at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 	else*/
 	if ( Broodwar->isReplay() )
 	{
@@ -276,13 +276,13 @@ void ExampleAIModule::onUnitCreate(BWAPI::Unit* unit)
 void ExampleAIModule::onUnitDestroy(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 */}
 
 void ExampleAIModule::onUnitMorph(BWAPI::Unit* unit)
 {/*
 	if ( !Broodwar->isReplay() )
-		Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x(),unit->getPosition().y());
+		Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",unit->getType().getName().c_str(),unit,unit->getPosition().x,unit->getPosition().y);
 	else*/
 	if ( Broodwar->isReplay() )
 	{

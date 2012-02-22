@@ -222,7 +222,7 @@ namespace BWAPI
 	//------------------------------------------- SET SCREEN POSITION ------------------------------------------
 	void GameImpl::setScreenPosition(BWAPI::Position p)
 	{
-		setScreenPosition(p.x(),p.y());
+		setScreenPosition(p.x,p.y);
 	}
 	//---------------------------------------------- PING MINIMAP ----------------------------------------------
 	void GameImpl::pingMinimap(int x, int y)
@@ -346,7 +346,7 @@ namespace BWAPI
 	//--------------------------------------------- GET UNITS IN RECTANGLE -------------------------------------
 	Unitset &GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
 	{
-		return getUnitsInRectangle(topLeft.x(),topLeft.y(),bottomRight.x(),bottomRight.y());
+		return getUnitsInRectangle(topLeft.x,topLeft.y,bottomRight.x,bottomRight.y);
 	}
 	//--------------------------------------------- GET UNITS IN RADIUS ----------------------------------------
 	BWAPI::Position unitsInRadius_compare;
@@ -373,10 +373,10 @@ namespace BWAPI
 		lastFrame		 = this->frameCount;
 
 		// Set rectangular values
-		int left		= center.x() - radius;
-		int top		 = center.y() - radius;
-		int right	 = center.x() + radius;
-		int bottom	= center.y() + radius;
+		int left		= center.x - radius;
+		int top		 = center.y - radius;
+		int right	 = center.x + radius;
+		int bottom	= center.y + radius;
 
 		// Store the data we are comparing found units to
 		unitsInRadius_compare = center;
@@ -433,7 +433,7 @@ namespace BWAPI
 	//--------------------------------------------- IS WALKABLE ------------------------------------------------
 	bool GameImpl::isWalkable(WalkPosition pos)
 	{
-		return map.walkable(pos.x(), pos.y());
+		return map.walkable(pos.x, pos.y);
 	}
 	//--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
 	int GameImpl::getGroundHeight(int x, int y)
@@ -443,7 +443,7 @@ namespace BWAPI
 	//--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
 	int GameImpl::getGroundHeight(TilePosition position)
 	{
-		return map.groundHeight(position.x(), position.y());
+		return map.groundHeight(position.x, position.y);
 	}
 	//--------------------------------------------- IS BUILDABLE -----------------------------------------------
 	bool GameImpl::isBuildable(int x, int y, bool includeBuildings)

@@ -90,8 +90,8 @@ namespace BWAPI
 			self->source	= (_getSource && _getSource->exists()) ? _getSource->getID() : -1;
 
 			// position
-			self->positionX = bwOriginalBullet->position.x();
-			self->positionY = bwOriginalBullet->position.y();
+			self->positionX = bwOriginalBullet->position.x;
+			self->positionY = bwOriginalBullet->position.y;
 
 			// angle, velocity
 			int d = (int)bwOriginalBullet->currentDirection - 64;
@@ -103,8 +103,8 @@ namespace BWAPI
 
 			// target, targetPosition
 			self->target					= (_getTarget && _getTarget->exists()) ? _getTarget->getID() : -1;
-			self->targetPositionX = bwOriginalBullet->targetPosition.x();
-			self->targetPositionY = bwOriginalBullet->targetPosition.y();
+			self->targetPositionX = bwOriginalBullet->targetPosition.x;
+			self->targetPositionY = bwOriginalBullet->targetPosition.y;
 
 			// removeTimer
 			self->removeTimer = bwOriginalBullet->time_remaining;
@@ -118,8 +118,8 @@ namespace BWAPI
 			self->player					= -1;
 			self->type						= BulletTypes::None;
 			self->source					= -1;
-			self->positionX			 = Positions::None.x();
-			self->positionY			 = Positions::None.y();
+			self->positionX			 = Positions::None.x;
+			self->positionY			 = Positions::None.y;
 			self->angle					 = 0;
 			self->velocityX			 = 0;
 			self->velocityY			 = 0;

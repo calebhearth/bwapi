@@ -129,7 +129,7 @@ void CancelTrainTest::update()
 	BWAssert(thisFrame==nextFrame);
 	BWAssertF(producer!=NULL,{fail=true;return;});
 	nextFrame++;
-	Broodwar->setScreenPosition(producer->getPosition().x()-320,producer->getPosition().y()-240);
+	Broodwar->setScreenPosition(producer->getPosition().x-320,producer->getPosition().y-240);
 	if (state==Start)
 	{
 		BWAssertF(producer->isTraining()==true,{fail=true;return;});

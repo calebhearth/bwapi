@@ -140,10 +140,10 @@ aithread::aithread(WORD wStartBlock, BWAPI::Position location, void *town)
 ,threadId(threadCount)
 ,dwBytesRead(0)
 {
-	this->locationBounds.left	 = location.x() - 128;
-	this->locationBounds.right	= location.x() + 128;
-	this->locationBounds.top		= location.y() - 128;
-	this->locationBounds.bottom = location.y() + 128;
+	this->locationBounds.left	 = location.x - 128;
+	this->locationBounds.right	= location.x + 128;
+	this->locationBounds.top		= location.y - 128;
+	this->locationBounds.bottom = location.y + 128;
 	memset(this->bTotBuildCount, 0, sizeof(this->bTotBuildCount));
 	this->debugQueue.clear();
 }

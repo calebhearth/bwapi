@@ -209,8 +209,8 @@ namespace BWAPI
 		{
 			return TilePositions::None;
 		}
-		return TilePosition(Position(initialPosition.x() - initialType.tileWidth() * TILE_SIZE / 2,
-																 initialPosition.y() - initialType.tileHeight() * TILE_SIZE / 2));
+		return TilePosition(Position(initialPosition.x - initialType.tileWidth() * TILE_SIZE / 2,
+																 initialPosition.y - initialType.tileHeight() * TILE_SIZE / 2));
 	}
 	//--------------------------------------------- GET INITIAL HIT POINTS -------------------------------------
 	int UnitImpl::getInitialHitPoints() const

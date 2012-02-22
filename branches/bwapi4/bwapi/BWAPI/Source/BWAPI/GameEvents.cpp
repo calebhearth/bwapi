@@ -810,9 +810,9 @@ namespace BWAPI
 			BWAPI::Position scrPos = getScreenPosition();
 
 			// draw mtx grid
-			for ( int y = scrPos.y()/32; y < (scrPos.y() + BW::BWDATA_GameScreenBuffer->ht)/32 + 1; ++y )
+			for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA_GameScreenBuffer->ht)/32 + 1; ++y )
 			{
-				for ( int x = scrPos.x()/32; x < (scrPos.x() + BW::BWDATA_GameScreenBuffer->wid)/32 + 1; ++x )
+				for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA_GameScreenBuffer->wid)/32 + 1; ++x )
 				{
 					for ( int i = 0; i < 32; i += 4 )
 					{
@@ -822,7 +822,7 @@ namespace BWAPI
 				}
 			}
 			setTextSize(0);
-			drawTextScreen(64, 300, "\x04" "(%u, %u)", (scrPos.x()+this->getMousePosition().x())/32, (scrPos.y()+this->getMousePosition().y())/32);
+			drawTextScreen(64, 300, "\x04" "(%u, %u)", (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
 			setTextSize();
 		} // grid
 #ifdef _DEBUG
@@ -835,8 +835,8 @@ namespace BWAPI
 		if ( unitDebug && BWAPIPlayer )
 		{
 			BWAPI::Color c = Colors::Red;
-			int x = this->getMousePosition().x() + this->getScreenPosition().x();
-			int y = this->getMousePosition().y() + this->getScreenPosition().y();
+			int x = this->getMousePosition().x + this->getScreenPosition().x;
+			int y = this->getMousePosition().y + this->getScreenPosition().y;
 			if ( BW::isCollidingWithContour(BW::BWDATA_SAIPathing->contours, 
 																	x,
 																	y,
@@ -856,15 +856,15 @@ namespace BWAPI
 		{
 			BWAPI::Position mouse	 = getMousePosition() + getScreenPosition();
 			BW::region *selectedRgn = BW::getRegionAt(mouse);
-			int scrx = (getScreenPosition().x()/32 - 1)*32;
-			int scry = (getScreenPosition().y()/32 - 1)*32;
-			for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x() + BW::BWDATA_ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
+			int scrx = (getScreenPosition().x/32 - 1)*32;
+			int scry = (getScreenPosition().y/32 - 1)*32;
+			for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x + BW::BWDATA_ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
 			{
-				for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y() + BW::BWDATA_ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
+				for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y + BW::BWDATA_ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
 				{
 					BW::TilePosition tp((u16)x/32, (u16)y/32);
 
-					u16 idx = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y()][tp.x()];
+					u16 idx = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y][tp.x];
 					if ( idx & 0x2000 )
 					{
 						BW::split *t = &BW::BWDATA_SAIPathing->splitTiles[idx & 0x1FFF];
@@ -921,10 +921,10 @@ namespace BWAPI
 				{
 					BW::region *neighbor = r->getNeighbor(n);
 					if ( r->accessabilityFlags != 0x1FFD && neighbor->accessabilityFlags != 0x1FFD )
-						drawLineMap(r->getCenter().x(), r->getCenter().y(), neighbor->getCenter().x(), neighbor->getCenter().y(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
+						drawLineMap(r->getCenter().x, r->getCenter().y, neighbor->getCenter().x, neighbor->getCenter().y, neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
 				}
 				if ( r == selectedRgn )
-					drawTextMap(r->getCenter().x(), r->getCenter().y(), "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
+					drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
 			}
 			for ( int i = 0; i < 4; ++i )
 			{
@@ -933,10 +933,10 @@ namespace BWAPI
 				{
 					BW::contour *cont = &hub->contours[i][c];
 					bool select = false;
-					int l = getScreenPosition().x();
-					int r = getScreenPosition().x() + BW::BWDATA_ScreenLayers[5].width;
-					int t = getScreenPosition().y();
-					int b = getScreenPosition().y() + BW::BWDATA_ScreenLayers[5].height;
+					int l = getScreenPosition().x;
+					int r = getScreenPosition().x + BW::BWDATA_ScreenLayers[5].width;
+					int t = getScreenPosition().y;
+					int b = getScreenPosition().y + BW::BWDATA_ScreenLayers[5].height;
 
 					switch ( cont->type )
 					{
@@ -944,7 +944,7 @@ namespace BWAPI
 					case 2:
 						if ( !((cont->v[1] > l || cont->v[2] > l) && (cont->v[1] < r || cont->v[2] < r) && cont->v[0] > t && cont->v[0] < b) )
 							continue;
-						if ( mouse.x() < cont->v[2] && mouse.x() > cont->v[1] && mouse.y() > cont->v[0] - 4 && mouse.y() < cont->v[0] + 4 )
+						if ( mouse.x < cont->v[2] && mouse.x > cont->v[1] && mouse.y > cont->v[0] - 4 && mouse.y < cont->v[0] + 4 )
 							select = true;
 						drawLineMap(cont->v[1], cont->v[0], cont->v[2], cont->v[0], select ? Colors::Cyan : Colors::Green);
 						break;
@@ -952,7 +952,7 @@ namespace BWAPI
 					case 3:
 						if ( !((cont->v[1] > t || cont->v[2] > t) && (cont->v[1] < b || cont->v[2] < b) && cont->v[0] > l && cont->v[0] < r) )
 							continue;
-						if ( mouse.x() < cont->v[0] + 4 && mouse.x() > cont->v[0] - 4 && mouse.y() > cont->v[1] && mouse.y() < cont->v[2] )
+						if ( mouse.x < cont->v[0] + 4 && mouse.x > cont->v[0] - 4 && mouse.y > cont->v[1] && mouse.y < cont->v[2] )
 							select = true;
 						drawLineMap(cont->v[0], cont->v[1], cont->v[0], cont->v[2], select ? Colors::Cyan : Colors::Green);
 						break;
@@ -971,14 +971,14 @@ namespace BWAPI
 			/*
 			foreach (BWAPI::Region *r, this->regionsList )
 			{
-				drawTextMap(r->getCenter().x(), r->getCenter().y(), "%u", r->getRegionGroupID());
+				drawTextMap(r->getCenter().x, r->getCenter().y, "%u", r->getRegionGroupID());
 				
 				std::vector<BWAPI::Position> poly = ((BWAPI::RegionImpl*)r)->getSimplePolygon();
 				BWAPI::Position prev = Positions::None;
 				for ( std::vector<BWAPI::Position>::iterator j = poly.begin(), jend = poly.end(); j != jend; ++j )
 				{
 					if ( prev != Positions::None )
-						drawLineMap(prev.x(), prev.y(), j->x(), j->y(), Colors::Yellow);
+						drawLineMap(prev.x, prev.y, j->x, j->y, Colors::Yellow);
 					prev = *j;
 				}
 			}*/
