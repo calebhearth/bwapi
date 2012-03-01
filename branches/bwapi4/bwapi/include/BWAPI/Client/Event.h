@@ -5,10 +5,10 @@
 
 namespace BWAPIC
 { 
-	struct Event
-	{
-		BWAPI::EventType::Enum type;
-		int v1;
-		int v2;
-	};
+  struct Event
+  {
+    BWAPI::EventType::Enum type;
+    int v1;
+    int v2;
+  };
 }

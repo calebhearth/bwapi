@@ -7,7 +7,7 @@ GeneralException::GeneralException(const std::string &message)
 //----------------------------------------------- GET MESSAGE ------------------------------------------------
 const std::string GeneralException::getMessage(void)
 {
-	return this->message;
+  return this->message;
 }
 //----------------------------------------------- CONSTRUCTOR ------------------------------------------------
 FileException::FileException(const std::string &message) : GeneralException(message)

@@ -1,7 +1,7 @@
 #pragma once
 ////////////////////////////////////////////////////////////////////////
-//	A priviledged system handle to a remote process									 //
-//																																		//
+//  A priviledged system handle to a remote process                   //
+//                                                                    //
 ////////////////////////////////////////////////////////////////////////
 
 namespace Util { class RemoteProcess; }
@@ -12,20 +12,20 @@ namespace Util { class RemoteProcess; }
 
 namespace Util
 {
-	class RemoteProcess
-	{
-	public:
-		RemoteProcess();
-		~RemoteProcess();
+  class RemoteProcess
+  {
+  public:
+    RemoteProcess();
+    ~RemoteProcess();
 
-		bool acquire(RemoteProcessID, bool moreAccess = false);
-		int exportOwnHandle();
-		void importHandle(int handle);
-		void release();
-		HANDLE getHandle();
-		bool isValid();
+    bool acquire(RemoteProcessID, bool moreAccess = false);
+    int exportOwnHandle();
+    void importHandle(int handle);
+    void release();
+    HANDLE getHandle();
+    bool isValid();
 
-	private:
-		HANDLE processHandle;
-	};
+  private:
+    HANDLE processHandle;
+  };
 }

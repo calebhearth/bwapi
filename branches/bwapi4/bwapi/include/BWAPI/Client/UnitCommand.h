@@ -8,13 +8,13 @@
 
 namespace BWAPIC
 {
-	struct UnitCommand
-	{
-		BWAPI::UnitCommandType type;
-		int unitIndex;
-		int targetIndex;
-		int x;
-		int y;
-		int extra;
-	};
+  struct UnitCommand
+  {
+    BWAPI::UnitCommandType type;
+    int unitIndex;
+    int targetIndex;
+    int x;
+    int y;
+    int extra;
+  };
 }

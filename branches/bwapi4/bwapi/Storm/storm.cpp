@@ -97,13 +97,13 @@ BOOL STORMAPI SBmpDecodeImage(DWORD dwImgType, void *pSrcBuffer, DWORD dwSrcBuff
 
 BOOL STORMAPI SBmpLoadImage(const char *pszFileName, PALETTEENTRY *pPalette, void *pBuffer, DWORD dwBuffersize, DWORD *pdwWidth, DWORD *dwHeight, DWORD *pdwBpp) rBool;
 
-BOOL	 STORMAPI SBmpSaveImage(const char*, PALETTEENTRY*, void*, DWORD, DWORD, DWORD) rBool;
+BOOL   STORMAPI SBmpSaveImage(const char*, PALETTEENTRY*, void*, DWORD, DWORD, DWORD) rBool;
 HANDLE STORMAPI SBmpAllocLoadImage(const char *fileName, PALETTEENTRY *palette, void **buffer, int *width, int *height, int unused6, int unused7, void *(STORMAPI *allocFunction)(DWORD)) rPVoid;
 
 BOOL STORMAPI SCodeCompile(char *directives1, char *directives2, char *loopstring, unsigned int maxiterations, unsigned int flags, HANDLE handle) rBool;
 BOOL STORMAPI SCodeDelete(HANDLE handle) rBool;
 
-int	STORMAPI SCodeExecute(HANDLE handle, int a2) rInt;
+int  STORMAPI SCodeExecute(HANDLE handle, int a2) rInt;
 
 BOOL STORMAPI SDrawAutoInitialize(HINSTANCE hInst, LPCSTR lpClassName, LPCSTR lpWindowName, WNDPROC pfnWndProc, int nMode, int nWidth, int nHeight, int nBits) rBool;
 BOOL STORMAPI SDrawCaptureScreen(const char *source) rBool;
@@ -181,11 +181,11 @@ void STORMAPI SMemCopy(void *dest, const void *source, size_t size) rVoid;
 void STORMAPI SMemFill(void *location, size_t length, char fillWith) rVoid;
 
 void STORMAPI SMemZero(void *location, DWORD length) rVoid;
-int	STORMAPI SMemCmp(void *location1, void *location2, DWORD size) rInt;
+int  STORMAPI SMemCmp(void *location1, void *location2, DWORD size) rInt;
 
-int	 STORMAPI SStrCopy(char *dest, const char *src, int max_length) rInt;
+int   STORMAPI SStrCopy(char *dest, const char *src, int max_length) rInt;
 DWORD STORMAPI SStrHash(const char *string, DWORD flags, DWORD Seed) rInt;
-int	 STORMAPI SStrNCat(char *dest, const char *src, DWORD max_length) rInt;
+int   STORMAPI SStrNCat(char *dest, const char *src, DWORD max_length) rInt;
 
 int STORMAPI SStrLen(const char* string) rInt;
 

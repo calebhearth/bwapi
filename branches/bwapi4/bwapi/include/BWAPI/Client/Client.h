@@ -10,25 +10,25 @@
 
 namespace BWAPI
 {
-	class Client
-	{
-		public:
-		Client();
-		~Client();
-		GameData* data;
-		bool isConnected();
-		bool connect();
-		void disconnect();
-		void update();
+  class Client
+  {
+    public:
+    Client();
+    ~Client();
+    GameData* data;
+    bool isConnected();
+    bool connect();
+    void disconnect();
+    void update();
 
-	private:
-		HANDLE pipeObjectHandle;
-		HANDLE mapFileHandle;
-		HANDLE gameTableFileHandle;
-		GameTable* gameTable;
-		
-		bool connected;
-		bool showedErrorBox;
-	};
-	extern Client BWAPIClient;
+  private:
+    HANDLE pipeObjectHandle;
+    HANDLE mapFileHandle;
+    HANDLE gameTableFileHandle;
+    GameTable* gameTable;
+    
+    bool connected;
+    bool showedErrorBox;
+  };
+  extern Client BWAPIClient;
 }

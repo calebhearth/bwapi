@@ -2,8 +2,8 @@
 
 namespace BWAPI
 {
-	struct ForceData
-	{
-		char name[32];
-	};
+  struct ForceData
+  {
+    char name[32];
+  };
 }

@@ -3,8 +3,8 @@
 
 namespace BWAPI
 {
-	Regionset::Regionset(size_t initialSize) : Vectorset(initialSize) { };
-	Regionset::Regionset(const Regionset &other) : Vectorset(other) { };
+  Regionset::Regionset(size_t initialSize) : Vectorset(initialSize) { };
+  Regionset::Regionset(const Regionset &other) : Vectorset(other) { };
 
 
 }

@@ -3,6 +3,6 @@
 #include "TestModule.h"
 class MapTest : public TestModule
 {
-	public:
-	virtual void onStart();
+  public:
+  virtual void onStart();
 };

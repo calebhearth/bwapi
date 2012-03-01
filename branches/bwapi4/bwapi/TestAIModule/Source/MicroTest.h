@@ -2,7 +2,7 @@
 #include <BWAPI.h>
 class MicroTest : public BWAPI::AIModule
 {
-	public:
-	virtual void onStart();
-	virtual void onFrame();
+  public:
+  virtual void onStart();
+  virtual void onFrame();
 };

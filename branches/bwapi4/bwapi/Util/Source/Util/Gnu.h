@@ -10,11 +10,11 @@
 
 inline void strcpy_s(char* dest, size_t size, char* src)
 {
-	size_t s = strlen(src);
-	if(s > size - 1)
-		s = size - 1;
-	memcpy(dest, src, s);
-	dest[s] = 0;
+  size_t s = strlen(src);
+  if(s > size - 1)
+    s = size - 1;
+  memcpy(dest, src, s);
+  dest[s] = 0;
 }
 #endif
 

@@ -13,15 +13,15 @@ UType::~UType()
 
 const char *UType::name()
 {
-	return AISCRIPT::getUnitName(this->getID());
+  return AISCRIPT::getUnitName(this->getID());
 }
 
 int UType::aiFlag()
 {
-	return AISCRIPT::getUnitInternal(this->getID());
+  return AISCRIPT::getUnitInternal(this->getID());
 }
 
 int UType::aiIdle()
 {
-	return AISCRIPT::getUnitIdleOrder(this->getID());
+  return AISCRIPT::getUnitIdleOrder(this->getID());
 }

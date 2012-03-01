@@ -3,7 +3,7 @@
 #include "TestModule.h"
 class DefaultTestModule : public TestModule
 {
-	public:
-	virtual void onStart();
-	virtual void onFrame();
+  public:
+  virtual void onStart();
+  virtual void onFrame();
 };
