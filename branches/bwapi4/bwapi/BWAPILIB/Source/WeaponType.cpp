@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <set>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/WeaponType.h>
 #include <BWAPI/TechType.h>
@@ -75,114 +74,38 @@ namespace BWAPI
   };
   WeaponTypeInternal weaponTypeData[132];
   std::map<std::string, WeaponType> weaponTypeMap;
-  std::set< WeaponType > weaponTypeSet;
-  std::set< WeaponType > specialWeaponTypeSet;
-  std::set< WeaponType > normalWeaponTypeSet;
   namespace WeaponTypes
   {
-    const WeaponType Gauss_Rifle(0);
-    const WeaponType Gauss_Rifle_Jim_Raynor(1);
-    const WeaponType C_10_Canister_Rifle(2);
-    const WeaponType C_10_Canister_Rifle_Sarah_Kerrigan(3);
-    const WeaponType C_10_Canister_Rifle_Samir_Duran(112);
-    const WeaponType C_10_Canister_Rifle_Infested_Duran(113);
-    const WeaponType C_10_Canister_Rifle_Alexei_Stukov(116);
-    const WeaponType Fragmentation_Grenade(4);
-    const WeaponType Fragmentation_Grenade_Jim_Raynor(5);
-    const WeaponType Spider_Mines(6);
-    const WeaponType Twin_Autocannons(7);
-    const WeaponType Twin_Autocannons_Alan_Schezar(9);
-    const WeaponType Hellfire_Missile_Pack(8);
-    const WeaponType Hellfire_Missile_Pack_Alan_Schezar(10);
-    const WeaponType Arclite_Cannon(11);
-    const WeaponType Arclite_Cannon_Edmund_Duke(12);
-    const WeaponType Fusion_Cutter(13);
-    const WeaponType Gemini_Missiles(15);
-    const WeaponType Gemini_Missiles_Tom_Kazansky(17);
-    const WeaponType Burst_Lasers(16);
-    const WeaponType Burst_Lasers_Tom_Kazansky(18);
-    const WeaponType ATS_Laser_Battery(19);
-    const WeaponType ATS_Laser_Battery_Hero(21);
-    const WeaponType ATS_Laser_Battery_Hyperion(23);
-    const WeaponType ATA_Laser_Battery(20);
-    const WeaponType ATA_Laser_Battery_Hero(22);
-    const WeaponType ATA_Laser_Battery_Hyperion(24);
-    const WeaponType Flame_Thrower(25);
-    const WeaponType Flame_Thrower_Gui_Montag(26);
-    const WeaponType Arclite_Shock_Cannon(27);
-    const WeaponType Arclite_Shock_Cannon_Edmund_Duke(28);
-    const WeaponType Longbolt_Missile(29);
-    const WeaponType Claws(35);
-    const WeaponType Claws_Devouring_One(36);
-    const WeaponType Claws_Infested_Kerrigan(37);
-    const WeaponType Needle_Spines(38);
-    const WeaponType Needle_Spines_Hunter_Killer(39);
-    const WeaponType Kaiser_Blades(40);
-    const WeaponType Kaiser_Blades_Torrasque(41);
-    const WeaponType Toxic_Spores(42);
-    const WeaponType Spines(43);
-    const WeaponType Acid_Spore(46);
-    const WeaponType Acid_Spore_Kukulza(47);
-    const WeaponType Glave_Wurm(48);
-    const WeaponType Glave_Wurm_Kukulza(49);
-    const WeaponType Seeker_Spores(52);
-    const WeaponType Subterranean_Tentacle(53);
-    const WeaponType Suicide_Infested_Terran(54);
-    const WeaponType Suicide_Scourge(55);
-    const WeaponType Particle_Beam(62);
-    const WeaponType Psi_Blades(64);
-    const WeaponType Psi_Blades_Fenix(65);
-    const WeaponType Phase_Disruptor(66);
-    const WeaponType Phase_Disruptor_Fenix(67);
-    const WeaponType Psi_Assault(69);
-    const WeaponType Psionic_Shockwave(70);
-    const WeaponType Psionic_Shockwave_TZ_Archon(71);
-    const WeaponType Dual_Photon_Blasters(73);
-    const WeaponType Dual_Photon_Blasters_Mojo(75);
-    const WeaponType Dual_Photon_Blasters_Artanis(114);
-    const WeaponType Anti_Matter_Missiles(74);
-    const WeaponType Anti_Matter_Missiles_Mojo(76);
-    const WeaponType Anti_Matter_Missiles_Artanis(115);
-    const WeaponType Phase_Disruptor_Cannon(77);
-    const WeaponType Phase_Disruptor_Cannon_Danimoth(78);
-    const WeaponType Pulse_Cannon(79);
-    const WeaponType STS_Photon_Cannon(80);
-    const WeaponType STA_Photon_Cannon(81);
-    const WeaponType Scarab(82);
-    const WeaponType Subterranean_Spines(109);
-    const WeaponType Warp_Blades(111);
-    const WeaponType Warp_Blades_Hero(86);
-    const WeaponType Warp_Blades_Zeratul(85);
-    const WeaponType Neutron_Flare(100);
-    const WeaponType Halo_Rockets(103);
-    const WeaponType Independant_Laser_Battery(93);
-    const WeaponType Twin_Autocannons_Floor_Trap(96);
-    const WeaponType Hellfire_Missile_Pack_Wall_Trap(97);
-    const WeaponType Flame_Thrower_Wall_Trap(98);
-    const WeaponType Hellfire_Missile_Pack_Floor_Trap(99);
-
-    const WeaponType Yamato_Gun(30);
-    const WeaponType Nuclear_Strike(31);
-    const WeaponType Lockdown(32);
-    const WeaponType EMP_Shockwave(33);
-    const WeaponType Irradiate(34);
-    const WeaponType Parasite(56);
-    const WeaponType Spawn_Broodlings(57);
-    const WeaponType Ensnare(58);
-    const WeaponType Dark_Swarm(59);
-    const WeaponType Plague(60);
-    const WeaponType Consume(61);
-    const WeaponType Stasis_Field(83);
-    const WeaponType Psionic_Storm(84);
-    const WeaponType Disruption_Web(101);
-    const WeaponType Restoration(102);
-    const WeaponType Corrosive_Acid(104);
-    const WeaponType Mind_Control(105);
-    const WeaponType Feedback(106);
-    const WeaponType Optical_Flare(107);
-    const WeaponType Maelstrom(108);
-    const WeaponType None(130);
-    const WeaponType Unknown(131);
+    static const WeaponType::set specialWeaponTypeSet(Yamato_Gun | Nuclear_Strike | Lockdown | EMP_Shockwave | 
+                                        Irradiate | Parasite | Spawn_Broodlings | Ensnare | Dark_Swarm | 
+                                        Plague | Consume | Stasis_Field | Psionic_Storm | Disruption_Web | 
+                                        Restoration | Mind_Control | Feedback | Optical_Flare | Maelstrom);
+    static const WeaponType::set normalWeaponTypeSet(Gauss_Rifle | Gauss_Rifle_Jim_Raynor | C_10_Canister_Rifle |
+                                        C_10_Canister_Rifle_Sarah_Kerrigan | C_10_Canister_Rifle_Samir_Duran | 
+                                        C_10_Canister_Rifle_Infested_Duran | C_10_Canister_Rifle_Alexei_Stukov | 
+                                        Fragmentation_Grenade | Fragmentation_Grenade_Jim_Raynor | Spider_Mines | 
+                                        Twin_Autocannons | Twin_Autocannons_Alan_Schezar | Hellfire_Missile_Pack | 
+                                        Hellfire_Missile_Pack_Alan_Schezar | Arclite_Cannon | Arclite_Cannon_Edmund_Duke | 
+                                        Fusion_Cutter | Gemini_Missiles | Gemini_Missiles_Tom_Kazansky | Burst_Lasers | 
+                                        Burst_Lasers_Tom_Kazansky | ATS_Laser_Battery | ATS_Laser_Battery_Hero | 
+                                        ATS_Laser_Battery_Hyperion | ATA_Laser_Battery | ATA_Laser_Battery_Hero | 
+                                        ATA_Laser_Battery_Hyperion | Flame_Thrower | Flame_Thrower_Gui_Montag | 
+                                        Arclite_Shock_Cannon | Arclite_Shock_Cannon_Edmund_Duke | Longbolt_Missile | 
+                                        Claws | Claws_Devouring_One | Claws_Infested_Kerrigan | Needle_Spines | 
+                                        Needle_Spines_Hunter_Killer | Kaiser_Blades | Kaiser_Blades_Torrasque | 
+                                        Toxic_Spores | Spines | Acid_Spore | Acid_Spore_Kukulza | Glave_Wurm | 
+                                        Glave_Wurm_Kukulza | Seeker_Spores | Subterranean_Tentacle | 
+                                        Suicide_Infested_Terran | Suicide_Scourge | Particle_Beam | Psi_Blades | 
+                                        Psi_Blades_Fenix | Phase_Disruptor | Phase_Disruptor_Fenix | Psi_Assault | 
+                                        Psionic_Shockwave | Psionic_Shockwave_TZ_Archon | Dual_Photon_Blasters | 
+                                        Dual_Photon_Blasters_Mojo | Dual_Photon_Blasters_Artanis | Anti_Matter_Missiles | 
+                                        Anti_Matter_Missiles_Mojo | Anti_Matter_Missiles_Artanis | Phase_Disruptor_Cannon | 
+                                        Phase_Disruptor_Cannon_Danimoth | Pulse_Cannon | STS_Photon_Cannon | 
+                                        STA_Photon_Cannon | Scarab | Neutron_Flare | Halo_Rockets | Corrosive_Acid | 
+                                        Subterranean_Spines | Warp_Blades | Warp_Blades_Hero | Warp_Blades_Zeratul | 
+                                        Independant_Laser_Battery | Twin_Autocannons_Floor_Trap | Hellfire_Missile_Pack_Wall_Trap | 
+                                        Hellfire_Missile_Pack_Floor_Trap | Flame_Thrower_Wall_Trap);
+    static const WeaponType::set weaponTypeSet(specialWeaponTypeSet | normalWeaponTypeSet | None | Unknown);
 
     void init()
     {
@@ -289,213 +212,6 @@ namespace BWAPI
 
       weaponTypeData[None].set("None", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
       weaponTypeData[Unknown].set("Unknown", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
-
-      weaponTypeSet.insert(Gauss_Rifle);
-      weaponTypeSet.insert(Gauss_Rifle_Jim_Raynor);
-      weaponTypeSet.insert(C_10_Canister_Rifle);
-      weaponTypeSet.insert(C_10_Canister_Rifle_Sarah_Kerrigan);
-      weaponTypeSet.insert(C_10_Canister_Rifle_Samir_Duran);
-      weaponTypeSet.insert(C_10_Canister_Rifle_Infested_Duran);
-      weaponTypeSet.insert(C_10_Canister_Rifle_Alexei_Stukov);
-      weaponTypeSet.insert(Fragmentation_Grenade);
-      weaponTypeSet.insert(Fragmentation_Grenade_Jim_Raynor);
-      weaponTypeSet.insert(Spider_Mines);
-      weaponTypeSet.insert(Twin_Autocannons);
-      weaponTypeSet.insert(Twin_Autocannons_Alan_Schezar);
-      weaponTypeSet.insert(Hellfire_Missile_Pack);
-      weaponTypeSet.insert(Hellfire_Missile_Pack_Alan_Schezar);
-      weaponTypeSet.insert(Arclite_Cannon);
-      weaponTypeSet.insert(Arclite_Cannon_Edmund_Duke);
-      weaponTypeSet.insert(Fusion_Cutter);
-      weaponTypeSet.insert(Gemini_Missiles);
-      weaponTypeSet.insert(Gemini_Missiles_Tom_Kazansky);
-      weaponTypeSet.insert(Burst_Lasers);
-      weaponTypeSet.insert(Burst_Lasers_Tom_Kazansky);
-      weaponTypeSet.insert(ATS_Laser_Battery);
-      weaponTypeSet.insert(ATS_Laser_Battery_Hero);
-      weaponTypeSet.insert(ATS_Laser_Battery_Hyperion);
-      weaponTypeSet.insert(ATA_Laser_Battery);
-      weaponTypeSet.insert(ATA_Laser_Battery_Hero);
-      weaponTypeSet.insert(ATA_Laser_Battery_Hyperion);
-      weaponTypeSet.insert(Flame_Thrower);
-      weaponTypeSet.insert(Flame_Thrower_Gui_Montag);
-      weaponTypeSet.insert(Arclite_Shock_Cannon);
-      weaponTypeSet.insert(Arclite_Shock_Cannon_Edmund_Duke);
-      weaponTypeSet.insert(Longbolt_Missile);
-      weaponTypeSet.insert(Claws);
-      weaponTypeSet.insert(Claws_Devouring_One);
-      weaponTypeSet.insert(Claws_Infested_Kerrigan);
-      weaponTypeSet.insert(Needle_Spines);
-      weaponTypeSet.insert(Needle_Spines_Hunter_Killer);
-      weaponTypeSet.insert(Kaiser_Blades);
-      weaponTypeSet.insert(Kaiser_Blades_Torrasque);
-      weaponTypeSet.insert(Toxic_Spores);
-      weaponTypeSet.insert(Spines);
-      weaponTypeSet.insert(Acid_Spore);
-      weaponTypeSet.insert(Acid_Spore_Kukulza);
-      weaponTypeSet.insert(Glave_Wurm);
-      weaponTypeSet.insert(Glave_Wurm_Kukulza);
-      weaponTypeSet.insert(Seeker_Spores);
-      weaponTypeSet.insert(Subterranean_Tentacle);
-      weaponTypeSet.insert(Suicide_Infested_Terran);
-      weaponTypeSet.insert(Suicide_Scourge);
-      weaponTypeSet.insert(Particle_Beam);
-      weaponTypeSet.insert(Psi_Blades);
-      weaponTypeSet.insert(Psi_Blades_Fenix);
-      weaponTypeSet.insert(Phase_Disruptor);
-      weaponTypeSet.insert(Phase_Disruptor_Fenix);
-      weaponTypeSet.insert(Psi_Assault);
-      weaponTypeSet.insert(Psionic_Shockwave);
-      weaponTypeSet.insert(Psionic_Shockwave_TZ_Archon);
-      weaponTypeSet.insert(Dual_Photon_Blasters);
-      weaponTypeSet.insert(Dual_Photon_Blasters_Mojo);
-      weaponTypeSet.insert(Dual_Photon_Blasters_Artanis);
-      weaponTypeSet.insert(Anti_Matter_Missiles);
-      weaponTypeSet.insert(Anti_Matter_Missiles_Mojo);
-      weaponTypeSet.insert(Anti_Matter_Missiles_Artanis);
-      weaponTypeSet.insert(Phase_Disruptor_Cannon);
-      weaponTypeSet.insert(Phase_Disruptor_Cannon_Danimoth);
-      weaponTypeSet.insert(Pulse_Cannon);
-      weaponTypeSet.insert(STS_Photon_Cannon);
-      weaponTypeSet.insert(STA_Photon_Cannon);
-      weaponTypeSet.insert(Scarab);
-      weaponTypeSet.insert(Neutron_Flare);
-      weaponTypeSet.insert(Halo_Rockets);
-      weaponTypeSet.insert(Corrosive_Acid);
-      weaponTypeSet.insert(Subterranean_Spines);
-      weaponTypeSet.insert(Warp_Blades);
-      weaponTypeSet.insert(Warp_Blades_Hero);
-      weaponTypeSet.insert(Warp_Blades_Zeratul);
-      weaponTypeSet.insert(Independant_Laser_Battery);
-      weaponTypeSet.insert(Twin_Autocannons_Floor_Trap);
-      weaponTypeSet.insert(Hellfire_Missile_Pack_Wall_Trap);
-      weaponTypeSet.insert(Hellfire_Missile_Pack_Floor_Trap);
-      weaponTypeSet.insert(Flame_Thrower_Wall_Trap);
-
-      normalWeaponTypeSet.insert(Gauss_Rifle);
-      normalWeaponTypeSet.insert(Gauss_Rifle_Jim_Raynor);
-      normalWeaponTypeSet.insert(C_10_Canister_Rifle);
-      normalWeaponTypeSet.insert(C_10_Canister_Rifle_Sarah_Kerrigan);
-      normalWeaponTypeSet.insert(C_10_Canister_Rifle_Samir_Duran);
-      normalWeaponTypeSet.insert(C_10_Canister_Rifle_Infested_Duran);
-      normalWeaponTypeSet.insert(C_10_Canister_Rifle_Alexei_Stukov);
-      normalWeaponTypeSet.insert(Fragmentation_Grenade);
-      normalWeaponTypeSet.insert(Fragmentation_Grenade_Jim_Raynor);
-      normalWeaponTypeSet.insert(Spider_Mines);
-      normalWeaponTypeSet.insert(Twin_Autocannons);
-      normalWeaponTypeSet.insert(Twin_Autocannons_Alan_Schezar);
-      normalWeaponTypeSet.insert(Hellfire_Missile_Pack);
-      normalWeaponTypeSet.insert(Hellfire_Missile_Pack_Alan_Schezar);
-      normalWeaponTypeSet.insert(Arclite_Cannon);
-      normalWeaponTypeSet.insert(Arclite_Cannon_Edmund_Duke);
-      normalWeaponTypeSet.insert(Fusion_Cutter);
-      normalWeaponTypeSet.insert(Gemini_Missiles);
-      normalWeaponTypeSet.insert(Gemini_Missiles_Tom_Kazansky);
-      normalWeaponTypeSet.insert(Burst_Lasers);
-      normalWeaponTypeSet.insert(Burst_Lasers_Tom_Kazansky);
-      normalWeaponTypeSet.insert(ATS_Laser_Battery);
-      normalWeaponTypeSet.insert(ATS_Laser_Battery_Hero);
-      normalWeaponTypeSet.insert(ATS_Laser_Battery_Hyperion);
-      normalWeaponTypeSet.insert(ATA_Laser_Battery);
-      normalWeaponTypeSet.insert(ATA_Laser_Battery_Hero);
-      normalWeaponTypeSet.insert(ATA_Laser_Battery_Hyperion);
-      normalWeaponTypeSet.insert(Flame_Thrower);
-      normalWeaponTypeSet.insert(Flame_Thrower_Gui_Montag);
-      normalWeaponTypeSet.insert(Arclite_Shock_Cannon);
-      normalWeaponTypeSet.insert(Arclite_Shock_Cannon_Edmund_Duke);
-      normalWeaponTypeSet.insert(Longbolt_Missile);
-      normalWeaponTypeSet.insert(Claws);
-      normalWeaponTypeSet.insert(Claws_Devouring_One);
-      normalWeaponTypeSet.insert(Claws_Infested_Kerrigan);
-      normalWeaponTypeSet.insert(Needle_Spines);
-      normalWeaponTypeSet.insert(Needle_Spines_Hunter_Killer);
-      normalWeaponTypeSet.insert(Kaiser_Blades);
-      normalWeaponTypeSet.insert(Kaiser_Blades_Torrasque);
-      normalWeaponTypeSet.insert(Toxic_Spores);
-      normalWeaponTypeSet.insert(Spines);
-      normalWeaponTypeSet.insert(Acid_Spore);
-      normalWeaponTypeSet.insert(Acid_Spore_Kukulza);
-      normalWeaponTypeSet.insert(Glave_Wurm);
-      normalWeaponTypeSet.insert(Glave_Wurm_Kukulza);
-      normalWeaponTypeSet.insert(Seeker_Spores);
-      normalWeaponTypeSet.insert(Subterranean_Tentacle);
-      normalWeaponTypeSet.insert(Suicide_Infested_Terran);
-      normalWeaponTypeSet.insert(Suicide_Scourge);
-      normalWeaponTypeSet.insert(Particle_Beam);
-      normalWeaponTypeSet.insert(Psi_Blades);
-      normalWeaponTypeSet.insert(Psi_Blades_Fenix);
-      normalWeaponTypeSet.insert(Phase_Disruptor);
-      normalWeaponTypeSet.insert(Phase_Disruptor_Fenix);
-      normalWeaponTypeSet.insert(Psi_Assault);
-      normalWeaponTypeSet.insert(Psionic_Shockwave);
-      normalWeaponTypeSet.insert(Psionic_Shockwave_TZ_Archon);
-      normalWeaponTypeSet.insert(Dual_Photon_Blasters);
-      normalWeaponTypeSet.insert(Dual_Photon_Blasters_Mojo);
-      normalWeaponTypeSet.insert(Dual_Photon_Blasters_Artanis);
-      normalWeaponTypeSet.insert(Anti_Matter_Missiles);
-      normalWeaponTypeSet.insert(Anti_Matter_Missiles_Mojo);
-      normalWeaponTypeSet.insert(Anti_Matter_Missiles_Artanis);
-      normalWeaponTypeSet.insert(Phase_Disruptor_Cannon);
-      normalWeaponTypeSet.insert(Phase_Disruptor_Cannon_Danimoth);
-      normalWeaponTypeSet.insert(Pulse_Cannon);
-      normalWeaponTypeSet.insert(STS_Photon_Cannon);
-      normalWeaponTypeSet.insert(STA_Photon_Cannon);
-      normalWeaponTypeSet.insert(Scarab);
-      normalWeaponTypeSet.insert(Neutron_Flare);
-      normalWeaponTypeSet.insert(Halo_Rockets);
-      normalWeaponTypeSet.insert(Corrosive_Acid);
-      normalWeaponTypeSet.insert(Subterranean_Spines);
-      normalWeaponTypeSet.insert(Warp_Blades);
-      normalWeaponTypeSet.insert(Warp_Blades_Hero);
-      normalWeaponTypeSet.insert(Warp_Blades_Zeratul);
-      normalWeaponTypeSet.insert(Independant_Laser_Battery);
-      normalWeaponTypeSet.insert(Twin_Autocannons_Floor_Trap);
-      normalWeaponTypeSet.insert(Hellfire_Missile_Pack_Wall_Trap);
-      normalWeaponTypeSet.insert(Hellfire_Missile_Pack_Floor_Trap);
-      normalWeaponTypeSet.insert(Flame_Thrower_Wall_Trap);
-
-      weaponTypeSet.insert(Yamato_Gun);
-      weaponTypeSet.insert(Nuclear_Strike);
-      weaponTypeSet.insert(Lockdown);
-      weaponTypeSet.insert(EMP_Shockwave);
-      weaponTypeSet.insert(Irradiate);
-      weaponTypeSet.insert(Parasite);
-      weaponTypeSet.insert(Spawn_Broodlings);
-      weaponTypeSet.insert(Ensnare);
-      weaponTypeSet.insert(Dark_Swarm);
-      weaponTypeSet.insert(Plague);
-      weaponTypeSet.insert(Consume);
-      weaponTypeSet.insert(Stasis_Field);
-      weaponTypeSet.insert(Psionic_Storm);
-      weaponTypeSet.insert(Disruption_Web);
-      weaponTypeSet.insert(Restoration);
-      weaponTypeSet.insert(Mind_Control);
-      weaponTypeSet.insert(Feedback);
-      weaponTypeSet.insert(Optical_Flare);
-      weaponTypeSet.insert(Maelstrom);
-
-      specialWeaponTypeSet.insert(Yamato_Gun);
-      specialWeaponTypeSet.insert(Nuclear_Strike);
-      specialWeaponTypeSet.insert(Lockdown);
-      specialWeaponTypeSet.insert(EMP_Shockwave);
-      specialWeaponTypeSet.insert(Irradiate);
-      specialWeaponTypeSet.insert(Parasite);
-      specialWeaponTypeSet.insert(Spawn_Broodlings);
-      specialWeaponTypeSet.insert(Ensnare);
-      specialWeaponTypeSet.insert(Dark_Swarm);
-      specialWeaponTypeSet.insert(Plague);
-      specialWeaponTypeSet.insert(Consume);
-      specialWeaponTypeSet.insert(Stasis_Field);
-      specialWeaponTypeSet.insert(Psionic_Storm);
-      specialWeaponTypeSet.insert(Disruption_Web);
-      specialWeaponTypeSet.insert(Restoration);
-      specialWeaponTypeSet.insert(Mind_Control);
-      specialWeaponTypeSet.insert(Feedback);
-      specialWeaponTypeSet.insert(Optical_Flare);
-      specialWeaponTypeSet.insert(Maelstrom);
-
-      weaponTypeSet.insert(None);
-      weaponTypeSet.insert(Unknown);
 
       foreach(WeaponType i, weaponTypeSet)
       {
@@ -616,15 +332,15 @@ namespace BWAPI
       return WeaponTypes::Unknown;
     return (*i).second;
   }
-  const std::set<WeaponType>& WeaponTypes::allWeaponTypes()
+  const WeaponType::set& WeaponTypes::allWeaponTypes()
   {
     return weaponTypeSet;
   }
-  const std::set<WeaponType>& WeaponTypes::normalWeaponTypes()
+  const WeaponType::set& WeaponTypes::normalWeaponTypes()
   {
     return normalWeaponTypeSet;
   }
-  const std::set<WeaponType>& WeaponTypes::specialWeaponTypes()
+  const WeaponType::set& WeaponTypes::specialWeaponTypes()
   {
     return specialWeaponTypeSet;
   }

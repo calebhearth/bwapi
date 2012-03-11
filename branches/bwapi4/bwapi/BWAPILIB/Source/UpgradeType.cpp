@@ -12,34 +12,30 @@
 
 namespace BWAPI
 {
-  bool initializingUpgradeType = true;
   class UpgradeTypeInternal
   {
     public:
       UpgradeTypeInternal() {valid = false;}
       void set(const char* name, int mineralPriceBase, int mineralPriceFactor, int gasPriceBase, int gasPriceFactor, int upgradeTimeBase, int upgradeTimeFactor, BWAPI::UnitType whatUpgrades, Race race, BWAPI::UnitType whatUses, int maxRepeats = 1, BWAPI::UnitType reqLv1 = UnitTypes::None, BWAPI::UnitType reqLv2 = UnitTypes::None, BWAPI::UnitType reqLv3 = UnitTypes::None)
       {
-        if (initializingUpgradeType)
-        {
-          this->name               = name;
-          this->mineralPriceBase   = mineralPriceBase;
-          this->mineralPriceFactor = mineralPriceFactor;
-          this->gasPriceBase       = gasPriceBase;
-          this->gasPriceFactor     = gasPriceFactor;
-          this->upgradeTimeBase    = upgradeTimeBase;
-          this->upgradeTimeFactor  = upgradeTimeFactor;
-          this->whatUpgrades       = whatUpgrades;
-          this->race               = race;
-          if (whatUses != UnitTypes::None)
-            this->whatUses.insert(whatUses);
+        this->name               = name;
+        this->mineralPriceBase   = mineralPriceBase;
+        this->mineralPriceFactor = mineralPriceFactor;
+        this->gasPriceBase       = gasPriceBase;
+        this->gasPriceFactor     = gasPriceFactor;
+        this->upgradeTimeBase    = upgradeTimeBase;
+        this->upgradeTimeFactor  = upgradeTimeFactor;
+        this->whatUpgrades       = whatUpgrades;
+        this->race               = race;
+        if (whatUses != UnitTypes::None)
+          this->whatUses.insert(whatUses);
 
-          this->maxRepeats = maxRepeats;
-          this->valid      = true;
+        this->maxRepeats = maxRepeats;
+        this->valid      = true;
           
-          this->requirement[0] = reqLv1;
-          this->requirement[1] = reqLv2;
-          this->requirement[2] = reqLv3;
-        }
+        this->requirement[0] = reqLv1;
+        this->requirement[1] = reqLv2;
+        this->requirement[2] = reqLv3;
       }
       std::string name;
       int mineralPriceBase;
@@ -51,67 +47,28 @@ namespace BWAPI
       BWAPI::UnitType whatUpgrades;
       Race race;
       int maxRepeats;
-      std::set<BWAPI::UnitType> whatUses;
+      BWAPI::UnitType::set whatUses;
       BWAPI::UnitType requirement[3];
       bool valid;
   };
   UpgradeTypeInternal upgradeTypeData[63];
   std::map<std::string, UpgradeType> upgradeTypeMap;
-  std::set< UpgradeType > upgradeTypeSet;
   namespace UpgradeTypes
   {
-    const UpgradeType Terran_Infantry_Armor(0);
-    const UpgradeType Terran_Vehicle_Plating(1);
-    const UpgradeType Terran_Ship_Plating(2);
-    const UpgradeType Zerg_Carapace(3);
-    const UpgradeType Zerg_Flyer_Carapace(4);
-    const UpgradeType Protoss_Ground_Armor(5);
-    const UpgradeType Protoss_Air_Armor(6);
-    const UpgradeType Terran_Infantry_Weapons(7);
-    const UpgradeType Terran_Vehicle_Weapons(8);
-    const UpgradeType Terran_Ship_Weapons(9);
-    const UpgradeType Zerg_Melee_Attacks(10);
-    const UpgradeType Zerg_Missile_Attacks(11);
-    const UpgradeType Zerg_Flyer_Attacks(12);
-    const UpgradeType Protoss_Ground_Weapons(13);
-    const UpgradeType Protoss_Air_Weapons(14);
-    const UpgradeType Protoss_Plasma_Shields(15);
-    const UpgradeType U_238_Shells(16);
-    const UpgradeType Ion_Thrusters(17);
-    const UpgradeType Titan_Reactor(19);
-    const UpgradeType Ocular_Implants(20);
-    const UpgradeType Moebius_Reactor(21);
-    const UpgradeType Apollo_Reactor(22);
-    const UpgradeType Colossus_Reactor(23);
-    const UpgradeType Ventral_Sacs(24);
-    const UpgradeType Antennae(25);
-    const UpgradeType Pneumatized_Carapace(26);
-    const UpgradeType Metabolic_Boost(27);
-    const UpgradeType Adrenal_Glands(28);
-    const UpgradeType Muscular_Augments(29);
-    const UpgradeType Grooved_Spines(30);
-    const UpgradeType Gamete_Meiosis(31);
-    const UpgradeType Metasynaptic_Node(32);
-    const UpgradeType Singularity_Charge(33);
-    const UpgradeType Leg_Enhancements(34);
-    const UpgradeType Scarab_Damage(35);
-    const UpgradeType Reaver_Capacity(36);
-    const UpgradeType Gravitic_Drive(37);
-    const UpgradeType Sensor_Array(38);
-    const UpgradeType Gravitic_Boosters(39);
-    const UpgradeType Khaydarin_Amulet(40);
-    const UpgradeType Apial_Sensors(41);
-    const UpgradeType Gravitic_Thrusters(42);
-    const UpgradeType Carrier_Capacity(43);
-    const UpgradeType Khaydarin_Core(44);
-    const UpgradeType Argus_Jewel(47);
-    const UpgradeType Argus_Talisman(49);
-    const UpgradeType Caduceus_Reactor(51);
-    const UpgradeType Chitinous_Plating(52);
-    const UpgradeType Anabolic_Synthesis(53);
-    const UpgradeType Charon_Boosters(54);
-    const UpgradeType None(61);
-    const UpgradeType Unknown(62);
+    static const UpgradeType::set upgradeTypeSet( Terran_Infantry_Armor | Terran_Vehicle_Plating | Terran_Ship_Plating |
+                                                Zerg_Carapace | Zerg_Flyer_Carapace | Protoss_Ground_Armor | Protoss_Air_Armor |
+                                                Terran_Infantry_Weapons | Terran_Vehicle_Weapons | Terran_Ship_Weapons |
+                                                Zerg_Melee_Attacks | Zerg_Missile_Attacks | Zerg_Flyer_Attacks | 
+                                                Protoss_Ground_Weapons | Protoss_Air_Weapons | Protoss_Plasma_Shields | 
+                                                U_238_Shells | Ion_Thrusters | Titan_Reactor | Ocular_Implants | 
+                                                Moebius_Reactor | Apollo_Reactor | Colossus_Reactor | Ventral_Sacs | 
+                                                Antennae | Pneumatized_Carapace | Metabolic_Boost | Adrenal_Glands | 
+                                                Muscular_Augments | Grooved_Spines | Gamete_Meiosis | Metasynaptic_Node | 
+                                                Singularity_Charge | Leg_Enhancements | Scarab_Damage | Reaver_Capacity | 
+                                                Gravitic_Drive | Sensor_Array | Gravitic_Boosters | Khaydarin_Amulet | 
+                                                Apial_Sensors | Gravitic_Thrusters | Carrier_Capacity | Khaydarin_Core | 
+                                                Argus_Jewel | Argus_Talisman | Caduceus_Reactor | Chitinous_Plating | 
+                                                Anabolic_Synthesis | Charon_Boosters | None | Unknown );
 
     void init()
     {
@@ -270,66 +227,12 @@ namespace BWAPI
       upgradeTypeData[Protoss_Plasma_Shields].whatUses.insert(UnitTypes::Protoss_Templar_Archives);
       upgradeTypeData[Protoss_Plasma_Shields].whatUses.insert(UnitTypes::Protoss_Zealot);
 
-      upgradeTypeSet.insert(Terran_Infantry_Armor);
-      upgradeTypeSet.insert(Terran_Vehicle_Plating);
-      upgradeTypeSet.insert(Terran_Ship_Plating);
-      upgradeTypeSet.insert(Zerg_Carapace);
-      upgradeTypeSet.insert(Zerg_Flyer_Carapace);
-      upgradeTypeSet.insert(Protoss_Ground_Armor);
-      upgradeTypeSet.insert(Protoss_Air_Armor);
-      upgradeTypeSet.insert(Terran_Infantry_Weapons);
-      upgradeTypeSet.insert(Terran_Vehicle_Weapons);
-      upgradeTypeSet.insert(Terran_Ship_Weapons);
-      upgradeTypeSet.insert(Zerg_Melee_Attacks);
-      upgradeTypeSet.insert(Zerg_Missile_Attacks);
-      upgradeTypeSet.insert(Zerg_Flyer_Attacks);
-      upgradeTypeSet.insert(Protoss_Ground_Weapons);
-      upgradeTypeSet.insert(Protoss_Air_Weapons);
-      upgradeTypeSet.insert(Protoss_Plasma_Shields);
-      upgradeTypeSet.insert(U_238_Shells);
-      upgradeTypeSet.insert(Ion_Thrusters);
-      upgradeTypeSet.insert(Titan_Reactor);
-      upgradeTypeSet.insert(Ocular_Implants);
-      upgradeTypeSet.insert(Moebius_Reactor);
-      upgradeTypeSet.insert(Apollo_Reactor);
-      upgradeTypeSet.insert(Colossus_Reactor);
-      upgradeTypeSet.insert(Ventral_Sacs);
-      upgradeTypeSet.insert(Antennae);
-      upgradeTypeSet.insert(Pneumatized_Carapace);
-      upgradeTypeSet.insert(Metabolic_Boost);
-      upgradeTypeSet.insert(Adrenal_Glands);
-      upgradeTypeSet.insert(Muscular_Augments);
-      upgradeTypeSet.insert(Grooved_Spines);
-      upgradeTypeSet.insert(Gamete_Meiosis);
-      upgradeTypeSet.insert(Metasynaptic_Node);
-      upgradeTypeSet.insert(Singularity_Charge);
-      upgradeTypeSet.insert(Leg_Enhancements);
-      upgradeTypeSet.insert(Scarab_Damage);
-      upgradeTypeSet.insert(Reaver_Capacity);
-      upgradeTypeSet.insert(Gravitic_Drive);
-      upgradeTypeSet.insert(Sensor_Array);
-      upgradeTypeSet.insert(Gravitic_Boosters);
-      upgradeTypeSet.insert(Khaydarin_Amulet);
-      upgradeTypeSet.insert(Apial_Sensors);
-      upgradeTypeSet.insert(Gravitic_Thrusters);
-      upgradeTypeSet.insert(Carrier_Capacity);
-      upgradeTypeSet.insert(Khaydarin_Core);
-      upgradeTypeSet.insert(Argus_Jewel);
-      upgradeTypeSet.insert(Argus_Talisman);
-      upgradeTypeSet.insert(Caduceus_Reactor);
-      upgradeTypeSet.insert(Chitinous_Plating);
-      upgradeTypeSet.insert(Anabolic_Synthesis);
-      upgradeTypeSet.insert(Charon_Boosters);
-      upgradeTypeSet.insert(None);
-      upgradeTypeSet.insert(Unknown);
-
       foreach(UpgradeType i, upgradeTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
         upgradeTypeMap.insert(std::make_pair(name, i));
       }
-      initializingUpgradeType = false;
     }
   }
   UpgradeType::UpgradeType(int id) : Type( id )
@@ -377,7 +280,7 @@ namespace BWAPI
   {
     return upgradeTypeData[this->getID()].whatUpgrades;
   }
-  const std::set<UnitType>& UpgradeType::whatUses() const
+  const UnitType::set& UpgradeType::whatUses() const
   {
     return upgradeTypeData[this->getID()].whatUses;
   }
@@ -399,7 +302,7 @@ namespace BWAPI
       return UpgradeTypes::Unknown;
     return (*i).second;
   }
-  const std::set<UpgradeType>& UpgradeTypes::allUpgradeTypes()
+  const UpgradeType::set& UpgradeTypes::allUpgradeTypes()
   {
     return upgradeTypeSet;
   }

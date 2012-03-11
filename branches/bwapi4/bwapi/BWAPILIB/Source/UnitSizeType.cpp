@@ -22,8 +22,7 @@ namespace BWAPI
   std::map<std::string, UnitSizeType> unitSizeTypeMap;
   namespace UnitSizeTypes
   {
-    static const UnitSizeType uSizeTypeArr[] = { Independent, Small, Medium, Large, None, Unknown };
-    static const UnitSizeType::set unitSizeTypeSet(uSizeTypeArr, countof(uSizeTypeArr));
+    static const UnitSizeType::set unitSizeTypeSet( Independent | Small | Medium | Large | None | Unknown );
     void init()
     {
       foreach(UnitSizeType i, unitSizeTypeSet)
