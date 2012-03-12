@@ -141,19 +141,12 @@ namespace BWAPI
       int width  = type.tileWidth();
       int height = type.tileHeight();
 
-      int left   = position.x;
-      int top    = position.y;
-      int right  = left + width;
-      int bottom = top + height;
+      // lt = left top, rb = right bottom
+      TilePosition lt = position;
+      TilePosition rb = position + TilePosition(width, height);
 
-      /* Map limit Check */
-      if (left < 0) // left
-        return false;
-      if (top < 0) // top
-        return false;
-      if (right > Broodwar->mapWidth()) // right
-        return false;
-      if (bottom >= Broodwar->mapHeight()) // bottom
+      /* Map limit check */
+      if ( !lt.isValid() || !rb.isValid() )
         return false;
 
       //if the unit is a refinery, we just need to check the set of geysers to see if the position
@@ -173,9 +166,9 @@ namespace BWAPI
       }
 
       /* Tile buildability check */
-      for(int ix = left; ix < right; ++ix)
+      for(int ix = lt.x; ix < rb.x; ++ix)
       {
-        for(int iy = top; iy < bottom; ++iy)
+        for(int iy = lt.y; iy < rb.y; ++iy)
         {
           // Check if tile is buildable and explored
           if ( !Broodwar->isBuildable(ix, iy, true) || ( checkExplored && !Broodwar->isExplored(ix, iy)) )
@@ -184,15 +177,14 @@ namespace BWAPI
       }
 
       // Check if builder is capable of reaching the building site
-      if ( builder && !builder->getType().isFlagBeacon() && !builder->hasPath( (Position)TilePosition(left + width/2, top + height/2) ) )
+      if ( builder && !builder->getType().isFlagBeacon() && !builder->hasPath( Position(lt + TilePosition(width/2, height/2)) ) )
         return false;
 
       /* Ground unit dimension check */
-      int targetX = left * 32 + type.tileWidth()  * 32 / 2;
-      int targetY = top  * 32 + type.tileHeight() * 32 / 2;
-      for(int ix = left; ix < right; ++ix)
+      Position targPos = lt + Position(TilePosition(width,height))/2;
+      for(int ix = lt.x; ix < rb.x; ++ix)
       {
-        for(int iy = top; iy < bottom; ++iy)
+        for(int iy = lt.y; iy < rb.y; ++iy)
         {
           foreach(Unit *u, Broodwar->getUnitsOnTile(ix,iy))
           {
@@ -201,10 +193,10 @@ namespace BWAPI
                  !iterType.isFlyer()    &&
                  !u->isLoaded()         &&
                  u != builder           &&
-                 u->getLeft()    <= targetX + type.dimensionRight()  &&
-                 u->getTop()     <= targetY + type.dimensionDown()   &&
-                 u->getRight()   >= targetX - type.dimensionLeft()   &&
-                 u->getBottom()  >= targetY - type.dimensionUp()  )
+                 u->getLeft()    <= targPos.x + type.dimensionRight()  &&
+                 u->getTop()     <= targPos.y + type.dimensionDown()   &&
+                 u->getRight()   >= targPos.x - type.dimensionLeft()   &&
+                 u->getBottom()  >= targPos.y - type.dimensionUp()  )
             {
               if ( !type.isAddon() )
                 return false;
@@ -219,63 +211,61 @@ namespace BWAPI
       if ( type.getRace() == Races::Zerg )
       { // Creep requirement, or ignore creep if there isn't one
         if ( type.requiresCreep() )
-          for(int ix = left; ix < right; ++ix)
-            for(int iy = top; iy < bottom; ++iy)
+          for(int ix = lt.x; ix < rb.x; ++ix)
+            for(int iy = lt.y; iy < rb.y; ++iy)
               if (!Broodwar->hasCreep(ix, iy))
                 return false;
       }
       else
       { // Can't build on the creep
-        for(int ix = left; ix < right; ++ix)
-          for(int iy = top; iy < bottom; ++iy)
+        for(int ix = lt.x; ix < rb.x; ++ix)
+          for(int iy = lt.y; iy < rb.y; ++iy)
             if (Broodwar->hasCreep(ix, iy))
               return false;
       }
 
       /* Power Check */
-      if ( type.requiresPsi() && !Broodwar->hasPower(left, top, width, height) )
+      if ( type.requiresPsi() && !Broodwar->hasPower(lt, type) )
         return false;
 
       /* Resource Check (CC, Nex, Hatch) */
-      if (type.isResourceDepot())
+      if ( type.isResourceDepot() )
       {
         foreach (BWAPI::Unit* m, Broodwar->getStaticMinerals())
         {
-      TilePosition tp = m->getInitialTilePosition();
-          if (Broodwar->isVisible(tp) ||
-              Broodwar->isVisible(tp.x + 1, tp.y))
-            if (!m->isVisible())
+          TilePosition tp = m->getInitialTilePosition();
+          if ( (Broodwar->isVisible(tp) || Broodwar->isVisible(tp.x + 1, tp.y)) && !m->isVisible() )
               continue; // tile position is visible, but mineral is not => mineral does not exist
-          if (tp.x > left - 5 &&
-              tp.y > top  - 4 &&
-              tp.x < left + 7 &&
-              tp.y < top  + 6)
+          if (tp.x > lt.x - 5 &&
+              tp.y > lt.y - 4 &&
+              tp.x < lt.x + 7 &&
+              tp.y < lt.y + 6)
             return false;
         }
         foreach (BWAPI::Unit* g, Broodwar->getStaticGeysers())
         {
-      TilePosition tp = g->getInitialTilePosition();
-          if (tp.x > left - 7 &&
-              tp.y > top  - 5 &&
-              tp.x < left + 7 &&
-              tp.y < top  + 6)
+          TilePosition tp = g->getInitialTilePosition();
+          if (tp.x > lt.x - 7 &&
+              tp.y > lt.y - 5 &&
+              tp.x < lt.x + 7 &&
+              tp.y < lt.y + 6)
             return false;
         }
       }
       //if the build site passes all these tests, return true.
-      return Broodwar->setLastError(Errors::None);
+      return Broodwar->setLastError();
     }
     //------------------------------------------- CAN MAKE ---------------------------------------------------
     static inline bool canMake(const Unit* builder, UnitType type)
     {
       /* Error checking */
-      Broodwar->setLastError(Errors::None);
+      Broodwar->setLastError();
       if ( !Broodwar->self() )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
       BWAPI::UnitType requiredType = type.whatBuilds().first;
 
-    Player *pSelf = Broodwar->self();
+      Player *pSelf = Broodwar->self();
       if ( builder )
       {
         /* Check if the owner of the unit is you */
@@ -1004,9 +994,9 @@ namespace BWAPI
     {
       // Retrieve the target position if it is so
       Position targPos = targ.getPosition();
-      left  = targPos.x - 1;
-      top    = targPos.y - 1;
-      right  = targPos.x + 1;
+      left    = targPos.x - 1;
+      top     = targPos.y - 1;
+      right   = targPos.x + 1;
       bottom  = targPos.y + 1;
     }
     else
@@ -1018,9 +1008,9 @@ namespace BWAPI
       if ( !pUnit || src == pUnit )
         return 0;
 
-      left  = pUnit->getLeft() - 1;
-      top    = pUnit->getTop() - 1;
-      right  = pUnit->getRight() + 1;
+      left    = pUnit->getLeft() - 1;
+      top     = pUnit->getTop() - 1;
+      right   = pUnit->getRight() + 1;
       bottom  = pUnit->getBottom() + 1;
     }
 

@@ -15,6 +15,7 @@
 #include <Util/Strings.h>
 #include <Util/Foreach.h>
 #include <Util/Gnu.h>
+#include <Util/clamp.h>
 
 #include <BWAPI/ForceImpl.h>
 #include <BWAPI/PlayerImpl.h>
@@ -198,20 +199,16 @@ namespace BWAPI
   //------------------------------------------- SET SCREEN POSITION ------------------------------------------
   void GameImpl::setScreenPosition(int x, int y)
   {
+    this->setLastError();
     if ( !data->hasGUI ) return;
-    rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
-    // Sets the screen's position relative to the map
-    if (x < 0)
-      x = 0;
-    if (y < 0)
-      y = 0;
-    SIZE mapTileSize = { Map::getWidth()*32, Map::getHeight()*32 };
-    if (x > mapTileSize.cx - scrLimit.right)
-      x = mapTileSize.cx - scrLimit.right;
-    if (y > mapTileSize.cy - (scrLimit.bottom + 80))
-      y = mapTileSize.cy - (scrLimit.bottom + 80);
 
-    this->setLastError(Errors::None);
+    rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
+    SIZE mapTileSize = { Map::getWidth()*32, Map::getHeight()*32 };
+
+    // Sets the screen's position relative to the map
+    x = clamp<int>(x, 0, mapTileSize.cx - scrLimit.right);
+    y = clamp<int>(y, 0, mapTileSize.cy - (scrLimit.bottom + 80));
+
     x &= 0xFFFFFFF8;
     y &= 0xFFFFFFF8;
     *BW::BWDATA_MoveToX = x;
@@ -869,11 +866,7 @@ namespace BWAPI
       caps.dwSize = sizeof(CAPS);
       SNetGetProviderCaps(&caps);
 
-      dwCallDelay = caps.dwCallDelay;
-      if ( dwCallDelay > 8 )
-        dwCallDelay = 8;
-      else if ( dwCallDelay < 2 )
-        dwCallDelay = 2;
+      dwCallDelay = clamp<DWORD>(caps.dwCallDelay, 2, 8);
     }
     return (BW::BWDATA_LatencyFrames[*BW::BWDATA_GameSpeed]) * (*BW::BWDATA_Latency + dwCallDelay + 1);
   }
@@ -962,10 +955,7 @@ namespace BWAPI
   //-------------------------------------- SET COMMAND OPTIMIZATION LEVEL ------------------------------------
   void GameImpl::setCommandOptimizationLevel(int level)
   {
-    if ( level < 0 )
-      level = 0;
-    if ( level > 4 )
-      level = 4;
+    level = clamp<int>(level, 0, 4);
     if ( !this->tournamentCheck(Tournament::SetCommandOptimizationLevel, &level) )
       return;
     this->commandOptimizerLevel = level;
@@ -978,6 +968,7 @@ namespace BWAPI
   //------------------------------------------------- GET REGION AT ------------------------------------------
   BWAPI::Region *GameImpl::getRegionAt(int x, int y) const
   {
+    Broodwar->setLastError();
     if ( x < 0 || y < 0 || x >= Broodwar->mapWidth()*32 || y >= Broodwar->mapHeight()*32 )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
