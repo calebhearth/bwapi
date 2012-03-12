@@ -29,6 +29,9 @@ namespace BW
   public:
     void updateGraphicData();
     void drawImage();
+    
+    grpFrame      *getCurrentFrame() const;
+    BW::Position  getPosition() const;
 
     /* 0x00 */ Image        *prev;
     /* 0x04 */ Image        *next;
@@ -62,8 +65,8 @@ namespace BW
     /* 0x17 */ u8           wait;
     /* 0x18 */ u16          frameSet;
     /* 0x1A */ u16          frameIndex;
-    /* 0x1C */ POINTS       mapPosition;
-    /* 0x20 */ POINTS       screenPosition;
+    /* 0x1C */ BW::Position mapPosition;
+    /* 0x20 */ BW::Position screenPosition;
     /* 0x24 */ rect         grpBounds;      // Bounds for GRP frame, only different from normal when part of graphic is out of bounds.
     /* 0x2C */ grpHead      *GRPFile;
     /* 0x30 */ void         *coloringData;
@@ -73,7 +76,7 @@ namespace BW
     /* 0x3C */ Sprite       *spriteOwner;
   };
 
-  CTASSERT( sizeof(Image) == 64 );
+  static_assert( sizeof(Image) == 64, "BW::Image is incorrect.");
 
   namespace Anims
   {

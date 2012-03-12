@@ -279,6 +279,6 @@ namespace BW
   };
 #pragma pack()
 
-  CTASSERT( sizeof(Unit) == 336 );
+  static_assert( sizeof(Unit) == 336, "BW::Unit is incorrect." );
 };
 

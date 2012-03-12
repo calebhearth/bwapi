@@ -40,6 +40,7 @@ namespace BWAPI
   template <class UnitImpl, class PlayerImpl>
   void CommandTemp<UnitImpl, PlayerImpl>::execute(int frame)
   {
+    // Immediately return if latency compensation is disabled or if the command was queued
     if ( !Broodwar->isLatComEnabled() || command.isQueued() ) return;
     UnitImpl* unit   = (UnitImpl*)command.unit;
     UnitImpl* target = (UnitImpl*)command.target;
@@ -50,14 +51,11 @@ namespace BWAPI
     UpgradeType  upgradeType(command.extra);
     TechType     techType(command.extra);
 
+    // Get the player (usually the unit's owner)
     if ( !player )
-    {
-      if ( unit )
-        player = (PlayerImpl*)unit->getPlayer();
-      else
-        player = (PlayerImpl*)Broodwar->self();
-    }
+      player = (PlayerImpl*)(unit ? unit->getPlayer() : Broodwar->self());
 
+    // Latency test
     if (frame > Broodwar->getLatency() &&
         command.type != UnitCommandTypes::Cancel_Construction &&
         command.type != UnitCommandTypes::Cancel_Train_Slot &&
@@ -70,23 +68,45 @@ namespace BWAPI
         command.type != UnitCommandTypes::Morph)
       return;
 
-    if (command.type == UnitCommandTypes::Attack_Move)
+    // Existence test
+    switch ( command.type )
     {
+    case UnitCommandTypes::Enum::Cancel_Construction:
+    case UnitCommandTypes::Enum::Cancel_Research:
+    case UnitCommandTypes::Enum::Cancel_Upgrade:
+      break;
+    default:
       if ( !unit->self->exists )
         return;
-      if ( !unit->getType().canMove() )
+      break;
+    }
+
+    // Move test
+    switch ( command.type )
+    {
+    case UnitCommandTypes::Enum::Follow:
+    case UnitCommandTypes::Enum::Hold_Position:
+    case UnitCommandTypes::Enum::Move:
+    case UnitCommandTypes::Enum::Patrol:
+    case UnitCommandTypes::Enum::Right_Click_Position:
+    case UnitCommandTypes::Enum::Attack_Move:
+      if (!unit->getType().canMove())
         return;
+      break;
+    }
+
+    // Apply command changes
+    if (command.type == UnitCommandTypes::Attack_Move)
+    {
       unit->self->order           = Orders::AttackMove;
       unit->self->targetPositionX = position.x;
       unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
+      unit->self->orderTargetPositionX = position.x;
+      unit->self->orderTargetPositionY = position.y;
     }
     else if (command.type == UnitCommandTypes::Attack_Unit)
     {
       if ( !target || !target->self->exists)
-        return;
-      if (!unit->self->exists)
         return;
       if (!unit->getType().canAttack())
         return;
@@ -95,8 +115,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Build)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::PlaceBuilding;
       unit->self->isConstructing = true;
       unit->self->isIdle         = false;
@@ -104,8 +122,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Build_Addon)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->secondaryOrder = Orders::BuildAddon;
       unit->self->isConstructing = true;
       unit->self->isIdle         = false;
@@ -113,14 +129,10 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Burrow)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Burrowing;
     }
     else if (command.type == UnitCommandTypes::Cancel_Addon)
     {
-      if (!unit->self->exists)
-        return;
       if (savedExtra == -1)
         savedExtra = unit->self->buildType;
       unitType = UnitType(savedExtra);
@@ -177,7 +189,7 @@ namespace BWAPI
         unit->self->isMorphing = false;
         unit->self->isIdle     = true;
 
-    UnitType whatBuilds = unitType.whatBuilds().first;
+        UnitType whatBuilds = unitType.whatBuilds().first;
         if (frame < Broodwar->getLatency())
           player->self->supplyUsed[unitType.getRace()] += whatBuilds.supplyRequired();
 
@@ -256,8 +268,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Cancel_Train)
     {
-      if (!unit->self->exists)
-        return;
       if (savedExtra == -1)
         savedExtra = unit->self->trainingQueue[unit->self->trainingQueueCount - 1];
       if (savedExtra2 == -1)
@@ -282,8 +292,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Cancel_Train_Slot)
     {
-      if (!unit->self->exists)
-        return;
       if (frame > Broodwar->getLatency() + 2)
         return;
       if (savedExtra == -1)
@@ -348,34 +356,16 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Cloak)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Cloak;
       if (frame < Broodwar->getLatency())
-      {
-        if ( unit->self->type == UnitTypes::Terran_Ghost        ||
-             unit->self->type == UnitTypes::Hero_Samir_Duran    ||
-             unit->self->type == UnitTypes::Hero_Alexei_Stukov  ||
-             unit->self->type == UnitTypes::Hero_Sarah_Kerrigan ||
-             unit->self->type == UnitTypes::Hero_Infested_Duran ||
-             unit->self->type == UnitTypes::Hero_Infested_Kerrigan )
-          unit->self->energy -= BWAPI::TechTypes::Personnel_Cloaking.energyUsed();
-        else
-          unit->self->energy -= BWAPI::TechTypes::Cloaking_Field.energyUsed();
-      }
+        unit->self->energy -= unit->getType().cloakingTech().energyUsed();
     }
     else if (command.type == UnitCommandTypes::Decloak)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Decloak;
     }
     else if (command.type == UnitCommandTypes::Follow)
     {
-      if (!unit->self->exists)
-        return;
-      if (!unit->getType().canMove())
-        return;
       unit->self->order    = Orders::Follow;
       unit->self->target   = getUnitID(target);
       unit->self->isIdle   = false;
@@ -383,8 +373,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Gather)
     {
-      if (!unit->self->exists)
-        return;
       if ((frame<=Broodwar->getLatency()   && Broodwar->getLatency()==2) ||
           (frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
       {
@@ -400,8 +388,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Halt_Construction)
     {
-      if (!unit->self->exists)
-        return;
       if (savedExtra == -1)
         savedExtra = unit->self->buildUnit;
       if (frame > Broodwar->getLatency())
@@ -417,32 +403,22 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Hold_Position)
     {
-      if (!unit->self->exists)
-        return;
-      if (!unit->getType().canMove())
-        return;
       unit->self->isMoving = false;
       unit->self->isIdle   = false;
       unit->self->order    = Orders::HoldPosition;
     }
     else if (command.type == UnitCommandTypes::Land)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order  = Orders::BuildingLand;
       unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Lift)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order  = Orders::BuildingLiftOff;
       unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Load)
     {
-      if (!unit->self->exists)
-        return;
       if (unit->getType() == UnitTypes::Terran_Bunker)
       {
         unit->self->order  = Orders::PickupBunker;
@@ -469,8 +445,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Morph)
     {
-      if (!unit->self->exists)
-        return;
       if (frame > Broodwar->getLatency()+1)
         return;
       unit->self->isMorphing     = true;
@@ -513,10 +487,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Move)
     {
-      if (!unit->self->exists) 
-        return;
-      if (!unit->getType().canMove())
-        return;
       unit->self->order                 = Orders::Move;
       unit->self->targetPositionX       = position.x;
       unit->self->targetPositionY       = position.y;
@@ -527,22 +497,16 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Patrol)
     {
-      if (!unit->self->exists) 
-        return;
-      if (!unit->getType().canMove()) 
-        return;
       unit->self->order           = Orders::Patrol;
       unit->self->isIdle          = false;
       unit->self->isMoving        = true;
       unit->self->targetPositionX = position.x;
       unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
+      unit->self->orderTargetPositionX = position.x;
+      unit->self->orderTargetPositionY = position.y;
     }
     else if (command.type == UnitCommandTypes::Repair)
     {
-      if (!unit->self->exists)
-        return;
       if (unit->getType() != UnitTypes::Terran_SCV)
         return;
       unit->self->order  = Orders::Repair;
@@ -551,8 +515,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Research)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order                 = Orders::ResearchTech;
       unit->self->tech                  = techType;
       unit->self->isIdle                = false;
@@ -566,8 +528,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Return_Cargo)
     {
-      if (!unit->self->exists)
-        return;
       if (unit->self->carryResourceType == 0)
         return;
       if ((frame<=Broodwar->getLatency()   && Broodwar->getLatency()==2) ||
@@ -583,26 +543,20 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Right_Click_Position)
     {
-      if (!unit->self->exists)
-        return;
-      if (!unit->getType().canMove())
-        return;
       if ((frame<=Broodwar->getLatency()   && Broodwar->getLatency()==2) ||
           (frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
       {
         unit->self->order           = Orders::Move;
         unit->self->targetPositionX = position.x;
         unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
+        unit->self->orderTargetPositionX = position.x;
+        unit->self->orderTargetPositionY = position.y;
         unit->self->isMoving        = true;
         unit->self->isIdle          = false;
       }
     }
     else if (command.type == UnitCommandTypes::Right_Click_Unit)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->target   = getUnitID(target);
       unit->self->isIdle   = false;
       unit->self->isMoving = true;
@@ -627,17 +581,17 @@ namespace BWAPI
         unit->self->isConstructing   = true;
         target->self->isConstructing = true;
       }
-      else if (unit->getType().canAttack() && target->getPlayer() != unit->getPlayer() && !target->getType().isNeutral())
+      else if ( unit->getType().canAttack() && target->getPlayer() != unit->getPlayer() && !target->getType().isNeutral() )
       {
         unit->self->order = Orders::AttackUnit;
       }
-      else if (unit->getType().canMove())
+      else if ( unit->getType().canMove() )
+      {
         unit->self->order = Orders::Follow;
+      }
     }
     else if (command.type == UnitCommandTypes::Set_Rally_Position)
     {
-      if (!unit->self->exists)
-        return;
       if (!unit->getType().canProduce())
         return;
       unit->self->order          = Orders::RallyPointTile;
@@ -647,8 +601,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Set_Rally_Unit)
     {
-      if (!unit->self->exists)
-        return;
       if (!unit->getType().canProduce())
         return;
       if ( !target || !target->self->exists )
@@ -658,14 +610,10 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Siege)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Sieging;
     }
     else if (command.type == UnitCommandTypes::Stop)
     {
-      if (!unit->self->exists)
-        return;
       if ((frame<=Broodwar->getLatency()   && Broodwar->getLatency()==2) ||
           (frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
       {
@@ -675,8 +623,6 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Train)
     {
-      if (!unit->self->exists)
-        return;
       if (savedExtra == -1)
         savedExtra = unit->self->trainingQueueCount;
       if ((frame < Broodwar->getLatency() && Broodwar->getLatency() == 2) ||
@@ -705,61 +651,49 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Unburrow)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Unburrowing;
     }
     else if (command.type == UnitCommandTypes::Unload)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order  = Orders::Unload;
       unit->self->target = getUnitID(target);
     }
     else if (command.type == UnitCommandTypes::Unload_All)
     {
-      if (!unit->self->exists)
-        return;
       if (unit->getType() == UnitTypes::Terran_Bunker)
       {
         unit->self->order = Orders::Unload;
       }
       else
       {
-        unit->self->order = Orders::MoveUnload;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
+        unit->self->order                 = Orders::MoveUnload;
+        unit->self->targetPositionX       = position.x;
+        unit->self->targetPositionY       = position.y;
+        unit->self->orderTargetPositionX  = position.x;
+        unit->self->orderTargetPositionY  = position.y;
       }
     }
     else if (command.type == UnitCommandTypes::Unload_All_Position)
     {
-      if (!unit->self->exists)
-        return;
       if (unit->getType() == UnitTypes::Terran_Bunker)
       {
         unit->self->order = Orders::Unload;
       }
       else
       {
-        unit->self->order           = Orders::MoveUnload;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
+        unit->self->order                 = Orders::MoveUnload;
+        unit->self->targetPositionX       = position.x;
+        unit->self->targetPositionY       = position.y;
+        unit->self->orderTargetPositionX  = position.x;
+        unit->self->orderTargetPositionY  = position.y;
       }
     }
     else if (command.type == UnitCommandTypes::Unsiege)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order = Orders::Unsieging;
     }
     else if (command.type == UnitCommandTypes::Upgrade)
     {
-      if (!unit->self->exists)
-        return;
       unit->self->order   = Orders::Upgrade;
       unit->self->upgrade = upgradeType;
       unit->self->isIdle  = false;
@@ -774,9 +708,7 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Use_Tech)
     {
-      if (!unit->self->exists)
-        return;
-      if (techType == TechTypes::Stim_Packs)
+      if ( techType == TechTypes::Stim_Packs && unit->self->hitPoints > 10 )
       {
         unit->self->hitPoints -= 10;
         unit->self->stimTimer = 17;
@@ -784,251 +716,24 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Use_Tech_Position)
     {
-      if (!unit->self->exists)
+      if ( !techType.targetsPosition() )
         return;
-      if (techType == TechTypes::Dark_Swarm)
-      {
-        unit->self->order           = Orders::CastDarkSwarm;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Disruption_Web)
-      {
-        unit->self->order           = Orders::CastDisruptionWeb;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::EMP_Shockwave)
-      {
-        unit->self->order           = Orders::CastEMPShockwave;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Ensnare)
-      {
-        unit->self->order           = Orders::CastEnsnare;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Maelstrom)
-      {
-        unit->self->order           = Orders::CastMaelstrom;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Nuclear_Strike)
-      {
-        unit->self->order           = Orders::CastNuclearStrike;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Plague)
-      {
-        unit->self->order           = Orders::CastPlague;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Psionic_Storm)
-      {
-        unit->self->order           = Orders::CastPsionicStorm;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Recall)
-      {
-        unit->self->order           = Orders::CastRecall;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Scanner_Sweep)
-      {
-        unit->self->order           = Orders::CastScannerSweep;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Spider_Mines)
-      {
-        unit->self->order           = Orders::PlaceMine;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
-      else if (techType == TechTypes::Stasis_Field)
-      {
-        unit->self->order           = Orders::CastStasisField;
-        unit->self->targetPositionX = position.x;
-        unit->self->targetPositionY = position.y;
-    unit->self->orderTargetPositionX = position.x;
-    unit->self->orderTargetPositionY = position.y;
-      }
+      unit->self->order                 = techType.getOrder();;
+      unit->self->targetPositionX       = position.x;
+      unit->self->targetPositionY       = position.y;
+      unit->self->orderTargetPositionX  = position.x;
+      unit->self->orderTargetPositionY  = position.y;
     }
     else if (command.type == UnitCommandTypes::Use_Tech_Unit)
     {
-      if (!unit->self->exists)
+      if ( !techType.targetsUnit() )
         return;
-      if (techType == TechTypes::Consume)
-      {
-        unit->self->order                 = Orders::CastConsume;
-        unit->self->orderTarget           = getUnitID(target);
-        unit->self->targetPositionX       = target->getPosition().x;
-        unit->self->targetPositionY       = target->getPosition().y;
-        unit->self->orderTargetPositionX  = target->getPosition().x;
-        unit->self->orderTargetPositionY  = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Defensive_Matrix)
-      {
-        unit->self->order           = Orders::CastDefensiveMatrix;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Feedback)
-      {
-        unit->self->order           = Orders::CastFeedback;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Hallucination)
-      {
-        unit->self->order           = Orders::CastHallucination;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Healing)
-      {
-        unit->self->order           = Orders::HealMove;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Infestation)
-      {
-        unit->self->order           = Orders::CastInfestation;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Irradiate)
-      {
-        unit->self->order           = Orders::CastIrradiate;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Lockdown)
-      {
-        unit->self->order           = Orders::CastLockdown;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Mind_Control)
-      {
-        unit->self->order           = Orders::CastMindControl;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Optical_Flare)
-      {
-        unit->self->order           = Orders::CastOpticalFlare;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Parasite)
-      {
-        unit->self->order           = Orders::CastParasite;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Restoration)
-      {
-        unit->self->order           = Orders::CastRestoration;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Spawn_Broodlings)
-      {
-        unit->self->order           = Orders::CastSpawnBroodlings;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Yamato_Gun)
-      {
-        unit->self->order           = Orders::FireYamatoGun;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Archon_Warp)
-      {
-        unit->self->order           = Orders::ArchonWarp;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
-      else if (techType == TechTypes::Dark_Archon_Meld)
-      {
-        unit->self->order           = Orders::DarkArchonMeld;
-        unit->self->orderTarget     = getUnitID(target);
-        unit->self->targetPositionX = target->getPosition().x;
-        unit->self->targetPositionY = target->getPosition().y;
-    unit->self->orderTargetPositionX = target->getPosition().x;
-    unit->self->orderTargetPositionY = target->getPosition().y;
-      }
+      unit->self->order                 = techType.getOrder();
+      unit->self->orderTarget           = getUnitID(target);
+      unit->self->targetPositionX       = target->getPosition().x;
+      unit->self->targetPositionY       = target->getPosition().y;
+      unit->self->orderTargetPositionX  = target->getPosition().x;
+      unit->self->orderTargetPositionY  = target->getPosition().y;
     }
   }
 

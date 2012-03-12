@@ -65,7 +65,7 @@ namespace BW
     /*0x2C*/u16      localBuffer[10]; // local array of IDs for neighbors
   };
 
-  CTASSERT( sizeof(region) == 64 );
+  static_assert( sizeof(region) == 64, "BW::Region is incorrect." );
 
   /* Contour IDs and values:
      0: BOTTOM: y1, x1, x2

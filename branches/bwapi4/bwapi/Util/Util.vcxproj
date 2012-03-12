@@ -75,6 +75,7 @@
     <ClCompile Include="Source\Util\Strings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Util\clamp.h" />
     <ClInclude Include="Source\Util\Exceptions.h" />
     <ClInclude Include="Source\Util\Foreach.h" />
     <ClInclude Include="Source\Util\Gnu.h" />

@@ -2,52 +2,49 @@
 
 namespace BW
 {
+  /////////////////////////////////////// IMAGE functions
+  grpFrame *Image::getCurrentFrame() const
+  {
+    return &this->GRPFile->frames[this->frameIndex];
+  }
+  BW::Position Image::getPosition() const
+  {
+    return Position(this->horizontalOffset, this->verticalOffset) + this->spriteOwner->position;
+  }
   void Image::updateGraphicData()
   {
     grpHead  *pGrpHead  = this->GRPFile;
-    grpFrame *pGrpFrame = &pGrpHead->frames[this->frameIndex];
+    grpFrame *pGrpFrame = this->getCurrentFrame();
     
-    int mapX = this->horizontalOffset + this->spriteOwner->position.x;
-    if ( this->flags & 2 )
-      mapX += (pGrpHead->width >> 1) - pGrpFrame->right - pGrpFrame->left;
-    else
-      mapX += pGrpFrame->left - (pGrpHead->width >> 1);
-    this->mapPosition.x = (u16)mapX;
+    if ( !(this->flags & 2) ) // Sets the left boundary of the image
+      this->mapPosition.x = this->getPosition().x - pGrpHead->width/2 + pGrpFrame->left;
+    else // Not sure
+      this->mapPosition.x = this->getPosition().x + pGrpHead->width/2 - (pGrpFrame->right + pGrpFrame->left);
 
-    if ( !(this->flags & 4) )
-      this->mapPosition.y = this->spriteOwner->position.y + this->verticalOffset + pGrpFrame->top - (pGrpHead->height >> 1);
-    int grpRight  = pGrpFrame->right;
-    int grpBottom = pGrpFrame->bottom;
-    int screenX   = this->mapPosition.x - (*BW::BWDATA_MoveToX);
-    int screenY   = this->mapPosition.y - (*BW::BWDATA_MoveToY);
+    if ( !(this->flags & 4) ) // Sets the top boundary of the image
+      this->mapPosition.y = this->getPosition().y - pGrpHead->height/2 + pGrpFrame->top;
 
-    int grpLeft = 0;
-    if ( screenX < 0 )
-    {
-      grpRight += screenX;
-      grpLeft  = -screenX;
-      screenX  = 0;
-    }
-    this->screenPosition.x = (s16)screenX;
-    this->grpBounds.left   = (s16)grpLeft;
-    if ( grpRight >= BW::BWDATA_GameScreenBuffer->wid - screenX )
-      grpRight = BW::BWDATA_GameScreenBuffer->wid - screenX;
-    int _bot = grpBottom;
+    rect bounds = { 0, 0, pGrpFrame->right, pGrpFrame->bottom };
+    BW::Position screen(this->mapPosition);
+    screen -= Position((short)*BW::BWDATA_MoveToX, (short)*BW::BWDATA_MoveToY);
     
-    this->grpBounds.right = (s16)grpRight;
-    int grpTop = 0;
-    if ( screenY < 0 )
+    if ( screen.x < 0 )
     {
-      _bot    = screenY + grpBottom;
-      grpTop  = -screenY;
-      screenY = 0;
+      bounds.right  += screen.x;  // screenX is negative
+      bounds.left   += -screen.x;  // -screenX is positive
+      screen.x  = 0;
     }
-    this->grpBounds.top    = (s16)grpTop;
-    this->screenPosition.y = (s16)screenY;
-    if ( _bot < BW::BWDATA_GameScreenBuffer->ht - screenY )
-      this->grpBounds.bottom = (s16)_bot;
-    else
-      this->grpBounds.bottom = (s16)(BW::BWDATA_GameScreenBuffer->ht - screenY);
+    if ( screen.y < 0 )
+    {
+      bounds.bottom += screen.y;   // screenY is negative
+      bounds.top    += -screen.y;  // -screenY is positive
+      screen.y  = 0;
+    }
+    bounds.right  = (s16)std::min<int>(bounds.right,  BW::BWDATA_GameScreenBuffer->wid - screen.x);
+    bounds.bottom = (s16)std::min<int>(bounds.bottom, BW::BWDATA_GameScreenBuffer->ht  - screen.y);
+
+    this->screenPosition = screen;
+    this->grpBounds = bounds;
   }
 
   void Image::drawImage()

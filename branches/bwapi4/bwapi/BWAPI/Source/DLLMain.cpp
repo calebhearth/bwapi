@@ -4,6 +4,7 @@
 
 #include <Util/Gnu.h>
 #include <Util/Foreach.h>
+#include <Util/clamp.h>
 
 #include <BWAPI.h>
 
@@ -31,10 +32,7 @@ void __fastcall QueueGameCommand(void *pBuffer, DWORD dwLength)
   caps.dwSize = sizeof(CAPS);
   SNetGetProviderCaps(&caps);
 
-  DWORD dwMaxBuffer = caps.maxmessagesize;
-  if ( dwMaxBuffer > 512 )
-    dwMaxBuffer = 512;
-
+  DWORD dwMaxBuffer = clamp<DWORD>(caps.maxmessagesize, 0, 512);
   if ( dwLength + *BW::BWDATA_sgdwBytesInCmdQueue <= dwMaxBuffer )
   {
     // Copy data to primary turn buffer
@@ -52,13 +50,8 @@ void __fastcall QueueGameCommand(void *pBuffer, DWORD dwLength)
   {
     int callDelay = 1;
     if ( *BW::BWDATA_NetMode )
-    {
-      callDelay = caps.dwCallDelay;
-      if ( callDelay > 8 )
-        callDelay = 8;
-      else if ( callDelay < 2 )
-        callDelay = 2;
-    }
+      callDelay = clamp<DWORD>(caps.dwCallDelay, 2, 8);
+
     // This statement will probably never be hit, but just in case
     if ( turns >= 16 - callDelay )
       return;

@@ -35,6 +35,6 @@ namespace BW
     /*0x20*/ Image     *overlay;
   };
 
-  CTASSERT( sizeof(Sprite) == 36 );
+  static_assert( sizeof(Sprite) == 36, "BW::Sprite is incorrect." );
 };
 #pragma pack()

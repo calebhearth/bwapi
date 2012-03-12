@@ -48,8 +48,3 @@ typedef struct __rect
 #define MB_ICONINFO MB_ICONASTERISK
 
 #define MemZero(x) memset(&x, 0, sizeof(x))
-
-template <bool> struct _CTASSERT;
-template <> struct _CTASSERT<true> {};
-#define CTASSERT(x) extern const _CTASSERT< (bool)(x) > IUsedToStaticAssert_ThenITookAnArrowInTheKnee
-
