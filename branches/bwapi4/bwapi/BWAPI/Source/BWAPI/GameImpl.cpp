@@ -224,13 +224,13 @@ namespace BWAPI
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
   void GameImpl::pingMinimap(int x, int y)
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     QUEUE_COMMAND(BW::Orders::MinimapPing, x, y);
   }
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
   void GameImpl::pingMinimap(BWAPI::Position p)
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     QUEUE_COMMAND(BW::Orders::MinimapPing, p);
   }
   //--------------------------------------------- IS FLAG ENABLED --------------------------------------------
@@ -251,9 +251,9 @@ namespace BWAPI
   void  GameImpl::enableFlag(int flag)
   {
     // Enable the specified flag
+    this->setLastError();
 
-    // Error checking 
-    this->setLastError(Errors::None);
+    // Don't allow flag changes after frame 0
     if ( this->frameCount > 0 )
     {
       this->setLastError(Errors::Access_Denied);
@@ -571,7 +571,7 @@ namespace BWAPI
   //---------------------------------------------- CHANGE RACE -----------------------------------------------
   void GameImpl::changeRace(BWAPI::Race race)
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::ChangeRace, &race) )
       return;
     this->_changeRace(this->BWAPIPlayer->getIndex(),race);
@@ -579,38 +579,38 @@ namespace BWAPI
   //------------------------------------------------ IS IN GAME ----------------------------------------------
   bool GameImpl::isInGame()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     return inGame;
   }
   //-------------------------------------------- IS SINGLE PLAYER --------------------------------------------
   bool GameImpl::isMultiplayer()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     return *BW::BWDATA_NetMode != 0 && *BW::BWDATA_NetMode != -1;
   }
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
   bool GameImpl::isBattleNet()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     return *BW::BWDATA_NetMode == 'BNET';
   }
   //----------------------------------------------- IS PAUSED ------------------------------------------------
   bool GameImpl::isPaused()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     return *BW::BWDATA_isGamePaused != 0;
   }
   //----------------------------------------------- IN REPLAY ------------------------------------------------
   bool  GameImpl::isReplay()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     return *BW::BWDATA_InReplay != 0;
   }
   //----------------------------------------------- START GAME -----------------------------------------------
   void GameImpl::startGame()
   {
     // Starts the game as a lobby host 
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::StartGame) )
       return;
     QUEUE_COMMAND(BW::Orders::StartGame);
@@ -619,7 +619,7 @@ namespace BWAPI
   void GameImpl::pauseGame()
   {
     // Pauses the game 
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::PauseGame) )
       return;
     QUEUE_COMMAND(BW::Orders::PauseGame);
@@ -628,7 +628,7 @@ namespace BWAPI
   void GameImpl::resumeGame()
   {
     // Resumes the game 
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::ResumeGame) )
       return;
     QUEUE_COMMAND(BW::Orders::ResumeGame);
@@ -637,7 +637,7 @@ namespace BWAPI
   void GameImpl::leaveGame()
   {
     // Leaves the current game. Moves directly to the post-game score screen 
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::LeaveGame) )
       return;
     *BW::BWDATA_GameState      = 0;
@@ -654,7 +654,7 @@ namespace BWAPI
       return;
     }
 
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->tournamentCheck(Tournament::RestartGame) )
       return;
     QUEUE_COMMAND(BW::Orders::RestartGame);
@@ -676,7 +676,7 @@ namespace BWAPI
     else
       alliance &= ~(3 << ( ((PlayerImpl*)player)->getIndex()*2) );
     QUEUE_COMMAND(BW::Orders::SetAllies, alliance);
-    return this->setLastError(Errors::None);
+    return this->setLastError();
   }
   //----------------------------------------------- SET VISION -----------------------------------------------
   bool GameImpl::setVision(BWAPI::Player *player, bool enabled)
@@ -691,7 +691,7 @@ namespace BWAPI
     else
       vision &= ~(1 <<  ((PlayerImpl*)player)->getIndex() );
     QUEUE_COMMAND(BW::Orders::SetVision, vision);
-    return this->setLastError(Errors::None);
+    return this->setLastError();
   }
   //--------------------------------------------------- GAME SPEED -------------------------------------------
   void  GameImpl::setLocalSpeed(int speed)
@@ -806,7 +806,7 @@ namespace BWAPI
   //------------------------------------------ GET SELECTED UNITS --------------------------------------------
   const Unitset& GameImpl::getSelectedUnits()
   {
-    this->setLastError(Errors::None);
+    this->setLastError();
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
     {
       this->setLastError(Errors::Access_Denied);
@@ -818,42 +818,42 @@ namespace BWAPI
   Player*  GameImpl::self()
   {
     // Retrieves the object for the current player 
-    this->setLastError(Errors::None);
+    this->setLastError();
     return (Player*)this->BWAPIPlayer;
   }
   //----------------------------------------------------- ENEMY ----------------------------------------------
   Player *GameImpl::enemy()
   {
     // Retrieves the object for the first opponent player 
-    this->setLastError(Errors::None);
+    this->setLastError();
     return (Player*)this->enemyPlayer;
   }
   //----------------------------------------------------- NEUTRAL --------------------------------------------
   Player *GameImpl::neutral()
   {
     // Retrieves the object for the neutral player 
-    this->setLastError(Errors::None);
+    this->setLastError();
     return (Player*)players[11];
   }
   //----------------------------------------------------- ALLIES ---------------------------------------------
   Playerset& GameImpl::allies()
   {
     // Returns a set of all the ally players that have not left or been defeated. Does not include self. 
-    this->setLastError(Errors::None);
+    this->setLastError();
     return _allies;
   }
   //----------------------------------------------------- ENEMIES --------------------------------------------
   Playerset& GameImpl::enemies()
   {
     // Returns a set of all the enemy players that have not left or been defeated. */
-    this->setLastError(Errors::None);
+    this->setLastError();
     return _enemies;
   }
   //---------------------------------------------------- OBSERVERS -------------------------------------------
   Playerset& GameImpl::observers()
   {
     // Returns a set of all the enemy players that have not left or been defeated. 
-    this->setLastError(Errors::None);
+    this->setLastError();
     return _observers;
   }
   //--------------------------------------------------- LATENCY ----------------------------------------------
@@ -998,14 +998,14 @@ namespace BWAPI
     else
       vision &= ~(1 <<  ((PlayerImpl*)player)->getIndex() );
     *BW::BWDATA_ReplayVision = vision;
-    return this->setLastError(Errors::None);
+    return this->setLastError();
   }
   bool GameImpl::setRevealAll(bool reveal)
   {
     if ( !isReplay() )
       return this->setLastError(Errors::Invalid_Parameter);
     *BW::BWDATA_ReplayRevealAll = reveal ? 1 : 0;
-    return this->setLastError(Errors::None);
+    return this->setLastError();
   }
 };
 

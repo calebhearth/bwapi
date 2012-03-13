@@ -424,19 +424,12 @@ namespace BWAPI
         unit->self->order  = Orders::PickupBunker;
         unit->self->target = getUnitID(target);
       }
-      else if (unit->getType() == UnitTypes::Terran_Dropship
-            || unit->getType() == UnitTypes::Protoss_Shuttle
-            || unit->getType() == UnitTypes::Zerg_Overlord
-            || unit->getType() == UnitTypes::Hero_Yggdrasill)
+      else if ( unit->getType().spaceProvided() )
       {
         unit->self->order  = Orders::PickupTransport;
         unit->self->target = getUnitID(target);
       }
-      else if (target->getType() == UnitTypes::Terran_Bunker
-            || target->getType() == UnitTypes::Terran_Dropship
-            || target->getType() == UnitTypes::Protoss_Shuttle
-            || target->getType() == UnitTypes::Zerg_Overlord
-            || target->getType() == UnitTypes::Hero_Yggdrasill)
+      else if ( target->getType().spaceProvided() )
       {
         unit->self->order  = Orders::EnterTransport;
         unit->self->target = getUnitID(target);

@@ -100,7 +100,7 @@ namespace BWAPI
   //--------------------------------------------- GET RACE ---------------------------------------------------
   BWAPI::Race PlayerImpl::getRace() const
   {
-    BroodwarImpl.setLastError(Errors::None);
+    BroodwarImpl.setLastError();
     Race rlast = BroodwarImpl.lastKnownRaceBeforeStart[this->index];
     if (  rlast != Races::Zerg    &&
           rlast != Races::Terran  &&
@@ -147,7 +147,7 @@ namespace BWAPI
   TilePosition PlayerImpl::getStartLocation() const
   {
     // Clear last error
-    BroodwarImpl.setLastError(Errors::None);
+    BroodwarImpl.setLastError();
 
     // Return None if there is no start location
     if ( BW::BWDATA_startPositions[index] == BW::Position(0,0) )

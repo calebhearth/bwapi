@@ -159,7 +159,7 @@ namespace BWAPI
           {
             if (g->isVisible() && g->getType() != UnitTypes::Resource_Vespene_Geyser)
               return false;
-            return Broodwar->setLastError(Errors::None);
+            return Broodwar->setLastError();
           }
         }
         return false;
@@ -379,7 +379,7 @@ namespace BWAPI
     static inline bool canResearch(const Unit* unit, TechType type)
     {
       /* Error checking */
-      Broodwar->setLastError(Errors::None);
+      Broodwar->setLastError();
       if ( !Broodwar->self() )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
@@ -411,7 +411,7 @@ namespace BWAPI
     //------------------------------------------- CAN UPGRADE ------------------------------------------------
     static inline bool canUpgrade(const Unit* unit, UpgradeType type)
     {
-      Broodwar->setLastError(Errors::None);
+      Broodwar->setLastError();
       Player *self = Broodwar->self();
       if ( !self )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
@@ -509,7 +509,7 @@ namespace BWAPI
       }
 
       // Basic header
-      Broodwar->setLastError(Errors::None);
+      Broodwar->setLastError();
       if (thisUnit->getPlayer() != Broodwar->self())
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 

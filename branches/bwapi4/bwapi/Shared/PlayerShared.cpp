@@ -1,4 +1,5 @@
 #include "PlayerImpl.h"
+#include <Util/clamp.h>
 
 namespace BWAPI
 {
@@ -76,7 +77,7 @@ namespace BWAPI
   int PlayerImpl::supplyUsed(Race race) const
   {
     if ( race == Races::None )  // Get current race's supply if None is specified
-      race = getRace();
+      race = this->getRace();
 
     if ( race < 0 || race >= 3 )  // bounds checking
       return 0;
@@ -85,44 +86,32 @@ namespace BWAPI
   //--------------------------------------------- ALL UNIT COUNT ---------------------------------------------
   int PlayerImpl::allUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->allUnitCount[unit];
+    return unit.isValid() ? self->allUnitCount[unit] : 0;
   }
   //--------------------------------------------- VISIBLE UNIT COUNT -----------------------------------------
   int PlayerImpl::visibleUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->visibleUnitCount[unit];
+    return unit.isValid() ? self->visibleUnitCount[unit] : 0;
   }
   //--------------------------------------------- COMPLETED UNIT COUNT ---------------------------------------
   int PlayerImpl::completedUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->completedUnitCount[unit];
+    return unit.isValid() ? self->completedUnitCount[unit] : 0;
   }
   //--------------------------------------------- INCOMPLETE UNIT COUNT --------------------------------------
   int PlayerImpl::incompleteUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->allUnitCount[unit] - self->completedUnitCount[unit];
+    return unit.isValid() ? self->allUnitCount[unit] - self->completedUnitCount[unit] : 0;
   }
   //--------------------------------------------- DEAD UNIT COUNT --------------------------------------------
   int PlayerImpl::deadUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->deadUnitCount[unit];
+    return unit.isValid() ? self->deadUnitCount[unit] : 0;
   }
   //--------------------------------------------- KILLED UNIT COUNT ------------------------------------------
   int PlayerImpl::killedUnitCount(UnitType unit) const
   {
-    if ( unit < 0 || unit >= UnitTypes::Enum::MAX )  // bounds checking
-      return 0;
-    return self->killedUnitCount[unit];
+    return unit.isValid() ? self->killedUnitCount[unit] : 0;
   }
   //--------------------------------------------------- SCORE ------------------------------------------------
   int PlayerImpl::getUnitScore() const
@@ -148,30 +137,22 @@ namespace BWAPI
   //--------------------------------------------- GET UPGRADE LEVEL ------------------------------------------
   int PlayerImpl::getUpgradeLevel(UpgradeType upgrade) const
   {
-    if ( upgrade < 0 || upgrade >= 63 )
-      return 0;
-    return self->upgradeLevel[upgrade];
+    return upgrade.isValid() ? self->upgradeLevel[upgrade] : 0;
   }
   //--------------------------------------------- HAS RESEARCHED ---------------------------------------------
   bool PlayerImpl::hasResearched(TechType tech) const
   {
-    if ( tech < 0 || tech >= 47 )
-      return false;
-    return self->hasResearched[tech];
+    return tech.isValid() ? self->hasResearched[tech] : false;
   }
   //--------------------------------------------- IS RESEARCHING ---------------------------------------------
   bool PlayerImpl::isResearching(TechType tech) const
   {
-    if ( tech < 0 || tech >= 47 )
-      return false;
-    return self->isResearching[tech];
+    return tech.isValid() ? self->isResearching[tech] : false;
   }
   //--------------------------------------------- IS UPGRADING -----------------------------------------------
   bool PlayerImpl::isUpgrading(UpgradeType upgrade) const
   {
-    if ( upgrade < 0 || upgrade >= 63 )
-      return false;
-    return self->isUpgrading[upgrade];
+    return upgrade.isValid() ? self->isUpgrading[upgrade] : false;
   }
   //--------------------------------------------- MAX ENERGY -------------------------------------------------
   int PlayerImpl::maxEnergy(UnitType unit) const
@@ -249,8 +230,7 @@ namespace BWAPI
       // Divide cooldown by 2
       cooldown /= 2;
       // Prevent cooldown from going out of bounds
-      if (cooldown >= 250) cooldown = 250;
-      if (cooldown <= 5) cooldown = 5;
+      cooldown = clamp<int>(cooldown, 5, 250);
     }
     return cooldown;
   }
@@ -282,21 +262,15 @@ namespace BWAPI
   //------------------------------------------------ AVAILABILITY --------------------------------------------
   int PlayerImpl::getMaxUpgradeLevel(UpgradeType upgrade) const
   {
-    if ( upgrade >= UpgradeTypes::None )
-      return 0;
-    return self->maxUpgradeLevel[upgrade];
+    return upgrade.isValid() ? self->maxUpgradeLevel[upgrade] : 0;
   }
   bool PlayerImpl::isResearchAvailable(TechType tech) const
   {
-    if ( tech >= TechTypes::None )
-      return false;
-    return self->isResearchAvailable[tech];
+    return tech.isValid() ? self->isResearchAvailable[tech] : false;
   }
   bool PlayerImpl::isUnitAvailable(UnitType unit) const
   {
-    if ( unit >= UnitTypes::None )
-      return false;
-    return self->isUnitAvailable[unit];
+    return unit.isValid() ? self->isUnitAvailable[unit] : false;
   }
   //--------------------------------------------- LEFT GAME --------------------------------------------------
   bool PlayerImpl::leftGame() const

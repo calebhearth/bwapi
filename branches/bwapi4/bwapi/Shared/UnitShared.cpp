@@ -152,7 +152,7 @@ namespace BWAPI
   //--------------------------------------------- HAS PATH ---------------------------------------------------
   bool UnitImpl::hasPath(PositionOrUnit target) const
   {
-    Broodwar->setLastError(Errors::None);
+    Broodwar->setLastError();
     // Return error if the position is invalid
     if ( !target.getPosition() )
       return Broodwar->setLastError(Errors::Invalid_Parameter);

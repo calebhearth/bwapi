@@ -4,6 +4,7 @@
 #include <windows.h>
 #include "../Graphics.h"
 #include <cassert>
+#include <Util/clamp.h>
 
 #include "../../../Debug.h"
 
@@ -143,13 +144,10 @@ namespace BWAPI
   //-------------------------------------------------- DRAW TEXT ---------------------------------------------
   void GameImpl::setTextSize(int size)
   {
-    if ( size < 0 )
-      size = 0;
-    if ( size > 3 )
-      size = 3;
+    size = clamp<int>(size, 0, 3);
     if ( !this->tournamentCheck(Tournament::SetTextSize, &size) )
       return;
-    textSize = size;
+    this->textSize = size;
   }
   void GameImpl::drawText(int ctype, int x, int y, const char *format, ...)
   {

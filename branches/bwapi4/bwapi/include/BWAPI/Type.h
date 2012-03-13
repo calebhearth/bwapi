@@ -80,5 +80,6 @@ namespace BWAPI
     
     // Members
     int getID() const { return _id; };
+    bool isValid() const { return this->_id >= 0 && this->_id <= __unk; };
   };
 }

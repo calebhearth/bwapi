@@ -6,6 +6,7 @@
 
 #include <BW/MenuPosition.h>
 #include <BW/PlayerType.h>
+#include <Util/clamp.h>
 
 #include "../../../Debug.h"
 
@@ -87,9 +88,7 @@ namespace BWAPI
         autoMenuEnemyRace[i] = autoMenuEnemyRace[0];
     }
 
-    autoMenuEnemyCount = LoadConfigInt("auto_menu", "enemy_count", 1);
-    if ( autoMenuEnemyCount > 7 )
-      autoMenuEnemyCount = 7;
+    autoMenuEnemyCount = clamp<int>(LoadConfigInt("auto_menu", "enemy_count", 1), 0, 7);
     autoMenuGameType    = LoadConfigString("auto_menu", "game_type", "MELEE");
     autoMenuSaveReplay  = LoadConfigString("auto_menu", "save_replay");
 
@@ -152,25 +151,7 @@ namespace BWAPI
 
     // Get races so we can catch random
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
-    {
-      Race r = Races::None;
-      int _r = _getLobbyRace(i);
-      switch ( _r )
-      {
-      case BW::Race::Zerg:
-      case BW::Race::Terran:
-      case BW::Race::Protoss:
-        r = Race(_r);
-        break;
-      case BW::Race::Random:
-        r = Races::Random;
-        break;
-      default:
-        r = Races::Unknown;
-        break;
-      }
-      lastKnownRaceBeforeStart[i] = r;
-    }
+      lastKnownRaceBeforeStart[i] = Race(_getLobbyRace(i));
 
     events.push_back(Event::MenuFrame());
     this->server.update();

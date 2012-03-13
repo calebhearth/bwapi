@@ -1061,11 +1061,11 @@ namespace BWAPI
       return setLastError(Errors::File_Not_Found);
 
     addCommand( BWAPIC::Command(BWAPIC::CommandType::SetMap, addString(mapFileName)) );
-    return setLastError(Errors::None);
+    return setLastError();
   }
   bool GameImpl::hasPath(Position source, Position destination) const
   {
-    Broodwar->setLastError(Errors::None);
+    Broodwar->setLastError();
     if ( !source.isValid() || !destination.isValid() )
       return Broodwar->setLastError(Errors::Unreachable_Location);
 

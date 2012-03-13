@@ -35,10 +35,10 @@ namespace BWAPI
     int deadUnitCount[UnitTypes::Enum::MAX];
     int killedUnitCount[UnitTypes::Enum::MAX];
 
-    int  upgradeLevel[63];
-    bool hasResearched[47];
-    bool isResearching[47];
-    bool isUpgrading[63];
+    int  upgradeLevel[UpgradeTypes::Enum::MAX];
+    bool hasResearched[TechTypes::Enum::MAX];
+    bool isResearching[TechTypes::Enum::MAX];
+    bool isUpgrading[UpgradeTypes::Enum::MAX];
 
     int colorByte;
     int color;
@@ -49,8 +49,8 @@ namespace BWAPI
     int totalRazingScore;
     int customScore;
 
-    int   maxUpgradeLevel[61];
-    bool  isResearchAvailable[44];
-    bool  isUnitAvailable[228];
+    int   maxUpgradeLevel[UpgradeTypes::Enum::MAX];
+    bool  isResearchAvailable[TechTypes::Enum::MAX];
+    bool  isUnitAvailable[UnitTypes::Enum::MAX];
   };
 }
