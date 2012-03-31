@@ -34,78 +34,68 @@ namespace BWAPI
   class GameImpl : public Game
   {
     public :
-      virtual Forceset&  getForces();
-      virtual Playerset&  getPlayers();
-      virtual Unitset&  getAllUnits();
-      virtual Unitset&  getMinerals();
-      virtual Unitset&  getGeysers();
-      virtual Unitset&  getNeutralUnits();
+      virtual const Forceset&   getForces() const;
+      virtual const Playerset&  getPlayers() const;
+      virtual const Unitset&    getAllUnits() const;
+      virtual const Unitset&    getMinerals() const;
+      virtual const Unitset&    getGeysers() const;
+      virtual const Unitset&    getNeutralUnits() const;
  
-      virtual Unitset&  getStaticMinerals();
-      virtual Unitset&  getStaticGeysers();
-      virtual Unitset&  getStaticNeutralUnits();
+      virtual const Unitset&  getStaticMinerals() const;
+      virtual const Unitset&  getStaticGeysers() const;
+      virtual const Unitset&  getStaticNeutralUnits() const;
 
-      virtual Bulletset&  getBullets();
-      virtual std::set< Position >& getNukeDots();
-      virtual std::list< Event >&  getEvents();
+      virtual const Bulletset&            getBullets() const;
+      virtual const std::set< Position >& getNukeDots() const;
+      virtual const std::list< Event >&   getEvents() const;
 
-      virtual Force    *getForce(int forceID);
-      virtual Player    *getPlayer(int playerID);
-      virtual Unit    *getUnit(int unitID);
-      virtual Unit    *indexToUnit(int unitIndex);
-      virtual Region    *getRegion(int regionID);
+      virtual Force     *getForce(int forceID) const;
+      virtual Player    *getPlayer(int playerID) const;
+      virtual Unit      *getUnit(int unitID) const;
+      virtual Unit      *indexToUnit(int unitIndex) const;
+      virtual Region    *getRegion(int regionID) const;
 
-      virtual GameType  getGameType();
+      virtual GameType  getGameType() const;
 
-      virtual int      getLatency();
-      virtual int      getFrameCount();
-      virtual int      getReplayFrameCount();
-      virtual int      getFPS();
-      virtual double    getAverageFPS();
+      virtual int       getLatency() const;
+      virtual int       getFrameCount() const;
+      virtual int       getReplayFrameCount() const;
+      virtual int       getFPS() const;
+      virtual double    getAverageFPS() const;
 
-      virtual Position  getMousePosition();
-      virtual bool    getMouseState(MouseButton button);
-      virtual bool    getMouseState(int button);
-      virtual bool    getKeyState(Key key);
-      bool        getKeyState(int key);
+      virtual Position  getMousePosition() const;
+      virtual bool      getMouseState(MouseButton button) const;
+      virtual bool      getMouseState(int button) const;
+      virtual bool      getKeyState(Key key) const;
+      bool              getKeyState(int key) const;
 
-      virtual Position  getScreenPosition();
-      virtual void    setScreenPosition(int x, int y);
-      virtual void    setScreenPosition(BWAPI::Position p);
+      virtual Position  getScreenPosition() const;
+      virtual void      setScreenPosition(int x, int y);
+      virtual void      pingMinimap(int x, int y);
 
-      virtual void    pingMinimap(int x, int y);
-      virtual void    pingMinimap(BWAPI::Position p);
-
-      virtual bool    isFlagEnabled(int flag);
+      virtual bool    isFlagEnabled(int flag) const;
       virtual void    enableFlag(int flag);
 
       virtual Unitset& getUnitsOnTile(int x, int y);
       virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-      virtual Unitset& getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const;
       virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
 
-      virtual Error    getLastError() const;
+      virtual Error   getLastError() const;
       virtual bool    setLastError(BWAPI::Error e = Errors::None);
 
-      virtual int      mapWidth();
-      virtual int      mapHeight();
-      virtual std::string mapFileName();
-      virtual std::string mapPathName();
-      virtual std::string mapName();
-      virtual std::string mapHash();
+      virtual int         mapWidth() const;
+      virtual int         mapHeight() const;
+      virtual std::string mapFileName() const;
+      virtual std::string mapPathName() const;
+      virtual std::string mapName() const;
+      virtual std::string mapHash() const;
 
-      virtual bool  isWalkable(int x, int y);
-      virtual bool  isWalkable(WalkPosition position);
-      virtual int    getGroundHeight(int x, int y);
-      virtual int    getGroundHeight(TilePosition position);
-      virtual bool  isBuildable(int x, int y, bool includeBuildings = false);
-      virtual bool  isBuildable(TilePosition position, bool includeBuildings = false);
-      virtual bool  isVisible(int x, int y);
-      virtual bool  isVisible(TilePosition position);
-      virtual bool  isExplored(int x, int y);
-      virtual bool  isExplored(TilePosition position);
-      virtual bool  hasCreep(int x, int y);
-      virtual bool  hasCreep(TilePosition position);
+      virtual bool  isWalkable(int x, int y) const;
+      virtual int   getGroundHeight(int x, int y) const;
+      virtual bool  isBuildable(int x, int y, bool includeBuildings = false) const;
+      virtual bool  isVisible(int x, int y) const;
+      virtual bool  isExplored(int x, int y) const;
+      virtual bool  hasCreep(int x, int y) const;
       virtual bool  hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
       virtual bool  hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
       virtual bool  hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
@@ -118,7 +108,7 @@ namespace BWAPI
       virtual bool  canResearch(TechType type, const Unit* unit = NULL);
       virtual bool  canUpgrade(UpgradeType type, const Unit* unit = NULL);
 
-      virtual std::set< TilePosition >& getStartLocations();
+      virtual const std::set< TilePosition >& getStartLocations() const;
 
       /**
        * Prints text in game (only local)
@@ -133,11 +123,11 @@ namespace BWAPI
        * @param race Desired race of the slot (Zerg/Protoss/Terran/Random)
        */
       virtual void changeRace(BWAPI::Race race);
-      virtual bool isInGame();
-      virtual bool isMultiplayer();
-      virtual bool isBattleNet();
-      virtual bool isPaused();
-      virtual bool isReplay();
+      virtual bool isInGame() const;
+      virtual bool isMultiplayer() const;
+      virtual bool isBattleNet() const;
+      virtual bool isPaused() const;
+      virtual bool isReplay() const;
 
       /**
        * Starts the game in the pre-game lobby. Should be used only in the
@@ -224,8 +214,7 @@ namespace BWAPI
       virtual int  countdownTimer() const;
 
       virtual const Regionset &getAllRegions() const;
-      virtual BWAPI::Region *getRegionAt(int x, int y) const;
-      virtual BWAPI::Region *getRegionAt(BWAPI::Position position) const;
+      virtual BWAPI::Region   *getRegionAt(int x, int y) const;
 
       virtual int getLastEventTime() const;
 
@@ -265,7 +254,7 @@ namespace BWAPI
       bool enabled;
       bool _isInGame() const;
       bool _isSinglePlayer() const;
-      bool _isBattleNet();
+      bool _isBattleNet() const;
       bool _isReplay() const;
       void _changeRace(int slot, BWAPI::Race race);
       int _getLobbyRace(int slot);

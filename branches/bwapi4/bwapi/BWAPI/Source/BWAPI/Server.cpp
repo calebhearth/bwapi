@@ -668,7 +668,7 @@ namespace BWAPI
     }
     return forceLookup[force];
   }
-  Force* Server::getForce(int id)
+  Force* Server::getForce(int id) const
   {
     if ((int)forceVector.size() <= id || id < 0)
       return NULL;
@@ -685,7 +685,7 @@ namespace BWAPI
     }
     return playerLookup[player];
   }
-  Player* Server::getPlayer(int id)
+  Player* Server::getPlayer(int id) const
   {
     if ((int)playerVector.size() <= id || id < 0)
       return NULL;
@@ -703,7 +703,7 @@ namespace BWAPI
     }
     return unitLookup[unit];
   }
-  Unit* Server::getUnit(int id)
+  Unit* Server::getUnit(int id) const
   {
     if ((int)unitVector.size() <= id || id < 0)
       return NULL;

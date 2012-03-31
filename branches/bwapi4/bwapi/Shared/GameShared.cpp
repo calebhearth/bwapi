@@ -5,72 +5,72 @@
 namespace BWAPI
 {
   //--------------------------------------------- GET MOUSE STATE --------------------------------------------
-  bool GameImpl::getMouseState(MouseButton button)
+  bool GameImpl::getMouseState(MouseButton button) const
   {
     return getMouseState((int)button);
   }
   //---------------------------------------------- GET KEY STATE ---------------------------------------------
-  bool GameImpl::getKeyState(Key key)
+  bool GameImpl::getKeyState(Key key) const
   {
     return getKeyState((int)key);
   }
   //----------------------------------------------- GET FORCES -----------------------------------------------
-  Forceset& GameImpl::getForces()
+  const Forceset& GameImpl::getForces() const
   {
     return forces;
   }
   //----------------------------------------------- GET PLAYERS ----------------------------------------------
-  Playerset& GameImpl::getPlayers()
+  const Playerset& GameImpl::getPlayers() const
   {
     return playerSet;
   }
   //------------------------------------------------- GET UNITS ----------------------------------------------
-  Unitset& GameImpl::getAllUnits()
+  const Unitset& GameImpl::getAllUnits() const
   {
     return accessibleUnits;
   }
   //------------------------------------------------- GET MINERALS -------------------------------------------
-  Unitset& GameImpl::getMinerals()
+  const Unitset& GameImpl::getMinerals() const
   {
     return minerals;
   }
   //------------------------------------------------- GET GEYSERS --------------------------------------------
-  Unitset& GameImpl::getGeysers()
+  const Unitset& GameImpl::getGeysers() const
   {
     return geysers;
   }
   //------------------------------------------------- GET NEUTRAL UNITS --------------------------------------
-  Unitset& GameImpl::getNeutralUnits()
+  const Unitset& GameImpl::getNeutralUnits() const
   {
     return neutralUnits;
   }
   //------------------------------------------------- GET STATIC MINERALS ------------------------------------
-  Unitset& GameImpl::getStaticMinerals()
+  const Unitset& GameImpl::getStaticMinerals() const
   {
     return staticMinerals;
   }
   //------------------------------------------------- GET STATIC GEYSERS -------------------------------------
-  Unitset& GameImpl::getStaticGeysers()
+  const Unitset& GameImpl::getStaticGeysers() const
   {
     return staticGeysers;
   }
   //------------------------------------------------- GET STATIC NEUTRAL UNITS -------------------------------
-  Unitset& GameImpl::getStaticNeutralUnits()
+  const Unitset& GameImpl::getStaticNeutralUnits() const
   {
     return staticNeutralUnits;
   }
   //------------------------------------------------ GET BULLETS ---------------------------------------------
-  Bulletset& GameImpl::getBullets()
+  const Bulletset& GameImpl::getBullets() const
   {
     return bullets;
   }
   //------------------------------------------------ GET NUKE DOTS -------------------------------------------
-  std::set< Position >& GameImpl::getNukeDots()
+  const std::set< Position >& GameImpl::getNukeDots() const
   {
     return nukeDots;
   }
   //------------------------------------------------ GET EVENTS ----------------------------------------------
-  std::list< Event >& GameImpl::getEvents()
+  const std::list< Event >& GameImpl::getEvents() const
   {
     return events;
   }
@@ -86,26 +86,6 @@ namespace BWAPI
     /* implies that an error has occured */
     lastError = e;
     return e == Errors::None;
-  }
-  //--------------------------------------------- IS BUILDABLE -----------------------------------------------
-  bool GameImpl::isBuildable(TilePosition position, bool includeBuildings)
-  {
-    return isBuildable(position.x, position.y, includeBuildings);
-  }
-  //--------------------------------------------- IS VISIBLE -------------------------------------------------
-  bool GameImpl::isVisible(TilePosition position)
-  {
-    return isVisible(position.x,position.y);
-  }
-  //--------------------------------------------- IS EXPLORED ------------------------------------------------
-  bool GameImpl::isExplored(TilePosition position)
-  {
-    return isExplored(position.x,position.y);
-  }
-  //--------------------------------------------- HAS CREEP --------------------------------------------------
-  bool GameImpl::hasCreep(TilePosition position)
-  {
-    return hasCreep(position.x, position.y);
   }
   //--------------------------------------------- HAS POWER --------------------------------------------------
   bool GameImpl::hasPower(int tileX, int tileY, UnitType unitType) const
@@ -151,18 +131,9 @@ namespace BWAPI
     return Templates::canUpgrade(unit,type);
   }
   //--------------------------------------------- GET START LOCATIONS ----------------------------------------
-  std::set< TilePosition >& GameImpl::getStartLocations()
+  const std::set< TilePosition >& GameImpl::getStartLocations() const
   {
     return startLocations;
-  }
-  BWAPI::Region *GameImpl::getRegionAt(BWAPI::Position position) const
-  {
-    if ( !position )
-    {
-      Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
-      return NULL;
-    }
-    return getRegionAt(position.x, position.y);
   }
   //----------------------------------------------- GET ALL REGIONS ------------------------------------------
   const Regionset &GameImpl::getAllRegions() const

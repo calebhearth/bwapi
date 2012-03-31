@@ -135,7 +135,7 @@ namespace BWAPI
     }
   }
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
-  bool GameImpl::_isBattleNet()
+  bool GameImpl::_isBattleNet() const
   {
     return *BW::BWDATA_NetMode == 'BNET';
   }

@@ -53,29 +53,29 @@
 namespace BWAPI
 {
   //----------------------------------------------------------------------------------------------------------
-  Force* GameImpl::getForce(int forceID)
+  Force* GameImpl::getForce(int forceID) const
   {
     return server.getForce(forceID);
   }
   //----------------------------------------------------------------------------------------------------------
-  Region *GameImpl::getRegion(int regionID)
+  Region *GameImpl::getRegion(int regionID) const
   {
     if ( !BW::BWDATA_SAIPathing || regionID < 0 || regionID >= (int)BW::BWDATA_SAIPathing->regionCount )
       return NULL;
     return (Region*)BW::BWDATA_SAIPathing->regions[regionID].unk_28;
   }
   //----------------------------------------------------------------------------------------------------------
-  Player* GameImpl::getPlayer(int playerID)
+  Player* GameImpl::getPlayer(int playerID) const
   {
     return server.getPlayer(playerID);
   }
   //----------------------------------------------------------------------------------------------------------
-  Unit* GameImpl::getUnit(int unitID)
+  Unit* GameImpl::getUnit(int unitID) const
   {
     return server.getUnit(unitID);
   }
   //----------------------------------------------------------------------------------------------------------
-  Unit* GameImpl::indexToUnit(int unitIndex)
+  Unit* GameImpl::indexToUnit(int unitIndex) const
   {
     if ( !this->isFlagEnabled(Flag::CompleteMapInformation) )
       return NULL;
@@ -85,14 +85,14 @@ namespace BWAPI
     return NULL;
   }
   //--------------------------------------------- GET GAME TYPE ----------------------------------------------
-  GameType GameImpl::getGameType()
+  GameType GameImpl::getGameType() const
   {
     if (isReplay())
       return GameTypes::None;
     return GameType(*BW::BWDATA_gameType);
   }
   //---------------------------------------------- GET LATENCY -----------------------------------------------
-  int GameImpl::getLatency()
+  int GameImpl::getLatency() const
   {
     // Returns the real latency values
     if (_isSinglePlayer())
@@ -128,34 +128,34 @@ namespace BWAPI
     }
   }
   //--------------------------------------------- GET FRAME COUNT --------------------------------------------
-  int GameImpl::getFrameCount()
+  int GameImpl::getFrameCount() const
   {
     return this->frameCount;
   }
   //--------------------------------------------- GET REPLAY FRAME COUNT -------------------------------------
-  int GameImpl::getReplayFrameCount()
+  int GameImpl::getReplayFrameCount() const
   {
     return (int)*BW::BWDATA_ReplayFrames;
   }
   //------------------------------------------------ GET FPS -------------------------------------------------
-  int GameImpl::getFPS()
+  int GameImpl::getFPS() const
   {
     return fps;
   }
   //-------------------------------------------- GET Average FPS ---------------------------------------------
-  double GameImpl::getAverageFPS()
+  double GameImpl::getAverageFPS() const
   {
     return averageFPS;
   }
   //------------------------------------------- GET MOUSE POSITION -------------------------------------------
-  BWAPI::Position GameImpl::getMousePosition()
+  BWAPI::Position GameImpl::getMousePosition() const
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return BWAPI::Positions::Unknown;
     return BWAPI::Position(BW::BWDATA_Mouse->x, BW::BWDATA_Mouse->y);
   }
   //--------------------------------------------- GET MOUSE STATE --------------------------------------------
-  bool GameImpl::getMouseState(int button)
+  bool GameImpl::getMouseState(int button) const
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return false;
@@ -179,7 +179,7 @@ namespace BWAPI
     return pressed;
   }
   //---------------------------------------------- GET KEY STATE ---------------------------------------------
-  bool GameImpl::getKeyState(int key)
+  bool GameImpl::getKeyState(int key) const
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return false;
@@ -190,7 +190,7 @@ namespace BWAPI
     return (GetKeyState(key) & 128) > 0;
   }
   //------------------------------------------- GET SCREEN POSITION ------------------------------------------
-  BWAPI::Position GameImpl::getScreenPosition()
+  BWAPI::Position GameImpl::getScreenPosition() const
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return BWAPI::Positions::Unknown;
@@ -216,25 +216,14 @@ namespace BWAPI
     *BW::BWDATA_MoveToTile = Position(x,y);
     BW::BWFXN_UpdateScreenPosition();
   }
-  //------------------------------------------- SET SCREEN POSITION ------------------------------------------
-  void GameImpl::setScreenPosition(BWAPI::Position p)
-  {
-    setScreenPosition(p.x,p.y);
-  }
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
   void GameImpl::pingMinimap(int x, int y)
   {
     this->setLastError();
     QUEUE_COMMAND(BW::Orders::MinimapPing, x, y);
   }
-  //---------------------------------------------- PING MINIMAP ----------------------------------------------
-  void GameImpl::pingMinimap(BWAPI::Position p)
-  {
-    this->setLastError();
-    QUEUE_COMMAND(BW::Orders::MinimapPing, p);
-  }
   //--------------------------------------------- IS FLAG ENABLED --------------------------------------------
-  bool  GameImpl::isFlagEnabled(int flag)
+  bool  GameImpl::isFlagEnabled(int flag) const
   {
     // Check if index is valid
     if ( flag < 0 || flag >= BWAPI::Flag::Max ) 
@@ -340,11 +329,6 @@ namespace BWAPI
     // Return results
     return unitFinderResults;
   }
-  //--------------------------------------------- GET UNITS IN RECTANGLE -------------------------------------
-  Unitset &GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
-  {
-    return getUnitsInRectangle(topLeft.x,topLeft.y,bottomRight.x,bottomRight.y);
-  }
   //--------------------------------------------- GET UNITS IN RADIUS ----------------------------------------
   BWAPI::Position unitsInRadius_compare;
   int             unitsInRadius_radius;
@@ -393,72 +377,62 @@ namespace BWAPI
     return unitFinderResults;
   }
   //----------------------------------------------- MAP WIDTH ------------------------------------------------
-  int GameImpl::mapWidth()
+  int GameImpl::mapWidth() const
   {
     return Map::getWidth();
   }
   //----------------------------------------------- MAP HEIGHT -----------------------------------------------
-  int GameImpl::mapHeight()
+  int GameImpl::mapHeight() const
   {
     return Map::getHeight();
   }
   //---------------------------------------------- MAP FILE NAME ---------------------------------------------
-  std::string GameImpl::mapFileName()
+  std::string GameImpl::mapFileName() const
   {
     return Map::getFileName();
   }
   //---------------------------------------------- MAP PATH NAME ---------------------------------------------
-  std::string GameImpl::mapPathName()
+  std::string GameImpl::mapPathName() const
   {
     return Map::getPathName();
   }
   //------------------------------------------------ MAP NAME ------------------------------------------------
-  std::string GameImpl::mapName()
+  std::string GameImpl::mapName() const
   {
     return Map::getName();
   }
   //----------------------------------------------- GET MAP HASH ---------------------------------------------
-  std::string GameImpl::mapHash()
+  std::string GameImpl::mapHash() const
   {
     return savedMapHash;
   }
   //--------------------------------------------- IS WALKABLE ------------------------------------------------
-  bool GameImpl::isWalkable(int x, int y)
+  bool GameImpl::isWalkable(int x, int y) const
   {
     return map.walkable(x, y);
   }
-  //--------------------------------------------- IS WALKABLE ------------------------------------------------
-  bool GameImpl::isWalkable(WalkPosition pos)
-  {
-    return map.walkable(pos.x, pos.y);
-  }
   //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
-  int GameImpl::getGroundHeight(int x, int y)
+  int GameImpl::getGroundHeight(int x, int y) const
   {
     return map.groundHeight(x, y);
   }
-  //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
-  int GameImpl::getGroundHeight(TilePosition position)
-  {
-    return map.groundHeight(position.x, position.y);
-  }
   //--------------------------------------------- IS BUILDABLE -----------------------------------------------
-  bool GameImpl::isBuildable(int x, int y, bool includeBuildings)
+  bool GameImpl::isBuildable(int x, int y, bool includeBuildings) const
   {
     return map.buildable(x, y) && (includeBuildings ? !map.isOccupied(x, y) : true);
   }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
-  bool GameImpl::isVisible(int x, int y)
+  bool GameImpl::isVisible(int x, int y) const
   {
     return map.visible(x, y);
   }
   //--------------------------------------------- IS EXPLORED ------------------------------------------------
-  bool GameImpl::isExplored(int x, int y)
+  bool GameImpl::isExplored(int x, int y) const
   {
     return map.isExplored(x, y);
   }
   //--------------------------------------------- HAS CREEP --------------------------------------------------
-  bool GameImpl::hasCreep(int x, int y)
+  bool GameImpl::hasCreep(int x, int y) const
   {
     if (!this->isFlagEnabled(Flag::CompleteMapInformation) && !this->isVisible(x, y))
       return false;
@@ -577,33 +551,28 @@ namespace BWAPI
     this->_changeRace(this->BWAPIPlayer->getIndex(),race);
   }
   //------------------------------------------------ IS IN GAME ----------------------------------------------
-  bool GameImpl::isInGame()
+  bool GameImpl::isInGame() const
   {
-    this->setLastError();
     return inGame;
   }
   //-------------------------------------------- IS SINGLE PLAYER --------------------------------------------
-  bool GameImpl::isMultiplayer()
+  bool GameImpl::isMultiplayer() const
   {
-    this->setLastError();
     return *BW::BWDATA_NetMode != 0 && *BW::BWDATA_NetMode != -1;
   }
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
-  bool GameImpl::isBattleNet()
+  bool GameImpl::isBattleNet() const
   {
-    this->setLastError();
     return *BW::BWDATA_NetMode == 'BNET';
   }
   //----------------------------------------------- IS PAUSED ------------------------------------------------
-  bool GameImpl::isPaused()
+  bool GameImpl::isPaused() const
   {
-    this->setLastError();
     return *BW::BWDATA_isGamePaused != 0;
   }
   //----------------------------------------------- IN REPLAY ------------------------------------------------
-  bool  GameImpl::isReplay()
+  bool  GameImpl::isReplay() const
   {
-    this->setLastError();
     return *BW::BWDATA_InReplay != 0;
   }
   //----------------------------------------------- START GAME -----------------------------------------------

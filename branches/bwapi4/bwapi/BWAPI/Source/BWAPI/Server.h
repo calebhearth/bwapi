@@ -18,11 +18,11 @@ namespace BWAPI
     int addEvent(BWAPI::Event e);
     int addString(const char* text);
     int getForceID(Force* force);
-    Force* getForce(int id);
+    Force* getForce(int id) const;
     int getPlayerID(Player* player);
-    Player* getPlayer(int id);
+    Player* getPlayer(int id) const;
     int getUnitID(Unit* unit);
-    Unit* getUnit(int id);
+    Unit* getUnit(int id) const;
     GameData* data;
     void clearAll();
   private:

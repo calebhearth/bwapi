@@ -341,90 +341,90 @@ namespace BWAPI
     }
   }
   //----------------------------------------------- GET FORCE ------------------------------------------------
-  Force* GameImpl::getForce(int forceId)
+  Force* GameImpl::getForce(int forceId) const
   {
     if (forceId < 0 || forceId >= (int)forceVector.size())
       return NULL;
-    return &forceVector[forceId];
+    return (Force*)(&forceVector[forceId]);
   }
-  Region *GameImpl::getRegion(int regionID)
+  Region *GameImpl::getRegion(int regionID) const
   {
     if ( regionID < 0 || regionID >= data->regionCount )
       return NULL;
     return regionArray[regionID];
   }
   //----------------------------------------------- GET PLAYER -----------------------------------------------
-  Player* GameImpl::getPlayer(int playerId)
+  Player* GameImpl::getPlayer(int playerId) const
   {
     if (playerId < 0 || playerId >= (int)playerVector.size())
       return NULL;
-    return &playerVector[playerId];
+    return (Player*)(&playerVector[playerId]);
   }
   //----------------------------------------------- GET UNIT -------------------------------------------------
-  Unit* GameImpl::getUnit(int unitId)
+  Unit* GameImpl::getUnit(int unitId) const
   {
     if (unitId < 0 || unitId >= (int)unitVector.size())
       return NULL;
-    return &unitVector[unitId];
+    return (Unit*)(&unitVector[unitId]);
   }
   //----------------------------------------------- INDEX TO UNIT --------------------------------------------
-  Unit* GameImpl::indexToUnit(int unitIndex)
+  Unit* GameImpl::indexToUnit(int unitIndex) const
   {
     if ( unitIndex < 0 || unitIndex >= 1700 )
       return NULL;
     return getUnit(data->unitArray[unitIndex]);
   }
   //--------------------------------------------- GET GAME TYPE ----------------------------------------------
-  GameType GameImpl::getGameType()
+  GameType GameImpl::getGameType() const
   {
     return GameType(data->gameType);
   }
   //---------------------------------------------- GET LATENCY -----------------------------------------------
-  int GameImpl::getLatency()
+  int GameImpl::getLatency() const
   {
     return data->latency;
   }
   //--------------------------------------------- GET FRAME COUNT --------------------------------------------
-  int GameImpl::getFrameCount()
+  int GameImpl::getFrameCount() const
   {
     return data->frameCount;
   }
   //--------------------------------------------- GET REPLAY FRAME COUNT -------------------------------------
-  int GameImpl::getReplayFrameCount()
+  int GameImpl::getReplayFrameCount() const
   {
     return data->replayFrameCount;
   }
   //------------------------------------------------ GET FPS -------------------------------------------------
-  int GameImpl::getFPS()
+  int GameImpl::getFPS() const
   {
     return data->fps;
   }
   //------------------------------------------------ GET FPS -------------------------------------------------
-  double GameImpl::getAverageFPS()
+  double GameImpl::getAverageFPS() const
   {
     return data->averageFPS;
   }
   //-------------------------------------------- GET MOUSE POSITION ------------------------------------------
-  Position GameImpl::getMousePosition()
+  Position GameImpl::getMousePosition() const
   {
     return Position(data->mouseX,data->mouseY);
   }
   //---------------------------------------------- GET MOUSE STATE -------------------------------------------
-  bool GameImpl::getMouseState(int button)
+  bool GameImpl::getMouseState(int button) const
   {
     if ( button < 0 || button >= M_MAX )
       return false;
     return data->mouseState[button];
   }
   //----------------------------------------------- GET KEY STATE --------------------------------------------
-  bool GameImpl::getKeyState(int key)
+  bool GameImpl::getKeyState(int key) const
   {
     if ( key < 0 || key >= K_MAX )
       return false;
     return data->keyState[key];
   }
   //-------------------------------------------- GET SCREEN POSITION -----------------------------------------
-  Position GameImpl::getScreenPosition()
+  Position GameImpl::getScreenPosition() const
   {
     return Position(data->screenX,data->screenY);
   }
@@ -433,23 +433,13 @@ namespace BWAPI
   {
     addCommand(BWAPIC::Command(BWAPIC::CommandType::SetScreenPosition,x,y));
   }
-  //-------------------------------------------- SET SCREEN POSITION -----------------------------------------
-  void GameImpl::setScreenPosition(Position p)
-  {
-    addCommand(BWAPIC::Command(BWAPIC::CommandType::SetScreenPosition,p.x,p.y));
-  }
   //----------------------------------------------- PING MINIMAP ---------------------------------------------
   void GameImpl::pingMinimap(int x, int y)
   {
     addCommand(BWAPIC::Command(BWAPIC::CommandType::PingMinimap,x,y));
   }
-  //----------------------------------------------- PING MINIMAP ---------------------------------------------
-  void GameImpl::pingMinimap(Position p)
-  {
-    addCommand(BWAPIC::Command(BWAPIC::CommandType::PingMinimap,p.x,p.y));
-  }
   //----------------------------------------------- IS FLAG ENABLED ------------------------------------------
-  bool GameImpl::isFlagEnabled(int flag)
+  bool GameImpl::isFlagEnabled(int flag) const
   {
     if ( flag < 0 || flag >= BWAPI::Flag::Max ) 
       return false;
@@ -504,11 +494,6 @@ namespace BWAPI
     // Return results
     return unitFinderResults;
   }
-  //----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
-  Unitset& GameImpl::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight) const
-  {
-    return getUnitsInRectangle(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
-  }
   //----------------------------------------------- GET UNITS IN RADIUS --------------------------------------
   BWAPI::Position unitsInRadius_compare;
   int             unitsInRadius_radius;
@@ -554,81 +539,72 @@ namespace BWAPI
     return unitFinderResults;
   }
   //----------------------------------------------- MAP WIDTH ------------------------------------------------
-  int GameImpl::mapWidth()
+  int GameImpl::mapWidth() const
   {
     return data->mapWidth;
   }
   //----------------------------------------------- MAP HEIGHT -----------------------------------------------
-  int GameImpl::mapHeight()
+  int GameImpl::mapHeight() const
   {
     return data->mapHeight;
   }
   //---------------------------------------------- MAP FILE NAME ---------------------------------------------
-  std::string GameImpl::mapFileName()
+  std::string GameImpl::mapFileName() const
   {
     return std::string(data->mapFileName);
   }
   //---------------------------------------------- MAP PATH NAME ---------------------------------------------
-  std::string GameImpl::mapPathName()
+  std::string GameImpl::mapPathName() const
   {
     return std::string(data->mapPathName);
   }
   //------------------------------------------------ MAP NAME ------------------------------------------------
-  std::string GameImpl::mapName()
+  std::string GameImpl::mapName() const
   {
     return std::string(data->mapName);
   }
   //----------------------------------------------- GET MAP HASH ---------------------------------------------
-  std::string GameImpl::mapHash()
+  std::string GameImpl::mapHash() const
   {
     return std::string(data->mapHash);
   }
   //--------------------------------------------- IS WALKABLE ------------------------------------------------
-  bool GameImpl::isWalkable(int x, int y)
+  bool GameImpl::isWalkable(int x, int y) const
   {
     if ( x < 0 || y < 0 || x >= data->mapWidth*4 || y >= data->mapHeight*4 )
       return 0;
     return data->isWalkable[x][y];
   }
-  bool GameImpl::isWalkable(WalkPosition pos)
-  {
-    return isWalkable(pos.x, pos.y);
-  }
   //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
-  int GameImpl::getGroundHeight(int x, int y)
+  int GameImpl::getGroundHeight(int x, int y) const
   {
     if ( x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight )
       return 0;
     return data->getGroundHeight[x][y];
   }
-  //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
-  int GameImpl::getGroundHeight(TilePosition position)
-  {
-    return getGroundHeight(position.x,position.y);
-  }
   //--------------------------------------------- IS BUILDABLE -----------------------------------------------
-  bool GameImpl::isBuildable(int x, int y, bool includeBuildings)
+  bool GameImpl::isBuildable(int x, int y, bool includeBuildings) const
   {
     if ( x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight )
       return 0;
     return data->isBuildable[x][y] && ( includeBuildings ? !data->isOccupied[x][y] : true );
   }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
-  bool GameImpl::isVisible(int x, int y)
+  bool GameImpl::isVisible(int x, int y) const
   {
     if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
       return 0;
     return data->isVisible[x][y];
   }
   //--------------------------------------------- IS EXPLORED ------------------------------------------------
-  bool GameImpl::isExplored(int x, int y)
+  bool GameImpl::isExplored(int x, int y) const
   {
     if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
       return 0;
     return data->isExplored[x][y];
   }
   //--------------------------------------------- HAS CREEP --------------------------------------------------
-  bool GameImpl::hasCreep(int x, int y)
+  bool GameImpl::hasCreep(int x, int y) const
   {
     if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
       return 0;
@@ -668,27 +644,27 @@ namespace BWAPI
     addCommand(BWAPIC::Command(BWAPIC::CommandType::ChangeRace));
   }
   //----------------------------------------------- IS IN GAME -----------------------------------------------
-  bool GameImpl::isInGame()
+  bool GameImpl::isInGame() const
   {
     return data->isInGame;
   }
   //--------------------------------------------- IS MULTIPLAYER ---------------------------------------------
-  bool GameImpl::isMultiplayer()
+  bool GameImpl::isMultiplayer() const
   {
     return data->isMultiplayer;
   }  
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
-  bool GameImpl::isBattleNet()
+  bool GameImpl::isBattleNet() const
   {
     return data->isBattleNet;
   }
   //----------------------------------------------- IS PAUSED ------------------------------------------------
-  bool GameImpl::isPaused()
+  bool GameImpl::isPaused() const
   {
     return data->isPaused;
   }
   //----------------------------------------------- IS REPLAY ------------------------------------------------
-  bool GameImpl::isReplay()
+  bool GameImpl::isReplay() const
   {
     return data->isReplay;
   }
@@ -1135,7 +1111,7 @@ namespace BWAPI
   //------------------------------------------------- GET REGION AT ------------------------------------------
   BWAPI::Region *GameImpl::getRegionAt(int x, int y) const
   {
-    if ( x < 0 || y < 0 || x >= Broodwar->mapWidth()*32 || y >= Broodwar->mapHeight()*32 )
+    if ( !Position(x,y) )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
       return NULL;

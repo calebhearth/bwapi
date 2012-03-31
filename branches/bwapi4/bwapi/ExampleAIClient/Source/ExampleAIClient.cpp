@@ -107,7 +107,7 @@ int main(int argc, const char* argv[])
     }
     while(Broodwar->isInGame())
     {
-      for(std::list<Event>::iterator e = Broodwar->getEvents().begin(); e != Broodwar->getEvents().end(); ++e)
+      for(std::list<Event>::const_iterator e = Broodwar->getEvents().begin(); e != Broodwar->getEvents().end(); ++e)
       {
         switch(e->getType())
         {

@@ -66,7 +66,7 @@ namespace BWAPI
         else if ( BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) )
           self->isVisible[i] = true;
         else
-          self->isVisible[i] = BroodwarImpl.isVisible(bwOriginalBullet->sprite->position);
+          self->isVisible[i] = Broodwar->isVisible(bwOriginalBullet->sprite->position);
       }
     }
     else

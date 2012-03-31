@@ -110,6 +110,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\ExplosionType.cpp" />
     <ClCompile Include="Source\Forceset.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GameType.cpp" />
     <ClCompile Include="Source\Order.cpp" />
     <ClCompile Include="Source\Playerset.cpp" />
