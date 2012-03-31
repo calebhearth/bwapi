@@ -290,7 +290,10 @@ namespace BWAPI
         return;
 
       while ( i+1 != iend )
+      {
         *i = i[1];
+        ++i;
+      }
       --this->__last;
     };
 

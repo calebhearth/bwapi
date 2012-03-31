@@ -88,6 +88,7 @@ namespace BWAPI
     ///
     /// @returns Position object representing the unit's current position.
     /// @~
+    /// @see getTilePosition
     virtual Position getPosition() const = 0;
 
     /// @~English
@@ -101,6 +102,7 @@ namespace BWAPI
     ///
     /// @returns TilePosition object representing the unit's current tile position.
     /// @~
+    /// @see getPosition
     virtual TilePosition getTilePosition() const = 0;
 
     /// @~English
@@ -117,6 +119,7 @@ namespace BWAPI
     ///
     /// @returns A double that represents the velocity's x component.
     /// @~
+    /// @see getVelocityY
     virtual double getVelocityX() const = 0;
 
     /// @~English
@@ -124,6 +127,7 @@ namespace BWAPI
     ///
     /// @returns A double that represents the velocity's y component.
     /// @~
+    /// @see getVelocityX
     virtual double getVelocityY() const = 0;
 
     /** Returns the region that this unit is currently in. */
@@ -443,17 +447,17 @@ namespace BWAPI
     virtual bool isConstructing() const = 0;
 
     /** Returns true if the unit has a defense matrix from a Terran Science Vessel. */
-    virtual bool isDefenseMatrixed() const = 0;
+    bool isDefenseMatrixed() const;
 
     /** Returns true if the unit is detected. */
     virtual bool isDetected() const = 0;
 
     /** Returns true if the unit has been ensnared by a Zerg Queen. */
-    virtual bool isEnsnared() const = 0;
+    bool isEnsnared() const;
 
     /** Returns true if the unit is following another unit.
      * \see Unit::follow, Unit::getTarget. */
-    virtual bool isFollowing() const = 0;
+    bool isFollowing() const;
 
     /** Returns true if the unit is in one of the four states for gathering gas (MoveToGas, WaitForGas,
      * HarvestGas, ReturnGas).
@@ -472,7 +476,7 @@ namespace BWAPI
 
     /** Returns true if the unit is holding position
      * \see Unit::holdPosition. */
-    virtual bool isHoldingPosition() const = 0;
+    bool isHoldingPosition() const;
 
     /** Returns true if the unit is not doing anything.
      * \see Unit::stop. */
@@ -489,7 +493,7 @@ namespace BWAPI
 
     /** Returns true if the unit is being irradiated by a Terran Science Vessel.
      * \see Unit::getIrradiateTimer. */
-    virtual bool isIrradiated() const = 0;
+    bool isIrradiated() const;
 
     /** Returns true if the unit is a Terran building that is currently lifted off the ground.
      * \see Unit::lift,Unit::land. */
@@ -498,15 +502,15 @@ namespace BWAPI
     /** Return true if the unit is loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg
      * Overlord.
      * \see Unit::load, Unit::unload, Unit::unloadAll. */
-    virtual bool isLoaded() const = 0;
+    bool isLoaded() const;
 
     /** Returns true if the unit is locked down by a Terran Ghost.
      *  \see Unit::getLockdownTimer. */
-    virtual bool isLockedDown() const = 0;
+    bool isLockedDown() const;
 
     /** Returns true if the unit is being maelstrommed.
      * \see Unit::getMaelstromTimer. */
-    virtual bool isMaelstrommed() const = 0;
+    bool isMaelstrommed() const;
 
     /** Returns true if the unit is a zerg unit that is morphing.
      * \see Unit::morph, Unit::cancelMorph, Unit::getBuildType, Unit::getRemainingBuildTime. */
@@ -521,19 +525,19 @@ namespace BWAPI
 
     /** Returns true if the unit is patrolling between two positions.
      * \see Unit::patrol. */
-    virtual bool isPatrolling() const = 0;
+    bool isPatrolling() const;
 
     /** Returns true if the unit has been plagued by a Zerg Defiler.
      * \see Unit::getPlagueTimer. */
-    virtual bool isPlagued() const = 0;
+    bool isPlagued() const;
 
     /** Returns true if the unit is a Terran SCV that is repairing or moving to repair another unit. */
-    virtual bool isRepairing() const = 0;
+    bool isRepairing() const;
 
     /** Returns true if the unit is a building that is researching tech. See TechTypes for the complete list
      * of available techs in Broodwar.
      * \see Unit::research, Unit::cancelResearch, Unit::getTech, Unit::getRemainingResearchTime. */
-    virtual bool isResearching() const = 0;
+    bool isResearching() const;
 
     /** Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you
      * enable Flag::UserInput during AIModule::onStart.
@@ -542,7 +546,7 @@ namespace BWAPI
 
     /** Returns true if the unit is a Terran Siege Tank that is currently in Siege mode.
      * \see Unit::siege, Unit::unsiege. */
-    virtual bool isSieged() const = 0;
+    bool isSieged() const;
 
     /** Returns true if the unit is starting to attack.
      * \see Unit::attackUnit, Unit::getGroundWeaponCooldown, Unit::getAirWeaponCooldown. */
@@ -550,11 +554,11 @@ namespace BWAPI
 
     /** Returns true if the unit has been stasised by a Protoss Arbiter.
      * \see Unit::getStasisTimer. */
-    virtual bool isStasised() const = 0;
+    bool isStasised() const;
 
     /** Returns true if the unit is currently stimmed.
      * \see Unit::getStimTimer. */
-    virtual bool isStimmed() const = 0;
+    bool isStimmed() const;
 
     /** Returns true if the unit is being pushed off of another unit */
     virtual bool isStuck() const = 0;
@@ -581,7 +585,7 @@ namespace BWAPI
     /** Returns true if the unit is a building that is upgrading. See UpgradeTypes for the complete list
      * of available upgrades in Broodwar.
      * \see Unit::upgrade, Unit::cancelUpgrade, Unit::getUpgrade, Unit::getRemainingUpgradeTime. */
-    virtual bool isUpgrading() const = 0;
+    bool isUpgrading() const;
 
     /** Returns true if the unit is visible. If the CompleteMapInformation?  cheat flag is enabled, existing
      * units hidden by the fog of war will be accessible, but isVisible will still return false.
@@ -595,159 +599,159 @@ namespace BWAPI
     virtual bool issueCommand(UnitCommand command) = 0;
 
     /** Orders the unit to attack move to the specified location. */
-    virtual bool attack(PositionOrUnit target, bool shiftQueueCommand = false) = 0;
+    bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
 
     /** Orders the unit to build the given unit type at the given position. Note that if the player does not
      * have enough resources when the unit attempts to place the building down, the order will fail. The
      * tile position specifies where the top left corner of the building will be placed. */
-    virtual bool build(TilePosition target, UnitType type) = 0;
+    bool build(TilePosition target, UnitType type);
 
     /** Orders the unit to build the given addon. The unit must be a Terran building that can have an addon
      * and the specified unit type must be an addon unit type. */
-    virtual bool buildAddon(UnitType type) = 0;
+    bool buildAddon(UnitType type);
 
     /** Orders this unit to add the specified unit type to the training queue. Note that the player must
      * have sufficient resources to train. If you wish to make units from a hatchery, use getLarva to get
      * the larva associated with the hatchery and then call morph on the larva you want to morph. This
      * command can also be used to make interceptors and scarabs. */
-    virtual bool train(UnitType type) = 0;
+    bool train(UnitType type);
 
     /** Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
      * \see Unit::cancelMorph, Unit::isMorphing. */
-    virtual bool morph(UnitType type) = 0;
+    bool morph(UnitType type);
 
     /** Orders the unit to research the given tech type.
      * \see Unit::cancelResearch, Unit::Unit#isResearching, Unit::getRemainingResearchTime, Unit::getTech. */
-    virtual bool research(TechType tech) = 0;
+    bool research(TechType tech);
 
     /** Orders the unit to upgrade the given upgrade type.
      * \see Unit::cancelUpgrade, Unit::Unit#isUpgrading, Unit::getRemainingUpgradeTime, Unit::getUpgrade. */
-    virtual bool upgrade(UpgradeType upgrade) = 0;
+    bool upgrade(UpgradeType upgrade);
 
     /** Orders the unit to set its rally position to the specified position.
      * \see Unit::getRallyPosition, Unit::getRallyUnit. */
-    virtual bool setRallyPoint(PositionOrUnit target) = 0;
+    bool setRallyPoint(PositionOrUnit target);
 
     /** Orders the unit to move from its current position to the specified position.
      * \see Unit::isMoving.  */
-    virtual bool move(Position target, bool shiftQueueCommand = false) = 0;
+    bool move(Position target, bool shiftQueueCommand = false);
 
     /** Orders the unit to patrol between its current position and the specified position.
      * \see Unit::isPatrolling.  */
-    virtual bool patrol(Position target, bool shiftQueueCommand = false) = 0;
+    bool patrol(Position target, bool shiftQueueCommand = false);
 
     /** Orders the unit to hold its position.*/
-    virtual bool holdPosition(bool shiftQueueCommand = false) = 0;
+    bool holdPosition(bool shiftQueueCommand = false);
 
     /** Orders the unit to stop. */
-    virtual bool stop(bool shiftQueueCommand = false) = 0;
+    bool stop(bool shiftQueueCommand = false);
 
     /** Orders the unit to follow the specified unit.
      * \see Unit::isFollowing. */
-    virtual bool follow(Unit* target, bool shiftQueueCommand = false) = 0;
+    bool follow(Unit* target, bool shiftQueueCommand = false);
 
     /** Orders the unit to gather the specified unit (must be mineral or refinery type).
      * \see Unit::isGatheringGas, Unit::isGatheringMinerals. */
-    virtual bool gather(Unit* target, bool shiftQueueCommand = false) = 0;
+    bool gather(Unit* target, bool shiftQueueCommand = false);
 
     /** Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only
      * workers that are carrying minerals or gas can be ordered to return cargo.
      * \see Unit::isCarryingGas, Unit::isCarryingMinerals. */
-    virtual bool returnCargo(bool shiftQueueCommand = false) = 0;
+    bool returnCargo(bool shiftQueueCommand = false);
 
     /** Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the
      * target must be a mechanical Terran unit or building.
      * \see Unit::isRepairing. */
-    virtual bool repair(Unit* target, bool shiftQueueCommand = false) = 0;
+    bool repair(Unit* target, bool shiftQueueCommand = false);
 
     /** Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground
      * unit and burrow tech must be researched.
      * \see: Unit::unburrow, Unit::isBurrowed. */
-    virtual bool burrow() = 0;
+    bool burrow();
 
     /** Orders the burrowed unit to unburrow.
      * \see: Unit::burrow, Unit::isBurrowed.
      * */
-    virtual bool unburrow() = 0;
+    bool unburrow();
 
     /** Orders the unit to cloak.
      * \see: Unit::decloak, Unit::isCloaked. */
-    virtual bool cloak() = 0;
+    bool cloak();
 
     /** Orders the unit to decloak.
      * \see: Unit::cloak, Unit::isCloaked. */
-    virtual bool decloak() = 0;
+    bool decloak();
 
     /** Orders the unit to siege. Note: unit must be a Terran siege tank.
      * \see Unit::unsiege, Unit::isSieged. */
-    virtual bool siege() = 0;
+    bool siege();
 
     /** Orders the unit to unsiege. Note: unit must be a Terran siege tank.
      * \see: Unit::unsiege, Unit::isSieged. */
-    virtual bool unsiege() = 0;
+    bool unsiege();
 
     /** Orders the unit to lift. Note: unit must be a Terran building that can be lifted.
      * \see Unit::land, Unit::isLifted.  */
-    virtual bool lift() = 0;
+    bool lift();
 
     /** Orders the unit to land. Note: unit must be a Terran building that is currently lifted.
      * \see Unit::lift, Unit::isLifted. */
-    virtual bool land(TilePosition target) = 0;
+    bool land(TilePosition target);
 
     /** Orders the unit to load the target unit.
      * \see Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded. */
-    virtual bool load(Unit* target, bool shiftQueueCommand = false) = 0;
+    bool load(Unit* target, bool shiftQueueCommand = false);
 
     /** Orders the unit to unload the target unit.
      * \see Unit::load, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded. */
-    virtual bool unload(Unit* target) = 0;
+    bool unload(Unit* target);
 
     /** Orders the unit to unload all loaded units at the unit's current position.
      * \see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded. */
-    virtual bool unloadAll(bool shiftQueueCommand = false) = 0;
+    bool unloadAll(bool shiftQueueCommand = false);
 
     /** Orders the unit to unload all loaded units at the specified location. Unit should be a Terran
      * Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be
      * unloaded right outside the bunker, like in the first version of unloadAll.
      * \see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded. */
-    virtual bool unloadAll(Position target, bool shiftQueueCommand = false) = 0;
+    bool unloadAll(Position target, bool shiftQueueCommand = false);
 
     /** Works like the right click in the GUI. */
-    virtual bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false) = 0;
+    bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false);
 
     /** Orders the SCV to stop constructing the building, and the building is left in a partially complete
      * state until it is canceled, destroyed, or completed.
      * \see Unit::isConstructing. */
-    virtual bool haltConstruction() = 0;
+    bool haltConstruction();
 
     /** Orders the building to stop being constructed.
      * \see Unit::beingConstructed. */
-    virtual bool cancelConstruction() = 0;
+    bool cancelConstruction();
 
     /** Orders the unit to stop making the addon. */
-    virtual bool cancelAddon() = 0;
+    bool cancelAddon();
 
     /** Orders the unit to remove the specified unit from its training queue.
      * \see Unit::train, Unit::cancelTrain, Unit::isTraining, Unit::getTrainingQueue. */
-    virtual bool cancelTrain(int slot = -2) = 0;
+    bool cancelTrain(int slot = -2);
 
     /** Orders the unit to stop morphing.
      * \see Unit::morph, Unit::isMorphing. */
-    virtual bool cancelMorph() = 0;
+    bool cancelMorph();
 
     /** Orders the unit to cancel a research in progress.
      * \see Unit::research, Unit::isResearching, Unit::getTech. */
-    virtual bool cancelResearch() = 0;
+    bool cancelResearch();
 
     /** Orders the unit to cancel an upgrade in progress.
      * \see Unit::upgrade, Unit::isUpgrading, Unit::getUpgrade. */
-    virtual bool cancelUpgrade() = 0;
+    bool cancelUpgrade();
     
     /** Orders the unit to use a tech requiring a position target (ie Dark Swarm). Returns true if it is a
      * valid tech.*/
-    virtual bool useTech(TechType tech, PositionOrUnit target = NULL) = 0;
+    bool useTech(TechType tech, PositionOrUnit target = NULL);
 
     /** Moves a Flag Beacon to the target location. */
-    virtual bool placeCOP(TilePosition target) = 0;
+    bool placeCOP(TilePosition target);
   };
 }

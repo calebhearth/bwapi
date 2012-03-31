@@ -4,14 +4,14 @@ using namespace BWAPI;
 int assert_success_count;
 int assert_fail_count;
 
-#define findAndRemove(T,S,V)\
+#define findAndRemove(S,V)\
 {\
-  bool found=false;\
-  for(auto i=S.begin();i!=S.end();++i)\
+  bool found = false;\
+  for(auto i = S.begin(); i != S.end(); ++i)\
   {\
-    if (*i==V)\
+    if (*i == V)\
     {\
-      found=true;\
+      found = true;\
       S.erase(i);\
       break;\
     }\
@@ -19,14 +19,14 @@ int assert_fail_count;
   if (!found)\
     BWAssert(false);\
 }
-#define findAndRemoveType(T,S,V)\
+#define findAndRemoveType(S,V)\
 {\
-  bool found=false;\
-  for(auto i=S.begin();i!=S.end();++i)\
+  bool found = false;\
+  for(auto i = S.begin(); i != S.end(); ++i)\
   {\
-    if ((*i)->getType()==V)\
+    if (i->getType() == V)\
     {\
-      found=true;\
+      found = true;\
       S.erase(i);\
       break;\
     }\
@@ -66,8 +66,8 @@ void TestMap1::onStart()
 
   BWAssert(Broodwar->getPlayers().size()==3);
   Playerset players = Broodwar->getPlayers();
-  findAndRemove(Player,players,Broodwar->self());
-  findAndRemove(Player,players,Broodwar->enemy());
+  findAndRemove(players,Broodwar->self());
+  findAndRemove(players,Broodwar->enemy());
   BWAssert(players.size()==1);
   Player* neutral = *players.begin();
   BWAssert(neutral->isNeutral()==true);
@@ -120,30 +120,30 @@ void TestMap1::onStart()
     BWAssert(unit->isUpgrading()==false);
     BWAssert(unit->isVisible()==true);
   }
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Command_Center);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Comsat_Station);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Command_Center);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Nuclear_Silo);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Supply_Depot);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Supply_Depot);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Supply_Depot);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Supply_Depot);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Supply_Depot);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Refinery);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Barracks);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Academy);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Factory);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Machine_Shop);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Starport);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Control_Tower);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Science_Facility);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Physics_Lab);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Science_Facility);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Covert_Ops);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Engineering_Bay);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Armory);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Missile_Turret);
-  findAndRemoveType(Unit,units,UnitTypes::Terran_Bunker);
+  findAndRemoveType(units,UnitTypes::Terran_Command_Center);
+  findAndRemoveType(units,UnitTypes::Terran_Comsat_Station);
+  findAndRemoveType(units,UnitTypes::Terran_Command_Center);
+  findAndRemoveType(units,UnitTypes::Terran_Nuclear_Silo);
+  findAndRemoveType(units,UnitTypes::Terran_Supply_Depot);
+  findAndRemoveType(units,UnitTypes::Terran_Supply_Depot);
+  findAndRemoveType(units,UnitTypes::Terran_Supply_Depot);
+  findAndRemoveType(units,UnitTypes::Terran_Supply_Depot);
+  findAndRemoveType(units,UnitTypes::Terran_Supply_Depot);
+  findAndRemoveType(units,UnitTypes::Terran_Refinery);
+  findAndRemoveType(units,UnitTypes::Terran_Barracks);
+  findAndRemoveType(units,UnitTypes::Terran_Academy);
+  findAndRemoveType(units,UnitTypes::Terran_Factory);
+  findAndRemoveType(units,UnitTypes::Terran_Machine_Shop);
+  findAndRemoveType(units,UnitTypes::Terran_Starport);
+  findAndRemoveType(units,UnitTypes::Terran_Control_Tower);
+  findAndRemoveType(units,UnitTypes::Terran_Science_Facility);
+  findAndRemoveType(units,UnitTypes::Terran_Physics_Lab);
+  findAndRemoveType(units,UnitTypes::Terran_Science_Facility);
+  findAndRemoveType(units,UnitTypes::Terran_Covert_Ops);
+  findAndRemoveType(units,UnitTypes::Terran_Engineering_Bay);
+  findAndRemoveType(units,UnitTypes::Terran_Armory);
+  findAndRemoveType(units,UnitTypes::Terran_Missile_Turret);
+  findAndRemoveType(units,UnitTypes::Terran_Bunker);
   BWAssert(units.size()==0);
   BWAssert(Broodwar->self()->completedUnitCount(UnitTypes::Terran_Command_Center)==2);
   BWAssert(Broodwar->self()->completedUnitCount(UnitTypes::Terran_Comsat_Station)==1);

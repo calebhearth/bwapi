@@ -553,25 +553,10 @@ namespace BWAPI
   {
     return self->isConstructing;
   }
-  //--------------------------------------------- IS DEFENSE MATRIXED ----------------------------------------
-  bool UnitImpl::isDefenseMatrixed() const
-  {
-    return self->defenseMatrixTimer > 0;
-  }
   //--------------------------------------------- IS DETECTED ------------------------------------------------
   bool UnitImpl::isDetected() const
   {
     return self->isDetected;
-  }
-  //--------------------------------------------- IS ENSNARED ------------------------------------------------
-  bool UnitImpl::isEnsnared() const
-  {
-    return self->ensnareTimer > 0;
-  }
-  //--------------------------------------------- IS FOLLOWING -----------------------------------------------
-  bool UnitImpl::isFollowing() const
-  {
-    return self->order == Orders::Follow;
   }
   //--------------------------------------------- IS GATHERING GAS -------------------------------------------
   bool UnitImpl::isGatheringGas() const
@@ -662,11 +647,6 @@ namespace BWAPI
   {
     return self->isHallucination;
   }
-  //--------------------------------------------- IS HOLDING POSITION ----------------------------------------
-  bool UnitImpl::isHoldingPosition() const
-  {
-    return self->order == Orders::HoldPosition;
-  }
   //--------------------------------------------- IS IDLE ----------------------------------------------------
   bool UnitImpl::isIdle() const
   {
@@ -710,30 +690,10 @@ namespace BWAPI
     int distance = computeDistance(this, target);
     return (minRange ? minRange < distance : true) && maxRange >= distance;
   }
-  //--------------------------------------------- IS IRRADIATED ----------------------------------------------
-  bool UnitImpl::isIrradiated() const
-  {
-    return self->irradiateTimer > 0;
-  }
   //--------------------------------------------- IS LIFTED --------------------------------------------------
   bool UnitImpl::isLifted() const
   {
     return self->isLifted;
-  }
-  //--------------------------------------------- IS LOADED --------------------------------------------------
-  bool UnitImpl::isLoaded() const
-  {
-    return self->transport != -1;
-  }
-  //--------------------------------------------- IS LOCKED DOWN ---------------------------------------------
-  bool UnitImpl::isLockedDown() const
-  {
-    return self->lockdownTimer > 0;
-  }
-  //--------------------------------------------- IS MAELSTROMMED --------------------------------------------
-  bool UnitImpl::isMaelstrommed() const
-  {
-    return self->maelstromTimer > 0;
   }
   //--------------------------------------------- IS MORPHING ------------------------------------------------
   bool UnitImpl::isMorphing() const
@@ -750,51 +710,15 @@ namespace BWAPI
   {
     return self->isParasited;
   }
-  //--------------------------------------------- IS PATROLLING ----------------------------------------------
-  bool UnitImpl::isPatrolling() const
-  {
-    return self->order == Orders::Patrol;
-  }
-  //--------------------------------------------- IS PLAGUED -------------------------------------------------
-  bool UnitImpl::isPlagued() const
-  {
-    return self->plagueTimer > 0;
-  }
-  //--------------------------------------------- IS REPAIRING -----------------------------------------------
-  bool UnitImpl::isRepairing() const
-  {
-    return self->order == Orders::Repair;
-  }
-  //--------------------------------------------- IS RESEARCHING ---------------------------------------------
-  bool UnitImpl::isResearching() const
-  {
-    return self->order == Orders::ResearchTech;
-  }
   //--------------------------------------------- IS SELECTED ------------------------------------------------
   bool UnitImpl::isSelected() const
   {
     return self->isSelected;
   }
-  //--------------------------------------------- IS SELECTED ------------------------------------------------
-  bool UnitImpl::isSieged() const
-  {
-    return self->type == UnitTypes::Terran_Siege_Tank_Siege_Mode ||
-           self->type == UnitTypes::Hero_Edmund_Duke_Siege_Mode;
-  }
   //--------------------------------------------- IS STARTING ATTACK -----------------------------------------
   bool UnitImpl::isStartingAttack() const
   {
     return self->isStartingAttack;
-  }
-  //--------------------------------------------- IS STASISED ------------------------------------------------
-  bool UnitImpl::isStasised() const
-  {
-    return self->stasisTimer > 0;
-  }
-  //--------------------------------------------- IS STIMMED -------------------------------------------------
-  bool UnitImpl::isStimmed() const
-  {
-    return self->stimTimer > 0;
   }
   //--------------------------------------------- IS STUCK ---------------------------------------------------
   bool UnitImpl::isStuck() const
@@ -831,11 +755,6 @@ namespace BWAPI
   {
     return self->isUnpowered;
   }
-  //--------------------------------------------- IS UPGRADING -----------------------------------------------
-  bool UnitImpl::isUpgrading() const
-  {
-    return self->order == Orders::Upgrade;
-  }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
   bool UnitImpl::isVisible(Player* player) const
   {
@@ -856,197 +775,5 @@ namespace BWAPI
   bool UnitImpl::canIssueCommand(UnitCommand command) const
   {
     return Templates::canIssueCommand(this,command);
-  }
-  //--------------------------------------------- ATTACK MOVE ------------------------------------------------
-  bool UnitImpl::attack(PositionOrUnit target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::attack(this, target, shiftQueueCommand));
-  }
-  //--------------------------------------------- BUILD ------------------------------------------------------
-  bool UnitImpl::build(TilePosition target, UnitType type)
-  {
-    return issueCommand(UnitCommand::build(this, target, type));
-  }
-  //--------------------------------------------- BUILD ADDON ------------------------------------------------
-  bool UnitImpl::buildAddon(UnitType type)
-  {
-    return issueCommand(UnitCommand::buildAddon(this,type));
-  }
-  //--------------------------------------------- TRAIN ------------------------------------------------------
-  bool UnitImpl::train(UnitType type)
-  {
-    return issueCommand(UnitCommand::train(this,type));
-  }
-  //--------------------------------------------- MORPH ------------------------------------------------------
-  bool UnitImpl::morph(UnitType type)
-  {
-    return issueCommand(UnitCommand::morph(this,type));
-  }
-  //--------------------------------------------- RESEARCH ---------------------------------------------------
-  bool UnitImpl::research(TechType tech)
-  {
-    return issueCommand(UnitCommand::research(this,tech));
-  }
-  //--------------------------------------------- UPGRADE ----------------------------------------------------
-  bool UnitImpl::upgrade(UpgradeType upgrade)
-  {
-    return issueCommand(UnitCommand::upgrade(this,upgrade));
-  }
-  //--------------------------------------------- SET RALLY POSITION -----------------------------------------
-  bool UnitImpl::setRallyPoint(PositionOrUnit target)
-  {
-    return issueCommand( UnitCommand::setRallyPoint(this, target) );
-  }
-  //--------------------------------------------- MOVE -------------------------------------------------------
-  bool UnitImpl::move(Position target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::move(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- PATROL -----------------------------------------------------
-  bool UnitImpl::patrol(Position target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::patrol(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- HOLD POSITION ----------------------------------------------
-  bool UnitImpl::holdPosition(bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::holdPosition(this, shiftQueueCommand));
-  }
-  //--------------------------------------------- STOP -------------------------------------------------------
-  bool UnitImpl::stop(bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::stop(this, shiftQueueCommand));
-  }
-  //--------------------------------------------- FOLLOW -----------------------------------------------------
-  bool UnitImpl::follow(Unit* target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::follow(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- GATHER -----------------------------------------------------
-  bool UnitImpl::gather(Unit* target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::gather(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- RETURN CARGO -----------------------------------------------
-  bool UnitImpl::returnCargo(bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::returnCargo(this, shiftQueueCommand));
-  }
-  //--------------------------------------------- REPAIR -----------------------------------------------------
-  bool UnitImpl::repair(Unit* target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::repair(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- BURROW -----------------------------------------------------
-  bool UnitImpl::burrow()
-  {
-    return issueCommand(UnitCommand::burrow(this));
-  }
-  //--------------------------------------------- UNBURROW ---------------------------------------------------
-  bool UnitImpl::unburrow()
-  {
-    return issueCommand(UnitCommand::unburrow(this));
-  }
-  //--------------------------------------------- CLOAK ------------------------------------------------------
-  bool UnitImpl::cloak()
-  {
-    return issueCommand(UnitCommand::cloak(this));
-  }
-  //--------------------------------------------- DECLOAK ----------------------------------------------------
-  bool UnitImpl::decloak()
-  {
-    return issueCommand(UnitCommand::decloak(this));
-  }
-  //--------------------------------------------- SIEGE ------------------------------------------------------
-  bool UnitImpl::siege()
-  {
-    return issueCommand(UnitCommand::siege(this));
-  }
-  //--------------------------------------------- UNSIEGE ----------------------------------------------------
-  bool UnitImpl::unsiege()
-  {
-    return issueCommand(UnitCommand::unsiege(this));
-  }
-  //--------------------------------------------- LIFT -------------------------------------------------------
-  bool UnitImpl::lift()
-  {
-    return issueCommand(UnitCommand::lift(this));
-  }
-  //--------------------------------------------- LAND -------------------------------------------------------
-  bool UnitImpl::land(TilePosition target)
-  {
-    return issueCommand(UnitCommand::land(this,target));
-  }
-  //--------------------------------------------- LOAD -------------------------------------------------------
-  bool UnitImpl::load(Unit* target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::load(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- UNLOAD -----------------------------------------------------
-  bool UnitImpl::unload(Unit* target)
-  {
-    return issueCommand(UnitCommand::unload(this,target));
-  }
-  //--------------------------------------------- UNLOAD ALL -------------------------------------------------
-  bool UnitImpl::unloadAll(bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::unloadAll(this, shiftQueueCommand));
-  }
-  //--------------------------------------------- UNLOAD ALL -------------------------------------------------
-  bool UnitImpl::unloadAll(Position target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::unloadAll(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- RIGHT CLICK ------------------------------------------------
-  bool UnitImpl::rightClick(PositionOrUnit target, bool shiftQueueCommand)
-  {
-    return issueCommand(UnitCommand::rightClick(this,target, shiftQueueCommand));
-  }
-  //--------------------------------------------- HALT CONSTRUCTION ------------------------------------------
-  bool UnitImpl::haltConstruction()
-  {
-    return issueCommand(UnitCommand::haltConstruction(this));
-  }
-  //--------------------------------------------- CANCEL CONSTRUCTION ----------------------------------------
-  bool UnitImpl::cancelConstruction()
-  {
-    return issueCommand(UnitCommand::cancelConstruction(this));
-  }
-  //--------------------------------------------- CANCEL ADDON -----------------------------------------------
-  bool UnitImpl::cancelAddon()
-  {
-    return issueCommand(UnitCommand::cancelAddon(this));
-  }
-  //--------------------------------------------- CANCEL TRAIN -----------------------------------------------
-  bool UnitImpl::cancelTrain(int slot)
-  {
-    return issueCommand(UnitCommand::cancelTrain(this, slot));
-  }
-  //--------------------------------------------- CANCEL MORPH -----------------------------------------------
-  bool UnitImpl::cancelMorph()
-  {
-    return issueCommand(UnitCommand::cancelMorph(this));
-  }
-  //--------------------------------------------- CANCEL RESEARCH --------------------------------------------
-  bool UnitImpl::cancelResearch()
-  {
-    return issueCommand(UnitCommand::cancelResearch(this));
-  }
-  //--------------------------------------------- CANCEL UPGRADE ---------------------------------------------
-  bool UnitImpl::cancelUpgrade()
-  {
-    return issueCommand(UnitCommand::cancelUpgrade(this));
-  }
-  //--------------------------------------------- USE TECH ---------------------------------------------------
-  bool UnitImpl::useTech(TechType tech, PositionOrUnit target)
-  {
-    if ( target.isUnit() && target.getUnit() == NULL )
-      return issueCommand(UnitCommand::useTech(this,tech));
-    return issueCommand(UnitCommand::useTech(this,tech,target));
-  }
-  //--------------------------------------------- PLACE COP --------------------------------------------------
-  bool UnitImpl::placeCOP(TilePosition target)
-  {
-    return issueCommand(UnitCommand::placeCOP(this, target));
   }
 }
