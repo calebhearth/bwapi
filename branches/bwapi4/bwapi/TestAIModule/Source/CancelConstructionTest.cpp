@@ -122,7 +122,7 @@ void CancelConstructionTest::update()
     FAILTEST(builder!=NULL);
   }
   FAILTEST(builder->exists());
-  Broodwar->setScreenPosition(builder->getPosition().x-320,builder->getPosition().y-240);
+  Broodwar->setScreenPosition(builder->getPosition() - Position(320,240));
 
   if (building==NULL && builder->getBuildUnit()!=NULL)
   {

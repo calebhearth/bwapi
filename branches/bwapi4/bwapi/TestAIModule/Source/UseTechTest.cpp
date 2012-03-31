@@ -353,9 +353,9 @@ void UseTechTest::update()
   BWAssert(thisFrame==nextFrame);
   nextFrame++;
   if (user->exists())
-    Broodwar->setScreenPosition(user->getPosition().x-320,user->getPosition().y-240);
+    Broodwar->setScreenPosition(user->getPosition() - Position(320,240));
   else
-    Broodwar->setScreenPosition(targetUnit->getPosition().x-320,targetUnit->getPosition().y-240);
+    Broodwar->setScreenPosition(targetUnit->getPosition() - Position(320,240));
 
   BWAssertF(user!=NULL,{fail=true;return;});
   if (!isInPosition)
@@ -387,7 +387,7 @@ void UseTechTest::update()
 
   if (techType==TechTypes::Scanner_Sweep)
   {
-    if (Broodwar->isVisible(targetPosition.x/32,targetPosition.y/32))
+    if (Broodwar->isVisible(targetPosition))
       testSucceeded = true;
   }
   else if (techType==TechTypes::Stim_Packs)

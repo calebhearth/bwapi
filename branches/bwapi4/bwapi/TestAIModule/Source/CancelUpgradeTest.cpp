@@ -48,7 +48,7 @@ void CancelUpgradeTest::update()
   int thisFrame = Broodwar->getFrameCount();
   BWAssert(thisFrame==nextFrame);
   nextFrame++;
-  Broodwar->setScreenPosition(upgrader->getPosition().x-320,upgrader->getPosition().y-240);
+  Broodwar->setScreenPosition(upgrader->getPosition() - Position(320,240));
   BWAssertF(upgrader!=NULL,{fail=true;return;});
   if (thisFrame<startFrame+200)
   {

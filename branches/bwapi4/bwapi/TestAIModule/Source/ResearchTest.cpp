@@ -77,7 +77,7 @@ void ResearchTest::update()
   BWAssert(thisFrame==nextUpdateFrame);
   BWAssertF(researcher!=NULL,{fail=true;return;});
   nextUpdateFrame++;
-  Broodwar->setScreenPosition(researcher->getPosition().x-320, researcher->getPosition().y-240);
+  Broodwar->setScreenPosition(researcher->getPosition() - Position(320,240));
   int correctRemainingResearchTime = startResearchFrame + Broodwar->getLatency() + techType.researchTime() - thisFrame;
   if (correctRemainingResearchTime > techType.researchTime())
     correctRemainingResearchTime = techType.researchTime();

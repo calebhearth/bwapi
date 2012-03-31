@@ -72,11 +72,11 @@ void AttackUnitTest::update()
   nextFrame++;
   if (unit->exists())
   {
-    Broodwar->setScreenPosition(unit->getPosition().x-320,unit->getPosition().y-240);
+    Broodwar->setScreenPosition(unit->getPosition() - Position(320,240));
   }
   else
   {
-    Broodwar->setScreenPosition(target->getPosition().x-320,target->getPosition().y-240);
+    Broodwar->setScreenPosition(target->getPosition() - Position(320,240));
   }
 
   if (reachedDamagePointFrame==-1 &&

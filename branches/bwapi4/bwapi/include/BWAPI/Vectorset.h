@@ -5,6 +5,7 @@
 #include <deque>
 #include <list>
 #include <algorithm>
+#include <type_traits>
 
 namespace BWAPI
 {
@@ -14,13 +15,20 @@ namespace BWAPI
   template<typename _T>
   class Vectorset;
 
+  /// @~English
+  /// The iterator class template allows the iteration
+  /// of elements of a Vectorset with ease while
+  /// maintaining the compatibility with any familiar
+  /// STL container iteration.
+  ///
+  /// @~
+  /// @see Vectorset
   template<typename _T>
   class iterator
   {
   public:
-    iterator() : __val(0) {};
+    iterator(_T *ptr = NULL) : __val(ptr) {};
     iterator(const iterator<_T> &other) : __val(&other) {};
-    iterator(_T *ptr) : __val(ptr) {};
     bool operator ==(const iterator<_T> &other) const
     {
       return this->__val == &other;
@@ -75,12 +83,20 @@ namespace BWAPI
     _T *__val;
   };
 
+  /// @~English
+  /// The iterator class template allows the iteration
+  /// of elements of a Vectorset with ease while
+  /// maintaining the compatibility with any familiar
+  /// STL container iteration.
+  ///
+  /// @~
+  /// @see Vectorset
   template<typename _T>
   class Vectorset
   {
   public:
     typedef iterator<_T> iterator;
-    ///////////////////////////////////////////////////////////// Constructors
+    // ----------------------------------------------------------------- Constructors
     Vectorset(size_t initialSize = 16)
       : __totSize( initialSize )
       , __valArray( (_T*)malloc(initialSize*sizeof(_T)) )
@@ -103,7 +119,7 @@ namespace BWAPI
     {
       memcpy(this->__valArray, pArray, arrSize*sizeof(_T) );
     };
-    ///////////////////////////////////////////////////////////// Operators
+    // ----------------------------------------------------------------- Operators
     Vectorset &operator =(const Vectorset &other)
     {
       // localize variables
@@ -146,7 +162,6 @@ namespace BWAPI
       return memcmp( this->__valArray, other, std::min(this->size(), other.size())*sizeof(_T)) == 0;
     };
 
-    // Misc usage
     operator void*() const
     {
       return this->__valArray;
@@ -163,12 +178,12 @@ namespace BWAPI
       return __valArray[0];
     };
 
-    ///////////////////////////////////////////////////////////// Destructors
+    // ----------------------------------------------------------------- Destructor
     ~Vectorset()
     {
       free(this->__valArray);
     };
-    ///////////////////////////////////////////////////////////// custom functions (modify)
+    // ----------------------------------------------------------------- Custom functions
     void erase_once(const _T &val)
     {
       // declare iterators
@@ -191,7 +206,7 @@ namespace BWAPI
       this->__last = iend;
     };
 
-    ///////////////////////////////////////////////////////////// custom functions (const)
+    // ----------------------------------------------------------------- Custom const functions
     bool exists(const _T &element) const
     {
       _T *i = this->__valArray, *iend = this->__last;
@@ -241,7 +256,7 @@ namespace BWAPI
       }
       return this->__valArray[::rand()%size];
     };
-    ///////////////////////////////////////////////////////////// stl spinoffs (modify)
+    // ----------------------------------------------------------------- stl spinoff functions
     void clear()
     {
       this->__last = this->__valArray;
@@ -335,7 +350,7 @@ namespace BWAPI
         break;
       }
     };
-    ///////////////////////////////////////////////////////////// stl spinoffs (const)
+    // ----------------------------------------------------------------- stl spinoff const functions
     size_t size() const
     {
       return ((size_t)this->__last - (size_t)this->__valArray)/sizeof(_T);
@@ -381,7 +396,9 @@ namespace BWAPI
     {
       return *(this->__last - 1);
     };
-  private: /////////////////////////////////////////////// private
+
+  // -----------------------------------------------------------------
+  private:
     // expand container when full
     void expand()
     {

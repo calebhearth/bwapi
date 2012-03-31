@@ -52,7 +52,7 @@ void GatherTest::update()
   int thisFrame = Broodwar->getFrameCount();
   BWAssert(thisFrame==nextFrame);
   nextFrame++;
-  Broodwar->setScreenPosition(worker->getPosition().x-320,worker->getPosition().y-240);
+  Broodwar->setScreenPosition(worker->getPosition() - Position(320,240));
   if (state==1 && Broodwar->self()->minerals()>initialMinerals+50 && worker->isGatheringMinerals())
   {
     BWAssertF(worker->gather(refinery),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;})

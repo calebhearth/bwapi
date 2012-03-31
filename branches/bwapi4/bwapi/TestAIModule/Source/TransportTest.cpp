@@ -95,7 +95,7 @@ void TransportTest::update()
   int thisFrame = Broodwar->getFrameCount();
   BWAssert(thisFrame==nextFrame);
   nextFrame++;
-  Broodwar->setScreenPosition(transport->getPosition().x-320,transport->getPosition().y-240);
+  Broodwar->setScreenPosition(transport->getPosition() - Position(320,240));
   if (state == Start)
   {
     state = WaitForFirstUnit;

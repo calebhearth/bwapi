@@ -80,7 +80,7 @@ void CancelMorphTest::update()
   nextFrame++;
   FAILTEST(producer!=NULL);
   if (producer->exists())
-    Broodwar->setScreenPosition(producer->getPosition().x-320,producer->getPosition().y-240);
+    Broodwar->setScreenPosition(producer->getPosition() - Position(320,240));
 
   if (thisFrame<=startFrame+200)
   {

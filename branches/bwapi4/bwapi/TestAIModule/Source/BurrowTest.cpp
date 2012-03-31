@@ -56,7 +56,7 @@ void BurrowTest::update()
   int thisFrame = Broodwar->getFrameCount();
   BWAssert(thisFrame==nextFrame);
   nextFrame++;
-  Broodwar->setScreenPosition(unit->getPosition().x-320,unit->getPosition().y-240);
+  Broodwar->setScreenPosition(unit->getPosition() - Position(320,240));
 
   if (completedBurrow==false)
   {
