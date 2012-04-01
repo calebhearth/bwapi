@@ -352,42 +352,42 @@ namespace BWAPI
     /** Draws a box on the screen, with the given color. If isSolid is true, the entire box will be
      * rendered, otherwise just the outline will be drawn. */
     virtual void drawBox(int ctype, int left, int top, int right, int bottom, Color color, bool isSolid = false) = 0;
-    virtual void drawBoxMap(int left, int top, int right, int bottom, Color color, bool isSolid = false) = 0;
-    virtual void drawBoxMouse(int left, int top, int right, int bottom, Color color, bool isSolid = false) = 0;
-    virtual void drawBoxScreen(int left, int top, int right, int bottom, Color color, bool isSolid = false) = 0;
+    void drawBoxMap(int left, int top, int right, int bottom, Color color, bool isSolid = false);
+    void drawBoxMouse(int left, int top, int right, int bottom, Color color, bool isSolid = false);
+    void drawBoxScreen(int left, int top, int right, int bottom, Color color, bool isSolid = false);
 
     /** Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the
      * outline of the triangle will be drawn. */
     virtual void drawTriangle(int ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false) = 0;
-    virtual void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false) = 0;
-    virtual void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false) = 0;
-    virtual void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false) = 0;
+    void drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false);
+    void drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false);
+    void drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false);
 
     /** Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn,
      * otherwise just the outline of a circle will be drawn. */
     virtual void drawCircle(int ctype, int x, int y, int radius, Color color, bool isSolid = false) = 0;
-    virtual void drawCircleMap(int x, int y, int radius, Color color, bool isSolid = false) = 0;
-    virtual void drawCircleMouse(int x, int y, int radius, Color color, bool isSolid = false) = 0;
-    virtual void drawCircleScreen(int x, int y, int radius, Color color, bool isSolid = false) = 0;
+    void drawCircleMap(int x, int y, int radius, Color color, bool isSolid = false);
+    void drawCircleMouse(int x, int y, int radius, Color color, bool isSolid = false);
+    void drawCircleScreen(int x, int y, int radius, Color color, bool isSolid = false);
 
     /** Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn,
      * otherwise just the outline of an ellipse will be drawn. */
     virtual void drawEllipse(int ctype, int x, int y, int xrad, int yrad, Color color, bool isSolid = false) = 0;
-    virtual void drawEllipseMap(int x, int y, int xrad, int yrad, Color color, bool isSolid = false) = 0;
-    virtual void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color, bool isSolid = false) = 0;
-    virtual void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color, bool isSolid = false) = 0;
+    void drawEllipseMap(int x, int y, int xrad, int yrad, Color color, bool isSolid = false);
+    void drawEllipseMouse(int x, int y, int xrad, int yrad, Color color, bool isSolid = false);
+    void drawEllipseScreen(int x, int y, int xrad, int yrad, Color color, bool isSolid = false);
 
     /** Draws a dot on the screen at the given position with the given color. */
     virtual void drawDot(int ctype, int x, int y, Color color) = 0;
-    virtual void drawDotMap(int x, int y, Color color) = 0;
-    virtual void drawDotMouse(int x, int y, Color color) = 0;
-    virtual void drawDotScreen(int x, int y, Color color) = 0;
+    void drawDotMap(int x, int y, Color color);
+    void drawDotMouse(int x, int y, Color color);
+    void drawDotScreen(int x, int y, Color color);
 
     /** Draws a line on the screen from (x1,y1) to (x2,y2) with the given color. */
     virtual void drawLine(int ctype, int x1, int y1, int x2, int y2, Color color) = 0;
-    virtual void drawLineMap(int x1, int y1, int x2, int y2, Color color) = 0;
-    virtual void drawLineMouse(int x1, int y1, int x2, int y2, Color color) = 0;
-    virtual void drawLineScreen(int x1, int y1, int x2, int y2, Color color) = 0;
+    void drawLineMap(int x1, int y1, int x2, int y2, Color color);
+    void drawLineMouse(int x1, int y1, int x2, int y2, Color color);
+    void drawLineScreen(int x1, int y1, int x2, int y2, Color color);
 
     /** Retrieves the screen buffer for the game (excluding the HUD) */
     virtual void *getScreenBuffer() = 0;

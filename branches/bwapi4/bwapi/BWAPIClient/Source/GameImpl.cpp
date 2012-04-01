@@ -845,41 +845,11 @@ namespace BWAPI
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Box,ctype,left,top,right,bottom,0,0,color,isSolid));
   }
-  void GameImpl::drawBoxMap(int left, int top, int right, int bottom, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Box,(int)BWAPI::CoordinateType::Map,left,top,right,bottom,0,0,color,isSolid));
-  }
-  void GameImpl::drawBoxMouse(int left, int top, int right, int bottom, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Box,(int)BWAPI::CoordinateType::Mouse,left,top,right,bottom,0,0,color,isSolid));
-  }
-  void GameImpl::drawBoxScreen(int left, int top, int right, int bottom, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Box,(int)BWAPI::CoordinateType::Screen,left,top,right,bottom,0,0,color,isSolid));
-  }
   //------------------------------------------------ DRAW TRIANGLE -------------------------------------------
   void GameImpl::drawTriangle(int ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid)
   {
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Triangle,ctype,ax,ay,bx,by,cx,cy,color,isSolid));
-  }
-  void GameImpl::drawTriangleMap(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Triangle,(int)BWAPI::CoordinateType::Map,ax,ay,bx,by,cx,cy,color,isSolid));
-  }
-  void GameImpl::drawTriangleMouse(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Triangle,(int)BWAPI::CoordinateType::Mouse,ax,ay,bx,by,cx,cy,color,isSolid));
-  }
-  void GameImpl::drawTriangleScreen(int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Triangle,(int)BWAPI::CoordinateType::Screen,ax,ay,bx,by,cx,cy,color,isSolid));
   }
   //------------------------------------------------- DRAW CIRCLE --------------------------------------------
   void GameImpl::drawCircle(int ctype, int x, int y, int radius, Color color, bool isSolid)
@@ -887,41 +857,11 @@ namespace BWAPI
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Circle,ctype,x,y,0,0,radius,0,color,isSolid));
   }
-  void GameImpl::drawCircleMap(int x, int y, int radius, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Circle,(int)BWAPI::CoordinateType::Map,x,y,0,0,radius,0,color,isSolid));
-  }
-  void GameImpl::drawCircleMouse(int x, int y, int radius, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Circle,(int)BWAPI::CoordinateType::Mouse,x,y,0,0,radius,0,color,isSolid));
-  }
-  void GameImpl::drawCircleScreen(int x, int y, int radius, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Circle,(int)BWAPI::CoordinateType::Screen,x,y,0,0,radius,0,color,isSolid));
-  }
   //------------------------------------------------- DRAW ELIPSE --------------------------------------------
   void GameImpl::drawEllipse(int ctype, int x, int y, int xrad, int yrad, Color color, bool isSolid)
   {
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Ellipse,ctype,x,y,0,0,xrad,yrad,color,isSolid));
-  }
-  void GameImpl::drawEllipseMap(int x, int y, int xrad, int yrad, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Ellipse,(int)BWAPI::CoordinateType::Map,x,y,0,0,xrad,yrad,color,isSolid));
-  }
-  void GameImpl::drawEllipseMouse(int x, int y, int xrad, int yrad, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Ellipse,(int)BWAPI::CoordinateType::Mouse,x,y,0,0,xrad,yrad,color,isSolid));
-  }
-  void GameImpl::drawEllipseScreen(int x, int y, int xrad, int yrad, Color color, bool isSolid)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Ellipse,(int)BWAPI::CoordinateType::Screen,x,y,0,0,xrad,yrad,color,isSolid));
   }
 
   void GameImpl::drawDot(int ctype, int x, int y, Color color)
@@ -929,41 +869,11 @@ namespace BWAPI
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Dot,ctype,x,y,0,0,0,0,color,false));
   }
-  void GameImpl::drawDotMap(int x, int y, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Dot,(int)BWAPI::CoordinateType::Map,x,y,0,0,0,0,color,false));
-  }
-  void GameImpl::drawDotMouse(int x, int y, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Dot,(int)BWAPI::CoordinateType::Mouse,x,y,0,0,0,0,color,false));
-  }
-  void GameImpl::drawDotScreen(int x, int y, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Dot,(int)BWAPI::CoordinateType::Screen,x,y,0,0,0,0,color,false));
-  }
   //-------------------------------------------------- DRAW LINE ---------------------------------------------
   void GameImpl::drawLine(int ctype, int x1, int y1, int x2, int y2, Color color)
   {
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,ctype,x1,y1,x2,y2,0,0,color,false));
-  }
-  void GameImpl::drawLineMap(int x1, int y1, int x2, int y2, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,(int)BWAPI::CoordinateType::Map,x1,y1,x2,y2,0,0,color,false));
-  }
-  void GameImpl::drawLineMouse(int x1, int y1, int x2, int y2, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,(int)BWAPI::CoordinateType::Mouse,x1,y1,x2,y2,0,0,color,false));
-  }
-  void GameImpl::drawLineScreen(int x1, int y1, int x2, int y2, Color color)
-  {
-    if ( !data->hasGUI ) return;
-    addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,(int)BWAPI::CoordinateType::Screen,x1,y1,x2,y2,0,0,color,false));
   }
   void* GameImpl::getScreenBuffer()
   {
