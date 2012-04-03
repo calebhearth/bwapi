@@ -419,7 +419,13 @@ namespace BWAPI
   //--------------------------------------------- IS BUILDABLE -----------------------------------------------
   bool GameImpl::isBuildable(int x, int y, bool includeBuildings) const
   {
-    return map.buildable(x, y) && (includeBuildings ? !map.isOccupied(x, y) : true);
+    if ( map.buildable(x,y) )
+    {
+      if ( includeBuildings && this->isVisible(x,y) && map.isOccupied(x,y) )
+        return false;
+      return true;
+    }
+    return false;
   }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
   bool GameImpl::isVisible(int x, int y) const
