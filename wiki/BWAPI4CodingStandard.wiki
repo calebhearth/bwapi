@@ -13,7 +13,7 @@ For comparison, you can view the outdated coding standard [CodingStandard here].
 = Spacing =
 Spacing is important. Don't be afraid of spacing.
 
-  # Use tabs instead of spaces. Spaces conflict with the common and default tab settings of several applications. If you wish to change the spacing then you can do so by changing the width of tabs in your editor's settings dialog.
+  # Use double-spaces instead of tabs. You should be able to convert tabs to spaces automatically in your editor's settings. Spaces will ensure that code will always be aligned correctly regardless of tab settings.
   # Always indent for each scope level.
   # Always put a space between all arithmetic, binary, and conditional operators.
   # Don't put a space between function names and the open parenthesis.
@@ -24,11 +24,11 @@ Examples of spacing
 // bad, can't tell if assignment is a typo, and
 // there is a space between the member function and its parameters
 if(Broodwar()->canMake (UnitTypes::Terran_Marine, builder))
-	reservedMinerals=-UnitTypes::Terran_Marine.mineralPrice();
+  reservedMinerals=-UnitTypes::Terran_Marine.mineralPrice();
 
 // good, the arithmetic is clear
 if(Broodwar()->canMake(UnitTypes::Terran_Marine, builder))
-	reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();
+  reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();
 
 // bad, the scope is not indented, no space following the comma
 if ( Broodwar()->canMake(UnitTypes::Terran_Marine,builder) )
@@ -36,12 +36,12 @@ reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();
 
 // good, alternative spacing style for if statements
 if ( Broodwar()->canMake(UnitTypes::Terran_Marine, builder) )
-	reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();</code>
+  reservedMinerals = -UnitTypes::Terran_Marine.mineralPrice();</code>
 
 = Formatting =
   # Use [http://en.wikipedia.org/wiki/Indent_style#Allman_style ANSI style] braces.
   # Break up large single-line if statements to be multi-line if statements.
-  # Format constructor initializer lists as follows:
+  # Format constructor initializer lists as follows (so that elements are aligned):
 <code>Player::Player()
 :unitCount(0)
 ,pFirstUnit(NULL)
@@ -71,3 +71,11 @@ if ( Broodwar()->canMake(UnitTypes::Terran_Marine, builder) )
   # Perform version checking before making code patches, to ensure that BWAPI is compatible with all versions of Starcraft: Broodwar.
 
 = Documentation =
+  # Documentation should follow [http://www.stack.nl/~dimitri/doxygen/ Doxygen] style formatting.
+  # Use the triple slash format to ensure that the documentation displays correctly in Microsoft Visual Studio's intellisense.
+  # Use `@` for doxygen commands (`\` is also ok but may not look as good).
+  # Specify the language that the documentation is intended for ({{{@~English}}} for example, and {{{@~}}} for all languages). BWAPI might include non-english documentation in the future if some people are interested in including a few.
+  # Use {{{@see}}} instead of {{{@sa}}} to refer to other functions or classes (for all languages).
+  # When introducing a new function, include a @since tag and the revision number (for all languages).
+  # Include any @param, @returns, @retval where necessary.
+  # Try to include as much details on the function as possible, including a list of error codes that could be set (using the custom-defined @Errors tag).
