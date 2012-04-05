@@ -1261,6 +1261,10 @@ namespace BWAPI
   {
     return unitTypeData[this->getID()].tileHeight;
   }
+  TilePosition UnitType::tileSize() const
+  {
+    return TilePosition(tileWidth(), tileHeight());
+  }
   int UnitType::dimensionLeft() const
   {
     return unitTypeData[this->getID()].dimensionLeft;

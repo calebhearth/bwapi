@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <BWAPI/Race.h>
+#include <BWAPI/Position.h>
 #include <BWAPI/UnitSizeType.h>
 #include "Type.h"
 
@@ -363,6 +364,8 @@ namespace BWAPI
     /** Returns the tile height of the unit. Useful for determining the size of buildings. For example
      * UnitTypes::Terran_Supply_Depot.tileHeight() will return 2. */
     int tileHeight() const;
+
+    TilePosition tileSize() const;
 
     /** Distance from the center of the unit to the left edge of the unit, measured in pixels. */
     int dimensionLeft() const;

@@ -151,7 +151,7 @@ int main(int argc, const char* argv[])
           case EventType::NukeDetect:
             if (e->getPosition()!=Positions::Unknown)
             {
-              Broodwar->drawCircleMap(e->getPosition().x,e->getPosition().y,40,Colors::Red,true);
+              Broodwar->drawCircleMap(e->getPosition(), 40, Colors::Red, true);
               Broodwar->printf("Nuclear Launch Detected at (%d,%d)",e->getPosition().x,e->getPosition().y);
             }
             else
@@ -312,34 +312,19 @@ void drawBullets()
     Position p = i->getPosition();
     double velocityX = i->getVelocityX();
     double velocityY = i->getVelocityY();
-    if ( i->getPlayer() == Broodwar->self() )
-    {
-      Broodwar->drawLineMap(p.x, p.y, p.x+(int)velocityX, p.y+(int)velocityY, Colors::Green);
-      Broodwar->drawTextMap(p.x, p.y, "\x07%s", i->getType().c_str());
-    }
-    else
-    {
-      Broodwar->drawLineMap(p.x, p.y, p.x+(int)velocityX, p.y+(int)velocityY, Colors::Red);
-      Broodwar->drawTextMap(p.x, p.y, "\x06%s", i->getType().c_str());
-    }
+    Broodwar->drawLineMap(p, p + Position((int)velocityX, (int)velocityY), i->getPlayer() == Broodwar->self() ? Colors::Green : Colors::Red);
+    Broodwar->drawTextMap(p.x, p.y, "%c%s", i->getPlayer() == Broodwar->self() ? Text::Green : Text::Red, i->getType().c_str());
   }
 }
 
 void drawVisibilityData()
 {
-  for(int x=0;x<Broodwar->mapWidth();x++)
+  for( TilePosition::iterator i(Broodwar->mapWidth(), Broodwar->mapHeight()); i; ++i)
   {
-    for(int y=0;y<Broodwar->mapHeight();y++)
-    {
-      if (Broodwar->isExplored(x,y))
-      {
-        Broodwar->drawDotMap(x*32+16, y*32+16, Broodwar->isVisible(x,y) ? Colors::Green : Colors::Blue);
-      }
-      else
-      {
-        Broodwar->drawDotMap(x*32+16,y*32+16,Colors::Red);
-      }
-    }
+    if ( Broodwar->isExplored(i.x, i.y) )
+      Broodwar->drawDotMap(i.x*32+16, i.y*32+16, Broodwar->isVisible(i.x, i.y) ? Colors::Green : Colors::Blue);
+    else
+      Broodwar->drawDotMap(i.x*32+16, i.y*32+16, Colors::Red);
   }
 }
 /*
@@ -352,25 +337,25 @@ void drawTerrainData()
     Position c=(*i)->getPosition();
 
     //draw outline of center location
-    Broodwar->drawBox(CoordinateType::Map,p.x*32,p.y*32,p.x*32+4*32,p.y*32+3*32,Colors::Blue,false);
+    Broodwar->drawBoxMap(p, p + TilePosition(4,3), Colors::Blue);
 
     //draw a circle at each mineral patch
     for(Unitset::iterator j=(*i)->getStaticMinerals().begin();j!=(*i)->getStaticMinerals().end();++j)
     {
       Position q=(*j)->getInitialPosition();
-      Broodwar->drawCircle(CoordinateType::Map,q.x,q.y,30,Colors::Cyan,false);
+      Broodwar->drawCircleMap(q, 30, Colors::Cyan);
     }
 
     //draw the outlines of vespene geysers
     for(Unitset::iterator j=(*i)->getGeysers().begin();j!=(*i)->getGeysers().end();++j)
     {
       TilePosition q=(*j)->getInitialTilePosition();
-      Broodwar->drawBox(CoordinateType::Map,q.x*32,q.y*32,q.x*32+4*32,q.y*32+2*32,Colors::Orange,false);
+      Broodwar->drawBoxMap(q, q + TilePosition(4,2), Colors::Orange);
     }
 
     //if this is an island expansion, draw a yellow circle around the base location
     if ((*i)->isIsland())
-      Broodwar->drawCircle(CoordinateType::Map,c.x,c.y,80,Colors::Yellow,false);
+      Broodwar->drawCircleMap(c, 80, Colors::Yellow);
   }
 
   //we will iterate through all the regions and draw the polygon outline of it in green.
@@ -381,7 +366,7 @@ void drawTerrainData()
     {
       Position point1=p[j];
       Position point2=p[(j+1) % p.size()];
-      Broodwar->drawLine(CoordinateType::Map,point1.x,point1.y,point2.x,point2.y,Colors::Green);
+      Broodwar->drawLineMap(point1, point2, Colors::Green);
     }
   }
 
@@ -392,7 +377,7 @@ void drawTerrainData()
     {
       Position point1=(*c)->getSides().first;
       Position point2=(*c)->getSides().second;
-      Broodwar->drawLine(CoordinateType::Map,point1.x,point1.y,point2.x,point2.y,Colors::Red);
+      Broodwar->drawLineMap(point1, point2, Colors::Red);
     }
   }
 }

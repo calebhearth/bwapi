@@ -279,7 +279,7 @@ namespace BWAPI
   Unitset& GameImpl::getUnitsOnTile(int x, int y)
   {
     // Retrieves a set of units that are on the specified tile 
-    if (x < 0 || y < 0 || x >= this->mapWidth() || y >= this->mapHeight())
+    if ( !TilePosition(x, y) )
       return this->emptyUnitset;
     
     if (!this->isFlagEnabled(Flag::CompleteMapInformation) && !isVisible(x,y))
@@ -944,7 +944,7 @@ namespace BWAPI
   BWAPI::Region *GameImpl::getRegionAt(int x, int y) const
   {
     Broodwar->setLastError();
-    if ( x < 0 || y < 0 || x >= Broodwar->mapWidth()*32 || y >= Broodwar->mapHeight()*32 )
+    if ( !Position(x, y) )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
       return NULL;

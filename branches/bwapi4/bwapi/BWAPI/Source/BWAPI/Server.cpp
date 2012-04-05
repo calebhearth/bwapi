@@ -286,25 +286,27 @@ namespace BWAPI
     data->isBattleNet   = Broodwar->isBattleNet();
     data->isReplay      = Broodwar->isReplay();
 
-    //load static map data
+    // Locally store the map size
     SIZE mapSize = { Broodwar->mapWidth(), Broodwar->mapHeight() };
-    for(int x = 0; x < mapSize.cx*4; ++x)
-      for(int y = 0; y < mapSize.cy*4; ++y)
-        data->isWalkable[x][y] = Broodwar->isWalkable(x, y);
 
-    for(int x = 0; x < mapSize.cx; ++x)
+    // Load walkability
+    for ( WalkPosition::iterator w( TilePosition(mapSize.cx, mapSize.cy) ); w; ++w )
     {
-      for(int y = 0; y < mapSize.cy; ++y)
-      {
-        data->isBuildable[x][y]     = Broodwar->isBuildable(x, y);
-        data->getGroundHeight[x][y] = Broodwar->getGroundHeight(x, y);
-        if ( BW::BWDATA_SAIPathing )
-          data->mapTileRegionId[x][y] = BW::BWDATA_SAIPathing->mapTileRegionId[y][x];
-        else
-          data->mapTileRegionId[x][y] = 0;
-      }
+      data->isWalkable[w.x][w.y] = Broodwar->isWalkable(w.x, w.y);
     }
 
+    // Load buildability, ground height, tile region id
+    for ( TilePosition::iterator p(mapSize.cx, mapSize.cy); p; ++p )
+    {
+        data->isBuildable[p.x][p.y]     = Broodwar->isBuildable(p.x, p.y);
+        data->getGroundHeight[p.x][p.y] = Broodwar->getGroundHeight(p.x, p.y);
+        if ( BW::BWDATA_SAIPathing )
+          data->mapTileRegionId[p.x][p.y] = BW::BWDATA_SAIPathing->mapTileRegionId[p.y][p.x];
+        else
+          data->mapTileRegionId[p.x][p.y] = 0;
+    }
+
+    // Load pathing info
     if ( BW::BWDATA_SAIPathing )
     {
       data->regionCount = BW::BWDATA_SAIPathing->regionCount;
@@ -321,16 +323,19 @@ namespace BWAPI
       }
     }
 
-    data->mapWidth  = Broodwar->mapWidth();
-    data->mapHeight = Broodwar->mapHeight();
+    // Store the map size
+    data->mapWidth  = mapSize.cx;
+    data->mapHeight = mapSize.cy;
+
+    // Retrieve map strings
     strncpy(data->mapFileName, Broodwar->mapFileName().c_str(), MAX_PATH);
     strncpy(data->mapPathName, Broodwar->mapPathName().c_str(), MAX_PATH);
     strncpy(data->mapName, Broodwar->mapName().c_str(), 32);
     strncpy(data->mapHash, Broodwar->mapHash().c_str(), 40);
-    data->mapFileName[MAX_PATH] = 0;
-    data->mapPathName[MAX_PATH] = 0;
-    data->mapName[32]           = 0;
-    data->mapHash[40]           = 0;
+    StrTerminate(data->mapFileName);
+    StrTerminate(data->mapPathName);
+    StrTerminate(data->mapName);
+    StrTerminate(data->mapHash);
 
     data->startLocationCount = Broodwar->getStartLocations().size();
     int i = 0;

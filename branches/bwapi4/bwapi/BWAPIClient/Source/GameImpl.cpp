@@ -219,9 +219,9 @@ namespace BWAPI
     for(int i = 0; i < data->nukeDotCount; ++i)
       nukeDots.insert(Position(data->nukeDots[i].x,data->nukeDots[i].y));
 
-    for (int y = 0; y < data->mapHeight; ++y)
-      for (int x = 0; x < data->mapWidth; ++x)
-        unitsOnTileData[x][y].clear();
+    for ( TilePosition::iterator p(data->mapWidth, data->mapHeight); p; ++p )
+      unitsOnTileData[p.x][p.y].clear();
+
     for(int e = 0; e < data->eventCount; ++e)
     {
       events.push_back(this->makeEvent(data->events[e]));
@@ -294,15 +294,15 @@ namespace BWAPI
     }
     foreach(Unit* u_, accessibleUnits)
     {
-    UnitImpl* u = static_cast<UnitImpl*>(u_);
+      UnitImpl* u = static_cast<UnitImpl*>(u_);
       /* @TODO: Assign using getUnitsInRectangle */
-      int startX = u->getLeft() / TILE_SIZE;
-      int endX   = (u->getRight() + TILE_SIZE - 1) / TILE_SIZE; // Division - round up
-      int startY = u->getTop() / TILE_SIZE;
-      int endY   = (u->getBottom() + TILE_SIZE - 1) / TILE_SIZE;
-      for (int x = startX; x < endX && x < mapWidth(); x++)
-        for (int y = startY; y < endY && y < mapHeight(); y++)
-          unitsOnTileData[x][y].insert(u);
+      TilePosition start( Position(u->getLeft(), u->getTop()) );
+      TilePosition end( Position(u->getRight(), u->getBottom()) + Position(TILE_SIZE-1, TILE_SIZE-1) ); // round up to next tile
+      end.setMax(mapWidth(), mapHeight());
+
+      for ( TilePosition::iterator p(start,end); p; ++p )
+          unitsOnTileData[p.x][p.y].insert(u);
+
       if ( u->getType() == UnitTypes::Zerg_Larva && u->getHatchery() )
         ((UnitImpl*)u->getHatchery())->connectedUnits.insert(u);
       if ( u->getType() == UnitTypes::Protoss_Interceptor && u->getCarrier() )
@@ -572,42 +572,42 @@ namespace BWAPI
   //--------------------------------------------- IS WALKABLE ------------------------------------------------
   bool GameImpl::isWalkable(int x, int y) const
   {
-    if ( x < 0 || y < 0 || x >= data->mapWidth*4 || y >= data->mapHeight*4 )
+    if ( !WalkPosition(x, y) )
       return 0;
     return data->isWalkable[x][y];
   }
   //--------------------------------------------- GET GROUND HEIGHT ------------------------------------------
   int GameImpl::getGroundHeight(int x, int y) const
   {
-    if ( x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight )
+    if ( !TilePosition(x, y) )
       return 0;
     return data->getGroundHeight[x][y];
   }
   //--------------------------------------------- IS BUILDABLE -----------------------------------------------
   bool GameImpl::isBuildable(int x, int y, bool includeBuildings) const
   {
-    if ( x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight )
+    if ( !TilePosition(x, y) )
       return 0;
     return data->isBuildable[x][y] && ( includeBuildings ? !data->isOccupied[x][y] : true );
   }
   //--------------------------------------------- IS VISIBLE -------------------------------------------------
   bool GameImpl::isVisible(int x, int y) const
   {
-    if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
+    if ( !TilePosition(x, y) )
       return 0;
     return data->isVisible[x][y];
   }
   //--------------------------------------------- IS EXPLORED ------------------------------------------------
   bool GameImpl::isExplored(int x, int y) const
   {
-    if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
+    if ( !TilePosition(x, y) )
       return 0;
     return data->isExplored[x][y];
   }
   //--------------------------------------------- HAS CREEP --------------------------------------------------
   bool GameImpl::hasCreep(int x, int y) const
   {
-    if (x < 0 || y < 0 || x >= data->mapWidth || y >= data->mapHeight)
+    if ( !TilePosition(x, y) )
       return 0;
     return data->hasCreep[x][y];
   }

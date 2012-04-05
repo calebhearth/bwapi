@@ -16,23 +16,15 @@ void MapTest::onStart()
   //Update this whenever the map is modified
   BWAssert(Broodwar->mapHash()=="b1458acae03d6bbacd223ba8c96830b28a6035fb");
 
-  for(int x=0;x<40;x++)
+  for ( TilePosition::iterator p(10,10); p; ++p )
   {
-    for(int y=0;y<40;y++)
-    {
-      BWAssert(Broodwar->isWalkable(x,y));
-    }
+    BWAssert(Broodwar->isWalkable(p));
+    BWAssert(Broodwar->getGroundHeight(p)==2);
+    BWAssert(Broodwar->isBuildable(p));
+    BWAssert(Broodwar->isVisible(p));
+    BWAssert(Broodwar->isExplored(p));
   }
-  for(int x=0;x<10;x++)
-  {
-    for(int y=0;y<10;y++)
-    {
-      BWAssert(Broodwar->getGroundHeight(x,y)==2);
-      BWAssert(Broodwar->isBuildable(x,y));
-      BWAssert(Broodwar->isVisible(x,y));
-      BWAssert(Broodwar->isExplored(x,y));
-    }
-  }
+
   for(int x=5;x<14;x++)
   {
     // @TODO: Investigate

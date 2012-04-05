@@ -200,7 +200,7 @@ namespace BWAPI
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Triangle,ctype,ax,ay,bx,by,cx,cy,color,isSolid));
   }
   //------------------------------------------------- DRAW CIRCLE --------------------------------------------
-  void  GameImpl::drawCircle(int ctype, int x, int y, int radius, Color color, bool isSolid)
+  void GameImpl::drawCircle(int ctype, int x, int y, int radius, Color color, bool isSolid)
   {
     if (!inScreen(ctype,x-radius,y-radius,x+radius,y+radius)) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Circle,ctype,x,y,0,0,radius,0,color,isSolid));

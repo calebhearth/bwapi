@@ -48,3 +48,4 @@ typedef struct __rect
 #define MB_ICONINFO MB_ICONASTERISK
 
 #define MemZero(x) memset(&x, 0, sizeof(x))
+#define StrTerminate(x) (x[sizeof(x)-1] = '\0')

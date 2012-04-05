@@ -921,7 +921,7 @@ namespace BWAPI
         {
           BW::region *neighbor = r->getNeighbor(n);
           if ( r->accessabilityFlags != 0x1FFD && neighbor->accessabilityFlags != 0x1FFD )
-            drawLineMap(r->getCenter().x, r->getCenter().y, neighbor->getCenter().x, neighbor->getCenter().y, neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
+            drawLineMap(r->getCenter(), neighbor->getCenter(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
         }
         if ( r == selectedRgn )
           drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
@@ -978,7 +978,7 @@ namespace BWAPI
         for ( std::vector<BWAPI::Position>::iterator j = poly.begin(), jend = poly.end(); j != jend; ++j )
         {
           if ( prev != Positions::None )
-            drawLineMap(prev.x, prev.y, j->x, j->y, Colors::Yellow);
+            drawLineMap(prev, *j, Colors::Yellow);
           prev = *j;
         }
       }*/

@@ -51,7 +51,7 @@ void MicroTest::onFrame()
     Broodwar->issueCommand(Broodwar->self()->getUnits(),UnitCommand::rightClick(NULL,goal));
     for each(Unit* s in Broodwar->self()->getUnits())
     {
-      Broodwar->drawLineMap(s->getPosition().x,s->getPosition().y,goal.x,goal.y,Colors::Green);
+      Broodwar->drawLineMap(s->getPosition(), goal, Colors::Green);
     }
   }
   else
@@ -68,12 +68,12 @@ void MicroTest::onFrame()
             if (e)
             {
               s->attack(e);
-              Broodwar->drawLineMap(s->getPosition().x,s->getPosition().y,e->getPosition().x,e->getPosition().y,Colors::Red);
+              Broodwar->drawLineMap(s->getPosition(), e->getPosition(), Colors::Red);
             }
             else
             {
               s->rightClick(goal);
-              Broodwar->drawLineMap(s->getPosition().x,s->getPosition().y,goal.x,goal.y,Colors::Green);
+              Broodwar->drawLineMap(s->getPosition(), goal, Colors::Green);
             }
           }
         }

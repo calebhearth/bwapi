@@ -34,23 +34,116 @@
 
 namespace BWAPI
 {
-  inline bool testIsValid(int x, int y);
-
   // Declaration
   template<typename _T, int __Scale = 1>
   class Point;
+  template<typename _T, int __Scale = 1>
+  class PointIterator;
 
   // Restrictions
   template<typename _T> class Point<_T, 0> {};
   template<int __Scale> class Point<char, __Scale> {};
   template<int __Scale> class Point<unsigned char, __Scale> {};
   template<int __Scale> class Point<bool, __Scale> {};
+  template<typename _T> class PointIterator<_T, 0> {};
+  template<int __Scale> class PointIterator<char, __Scale> {};
+  template<int __Scale> class PointIterator<unsigned char, __Scale> {};
+  template<int __Scale> class PointIterator<bool, __Scale> {};
 
-  // Primary template
+  // ------------------------------------------------------ Point Iterator template ----------------
+  template<typename _T, int __Scale>
+  class PointIterator
+  {
+  public:
+    // ----------------------------- CONSTRUCTORS --------------------------------
+    PointIterator(const Point<_T,__Scale> &bottomRight) 
+      : begin( Point<_T,__Scale>(0,0) )
+      , end(bottomRight)
+      , x(0)
+      , y(0)
+    {};
+    PointIterator(_T xMax, _T yMax)
+      : begin( Point<_T,__Scale>(0,0) )
+      , end( Point<_T,__Scale>(xMax,yMax) )
+      , x(0)
+      , y(0)
+    {};
+    PointIterator(const Point<_T,__Scale> &topLeft, const Point<_T,__Scale> &bottomRight) 
+      : begin(topLeft)
+      , end(bottomRight)
+      , x(topLeft.x)
+      , y(topLeft.y)
+    {};
+    // ----------------------------- OPERATORS --------------------------------
+    operator bool()
+    {
+      return this->x > begin.x && this->x < end.x &&
+             this->y > begin.y && this->y < end.y;
+    };
+    PointIterator &operator =(const PointIterator &other)
+    {
+      this->x = other.x;
+      this->y = other.y;
+      this->begin = other.begin;
+      this->end = other.end;
+    };
+    PointIterator &operator ++()
+    {
+      ++this->x;
+      if ( this->x >= this->end.x )
+      {
+        this->x = this->begin.x;
+        ++this->y;
+      }
+      return *this;
+    };
+    PointIterator operator ++(int)
+    {
+      PointIterator copy = *this;
+      ++this->x;
+      if ( this->x >= this->end.x )
+      {
+        this->x = this->begin.x;
+        ++this->y;
+      }
+      return copy;
+    };
+    PointIterator &operator --()
+    {
+      --this->x;
+      if ( this->x <= this->begin.x )
+      {
+        this->x = this->end.x;
+        --this->y;
+      }
+      return *this;
+    };
+    PointIterator operator --(int)
+    {
+      PointIterator copy = *this;
+      --this->x;
+      if ( this->x <= this->begin.x )
+      {
+        this->x = this->end.x;
+        --this->y;
+      }
+      return copy;
+    };
+
+    _T x;
+    _T y;
+
+    const Point<_T,__Scale> begin;
+    const Point<_T,__Scale> end;
+  };
+
+  // ------------------------------------------------------ Point template ----------------
   template<typename _T, int __Scale>
   class Point
   {
   public:
+    typedef PointIterator<_T,__Scale> iterator;
+
     // Constructors
     Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};
 
@@ -59,10 +152,14 @@ namespace BWAPI
     template<typename _NT, int __NScale> Point(const Point<_NT, __NScale> &pt)
       : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
       , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
+    template<typename _NT, int __NScale> Point(const PointIterator<_NT, __NScale> &pt)
+      : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
+      , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
 
 #pragma warning( default: 4723 )
     // Conversion restriction constructor
     template<typename _NT> Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
+    template<typename _NT> Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
 
     // Operators
     operator bool() const { return this->isValid(); };
@@ -124,6 +221,33 @@ namespace BWAPI
 
       unsigned int minCalc = (3*min) >> 3;
       return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
+    };
+
+    Point &setMax(_T _x, _T _y)
+    {
+      if ( x > _x )
+        x = _x;
+      if ( y > _y )
+        y = _y;
+      return *this;
+    };
+    Point &setMax(const Point &max)
+    {
+      this->setMax(max.x, max.y);
+      return *this;
+    };
+    Point &setMin(_T _x, _T _y)
+    {
+      if ( x < _x )
+        x = _x;
+      if ( y < _y )
+        y = _y;
+      return *this;
+    };
+    Point &setMin(const Point &max)
+    {
+      this->setMin(max.x, max.y);
+      return *this;
     };
 
     // members
