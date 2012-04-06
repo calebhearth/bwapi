@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_ERRORDEF(x) static const Error x(Enum::x) /** ref x */

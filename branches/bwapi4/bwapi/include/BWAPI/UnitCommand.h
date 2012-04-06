@@ -1,15 +1,17 @@
 #pragma once
 
-#include <BWAPI/UnitCommandType.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/UnitType.h>
-#include <BWAPI/PositionUnit.h>
+#include <BWAPI/UnitCommandType.h>
 
 namespace BWAPI
 {
+  // Forwards
   class Unit;
+  class UnitType;
+  class TechType;
+  class UpgradeType;
+  class PositionOrUnit;
+
   class UnitCommand
   {
     public:

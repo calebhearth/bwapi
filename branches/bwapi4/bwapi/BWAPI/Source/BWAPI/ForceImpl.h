@@ -1,10 +1,12 @@
 #pragma once
 #include <BWAPI/Force.h>
-#include <set>
-#include <string>
+#include <BWAPI/Playerset.h>
+
 namespace BWAPI
 {
+  // Forwards
   class Player;
+
   class ForceImpl : public Force
   {
     public:

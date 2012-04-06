@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_GAMETYPEDEF(x) static const GameType x(Enum::x) /** ref x */

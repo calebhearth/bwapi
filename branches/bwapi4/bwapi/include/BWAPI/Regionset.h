@@ -3,7 +3,9 @@
 
 namespace BWAPI
 {
+  // Forward Declarations
   class Region;
+
   class Regionset : public Vectorset<BWAPI::Region*>
   {
   public:

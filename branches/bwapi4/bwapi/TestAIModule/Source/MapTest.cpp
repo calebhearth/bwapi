@@ -27,7 +27,6 @@ void MapTest::onStart()
 
   for(int x=5;x<14;x++)
   {
-    // @TODO: Investigate
     BWAssertF(Broodwar->hasCreep(x,0), { log("  hasCreep(%u,0)", x); });
   }
   for(int x=14;x<40;x++)

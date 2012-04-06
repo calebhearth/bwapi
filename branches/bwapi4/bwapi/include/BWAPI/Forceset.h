@@ -3,7 +3,9 @@
 
 namespace BWAPI
 {
+  // Forward Declarations
   class Force;
+
   class Forceset : public Vectorset<BWAPI::Force*>
   {
   public:

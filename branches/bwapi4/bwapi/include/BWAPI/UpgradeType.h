@@ -1,13 +1,13 @@
 #pragma once
-#include <string>
-#include <BWAPI/Race.h>
-#include <BWAPI/UnitType.h>
 #include "Type.h"
+#include <BWAPI/UnitType.h>
 
 #define BWAPI_UPGTYPEDEF(x) static const UpgradeType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {
+  class Race;
+
   namespace UpgradeTypes
   {
     namespace Enum

@@ -8,7 +8,6 @@
 #include <BWAPI/Unitset.h>
 
 #include "PositionUnitTarget.h"
-#include "Race.h"
 
 namespace BWAPI { class UnitImpl; }
 #pragma pack(1)

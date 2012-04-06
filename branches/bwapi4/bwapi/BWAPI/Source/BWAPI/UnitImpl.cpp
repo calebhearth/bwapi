@@ -20,7 +20,6 @@
 #include <BW/Unit.h>
 #include <BW/Order.h>
 #include <BW/Offsets.h>
-#include <BW/UnitID.h>
 
 #include "../../../Debug.h"
 

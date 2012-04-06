@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_PLYRTYPEDEF(x) static const PlayerType x(Enum::x) /** ref x */

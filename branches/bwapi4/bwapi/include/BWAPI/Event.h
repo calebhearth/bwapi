@@ -1,12 +1,17 @@
 #pragma once
-#include <BWAPI/EventType.h>
-#include <BWAPI/Player.h>
-#include <BWAPI/Unit.h>
 #include <BWAPI/Position.h>
 #include <string>
 
 namespace BWAPI
 {
+  // Forward Declarations
+  class Player;
+  class Unit;
+  namespace EventType
+  {
+    enum Enum;
+  }
+
   class Event
   {
     public:

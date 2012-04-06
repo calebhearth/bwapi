@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <set>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>
 #include <Util/Foreach.h>

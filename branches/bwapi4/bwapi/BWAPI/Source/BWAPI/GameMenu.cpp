@@ -4,8 +4,10 @@
 #include "../DLLMain.h"
 #include "../NewHackUtil.h"
 
+#include <BWAPI/PlayerType.h>
+#include <BWAPI/Race.h>
+
 #include <BW/MenuPosition.h>
-#include <BW/PlayerType.h>
 #include <Util/clamp.h>
 
 #include "../../../Debug.h"
@@ -126,7 +128,7 @@ namespace BWAPI
     unsigned int rval = 0;
     for ( unsigned int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
-      if ( BW::BWDATA_Players[i].nType == BW::PlayerType::Player  && BW::BWDATA_PlayerDownloadStatus[i] >= 100 )
+      if ( BW::BWDATA_Players[i].nType == PlayerTypes::Player  && BW::BWDATA_PlayerDownloadStatus[i] >= 100 )
         ++rval;
     }
     return rval;
@@ -136,7 +138,7 @@ namespace BWAPI
     unsigned int rval = 0;
     for ( unsigned int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
-      if ( BW::BWDATA_Players[i].nType == BW::PlayerType::EitherPreferHuman )
+      if ( BW::BWDATA_Players[i].nType == PlayerTypes::EitherPreferHuman )
         ++rval;
     }
     return rval;
@@ -484,7 +486,7 @@ namespace BWAPI
     }
     else
       return BW::BWDATA_Players[slot].nRace;
-    return BW::Race::None;
+    return Races::None;
   }
 }
 

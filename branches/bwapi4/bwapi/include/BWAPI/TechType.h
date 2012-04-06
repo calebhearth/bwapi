@@ -1,15 +1,14 @@
 #pragma once
-#include <string>
-#include <BWAPI/Race.h>
-#include <BWAPI/Order.h>
-#include <BWAPI/UnitType.h>
 #include "Type.h"
+#include <BWAPI/UnitType.h>
 
 #define BWAPI_TECHTYPEDEF(x) static const TechType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {
   class WeaponType;
+  class Order;
+  class Race;
 
   namespace TechTypes
   {

@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_ORDERDEF(x) static const Order x(Enum::x) /** ref x */
@@ -19,9 +18,11 @@ namespace BWAPI
         TurretGuard            = 4,
         BunkerGuard            = 5,
         Move                   = 6,
-    
+        ReaverStop,
+        Attack1,
+        Attack2,
         AttackUnit             = 10,
-    
+        AttackFixedRange,
         AttackTile             = 12,
         Hover                  = 13,
         AttackMove             = 14,
@@ -31,19 +32,21 @@ namespace BWAPI
         TowerGuard             = 18,
         TowerAttack            = 19,
         VultureMine            = 20,
-    
+        StayInRange,
+        TurretAttack,
         Nothing                = 23,
         Unused_24              = 24,
-    
+        DroneStartBuild,
+        DroneBuild,
         CastInfestation        = 27,
-    
+        MoveToInfest,
         InfestingCommandCenter = 29,
         PlaceBuilding          = 30,
-    
-        BuildProtoss2          = 32,
+        PlaceProtossBuilding,
+        CreateProtossBuilding,
         ConstructingBuilding   = 33,
         Repair                 = 34,
-    
+        MoveToRepair,
         PlaceAddon             = 36,
         BuildAddon             = 37,
         Train                  = 38,
@@ -53,18 +56,24 @@ namespace BWAPI
         ZergUnitMorph          = 42,
         ZergBuildingMorph      = 43,
         IncompleteBuilding     = 44,
-    
+        IncompleteMorphing,
         BuildNydusExit         = 46,
         EnterNydusCanal        = 47,
-    
+        IncompleteWarping,
         Follow                 = 49,
         Carrier                = 50,
         ReaverCarrierMove      = 51,
-    
+        CarrierStop,
+        CarrierAttack,
+        CarrierMoveToAttack,
         CarrierIgnore2         = 55,
-    
+        CarrierFight,
+        CarrierHoldPosition,
         Reaver                 = 58,
-  
+        ReaverAttack,
+        ReaverMoveToAttack,
+        ReaverFight,
+        ReaverHoldPosition,
         TrainFighter           = 63,
         InterceptorAttack      = 64,
         ScarabAttack           = 65,
@@ -72,7 +81,7 @@ namespace BWAPI
         RechargeShieldsBattery = 67,
         ShieldBattery          = 68,
         InterceptorReturn      = 69,
-    
+        DroneLand,
         BuildingLand           = 71,
         BuildingLiftOff        = 72,
         DroneLiftOff           = 73,
@@ -102,7 +111,7 @@ namespace BWAPI
         PowerupIdle            = 97,
         Sieging                = 98,
         Unsieging              = 99,
-    
+        WatchTarget,
         InitCreepGrowth        = 101,
         SpreadCreep            = 102,
         StoppingCreepGrowth    = 103,
@@ -110,13 +119,13 @@ namespace BWAPI
         ArchonWarp             = 105,
         CompletingArchonSummon = 106,
         HoldPosition           = 107,
-    
+        QueenHoldPosition,
         Cloak                  = 109,
         Decloak                = 110,
         Unload                 = 111,
         MoveUnload             = 112,
         FireYamatoGun          = 113,
-    
+        MoveToFireYamatoGun,
         CastLockdown           = 115,
         Burrowing              = 116,
         Burrowed               = 117,
@@ -132,11 +141,13 @@ namespace BWAPI
         NukeUnit               = 127,
         CastNuclearStrike      = 128,
         NukeTrack              = 129,
-    
+        InitializeArbiter,
         CloakNearbyUnits       = 131,
         PlaceMine              = 132,
         RightClickAction       = 133,
-    
+        SuicideUnit,
+        SuicideLocation,
+        SuicideHoldPosition,
         CastRecall             = 137,
         Teleport               = 138,
         CastScannerSweep       = 139,
@@ -151,7 +162,7 @@ namespace BWAPI
         CastHallucination      = 148,
         Hallucination2         = 149,
         ResetCollision         = 150,
-    
+        ResetHarvestCollision,
         Patrol                 = 152,
         CTFCOPInit             = 153,
         CTFCOPStarted          = 154,
@@ -164,7 +175,7 @@ namespace BWAPI
         RescuePassive          = 161,
         Neutral                = 162,
         ComputerReturn         = 163,
-    
+        InitializePsiProvider,
         SelfDestructing        = 165,
         Critter                = 166,
         HiddenGun              = 167,
@@ -176,10 +187,10 @@ namespace BWAPI
         DisableDoodad          = 173,
         WarpIn                 = 174,
         Medic                  = 175,
-        MedicHeal1             = 176,
+        MedicHeal              = 176,
         HealMove               = 177,
-    
-        MedicHeal2             = 179,
+        MedicHoldPosition,
+        MedicHealToIdle        = 179,
         CastRestoration        = 180,
         CastDisruptionWeb      = 181,
         CastMindControl        = 182,
@@ -239,7 +250,7 @@ namespace BWAPI
     BWAPI_ORDERDEF(CastInfestation);
     BWAPI_ORDERDEF(InfestingCommandCenter);
     BWAPI_ORDERDEF(PlaceBuilding);
-    BWAPI_ORDERDEF(BuildProtoss2);
+    BWAPI_ORDERDEF(CreateProtossBuilding);
     BWAPI_ORDERDEF(ConstructingBuilding);
     BWAPI_ORDERDEF(Repair);
     BWAPI_ORDERDEF(PlaceAddon);
@@ -361,9 +372,9 @@ namespace BWAPI
     BWAPI_ORDERDEF(DisableDoodad);
     BWAPI_ORDERDEF(WarpIn);
     BWAPI_ORDERDEF(Medic);
-    BWAPI_ORDERDEF(MedicHeal1);
+    BWAPI_ORDERDEF(MedicHeal);
     BWAPI_ORDERDEF(HealMove);
-    BWAPI_ORDERDEF(MedicHeal2);
+    BWAPI_ORDERDEF(MedicHealToIdle);
     BWAPI_ORDERDEF(CastRestoration);
     BWAPI_ORDERDEF(CastDisruptionWeb);
     BWAPI_ORDERDEF(CastMindControl);

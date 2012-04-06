@@ -1,7 +1,6 @@
 #pragma once
-#include <string>
-#include <set>
 #include "Type.h"
+
 namespace BWAPI
 {
   /// @~English

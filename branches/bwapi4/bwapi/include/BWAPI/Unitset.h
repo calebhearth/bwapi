@@ -1,11 +1,12 @@
 #pragma once
 #include <BWAPI/Vectorset.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
+  // Forward declarations
   class Unit;
+  class Regionset;
 
   /// @~English
   /// The Unitset is a container for a set of pointers

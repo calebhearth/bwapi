@@ -2,6 +2,7 @@
 #include <map>
 #include <BWAPI/TechType.h>
 #include <BWAPI/Race.h>
+#include <BWAPI/Order.h>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/WeaponType.h>
 #include <Util/Foreach.h>
@@ -126,7 +127,7 @@ namespace BWAPI
       CastIrradiate, FireYamatoGun, None, None, None, CastInfestation, CastSpawnBroodlings,
       CastDarkSwarm, CastPlague, CastConsume, CastEnsnare, CastParasite, CastPsionicStorm,
       CastHallucination, CastRecall, CastStasisField, None, CastRestoration, CastDisruptionWeb,
-      None, CastMindControl, None, CastFeedback, CastOpticalFlare, CastMaelstrom, None, None, MedicHeal1,
+      None, CastMindControl, None, CastFeedback, CastOpticalFlare, CastMaelstrom, None, None, MedicHeal,
       None, None, None, None, None, None, None, None, None, None, NukePaint, Unknown
     };
   }

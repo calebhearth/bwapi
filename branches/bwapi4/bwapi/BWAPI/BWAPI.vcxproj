@@ -130,6 +130,7 @@ $(SolutionDir)\revisionUpdate.bat
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\BWAPI.h" />
     <ClInclude Include="..\include\BWAPI\AIModule.h" />
     <ClInclude Include="..\include\BWAPI\Bullet.h" />
     <ClInclude Include="..\include\BWAPI\Force.h" />
@@ -170,29 +171,22 @@ $(SolutionDir)\revisionUpdate.bat
     <ClInclude Include="Source\BW\Offsets.h" />
     <ClInclude Include="Source\BW\Order.h" />
     <ClInclude Include="Source\BW\OrderFlags.h" />
-    <ClInclude Include="Source\BW\OrderID.h" />
     <ClInclude Include="Source\BW\OrderTypes.h" />
     <ClInclude Include="Source\BW\Path.h" />
     <ClInclude Include="Source\BW\Pathing.h" />
     <ClInclude Include="Source\BW\PlayerID.h" />
-    <ClInclude Include="Source\BW\PlayerType.h" />
     <ClInclude Include="Source\BW\Position.h" />
     <ClInclude Include="Source\BW\PositionUnitTarget.h" />
-    <ClInclude Include="Source\BW\Race.h" />
     <ClInclude Include="Source\BW\Sprite.h" />
-    <ClInclude Include="Source\BW\TechID.h" />
     <ClInclude Include="Source\BW\TileSet.h" />
     <ClInclude Include="Source\BW\TileType.h" />
     <ClInclude Include="Source\BW\TriggerEngine.h" />
     <ClInclude Include="Source\BW\Triggers.h" />
     <ClInclude Include="Source\BW\Unit.h" />
-    <ClInclude Include="Source\BW\UnitID.h" />
     <ClInclude Include="Source\BW\UnitPrototypeFlags.h" />
     <ClInclude Include="Source\BW\UnitSizeType.h" />
     <ClInclude Include="Source\BW\UnitStatusFlags.h" />
     <ClInclude Include="Source\BW\UnitTarget.h" />
-    <ClInclude Include="Source\BW\UpgradeID.h" />
-    <ClInclude Include="Source\BW\WeaponID.h" />
     <ClInclude Include="Source\BW\WeaponTargetFlags.h" />
     <ClInclude Include="Source\CodePatch.h" />
     <ClInclude Include="Source\Config.h" />
@@ -239,7 +233,6 @@ $(SolutionDir)\revisionUpdate.bat
     <ClCompile Include="Source\BW\Path.cpp" />
     <ClCompile Include="Source\BW\Pathing.cpp" />
     <ClCompile Include="Source\BW\PositionUnitTarget.cpp" />
-    <ClCompile Include="Source\BW\Race.cpp" />
     <ClCompile Include="Source\BW\TileSet.cpp" />
     <ClCompile Include="Source\BW\TriggerEngine.cpp" />
     <ClCompile Include="Source\BW\Unit.cpp" />

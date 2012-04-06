@@ -5,7 +5,6 @@
 #include <deque>
 #include <list>
 #include <algorithm>
-#include <type_traits>
 
 namespace BWAPI
 {

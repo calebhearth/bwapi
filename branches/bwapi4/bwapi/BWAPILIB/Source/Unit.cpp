@@ -1,5 +1,8 @@
 #include <BWAPI/Unit.h>
 #include <BWAPI/Order.h>
+#include <BWAPI/UnitCommand.h>
+#include <BWAPI/TechType.h>
+#include <BWAPI/UpgradeType.h>
 
 namespace BWAPI
 {

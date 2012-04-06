@@ -1,12 +1,13 @@
 #pragma once
-
-#include <BWAPI/BulletType.h>
 #include <BWAPI/Position.h>
 
 namespace BWAPI
 {
+  // Forward declarations
   class Player;
   class Unit;
+  class BulletType;
+
   class Bullet
   {
   protected:

@@ -1,5 +1,6 @@
 #include "PlayerImpl.h"
 #include <Util/clamp.h>
+#include <BWAPI/Color.h>
 
 namespace BWAPI
 {

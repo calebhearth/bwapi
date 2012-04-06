@@ -20,7 +20,6 @@ namespace BW { class Unit; };
 #include <BWAPI/Unitset.h>
 
 #include <BW/Offsets.h>
-#include <BW/Race.h>
 
 namespace BWAPI
 {

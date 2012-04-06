@@ -1,12 +1,11 @@
 #pragma once
-#include <set>
 #include <string>
-
-#include <BWAPI/Playerset.h>
+// Forward Declarations
 
 namespace BWAPI
 {
-  class Player;
+  // Forward Declarations
+  class Playerset;
 
   /** The Force class is used to get information about each force in the match, such as the name of the force
    * and the set of players in the force. */

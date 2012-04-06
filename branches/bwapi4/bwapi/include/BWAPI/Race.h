@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <set>
 #include "Type.h"
 
 #define BWAPI_RACEDEF(x) static const Race x(Enum::x) /** ref x */

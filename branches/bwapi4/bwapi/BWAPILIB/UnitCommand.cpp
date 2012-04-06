@@ -1,5 +1,7 @@
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Unit.h>
+#include <BWAPI/TechType.h>
+#include <BWAPI/UpgradeType.h>
 
 #include "../Debug.h"
 

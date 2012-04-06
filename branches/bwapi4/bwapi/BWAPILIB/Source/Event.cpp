@@ -1,4 +1,5 @@
 #include <BWAPI/Event.h>
+#include <BWAPI/EventType.h>
 
 #include "../../Debug.h"
 

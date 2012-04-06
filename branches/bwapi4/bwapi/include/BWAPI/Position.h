@@ -77,8 +77,8 @@ namespace BWAPI
     // ----------------------------- OPERATORS --------------------------------
     operator bool()
     {
-      return this->x > begin.x && this->x < end.x &&
-             this->y > begin.y && this->y < end.y;
+      return this->x >= begin.x && this->x < end.x &&
+             this->y >= begin.y && this->y < end.y;
     };
     PointIterator &operator =(const PointIterator &other)
     {
@@ -89,43 +89,22 @@ namespace BWAPI
     };
     PointIterator &operator ++()
     {
-      ++this->x;
-      if ( this->x >= this->end.x )
+      ++this->y;
+      if ( this->y >= this->end.y )
       {
-        this->x = this->begin.x;
-        ++this->y;
+        this->y = this->begin.y;
+        ++this->x;
       }
       return *this;
     };
     PointIterator operator ++(int)
     {
       PointIterator copy = *this;
-      ++this->x;
-      if ( this->x >= this->end.x )
+      ++this->y;
+      if ( this->y >= this->end.y )
       {
-        this->x = this->begin.x;
-        ++this->y;
-      }
-      return copy;
-    };
-    PointIterator &operator --()
-    {
-      --this->x;
-      if ( this->x <= this->begin.x )
-      {
-        this->x = this->end.x;
-        --this->y;
-      }
-      return *this;
-    };
-    PointIterator operator --(int)
-    {
-      PointIterator copy = *this;
-      --this->x;
-      if ( this->x <= this->begin.x )
-      {
-        this->x = this->end.x;
-        --this->y;
+        this->y = this->begin.y;
+        ++this->x;
       }
       return copy;
     };

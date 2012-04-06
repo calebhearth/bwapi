@@ -1,8 +1,8 @@
 #include "OrderTypes.h"
 #include <BWAPI/Unit.h>
+#include <BWAPI/Order.h>
+#include <BWAPI/Race.h>
 #include <BW/Offsets.h>
-#include <BW/UnitID.h>
-#include <BW/OrderID.h>
 #include <Util/Exceptions.h>
 
 #include "../../../Debug.h"
@@ -15,7 +15,7 @@ namespace BW
     Attack::Attack(BWAPI::Unit* target, int OrderID, bool queued)
         : always0x15(0x15)
         , target((BWAPI::UnitImpl*)target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -24,7 +24,7 @@ namespace BW
     Attack::Attack(const BW::Position& target, int OrderID, bool queued)
         : always0x15(0x15)
         , target(target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -32,7 +32,7 @@ namespace BW
     Attack::Attack(int x, int y, int OrderID, bool queued)
         : always0x15(0x15)
         , target(x,y)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -41,7 +41,7 @@ namespace BW
     Attack::Attack(const PositionUnitTarget& target, int OrderID, bool queued)
         : always0x15(0x15)
         , target(target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -50,7 +50,7 @@ namespace BW
     RightClick::RightClick(BWAPI::Unit* target, bool queued)
         : always0x14(0x14)
         , target((BWAPI::UnitImpl*)target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -58,14 +58,14 @@ namespace BW
     RightClick::RightClick(const BW::Position& target, bool queued)
         : always0x14(0x14)
         , target(target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
     RightClick::RightClick(int x, int y, bool queued)
         : always0x14(0x14)
         , target(x,y)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -73,7 +73,7 @@ namespace BW
     RightClick::RightClick(const PositionUnitTarget& target, bool queued)
         : always0x14(0x14)
         , target(target)
-        , always0xe4(BW::UnitID::None)
+        , always0xe4(BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -175,14 +175,14 @@ namespace BW
     {
       switch( BWAPI::UnitType(type).getRace() )
       {
-      case BW::Race::Zerg:
-        raceDependant = BW::OrderID::DroneStartBuild;
+      case BWAPI::Races::Enum::Zerg:
+        raceDependant = BWAPI::Orders::Enum::DroneStartBuild;
         break;
-      case BW::Race::Terran:
-        raceDependant = BW::OrderID::BuildTerran;
+      case BWAPI::Races::Enum::Terran:
+        raceDependant = BWAPI::Orders::Enum::PlaceBuilding;
         break;
-      case BW::Race::Protoss:
-        raceDependant = BW::OrderID::BuildProtoss1;
+      case BWAPI::Races::Enum::Protoss:
+        raceDependant = BWAPI::Orders::Enum::PlaceProtossBuilding;
         break;
       default:
         throw GeneralException("MakeBuilding::MakeBuilding - wrong race type of the worker");
@@ -197,14 +197,14 @@ namespace BW
     {
       switch( BWAPI::UnitType(type).getRace() )
       {
-      case BW::Race::Zerg:
-        raceDependant = BW::OrderID::DroneStartBuild;
+      case BWAPI::Races::Enum::Zerg:
+        raceDependant = BWAPI::Orders::Enum::DroneStartBuild;
         break;
-      case BW::Race::Terran:
-        raceDependant = BW::OrderID::BuildTerran;
+      case BWAPI::Races::Enum::Terran:
+        raceDependant = BWAPI::Orders::Enum::PlaceBuilding;
         break;
-      case BW::Race::Protoss:
-        raceDependant = BW::OrderID::BuildProtoss1;
+      case BWAPI::Races::Enum::Protoss:
+        raceDependant = BWAPI::Orders::Enum::PlaceProtossBuilding;
         break;
       default:
         throw GeneralException("MakeBuilding::MakeBuilding - wrong race type of the worker");
@@ -214,14 +214,14 @@ namespace BW
     //---------------------------------------------- PLACE COP -----------------------------------------------
     PlaceCOP::PlaceCOP(BW::TilePosition position, int type)
         : always0x0c(0x0C)
-        , always0x9B(BW::OrderID::CTFCOP2)
+        , always0x9B(BWAPI::Orders::CTFCOP2)
         , position(position)
         , type((u16)type)
     {
     }
     PlaceCOP::PlaceCOP(int x, int y, int type)
         : always0x0c(0x0C)
-        , always0x9B(BW::OrderID::CTFCOP2)
+        , always0x9B(BWAPI::Orders::CTFCOP2)
         , position((u16)x, (u16)y)
         , type((u16)type)
     {
@@ -241,14 +241,14 @@ namespace BW
     //---------------------------------------------- MAKE ADDON ----------------------------------------------
     MakeAddon::MakeAddon(BW::TilePosition position, int type)
         : always0x0c(0x0c)
-        , always0x24(BW::OrderID::PlaceAddon)
+        , always0x24(BWAPI::Orders::PlaceAddon)
         , position(position)
         , type((u16)type)
     {
     }
     MakeAddon::MakeAddon(int tileX, int tileY, int type)
         : always0x0c(0x0c)
-        , always0x24(BW::OrderID::PlaceAddon)
+        , always0x24(BWAPI::Orders::PlaceAddon)
         , position((u16)tileX, (u16)tileY)
         , type((u16)type)
     {
@@ -256,16 +256,16 @@ namespace BW
     //---------------------------------------------- MAKE NYDUS ----------------------------------------------
     MakeNydusExit::MakeNydusExit(BW::TilePosition position)
         : always0x0c(0x0c)
-        , always0x2E(BW::OrderID::BuildNydusExit)
+        , always0x2E(BWAPI::Orders::BuildNydusExit)
         , position(position)
-        , type(BW::UnitID::Zerg_NydusCanal)
+        , type(BWAPI::UnitTypes::Zerg_Nydus_Canal)
     {
     }
     MakeNydusExit::MakeNydusExit(int tileX, int tileY)
         : always0x0c(0x0c)
-        , always0x2E(BW::OrderID::BuildNydusExit)
+        , always0x2E(BWAPI::Orders::BuildNydusExit)
         , position((u16)tileX, (u16)tileY)
-        , type(BW::UnitID::Zerg_NydusCanal)
+        , type(BWAPI::UnitTypes::Zerg_Nydus_Canal)
     {
     }
     //------------------------------------------- MOVE CONSTRUCTOR -------------------------------------------
@@ -373,14 +373,14 @@ namespace BW
     //------------------------------------------------- LAND -------------------------------------------------
     Land::Land(BW::TilePosition position, int type)
         : always0x0C(0x0C)
-        , always0x47(BW::OrderID::BuildingLand)
+        , always0x47(BWAPI::Orders::Enum::BuildingLand)
         , position(position)
         , type((u16)type)
     {
     }
     Land::Land(int x, int y, int type)
         : always0x0C(0x0C)
-        , always0x47(BW::OrderID::BuildingLand)
+        , always0x47(BWAPI::Orders::Enum::BuildingLand)
         , position((u16)x, (u16)y)
         , type((u16)type)
     {

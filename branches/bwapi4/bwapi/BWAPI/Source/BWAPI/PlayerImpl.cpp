@@ -3,12 +3,11 @@
 #include "UnitImpl.h"
 
 #include <string>
+#include <Util/Foreach.h>
 
 #include <BW/Offsets.h>
-#include <BW/UnitID.h>
-#include <BW/PlayerType.h>
 
-#include <Util/Foreach.h>
+#include <BWAPI/PlayerType.h>
 
 #include "../../../Debug.h"
 
@@ -385,9 +384,9 @@ namespace BWAPI
       self->customScore         = BW::BWDATA_AllScores->customScore[index];
     }
 
-    if (BW::BWDATA_Players[index].nType == BW::PlayerType::PlayerLeft ||
-        BW::BWDATA_Players[index].nType == BW::PlayerType::ComputerLeft ||
-       (BW::BWDATA_Players[index].nType == BW::PlayerType::Neutral && !isNeutral()))
+    if (BW::BWDATA_Players[index].nType == PlayerTypes::PlayerLeft ||
+        BW::BWDATA_Players[index].nType == PlayerTypes::ComputerLeft ||
+       (BW::BWDATA_Players[index].nType == PlayerTypes::Neutral && !isNeutral()))
     {
       self->leftGame = true;
     }

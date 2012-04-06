@@ -1,18 +1,18 @@
 #pragma once
-#include <string>
 #include <map>
-#include <BWAPI/Race.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/UnitSizeType.h>
 #include "Type.h"
 
 #define BWAPI_UNITDEF(x) static const UnitType x(Enum::x) /** ref x */
 
 namespace BWAPI
 {
+  // Forward Declarations
   class TechType;
   class UpgradeType;
   class WeaponType;
+  class UnitSizeType;
+  class Race;
 
   namespace UnitTypes
   {

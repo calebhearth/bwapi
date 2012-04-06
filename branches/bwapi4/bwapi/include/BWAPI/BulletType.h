@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_BULLETDEF(x) static const BulletType x(Enum::x) /** ref x */

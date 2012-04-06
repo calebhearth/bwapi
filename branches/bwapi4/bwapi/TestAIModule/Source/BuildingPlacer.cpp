@@ -6,15 +6,15 @@ BuildingPlacer::BuildingPlacer()
 {
   reserveMap.resize(BWAPI::Broodwar->mapWidth(), BWAPI::Broodwar->mapHeight());
   reserveMap.setTo(false);
-  this->buildDistance=1;
+  this->buildDistance = 1;
 }
 bool BuildingPlacer::canBuildHere(BWAPI::TilePosition position, BWAPI::UnitType type) const
 {
   //returns true if we can build this type of unit here. Takes into account reserved tiles.
   if (!BWAPI::Broodwar->canBuildHere(position, type))
     return false;
-  for ( BWAPI::TilePosition::iterator i(position, position + type.tileSize()); i; ++i )
-    if (reserveMap[i.x][i.y])
+  for ( BWAPI::TilePosition::iterator p(position, position + type.tileSize()); p; ++p )
+    if (reserveMap[p.x][p.y])
       return false;
   return true;
 }
@@ -36,47 +36,45 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
 
   //make sure we leave space for add-ons. These types of units can have addons:
   if ( type.canBuildAddon() )
-    width += 2;
-
-  BWAPI::TilePosition start(position - BWAPI::TilePosition(buildDist, buildDist));
-  BWAPI::TilePosition end(position + BWAPI::TilePosition(buildDist + width, buildDist + height) );
+  {
+    width+=2;
+  }
+  BWAPI::TilePosition start(position - BWAPI::TilePosition(buildDist,buildDist));
+  BWAPI::TilePosition end(position + BWAPI::TilePosition(width, height) + BWAPI::TilePosition(buildDist,buildDist));
   if ( !start || !end )
     return false;
 
-  if ( !type.isRefinery() )
+  for ( BWAPI::TilePosition::iterator p(start,end); p; ++p )
   {
-    for ( BWAPI::TilePosition::iterator i(start, end); i; ++i )
-    {
-      if ( !buildable(i.x, i.y) || reserveMap[i.x][i.y] )
-        return false;
-    }
+    if ( !type.isRefinery() && (!buildable(p) || reserveMap[p.x][p.y]) )
+      return false;
   }
 
-  if ( position.x > 3 )
+  if (position.x > 3)
   {
-    BWAPI::TilePosition newStart((start - BWAPI::TilePosition(2,0)).makeValid());
-    BWAPI::TilePosition newEnd(start.x, end.y);
+    BWAPI::TilePosition start2(start.x-2, start.y);
+    BWAPI::TilePosition end2(start.x, end.y);
+    start2.makeValid();
+    end2.makeValid();
 
-    for ( BWAPI::TilePosition::iterator p(newStart,newEnd); p; ++p )
+    for ( BWAPI::TilePosition::iterator p(start2,end2); p; ++p )
     {
-      BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(p.x, p.y);
-      for( BWAPI::Unitset::iterator i = units.begin(); i != units.end(); ++i )
+      BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(p);
+      for( auto i = units.begin(); i != units.end(); ++i )
       {
         if ( !i->isLifted() && i->getType().canBuildAddon() )
           return false;
       }
     }
-  } //position.x > 3
+  }
   return true;
 }
 BWAPI::TilePosition BuildingPlacer::getBuildLocation(BWAPI::UnitType type) const
 {
   //returns a valid build location if one exists, scans the map left to right
-  for( BWAPI::TilePosition::iterator p(BWAPI::Broodwar->mapWidth(), BWAPI::Broodwar->mapHeight()); p; ++p )
-  {
-    if (this->canBuildHere(BWAPI::TilePosition(p.x, p.y), type))
+  for ( BWAPI::TilePosition::iterator p(BWAPI::Broodwar->mapWidth(), BWAPI::Broodwar->mapHeight()); p; ++p )
+    if (this->canBuildHere(p, type))
       return p;
-  }
   return BWAPI::TilePositions::None;
 }
 
@@ -89,8 +87,6 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
 {
   //returns a valid build location near the specified tile position.
   //searches outward in a spiral.
-  BWAPI::TilePosition pos(position);
-
   int length = 1;
   int j      = 0;
   bool first = true;
@@ -99,13 +95,12 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
   while (length < BWAPI::Broodwar->mapWidth()) //We'll ride the spiral to the end
   {
     //if we can build here, return this tile position
-    if ( pos )
-      if (this->canBuildHereWithSpace(pos, type, buildDist))
-        return pos;
+    if ( position )
+      if (this->canBuildHereWithSpace(position, type, buildDist))
+        return position;
 
     //otherwise, move to another position
-    pos += BWAPI::TilePosition(dx,dy);
-
+    position += BWAPI::TilePosition(dx, dy);
     //count how many steps we take in this direction
     j++;
     if (j == length) //if we've reached the end, its time to turn
@@ -118,7 +113,7 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
         length++; //increment step counter if needed
 
       //first=true for every other turn so we spiral out at the right rate
-      first =! first;
+      first = !first;
 
       //turn counter clockwise 90 degrees:
       if (dx == 0)
@@ -137,12 +132,12 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
   return BWAPI::TilePositions::None;
 }
 
-bool BuildingPlacer::buildable(int x, int y) const
+bool BuildingPlacer::buildable(BWAPI::TilePosition position) const
 {
   //returns true if this tile is currently buildable, takes into account units on tile
-  if (!BWAPI::Broodwar->isBuildable(x,y)) return false;
-  BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(x, y);
-  for(BWAPI::Unitset::iterator i = units.begin(); i != units.end(); ++i)
+  if (!BWAPI::Broodwar->isBuildable(position)) return false;
+  BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(position);
+  for ( auto i = units.begin(); i != units.end(); ++i )
     if (i->getType().isBuilding() && !i->isLifted())
       return false;
   return true;
@@ -151,30 +146,32 @@ bool BuildingPlacer::buildable(int x, int y) const
 void BuildingPlacer::reserveTiles(BWAPI::TilePosition position, int width, int height)
 {
   BWAPI::TilePosition end(position + BWAPI::TilePosition(width,height));
-  end.setMax(reserveMap.getWidth()-1, reserveMap.getHeight()-1);
+  end.setMin((int)reserveMap.getWidth(), (int)reserveMap.getHeight());
 
-  for ( BWAPI::TilePosition::iterator p(position, end); p; ++p )
+  for ( BWAPI::TilePosition::iterator p(position,end); p; ++p )
     reserveMap[p.x][p.y] = true;
 }
 
 void BuildingPlacer::freeTiles(BWAPI::TilePosition position, int width, int height)
 {
-  for(int x = position.x; x < position.x + width && x < (int)reserveMap.getWidth(); ++x)
-    for(int y = position.y; y < position.y + height && y < (int)reserveMap.getHeight(); ++y)
-      reserveMap[x][y] = false;
+  BWAPI::TilePosition end(position + BWAPI::TilePosition(width,height));
+  end.setMin((int)reserveMap.getWidth(), (int)reserveMap.getHeight());
+
+  for ( BWAPI::TilePosition::iterator p(position,end); p; ++p )
+    reserveMap[p.x][p.y] = false;
 }
 
 void BuildingPlacer::setBuildDistance(int distance)
 {
-  this->buildDistance=distance;
+  this->buildDistance = distance;
 }
 int BuildingPlacer::getBuildDistance() const
 {
   return this->buildDistance;
 }
-bool BuildingPlacer::isReserved(int x, int y) const
+bool BuildingPlacer::isReserved(BWAPI::TilePosition position) const
 {
-  if ( x < 0 || y < 0 || x >= (int)reserveMap.getWidth() || y >= (int)reserveMap.getHeight())
+  if ( !position )
     return false;
-  return reserveMap[x][y];
+  return reserveMap[position.x][position.y];
 }

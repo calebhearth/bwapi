@@ -1,12 +1,14 @@
 #pragma once
 #include <BWAPI/Vectorset.h>
-#include <BWAPI/Unitset.h>
 
 #include <BWAPI/Race.h>
 
 namespace BWAPI
 {
+  // Forward Declarations
   class Player;
+  class Unitset;
+
   class Playerset : public Vectorset<BWAPI::Player*>
   {
   public:

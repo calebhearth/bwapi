@@ -12,9 +12,6 @@
 #include <BWAPI/Command.h>
 #include <BWAPI/Map.h>
 
-#include <BW/PlayerType.h>
-#include <BW/UnitID.h>
-
 #include "../../../svnrev.h"
 #include "../../../Debug.h"
 
@@ -83,7 +80,7 @@ namespace BWAPI
       }
 
       // First check if player owns a unit at start
-      for ( int u = 0; u < BW::UnitID::None; ++u )
+      for ( int u = 0; u < UnitTypes::None; ++u )
       {
         if ( BW::BWDATA_AllScores->unitCounts.all[u][i] )
         {
@@ -133,9 +130,9 @@ namespace BWAPI
       /* find the opponent player */
       for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
       {
-        if ( (this->players[i]->getType() == BW::PlayerType::Computer ||
-              this->players[i]->getType() == BW::PlayerType::Player   ||
-              this->players[i]->getType() == BW::PlayerType::EitherPreferComputer) &&
+        if ( (this->players[i]->getType() == PlayerTypes::Computer ||
+              this->players[i]->getType() == PlayerTypes::Player   ||
+              this->players[i]->getType() == PlayerTypes::EitherPreferComputer) &&
              !this->players[i]->isObserver() &&
              thisPlayer->isEnemy(this->players[i]) )
           this->enemyPlayer = this->players[i];
@@ -201,11 +198,11 @@ namespace BWAPI
       // If the game is UMS and player is observer and race is not (UserSelect OR invalid player type), skip
       if ( this->getGameType() == GameTypes::Use_Map_Settings && 
            this->players[i]->isObserver() && 
-           (bRaceInfo[i] != BW::Race::Select ||
-           (bOwnerInfo[i] != BW::PlayerType::Computer &&
-            bOwnerInfo[i] != BW::PlayerType::Player   &&
-            bOwnerInfo[i] != BW::PlayerType::EitherPreferComputer &&
-            bOwnerInfo[i] != BW::PlayerType::EitherPreferHuman)) )
+           (bRaceInfo[i] != Races::Enum::Select ||
+           (bOwnerInfo[i] != PlayerTypes::Computer &&
+            bOwnerInfo[i] != PlayerTypes::Player   &&
+            bOwnerInfo[i] != PlayerTypes::EitherPreferComputer &&
+            bOwnerInfo[i] != PlayerTypes::EitherPreferHuman)) )
         continue;
 
       // add start location
@@ -217,8 +214,8 @@ namespace BWAPI
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
       if ( this->players[i] && 
-           BW::BWDATA_Players[i].nType != BW::PlayerType::None &&
-           BW::BWDATA_Players[i].nType <  BW::PlayerType::Closed )
+           BW::BWDATA_Players[i].nType != PlayerTypes::None &&
+           BW::BWDATA_Players[i].nType <  PlayerTypes::Closed )
       {
         players[i]->setID(server.getPlayerID(players[i]));
         this->playerSet.insert(this->players[i]);
@@ -259,8 +256,8 @@ namespace BWAPI
         if ( this->players[p] && BW::BWDATA_Players[p].nTeam == f )
         {
           this->players[p]->force = newForce;
-          if ( BW::BWDATA_Players[p].nType != BW::PlayerType::None &&
-               BW::BWDATA_Players[p].nType <  BW::PlayerType::Closed )
+          if ( BW::BWDATA_Players[p].nType != PlayerTypes::None &&
+               BW::BWDATA_Players[p].nType <  PlayerTypes::Closed )
             newForce->players.insert(this->players[p]);
         }
       }

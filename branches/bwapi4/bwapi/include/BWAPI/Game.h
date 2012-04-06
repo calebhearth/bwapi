@@ -1,36 +1,33 @@
 #pragma once
-
-#include <list>
-#include <map>
 #include <set>
-#include <vector>
-#include <iterator>
+#include <list>
+#include <string>
 
-#include <BWAPI/Color.h>
-#include <BWAPI/CoordinateType.h>
-#include <BWAPI/Error.h>
-#include <BWAPI/Event.h>
-#include <BWAPI/Flag.h>
-#include <BWAPI/GameType.h>
-#include <BWAPI/Race.h>
-#include <BWAPI/Region.h>
-#include <BWAPI/Order.h>
-#include <BWAPI/Latency.h>
 #include <BWAPI/UnitType.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/Input.h>
+#include <BWAPI/Error.h>
 
-#include <BWAPI/Unitset.h>
-#include <BWAPI/Playerset.h>
-#include <BWAPI/Bulletset.h>
-#include <BWAPI/Forceset.h>
 namespace BWAPI
 {
+  // Forward Declarations
+  class Bulletset;
+  class Color;
+  class Event;
   class Force;
+  class Forceset;
+  class GameType;
   class Player;
+  class Playerset;
+  class Race;
+  class Region;
+  class Regionset;
+  class TechType;
   class Unit;
-  class Bullet;
+  class UnitCommand;
+  class Unitset;
+  class UpgradeType;
+
+  enum MouseButton;
+  enum Key;
 
   /** The abstract Game class is implemented by BWAPI and offers many methods for retrieving information
    * about the current Broodwar game, including the set of players, units, map information, as well as
@@ -118,7 +115,7 @@ namespace BWAPI
 
     /** Returns the position of the mouse on the screen. Returns Positions::Unknown if Flag::UserInput is
      * disabled. */
-    virtual BWAPI::Position getMousePosition() const = 0;
+    virtual Position getMousePosition() const = 0;
 
     /** Returns true if the specified mouse button is pressed. Returns false if Flag::UserInput is
      * disabled. */
@@ -156,6 +153,7 @@ namespace BWAPI
 
     /** Returns the set of accessible units that are on the given build tile. */
     virtual Unitset& getUnitsOnTile(int tileX, int tileY) = 0;
+    Unitset& getUnitsOnTile(BWAPI::TilePosition tile);
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
     virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const = 0;

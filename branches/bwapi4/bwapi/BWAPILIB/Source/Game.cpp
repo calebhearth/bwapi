@@ -1,5 +1,7 @@
 #include <BWAPI/Game.h>
 #include <BWAPI/Position.h>
+#include <BWAPI/CoordinateType.h>
+#include <BWAPI/Color.h>
 
 namespace BWAPI
 {
@@ -37,6 +39,10 @@ namespace BWAPI
   bool Game::hasCreep(TilePosition position) const
   {
     return this->hasCreep(position.x, position.y);
+  }
+  Unitset& Game::getUnitsOnTile(BWAPI::TilePosition tile)
+  {
+    return this->getUnitsOnTile(tile.x, tile.y);
   }
 
   //------------------------------------------ REGIONS -----------------------------------------------

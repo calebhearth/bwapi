@@ -175,16 +175,7 @@
     <ClInclude Include="..\include\BWAPI\Unit.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BW\UpgradeID.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\WeaponTargetFlags.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\WeaponID.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\UnitID.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\UnitStatusFlags.h">
@@ -197,18 +188,6 @@
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\Triggers.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\TechID.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\Race.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\PlayerType.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\OrderID.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\OrderFlags.h">
@@ -259,6 +238,9 @@
     <ClInclude Include="Source\BW\AIController.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\BWAPI.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">
@@ -283,9 +265,6 @@
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\PositionUnitTarget.cpp">
-      <Filter>BW\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BW\Race.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\TileSet.cpp">

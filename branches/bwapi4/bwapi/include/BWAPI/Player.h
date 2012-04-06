@@ -1,21 +1,23 @@
 #pragma once
-#include <set>
 #include <string>
 
-#include <BWAPI/Race.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/PlayerType.h>
-#include <BWAPI/UnitType.h>
-#include <BWAPI/Client/PlayerData.h>
-#include <BWAPI/Color.h>
 #include <BWAPI/Position.h>
+#include <BWAPI/Race.h>
 
-#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
-  class Unit;
+  // Forwards
+  class Color;
   class Force;
+  class PlayerType;
+  class TechType;
+  class Unit;
+  class Unitset;
+  class UnitType;
+  class UpgradeType;
+  class WeaponType;
+
+  struct PlayerData;
 
   /// @~English
   /// The Player represents a unique controller in the game.
@@ -212,7 +214,6 @@ namespace BWAPI
      * by BWAPI are double what you would expect to see from playing the game. This is because zerglings
      * take up 0.5 in-game supply. */
     virtual int supplyTotal(Race race = Races::None) const = 0;
-
 
     /** Returns how much of the supply is actually being used by units. If a race is provided, the used
      * supply for the given race will be returned, otherwise the player's initial race will be used. Supply

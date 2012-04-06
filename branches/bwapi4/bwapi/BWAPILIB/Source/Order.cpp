@@ -45,7 +45,7 @@ namespace BWAPI
     static const Order::set orderSet( Die | Stop | Guard | PlayerGuard | TurretGuard | BunkerGuard | Move | AttackUnit | 
                     AttackTile | Hover | AttackMove | InfestedCommandCenter | UnusedNothing | UnusedPowerup | 
                     TowerGuard | VultureMine | Nothing | CastInfestation | InfestingCommandCenter | 
-                    PlaceBuilding | BuildProtoss2 | ConstructingBuilding | Repair | PlaceAddon | BuildAddon |
+                    PlaceBuilding | CreateProtossBuilding | ConstructingBuilding | Repair | PlaceAddon | BuildAddon |
                     Train | RallyPointUnit | RallyPointTile | ZergBirth | ZergUnitMorph | ZergBuildingMorph |
                     IncompleteBuilding | BuildNydusExit | EnterNydusCanal | Follow | Carrier | ReaverCarrierMove |
                     CarrierIgnore2 | Reaver | TrainFighter | InterceptorAttack | ScarabAttack | RechargeShieldsUnit |
@@ -63,7 +63,7 @@ namespace BWAPI
                     CastStasisField | CastHallucination | Hallucination2 | ResetCollision | Patrol | CTFCOPInit |
                     CTFCOPStarted | CTFCOP2 | ComputerAI | AtkMoveEP | HarassMove | AIPatrol | GuardPost | RescuePassive |
                     Neutral | ComputerReturn | SelfDestructing | Critter | HiddenGun | OpenDoor | CloseDoor | HideTrap |
-                    RevealTrap | EnableDoodad | DisableDoodad | WarpIn | Medic | MedicHeal1 | HealMove | MedicHeal2 |
+                    RevealTrap | EnableDoodad | DisableDoodad | WarpIn | Medic | MedicHeal | HealMove | MedicHealToIdle |
                     CastRestoration | CastDisruptionWeb | CastMindControl | DarkArchonMeld | CastFeedback | CastOpticalFlare |
                     CastMaelstrom | JunkYardDog | Fatal | None | Unknown );
     void init()

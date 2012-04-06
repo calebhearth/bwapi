@@ -1,18 +1,19 @@
 #pragma once
-
-#include <BWAPI/Order.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/UnitType.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/Region.h>
-#include <BWAPI/UnitCommand.h>
 #include <BWAPI/PositionUnit.h>
+#include <BWAPI/UnitType.h>
 
-#include <BWAPI/Unitset.h>
 namespace BWAPI
 {
+  // Forwards
   class Player;
+  class Order;
+  class TechType;
+  class UpgradeType;
+  class Region;
+  class UnitCommand;
+  class Unitset;
+  class WeaponType;
 
   /// @~English
   /// The Unit class is used to get information about individual units as well as issue orders to units. Each

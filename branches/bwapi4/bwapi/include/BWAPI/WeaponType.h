@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_WPNTYPEDEF(x) static const WeaponType x(Enum::x) /** ref x */

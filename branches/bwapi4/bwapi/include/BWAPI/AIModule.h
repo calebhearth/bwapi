@@ -1,11 +1,13 @@
 #pragma once
-#include <string>
 #include <BWAPI/Position.h>
-#include <BWAPI/Color.h>
+#include <string>
+
 namespace BWAPI
 {
+  // Forward declarations
   class Unit;
   class Player;
+  class Color;
 
   /// AIModule is a virtual class that is intended to be implemented or inherited by a custom AI class.
   ///

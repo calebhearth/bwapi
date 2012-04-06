@@ -3,7 +3,9 @@
 
 namespace BWAPI
 {
+  // Forward Declarations
   class Bullet;
+
   class Bulletset : public Vectorset<BWAPI::Bullet*>
   {
   public:

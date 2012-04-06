@@ -2,10 +2,10 @@
 #include <Util/Foreach.h>
 
 #include <BW/Unit.h>
-#include <BW/UnitID.h>
 
 #include <BWAPI/UnitImpl.h>
 #include <BWAPI/PlayerImpl.h>
+#include <BWAPI/Order.h>
 
 #include "../../../Debug.h"
 
@@ -31,14 +31,14 @@ namespace BWAPI
     UnitType _getType = BWAPI::UnitType(u->unitType);
 
     // Replica of official Unit::IsDead function
-    if ( !u->sprite || (u->orderID == BW::OrderID::Die && u->orderState == 1) )
+    if ( !u->sprite || (u->orderID == Orders::Die && u->orderState == 1) )
     {
       //Broodwar->printf("%s has met a true death", _getType.getName().c_str());
       return false;
     }
     // The rest is garbage?
 
-    if ( u->orderID == BW::OrderID::Die && u->orderState != 1)
+    if ( u->orderID == Orders::Die && u->orderState != 1)
     { // Starcraft will keep a unit alive when order state is not 1
       // if for some reason the "die" order was interrupted, the unit will remain alive with 0 hp
       //Broodwar->printf("Bad logic, %s would not die with order state %u", _getType.getName().c_str(), u->orderState);
@@ -204,7 +204,7 @@ namespace BWAPI
       int groundWeaponCooldown = i->getOriginalRawData->groundWeaponCooldown;
       if ( i->getOriginalRawData->subUnit )
         groundWeaponCooldown = i->getOriginalRawData->subUnit->groundWeaponCooldown;
-      if ( i->getOriginalRawData->unitType == BW::UnitID::Protoss_Reaver || i->getOriginalRawData->unitType == BW::UnitID::Protoss_Hero_Warbringer )
+      if ( i->getOriginalRawData->unitType == UnitTypes::Protoss_Reaver || i->getOriginalRawData->unitType == UnitTypes::Hero_Warbringer )
         groundWeaponCooldown = i->getOriginalRawData->mainOrderTimer;
 
       i->startingAttack           = airWeaponCooldown > i->lastAirWeaponCooldown || groundWeaponCooldown > i->lastGroundWeaponCooldown;
@@ -216,11 +216,11 @@ namespace BWAPI
           i->setID(server.getUnitID(i));
         i->updateData();
       }
-      if ( i->getOriginalRawData->unitType == BW::UnitID::Terran_Ghost)
+      if ( i->getOriginalRawData->unitType == UnitTypes::Terran_Ghost)
       {
-        if (i->getOriginalRawData->orderID == BW::OrderID::NukePaint)
+        if (i->getOriginalRawData->orderID == Orders::NukePaint)
           i->nukePosition = i->getOriginalRawData->orderTargetPos;
-        if (i->getOriginalRawData->orderID != BW::OrderID::NukeTrack)
+        if (i->getOriginalRawData->orderID != Orders::NukeTrack)
           i->nukeDetected = false;
         else
         {

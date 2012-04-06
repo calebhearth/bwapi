@@ -1,10 +1,10 @@
 #pragma once
-
 #include <BWAPI/Position.h>
-#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
+  class Regionset;
+
   class Region
   {
   protected:

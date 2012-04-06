@@ -26,6 +26,7 @@ namespace BWAPI
   class Force;
   class Player;
   class Unit;
+
   class GameImpl : public Game
   {
     private :

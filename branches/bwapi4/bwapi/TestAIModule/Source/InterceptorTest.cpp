@@ -50,8 +50,8 @@ void InterceptorTest::onFrame()
       Unitset interceptors = u->getInterceptors();
       for each(Unit* i in interceptors)
       {
-        Unit* c = i->getCarrier();
-        Broodwar->drawLineMap(i->getPosition(), c->getPosition(), Colors::White);
+        Unit* c=i->getCarrier();
+        Broodwar->drawLineMap(i->getPosition().x,i->getPosition().y,c->getPosition().x,c->getPosition().y,Colors::White);
       }
     }
   }

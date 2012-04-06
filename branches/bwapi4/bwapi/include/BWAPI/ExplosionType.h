@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Type.h"
 
 #define BWAPI_EXPLOTYPEDEF(x) static const ExplosionType x(Enum::x) /** ref x */

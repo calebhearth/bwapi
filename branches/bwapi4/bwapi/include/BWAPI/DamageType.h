@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <set>
 #include "Type.h"
 
 #define BWAPI_DAMAGETYPEDEF(x) static const DamageType x(Enum::x) /** ref x */
