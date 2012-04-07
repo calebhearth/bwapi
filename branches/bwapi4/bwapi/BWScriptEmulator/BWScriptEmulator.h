@@ -1,7 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 #include <windows.h>
-#include <set>
 
 using namespace BWAPI;
 

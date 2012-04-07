@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <set>
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>

@@ -4,6 +4,8 @@
 #include "OrderID.h"
 #include "UnitID.h"
 
+#include <vector>
+
 UnitProc *getUnitProc(BWAPI::Unit *pUnit)
 {
   if ( !pUnit || pUnit->getPlayer() != self )

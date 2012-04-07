@@ -1,7 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 #include "BulletData.h"
-#include <set>
 #include <string>
 
 namespace BWAPI

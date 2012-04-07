@@ -1,7 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 #include "ForceData.h"
-#include <set>
 #include <string>
 
 namespace BWAPI

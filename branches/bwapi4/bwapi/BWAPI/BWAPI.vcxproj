@@ -58,6 +58,7 @@ $(SolutionDir)\revisionUpdate.bat
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4238; 4100; 4996; 4740;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -72,6 +73,7 @@ $(SolutionDir)\revisionUpdate.bat
       <Message>Copying BWAPId.dll to ChaosDir</Message>
       <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.dll" "$(ChaosDir)"</Command>
     </PostBuildEvent>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
@@ -94,6 +96,7 @@ $(SolutionDir)\revisionUpdate.bat
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4238; 4100; 4996; 4740;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <PreLinkEvent>
       <Command>
@@ -114,6 +117,9 @@ $(SolutionDir)\revisionUpdate.bat
       <Message>Copying BWAPI.dll to ChaosDir</Message>
       <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).dll" "$(ChaosDir)"</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\BWAPILIB\BWAPILIB.vcxproj">

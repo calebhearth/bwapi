@@ -1,5 +1,4 @@
 #include "DevAIModule.h"
-#include <set>
 
 using namespace BWAPI;
 

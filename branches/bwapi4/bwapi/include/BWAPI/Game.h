@@ -1,5 +1,4 @@
 #pragma once
-#include <set>
 #include <list>
 #include <string>
 
@@ -74,7 +73,7 @@ namespace BWAPI
 
    /** Returns all visible nuke dots. If Flag::CompleteMapInformation is enabled, the set of all nuke dots
      * is returned, not just visible ones. */
-    virtual const std::set< Position >& getNukeDots() const = 0;
+    virtual const Position::set& getNukeDots() const = 0;
 
     /** Returns the list of events */
     virtual const std::list< Event >& getEvents() const = 0;
@@ -256,7 +255,7 @@ namespace BWAPI
 
     /** Returns the set of starting locations for the given map. To determine the starting location for the
      * players in the current match, see Player::getStartLocation. */
-    virtual const std::set< TilePosition >& getStartLocations() const = 0;
+    virtual const TilePosition::set& getStartLocations() const = 0;
 
     /** Prints text on the screen. Text is not sent to other players in multiplayer games. */
     virtual void printf(const char *format, ...) = 0;

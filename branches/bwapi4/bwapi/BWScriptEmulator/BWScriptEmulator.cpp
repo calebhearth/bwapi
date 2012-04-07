@@ -1,6 +1,5 @@
 #include "BWScriptEmulator.h"
 #include <vector>
-#include <set>
 
 #include "ScriptThread.h"
 #include "Controller.h"

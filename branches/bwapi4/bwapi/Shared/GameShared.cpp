@@ -65,7 +65,7 @@ namespace BWAPI
     return bullets;
   }
   //------------------------------------------------ GET NUKE DOTS -------------------------------------------
-  const std::set< Position >& GameImpl::getNukeDots() const
+  const Position::set& GameImpl::getNukeDots() const
   {
     return nukeDots;
   }
@@ -131,7 +131,7 @@ namespace BWAPI
     return Templates::canUpgrade(unit,type);
   }
   //--------------------------------------------- GET START LOCATIONS ----------------------------------------
-  const std::set< TilePosition >& GameImpl::getStartLocations() const
+  const TilePosition::set& GameImpl::getStartLocations() const
   {
     return startLocations;
   }

@@ -50,8 +50,8 @@ namespace BWAPI
       virtual const Unitset&  getStaticGeysers() const;
       virtual const Unitset&  getStaticNeutralUnits() const;
 
-      virtual const Bulletset&            getBullets() const;
-      virtual const std::set< Position >& getNukeDots() const;
+      virtual const Bulletset&     getBullets() const;
+      virtual const Position::set& getNukeDots() const;
       virtual const std::list< Event >&   getEvents() const;
 
       virtual Force     *getForce(int forceID) const;
@@ -113,7 +113,7 @@ namespace BWAPI
       virtual bool  canResearch(TechType type, const Unit* unit = NULL);
       virtual bool  canUpgrade(UpgradeType type, const Unit* unit = NULL);
 
-      virtual const std::set< TilePosition >& getStartLocations() const;
+      virtual const TilePosition::set& getStartLocations() const;
 
       /**
        * Prints text in game (only local)
@@ -192,7 +192,7 @@ namespace BWAPI
       virtual bool setVision(BWAPI::Player *player, bool enabled = true);
       virtual int  elapsedTime() const;
 
-      virtual void setCommandOptimizationLevel(int level = 2);
+      virtual void setCommandOptimizationLevel(int level = 0);
       virtual int  countdownTimer() const;
 
       virtual const Regionset &getAllRegions() const;
@@ -207,6 +207,7 @@ namespace BWAPI
       GameImpl();
       ~GameImpl();
 
+      void initializeData();
       void update(); /**< Updates unitArrayCopy according to bw memory */
       void loadAutoMenuData();
       void onMenuFrame();
@@ -233,7 +234,6 @@ namespace BWAPI
       bool inScreen(int ctype, int x1, int y1, int x2, int y2);
       bool inScreen(int ctype, int x1, int y1, int x2, int y2, int x3, int y3);
       void lockFlags();
-      bool enabled;
       bool _isInGame() const;
       bool _isSinglePlayer() const;
       bool _isBattleNet() const;
@@ -256,17 +256,15 @@ namespace BWAPI
       PlayerImpl *BWAPIPlayer;
       PlayerImpl *enemyPlayer;
 
-      std::set<int> invalidIndices;
+      Vectorset<int> invalidIndices;
       std::list<std::string > sentMessages;
       void onSaveGame(char *name);
       std::list<Event> events;
       int bulletCount;
-      BW::dialog *myDlg;
       Server server;
       Unitset lastEvadedUnits;
       bool onStartCalled;
       std::string lastMapGen;
-      bool outOfGame;
       std::string autoMenuMode;
       std::string autoMenuMapPath;
       std::string autoMenuGameName;
@@ -316,16 +314,16 @@ namespace BWAPI
       Unitset  selectedUnitSet;
       Unitset emptyUnitset;
 
-      std::set<TilePosition>  startLocations;
+      TilePosition::set startLocations;
 
       Forceset  forces;
       Playerset playerSet;
 
-      Unitset   minerals;
-      Unitset   geysers;
-      Unitset   neutralUnits;
-      Bulletset bullets;
-      std::set<Position>       nukeDots;
+      Unitset       minerals;
+      Unitset       geysers;
+      Unitset       neutralUnits;
+      Bulletset     bullets;
+      Position::set nukeDots;
       Unitset pylons;
       Util::RectangleArray< Unitset > unitsOnTileData;
 
@@ -336,7 +334,7 @@ namespace BWAPI
       Regionset regionsList;
 
       BulletImpl* bulletArray[BULLET_ARRAY_MAX_LENGTH];
-      std::vector<std::vector<Command *> > commandBuffer;
+      std::vector< std::vector<Command *> > commandBuffer;
       /** Will update the unitsOnTile content, should be called every frame. */
       void updateUnits();
       void updateBullets();

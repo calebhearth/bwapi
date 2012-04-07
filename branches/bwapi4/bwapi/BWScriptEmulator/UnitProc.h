@@ -1,7 +1,5 @@
 #pragma once
 #include <BWAPI.h>
-#include <set>
-#include <vector>
 
 using namespace BWAPI;
 

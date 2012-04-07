@@ -60,7 +60,7 @@ void MapTest::onStart()
   BWAssert(Broodwar->canUpgrade(UpgradeTypes::Gravitic_Thrusters)==false);
 
   //check start locations
-  set<TilePosition> startLocations = Broodwar->getStartLocations();
+  TilePosition::set startLocations = Broodwar->getStartLocations();
   BWAssert(startLocations.size()==4);
   BWAssert((*startLocations.begin()).x==0);
   BWAssert((*startLocations.begin()).y==0);

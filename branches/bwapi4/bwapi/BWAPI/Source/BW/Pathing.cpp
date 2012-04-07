@@ -1,6 +1,3 @@
-#include <set>
-#include <list>
-#include <bitset>
 #include <vector>
 
 #include "util/foreach.h"

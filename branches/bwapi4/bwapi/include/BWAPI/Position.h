@@ -2,6 +2,8 @@
 #include <math.h>
 #include <algorithm>
 
+#include <BWAPI/Vectorset.h>
+
 #ifndef _MAKE_POSITION_TEMPLATE
 #define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;        \
                       namespace _n ## s              \
@@ -122,6 +124,7 @@ namespace BWAPI
   {
   public:
     typedef PointIterator<_T,__Scale> iterator;
+    typedef Vectorset< Point<_T,__Scale> > set;
 
     // Constructors
     Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};

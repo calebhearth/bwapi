@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <set>
 #include <BWAPI/PlayerType.h>
 #include <Util/Foreach.h>
 

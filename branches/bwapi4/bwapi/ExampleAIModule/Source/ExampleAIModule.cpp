@@ -1,8 +1,5 @@
 #include "ExampleAIModule.h"
 
-#include <set>
-#include <vector>
-
 using namespace BWAPI;
 
 void ExampleAIModule::onStart()

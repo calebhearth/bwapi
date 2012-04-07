@@ -11,8 +11,6 @@
 #include "UnitImpl.h"
 #include "BulletImpl.h"
 #include <list>
-#include <map>
-#include <set>
 #include <vector>
 
 #include <BWAPI/Unitset.h>
@@ -54,13 +52,13 @@ namespace BWAPI
       Unitset staticGeysers;
       Unitset staticNeutralUnits;
       Bulletset bullets;
-      std::set<Position> nukeDots;
+      Position::set nukeDots;
       Unitset selectedUnits;
       Unitset pylons;
       Unitset unitsOnTileData[256][256];
       Regionset regionsList;
 
-      std::set< TilePosition > startLocations;
+      TilePosition::set startLocations;
       std::list< Event > events;
       bool flagEnabled[2];
       Player* thePlayer;
@@ -95,7 +93,7 @@ namespace BWAPI
       virtual const Unitset& getStaticNeutralUnits() const;
 
       virtual const Bulletset& getBullets() const;
-      virtual const std::set< Position >& getNukeDots() const;
+      virtual const Position::set& getNukeDots() const;
       virtual const std::list< Event>& getEvents() const;
 
       virtual Force*  getForce(int forceID) const;
@@ -151,7 +149,7 @@ namespace BWAPI
       virtual bool canMake(UnitType type, const Unit* builder = NULL);
       virtual bool canResearch(TechType type, const Unit* unit = NULL);
       virtual bool canUpgrade(UpgradeType type, const Unit* unit = NULL);
-      virtual const std::set< TilePosition >& getStartLocations() const;
+      virtual const TilePosition::set& getStartLocations() const;
 
       virtual void printf(const char* format, ...);
       virtual void sendText(const char* format, ...);

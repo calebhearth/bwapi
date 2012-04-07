@@ -1,10 +1,9 @@
 #pragma once
 
-#include <set>
-#include <vector>
-#include <deque>
-#include <list>
-#include <algorithm>
+#include <stdlib.h>
+#include <string.h>
+
+#include <type_traits>
 
 namespace BWAPI
 {
@@ -93,6 +92,10 @@ namespace BWAPI
   template<typename _T>
   class Vectorset
   {
+    static_assert(std::has_trivial_copy<_T>::value == true &&
+                  std::has_trivial_copy_constructor<_T>::value == true &&
+                  std::has_trivial_destructor<_T>::value == true,
+                  "Vectorset can only be used with classes with trivial destructor and copy constructor.");
   public:
     typedef iterator<_T> iterator;
     // ----------------------------------------------------------------- Constructors

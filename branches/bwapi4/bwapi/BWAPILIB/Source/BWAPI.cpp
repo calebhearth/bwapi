@@ -2,10 +2,6 @@
 #include "../../svnrev.h"
 
 #include "../../Debug.h"
-
-const char *__revisionInfo = "XBWAPIXREVISIONXSTAMPX" SVN_REV_STR;
-const char *__buildInfo = "XBWAPIXBUILDXSTAMPX" BUILD_STR;
-
 void BWAPI::BWAPI_init()
 {
   BWAPI::Races::init();

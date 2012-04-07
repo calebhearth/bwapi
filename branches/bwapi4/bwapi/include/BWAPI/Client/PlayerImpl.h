@@ -1,7 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 #include "PlayerData.h"
-#include <set>
 #include <string>
 
 #include <BWAPI/Unitset.h>
