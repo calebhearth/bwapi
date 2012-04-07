@@ -6,6 +6,7 @@
 #include <BWAPI/TechType.h>
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/UnitCommandType.h>
+
 namespace BWAPI
 {
   template <class UnitImpl, class PlayerImpl>

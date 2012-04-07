@@ -2,7 +2,6 @@
 #include <string>
 #include <windows.h>
 #include <vector>
-#include <iterator>
 
 // Typedefs
 typedef unsigned __int8  u8 ;

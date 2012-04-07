@@ -7,6 +7,10 @@
 #include "../Config.h"
 #include "../Recording.h"
 
+#include <BW/Pathing.h>
+#include <BW/Unit.h>
+#include <BW/Dialog.h>
+
 #include <BWAPI/PlayerImpl.h>
 #include <BWAPI/RegionImpl.h>
 #include <BWAPI/Command.h>
@@ -686,8 +690,7 @@ namespace BWAPI
       for ( int i = 0; i < UnitCommandTypes::None; ++i )
       {
         // Declare our temporary variables
-        std::vector<UnitImpl*> groupOf12;
-        groupOf12.reserve(12);
+        Unitset groupOf12;
 
         int e = 0, x = 0, y = 0;
         Unit      *t = NULL;

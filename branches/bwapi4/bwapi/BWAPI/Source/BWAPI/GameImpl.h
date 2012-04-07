@@ -1,35 +1,40 @@
 #pragma once
+#include <string>
 
-namespace BW    { class  Unit; }
-namespace BW    { struct Bullet; }
-namespace BWAPI { class  Player; }
-namespace BWAPI { class  PlayerImpl; }
-namespace BWAPI { class  Unit; }
-namespace BWAPI { class  UnitImpl; }
-namespace BWAPI { class  Bullet; }
-namespace BWAPI { class  BulletImpl; }
-namespace BWAPI { class  Command; }
-namespace BWAPI { class  AIModule; }
-
-#include <BWAPI/AIModule.h>
+//#include <BWAPI/AIModule.h>
 #include <BWAPI/Game.h>
 #include <BWAPI/Server.h>
 #include <BWAPI/Map.h>
-#include <BWAPI/Client/Shape.h>
 #include <BWAPI/Client/GameData.h>
-#include <BWAPI/Unitset.h>
-#include <BWAPI/Bulletset.h>
-#include <BWAPI/Playerset.h>
 
-#include <BW/Dialog.h>
+//#include <BW/Dialog.h>
 #include <BW/OrderTypes.h>
 
+namespace BW
+{
+  class Unit;
+  struct Bullet;
+  class Dialog;
+}
 /**
  * Everything in the BWAPI library that doesn't map or work directly with the bw
  * data.
  */
 namespace BWAPI
 {
+  // forwards
+  class AIModule;
+  class Command;
+  class Bullet;
+  class BulletImpl;
+  class Bulletset;
+  class Player;
+  class PlayerImpl;
+  class Playerset;
+  class Unit;
+  class UnitImpl;
+  class Unitset;
+
   /** The main class wrapping the whole game data/methods. */
   class GameImpl : public Game
   {

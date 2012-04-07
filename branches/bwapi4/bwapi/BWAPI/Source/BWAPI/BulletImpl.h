@@ -4,17 +4,19 @@
 
 #include <Util/Types.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/BulletType.h>
 #include <BWAPI/Client/BulletData.h>
 namespace BW    { struct Bullet; };
 
 namespace BWAPI
 {
+  // forwards
+  class UnitImpl;
+  class BulletType;
+
   /**
    * Interface for broodwar bullets, can be used to obtain any information
    * about bullets and spells
    */
-  class UnitImpl;
   class BulletImpl : public Bullet
   {
     public:

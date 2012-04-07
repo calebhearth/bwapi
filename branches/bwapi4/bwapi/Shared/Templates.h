@@ -1,7 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 #include <Util/Foreach.h>
-#include <iterator>
 
 #include <BWAPI/Unitset.h>
 #include <BWAPI/PositionUnit.h>

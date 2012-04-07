@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vector>
-#include <iterator>
 #include <time.h>
 
 #include <Dbghelp.h>

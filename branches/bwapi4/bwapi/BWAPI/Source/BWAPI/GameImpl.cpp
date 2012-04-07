@@ -3,7 +3,6 @@
 #include "../../../svnrev.h"
 #include "GameImpl.h"
 
-#include <iterator>
 #include <stdio.h>
 #include <windows.h>
 #include <string>
@@ -25,7 +24,7 @@
 #include <BWAPI/Command.h>
 #include <BWAPI/Map.h>
 #include <BWAPI/Flag.h>
-#include <BWAPI.h>
+//#include <BWAPI.h>
 
 #include <BWAPI/Unitset.h>
 
@@ -47,6 +46,8 @@
 #include "../Detours.h"
 #include "../NewHackUtil.h"
 #include "BWtoBWAPI.h"
+
+#include "../BW/Pathing.h"
 
 #include "../../../Debug.h"
 

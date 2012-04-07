@@ -1,30 +1,28 @@
 #pragma once
+#include <Util/Types.h>
+#include <string>
+#include <BW/Offsets.h>
+
+#include <BWAPI/Player.h>
+#include <BWAPI/Client/PlayerData.h>
+#include <BWAPI/Unitset.h>
+
+#include "UnitImpl.h"
+#include "ForceImpl.h"
 
 namespace BW { class Unit; };
 
-#include <BWAPI/Race.h>
-#include <BWAPI/Player.h>
-#include <BWAPI/PlayerType.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/WeaponType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/UnitType.h>
-#include "UnitImpl.h"
-#include "ForceImpl.h"
-#include <BWAPI/Client/PlayerData.h>
-#include <list>
-#include <set>
-#include <string>
-#include <Util/Types.h>
-
-#include <BWAPI/Unitset.h>
-
-#include <BW/Offsets.h>
-
 namespace BWAPI
 {
+  // Forwards
   class Unit;
   class Force;
+  class UnitType;
+  class UpgradeType;
+  class TechType;
+  class PlayerType;
+  class Race;
+
   /** Represents one player in game. Note that there is always player 12 who owns resources. */
   class PlayerImpl : public Player
   {

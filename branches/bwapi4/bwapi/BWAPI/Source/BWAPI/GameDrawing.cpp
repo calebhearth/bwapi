@@ -6,6 +6,8 @@
 #include <cassert>
 #include <Util/clamp.h>
 
+#include <BW/Dialog.h>
+
 #include "../../../Debug.h"
 
 namespace BWAPI

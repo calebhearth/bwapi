@@ -1,12 +1,11 @@
 #pragma once
 #include "Position.h"
-#include "Image.h"
-
-namespace BW { class Image; };
 
 #pragma pack(1)
 namespace BW
 {
+  class Image;
+
   class Sprite
   {
   public:

@@ -202,16 +202,15 @@ namespace BWAPI
     }
     else if (ct == UnitCommandTypes::Attack_Unit)
     {
-      UnitImpl *target = (UnitImpl*)command.target;
       UnitType ut      = command.unit ? command.unit->getType() : UnitTypes::None;
       if ( ut == UnitTypes::Protoss_Carrier || ut == UnitTypes::Hero_Gantrithor )
-        QUEUE_COMMAND(BW::Orders::Attack, target, Orders::Enum::CarrierAttack, queued);
+        QUEUE_COMMAND(BW::Orders::Attack, command.target, Orders::Enum::CarrierAttack, queued);
       else if ( ut == UnitTypes::Protoss_Reaver || ut == UnitTypes::Hero_Warbringer )
-        QUEUE_COMMAND(BW::Orders::Attack, target, Orders::Enum::ReaverAttack, queued);
+        QUEUE_COMMAND(BW::Orders::Attack, command.target, Orders::Enum::ReaverAttack, queued);
       else if ( ut.isBuilding() )
-        QUEUE_COMMAND(BW::Orders::Attack, target, Orders::Enum::TowerAttack, queued);
+        QUEUE_COMMAND(BW::Orders::Attack, command.target, Orders::Enum::TowerAttack, queued);
       else
-        QUEUE_COMMAND(BW::Orders::Attack, target, Orders::Enum::Attack1, queued);
+        QUEUE_COMMAND(BW::Orders::Attack, command.target, Orders::Enum::Attack1, queued);
     }
     else if (ct == UnitCommandTypes::Build)
     {

@@ -1,11 +1,13 @@
 #pragma once
 #include <Windows.h>
 
-#include "Unit.h"
 #include "Position.h"
 
 namespace BW
 {
+  // forwards
+  class Unit;
+
   class Captain
   {
   public:

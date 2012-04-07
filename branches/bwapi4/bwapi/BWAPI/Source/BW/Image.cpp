@@ -1,5 +1,8 @@
 #include "Image.h"
 
+#include <BW/Dialog.h>
+#include <BW/Sprite.h>
+
 namespace BW
 {
   /////////////////////////////////////// IMAGE functions

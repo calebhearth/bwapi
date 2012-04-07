@@ -1,5 +1,7 @@
 #include "OrderTypes.h"
 #include <BWAPI/Unit.h>
+#include <BWAPI/Unitset.h>
+
 #include <BWAPI/Order.h>
 #include <BWAPI/Race.h>
 #include <BW/Offsets.h>
@@ -15,7 +17,7 @@ namespace BW
     Attack::Attack(BWAPI::Unit* target, int OrderID, bool queued)
         : always0x15(0x15)
         , target((BWAPI::UnitImpl*)target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -24,7 +26,7 @@ namespace BW
     Attack::Attack(const BW::Position& target, int OrderID, bool queued)
         : always0x15(0x15)
         , target(target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -32,7 +34,7 @@ namespace BW
     Attack::Attack(int x, int y, int OrderID, bool queued)
         : always0x15(0x15)
         , target(x,y)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -41,7 +43,7 @@ namespace BW
     Attack::Attack(const PositionUnitTarget& target, int OrderID, bool queued)
         : always0x15(0x15)
         , target(target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , order((u8)OrderID)
         , type(queued ? 1 : 0)
     {
@@ -50,7 +52,7 @@ namespace BW
     RightClick::RightClick(BWAPI::Unit* target, bool queued)
         : always0x14(0x14)
         , target((BWAPI::UnitImpl*)target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -58,14 +60,14 @@ namespace BW
     RightClick::RightClick(const BW::Position& target, bool queued)
         : always0x14(0x14)
         , target(target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
     RightClick::RightClick(int x, int y, bool queued)
         : always0x14(0x14)
         , target(x,y)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -73,7 +75,7 @@ namespace BW
     RightClick::RightClick(const PositionUnitTarget& target, bool queued)
         : always0x14(0x14)
         , target(target)
-        , always0xe4(BWAPI::UnitTypes::None)
+        , always0xe4((u16)BWAPI::UnitTypes::None)
         , type(queued ? 1 : 0)
     {
     }
@@ -123,33 +125,11 @@ namespace BW
       targCount = (u8)finalCount;
       size      = 2 + targCount * 2;
     }
-    Select::Select(const std::vector<BW::Unit*> &vUnits)
-      : always0x09(0x09)
-    {
-      unsigned int finalCount = 0;
-      for ( unsigned int i = 0; i < vUnits.size() && i < 12; ++i )
-        if ( vUnits[i] )
-          targets[finalCount++] = UnitTarget(vUnits[i]);
-
-      targCount = (u8)finalCount;
-      size      = 2 + targCount * 2;
-    }
-    Select::Select(const std::vector<BWAPI::UnitImpl*> &vUnits)
-      : always0x09(0x09)
-    {
-      unsigned int finalCount = 0;
-      for ( unsigned int i = 0; i < vUnits.size() && i < 12; ++i )
-        if ( vUnits[i] )
-          targets[finalCount++] = UnitTarget(vUnits[i]);
-
-      targCount = (u8)finalCount;
-      size      = 2 + targCount * 2;
-    }
     Select::Select(const BWAPI::Unitset &unitset)
     {
       unsigned int finalCount = 0;
       for ( unsigned int i = 0; i < unitset.size() && i < 12; ++i )
-        if ( unitset[i] )
+        if ( unitset[i] != NULL )
           targets[finalCount++] = UnitTarget((BWAPI::UnitImpl*)unitset[i]);
 
       targCount = (u8)finalCount;
@@ -214,14 +194,14 @@ namespace BW
     //---------------------------------------------- PLACE COP -----------------------------------------------
     PlaceCOP::PlaceCOP(BW::TilePosition position, int type)
         : always0x0c(0x0C)
-        , always0x9B(BWAPI::Orders::CTFCOP2)
+        , always0x9B((u8)BWAPI::Orders::CTFCOP2)
         , position(position)
         , type((u16)type)
     {
     }
     PlaceCOP::PlaceCOP(int x, int y, int type)
         : always0x0c(0x0C)
-        , always0x9B(BWAPI::Orders::CTFCOP2)
+        , always0x9B((u8)BWAPI::Orders::CTFCOP2)
         , position((u16)x, (u16)y)
         , type((u16)type)
     {
@@ -241,14 +221,14 @@ namespace BW
     //---------------------------------------------- MAKE ADDON ----------------------------------------------
     MakeAddon::MakeAddon(BW::TilePosition position, int type)
         : always0x0c(0x0c)
-        , always0x24(BWAPI::Orders::PlaceAddon)
+        , always0x24((u8)BWAPI::Orders::PlaceAddon)
         , position(position)
         , type((u16)type)
     {
     }
     MakeAddon::MakeAddon(int tileX, int tileY, int type)
         : always0x0c(0x0c)
-        , always0x24(BWAPI::Orders::PlaceAddon)
+        , always0x24((u8)BWAPI::Orders::PlaceAddon)
         , position((u16)tileX, (u16)tileY)
         , type((u16)type)
     {
@@ -256,16 +236,16 @@ namespace BW
     //---------------------------------------------- MAKE NYDUS ----------------------------------------------
     MakeNydusExit::MakeNydusExit(BW::TilePosition position)
         : always0x0c(0x0c)
-        , always0x2E(BWAPI::Orders::BuildNydusExit)
+        , always0x2E((u8)BWAPI::Orders::BuildNydusExit)
         , position(position)
-        , type(BWAPI::UnitTypes::Zerg_Nydus_Canal)
+        , type((u16)BWAPI::UnitTypes::Zerg_Nydus_Canal)
     {
     }
     MakeNydusExit::MakeNydusExit(int tileX, int tileY)
         : always0x0c(0x0c)
-        , always0x2E(BWAPI::Orders::BuildNydusExit)
+        , always0x2E((u8)BWAPI::Orders::BuildNydusExit)
         , position((u16)tileX, (u16)tileY)
-        , type(BWAPI::UnitTypes::Zerg_Nydus_Canal)
+        , type((u16)BWAPI::UnitTypes::Zerg_Nydus_Canal)
     {
     }
     //------------------------------------------- MOVE CONSTRUCTOR -------------------------------------------
@@ -373,14 +353,14 @@ namespace BW
     //------------------------------------------------- LAND -------------------------------------------------
     Land::Land(BW::TilePosition position, int type)
         : always0x0C(0x0C)
-        , always0x47(BWAPI::Orders::Enum::BuildingLand)
+        , always0x47((u8)BWAPI::Orders::Enum::BuildingLand)
         , position(position)
         , type((u16)type)
     {
     }
     Land::Land(int x, int y, int type)
         : always0x0C(0x0C)
-        , always0x47(BWAPI::Orders::Enum::BuildingLand)
+        , always0x47((u8)BWAPI::Orders::Enum::BuildingLand)
         , position((u16)x, (u16)y)
         , type((u16)type)
     {

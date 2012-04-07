@@ -1,22 +1,25 @@
 #include "Server.h"
-
+#include <stdio.h>
+#include <time.h>
 #include <Util/Foreach.h>
 #include <assert.h>
 #include <sstream>
+
 #include "GameImpl.h"
 #include "PlayerImpl.h"
 #include "UnitImpl.h"
 #include "BulletImpl.h"
 #include "RegionImpl.h"
 #include <BWAPI/Client/GameData.h>
+#include <BWAPI/Client/GameTable.h>
+
+#include <BW/Pathing.h>
 
 #include "../Config.h"
 #include "../../../svnrev.h"
 
 #include "../../../Debug.h"
 
-#include <stdio.h>
-#include <time.h>
 namespace BWAPI
 {
   #define PIPE_TIMEOUT 3000

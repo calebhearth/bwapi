@@ -4,14 +4,8 @@
 #include <BWAPI/Unitset.h>
 #include <Util/Types.h>
 
-#include <BWAPI/Order.h>
-#include <BWAPI/Region.h>
-#include <BWAPI/TechType.h>
-#include <BWAPI/UpgradeType.h>
-#include <BWAPI/UnitType.h>
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Client/UnitData.h>
-#include <BWAPI/PositionUnit.h>
 
 #define checkOwnership()\
 {\
@@ -19,13 +13,15 @@
     return BroodwarImpl.setLastError(Errors::Unit_Not_Owned);\
 }
 
-namespace BW  { class Unit; };
-namespace BWAPI { class UnitPrototype;  };
-namespace BWAPI { class AbilityPrototype;  };
-namespace BWAPI { class Player;  };
-
+namespace BW
+{ 
+  class Unit;
+};
 namespace BWAPI
 {
+  // Forwards
+  class Player;
+
   /**
    * Interface for broodwar unit, can be used to obtain any information and
    * issue commands.
@@ -87,36 +83,36 @@ namespace BWAPI
       virtual int getStasisTimer() const;
       virtual int getStimTimer() const;
 
-      virtual UnitType    getBuildType() const;
-      virtual UnitType::set  getTrainingQueue() const;
-      virtual TechType    getTech() const;
-      virtual UpgradeType    getUpgrade() const;
-      virtual int        getRemainingBuildTime() const;
-      virtual int        getRemainingTrainTime() const;
-      virtual int        getRemainingResearchTime() const;
-      virtual int        getRemainingUpgradeTime() const;
-      virtual Unit*      getBuildUnit() const;
+      virtual UnitType      getBuildType() const;
+      virtual UnitType::set getTrainingQueue() const;
+      virtual TechType      getTech() const;
+      virtual UpgradeType   getUpgrade() const;
+      virtual int           getRemainingBuildTime() const;
+      virtual int           getRemainingTrainTime() const;
+      virtual int           getRemainingResearchTime() const;
+      virtual int           getRemainingUpgradeTime() const;
+      virtual Unit*         getBuildUnit() const;
 
       virtual Unit*    getTarget() const;
-      virtual Position  getTargetPosition() const;
+      virtual Position getTargetPosition() const;
       virtual Order    getOrder() const;
       virtual Unit*    getOrderTarget() const;
-      virtual Position  getOrderTargetPosition() const;
+      virtual Position getOrderTargetPosition() const;
       virtual Order    getSecondaryOrder() const;
-      virtual Position  getRallyPosition() const;
+      virtual Position getRallyPosition() const;
       virtual Unit*    getRallyUnit() const;
       virtual Unit*    getAddon() const;
       virtual Unit*    getNydusExit() const;
       virtual Unit*    getPowerUp() const;
 
       virtual Unit*    getTransport() const;
-      virtual Unitset    getLoadedUnits() const;
+      virtual Unitset  getLoadedUnits() const;
       virtual Unit*    getCarrier() const;
-      virtual Unitset    getInterceptors() const;
+      virtual Unitset  getInterceptors() const;
       virtual Unit*    getHatchery() const;
-      virtual Unitset    getLarva() const;
-      virtual Unitset&  getUnitsInRadius(int radius) const;
-      virtual Unitset&  getUnitsInWeaponRange(WeaponType weapon) const;
+      virtual Unitset  getLarva() const;
+      virtual Unitset& getUnitsInRadius(int radius) const;
+      virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const;
 
       virtual void *getClientInfo() const;
       virtual void setClientInfo(void* clientinfo = NULL);

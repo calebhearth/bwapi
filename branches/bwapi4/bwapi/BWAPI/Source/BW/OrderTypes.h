@@ -2,14 +2,17 @@
 
 #include <Util/Types.h>
 
-#include <BWAPI/UnitType.h>
 #include <BWAPI/Position.h>
-#include <BWAPI/Unit.h>
-#include <BWAPI/Unitset.h>
 
 #include "PositionUnitTarget.h"
 
-namespace BWAPI { class UnitImpl; }
+namespace BWAPI
+{ 
+  class UnitImpl;
+  class Unit;
+  class UnitType;
+  class Unitset;
+}
 #pragma pack(1)
 namespace BW
 {
@@ -71,8 +74,6 @@ namespace BW
       public :
         Select(int count, BWAPI::UnitImpl **units);
         Select(int count, BW::Unit **units);
-        Select(const std::vector<BW::Unit*> &vUnits);
-        Select(const std::vector<BWAPI::UnitImpl*> &vUnits);
         Select(const BWAPI::Unitset &unitset);
         /** 0x09 = Select command-code in bw */
         u8         always0x09;

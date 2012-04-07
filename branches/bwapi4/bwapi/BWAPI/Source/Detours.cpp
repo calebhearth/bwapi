@@ -18,6 +18,7 @@
 #include "NewHackUtil.h"
 #include "BW/TriggerEngine.h"
 #include "BW/MenuPosition.h"
+#include "BW/Dialog.h"
 
 #include "../../Debug.h"
 

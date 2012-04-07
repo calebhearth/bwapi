@@ -8,6 +8,7 @@
 #include "BW/Offsets.h"
 #include "BW/Sprite.h"
 #include "BW/Image.h"
+#include "BW/Dialog.h"
 
 #include "NewHackUtil.h"
 

@@ -1,5 +1,6 @@
 #include "BulletImpl.h"
 #include <BW/Bullet.h>
+#include <BW/Sprite.h>
 #include <BW/Offsets.h>
 
 #include "GameImpl.h"

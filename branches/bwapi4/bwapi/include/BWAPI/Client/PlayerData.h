@@ -1,5 +1,9 @@
 #pragma once
 
+#include <BWAPI/UnitType.h>
+#include <BWAPI/UpgradeType.h>
+#include <BWAPI/TechType.h>
+
 namespace BWAPI
 {
   struct PlayerData

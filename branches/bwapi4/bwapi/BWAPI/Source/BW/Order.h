@@ -1,8 +1,10 @@
 #pragma once
 
-namespace BW { class Unit; };
 namespace BW /** @todo Investigate*/
 {
+  // Forwards
+  class Unit;
+
 #pragma pack(1)
   struct Order
   {

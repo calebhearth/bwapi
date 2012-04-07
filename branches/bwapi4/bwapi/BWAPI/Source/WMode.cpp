@@ -1,6 +1,7 @@
 #include "WMode.h"
 #include "Resolution.h"
 #include "BW/Offsets.h"
+#include "BW/Dialog.h"
 
 #include "BWAPI/GameImpl.h"
 

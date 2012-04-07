@@ -8,6 +8,7 @@
 #include <BWAPI/Race.h>
 
 #include <BW/MenuPosition.h>
+#include <BW/Dialog.h>
 #include <Util/clamp.h>
 
 #include "../../../Debug.h"

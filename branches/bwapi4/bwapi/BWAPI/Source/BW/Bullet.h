@@ -2,13 +2,15 @@
 
 #include <Util/Types.h>
 #include <BW/Position.h>
-#include <BW/Sprite.h>
 
 #include <BW/Offsets.h>
 
 namespace BW
 {
 #pragma pack(1)
+  // forwards
+  class Sprite;
+
   // See Unit.h and compare this entire structure with the first part of the unit structure
   // I'm not sure how much of it is the same so I didn't bother updating this.
   struct Bullet

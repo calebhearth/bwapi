@@ -2,7 +2,6 @@
 #include <BWAPI.h>
 #include <windows.h>
 #include <set>
-#include <iterator>
 
 using namespace BWAPI;
 

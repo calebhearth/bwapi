@@ -1,7 +1,6 @@
 #pragma once
 #include <windows.h>
 
-#include "Sprite.h"
 #include "Offsets.h"
 
 namespace BW { class Sprite; };

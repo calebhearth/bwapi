@@ -17,6 +17,8 @@
 #include <BWAPI/BulletImpl.h>
 
 #include <BW/Bullet.h>
+#include <BW/Unit.h>
+#include <BW/Dialog.h>
 
 #include "../../../Debug.h"
 

@@ -1,12 +1,11 @@
 #pragma once
 #include <Util/Types.h>
-#include <BW/Unit.h>
-namespace BWAPI { class UnitImpl; }
 
+namespace BWAPI { class UnitImpl; }
 #pragma pack(1)
 namespace BW
 {
-
+  class Unit;
   /**
    * Representation of pointer to unit in bw structure that uses index (not
    * pointer). When pointer to another unit is present in bw structure, it uses

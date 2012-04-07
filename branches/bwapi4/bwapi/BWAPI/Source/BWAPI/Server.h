@@ -1,13 +1,19 @@
 #pragma once
 #include <windows.h>
-#include <BWAPI/Client/GameData.h>
-#include <BWAPI/Client/GameTable.h>
-#include <BWAPI/Client/Event.h>
-#include <BWAPI.h>
+
 #include <vector>
 #include <map>
+
 namespace BWAPI
 {
+  // Forwards
+  struct GameData;
+  struct GameTable;
+  class Event;
+  class Force;
+  class Player;
+  class Unit;
+
   class Server
   {
   public:

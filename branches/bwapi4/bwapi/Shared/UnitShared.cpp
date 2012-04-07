@@ -1,7 +1,6 @@
 #include <BWAPI.h>
 #include <BWAPI/Client/UnitData.h>
 #include <TemplatesImpl.h>
-#include <iterator>
 #include <set>
 
 #ifndef MAXINT

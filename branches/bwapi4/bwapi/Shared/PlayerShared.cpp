@@ -1,6 +1,8 @@
 #include "PlayerImpl.h"
 #include <Util/clamp.h>
+
 #include <BWAPI/Color.h>
+#include <BWAPI/WeaponType.h>
 
 namespace BWAPI
 {

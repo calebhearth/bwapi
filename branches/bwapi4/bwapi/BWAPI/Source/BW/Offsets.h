@@ -5,13 +5,8 @@
 #include <Util/Types.h>
 #include "../Storm/storm.h"
 
-#include "Position.h"
-#include "Dialog.h"
-#include "Pathing.h"
-
-#include "Unit.h"
-#include "Sprite.h"
 #include "TriggerEngine.h"
+#include "Position.h"
 
 /**
  * Broodwar content access tools. The namespace contains:
@@ -45,6 +40,7 @@ namespace BW
   struct bitmap;
   struct dlgEvent;
   struct fntHead;
+  struct SAI_Paths;
 
   struct DatLoad
   {

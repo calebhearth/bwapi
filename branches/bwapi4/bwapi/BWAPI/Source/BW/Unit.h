@@ -1,20 +1,20 @@
 #pragma once
 
 #include <Util/Types.h>
-#include <BW/Sprite.h>
-#include <BW/Order.h>
-#include <BW/Path.h>
 #include <BW/Position.h>
-
-#include <BWAPI/UnitType.h>
 #include <BW/Offsets.h>
 
-namespace BW { class Sprite; };
-namespace BW { struct Order; };
-namespace BW { struct Path; };
-
+namespace BWAPI
+{
+  class UnitType;
+}
 namespace BW
 {
+  // Forwards
+  class Sprite;
+  struct Order;
+  struct Path;  
+
   /**
    * Direct data mapping of the broodwar unit structure. Most of the information here is derived
    * from http://farty1billion.dyndns.org/EUDDB/?pg=ref&a=unitnode

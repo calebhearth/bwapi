@@ -2,6 +2,7 @@
 #include <Util/Foreach.h>
 
 #include <BW/Unit.h>
+#include <BW/Dialog.h>
 
 #include <BWAPI/UnitImpl.h>
 #include <BWAPI/PlayerImpl.h>

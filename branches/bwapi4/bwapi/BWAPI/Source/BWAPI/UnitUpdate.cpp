@@ -14,6 +14,8 @@
 #include <BWAPI/WeaponType.h>
 
 #include <BW/Unit.h>
+#include <BW/Sprite.h>
+#include <BW/Image.h>
 #include <BW/UnitTarget.h>
 #include <BW/UnitStatusFlags.h>
 #include <BW/MovementFlags.h>

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <BWAPI/Force.h>
 #include <BWAPI/Playerset.h>
 
