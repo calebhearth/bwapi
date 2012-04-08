@@ -82,22 +82,26 @@ namespace BWAPI
   };
 
   /// @~English
-  /// The iterator class template allows the iteration
-  /// of elements of a Vectorset with ease while
-  /// maintaining the compatibility with any familiar
-  /// STL container iteration.
+  /// The Vectorset is a class template designed
+  /// specifically for trivial classes or PODs and 
+  /// performance. It mimics the usage of various
+  /// stl containers (specifically the Vector and Set)
+  /// in order to replace them. The Vectorset is
+  /// specifically designed for BWAPI usage and is
+  /// recommended, especially if stl containers are
+  /// causing a bottleneck in your bot's code.
   ///
   /// @~
-  /// @see Vectorset
   template<typename _T>
   class Vectorset
   {
     static_assert(std::has_trivial_copy<_T>::value == true &&
                   std::has_trivial_copy_constructor<_T>::value == true &&
                   std::has_trivial_destructor<_T>::value == true,
-                  "Vectorset can only be used with classes with trivial destructor and copy constructor.");
+                  "Vectorset can only be used with classes that have a trivial destructor and trivial copy constructor.");
   public:
     typedef iterator<_T> iterator;
+
     // ----------------------------------------------------------------- Constructors
     Vectorset(size_t initialSize = 16)
       : __totSize( initialSize )
@@ -105,7 +109,7 @@ namespace BWAPI
       , __end(__valArray + initialSize)
       , __last(__valArray)
     { };
-    Vectorset(const Vectorset &other)
+    Vectorset(const Vectorset<_T> &other)
       : __totSize( other.max_size() )
       , __valArray( (_T*)malloc(other.max_size()*sizeof(_T)) )
       , __end(__valArray + other.max_size())
@@ -122,7 +126,7 @@ namespace BWAPI
       memcpy(this->__valArray, pArray, arrSize*sizeof(_T) );
     };
     // ----------------------------------------------------------------- Operators
-    Vectorset &operator =(const Vectorset &other)
+    Vectorset &operator =(const Vectorset<_T> &other)
     {
       // localize variables
       size_t nSize = other.size();
@@ -138,23 +142,31 @@ namespace BWAPI
       this->__last = this->__valArray + nSize;
       return *this;
     };
-    Vectorset &operator +=(const Vectorset &other)
+    Vectorset &operator +=(const Vectorset<_T> &other)
     {
-      // localize variables
-      size_t nSize = other.size();
-
-      // manage existing set
-      this->expand(nSize);
-      
-      // copy the data to this set
-      memcpy( this->__last, other, nSize*sizeof(_T) );
-
-      // update variables in this set
-      this->__last += nSize;
+      this->push_back(other);
       return *this;
     };
-
-    bool operator ==(const Vectorset &other) const
+    Vectorset operator +(const Vectorset<_T> &other)
+    {
+      Vectorset vcopy(this->size() + other.size());
+      vcopy.push_back(*this);
+      vcopy.push_back(other);
+      return vcopy;
+    };
+    Vectorset &operator |=(const Vectorset<_T> &other)
+    {
+      this->insert(other);
+      return *this;
+    };
+    Vectorset operator |(const Vectorset<_T> &other)
+    {
+      Vectorset vcopy(this->size() + other.size());
+      vcopy.insert(*this);
+      vcopy.insert(other);
+      return vcopy;
+    };
+    bool operator ==(const Vectorset<_T> &other) const
     {
       if ( this->empty() && other.empty() )
         return true;
@@ -309,6 +321,11 @@ namespace BWAPI
     {
       this->insert(*val);
     };
+    void insert(const Vectorset<_T> &other)
+    {
+      for ( iterator i = other.begin(); i != other.end(); ++i )
+        this->insert(i);
+    };
     void push_back(const _T val)
     {
       if ( this->__last == this->__end )
@@ -318,6 +335,20 @@ namespace BWAPI
     void push_back(const iterator &val)
     {
       this->push_back(*val);
+    };
+    void push_back(const Vectorset<_T> &other)
+    {
+      // localize variables
+      size_t nSize = other.size();
+
+      // manage existing set
+      this->expand(nSize);
+      
+      // copy the data to this set
+      memcpy( this->__last, other, nSize*sizeof(_T) );
+
+      // update variables in this set
+      this->__last += nSize;
     };
     void push_front(const _T val)
     {

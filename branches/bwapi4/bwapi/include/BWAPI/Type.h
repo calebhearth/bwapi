@@ -1,6 +1,9 @@
 #pragma once
 #include "Vectorset.h"
 
+#define BWAPI_TYPESET(setname,name,...) static const name setname ## struc[] = { __VA_ARGS__ };                    \
+                            static const name::set setname(setname ## struc, sizeof(setname ## struc)/sizeof(setname ## struc[0]));
+
 namespace BWAPI
 {
   template<class _T>
@@ -10,7 +13,7 @@ namespace BWAPI
     // Constructors
     Typeset() : Vectorset() {};
     // copy ctor
-    Typeset(const Typeset &other) : Vectorset(other) {};
+    Typeset(const Typeset<_T> &other) : Vectorset(other) {};
     // type ctor
     Typeset(const _T &val) : Vectorset() { this->push_back(val); };
     // array ctor
@@ -18,30 +21,22 @@ namespace BWAPI
     Typeset(const int *pArray, size_t size) : Vectorset((const _T*)pArray, size) {};
 
     // Operators (adding elements)
-    Typeset operator +(const _T &other) const
+    Typeset operator |(const _T &val) const
     {
       Typeset newset(*this);
-      newset.insert(other);
+      newset.insert(val);
       return newset;
     };
-    Typeset &operator +=(const _T &other)
+    Typeset &operator |=(const _T &val)
     {
-      this->insert(other);
+      this->insert(val);
       return *this;
     };
-    Typeset operator |(const _T &other) const
+    Typeset &operator |=(const Typeset<_T> &val)
     {
-      Typeset newset(*this);
-      newset.insert(other);
-      return newset;
-    };
-    Typeset &operator |=(const _T &other)
-    {
-      this->insert(other);
+      this->insert(val);
       return *this;
     };
-
-
   };
 
 
@@ -49,37 +44,31 @@ namespace BWAPI
   class Type
   {
   private:
-    int _id;
+    int id;
   public:
     // Constructor
-    Type(int id)
+    Type(int _id)
     {
-      if ( id < 0 || id > __unk )
-        this->_id = __unk;
+      if ( _id < 0 || _id > __unk )
+        this->id = __unk;
       else
-        this->_id = id;
+        this->id = _id;
     };
     
     // Types
     typedef Typeset<_T> set;
 
     // Operators
-    operator int() const { return _id; };
-    set operator +(const _T &other) const
-    {
-      set rset(this->_id);
-      rset.insert(other.getID());
-      return rset;
-    };
+    operator int() const { return this->id; };
     set operator |(const _T &other) const
     {
-      set rset(this->_id);
-      rset.insert(other.getID());
+      set rset(this->id);
+      rset.insert(other);
       return rset;
     };
-    
+
     // Members
-    int getID() const { return _id; };
-    bool isValid() const { return this->_id >= 0 && this->_id <= __unk; };
+    int getID() const { return this->id; };
+    bool isValid() const { return this->id >= 0 && this->id <= __unk; };
   };
 }

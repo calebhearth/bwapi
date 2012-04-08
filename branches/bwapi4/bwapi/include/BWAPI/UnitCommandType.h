@@ -1,5 +1,6 @@
 #pragma once
 #include "Type.h"
+#include <string>
 
 #define BWAPI_UNITCMDTYPEDEF(x) static const UnitCommandType x(Enum::x) /** ref x */
 
