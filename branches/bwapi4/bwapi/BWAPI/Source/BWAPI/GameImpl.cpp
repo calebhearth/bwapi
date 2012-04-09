@@ -214,7 +214,7 @@ namespace BWAPI
     y &= 0xFFFFFFF8;
     *BW::BWDATA_MoveToX = x;
     *BW::BWDATA_MoveToY = y;
-    *BW::BWDATA_MoveToTile = Position(x,y);
+    *BW::BWDATA_MoveToTile = BW::TilePosition(Position(x,y));
     BW::BWFXN_UpdateScreenPosition();
   }
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
@@ -914,8 +914,8 @@ namespace BWAPI
 
     if ( BW::BWDATA_SAIPathing )
     {
-      BW::region *srcRgn = BW::getRegionAt(source);
-      BW::region *dstRgn = BW::getRegionAt(destination);
+      BW::region *srcRgn = BW::getRegionAt( BW::Position(source) );
+      BW::region *dstRgn = BW::getRegionAt( BW::Position(destination) );
 
       // Return true if the locations are valid and connected
       if ( srcRgn && dstRgn && srcRgn->groupIndex == dstRgn->groupIndex )

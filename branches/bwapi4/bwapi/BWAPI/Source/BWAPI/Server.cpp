@@ -290,16 +290,16 @@ namespace BWAPI
     data->isReplay      = Broodwar->isReplay();
 
     // Locally store the map size
-    SIZE mapSize = { Broodwar->mapWidth(), Broodwar->mapHeight() };
+    TilePosition mapSize( Broodwar->mapWidth(), Broodwar->mapHeight() );
 
     // Load walkability
-    for ( WalkPosition::iterator w( TilePosition(mapSize.cx, mapSize.cy) ); w; ++w )
+    for ( WalkPosition::iterator w( (WalkPosition(mapSize)) ); w; ++w )
     {
       data->isWalkable[w.x][w.y] = Broodwar->isWalkable(w.x, w.y);
     }
 
     // Load buildability, ground height, tile region id
-    for ( TilePosition::iterator p(mapSize.cx, mapSize.cy); p; ++p )
+    for ( TilePosition::iterator p(mapSize.x, mapSize.y); p; ++p )
     {
         data->isBuildable[p.x][p.y]     = Broodwar->isBuildable(p.x, p.y);
         data->getGroundHeight[p.x][p.y] = Broodwar->getGroundHeight(p.x, p.y);
@@ -327,8 +327,8 @@ namespace BWAPI
     }
 
     // Store the map size
-    data->mapWidth  = mapSize.cx;
-    data->mapHeight = mapSize.cy;
+    data->mapWidth  = mapSize.x;
+    data->mapHeight = mapSize.y;
 
     // Retrieve map strings
     strncpy(data->mapFileName, Broodwar->mapFileName().c_str(), MAX_PATH);

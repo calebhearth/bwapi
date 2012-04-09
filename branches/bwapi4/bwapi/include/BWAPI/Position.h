@@ -128,20 +128,21 @@ namespace BWAPI
 
     // Constructors
     Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};
+    Point(const iterator &pt) : x(pt.x), y(pt.y) {};
 
 #pragma warning( disable: 4723 )
     // Conversion constructor
-    template<typename _NT, int __NScale> Point(const Point<_NT, __NScale> &pt)
+    template<typename _NT, int __NScale> explicit Point(const Point<_NT, __NScale> &pt)
       : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
       , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
-    template<typename _NT, int __NScale> Point(const PointIterator<_NT, __NScale> &pt)
+    template<typename _NT, int __NScale> explicit Point(const PointIterator<_NT, __NScale> &pt)
       : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
       , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
 
 #pragma warning( default: 4723 )
     // Conversion restriction constructor
-    template<typename _NT> Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
-    template<typename _NT> Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
+    template<typename _NT> explicit Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
+    template<typename _NT> explicit Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
 
     // Operators
     operator bool() const { return this->isValid(); };

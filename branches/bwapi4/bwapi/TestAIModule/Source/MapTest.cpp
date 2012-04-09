@@ -18,7 +18,7 @@ void MapTest::onStart()
 
   for ( TilePosition::iterator p(10,10); p; ++p )
   {
-    BWAssert(Broodwar->isWalkable(p));
+    BWAssert(Broodwar->isWalkable( WalkPosition(p) ));
     BWAssert(Broodwar->getGroundHeight(p)==2);
     BWAssert(Broodwar->isBuildable(p));
     BWAssert(Broodwar->isVisible(p));

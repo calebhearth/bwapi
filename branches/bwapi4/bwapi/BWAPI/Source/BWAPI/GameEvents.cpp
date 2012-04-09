@@ -183,7 +183,7 @@ namespace BWAPI
         continue;
 
       // add start location
-      startLocations.insert(StartLocs[i] - Position(64, 48) );
+      startLocations.insert( TilePosition(StartLocs[i] - Position(64, 48)) );
     }
 
     // Get Player Objects

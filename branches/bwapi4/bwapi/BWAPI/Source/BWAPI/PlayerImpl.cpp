@@ -162,7 +162,7 @@ namespace BWAPI
       return TilePositions::Unknown;
     }
     // return the start location as a tile position
-    return BW::BWDATA_startPositions[index] - BW::Position((TILE_SIZE * 4) / 2, (TILE_SIZE * 3) / 2);
+    return TilePosition(BW::BWDATA_startPositions[index] - BW::Position((TILE_SIZE * 4) / 2, (TILE_SIZE * 3) / 2));
   }
   //--------------------------------------------- IS VICTORIOUS ----------------------------------------------
   bool PlayerImpl::isVictorious() const

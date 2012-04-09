@@ -387,7 +387,7 @@ void UseTechTest::update()
 
   if (techType==TechTypes::Scanner_Sweep)
   {
-    if (Broodwar->isVisible(targetPosition))
+    if (Broodwar->isVisible( TilePosition(targetPosition) ))
       testSucceeded = true;
   }
   else if (techType==TechTypes::Stim_Packs)

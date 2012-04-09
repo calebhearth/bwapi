@@ -1,9 +1,6 @@
 #pragma once
 #include "Vectorset.h"
 
-#define BWAPI_TYPESET(setname,name,...) static const name setname ## struc[] = { __VA_ARGS__ };                    \
-                            static const name::set setname(setname ## struc, sizeof(setname ## struc)/sizeof(setname ## struc[0]));
-
 namespace BWAPI
 {
   template<class _T>
@@ -47,13 +44,7 @@ namespace BWAPI
     int id;
   public:
     // Constructor
-    Type(int _id)
-    {
-      if ( _id < 0 || _id > __unk )
-        this->id = __unk;
-      else
-        this->id = _id;
-    };
+    explicit Type(int _id) : id( _id < 0 || _id > __unk ? __unk : _id ) {};
     
     // Types
     typedef Typeset<_T> set;

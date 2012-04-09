@@ -226,7 +226,7 @@ namespace BWAPI
     else if ( ct == UnitCommandTypes::Build_Addon && command.unit )
     {
       TilePosition target = command.unit->getTilePosition() + TilePosition(4, 1);
-      QUEUE_COMMAND(BW::Orders::MakeAddon, target.makeValid(), command.getUnitType());
+      QUEUE_COMMAND(BW::Orders::MakeAddon, BW::TilePosition(target.makeValid()), command.getUnitType());
     }
     else if ( ct == UnitCommandTypes::Train )
     {
