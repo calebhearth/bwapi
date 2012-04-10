@@ -1,8 +1,6 @@
 #pragma once
 #include "Type.h"
 
-#define BWAPI_GAMETYPEDEF(x) static const GameType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   namespace GameTypes
@@ -55,20 +53,20 @@ namespace BWAPI
     const GameType::set& allGameTypes();
     void init();
     
-    BWAPI_GAMETYPEDEF(Melee);
-    BWAPI_GAMETYPEDEF(Free_For_All);
-    BWAPI_GAMETYPEDEF(One_on_One);
-    BWAPI_GAMETYPEDEF(Capture_The_Flag);
-    BWAPI_GAMETYPEDEF(Greed);
-    BWAPI_GAMETYPEDEF(Slaughter);
-    BWAPI_GAMETYPEDEF(Sudden_Death);
-    BWAPI_GAMETYPEDEF(Ladder);
-    BWAPI_GAMETYPEDEF(Use_Map_Settings);
-    BWAPI_GAMETYPEDEF(Team_Melee);
-    BWAPI_GAMETYPEDEF(Team_Free_For_All);
-    BWAPI_GAMETYPEDEF(Team_Capture_The_Flag);
-    BWAPI_GAMETYPEDEF(Top_vs_Bottom);
-    BWAPI_GAMETYPEDEF(None);
-    BWAPI_GAMETYPEDEF(Unknown);
+    extern const GameType Melee;
+    extern const GameType Free_For_All;
+    extern const GameType One_on_One;
+    extern const GameType Capture_The_Flag;
+    extern const GameType Greed;
+    extern const GameType Slaughter;
+    extern const GameType Sudden_Death;
+    extern const GameType Ladder;
+    extern const GameType Use_Map_Settings;
+    extern const GameType Team_Melee;
+    extern const GameType Team_Free_For_All;
+    extern const GameType Team_Capture_The_Flag;
+    extern const GameType Top_vs_Bottom;
+    extern const GameType None;
+    extern const GameType Unknown;
   }
 }

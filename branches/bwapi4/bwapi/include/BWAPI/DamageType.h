@@ -1,8 +1,6 @@
 #pragma once
 #include "Type.h"
 
-#define BWAPI_DAMAGETYPEDEF(x) static const DamageType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   namespace DamageTypes
@@ -43,12 +41,12 @@ namespace BWAPI
 
     void init();
 
-    BWAPI_DAMAGETYPEDEF(Independent);
-    BWAPI_DAMAGETYPEDEF(Explosive);
-    BWAPI_DAMAGETYPEDEF(Concussive);
-    BWAPI_DAMAGETYPEDEF(Normal);
-    BWAPI_DAMAGETYPEDEF(Ignore_Armor);
-    BWAPI_DAMAGETYPEDEF(None);
-    BWAPI_DAMAGETYPEDEF(Unknown);
+    extern const DamageType Independent;
+    extern const DamageType Explosive;
+    extern const DamageType Concussive;
+    extern const DamageType Normal;
+    extern const DamageType Ignore_Armor;
+    extern const DamageType None;
+    extern const DamageType Unknown;
   }
 }

@@ -1,8 +1,6 @@
 #pragma once
 #include "Type.h"
 
-#define BWAPI_EXPLOTYPEDEF(x) static const ExplosionType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   namespace ExplosionTypes
@@ -60,30 +58,30 @@ namespace BWAPI
 
     void init();
 
-    BWAPI_EXPLOTYPEDEF(None);
-    BWAPI_EXPLOTYPEDEF(Normal);
-    BWAPI_EXPLOTYPEDEF(Radial_Splash);
-    BWAPI_EXPLOTYPEDEF(Enemy_Splash);
-    BWAPI_EXPLOTYPEDEF(Lockdown);
-    BWAPI_EXPLOTYPEDEF(Nuclear_Missile);
-    BWAPI_EXPLOTYPEDEF(Parasite);
-    BWAPI_EXPLOTYPEDEF(Broodlings);
-    BWAPI_EXPLOTYPEDEF(EMP_Shockwave);
-    BWAPI_EXPLOTYPEDEF(Irradiate);
-    BWAPI_EXPLOTYPEDEF(Ensnare);
-    BWAPI_EXPLOTYPEDEF(Plague);
-    BWAPI_EXPLOTYPEDEF(Stasis_Field);
-    BWAPI_EXPLOTYPEDEF(Dark_Swarm);
-    BWAPI_EXPLOTYPEDEF(Consume);
-    BWAPI_EXPLOTYPEDEF(Yamato_Gun);
-    BWAPI_EXPLOTYPEDEF(Restoration);
-    BWAPI_EXPLOTYPEDEF(Disruption_Web);
-    BWAPI_EXPLOTYPEDEF(Corrosive_Acid);
-    BWAPI_EXPLOTYPEDEF(Mind_Control);
-    BWAPI_EXPLOTYPEDEF(Feedback);
-    BWAPI_EXPLOTYPEDEF(Optical_Flare);
-    BWAPI_EXPLOTYPEDEF(Maelstrom);
-    BWAPI_EXPLOTYPEDEF(Air_Splash);
-    BWAPI_EXPLOTYPEDEF(Unknown);
+    extern const ExplosionType None;
+    extern const ExplosionType Normal;
+    extern const ExplosionType Radial_Splash;
+    extern const ExplosionType Enemy_Splash;
+    extern const ExplosionType Lockdown;
+    extern const ExplosionType Nuclear_Missile;
+    extern const ExplosionType Parasite;
+    extern const ExplosionType Broodlings;
+    extern const ExplosionType EMP_Shockwave;
+    extern const ExplosionType Irradiate;
+    extern const ExplosionType Ensnare;
+    extern const ExplosionType Plague;
+    extern const ExplosionType Stasis_Field;
+    extern const ExplosionType Dark_Swarm;
+    extern const ExplosionType Consume;
+    extern const ExplosionType Yamato_Gun;
+    extern const ExplosionType Restoration;
+    extern const ExplosionType Disruption_Web;
+    extern const ExplosionType Corrosive_Acid;
+    extern const ExplosionType Mind_Control;
+    extern const ExplosionType Feedback;
+    extern const ExplosionType Optical_Flare;
+    extern const ExplosionType Maelstrom;
+    extern const ExplosionType Air_Splash;
+    extern const ExplosionType Unknown;
   }
 }

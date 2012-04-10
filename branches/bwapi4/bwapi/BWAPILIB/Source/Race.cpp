@@ -75,6 +75,13 @@ namespace BWAPI
   std::map<std::string, Race> raceMap;
   namespace Races
   {
+    BWAPI_TYPEDEF(Race,Zerg);
+    BWAPI_TYPEDEF(Race,Terran);
+    BWAPI_TYPEDEF(Race,Protoss);
+    BWAPI_TYPEDEF(Race,Random);
+    BWAPI_TYPEDEF(Race,None);
+    BWAPI_TYPEDEF(Race,Unknown);
+
     // The race set initialization
     static const Race::set raceSet( Zerg | Terran | Protoss | None | Unknown );
 

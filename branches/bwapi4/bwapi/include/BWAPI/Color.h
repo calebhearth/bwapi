@@ -71,55 +71,55 @@ namespace BWAPI
     /// @~English
     /// The default color for Player 1.
     /// @~
-    static const Color Red(111);
+    extern const Color Red;
 
     /// @~English
     /// The default color for Player 2.
     /// @~
-    static const Color Blue(165);
+    extern const Color Blue;
 
     /// @~English
     /// The default color for Player 3.
     /// @~
-    static const Color Teal(159);
+    extern const Color Teal;
 
     /// @~English
     /// The default color for Player 4.
     /// @~
-    static const Color Purple(164);
+    extern const Color Purple;
 
     /// @~English
     /// The default color for Player 5.
     /// @~
-    static const Color Orange(179);
+    extern const Color Orange;
 
     /// @~English
     /// The default color for Player 6.
     /// @~
-    static const Color Brown(19);
+    extern const Color Brown;
 
     /// @~English
     /// The default color for Player 7.
     /// @~
-    static const Color White(255);
+    extern const Color White;
 
     /// @~English
     /// The default color for Player 8.
     /// @~
-    static const Color Yellow(135);
+    extern const Color Yellow;
 
     /// @~English
     /// The alternate color for Player 7 on Ice tilesets.
     /// @~
-    static const Color Green(117);
+    extern const Color Green;
 
     /// @~English
     /// The default color for Neutral (Player 12).
     /// @~
-    static const Color Cyan(128);
+    extern const Color Cyan;
     
-    static const Color Black(0);
-    static const Color Grey(74);
+    extern const Color Black;
+    extern const Color Grey;
   }
   /// @~English
   /// This namespace contains text formatting codes.

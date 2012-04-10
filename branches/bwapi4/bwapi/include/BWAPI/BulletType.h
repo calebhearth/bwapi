@@ -1,8 +1,6 @@
 #pragma once
 #include "Type.h"
 
-#define BWAPI_BULLETDEF(x) static const BulletType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   namespace BulletTypes
@@ -79,42 +77,42 @@ namespace BWAPI
 
     void init();
 
-    BWAPI_BULLETDEF(Melee);
-    BWAPI_BULLETDEF(Fusion_Cutter_Hit);
-    BWAPI_BULLETDEF(Gauss_Rifle_Hit);
-    BWAPI_BULLETDEF(C_10_Canister_Rifle_Hit);
-    BWAPI_BULLETDEF(Gemini_Missiles);
-    BWAPI_BULLETDEF(Fragmentation_Grenade);
-    BWAPI_BULLETDEF(Longbolt_Missile);
-    BWAPI_BULLETDEF(ATS_ATA_Laser_Battery);
-    BWAPI_BULLETDEF(Burst_Lasers);
-    BWAPI_BULLETDEF(Arclite_Shock_Cannon_Hit);
-    BWAPI_BULLETDEF(EMP_Missile);
-    BWAPI_BULLETDEF(Dual_Photon_Blasters_Hit);
-    BWAPI_BULLETDEF(Particle_Beam_Hit);
-    BWAPI_BULLETDEF(Anti_Matter_Missile);
-    BWAPI_BULLETDEF(Pulse_Cannon);
-    BWAPI_BULLETDEF(Psionic_Shockwave_Hit);
-    BWAPI_BULLETDEF(Psionic_Storm);
-    BWAPI_BULLETDEF(Yamato_Gun);
-    BWAPI_BULLETDEF(Phase_Disruptor);
-    BWAPI_BULLETDEF(STA_STS_Cannon_Overlay);
-    BWAPI_BULLETDEF(Sunken_Colony_Tentacle);
-    BWAPI_BULLETDEF(Acid_Spore);
-    BWAPI_BULLETDEF(Glave_Wurm);
-    BWAPI_BULLETDEF(Seeker_Spores);
-    BWAPI_BULLETDEF(Queen_Spell_Carrier);
-    BWAPI_BULLETDEF(Plague_Cloud);
-    BWAPI_BULLETDEF(Consume);
-    BWAPI_BULLETDEF(Ensnare);
-    BWAPI_BULLETDEF(Needle_Spine_Hit);
-    BWAPI_BULLETDEF(Invisible);
-    BWAPI_BULLETDEF(Optical_Flare_Grenade);
-    BWAPI_BULLETDEF(Halo_Rockets);
-    BWAPI_BULLETDEF(Subterranean_Spines);
-    BWAPI_BULLETDEF(Corrosive_Acid_Shot);
-    BWAPI_BULLETDEF(Neutron_Flare);
-    BWAPI_BULLETDEF(None);
-    BWAPI_BULLETDEF(Unknown);
+    extern const BulletType Melee;
+    extern const BulletType Fusion_Cutter_Hit;
+    extern const BulletType Gauss_Rifle_Hit;
+    extern const BulletType C_10_Canister_Rifle_Hit;
+    extern const BulletType Gemini_Missiles;
+    extern const BulletType Fragmentation_Grenade;
+    extern const BulletType Longbolt_Missile;
+    extern const BulletType ATS_ATA_Laser_Battery;
+    extern const BulletType Burst_Lasers;
+    extern const BulletType Arclite_Shock_Cannon_Hit;
+    extern const BulletType EMP_Missile;
+    extern const BulletType Dual_Photon_Blasters_Hit;
+    extern const BulletType Particle_Beam_Hit;
+    extern const BulletType Anti_Matter_Missile;
+    extern const BulletType Pulse_Cannon;
+    extern const BulletType Psionic_Shockwave_Hit;
+    extern const BulletType Psionic_Storm;
+    extern const BulletType Yamato_Gun;
+    extern const BulletType Phase_Disruptor;
+    extern const BulletType STA_STS_Cannon_Overlay;
+    extern const BulletType Sunken_Colony_Tentacle;
+    extern const BulletType Acid_Spore;
+    extern const BulletType Glave_Wurm;
+    extern const BulletType Seeker_Spores;
+    extern const BulletType Queen_Spell_Carrier;
+    extern const BulletType Plague_Cloud;
+    extern const BulletType Consume;
+    extern const BulletType Ensnare;
+    extern const BulletType Needle_Spine_Hit;
+    extern const BulletType Invisible;
+    extern const BulletType Optical_Flare_Grenade;
+    extern const BulletType Halo_Rockets;
+    extern const BulletType Subterranean_Spines;
+    extern const BulletType Corrosive_Acid_Shot;
+    extern const BulletType Neutron_Flare;
+    extern const BulletType None;
+    extern const BulletType Unknown;
   };
 }

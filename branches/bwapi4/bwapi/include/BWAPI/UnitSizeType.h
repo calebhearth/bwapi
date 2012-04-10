@@ -40,12 +40,11 @@ namespace BWAPI
     const UnitSizeType::set& allUnitSizeTypes();
     void init();
     
-    
-    BWAPI_UNITSIZETYPEDEF(Independent);
-    BWAPI_UNITSIZETYPEDEF(Small);
-    BWAPI_UNITSIZETYPEDEF(Medium);
-    BWAPI_UNITSIZETYPEDEF(Large);
-    BWAPI_UNITSIZETYPEDEF(None);
-    BWAPI_UNITSIZETYPEDEF(Unknown);
+    extern const UnitSizeType Independent;
+    extern const UnitSizeType Small;
+    extern const UnitSizeType Medium;
+    extern const UnitSizeType Large;
+    extern const UnitSizeType None;
+    extern const UnitSizeType Unknown;
   }
 }

@@ -2,8 +2,6 @@
 #include "Type.h"
 #include <string>
 
-#define BWAPI_RACEDEF(x) static const Race x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   class UnitType;
@@ -144,11 +142,11 @@ namespace BWAPI
 
     void init();
 
-    BWAPI_RACEDEF(Zerg);
-    BWAPI_RACEDEF(Terran);
-    BWAPI_RACEDEF(Protoss);
-    BWAPI_RACEDEF(Random);
-    BWAPI_RACEDEF(None);
-    BWAPI_RACEDEF(Unknown);
+    extern const Race Zerg;
+    extern const Race Terran;
+    extern const Race Protoss;
+    extern const Race Random;
+    extern const Race None;
+    extern const Race Unknown;
   }
 }

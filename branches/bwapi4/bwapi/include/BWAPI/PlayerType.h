@@ -1,8 +1,6 @@
 #pragma once
 #include "Type.h"
 
-#define BWAPI_PLYRTYPEDEF(x) static const PlayerType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   namespace PlayerTypes
@@ -47,19 +45,16 @@ namespace BWAPI
     const PlayerType::set& allPlayerTypes();
     void init();
     
-    BWAPI_PLYRTYPEDEF(None);
-    BWAPI_PLYRTYPEDEF(Computer);
-    BWAPI_PLYRTYPEDEF(Player);
-    BWAPI_PLYRTYPEDEF(RescuePassive);
-    // Rescue Active
-    
-    BWAPI_PLYRTYPEDEF(EitherPreferComputer);
-    BWAPI_PLYRTYPEDEF(EitherPreferHuman);
-    BWAPI_PLYRTYPEDEF(Neutral);
-    BWAPI_PLYRTYPEDEF(Closed);
-    // Observer
-    BWAPI_PLYRTYPEDEF(PlayerLeft);
-    BWAPI_PLYRTYPEDEF(ComputerLeft);
-    BWAPI_PLYRTYPEDEF(Unknown);
+    extern const PlayerType None;
+    extern const PlayerType Computer;
+    extern const PlayerType Player;
+    extern const PlayerType RescuePassive;
+    extern const PlayerType EitherPreferComputer;
+    extern const PlayerType EitherPreferHuman;
+    extern const PlayerType Neutral;
+    extern const PlayerType Closed;
+    extern const PlayerType PlayerLeft;
+    extern const PlayerType ComputerLeft;
+    extern const PlayerType Unknown;
   }
 }

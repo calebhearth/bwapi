@@ -2,8 +2,6 @@
 #include "Type.h"
 #include <BWAPI/UnitType.h>
 
-#define BWAPI_UPGTYPEDEF(x) static const UpgradeType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   class Race;
@@ -128,57 +126,57 @@ namespace BWAPI
 
     void init();
 
-    BWAPI_UPGTYPEDEF(Terran_Infantry_Armor);
-    BWAPI_UPGTYPEDEF(Terran_Vehicle_Plating);
-    BWAPI_UPGTYPEDEF(Terran_Ship_Plating);
-    BWAPI_UPGTYPEDEF(Zerg_Carapace);
-    BWAPI_UPGTYPEDEF(Zerg_Flyer_Carapace);
-    BWAPI_UPGTYPEDEF(Protoss_Ground_Armor);
-    BWAPI_UPGTYPEDEF(Protoss_Air_Armor);
-    BWAPI_UPGTYPEDEF(Terran_Infantry_Weapons);
-    BWAPI_UPGTYPEDEF(Terran_Vehicle_Weapons);
-    BWAPI_UPGTYPEDEF(Terran_Ship_Weapons);
-    BWAPI_UPGTYPEDEF(Zerg_Melee_Attacks);
-    BWAPI_UPGTYPEDEF(Zerg_Missile_Attacks);
-    BWAPI_UPGTYPEDEF(Zerg_Flyer_Attacks);
-    BWAPI_UPGTYPEDEF(Protoss_Ground_Weapons);
-    BWAPI_UPGTYPEDEF(Protoss_Air_Weapons);
-    BWAPI_UPGTYPEDEF(Protoss_Plasma_Shields);
-    BWAPI_UPGTYPEDEF(U_238_Shells);
-    BWAPI_UPGTYPEDEF(Ion_Thrusters);
-    BWAPI_UPGTYPEDEF(Titan_Reactor);
-    BWAPI_UPGTYPEDEF(Ocular_Implants);
-    BWAPI_UPGTYPEDEF(Moebius_Reactor);
-    BWAPI_UPGTYPEDEF(Apollo_Reactor);
-    BWAPI_UPGTYPEDEF(Colossus_Reactor);
-    BWAPI_UPGTYPEDEF(Ventral_Sacs);
-    BWAPI_UPGTYPEDEF(Antennae);
-    BWAPI_UPGTYPEDEF(Pneumatized_Carapace);
-    BWAPI_UPGTYPEDEF(Metabolic_Boost);
-    BWAPI_UPGTYPEDEF(Adrenal_Glands);
-    BWAPI_UPGTYPEDEF(Muscular_Augments);
-    BWAPI_UPGTYPEDEF(Grooved_Spines);
-    BWAPI_UPGTYPEDEF(Gamete_Meiosis);
-    BWAPI_UPGTYPEDEF(Metasynaptic_Node);
-    BWAPI_UPGTYPEDEF(Singularity_Charge);
-    BWAPI_UPGTYPEDEF(Leg_Enhancements);
-    BWAPI_UPGTYPEDEF(Scarab_Damage);
-    BWAPI_UPGTYPEDEF(Reaver_Capacity);
-    BWAPI_UPGTYPEDEF(Gravitic_Drive);
-    BWAPI_UPGTYPEDEF(Sensor_Array);
-    BWAPI_UPGTYPEDEF(Gravitic_Boosters);
-    BWAPI_UPGTYPEDEF(Khaydarin_Amulet);
-    BWAPI_UPGTYPEDEF(Apial_Sensors);
-    BWAPI_UPGTYPEDEF(Gravitic_Thrusters);
-    BWAPI_UPGTYPEDEF(Carrier_Capacity);
-    BWAPI_UPGTYPEDEF(Khaydarin_Core);
-    BWAPI_UPGTYPEDEF(Argus_Jewel);
-    BWAPI_UPGTYPEDEF(Argus_Talisman);
-    BWAPI_UPGTYPEDEF(Caduceus_Reactor);
-    BWAPI_UPGTYPEDEF(Chitinous_Plating);
-    BWAPI_UPGTYPEDEF(Anabolic_Synthesis);
-    BWAPI_UPGTYPEDEF(Charon_Boosters);
-    BWAPI_UPGTYPEDEF(None);
-    BWAPI_UPGTYPEDEF(Unknown);
+    extern const UpgradeType Terran_Infantry_Armor;
+    extern const UpgradeType Terran_Vehicle_Plating;
+    extern const UpgradeType Terran_Ship_Plating;
+    extern const UpgradeType Zerg_Carapace;
+    extern const UpgradeType Zerg_Flyer_Carapace;
+    extern const UpgradeType Protoss_Ground_Armor;
+    extern const UpgradeType Protoss_Air_Armor;
+    extern const UpgradeType Terran_Infantry_Weapons;
+    extern const UpgradeType Terran_Vehicle_Weapons;
+    extern const UpgradeType Terran_Ship_Weapons;
+    extern const UpgradeType Zerg_Melee_Attacks;
+    extern const UpgradeType Zerg_Missile_Attacks;
+    extern const UpgradeType Zerg_Flyer_Attacks;
+    extern const UpgradeType Protoss_Ground_Weapons;
+    extern const UpgradeType Protoss_Air_Weapons;
+    extern const UpgradeType Protoss_Plasma_Shields;
+    extern const UpgradeType U_238_Shells;
+    extern const UpgradeType Ion_Thrusters;
+    extern const UpgradeType Titan_Reactor;
+    extern const UpgradeType Ocular_Implants;
+    extern const UpgradeType Moebius_Reactor;
+    extern const UpgradeType Apollo_Reactor;
+    extern const UpgradeType Colossus_Reactor;
+    extern const UpgradeType Ventral_Sacs;
+    extern const UpgradeType Antennae;
+    extern const UpgradeType Pneumatized_Carapace;
+    extern const UpgradeType Metabolic_Boost;
+    extern const UpgradeType Adrenal_Glands;
+    extern const UpgradeType Muscular_Augments;
+    extern const UpgradeType Grooved_Spines;
+    extern const UpgradeType Gamete_Meiosis;
+    extern const UpgradeType Metasynaptic_Node;
+    extern const UpgradeType Singularity_Charge;
+    extern const UpgradeType Leg_Enhancements;
+    extern const UpgradeType Scarab_Damage;
+    extern const UpgradeType Reaver_Capacity;
+    extern const UpgradeType Gravitic_Drive;
+    extern const UpgradeType Sensor_Array;
+    extern const UpgradeType Gravitic_Boosters;
+    extern const UpgradeType Khaydarin_Amulet;
+    extern const UpgradeType Apial_Sensors;
+    extern const UpgradeType Gravitic_Thrusters;
+    extern const UpgradeType Carrier_Capacity;
+    extern const UpgradeType Khaydarin_Core;
+    extern const UpgradeType Argus_Jewel;
+    extern const UpgradeType Argus_Talisman;
+    extern const UpgradeType Caduceus_Reactor;
+    extern const UpgradeType Chitinous_Plating;
+    extern const UpgradeType Anabolic_Synthesis;
+    extern const UpgradeType Charon_Boosters;
+    extern const UpgradeType None;
+    extern const UpgradeType Unknown;
   }
 }

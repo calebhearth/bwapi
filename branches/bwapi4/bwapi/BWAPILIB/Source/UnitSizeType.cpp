@@ -21,6 +21,13 @@ namespace BWAPI
   std::map<std::string, UnitSizeType> unitSizeTypeMap;
   namespace UnitSizeTypes
   {
+    BWAPI_TYPEDEF(UnitSizeType,Independent);
+    BWAPI_TYPEDEF(UnitSizeType,Small);
+    BWAPI_TYPEDEF(UnitSizeType,Medium);
+    BWAPI_TYPEDEF(UnitSizeType,Large);
+    BWAPI_TYPEDEF(UnitSizeType,None);
+    BWAPI_TYPEDEF(UnitSizeType,Unknown);
+
     static const UnitSizeType::set unitSizeTypeSet( Independent | Small | Medium | Large | None | Unknown );
     void init()
     {

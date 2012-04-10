@@ -24,6 +24,14 @@ namespace BWAPI
   std::map<std::string, DamageType> damageTypeMap;
   namespace DamageTypes
   {
+    BWAPI_TYPEDEF(DamageType,Independent);
+    BWAPI_TYPEDEF(DamageType,Explosive);
+    BWAPI_TYPEDEF(DamageType,Concussive);
+    BWAPI_TYPEDEF(DamageType,Normal);
+    BWAPI_TYPEDEF(DamageType,Ignore_Armor);
+    BWAPI_TYPEDEF(DamageType,None);
+    BWAPI_TYPEDEF(DamageType,Unknown);
+
     static const DamageType::set damageTypeSet(Independent | Explosive | Concussive | Normal | Ignore_Armor | None | Unknown);
     void init()
     {

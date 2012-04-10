@@ -2,8 +2,6 @@
 #include "Type.h"
 #include <BWAPI/UnitType.h>
 
-#define BWAPI_TECHTYPEDEF(x) static const TechType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   class WeaponType;
@@ -116,41 +114,41 @@ namespace BWAPI
     const TechType::set& allTechTypes();
     void init();
 
-    BWAPI_TECHTYPEDEF(Stim_Packs);
-    BWAPI_TECHTYPEDEF(Lockdown);
-    BWAPI_TECHTYPEDEF(EMP_Shockwave);
-    BWAPI_TECHTYPEDEF(Spider_Mines);
-    BWAPI_TECHTYPEDEF(Scanner_Sweep);
-    BWAPI_TECHTYPEDEF(Tank_Siege_Mode);
-    BWAPI_TECHTYPEDEF(Defensive_Matrix);
-    BWAPI_TECHTYPEDEF(Irradiate);
-    BWAPI_TECHTYPEDEF(Yamato_Gun);
-    BWAPI_TECHTYPEDEF(Cloaking_Field);
-    BWAPI_TECHTYPEDEF(Personnel_Cloaking);
-    BWAPI_TECHTYPEDEF(Burrowing);
-    BWAPI_TECHTYPEDEF(Infestation);
-    BWAPI_TECHTYPEDEF(Spawn_Broodlings);
-    BWAPI_TECHTYPEDEF(Dark_Swarm);
-    BWAPI_TECHTYPEDEF(Plague);
-    BWAPI_TECHTYPEDEF(Consume);
-    BWAPI_TECHTYPEDEF(Ensnare);
-    BWAPI_TECHTYPEDEF(Parasite);
-    BWAPI_TECHTYPEDEF(Psionic_Storm);
-    BWAPI_TECHTYPEDEF(Hallucination);
-    BWAPI_TECHTYPEDEF(Recall);
-    BWAPI_TECHTYPEDEF(Stasis_Field);
-    BWAPI_TECHTYPEDEF(Archon_Warp);
-    BWAPI_TECHTYPEDEF(Restoration);
-    BWAPI_TECHTYPEDEF(Disruption_Web);
-    BWAPI_TECHTYPEDEF(Mind_Control);
-    BWAPI_TECHTYPEDEF(Dark_Archon_Meld);
-    BWAPI_TECHTYPEDEF(Feedback);
-    BWAPI_TECHTYPEDEF(Optical_Flare);
-    BWAPI_TECHTYPEDEF(Maelstrom);
-    BWAPI_TECHTYPEDEF(Lurker_Aspect);
-    BWAPI_TECHTYPEDEF(Healing);
-    BWAPI_TECHTYPEDEF(None);
-    BWAPI_TECHTYPEDEF(Unknown);
-    BWAPI_TECHTYPEDEF(Nuclear_Strike);
+    extern const TechType Stim_Packs;
+    extern const TechType Lockdown;
+    extern const TechType EMP_Shockwave;
+    extern const TechType Spider_Mines;
+    extern const TechType Scanner_Sweep;
+    extern const TechType Tank_Siege_Mode;
+    extern const TechType Defensive_Matrix;
+    extern const TechType Irradiate;
+    extern const TechType Yamato_Gun;
+    extern const TechType Cloaking_Field;
+    extern const TechType Personnel_Cloaking;
+    extern const TechType Burrowing;
+    extern const TechType Infestation;
+    extern const TechType Spawn_Broodlings;
+    extern const TechType Dark_Swarm;
+    extern const TechType Plague;
+    extern const TechType Consume;
+    extern const TechType Ensnare;
+    extern const TechType Parasite;
+    extern const TechType Psionic_Storm;
+    extern const TechType Hallucination;
+    extern const TechType Recall;
+    extern const TechType Stasis_Field;
+    extern const TechType Archon_Warp;
+    extern const TechType Restoration;
+    extern const TechType Disruption_Web;
+    extern const TechType Mind_Control;
+    extern const TechType Dark_Archon_Meld;
+    extern const TechType Feedback;
+    extern const TechType Optical_Flare;
+    extern const TechType Maelstrom;
+    extern const TechType Lurker_Aspect;
+    extern const TechType Healing;
+    extern const TechType None;
+    extern const TechType Unknown;
+    extern const TechType Nuclear_Strike;
   };
 }

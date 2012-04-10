@@ -3,8 +3,6 @@
 #include <BWAPI/Position.h>
 #include "Type.h"
 
-#define BWAPI_UNITDEF(x) static const UnitType x(Enum::x) /** ref x */
-
 namespace BWAPI
 {
   // Forward Declarations
@@ -550,240 +548,240 @@ namespace BWAPI
     const UnitType::set& allMacroTypes();
     void init();
 
-    BWAPI_UNITDEF(Terran_Marine);
-    BWAPI_UNITDEF(Terran_Ghost);
-    BWAPI_UNITDEF(Terran_Vulture);
-    BWAPI_UNITDEF(Terran_Goliath);
-    // goliath turret (4)
-    BWAPI_UNITDEF(Terran_Siege_Tank_Tank_Mode);
-    // siege tank turret (6)
-    BWAPI_UNITDEF(Terran_SCV);
-    BWAPI_UNITDEF(Terran_Wraith);
-    BWAPI_UNITDEF(Terran_Science_Vessel);
-    BWAPI_UNITDEF(Hero_Gui_Montag);
-    BWAPI_UNITDEF(Terran_Dropship);
-    BWAPI_UNITDEF(Terran_Battlecruiser);
-    BWAPI_UNITDEF(Terran_Vulture_Spider_Mine);
-    BWAPI_UNITDEF(Terran_Nuclear_Missile);
-    BWAPI_UNITDEF(Terran_Civilian);
-    BWAPI_UNITDEF(Hero_Sarah_Kerrigan);
-    BWAPI_UNITDEF(Hero_Alan_Schezar);
-    // alan turret (18)
-    BWAPI_UNITDEF(Hero_Jim_Raynor_Vulture);
-    BWAPI_UNITDEF(Hero_Jim_Raynor_Marine);
-    BWAPI_UNITDEF(Hero_Tom_Kazansky);
-    BWAPI_UNITDEF(Hero_Magellan);
-    BWAPI_UNITDEF(Hero_Edmund_Duke_Tank_Mode);
-    // edmund duke turret (24)
-    BWAPI_UNITDEF(Hero_Edmund_Duke_Siege_Mode);
-    // edmund duke turret siege mode (26)
-    BWAPI_UNITDEF(Hero_Arcturus_Mengsk);
-    BWAPI_UNITDEF(Hero_Hyperion);
-    BWAPI_UNITDEF(Hero_Norad_II);
-    BWAPI_UNITDEF(Terran_Siege_Tank_Siege_Mode);
-    // siege tank siege mode turret (31)
-    BWAPI_UNITDEF(Terran_Firebat);
-    BWAPI_UNITDEF(Spell_Scanner_Sweep);
-    BWAPI_UNITDEF(Terran_Medic);
-    BWAPI_UNITDEF(Zerg_Larva);
-    BWAPI_UNITDEF(Zerg_Egg);
-    BWAPI_UNITDEF(Zerg_Zergling);
-    BWAPI_UNITDEF(Zerg_Hydralisk);
-    BWAPI_UNITDEF(Zerg_Ultralisk);
-    BWAPI_UNITDEF(Zerg_Broodling);
-    BWAPI_UNITDEF(Zerg_Drone);
-    BWAPI_UNITDEF(Zerg_Overlord);
-    BWAPI_UNITDEF(Zerg_Mutalisk);
-    BWAPI_UNITDEF(Zerg_Guardian);
-    BWAPI_UNITDEF(Zerg_Queen);
-    BWAPI_UNITDEF(Zerg_Defiler);
-    BWAPI_UNITDEF(Zerg_Scourge);
-    BWAPI_UNITDEF(Hero_Torrasque);
-    BWAPI_UNITDEF(Hero_Matriarch);
-    BWAPI_UNITDEF(Zerg_Infested_Terran);
-    BWAPI_UNITDEF(Hero_Infested_Kerrigan);
-    BWAPI_UNITDEF(Hero_Unclean_One);
-    BWAPI_UNITDEF(Hero_Hunter_Killer);
-    BWAPI_UNITDEF(Hero_Devouring_One);
-    BWAPI_UNITDEF(Hero_Kukulza_Mutalisk);
-    BWAPI_UNITDEF(Hero_Kukulza_Guardian);
-    BWAPI_UNITDEF(Hero_Yggdrasill);
-    BWAPI_UNITDEF(Terran_Valkyrie);
-    BWAPI_UNITDEF(Zerg_Cocoon);
-    BWAPI_UNITDEF(Protoss_Corsair);
-    BWAPI_UNITDEF(Protoss_Dark_Templar);
-    BWAPI_UNITDEF(Zerg_Devourer);
-    BWAPI_UNITDEF(Protoss_Dark_Archon);
-    BWAPI_UNITDEF(Protoss_Probe);
-    BWAPI_UNITDEF(Protoss_Zealot);
-    BWAPI_UNITDEF(Protoss_Dragoon);
-    BWAPI_UNITDEF(Protoss_High_Templar);
-    BWAPI_UNITDEF(Protoss_Archon);
-    BWAPI_UNITDEF(Protoss_Shuttle);
-    BWAPI_UNITDEF(Protoss_Scout);
-    BWAPI_UNITDEF(Protoss_Arbiter);
-    BWAPI_UNITDEF(Protoss_Carrier);
-    BWAPI_UNITDEF(Protoss_Interceptor);
-    BWAPI_UNITDEF(Hero_Dark_Templar);
-    BWAPI_UNITDEF(Hero_Zeratul);
-    BWAPI_UNITDEF(Hero_Tassadar_Zeratul_Archon);
-    BWAPI_UNITDEF(Hero_Fenix_Zealot);
-    BWAPI_UNITDEF(Hero_Fenix_Dragoon);
-    BWAPI_UNITDEF(Hero_Tassadar);
-    BWAPI_UNITDEF(Hero_Mojo);
-    BWAPI_UNITDEF(Hero_Warbringer);
-    BWAPI_UNITDEF(Hero_Gantrithor);
-    BWAPI_UNITDEF(Protoss_Reaver);
-    BWAPI_UNITDEF(Protoss_Observer);
-    BWAPI_UNITDEF(Protoss_Scarab);
-    BWAPI_UNITDEF(Hero_Danimoth);
-    BWAPI_UNITDEF(Hero_Aldaris);
-    BWAPI_UNITDEF(Hero_Artanis);
-    BWAPI_UNITDEF(Critter_Rhynadon);
-    BWAPI_UNITDEF(Critter_Bengalaas);
-    BWAPI_UNITDEF(Special_Cargo_Ship);
-    BWAPI_UNITDEF(Special_Mercenary_Gunship);
-    BWAPI_UNITDEF(Critter_Scantid);
-    BWAPI_UNITDEF(Critter_Kakaru);
-    BWAPI_UNITDEF(Critter_Ragnasaur);
-    BWAPI_UNITDEF(Critter_Ursadon);
-    BWAPI_UNITDEF(Zerg_Lurker_Egg);
-    BWAPI_UNITDEF(Hero_Raszagal);
-    BWAPI_UNITDEF(Hero_Samir_Duran);
-    BWAPI_UNITDEF(Hero_Alexei_Stukov);
-    BWAPI_UNITDEF(Special_Map_Revealer);
-    BWAPI_UNITDEF(Hero_Gerard_DuGalle);
-    BWAPI_UNITDEF(Zerg_Lurker);
-    BWAPI_UNITDEF(Hero_Infested_Duran);
-    BWAPI_UNITDEF(Spell_Disruption_Web);
-    BWAPI_UNITDEF(Terran_Command_Center);
-    BWAPI_UNITDEF(Terran_Comsat_Station);
-    BWAPI_UNITDEF(Terran_Nuclear_Silo);
-    BWAPI_UNITDEF(Terran_Supply_Depot);
-    BWAPI_UNITDEF(Terran_Refinery);
-    BWAPI_UNITDEF(Terran_Barracks);
-    BWAPI_UNITDEF(Terran_Academy);
-    BWAPI_UNITDEF(Terran_Factory);
-    BWAPI_UNITDEF(Terran_Starport);
-    BWAPI_UNITDEF(Terran_Control_Tower);
-    BWAPI_UNITDEF(Terran_Science_Facility);
-    BWAPI_UNITDEF(Terran_Covert_Ops);
-    BWAPI_UNITDEF(Terran_Physics_Lab);
-    // starbase (119)
-    BWAPI_UNITDEF(Terran_Machine_Shop);
-    // repair bay (121)
-    BWAPI_UNITDEF(Terran_Engineering_Bay);
-    BWAPI_UNITDEF(Terran_Armory);
-    BWAPI_UNITDEF(Terran_Missile_Turret);
-    BWAPI_UNITDEF(Terran_Bunker);
-    BWAPI_UNITDEF(Special_Crashed_Norad_II);
-    BWAPI_UNITDEF(Special_Ion_Cannon);
-    BWAPI_UNITDEF(Powerup_Uraj_Crystal);
-    BWAPI_UNITDEF(Powerup_Khalis_Crystal);
-    BWAPI_UNITDEF(Zerg_Infested_Command_Center);
-    BWAPI_UNITDEF(Zerg_Hatchery);
-    BWAPI_UNITDEF(Zerg_Lair);
-    BWAPI_UNITDEF(Zerg_Hive);
-    BWAPI_UNITDEF(Zerg_Nydus_Canal);
-    BWAPI_UNITDEF(Zerg_Hydralisk_Den);
-    BWAPI_UNITDEF(Zerg_Defiler_Mound);
-    BWAPI_UNITDEF(Zerg_Greater_Spire);
-    BWAPI_UNITDEF(Zerg_Queens_Nest);
-    BWAPI_UNITDEF(Zerg_Evolution_Chamber);
-    BWAPI_UNITDEF(Zerg_Ultralisk_Cavern);
-    BWAPI_UNITDEF(Zerg_Spire);
-    BWAPI_UNITDEF(Zerg_Spawning_Pool);
-    BWAPI_UNITDEF(Zerg_Creep_Colony);
-    BWAPI_UNITDEF(Zerg_Spore_Colony);
-    // unused zerg 1 (145)
-    BWAPI_UNITDEF(Zerg_Sunken_Colony);
-    BWAPI_UNITDEF(Special_Overmind_With_Shell);
-    BWAPI_UNITDEF(Special_Overmind);
-    BWAPI_UNITDEF(Zerg_Extractor);
-    BWAPI_UNITDEF(Special_Mature_Chrysalis);
-    BWAPI_UNITDEF(Special_Cerebrate);
-    BWAPI_UNITDEF(Special_Cerebrate_Daggoth);
-    // unused zerg 2 (153)
-    BWAPI_UNITDEF(Protoss_Nexus);
-    BWAPI_UNITDEF(Protoss_Robotics_Facility);
-    BWAPI_UNITDEF(Protoss_Pylon);
-    BWAPI_UNITDEF(Protoss_Assimilator);
-    // unused protoss 1 (158)
-    BWAPI_UNITDEF(Protoss_Observatory);
-    BWAPI_UNITDEF(Protoss_Gateway);
-    // unused protoss 2 (161)
-    BWAPI_UNITDEF(Protoss_Photon_Cannon);
-    BWAPI_UNITDEF(Protoss_Citadel_of_Adun);
-    BWAPI_UNITDEF(Protoss_Cybernetics_Core);
-    BWAPI_UNITDEF(Protoss_Templar_Archives);
-    BWAPI_UNITDEF(Protoss_Forge);
-    BWAPI_UNITDEF(Protoss_Stargate);
-    BWAPI_UNITDEF(Special_Stasis_Cell_Prison);
-    BWAPI_UNITDEF(Protoss_Fleet_Beacon);
-    BWAPI_UNITDEF(Protoss_Arbiter_Tribunal);
-    BWAPI_UNITDEF(Protoss_Robotics_Support_Bay);
-    BWAPI_UNITDEF(Protoss_Shield_Battery);
-    BWAPI_UNITDEF(Special_Khaydarin_Crystal_Form);
-    BWAPI_UNITDEF(Special_Protoss_Temple);
-    BWAPI_UNITDEF(Special_XelNaga_Temple);
-    BWAPI_UNITDEF(Resource_Mineral_Field);
-    BWAPI_UNITDEF(Resource_Mineral_Field_Type_2);
-    BWAPI_UNITDEF(Resource_Mineral_Field_Type_3);
-    // cave (179)
-    // cave-in (180)
-    // cantina (181)
-    // mining platform (182)
-    // independant command center (183)
-    BWAPI_UNITDEF(Special_Independant_Starport);
-    // independant jump gate (185)
-    // ruins (186)
-    // unused khaydarin crystal formation (187)
-    BWAPI_UNITDEF(Resource_Vespene_Geyser);
-    BWAPI_UNITDEF(Special_Warp_Gate);
-    BWAPI_UNITDEF(Special_Psi_Disrupter);
-    // zerg marker (191)
-    // terran marker (192)
-    // protoss marker (193)
-    BWAPI_UNITDEF(Special_Zerg_Beacon);
-    BWAPI_UNITDEF(Special_Terran_Beacon);
-    BWAPI_UNITDEF(Special_Protoss_Beacon);
-    BWAPI_UNITDEF(Special_Zerg_Flag_Beacon);
-    BWAPI_UNITDEF(Special_Terran_Flag_Beacon);
-    BWAPI_UNITDEF(Special_Protoss_Flag_Beacon);
-    BWAPI_UNITDEF(Special_Power_Generator);
-    BWAPI_UNITDEF(Special_Overmind_Cocoon);
-    BWAPI_UNITDEF(Spell_Dark_Swarm);
-    BWAPI_UNITDEF(Special_Floor_Missile_Trap);
-    BWAPI_UNITDEF(Special_Floor_Hatch);
-    BWAPI_UNITDEF(Special_Upper_Level_Door);
-    BWAPI_UNITDEF(Special_Right_Upper_Level_Door);
-    BWAPI_UNITDEF(Special_Pit_Door);
-    BWAPI_UNITDEF(Special_Right_Pit_Door);
-    BWAPI_UNITDEF(Special_Floor_Gun_Trap);
-    BWAPI_UNITDEF(Special_Wall_Missile_Trap);
-    BWAPI_UNITDEF(Special_Wall_Flame_Trap);
-    BWAPI_UNITDEF(Special_Right_Wall_Missile_Trap);
-    BWAPI_UNITDEF(Special_Right_Wall_Flame_Trap);
-    BWAPI_UNITDEF(Special_Start_Location);
-    BWAPI_UNITDEF(Powerup_Flag);
-    BWAPI_UNITDEF(Powerup_Young_Chrysalis);
-    BWAPI_UNITDEF(Powerup_Psi_Emitter);
-    BWAPI_UNITDEF(Powerup_Data_Disk);
-    BWAPI_UNITDEF(Powerup_Khaydarin_Crystal);
-    BWAPI_UNITDEF(Powerup_Mineral_Cluster_Type_1);
-    BWAPI_UNITDEF(Powerup_Mineral_Cluster_Type_2);
-    BWAPI_UNITDEF(Powerup_Protoss_Gas_Orb_Type_1);
-    BWAPI_UNITDEF(Powerup_Protoss_Gas_Orb_Type_2);
-    BWAPI_UNITDEF(Powerup_Zerg_Gas_Sac_Type_1);
-    BWAPI_UNITDEF(Powerup_Zerg_Gas_Sac_Type_2);
-    BWAPI_UNITDEF(Powerup_Terran_Gas_Tank_Type_1);
-    BWAPI_UNITDEF(Powerup_Terran_Gas_Tank_Type_2);
+    extern const UnitType Terran_Marine;
+    extern const UnitType Terran_Ghost;
+    extern const UnitType Terran_Vulture;
+    extern const UnitType Terran_Goliath;
+    // goliath turret 4
+    extern const UnitType Terran_Siege_Tank_Tank_Mode;
+    // siege tank turret 6
+    extern const UnitType Terran_SCV;
+    extern const UnitType Terran_Wraith;
+    extern const UnitType Terran_Science_Vessel;
+    extern const UnitType Hero_Gui_Montag;
+    extern const UnitType Terran_Dropship;
+    extern const UnitType Terran_Battlecruiser;
+    extern const UnitType Terran_Vulture_Spider_Mine;
+    extern const UnitType Terran_Nuclear_Missile;
+    extern const UnitType Terran_Civilian;
+    extern const UnitType Hero_Sarah_Kerrigan;
+    extern const UnitType Hero_Alan_Schezar;
+    // alan turret 18
+    extern const UnitType Hero_Jim_Raynor_Vulture;
+    extern const UnitType Hero_Jim_Raynor_Marine;
+    extern const UnitType Hero_Tom_Kazansky;
+    extern const UnitType Hero_Magellan;
+    extern const UnitType Hero_Edmund_Duke_Tank_Mode;
+    // edmund duke turret 24
+    extern const UnitType Hero_Edmund_Duke_Siege_Mode;
+    // edmund duke turret siege mode 26
+    extern const UnitType Hero_Arcturus_Mengsk;
+    extern const UnitType Hero_Hyperion;
+    extern const UnitType Hero_Norad_II;
+    extern const UnitType Terran_Siege_Tank_Siege_Mode;
+    // siege tank siege mode turret 31
+    extern const UnitType Terran_Firebat;
+    extern const UnitType Spell_Scanner_Sweep;
+    extern const UnitType Terran_Medic;
+    extern const UnitType Zerg_Larva;
+    extern const UnitType Zerg_Egg;
+    extern const UnitType Zerg_Zergling;
+    extern const UnitType Zerg_Hydralisk;
+    extern const UnitType Zerg_Ultralisk;
+    extern const UnitType Zerg_Broodling;
+    extern const UnitType Zerg_Drone;
+    extern const UnitType Zerg_Overlord;
+    extern const UnitType Zerg_Mutalisk;
+    extern const UnitType Zerg_Guardian;
+    extern const UnitType Zerg_Queen;
+    extern const UnitType Zerg_Defiler;
+    extern const UnitType Zerg_Scourge;
+    extern const UnitType Hero_Torrasque;
+    extern const UnitType Hero_Matriarch;
+    extern const UnitType Zerg_Infested_Terran;
+    extern const UnitType Hero_Infested_Kerrigan;
+    extern const UnitType Hero_Unclean_One;
+    extern const UnitType Hero_Hunter_Killer;
+    extern const UnitType Hero_Devouring_One;
+    extern const UnitType Hero_Kukulza_Mutalisk;
+    extern const UnitType Hero_Kukulza_Guardian;
+    extern const UnitType Hero_Yggdrasill;
+    extern const UnitType Terran_Valkyrie;
+    extern const UnitType Zerg_Cocoon;
+    extern const UnitType Protoss_Corsair;
+    extern const UnitType Protoss_Dark_Templar;
+    extern const UnitType Zerg_Devourer;
+    extern const UnitType Protoss_Dark_Archon;
+    extern const UnitType Protoss_Probe;
+    extern const UnitType Protoss_Zealot;
+    extern const UnitType Protoss_Dragoon;
+    extern const UnitType Protoss_High_Templar;
+    extern const UnitType Protoss_Archon;
+    extern const UnitType Protoss_Shuttle;
+    extern const UnitType Protoss_Scout;
+    extern const UnitType Protoss_Arbiter;
+    extern const UnitType Protoss_Carrier;
+    extern const UnitType Protoss_Interceptor;
+    extern const UnitType Hero_Dark_Templar;
+    extern const UnitType Hero_Zeratul;
+    extern const UnitType Hero_Tassadar_Zeratul_Archon;
+    extern const UnitType Hero_Fenix_Zealot;
+    extern const UnitType Hero_Fenix_Dragoon;
+    extern const UnitType Hero_Tassadar;
+    extern const UnitType Hero_Mojo;
+    extern const UnitType Hero_Warbringer;
+    extern const UnitType Hero_Gantrithor;
+    extern const UnitType Protoss_Reaver;
+    extern const UnitType Protoss_Observer;
+    extern const UnitType Protoss_Scarab;
+    extern const UnitType Hero_Danimoth;
+    extern const UnitType Hero_Aldaris;
+    extern const UnitType Hero_Artanis;
+    extern const UnitType Critter_Rhynadon;
+    extern const UnitType Critter_Bengalaas;
+    extern const UnitType Special_Cargo_Ship;
+    extern const UnitType Special_Mercenary_Gunship;
+    extern const UnitType Critter_Scantid;
+    extern const UnitType Critter_Kakaru;
+    extern const UnitType Critter_Ragnasaur;
+    extern const UnitType Critter_Ursadon;
+    extern const UnitType Zerg_Lurker_Egg;
+    extern const UnitType Hero_Raszagal;
+    extern const UnitType Hero_Samir_Duran;
+    extern const UnitType Hero_Alexei_Stukov;
+    extern const UnitType Special_Map_Revealer;
+    extern const UnitType Hero_Gerard_DuGalle;
+    extern const UnitType Zerg_Lurker;
+    extern const UnitType Hero_Infested_Duran;
+    extern const UnitType Spell_Disruption_Web;
+    extern const UnitType Terran_Command_Center;
+    extern const UnitType Terran_Comsat_Station;
+    extern const UnitType Terran_Nuclear_Silo;
+    extern const UnitType Terran_Supply_Depot;
+    extern const UnitType Terran_Refinery;
+    extern const UnitType Terran_Barracks;
+    extern const UnitType Terran_Academy;
+    extern const UnitType Terran_Factory;
+    extern const UnitType Terran_Starport;
+    extern const UnitType Terran_Control_Tower;
+    extern const UnitType Terran_Science_Facility;
+    extern const UnitType Terran_Covert_Ops;
+    extern const UnitType Terran_Physics_Lab;
+    // starbase 119
+    extern const UnitType Terran_Machine_Shop;
+    // repair bay 121
+    extern const UnitType Terran_Engineering_Bay;
+    extern const UnitType Terran_Armory;
+    extern const UnitType Terran_Missile_Turret;
+    extern const UnitType Terran_Bunker;
+    extern const UnitType Special_Crashed_Norad_II;
+    extern const UnitType Special_Ion_Cannon;
+    extern const UnitType Powerup_Uraj_Crystal;
+    extern const UnitType Powerup_Khalis_Crystal;
+    extern const UnitType Zerg_Infested_Command_Center;
+    extern const UnitType Zerg_Hatchery;
+    extern const UnitType Zerg_Lair;
+    extern const UnitType Zerg_Hive;
+    extern const UnitType Zerg_Nydus_Canal;
+    extern const UnitType Zerg_Hydralisk_Den;
+    extern const UnitType Zerg_Defiler_Mound;
+    extern const UnitType Zerg_Greater_Spire;
+    extern const UnitType Zerg_Queens_Nest;
+    extern const UnitType Zerg_Evolution_Chamber;
+    extern const UnitType Zerg_Ultralisk_Cavern;
+    extern const UnitType Zerg_Spire;
+    extern const UnitType Zerg_Spawning_Pool;
+    extern const UnitType Zerg_Creep_Colony;
+    extern const UnitType Zerg_Spore_Colony;
+    // unused zerg 1 145
+    extern const UnitType Zerg_Sunken_Colony;
+    extern const UnitType Special_Overmind_With_Shell;
+    extern const UnitType Special_Overmind;
+    extern const UnitType Zerg_Extractor;
+    extern const UnitType Special_Mature_Chrysalis;
+    extern const UnitType Special_Cerebrate;
+    extern const UnitType Special_Cerebrate_Daggoth;
+    // unused zerg 2 153
+    extern const UnitType Protoss_Nexus;
+    extern const UnitType Protoss_Robotics_Facility;
+    extern const UnitType Protoss_Pylon;
+    extern const UnitType Protoss_Assimilator;
+    // unused protoss 1 158
+    extern const UnitType Protoss_Observatory;
+    extern const UnitType Protoss_Gateway;
+    // unused protoss 2 161
+    extern const UnitType Protoss_Photon_Cannon;
+    extern const UnitType Protoss_Citadel_of_Adun;
+    extern const UnitType Protoss_Cybernetics_Core;
+    extern const UnitType Protoss_Templar_Archives;
+    extern const UnitType Protoss_Forge;
+    extern const UnitType Protoss_Stargate;
+    extern const UnitType Special_Stasis_Cell_Prison;
+    extern const UnitType Protoss_Fleet_Beacon;
+    extern const UnitType Protoss_Arbiter_Tribunal;
+    extern const UnitType Protoss_Robotics_Support_Bay;
+    extern const UnitType Protoss_Shield_Battery;
+    extern const UnitType Special_Khaydarin_Crystal_Form;
+    extern const UnitType Special_Protoss_Temple;
+    extern const UnitType Special_XelNaga_Temple;
+    extern const UnitType Resource_Mineral_Field;
+    extern const UnitType Resource_Mineral_Field_Type_2;
+    extern const UnitType Resource_Mineral_Field_Type_3;
+    // cave 179
+    // cave-in 180
+    // cantina 181
+    // mining platform 182
+    // independant command center 183
+    extern const UnitType Special_Independant_Starport;
+    // independant jump gate 185
+    // ruins 186
+    // unused khaydarin crystal formation 187
+    extern const UnitType Resource_Vespene_Geyser;
+    extern const UnitType Special_Warp_Gate;
+    extern const UnitType Special_Psi_Disrupter;
+    // zerg marker 191
+    // terran marker 192
+    // protoss marker 193
+    extern const UnitType Special_Zerg_Beacon;
+    extern const UnitType Special_Terran_Beacon;
+    extern const UnitType Special_Protoss_Beacon;
+    extern const UnitType Special_Zerg_Flag_Beacon;
+    extern const UnitType Special_Terran_Flag_Beacon;
+    extern const UnitType Special_Protoss_Flag_Beacon;
+    extern const UnitType Special_Power_Generator;
+    extern const UnitType Special_Overmind_Cocoon;
+    extern const UnitType Spell_Dark_Swarm;
+    extern const UnitType Special_Floor_Missile_Trap;
+    extern const UnitType Special_Floor_Hatch;
+    extern const UnitType Special_Upper_Level_Door;
+    extern const UnitType Special_Right_Upper_Level_Door;
+    extern const UnitType Special_Pit_Door;
+    extern const UnitType Special_Right_Pit_Door;
+    extern const UnitType Special_Floor_Gun_Trap;
+    extern const UnitType Special_Wall_Missile_Trap;
+    extern const UnitType Special_Wall_Flame_Trap;
+    extern const UnitType Special_Right_Wall_Missile_Trap;
+    extern const UnitType Special_Right_Wall_Flame_Trap;
+    extern const UnitType Special_Start_Location;
+    extern const UnitType Powerup_Flag;
+    extern const UnitType Powerup_Young_Chrysalis;
+    extern const UnitType Powerup_Psi_Emitter;
+    extern const UnitType Powerup_Data_Disk;
+    extern const UnitType Powerup_Khaydarin_Crystal;
+    extern const UnitType Powerup_Mineral_Cluster_Type_1;
+    extern const UnitType Powerup_Mineral_Cluster_Type_2;
+    extern const UnitType Powerup_Protoss_Gas_Orb_Type_1;
+    extern const UnitType Powerup_Protoss_Gas_Orb_Type_2;
+    extern const UnitType Powerup_Zerg_Gas_Sac_Type_1;
+    extern const UnitType Powerup_Zerg_Gas_Sac_Type_2;
+    extern const UnitType Powerup_Terran_Gas_Tank_Type_1;
+    extern const UnitType Powerup_Terran_Gas_Tank_Type_2;
 
-    BWAPI_UNITDEF(None);
-    BWAPI_UNITDEF(AllUnits);
-    BWAPI_UNITDEF(Men);
-    BWAPI_UNITDEF(Buildings);
-    BWAPI_UNITDEF(Factories);
-    BWAPI_UNITDEF(Unknown);
+    extern const UnitType None;
+    extern const UnitType AllUnits;
+    extern const UnitType Men;
+    extern const UnitType Buildings;
+    extern const UnitType Factories;
+    extern const UnitType Unknown;
   }
 }
