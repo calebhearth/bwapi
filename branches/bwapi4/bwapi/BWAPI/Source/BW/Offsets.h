@@ -48,21 +48,22 @@ namespace BW
     u32   length;
     u32   entries;
   };
-
+  /*
   //----------------------------------------------- DATA TABLES ----------------------------------------------
 #ifdef _MAC
-  static DatLoad *upgradesDat = (DatLoad*)0x0015AFCC;  /** 1.16.1 */
-  static DatLoad *techdataDat = (DatLoad*)0x0015A6F4;
-  static DatLoad *weaponsDat  = (DatLoad*)0x0015C19C;
-  static DatLoad *unitsDat    = (DatLoad*)0x0015AD38;
-  static DatLoad *flingyDat   = (DatLoad*)0x0014BC08;
+  static const DatLoad *upgradesDat = (const DatLoad*)0x0015AFCC;  // 1.16.1
+  static const DatLoad *techdataDat = (const DatLoad*)0x0015A6F4;
+  static const DatLoad *weaponsDat  = (const DatLoad*)0x0015C19C;
+  static const DatLoad *unitsDat    = (const DatLoad*)0x0015AD38;
+  static const DatLoad *flingyDat   = (const DatLoad*)0x0014BC08;
 #else
-  static DatLoad *upgradesDat = (DatLoad*)0x005136E0;  /** 1.15.3, 1.16, 1.16.1 */
-  static DatLoad *techdataDat = (DatLoad*)0x005137D8;
-  static DatLoad *weaponsDat  = (DatLoad*)0x00513868;
-  static DatLoad *unitsDat    = (DatLoad*)0x00513C30;
-  static DatLoad *flingyDat   = (DatLoad*)0x00515A38;
+  static const DatLoad *upgradesDat = (const DatLoad*)0x005136E0;  // 1.15.3, 1.16, 1.16.1
+  static const DatLoad *techdataDat = (const DatLoad*)0x005137D8;
+  static const DatLoad *weaponsDat  = (const DatLoad*)0x00513868;
+  static const DatLoad *unitsDat    = (const DatLoad*)0x00513C30;
+  static const DatLoad *flingyDat   = (const DatLoad*)0x00515A38;
 #endif
+  */
   //----------------------------------------------- PLAYER DATA ----------------------------------------------
   /** Player resource counts */
   struct PlayerResources
@@ -490,39 +491,39 @@ namespace BW
     Counts unitCounts;
   };
   static AllScores *BWDATA_AllScores = (AllScores*) 0x00581DE4;
-
+  /*
   //---------------------------------------------- UNIT DATA -------------------------------------------------
-  static u8  *BWDATA_Unit_Graphic             = (u8*)  unitsDat[0].address;
-  static u16 *BWDATA_Unit_SubUnit             = (u16*) unitsDat[1].address;
-  static u32 *BWDATA_Unit_ConstructionGraphic = (u32*) unitsDat[4].address;
-  static u8  *BWDATA_Unit_ShieldsEnabled      = (u8*)  unitsDat[6].address;
-  static u16 *BWDATA_Unit_MaxShieldPoints     = (u16*) unitsDat[7].address;
-  static s32 *BWDATA_Unit_MaxHitPoints        = (s32*) unitsDat[8].address;
-  static u8  *BWDATA_Unit_Elevation           = (u8*)  unitsDat[9].address;
-  static u8  *BWDATA_Unit_GroundWeapon        = (u8*)  unitsDat[17].address;
-  static u8  *BWDATA_Unit_MaxGroundHits       = (u8*)  unitsDat[18].address;
-  static u8  *BWDATA_Unit_AirWeapon           = (u8*)  unitsDat[19].address;
-  static u8  *BWDATA_Unit_MaxAirHits          = (u8*)  unitsDat[20].address;
-  static u32 *BWDATA_Unit_PrototypeFlags      = (u32*) unitsDat[22].address;
-  static u8  *BWDATA_Unit_SeekRange           = (u8*)  unitsDat[23].address;
-  static u8  *BWDATA_Unit_SightRange          = (u8*)  unitsDat[24].address;
-  static u8  *BWDATA_Unit_ArmorUpgrade        = (u8*)  unitsDat[25].address;
-  static u8  *BWDATA_Unit_SizeType            = (u8*)  unitsDat[26].address;
-  static u8  *BWDATA_Unit_ArmorAmount         = (u8*)  unitsDat[27].address;
-  static u16 *BWDATA_Unit_MineralCost         = (u16*) unitsDat[40].address;
-  static u16 *BWDATA_Unit_GasCost             = (u16*) unitsDat[41].address;
-  static u16 *BWDATA_Unit_TimeCost            = (u16*) unitsDat[42].address;
-  static u8  *BWDATA_Unit_GroupFlags          = (u8*)  unitsDat[44].address;
-  static u8  *BWDATA_Unit_SupplyProvided      = (u8*)  unitsDat[45].address;
-  static u8  *BWDATA_Unit_SupplyRequired      = (u8*)  unitsDat[46].address;
-  static u8  *BWDATA_Unit_SpaceRequired       = (u8*)  unitsDat[47].address;
-  static u8  *BWDATA_Unit_SpaceProvided       = (u8*)  unitsDat[48].address;
-  static u16 *BWDATA_Unit_BuildScore          = (u16*) unitsDat[49].address;
-  static u16 *BWDATA_Unit_DestroyScore        = (u16*) unitsDat[50].address;
-  static u16 *BWDATA_Unit_MapStringID         = (u16*) unitsDat[51].address;
-  static u8  *BWDATA_Unit_BroodwarOnly        = (u8*)  unitsDat[52].address;
+  static const u8  *BWDATA_Unit_Graphic             = (const u8*)  unitsDat[0].address;
+  static const u16 *BWDATA_Unit_SubUnit             = (const u16*) unitsDat[1].address;
+  static const u32 *BWDATA_Unit_ConstructionGraphic = (const u32*) unitsDat[4].address;
+  static const u8  *BWDATA_Unit_ShieldsEnabled      = (const u8*)  unitsDat[6].address;
+  static const u16 *BWDATA_Unit_MaxShieldPoints     = (const u16*) unitsDat[7].address;
+  static const s32 *BWDATA_Unit_MaxHitPoints        = (const s32*) unitsDat[8].address;
+  static const u8  *BWDATA_Unit_Elevation           = (const u8*)  unitsDat[9].address;
+  static const u8  *BWDATA_Unit_GroundWeapon        = (const u8*)  unitsDat[17].address;
+  static const u8  *BWDATA_Unit_MaxGroundHits       = (const u8*)  unitsDat[18].address;
+  static const u8  *BWDATA_Unit_AirWeapon           = (const u8*)  unitsDat[19].address;
+  static const u8  *BWDATA_Unit_MaxAirHits          = (const u8*)  unitsDat[20].address;
+  static const u32 *BWDATA_Unit_PrototypeFlags      = (const u32*) unitsDat[22].address;
+  static const u8  *BWDATA_Unit_SeekRange           = (const u8*)  unitsDat[23].address;
+  static const u8  *BWDATA_Unit_SightRange          = (const u8*)  unitsDat[24].address;
+  static const u8  *BWDATA_Unit_ArmorUpgrade        = (const u8*)  unitsDat[25].address;
+  static const u8  *BWDATA_Unit_SizeType            = (const u8*)  unitsDat[26].address;
+  static const u8  *BWDATA_Unit_ArmorAmount         = (const u8*)  unitsDat[27].address;
+  static const u16 *BWDATA_Unit_MineralCost         = (const u16*) unitsDat[40].address;
+  static const u16 *BWDATA_Unit_GasCost             = (const u16*) unitsDat[41].address;
+  static const u16 *BWDATA_Unit_TimeCost            = (const u16*) unitsDat[42].address;
+  static const u8  *BWDATA_Unit_GroupFlags          = (const u8*)  unitsDat[44].address;
+  static const u8  *BWDATA_Unit_SupplyProvided      = (const u8*)  unitsDat[45].address;
+  static const u8  *BWDATA_Unit_SupplyRequired      = (const u8*)  unitsDat[46].address;
+  static const u8  *BWDATA_Unit_SpaceRequired       = (const u8*)  unitsDat[47].address;
+  static const u8  *BWDATA_Unit_SpaceProvided       = (const u8*)  unitsDat[48].address;
+  static const u16 *BWDATA_Unit_BuildScore          = (const u16*) unitsDat[49].address;
+  static const u16 *BWDATA_Unit_DestroyScore        = (const u16*) unitsDat[50].address;
+  static const u16 *BWDATA_Unit_MapStringID         = (const u16*) unitsDat[51].address;
+  static const u8  *BWDATA_Unit_BroodwarOnly        = (const u8*)  unitsDat[52].address;
 
-  /** Unit Placement Size */
+  /// Unit Placement Size
   struct UnitPlacement_type
   {
     struct Placement_Internal_type
@@ -531,9 +532,9 @@ namespace BW
       u16 width;
     } unitType[UNIT_TYPE_COUNT];
   };
-  static UnitPlacement_type *BWDATA_Unit_Placement = (UnitPlacement_type*) unitsDat[36].address;
+  static const UnitPlacement_type *BWDATA_Unit_Placement = (const UnitPlacement_type*) unitsDat[36].address;
 
-  /** Unit Dimensions; The distance from the 1px 'center' of unit to each border */
+  // Unit Dimensions; The distance from the 1px 'center' of unit to each border
   struct UnitsDimensions_type
   {
     struct UnitDimensions
@@ -544,56 +545,56 @@ namespace BW
       u16 down;
     } units[UNIT_TYPE_COUNT];
   };
-  static UnitsDimensions_type *BWDATA_Unit_Dimensions = (UnitsDimensions_type*) unitsDat[38].address;
-
+  static const UnitsDimensions_type *BWDATA_Unit_Dimensions = (const UnitsDimensions_type*) unitsDat[38].address;
+  */
   struct _uavail
   {
     u8 available[12][228];
   };
   static _uavail *BWDATA_UnitAvailability = (_uavail*)0x0057F27C;
-
+  /*
   //-------------------------------------------- FLINGY DATA -------------------------------------------------
-  static u16 *BWDATA_Flingy_SpriteID        = (u16*) flingyDat[0].address;
-  static u32 *BWDATA_Flingy_TopSpeed        = (u32*) flingyDat[1].address;
-  static u16 *BWDATA_Flingy_Acceleration    = (u16*) flingyDat[2].address;
-  static u32 *BWDATA_Flingy_HaltDistance    = (u32*) flingyDat[3].address;
-  static u8  *BWDATA_Flingy_TurnRadius      = (u8*)  flingyDat[4].address;
-  static u8  *BWDATA_Flingy_MovementControl = (u8*)  flingyDat[6].address;
+  static const u16 *BWDATA_Flingy_SpriteID        = (const u16*) flingyDat[0].address;
+  static const u32 *BWDATA_Flingy_TopSpeed        = (const u32*) flingyDat[1].address;
+  static const u16 *BWDATA_Flingy_Acceleration    = (const u16*) flingyDat[2].address;
+  static const u32 *BWDATA_Flingy_HaltDistance    = (const u32*) flingyDat[3].address;
+  static const u8  *BWDATA_Flingy_TurnRadius      = (const u8*)  flingyDat[4].address;
+  static const u8  *BWDATA_Flingy_MovementControl = (const u8*)  flingyDat[6].address;
 
   //-------------------------------------------- WEAPON DATA -------------------------------------------------
-  static u16 *BWDATA_Weapon_Label              = (u16*) weaponsDat[0].address;
-  static u32 *BWDATA_Weapon_Graphic            = (u32*) weaponsDat[1].address;
-  static u16 *BWDATA_Weapon_TargetFlags        = (u16*) weaponsDat[3].address;
-  static u32 *BWDATA_Weapon_MinRange           = (u32*) weaponsDat[4].address;
-  static u32 *BWDATA_Weapon_MaxRange           = (u32*) weaponsDat[5].address;
-  static u8  *BWDATA_Weapon_Upgrade            = (u8*)  weaponsDat[6].address;
-  static u8  *BWDATA_Weapon_DamageType         = (u8*)  weaponsDat[7].address;
-  static u8  *BWDATA_Weapon_Behavior           = (u8*)  weaponsDat[8].address;
-  static u8  *BWDATA_Weapon_RemoveAfter        = (u8*)  weaponsDat[9].address;
-  static u8  *BWDATA_Weapon_ExplosionType      = (u8*)  weaponsDat[10].address;
-  static u16 *BWDATA_Weapon_InnerSplashRadius  = (u16*) weaponsDat[11].address;
-  static u16 *BWDATA_Weapon_MedianSplashRadius = (u16*) weaponsDat[12].address;
-  static u16 *BWDATA_Weapon_OuterSplashRadius  = (u16*) weaponsDat[13].address;
-  static u16 *BWDATA_Weapon_DamageAmount       = (u16*) weaponsDat[14].address;
-  static u16 *BWDATA_Weapon_DamageBonus        = (u16*) weaponsDat[15].address;
-  static u8  *BWDATA_Weapon_DamageCooldown     = (u8*)  weaponsDat[16].address;
-  static u8  *BWDATA_Weapon_DamageFactor       = (u8*)  weaponsDat[17].address;
-  static u8  *BWDATA_Weapon_AttackDirection    = (u8*)  weaponsDat[18].address;
-  static u8  *BWDATA_Weapon_LaunchSpin         = (u8*)  weaponsDat[19].address;
-  static u8  *BWDATA_Weapon_XOffset            = (u8*)  weaponsDat[20].address;
-  static u8  *BWDATA_Weapon_YOffset            = (u8*)  weaponsDat[21].address;
+  static const u16 *BWDATA_Weapon_Label              = (const u16*) weaponsDat[0].address;
+  static const u32 *BWDATA_Weapon_Graphic            = (const u32*) weaponsDat[1].address;
+  static const u16 *BWDATA_Weapon_TargetFlags        = (const u16*) weaponsDat[3].address;
+  static const u32 *BWDATA_Weapon_MinRange           = (const u32*) weaponsDat[4].address;
+  static const u32 *BWDATA_Weapon_MaxRange           = (const u32*) weaponsDat[5].address;
+  static const u8  *BWDATA_Weapon_Upgrade            = (const u8*)  weaponsDat[6].address;
+  static const u8  *BWDATA_Weapon_DamageType         = (const u8*)  weaponsDat[7].address;
+  static const u8  *BWDATA_Weapon_Behavior           = (const u8*)  weaponsDat[8].address;
+  static const u8  *BWDATA_Weapon_RemoveAfter        = (const u8*)  weaponsDat[9].address;
+  static const u8  *BWDATA_Weapon_ExplosionType      = (const u8*)  weaponsDat[10].address;
+  static const u16 *BWDATA_Weapon_InnerSplashRadius  = (const u16*) weaponsDat[11].address;
+  static const u16 *BWDATA_Weapon_MedianSplashRadius = (const u16*) weaponsDat[12].address;
+  static const u16 *BWDATA_Weapon_OuterSplashRadius  = (const u16*) weaponsDat[13].address;
+  static const u16 *BWDATA_Weapon_DamageAmount       = (const u16*) weaponsDat[14].address;
+  static const u16 *BWDATA_Weapon_DamageBonus        = (const u16*) weaponsDat[15].address;
+  static const u8  *BWDATA_Weapon_DamageCooldown     = (const u8*)  weaponsDat[16].address;
+  static const u8  *BWDATA_Weapon_DamageFactor       = (const u8*)  weaponsDat[17].address;
+  static const u8  *BWDATA_Weapon_AttackDirection    = (const u8*)  weaponsDat[18].address;
+  static const u8  *BWDATA_Weapon_LaunchSpin         = (const u8*)  weaponsDat[19].address;
+  static const u8  *BWDATA_Weapon_XOffset            = (const u8*)  weaponsDat[20].address;
+  static const u8  *BWDATA_Weapon_YOffset            = (const u8*)  weaponsDat[21].address;
 
   //------------------------------------------- UPGRADE DATA -------------------------------------------------
-  static u16            *BWDATA_Upgrade_MineralCostBase   = (u16*)  upgradesDat[0].address;
-  static u16            *BWDATA_Upgrade_MineralCostFactor = (u16*)  upgradesDat[1].address;
-  static u16            *BWDATA_Upgrade_GasCostBase       = (u16*)  upgradesDat[2].address;
-  static u16            *BWDATA_Upgrade_GasCostFactor     = (u16*)  upgradesDat[3].address;
-  static u16            *BWDATA_Upgrade_TimeCostBase      = (u16*)  upgradesDat[4].address;
-  static u16            *BWDATA_Upgrade_TimeCostFactor    = (u16*)  upgradesDat[5].address;
-  static u16            *BWDATA_Upgrade_Label             = (u16*)  upgradesDat[8].address;
-  static u8             *BWDATA_Upgrade_Race              = (u8*)   upgradesDat[9].address;
-  static u8             *BWDATA_Upgrade_MaxRepeats        = (u8*)   upgradesDat[10].address;
-
+  static const u16            *BWDATA_Upgrade_MineralCostBase   = (const u16*)  upgradesDat[0].address;
+  static const u16            *BWDATA_Upgrade_MineralCostFactor = (const u16*)  upgradesDat[1].address;
+  static const u16            *BWDATA_Upgrade_GasCostBase       = (const u16*)  upgradesDat[2].address;
+  static const u16            *BWDATA_Upgrade_GasCostFactor     = (const u16*)  upgradesDat[3].address;
+  static const u16            *BWDATA_Upgrade_TimeCostBase      = (const u16*)  upgradesDat[4].address;
+  static const u16            *BWDATA_Upgrade_TimeCostFactor    = (const u16*)  upgradesDat[5].address;
+  static const u16            *BWDATA_Upgrade_Label             = (const u16*)  upgradesDat[8].address;
+  static const u8             *BWDATA_Upgrade_Race              = (const u8*)   upgradesDat[9].address;
+  static const u8             *BWDATA_Upgrade_MaxRepeats        = (const u8*)   upgradesDat[10].address;
+  */
   struct _scUpgrs {    u8 level[PLAYER_COUNT][46];  };
   struct _bwUpgrs {    u8 level[PLAYER_COUNT][15];  };
   static _scUpgrs *BWDATA_UpgradeMaxSC   = (_scUpgrs*)0x0058D088;
@@ -604,11 +605,13 @@ namespace BW
   static u32 BWDATA_UpgradeProgress = 0x0058F3E0;
 
   //--------------------------------------------- TECH DATA --------------------------------------------------
-  static u16 *BWDATA_Tech_MineralCost  = (u16*) techdataDat[0].address;
-  static u16 *BWDATA_Tech_GasCost      = (u16*) techdataDat[1].address;
-  static u16 *BWDATA_Tech_TimeCost     = (u16*) techdataDat[2].address;
-  static u16 *BWDATA_Tech_EnergyCost   = (u16*) techdataDat[3].address;
-  static u16 *BWDATA_Tech_LabelIndex   = (u16*) techdataDat[7].address;
+  /*
+  static const u16 *BWDATA_Tech_MineralCost  = (const u16*) techdataDat[0].address;
+  static const u16 *BWDATA_Tech_GasCost      = (const u16*) techdataDat[1].address;
+  static const u16 *BWDATA_Tech_TimeCost     = (const u16*) techdataDat[2].address;
+  static const u16 *BWDATA_Tech_EnergyCost   = (const u16*) techdataDat[3].address;
+  static const u16 *BWDATA_Tech_LabelIndex   = (const u16*) techdataDat[7].address;
+  */
 
   struct _scTechs {    u8 enabled[PLAYER_COUNT][24];  };
   struct _bwTechs {    u8 enabled[PLAYER_COUNT][20];  };
