@@ -43,7 +43,16 @@ namespace BWAPI
   };
 
   std::map<std::string, Error> errorMap;
-
+  namespace ErrorSet
+  {
+    using namespace Errors::Enum;
+    BWAPI_TYPESET(errorSet, Error, Unit_Does_Not_Exist, Unit_Not_Visible, Unit_Not_Owned, Unit_Busy, Incompatible_UnitType,
+                      Incompatible_TechType, Incompatible_State, Already_Researched, Fully_Upgraded, Currently_Researching,
+                      Currently_Upgrading, Insufficient_Minerals, Insufficient_Gas, Insufficient_Supply, Insufficient_Energy,
+                      Insufficient_Tech, Insufficient_Ammo, Insufficient_Space, Invalid_Tile_Position, Unbuildable_Location,
+                      Unreachable_Location, Out_Of_Range, Unable_To_Hit, Access_Denied, File_Not_Found, Invalid_Parameter,
+                      None, Unknown);
+  }
   namespace Errors
   {
     BWAPI_TYPEDEF(Error,Unit_Does_Not_Exist);
@@ -75,15 +84,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(Error,None);
     BWAPI_TYPEDEF(Error,Unknown);
 
-    static const Error::set errorSet(Unit_Does_Not_Exist | Unit_Not_Visible | Unit_Not_Owned | Unit_Busy | Incompatible_UnitType |
-              Incompatible_TechType | Incompatible_State | Already_Researched | Fully_Upgraded | Currently_Researching |
-              Currently_Upgrading | Insufficient_Minerals | Insufficient_Gas | Insufficient_Supply | Insufficient_Energy |
-              Insufficient_Tech | Insufficient_Ammo | Insufficient_Space | Invalid_Tile_Position | Unbuildable_Location |
-              Unreachable_Location | Out_Of_Range | Unable_To_Hit | Access_Denied | File_Not_Found | Invalid_Parameter |
-              None | Unknown);
     void init()
     {
-      foreach(Error i, errorSet)
+      foreach(Error i, ErrorSet::errorSet)
       {
         std::string name(i.toString());
         fixName(&name);
@@ -113,6 +116,6 @@ namespace BWAPI
   }
   const Error::set& Errors::allErrors()
   {
-    return Errors::errorSet;
+    return ErrorSet::errorSet;
   }
 }

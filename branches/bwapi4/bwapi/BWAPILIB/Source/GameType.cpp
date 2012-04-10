@@ -33,6 +33,13 @@ namespace BWAPI
   };
   std::map<std::string, GameType> gameTypeMap;
 
+  namespace GameTypeSet
+  {
+    using namespace GameTypes::Enum;
+    BWAPI_TYPESET(gameTypeSet, GameType, Melee, Free_For_All, One_on_One, Capture_The_Flag, Greed, Slaughter, Sudden_Death, 
+                        Ladder, Use_Map_Settings, Team_Melee, Team_Free_For_All, Team_Capture_The_Flag,
+                        Top_vs_Bottom, None, Unknown );
+  }
   namespace GameTypes
   {
     BWAPI_TYPEDEF(GameType,Melee);
@@ -50,13 +57,10 @@ namespace BWAPI
     BWAPI_TYPEDEF(GameType,Top_vs_Bottom);
     BWAPI_TYPEDEF(GameType,None);
     BWAPI_TYPEDEF(GameType,Unknown);
-
-    static const GameType::set gameTypeSet( Melee | Free_For_All | One_on_One | Capture_The_Flag | Greed | Slaughter | Sudden_Death | 
-                        Ladder | Use_Map_Settings | Team_Melee | Team_Free_For_All | Team_Capture_The_Flag |
-                        Top_vs_Bottom | None | Unknown );
+    
     void init()
     {
-      foreach(GameType i, gameTypeSet)
+      foreach(GameType i, GameTypeSet::gameTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -84,6 +88,6 @@ namespace BWAPI
   }
   const GameType::set& GameTypes::allGameTypes()
   {
-    return GameTypes::gameTypeSet;
+    return GameTypeSet::gameTypeSet;
   }
 }

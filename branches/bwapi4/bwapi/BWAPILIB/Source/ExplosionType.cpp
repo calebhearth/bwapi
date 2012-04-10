@@ -40,6 +40,15 @@ namespace BWAPI
   };
 
   std::map<std::string, ExplosionType> explosionTypeMap;
+  namespace ExplosionTypeSet
+  {
+    using namespace ExplosionTypes::Enum;
+    BWAPI_TYPESET(explosionTypeSet, ExplosionType, None, Normal, Radial_Splash, Enemy_Splash, Lockdown, Nuclear_Missile,
+                            Parasite, Broodlings, EMP_Shockwave, Irradiate, Ensnare, Plague, 
+                            Stasis_Field, Dark_Swarm, Consume, Yamato_Gun, Restoration, Disruption_Web,
+                            Corrosive_Acid, Mind_Control, Feedback, Optical_Flare, Maelstrom,
+                            Air_Splash, Unknown);
+  }
   namespace ExplosionTypes
   {
     BWAPI_TYPEDEF(ExplosionType,None);
@@ -68,14 +77,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(ExplosionType,Air_Splash);
     BWAPI_TYPEDEF(ExplosionType,Unknown);
 
-    static const ExplosionType::set explosionTypeSet(None | Normal | Radial_Splash | Enemy_Splash | Lockdown | Nuclear_Missile |
-                            Parasite | Broodlings | EMP_Shockwave | Irradiate | Ensnare | Plague | 
-                            Stasis_Field | Dark_Swarm | Consume | Yamato_Gun | Restoration | Disruption_Web |
-                            Corrosive_Acid | Mind_Control | Feedback | Optical_Flare | Maelstrom |
-                            Air_Splash | Unknown);
     void init()
     {
-      foreach(ExplosionType i, explosionTypeSet)
+      foreach(ExplosionType i, ExplosionTypeSet::explosionTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -104,6 +108,6 @@ namespace BWAPI
   }
   const ExplosionType::set& ExplosionTypes::allExplosionTypes()
   {
-    return ExplosionTypes::explosionTypeSet;
+    return ExplosionTypeSet::explosionTypeSet;
   }
 }

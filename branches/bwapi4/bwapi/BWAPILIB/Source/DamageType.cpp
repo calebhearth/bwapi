@@ -22,6 +22,11 @@ namespace BWAPI
   };
 
   std::map<std::string, DamageType> damageTypeMap;
+  namespace DamageTypeSet
+  {
+    using namespace DamageTypes::Enum;
+    BWAPI_TYPESET(damageTypeSet, DamageType, Independent, Explosive, Concussive, Normal, Ignore_Armor, None, Unknown);
+  }
   namespace DamageTypes
   {
     BWAPI_TYPEDEF(DamageType,Independent);
@@ -32,10 +37,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(DamageType,None);
     BWAPI_TYPEDEF(DamageType,Unknown);
 
-    static const DamageType::set damageTypeSet(Independent | Explosive | Concussive | Normal | Ignore_Armor | None | Unknown);
     void init()
     {
-      foreach(DamageType i, damageTypeSet)
+      foreach(DamageType i, DamageTypeSet::damageTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -64,6 +68,6 @@ namespace BWAPI
   }
   const DamageType::set& DamageTypes::allDamageTypes()
   {
-    return DamageTypes::damageTypeSet;
+    return DamageTypeSet::damageTypeSet;
   }
 }

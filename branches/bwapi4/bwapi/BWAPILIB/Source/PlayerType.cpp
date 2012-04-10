@@ -26,6 +26,12 @@ namespace BWAPI
         "Unknown"
   };
   std::map<std::string, PlayerType> playerTypeMap;
+  namespace PlayerTypeSet
+  {
+    using namespace PlayerTypes::Enum;
+    BWAPI_TYPESET(playerTypeSet, PlayerType, None, Computer, Player, RescuePassive, EitherPreferComputer, EitherPreferHuman,
+                          Neutral, Closed, PlayerLeft, ComputerLeft, Unknown );
+  }
   namespace PlayerTypes
   {
     BWAPI_TYPEDEF(PlayerType,None);
@@ -43,11 +49,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(PlayerType,ComputerLeft);
     BWAPI_TYPEDEF(PlayerType,Unknown);
 
-    static const PlayerType::set playerTypeSet( None | Computer | Player | RescuePassive | EitherPreferComputer | EitherPreferHuman |
-                          Neutral | Closed | PlayerLeft | ComputerLeft | Unknown );
     void init()
     {
-      foreach(PlayerType i, playerTypeSet)
+      foreach(PlayerType i, PlayerTypeSet::playerTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -76,6 +80,6 @@ namespace BWAPI
   }
   const PlayerType::set& PlayerTypes::allPlayerTypes()
   {
-    return PlayerTypes::playerTypeSet;
+    return PlayerTypeSet::playerTypeSet;
   }
 }

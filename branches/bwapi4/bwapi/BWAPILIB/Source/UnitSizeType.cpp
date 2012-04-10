@@ -19,6 +19,11 @@ namespace BWAPI
     "Unknown"  
   };
   std::map<std::string, UnitSizeType> unitSizeTypeMap;
+  namespace UnitSizeTypeSet
+  {
+    using namespace UnitSizeTypes::Enum;
+    BWAPI_TYPESET(unitSizeTypeSet, UnitSizeType, Independent, Small, Medium, Large, None, Unknown );
+  }
   namespace UnitSizeTypes
   {
     BWAPI_TYPEDEF(UnitSizeType,Independent);
@@ -28,10 +33,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitSizeType,None);
     BWAPI_TYPEDEF(UnitSizeType,Unknown);
 
-    static const UnitSizeType::set unitSizeTypeSet( Independent | Small | Medium | Large | None | Unknown );
     void init()
     {
-      foreach(UnitSizeType i, unitSizeTypeSet)
+      foreach(UnitSizeType i, UnitSizeTypeSet::unitSizeTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -60,7 +64,7 @@ namespace BWAPI
   }
   const UnitSizeType::set& UnitSizeTypes::allUnitSizeTypes()
   {
-    return UnitSizeTypes::unitSizeTypeSet;
+    return UnitSizeTypeSet::unitSizeTypeSet;
   }
 }
 

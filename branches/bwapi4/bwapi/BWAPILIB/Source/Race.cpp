@@ -73,6 +73,11 @@ namespace BWAPI
   bool initializingRace = true;
 
   std::map<std::string, Race> raceMap;
+  namespace RaceSet
+  {
+    using namespace Races::Enum;
+    BWAPI_TYPESET(raceSet, Race, Zerg, Terran, Protoss, None, Unknown );
+  }
   namespace Races
   {
     BWAPI_TYPEDEF(Race,Zerg);
@@ -82,12 +87,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(Race,None);
     BWAPI_TYPEDEF(Race,Unknown);
 
-    // The race set initialization
-    static const Race::set raceSet( Zerg | Terran | Protoss | None | Unknown );
-
     void init()
     {
-      foreach(Race i, raceSet)
+      foreach(Race i, RaceSet::raceSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -136,6 +138,6 @@ namespace BWAPI
   }
   const Race::set& Races::allRaces()
   {
-    return Races::raceSet;
+    return RaceSet::raceSet;
   }
 }

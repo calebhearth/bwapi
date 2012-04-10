@@ -59,6 +59,16 @@ namespace BWAPI
     "Unknown"
   };
   std::map<std::string, UnitCommandType> unitCommandTypeMap;
+  namespace UnitCommandTypeSet
+  {
+    using namespace UnitCommandTypes::Enum;
+    BWAPI_TYPESET(unitCommandTypeSet, UnitCommandType, Attack_Move, Attack_Unit, Build, Build_Addon, Train, Morph, Research, Upgrade, 
+                    Set_Rally_Position, Set_Rally_Unit, Move, Patrol, Hold_Position, Stop, Follow, Gather, Return_Cargo, Repair, 
+                    Burrow, Unburrow, Cloak, Decloak, Siege, Unsiege, Lift, Land, Load, Unload, Unload_All, Unload_All_Position,
+                    Right_Click_Position, Right_Click_Unit, Halt_Construction, Cancel_Construction, Cancel_Addon,
+                    Cancel_Train, Cancel_Train_Slot, Cancel_Morph, Cancel_Research, Cancel_Upgrade, Use_Tech,
+                    Use_Tech_Position, Use_Tech_Unit, Place_COP, None, Unknown );
+  }
   namespace UnitCommandTypes
   {
     BWAPI_TYPEDEF(UnitCommandType,Attack_Move);
@@ -108,15 +118,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitCommandType,None);
     BWAPI_TYPEDEF(UnitCommandType,Unknown);
 
-    UnitCommandType::set unitCommandTypeSet( Attack_Move | Attack_Unit | Build | Build_Addon | Train | Morph | Research | Upgrade | Set_Rally_Position |
-                    Set_Rally_Unit | Move | Patrol | Hold_Position | Stop | Follow | Gather | Return_Cargo | Repair | Burrow |
-                    Unburrow | Cloak | Decloak | Siege | Unsiege | Lift | Land | Load | Unload | Unload_All | Unload_All_Position |
-                    Right_Click_Position | Right_Click_Unit | Halt_Construction | Cancel_Construction | Cancel_Addon |
-                    Cancel_Train | Cancel_Train_Slot | Cancel_Morph | Cancel_Research | Cancel_Upgrade | Use_Tech |
-                    Use_Tech_Position | Use_Tech_Unit | Place_COP | None | Unknown );
     void init()
     {
-      foreach(UnitCommandType i, unitCommandTypeSet)
+      foreach(UnitCommandType i, UnitCommandTypeSet::unitCommandTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -145,7 +149,7 @@ namespace BWAPI
   }
   const UnitCommandType::set& UnitCommandTypes::allUnitCommandTypes()
   {
-    return UnitCommandTypes::unitCommandTypeSet;
+    return UnitCommandTypeSet::unitCommandTypeSet;
   }
 }
 

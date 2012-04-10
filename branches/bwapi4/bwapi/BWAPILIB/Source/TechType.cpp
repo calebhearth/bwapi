@@ -176,6 +176,18 @@ namespace BWAPI
   }
 
   std::map<std::string, TechType> techTypeMap;
+  namespace TechTypeSet
+  {
+    using namespace TechTypes::Enum;
+    BWAPI_TYPESET(techTypeSet, TechType, Stim_Packs, Lockdown, EMP_Shockwave, Spider_Mines,
+                      Scanner_Sweep, Tank_Siege_Mode, Defensive_Matrix, Irradiate,
+                      Yamato_Gun, Cloaking_Field, Personnel_Cloaking, Burrowing,
+                      Infestation, Spawn_Broodlings, Dark_Swarm, Plague, Consume,
+                      Ensnare, Parasite, Psionic_Storm, Hallucination, Recall,
+                      Stasis_Field, Archon_Warp, Restoration, Disruption_Web, 
+                      Mind_Control, Dark_Archon_Meld, Feedback, Optical_Flare,
+                      Maelstrom, Lurker_Aspect, Healing, None, Unknown, Nuclear_Strike );
+  }
   namespace TechTypes
   {
     BWAPI_TYPEDEF(TechType,Stim_Packs);
@@ -215,19 +227,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(TechType,Unknown);
     BWAPI_TYPEDEF(TechType,Nuclear_Strike);
 
-    static const TechType techTypeArr[] = { Stim_Packs, Lockdown, EMP_Shockwave, Spider_Mines,
-                      Scanner_Sweep, Tank_Siege_Mode, Defensive_Matrix, Irradiate,
-                      Yamato_Gun, Cloaking_Field, Personnel_Cloaking, Burrowing,
-                      Infestation, Spawn_Broodlings, Dark_Swarm, Plague, Consume,
-                      Ensnare, Parasite, Psionic_Storm, Hallucination, Recall,
-                      Stasis_Field, Archon_Warp, Restoration, Disruption_Web, 
-                      Mind_Control, Dark_Archon_Meld, Feedback, Optical_Flare,
-                      Maelstrom, Lurker_Aspect, Healing, None, Unknown, Nuclear_Strike };
-    static const TechType::set techTypeSet(techTypeArr, countof(techTypeArr));
-
     void init()
     {
-      foreach(TechType i, techTypeSet)
+      foreach(TechType i, TechTypeSet::techTypeSet)
       {
         std::string name(i.getName());
         fixName(&name);
@@ -300,7 +302,7 @@ namespace BWAPI
   }
   const TechType::set& TechTypes::allTechTypes()
   {
-    return TechTypes::techTypeSet;
+    return TechTypeSet::techTypeSet;
   }
 }
 
