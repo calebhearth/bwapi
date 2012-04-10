@@ -128,7 +128,8 @@ namespace BWAPI
 
     // Constructors
     Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};
-    Point(const iterator &pt) : x(pt.x), y(pt.y) {};
+    template<typename _NT> Point(const Point<_NT, __Scale> &pt) : x( (_T)pt.x ), y( (_T)pt.y ) {};
+    template<typename _NT> Point(const PointIterator<_NT, __Scale> &pt) : x( (_T)pt.x ), y( (_T)pt.y ) {};
 
 #pragma warning( disable: 4723 )
     // Conversion constructor
@@ -141,8 +142,8 @@ namespace BWAPI
 
 #pragma warning( default: 4723 )
     // Conversion restriction constructor
-    template<typename _NT> explicit Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
-    template<typename _NT> explicit Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
+    template<typename _NT> Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
+    template<typename _NT> Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
 
     // Operators
     operator bool() const { return this->isValid(); };
@@ -150,7 +151,7 @@ namespace BWAPI
     bool operator == (const Point &pos) const
     { 
       return  this->x == pos.x &&
-          this->y == pos.y;
+              this->y == pos.y;
     }; 
     bool operator != (const Point &pos) const
     { 

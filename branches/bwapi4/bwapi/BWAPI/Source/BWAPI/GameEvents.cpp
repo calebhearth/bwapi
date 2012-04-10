@@ -183,7 +183,7 @@ namespace BWAPI
         continue;
 
       // add start location
-      startLocations.insert( TilePosition(StartLocs[i] - Position(64, 48)) );
+      startLocations.push_back( TilePosition(StartLocs[i] - Position(64, 48)) );
     }
 
     // Get Player Objects
@@ -770,6 +770,14 @@ namespace BWAPI
       drawTextScreen(64, 300, "\x04" "(%u, %u)", (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
       setTextSize();
     } // grid
+
+    if ( showfps )
+    {
+      setTextSize(0);
+      drawTextScreen(1,1, "%cFrame Rate (Logical Frames)\nLFPS: %d\nAvg LFPS:%.3lf", BWAPI::Text::Yellow, this->getFPS(), this->getAverageFPS());
+      setTextSize();
+    } // fps
+
 #ifdef _DEBUG
     ////////////////////////////////////////////// Ignore rest if GUI disabled
     if ( !data->hasGUI )

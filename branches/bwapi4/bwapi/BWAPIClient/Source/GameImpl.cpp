@@ -158,7 +158,7 @@ namespace BWAPI
 
     //load start locations from shared memory
     for(int i = 0; i < data->startLocationCount; ++i)
-      startLocations.insert(BWAPI::TilePosition(data->startLocations[i].x,data->startLocations[i].y));
+      startLocations.push_back(BWAPI::TilePosition(data->startLocations[i].x,data->startLocations[i].y));
 
     for ( int i = 0; i < data->regionCount; ++i )
     {

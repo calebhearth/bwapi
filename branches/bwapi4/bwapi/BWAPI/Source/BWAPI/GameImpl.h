@@ -399,6 +399,7 @@ namespace BWAPI
       bool pathDebug;
       bool unitDebug;
       bool grid;
+      bool showfps;
 
       bool externalModuleConnected;
       bool calledMatchEnd;

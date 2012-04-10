@@ -41,6 +41,7 @@ namespace BWAPI
       , inGame(false)
       , endTick(0)
       , pathDebug(false)
+      , showfps(false)
       , unitDebug(false)
       , grid(false)
       , calledMatchEnd(false)
@@ -244,6 +245,11 @@ namespace BWAPI
     {
       StopVideoRecording();
     }
+    else if ( parsed[0] == "/fps" )
+    {
+      this->showfps = !this->showfps;
+      printf("FPS display %s.", showfps ? "enabled" : "disabled");
+    }
 #ifdef _DEBUG
     else if (parsed[0] == "/latency")
     {
@@ -341,7 +347,7 @@ namespace BWAPI
     // Destroy the Tournament Module AI
     if ( this->tournamentAI )
       delete this->tournamentAI;
-    this->tournamentAI         = NULL;
+    this->tournamentAI = NULL;
     
     // Destroy the Tournament Module Library
     if ( hTournamentModule )
