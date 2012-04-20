@@ -37,7 +37,6 @@ namespace BWAPI
     self->replayID   = BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) ? BW::UnitTarget(o).getTarget() : 0;
     if (isAlive)
     {
-      
       _getPlayer = (Player*)BroodwarImpl._getPlayer(getOriginalRawData->playerID); //_getPlayer
       //------------------------------------------------------------------------------------------------------
       //isVisible

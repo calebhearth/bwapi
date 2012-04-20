@@ -94,7 +94,7 @@ void TrainTest::update()
   BWAssertF(producer->isIdle()==false,{fail=true;return;});
   BWAssertF(producer->isLifted()==false,{fail=true;return;});
   BWAssertF(producer->getTrainingQueue().size()==1,{log("%d tq size = %d",thisFrame-startFrame,producer->getTrainingQueue().size());fail=true;return;});
-  BWAssertF(*producer->getTrainingQueue().begin()==unitType,{fail=true;return;});
+  BWAssertF(producer->getTrainingQueue().front()==unitType,{fail=true;return;});
   BWAssertF(Broodwar->self()->minerals() == correctMineralCount,{fail=true;return;});
   BWAssertF(Broodwar->self()->gas() == correctGasCount,{fail=true;return;});
   BWAssertF(Broodwar->self()->supplyUsed() == correctSupplyUsedCount,{Broodwar->printf("%d: %d!=%d",thisFrame-startFrame,Broodwar->self()->supplyUsed(),correctSupplyUsedCount);fail=true;return;});

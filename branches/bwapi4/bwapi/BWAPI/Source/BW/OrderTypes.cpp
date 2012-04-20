@@ -126,6 +126,7 @@ namespace BW
       size      = 2 + targCount * 2;
     }
     Select::Select(const BWAPI::Unitset &unitset)
+      : always0x09(0x09)
     {
       unsigned int finalCount = 0;
       for ( unsigned int i = 0; i < unitset.size() && i < 12; ++i )

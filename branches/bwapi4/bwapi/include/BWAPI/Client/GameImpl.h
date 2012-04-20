@@ -209,7 +209,7 @@ namespace BWAPI
       virtual bool setAlliance(BWAPI::Player *player, bool allied = true, bool alliedVictory = true);
       virtual bool setVision(BWAPI::Player *player, bool enabled = true);
       virtual int  elapsedTime() const;
-      virtual void setCommandOptimizationLevel(int level = 2);
+      virtual void setCommandOptimizationLevel(int level = 0);
       virtual int  countdownTimer() const;
       virtual const Regionset &getAllRegions() const;
       virtual BWAPI::Region *getRegionAt(int x, int y) const;

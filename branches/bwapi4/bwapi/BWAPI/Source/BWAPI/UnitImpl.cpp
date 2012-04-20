@@ -82,6 +82,7 @@ namespace BWAPI
       ((UnitImpl*)command.target)->lastCommand      = command;
     }
 
+    BroodwarImpl.addToCommandBuffer(new Command(command));
     if ( BroodwarImpl.addToCommandOptimizer(command) )
       return true;
 
@@ -99,7 +100,7 @@ namespace BWAPI
     else if ( command.type != UnitCommandTypes::Unload || BroodwarImpl.commandOptimizerLevel < 2 )
       ((UnitImpl*)command.unit)->orderSelect();
 
-    BroodwarImpl.executeCommand( command, true);
+    BroodwarImpl.executeCommand( command );
     return true;
   }
   //--------------------------------------------- SET SELECTED -----------------------------------------------

@@ -245,7 +245,7 @@ namespace BWAPI
       void loadSelected();
       void copyMapToSharedMemory();
       void moveToSelectedUnits();
-      void executeCommand(UnitCommand command, bool addCommandToLatComBuffer = true);
+      void executeCommand(UnitCommand command);
       bool addToCommandOptimizer(UnitCommand command);
 
       void chooseNewRandomMap();

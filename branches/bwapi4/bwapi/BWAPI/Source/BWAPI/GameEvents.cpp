@@ -717,7 +717,7 @@ namespace BWAPI
                             i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : NULL;
 
               // execute command
-              executeCommand(UnitCommand(unit, i, t, x, y, e), false);
+              executeCommand(UnitCommand(unit, i, t, x, y, e));
               groupOf12.clear();
             } // groupOf12 max execute
           } // second while
@@ -740,7 +740,7 @@ namespace BWAPI
                           i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : NULL;
 
             // execute command
-            executeCommand(UnitCommand(unit, i, t, x, y, e), false);
+            executeCommand(UnitCommand(unit, i, t, x, y, e));
             groupOf12.clear();
           }
           // Reset iterator

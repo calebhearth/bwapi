@@ -43,7 +43,6 @@ namespace BWAPI
 
     // Store some commonly accessed variables
     UnitCommandType uct = command.getType();
-
     Unit      *utarg   = command.getTarget();
     UnitType  targType = utarg ? utarg->getType() : UnitTypes::None;
     Unit      *uthis   = command.getUnit();
@@ -188,7 +187,7 @@ namespace BWAPI
     return true;
   }
   //--------------------------------------------- EXECUTE COMMAND --------------------------------------------
-  void GameImpl::executeCommand(UnitCommand command, bool addCommandToLatComBuffer)
+  void GameImpl::executeCommand(UnitCommand command)
   {
     botAPMCounter_noselects++;
     UnitCommandType ct = command.type;
@@ -422,10 +421,6 @@ namespace BWAPI
     }
     else if ( ct == UnitCommandTypes::Place_COP && command.unit )
       QUEUE_COMMAND(BW::Orders::PlaceCOP, command.x, command.y, command.unit->getType());
-
-    if (addCommandToLatComBuffer)
-      BroodwarImpl.addToCommandBuffer(new Command(command));
   }
-
 
 }

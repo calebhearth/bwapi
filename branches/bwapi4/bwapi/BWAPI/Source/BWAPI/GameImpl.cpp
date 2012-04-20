@@ -762,7 +762,7 @@ namespace BWAPI
       }
 
       // Execute the command
-      BroodwarImpl.executeCommand( command, false );
+      BroodwarImpl.executeCommand( command );
 
       // Iterate each unit in the group
       foreach(UnitImpl *j, *i)
