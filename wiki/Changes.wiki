@@ -1,4 +1,28 @@
 #labels Featured
+== Changes in BWAPI4 ==
+=== Sets and Vectors ===
+ Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of stl containers, but is used the same way. Learning algorithms will get the most out of this.
+ 
+ Additional convenience members have been added, such as .rand(), which returns the value of a random element of the set.
+ 
+=== Positions ===
+ Position, TilePosition, and the new WalkPosition now all share the same class template: Point, which shares all members and provides conversions between each type, including custom ones.
+
+ Positions now have several operators that make arithmatic easier. For example, Position(8,8)/2 will give Position(4,4) and Position(30,20) - Position(15,5) will give Position(15,15).
+
+ There is also Position::set, derived from the Vectorset that will handle sets of Positions.
+
+
+=== Interface ===
+ Each interface class will have its own derived set with several enhancements,  and brings in some functionality similar to that of BWSAL.
+Some advantages include:
+   * Giving an order to a Unitset will order all the units in groups of 12, which is the most optimal way of ordering units.
+
+ Interface overhead has been reduced by making some member functions with alternative parameters non-virtual.
+
+=== Game ===
+ * draw functions now take Position parameters as an alternative to individual x and y.
+
 == Changes from BWAPI 3.7.1 (r4000) to BWAPI 3.7.2 (r4025) ==
 
 Changes:
