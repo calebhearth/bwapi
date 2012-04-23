@@ -20,7 +20,8 @@
 
 === Types ===
  * Types have also received their own set, the Type::set (Example: UnitType::set).
- * The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors. Most type data is now made constant and no longer requires an initialization to be made.
+ * The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors.
+ * Most type data is now made constant and no longer requires an initialization to be made.
  * Added a Type::isValid function.
  * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: UnitTypes::Enum::Terran_Marine).
 
