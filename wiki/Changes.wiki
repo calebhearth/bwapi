@@ -3,13 +3,13 @@
  * All BWAPI projects have been upgraded to use Microsoft Visual C++ 2010 Express.
 
 === Sets and Vectors ===
- Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, but is used the same way. Learning algorithms will get the most out of this.
+ Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, and is used the same way (with Vectorset::iterator). Learning algorithms will get the most out of this.
  
  Additional convenience members have been added, such as .rand(), which returns the value of a random element of the set.
  
 === Positions ===
- * Position, TilePosition, and the new WalkPosition now all share the same class template: Point, which shares all members and provides conversions between each type, including custom ones.
- * Positions now have several operators that make arithmatic easier. For example, Position(8,8)/2 will give Position(4,4) and Position(30,20) - Position(15,5) will give Position(15,15).
+ * Position, TilePosition, and the new WalkPosition now all share the same class template: Point. This maintains consistency between member functions to be used by any Position type, and provides conversions between each type, including custom ones.
+ * Positions now have several operators that make arithmetic easier. For example, Position(8,8)/2 will give Position(4,4) and Position(30,20) - Position(15,5) will give Position(15,15).
  * There is also Position::set, derived from the Vectorset that will handle sets of Positions.
  * The x and y members are now public, and the x() and y() member functions have been removed.
 
@@ -42,7 +42,7 @@
  * Fixed a bug that allowed bots to tell if an opponent had constructed a structure in the fog of war using Game::canBuildHere and Game::isBuildable.
  * Fixed a bug where drawText with a string over 255 characters could cause an overflow.
  * Fixed a bug involving some uninitialized game data causing an inconsistency during the first game.
- * Fixed an issue where shared memory would require high level permissions such as administrator. The permission requirement should now be lowered.
+ * Fixed an issue where shared memory would require high level permissions such as administrator. The permission requirement should now be reduced.
 
 
 == Changes from BWAPI 3.7.1 (r4000) to BWAPI 3.7.2 (r4025) ==
