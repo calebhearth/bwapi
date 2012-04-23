@@ -8,30 +8,21 @@
  Additional convenience members have been added, such as .rand(), which returns the value of a random element of the set.
  
 === Positions ===
- Position, TilePosition, and the new WalkPosition now all share the same class template: Point, which shares all members and provides conversions between each type, including custom ones.
-
- Positions now have several operators that make arithmatic easier. For example, Position(8,8)/2 will give Position(4,4) and Position(30,20) - Position(15,5) will give Position(15,15).
-
- There is also Position::set, derived from the Vectorset that will handle sets of Positions.
-
+ * Position, TilePosition, and the new WalkPosition now all share the same class template: Point, which shares all members and provides conversions between each type, including custom ones.
+ * Positions now have several operators that make arithmatic easier. For example, Position(8,8)/2 will give Position(4,4) and Position(30,20) - Position(15,5) will give Position(15,15).
+ * There is also Position::set, derived from the Vectorset that will handle sets of Positions.
+ * The x and y members are now public, and the x() and y() member functions have been removed.
 
 === Interface ===
- Each interface class will have its own derived set with several enhancements,  and brings in some functionality similar to that of BWSAL.
-Some advantages include:
-   * Giving an order to a Unitset will order all the units in groups of 12, which is the most optimal way of ordering units.
+ Each interface class will have its own derived set with several enhancements,  and brings in some functionality similar to that of BWSAL. The new sets are as follows: Unitset, Playerset, Regionset, Bulletset, Forceset
 
-The new sets are as follows: Unitset, Playerset, Regionset, Bulletset, Forceset
-
- Interface overhead has been reduced by making some member functions with alternative parameters non-virtual.
-
- Keep in mind some function parameters have been re-arranged such as Game::canBuild.
+ Interface overhead has been reduced by making some member functions with alternative parameters non-virtual. Keep in mind some function parameters have been re-arranged so that default parameters can be used.
 
 === Types ===
- Types have also received their own set, the Type::set (Example: UnitType::set).
-
- The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors.
-
- Most type data is now made constant and no longer require an initialization to be made.
+ * Types have also received their own set, the Type::set (Example: UnitType::set).
+ * The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors. Most type data is now made constant and no longer requires an initialization to be made.
+ * Added a Type::isValid function.
+ * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: UnitTypes::Enum::Terran_Marine).
 
 === Game ===
  * Draw functions now take Position parameters as an alternative to individual x and y.
@@ -42,11 +33,15 @@ The new sets are as follows: Unitset, Playerset, Regionset, Bulletset, Forceset
 
 === Bug Fixes ===
  * Fixed a bug where UnitTypes::maxUnitHeight was returning the max unit width instead.
-
-
-
-
-
+ * Fixed a regression where getUnitsIn functions did not function for non-client AI.
+ * Fixed the client's Game::getForces which included the null force.
+ * Fixed a client bug where Force::getName could return an invalid string.
+ * Fixed an auto_menu bug which prevented Zerg from being selected as a race.
+ * Fixed a bug where BWAPI's version checking was too strict.
+ * Fixed a bug that allowed bots to tell if an opponent had constructed a structure in the fog of war using Game::canBuildHere and Game::isBuildable.
+ * Fixed a bug where drawText with a string over 255 characters could cause an overflow.
+ * Fixed a bug involving some uninitialized game data causing an inconsistency during the first game.
+ * Fixed an issue where shared memory would require high level permissions such as administrator. The permission requirement should now be lowered.
 
 
 == Changes from BWAPI 3.7.1 (r4000) to BWAPI 3.7.2 (r4025) ==
