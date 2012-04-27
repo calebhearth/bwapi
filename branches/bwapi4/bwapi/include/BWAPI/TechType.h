@@ -148,7 +148,7 @@ namespace BWAPI
     extern const TechType Lurker_Aspect;
     extern const TechType Healing;
     extern const TechType None;
-    extern const TechType Unknown;
     extern const TechType Nuclear_Strike;
+    extern const TechType Unknown;
   };
 }

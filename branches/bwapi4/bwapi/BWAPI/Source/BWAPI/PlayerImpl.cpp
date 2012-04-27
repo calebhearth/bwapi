@@ -236,16 +236,7 @@ namespace BWAPI
       self->colorByte = 0x02;
     }
 
-    // Reset values
-    MemZero(self->upgradeLevel);
-    MemZero(self->hasResearched);
-    MemZero(self->isUpgrading);
-    MemZero(self->isResearching);
-    
-    MemZero(self->maxUpgradeLevel);
-    MemZero(self->isResearchAvailable);
-    MemZero(self->isUnitAvailable);
-
+    // Get upgrades, tech, resources
     if ( this->isNeutral() || 
          (!BroodwarImpl._isReplay() && 
           BroodwarImpl.self()->isEnemy(this) && 
@@ -259,6 +250,16 @@ namespace BWAPI
       self->repairedGas        = 0;
       self->refundedMinerals   = 0;
       self->refundedGas        = 0;
+
+      // Reset values
+      MemZero(self->upgradeLevel);
+      MemZero(self->hasResearched);
+      MemZero(self->isUpgrading);
+      MemZero(self->isResearching);
+    
+      MemZero(self->maxUpgradeLevel);
+      MemZero(self->isResearchAvailable);
+      MemZero(self->isUnitAvailable);
 
       if ( !this->isNeutral() && index < 12 )
       {
@@ -330,8 +331,10 @@ namespace BWAPI
       for ( int i = 0; i < UNIT_TYPE_COUNT; ++i )
         self->isUnitAvailable[i] = !!BW::BWDATA_UnitAvailability->available[index][i];
 
-      self->hasResearched[TechTypes::Nuclear_Strike] = self->isUnitAvailable[UnitTypes::Terran_Nuclear_Missile];
+      self->hasResearched[TechTypes::Enum::Nuclear_Strike] = self->isUnitAvailable[UnitTypes::Enum::Terran_Nuclear_Missile];
     }
+
+    // Get Scores, supply
     if ( (!BroodwarImpl._isReplay() && 
           BroodwarImpl.self()->isEnemy((Player*)this) && 
           !BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation)) ||

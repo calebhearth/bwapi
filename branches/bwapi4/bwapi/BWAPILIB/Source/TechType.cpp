@@ -186,7 +186,7 @@ namespace BWAPI
                       Ensnare, Parasite, Psionic_Storm, Hallucination, Recall,
                       Stasis_Field, Archon_Warp, Restoration, Disruption_Web, 
                       Mind_Control, Dark_Archon_Meld, Feedback, Optical_Flare,
-                      Maelstrom, Lurker_Aspect, Healing, None, Unknown, Nuclear_Strike );
+                      Maelstrom, Lurker_Aspect, Healing, None, Nuclear_Strike, Unknown );
   }
   namespace TechTypes
   {
@@ -224,8 +224,8 @@ namespace BWAPI
     BWAPI_TYPEDEF(TechType,Lurker_Aspect);
     BWAPI_TYPEDEF(TechType,Healing);
     BWAPI_TYPEDEF(TechType,None);
-    BWAPI_TYPEDEF(TechType,Unknown);
     BWAPI_TYPEDEF(TechType,Nuclear_Strike);
+    BWAPI_TYPEDEF(TechType,Unknown);
 
     void init()
     {

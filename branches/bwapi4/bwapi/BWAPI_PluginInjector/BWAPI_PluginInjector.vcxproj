@@ -12,8 +12,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E872FA31-C3AC-4331-AD60-315768E44ACA}</ProjectGuid>
-    <RootNamespace>ChaosLauncherInjector</RootNamespace>
+    <RootNamespace>PluginInjector</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>BWAPI_PluginInjector</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -60,25 +61,29 @@ $(SolutionDir)\revisionUpdate.bat
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4100</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Creating ChaosLauncherInjector readme</Message>
       <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).txt" /Y</Command>
     </PreLinkEvent>
     <Link>
-      <OutputFile>$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).bwl</OutputFile>
       <MapFileName>
       </MapFileName>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>Advapi32.lib;User32.lib;Shell32.lib</AdditionalDependencies>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ModuleDefinitionFile>QDPlugin.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Message>Copying ChaosLauncherInjector to ChaosDir</Message>
-      <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).bwl" "$(ChaosDir)"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).bwl"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName).qdp"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(ChaosDir).bwl"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -95,28 +100,46 @@ $(SolutionDir)\revisionUpdate.bat
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4100</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Creating ChaosLauncherInjector readme</Message>
       <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.txt" /Y</Command>
     </PreLinkEvent>
     <Link>
-      <OutputFile>$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.bwl</OutputFile>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <MapFileName>
       </MapFileName>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>Advapi32.lib;User32.lib;Shell32.lib</AdditionalDependencies>
+      <ModuleDefinitionFile>QDPlugin.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Message>Copying ChaosLauncherInjector to ChaosDir</Message>
-      <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.bwl" "$(ChaosDir)"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.bwl"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName)d.qdp"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(ChaosDir)d.bwl"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\DLLMain.cpp" />
+    <ClCompile Include="chaoslauncher.cpp" />
+    <ClCompile Include="common.cpp" />
+    <ClCompile Include="config.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mpqdraft.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="chaoslauncher.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mpqdraft.h" />
+    <ClInclude Include="QDPlugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="QDPlugin.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

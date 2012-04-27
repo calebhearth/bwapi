@@ -196,11 +196,11 @@ void TestMap1::onStart()
     BWAssert(neutral->hasResearched(t)==false);
     if (t.whatResearches()==UnitTypes::None)
     {
-      BWAssert(Broodwar->self()->hasResearched(t)==true);
+      BWAssertErr(Broodwar->self()->hasResearched(t)==true, t.c_str());
     }
     else
     {
-      BWAssert(Broodwar->self()->hasResearched(t)==false);
+      BWAssertErr(Broodwar->self()->hasResearched(t)==false, t.c_str());
     }
   }
   for each(UpgradeType u in UpgradeTypes::allUpgradeTypes())

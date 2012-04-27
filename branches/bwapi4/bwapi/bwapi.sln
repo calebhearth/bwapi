@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BWAPI", "BWAPI\BWAPI.vcxproj", "{001204EC-33B7-427D-AF9B-68F222C97349}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BWAPI_ChaosLauncherInjector", "BWAPI_ChaosLauncherInjector\BWAPI_ChaosLauncherInjector.vcxproj", "{E872FA31-C3AC-4331-AD60-315768E44ACA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BWAPI_PluginInjector", "BWAPI_PluginInjector\BWAPI_PluginInjector.vcxproj", "{E872FA31-C3AC-4331-AD60-315768E44ACA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Util", "Util\Util.vcxproj", "{C252CA4E-FFA0-404C-B5B4-614CF330C084}"
 EndProject
@@ -17,8 +17,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleAIModule", "ExampleAIModule\ExampleAIModule.vcxproj", "{2E63AE74-758A-4607-9DE4-D28E814A6E13}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestAIModule", "TestAIModule\TestAIModule.vcxproj", "{982561B2-A7D0-44E9-BD3D-0FD117E3F882}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BWAPI_MPQDraftInjector", "BWAPI_MPQDraftInjector\BWAPI_MPQDraftInjector.vcxproj", "{6DA11918-29FC-402B-864B-08C2BA1566C5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Storm", "Storm\Storm.vcxproj", "{08C0C784-F586-4CAA-8951-8ADF1586C0E9}"
 EndProject
@@ -74,10 +72,6 @@ Global
 		{982561B2-A7D0-44E9-BD3D-0FD117E3F882}.Debug|Win32.Build.0 = Debug|Win32
 		{982561B2-A7D0-44E9-BD3D-0FD117E3F882}.Release|Win32.ActiveCfg = Release|Win32
 		{982561B2-A7D0-44E9-BD3D-0FD117E3F882}.Release|Win32.Build.0 = Release|Win32
-		{6DA11918-29FC-402B-864B-08C2BA1566C5}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6DA11918-29FC-402B-864B-08C2BA1566C5}.Debug|Win32.Build.0 = Debug|Win32
-		{6DA11918-29FC-402B-864B-08C2BA1566C5}.Release|Win32.ActiveCfg = Release|Win32
-		{6DA11918-29FC-402B-864B-08C2BA1566C5}.Release|Win32.Build.0 = Release|Win32
 		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Debug|Win32.ActiveCfg = Release|Win32
 		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Debug|Win32.Build.0 = Release|Win32
 		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Release|Win32.ActiveCfg = Release|Win32
