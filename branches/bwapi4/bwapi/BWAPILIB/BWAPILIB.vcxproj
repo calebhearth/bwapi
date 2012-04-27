@@ -56,6 +56,8 @@
     <PreLinkEvent>
       <Message>Copying include files to final release</Message>
       <Command>XCOPY "$(SolutionDir)include\*.h" "$(SolutionDir)..\Release_Binary\include" /S /C /I /R /Y
+COPY /Y "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\README.txt"
+COPY /Y "$(SolutionDir)..\Release_Binary\COPYING" "$(SolutionDir)..\Release_Binary\COPYING.txt"
 </Command>
     </PreLinkEvent>
     <Lib>
@@ -85,6 +87,8 @@
     <PreLinkEvent>
       <Message>Copying include files to final release</Message>
       <Command>XCOPY "$(SolutionDir)include\*.h" "$(SolutionDir)..\Release_Binary\include" /S /C /I /R /Y
+COPY /Y "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\README.txt"
+COPY /Y "$(SolutionDir)..\Release_Binary\COPYING" "$(SolutionDir)..\Release_Binary\COPYING.txt"
 </Command>
     </PreLinkEvent>
     <Lib>
