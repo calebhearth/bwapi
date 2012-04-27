@@ -1,12 +1,16 @@
 #pragma once
 #include <BWAPI/Vectorset.h>
 #include <BWAPI/Position.h>
+#include <BWAPI/PositionUnit.h>
 
 namespace BWAPI
 {
   // Forward declarations
   class Unit;
+  class UnitType;
   class Regionset;
+  class UnitCommand;
+  class TechType;
 
   /// @~English
   /// The Unitset is a container for a set of pointers
@@ -86,6 +90,110 @@ namespace BWAPI
     /// @see Unit::setClientInfo
     void setClientInfo(void *clientInfo = NULL);
 
+    /// @copydoc Unit::issueCommand
+    bool issueCommand(UnitCommand command);
+    
+    /// @copydoc Unit::attack
+    bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::build
+    bool build(UnitType type, TilePosition target = TilePositions::None);
+
+    /// @copydoc Unit::buildAddon
+    bool buildAddon(UnitType type);
+
+    /// @copydoc Unit::train
+    bool train(UnitType type);
+
+    /// @copydoc Unit::morph
+    bool morph(UnitType type);
+
+    /// @copydoc Unit::setRallyPoint
+    bool setRallyPoint(PositionOrUnit target);
+
+    /// @copydoc Unit::move
+    bool move(Position target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::patrol
+    bool patrol(Position target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::holdPosition
+    bool holdPosition(bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::stop
+    bool stop(bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::follow
+    bool follow(Unit* target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::gather
+    bool gather(Unit* target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::returnCargo
+    bool returnCargo(bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::repair
+    bool repair(Unit* target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::burrow
+    bool burrow();
+
+    /// @copydoc Unit::unburrow
+    bool unburrow();
+
+    /// @copydoc Unit::cloak
+    bool cloak();
+
+    /// @copydoc Unit::decloak
+    bool decloak();
+
+    /// @copydoc Unit::siege
+    bool siege();
+
+    /// @copydoc Unit::unsiege
+    bool unsiege();
+
+    /// @copydoc Unit::lift
+    bool lift();
+
+    /// @copydoc Unit::load
+    bool load(Unit* target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::unloadAll(bool)
+    bool unloadAll(bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::unloadAll(Position,bool)
+    bool unloadAll(Position target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::rightClick
+    bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false);
+
+    /// @copydoc Unit::haltConstruction
+    bool haltConstruction();
+
+    /// @copydoc Unit::cancelConstruction
+    bool cancelConstruction();
+
+    /// @copydoc Unit::cancelAddon
+    bool cancelAddon();
+
+    /// @copydoc Unit::cancelTrain
+    bool cancelTrain(int slot = -2);
+
+    /// @copydoc Unit::cancelMorph
+    bool cancelMorph();
+
+    /// @copydoc Unit::cancelResearch
+    bool cancelResearch();
+
+    /// @copydoc Unit::cancelUpgrade
+    bool cancelUpgrade();
+    
+    /// @copydoc Unit::useTech
+    bool useTech(TechType tech, PositionOrUnit target = NULL);
+
+    /// @copydoc Unit::placeCOP
+    bool placeCOP(TilePosition target);
   };
 }
 

@@ -211,13 +211,16 @@ ALIASES                = "Dropships=@ref UnitTypes::Terran_Dropship \"Dropships\
                          "Assimilators=@ref UnitTypes::Protoss_Assimilator \"Assimilators\"" \
                          "Extractors=@ref UnitTypes::Zerg_Extractor \"Extractors\"" \
                          "Ex=@par Example:\n@snippet" \
-                         "Errors=@par Errors:\nTo retrieve this information, use Game::getLastError. If this function succeeds, Errors::None will be set. If this function fails, then one of the following errors will be set:\n" \
                          "Interceptors=@ref UnitTypes::Protoss_Interceptor \"Interceptors\"" \
                          "Carriers=@ref UnitTypes::Protoss_Carrier \"Carriers\"" \
                          "Hatcheries=@ref UnitTypes::Zerg_Hatchery \"Hatcheries\"" \
                          "Lairs=@ref UnitTypes::Zerg_Lair \"Lairs\"" \
                          "Hives=@ref UnitTypes::Zerg_Hive \"Hives\"" \
-                         "Larvae=@ref UnitTypes::Zerg_Larva \"Larvae\""
+                         "Larvae=@ref UnitTypes::Zerg_Larva \"Larvae\"" \
+                         "Medic=@ref UnitTypes::Terran_Medic \"Medic\"" \
+                         "Hatchery=@ref UnitTypes::Zerg_Hatchery \"Hatchery\"" \
+                         "Lair=@ref UnitTypes::Zerg_Lair \"Lair\"" \
+                         "Hive=@ref UnitTypes::Zerg_Hive \"Hive\""
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only). 
 # A mapping has the form "name=value". For example adding 

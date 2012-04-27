@@ -596,29 +596,117 @@ namespace BWAPI
     /** Returns true if the unit is able to execute the given command, or false if there is an error */
     virtual bool canIssueCommand(UnitCommand command) const = 0;
 
-    /** Issues the give unit command, or returns false if there is an error */
+    /// @~English
+    /// This function issues a command to the unit(s), however it
+    /// is used for interfacing only, and is recommended to use
+    /// one of the more specific command functions when writing
+    /// an AI.
+    ///
+    /// @param command A UnitCommand containing command parameters
+    /// such as the type, position, target, etc.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed.
+    /// @~
+    /// @see UnitCommandTypes, Game::getLastError
     virtual bool issueCommand(UnitCommand command) = 0;
 
-    /** Orders the unit to attack move to the specified location. */
+    /// @~English
+    /// Orders the unit(s) to attack move to the specified location.
+    ///
+    /// @param target A Position or a Unit to designate as the target.
+    /// If a Position is used, the unit will perform an Attack Move
+    /// command.
+    /// @param shiftQueueCommand If this value is true, then the
+    /// order will be queued instead of immediately executed.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed.
+    ///
+    /// @note A @Medic will use Heal Move instead of attack.
+    /// @~
+    /// @see Game::getLastError
     bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
 
-    /** Orders the unit to build the given unit type at the given position. Note that if the player does not
-     * have enough resources when the unit attempts to place the building down, the order will fail. The
-     * tile position specifies where the top left corner of the building will be placed. */
-    bool build(TilePosition target, UnitType type);
+    /// @~English
+    /// Orders the worker unit(s) to construct a structure at a target
+    /// position.
+    ///
+    /// @param type The UnitType to build.
+    /// @param target A TilePosition to specify the build location,
+    /// specifically the upper-left corner of the location. If the 
+    /// target is not specified, then the function call will be
+    /// redirected to the train command.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed. 
+    ///
+    /// @note You must have sufficient resources and meet the
+    /// necessary requirements in order to build a structure.
+    ///
+    /// @~
+    /// @see Game::getLastError, Unit::train, Unit::cancelConstruction
+    bool build(UnitType type, TilePosition target = TilePositions::None);
 
-    /** Orders the unit to build the given addon. The unit must be a Terran building that can have an addon
-     * and the specified unit type must be an addon unit type. */
+    /// @~English
+    /// Orders the @Terran structure(s) to construct an add-on.
+    ///
+    /// @param type The add-on UnitType to construct.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed. 
+    ///
+    /// @note You must have sufficient resources and meet the
+    /// necessary requirements in order to build a structure.
+    ///
+    /// @~
+    /// @see Game::getLastError, Unit::build, Unit::cancelAddon
     bool buildAddon(UnitType type);
 
-    /** Orders this unit to add the specified unit type to the training queue. Note that the player must
-     * have sufficient resources to train. If you wish to make units from a hatchery, use getLarva to get
-     * the larva associated with the hatchery and then call morph on the larva you want to morph. This
-     * command can also be used to make interceptors and scarabs. */
+    /// @~English
+    /// Orders the unit(s) to add a UnitType to its training
+    /// queue, or morphs into the UnitType if it is @Zerg.
+    ///
+    /// @param type The UnitType to train.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed. 
+    ///
+    /// @note You must have sufficient resources, supply, and
+    /// meet the necessary requirements in order to train
+    /// a unit.
+    /// @note This command is also used for training @Interceptors
+    /// and @Scarabs.
+    /// @note If you call this using a @Hatchery, @Lair, or
+    /// @Hive, then it will automatically pass the command
+    /// to one of its @Larvae.
+    ///
+    /// @~
+    /// @see Game::getLastError, Unit::build, Unit::morph, Unit::cancelTrain, Unit::isTraining
     bool train(UnitType type);
 
-    /** Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
-     * \see Unit::cancelMorph, Unit::isMorphing. */
+    /// @~English
+    /// Orders the unit(s) to morph into a different UnitType.
+    ///
+    /// @param type The UnitType to morph into.
+    ///
+    /// @retval true if BWAPI determined that the command was valid
+    /// and passed it to Starcraft.
+    /// @retval false if an error occured and the command could
+    /// not be executed.
+    ///
+    /// @~
+    /// @see Game::getLastError, Unit::build, Unit::morph
     bool morph(UnitType type);
 
     /** Orders the unit to research the given tech type.

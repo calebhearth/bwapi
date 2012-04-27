@@ -69,7 +69,7 @@ void BuildTest::start()
     {
       buildLocation = placer->getBuildLocationNear(builder->getTilePosition(),unitType,2);
     }
-    FAILTEST(builder->build(buildLocation,unitType));
+    FAILTEST(builder->build(unitType, buildLocation));
   }
   FAILTEST( !builder->isIdle() );
   FAILTEST( builder->isConstructing() );

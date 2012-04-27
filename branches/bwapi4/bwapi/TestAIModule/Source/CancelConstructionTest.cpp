@@ -74,7 +74,7 @@ void CancelConstructionTest::start()
     {
       buildLocation = placer->getBuildLocationNear(builder->getTilePosition(),unitType,2);
     }
-    BWAssertF(builder->build(buildLocation,unitType),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(builder->build(unitType,buildLocation),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
   }
   FAILTEST(builder->isIdle()==false);
   FAILTEST(builder->isConstructing()==true);

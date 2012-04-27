@@ -94,8 +94,10 @@ namespace BWAPI
     return this->issueCommand(UnitCommand::attack(this, target, shiftQueueCommand));
   }
   //--------------------------------------------- BUILD ------------------------------------------------------
-  bool Unit::build(TilePosition target, UnitType type)
+  bool Unit::build(UnitType type, TilePosition target)
   {
+    if ( target == TilePositions::None )
+      return this->train(type);
     return this->issueCommand(UnitCommand::build(this, target, type));
   }
   //--------------------------------------------- BUILD ADDON ------------------------------------------------

@@ -163,10 +163,8 @@ namespace BWAPI
     /// @retval TilePositions::Unknown if an error occured
     /// while trying to retrieve the start location.
     ///
-    /// @Errors Errors::Access_Denied
-    ///
     /// @~
-    /// @see Game::getStartLocations
+    /// @see Game::getStartLocations, Game::getLastError
     virtual TilePosition getStartLocation() const = 0;
 
     /** Returns true if the player has achieved victory. */

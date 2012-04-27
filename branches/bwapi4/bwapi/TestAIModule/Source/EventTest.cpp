@@ -102,7 +102,7 @@ void EventTest::onFrame()
       TilePosition tilePosition=TilePositions::None;
       for each(Unit* u in Broodwar->getGeysers())
         tilePosition=u->getTilePosition();
-      scv->build(tilePosition,UnitTypes::Terran_Refinery);
+      scv->build(UnitTypes::Terran_Refinery,tilePosition);
       expectedEvents.push_back(Event::UnitMorph(NULL));
       expectedEvents.push_back(Event::UnitRenegade(NULL));
     }
