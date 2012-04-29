@@ -36,7 +36,7 @@ namespace BWAPI
   /// Unit::exists is accurate for all units. Similarly AIModule::onUnitDestroy messages are generated for all
   /// units that get destroyed, not just visible ones.
   ///
-  /// If a Unit is not accessible, in general the only the getInitial__ functions will be available to the AI.
+  /// If a Unit is not accessible, then only the getInitial__ functions will be available to the AI.
   /// However for units that were owned by the player, getPlayer and getType will continue to work for units
   /// that have been destroyed.
   /// @~
@@ -79,6 +79,7 @@ namespace BWAPI
     ///
     /// @returns A UnitType objects representing the unit's type.
     /// @~
+    /// @see getInitialType
     virtual UnitType getType() const = 0;
 
     /// @~English
@@ -89,7 +90,7 @@ namespace BWAPI
     ///
     /// @returns Position object representing the unit's current position.
     /// @~
-    /// @see getTilePosition
+    /// @see getTilePosition, getInitialPosition
     virtual Position getPosition() const = 0;
 
     /// @~English
@@ -103,7 +104,7 @@ namespace BWAPI
     ///
     /// @returns TilePosition object representing the unit's current tile position.
     /// @~
-    /// @see getPosition
+    /// @see getPosition, getInitialTilePosition
     virtual TilePosition getTilePosition() const = 0;
 
     /// @~English
@@ -131,42 +132,170 @@ namespace BWAPI
     /// @see getVelocityX
     virtual double getVelocityY() const = 0;
 
-    /** Returns the region that this unit is currently in. */
+    /// @~English
+    /// Retrieves the Region that the center of the unit is in.
+    ///
+    /// @retval NULL If the unit is inaccessible.
+    ///
+    /// @returns A pointer to a Region object that contains this unit.
+    /// @~
     virtual BWAPI::Region *getRegion() const = 0;
 
-    /** Returns the X coordinate of the left side of the unit. */
+    /// @~English
+    /// Retrieves the X coordinate of the unit's left boundry,
+    /// measured in pixels from the left side of the map.
+    ///
+    /// @returns An integer representing the position of the
+    /// left side of the unit.
+    ///
+    /// @~
+    /// @see getTop, getRight, getBottom
     virtual int getLeft() const = 0;
 
-    /** Returns the Y coordinate of the top side of the unit. */
+    /// @~English
+    /// Retrieves the Y coordinate of the unit's top boundry,
+    /// measured in pixels from the top of the map.
+    ///
+    /// @returns An integer representing the position of the
+    /// top side of the unit.
+    /// @~
+    /// @see getLeft, getRight, getBottom
     virtual int getTop() const = 0;
 
-    /** Returns the X coordinate of the right side of the unit. */
+    /// @~English
+    /// Retrieves the X coordinate of the unit's right boundry,
+    /// measured in pixels from the left side of the map.
+    ///
+    /// @returns An integer representing the position of the
+    /// right side of the unit.
+    /// @~
+    /// @see getLeft, getTop, getBottom
     virtual int getRight() const = 0;
 
-    /** Returns the Y coordinate of the bottom side of the unit. */
+    /// @~English
+    /// Retrieves the Y coordinate of the unit's bottom boundry,
+    /// measured in pixels from the top of the map.
+    ///
+    /// @returns An integer representing the position of the
+    /// bottom side of the unit.
+    /// @~
+    /// @see getLeft, getTop, getRight
     virtual int getBottom() const = 0;
 
-    /** Returns the unit's current amount of hit points. */
+    /// @~English
+    /// Retrieves the unit's current Hit Points (HP) as
+    /// seen in the game.
+    ///
+    /// @returns An integer representing the amount of
+    /// hit points a unit currently has.
+    ///
+    /// @note In Starcraft, a unit usually dies when
+    /// its HP reaches 0. It is possible however, to
+    /// have abnormal HP values in the Use Map Settings
+    /// game type and as the result of a hack over
+    /// Battle.net. Such values include units that 
+    /// have 0 HP (can't be killed conventionally)
+    /// or even negative HP (death in one hit).
+    ///
+    /// @~
+    /// @see UnitType::maxHitPoints, getShields, getInitialHitPoints
     virtual int getHitPoints() const = 0;
 
-    /** Returns the unit's current amount of shields. */
+    /// @~English
+    /// Retrieves the unit's current Shield Points
+    /// (Shields) as seen in the game.
+    ///
+    /// @returns An integer representing the amount of
+    /// shield points a unit currently has.
+    ///
+    /// @~
+    /// @see UnitType::maxShields, getHitPoints
     virtual int getShields() const = 0;
 
-    /** Returns the unit's current amount of energy. */
+    /// @~English
+    /// Retrieves the unit's current Energy Points
+    /// (Energy) as seen in the game.
+    ///
+    /// @returns An integer representing the amount of
+    /// energy points a unit currently has.
+    ///
+    /// @note Energy is required in order for units
+    /// to use abilities.
+    ///
+    /// @~
+    /// @see UnitType::maxEnergy
     virtual int getEnergy() const = 0;
 
-    /** Returns the unit's current amount of containing resources. Useful for determining how much minerals
-     * are left in a mineral patch, or how much gas is left in a geyser
-     * (can also be called on a refinery/assimilator/extractor). */
+    /// @~English
+    /// Retrieves the resource amount from a resource
+    /// container, such as a Mineral Field and
+    /// Vespene Geyser.
+    ///
+    /// @returns An integer representing the amount of
+    /// resources remaining in this resource.
+    ///
+    /// @~
+    /// @see getInitialResources
     virtual int getResources() const = 0;
 
-    /** Retrieves the group ID of a resource. Can be used to identify which resources belong to an expansion. */
+    /// @~English
+    /// Retrieves a grouping index from a resource
+    /// container. Other resource containers of the
+    /// same value are considered part of one expansion
+    /// location (group of resources that are close together).
+    ///
+    /// @note This grouping method is explicitly determined
+    /// by Starcraft itself and is used only by the internal
+    /// AI.
+    ///
+    /// @returns An integer with an identifier between
+    /// 0 and 250 that determine which resources are
+    /// grouped together to form an expansion.
+    ///
+    /// @~
     virtual int getResourceGroup() const = 0;
 
-    /** Returns the distance from the edge of the current unit to the target position. */
+    /// @~English
+    /// Retrieves the distance between this unit and
+    /// a target.
+    ///
+    /// @note Distance is calculated from the edge of this unit,
+    /// using Starcraft's own distance algorithm.
+    ///
+    /// @param target A Position or a Unit to calculate the
+    /// distance to. If it is a unit, then it will calculate
+    /// the distance to the edge of the target unit.
+    ///
+    /// @returns An integer representation of the number of
+    /// pixels between this unit and the \p target.
+    ///
+    /// @~
     virtual int getDistance(PositionOrUnit target) const = 0;
 
-    /** Returns true if the unit is able to move to the target unit */
+    /// @~English
+    /// Using data provided by Starcraft, checks if there is
+    /// a path available from this unit to the given target.
+    ///
+    /// @note This function only takes into account the
+    /// terrain data, and does not include buildings
+    /// when determining if a path is available.
+    /// However, the time it takes to execute this
+    /// function is O(1), and no extensive calculations
+    /// are necessary.
+    ///
+    /// @note If the current unit is an air unit, then
+    /// this function will always return true.
+    ///
+    /// @param target A Position or a Unit that is
+    /// used to determine if this unit has a path
+    /// to the target.
+    ///
+    /// @retval true If there is a path between this unit
+    /// and the target.
+    /// @retval false If the target is on a different
+    /// piece of land than this one (such as an island).
+    ///
+    /// @~
     virtual bool hasPath(PositionOrUnit target) const = 0;
 
     /** Returns the frame of the last successful command. Frame is comparable to Game::getFrameCount(). */

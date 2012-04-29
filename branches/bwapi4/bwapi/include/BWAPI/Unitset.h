@@ -88,112 +88,109 @@ namespace BWAPI
     /// information is to be cleared.
     /// @~
     /// @see Unit::setClientInfo
-    void setClientInfo(void *clientInfo = NULL);
+    void setClientInfo(void *clientInfo = NULL) const;
 
     /// @copydoc Unit::issueCommand
-    bool issueCommand(UnitCommand command);
+    bool issueCommand(UnitCommand command) const;
     
     /// @copydoc Unit::attack
-    bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
+    bool attack(PositionOrUnit target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::build
-    bool build(UnitType type, TilePosition target = TilePositions::None);
+    bool build(UnitType type, TilePosition target = TilePositions::None) const;
 
     /// @copydoc Unit::buildAddon
-    bool buildAddon(UnitType type);
+    bool buildAddon(UnitType type) const;
 
     /// @copydoc Unit::train
-    bool train(UnitType type);
+    bool train(UnitType type) const;
 
     /// @copydoc Unit::morph
-    bool morph(UnitType type);
+    bool morph(UnitType type) const;
 
     /// @copydoc Unit::setRallyPoint
-    bool setRallyPoint(PositionOrUnit target);
+    bool setRallyPoint(PositionOrUnit target) const;
 
     /// @copydoc Unit::move
-    bool move(Position target, bool shiftQueueCommand = false);
+    bool move(Position target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::patrol
-    bool patrol(Position target, bool shiftQueueCommand = false);
+    bool patrol(Position target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::holdPosition
-    bool holdPosition(bool shiftQueueCommand = false);
+    bool holdPosition(bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::stop
-    bool stop(bool shiftQueueCommand = false);
+    bool stop(bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::follow
-    bool follow(Unit* target, bool shiftQueueCommand = false);
+    bool follow(Unit* target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::gather
-    bool gather(Unit* target, bool shiftQueueCommand = false);
+    bool gather(Unit* target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::returnCargo
-    bool returnCargo(bool shiftQueueCommand = false);
+    bool returnCargo(bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::repair
-    bool repair(Unit* target, bool shiftQueueCommand = false);
+    bool repair(Unit* target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::burrow
-    bool burrow();
+    bool burrow() const;
 
     /// @copydoc Unit::unburrow
-    bool unburrow();
+    bool unburrow() const;
 
     /// @copydoc Unit::cloak
-    bool cloak();
+    bool cloak() const;
 
     /// @copydoc Unit::decloak
-    bool decloak();
+    bool decloak() const;
 
     /// @copydoc Unit::siege
-    bool siege();
+    bool siege() const;
 
     /// @copydoc Unit::unsiege
-    bool unsiege();
+    bool unsiege() const;
 
     /// @copydoc Unit::lift
-    bool lift();
+    bool lift() const;
 
     /// @copydoc Unit::load
-    bool load(Unit* target, bool shiftQueueCommand = false);
+    bool load(Unit* target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::unloadAll(bool)
-    bool unloadAll(bool shiftQueueCommand = false);
+    bool unloadAll(bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::unloadAll(Position,bool)
-    bool unloadAll(Position target, bool shiftQueueCommand = false);
+    bool unloadAll(Position target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::rightClick
-    bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false);
+    bool rightClick(PositionOrUnit target, bool shiftQueueCommand = false) const;
 
     /// @copydoc Unit::haltConstruction
-    bool haltConstruction();
+    bool haltConstruction() const;
 
     /// @copydoc Unit::cancelConstruction
-    bool cancelConstruction();
+    bool cancelConstruction() const;
 
     /// @copydoc Unit::cancelAddon
-    bool cancelAddon();
+    bool cancelAddon() const;
 
     /// @copydoc Unit::cancelTrain
-    bool cancelTrain(int slot = -2);
+    bool cancelTrain(int slot = -2) const;
 
     /// @copydoc Unit::cancelMorph
-    bool cancelMorph();
+    bool cancelMorph() const;
 
     /// @copydoc Unit::cancelResearch
-    bool cancelResearch();
+    bool cancelResearch() const;
 
     /// @copydoc Unit::cancelUpgrade
-    bool cancelUpgrade();
+    bool cancelUpgrade() const;
     
     /// @copydoc Unit::useTech
-    bool useTech(TechType tech, PositionOrUnit target = NULL);
-
-    /// @copydoc Unit::placeCOP
-    bool placeCOP(TilePosition target);
+    bool useTech(TechType tech, PositionOrUnit target = NULL) const;
   };
 }
 

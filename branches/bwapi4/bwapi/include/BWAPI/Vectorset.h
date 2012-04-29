@@ -118,7 +118,7 @@ namespace BWAPI
     /// @~
     typedef iterator<_T> iterator;
 
-    // ----------------------------------------------------------------- Constructors
+  // ----------------------------------------------------------------- Constructors
     /// @~English
     /// This is the default constructor. The Vectorset
     /// will allocate memory for the given number of
@@ -172,7 +172,7 @@ namespace BWAPI
     {
       memcpy(this->__valArray, pArray, arrSize*sizeof(_T) );
     };
-    // ----------------------------------------------------------------- Operators
+  // ----------------------------------------------------------------- Operators
     /// @copydoc push_back(const Vectorset<_T> &)
     /// @~English
     /// @note The Vectorset is emptied before the contents
@@ -307,12 +307,12 @@ namespace BWAPI
       return __valArray[0];
     };
 
-    // ----------------------------------------------------------------- Destructor
+  // ----------------------------------------------------------------- Destructor
     ~Vectorset()
     {
       free(this->__valArray);
     };
-    // ----------------------------------------------------------------- Custom functions
+  // ----------------------------------------------------------------- Custom functions
     /// @~English
     /// This function erases an element from a Vectorset.
     /// Unlike erase, it assumes there exists only one element.
@@ -344,7 +344,7 @@ namespace BWAPI
       this->__last = iend;
     };
 
-    // ----------------------------------------------------------------- Custom const functions
+  // ----------------------------------------------------------------- Custom const functions
     /// @~English
     /// This function checks if an element exists in the
     /// Vectorset.
@@ -421,7 +421,7 @@ namespace BWAPI
       }
       return this->__valArray[::rand()%size];
     };
-    // ----------------------------------------------------------------- stl spinoff functions
+  // ----------------------------------------------------------------- stl spinoff functions
     /// @~English
     /// Clears the Vectorset, removing all elements.
     /// Used the same way as stl containers.
@@ -493,7 +493,7 @@ namespace BWAPI
       --this->__last;
     };
 
-    // element insertion
+  // element insertion
     /// @~English
     /// Inserts a new value into the Vectorset
     /// only if it does not already exist.
@@ -631,7 +631,7 @@ namespace BWAPI
         break;
       }
     };
-    // ----------------------------------------------------------------- stl spinoff const functions
+  // ----------------------------------------------------------------- stl spinoff const functions
     /// @~English
     /// Retrieves the number of elements currently
     /// in the Vectorset.
@@ -694,7 +694,91 @@ namespace BWAPI
     {
       return *(this->__last - 1);
     };
-
+  // ----------------------------------------------------------------- stl algorithms
+    /// @~English
+    /// Works similar to the STL algorithm for_each, by
+    /// iterating and calling the function f for each 
+    /// element of the Vectorset.
+    ///
+    /// @param f Function that takes a parameter of
+    /// the same type that the Vectorset is storing.
+    /// @~
+    /// @see std::for_each
+    template <typename Func>
+    void for_each( const Func &f ) const
+    {
+      for ( auto i = this->begin(); i != this->end(); ++i )
+        f(*i);
+    };
+    /// @~English
+    /// Works similar to the STL algorithm remove_if.
+    /// Iterates and calls a function predicate for
+    /// each element in the Vectorset. If the predicate
+    /// call returns true, then the value is removed.
+    ///
+    /// @param pred Function predicate used to determine
+    /// if a value is removed.
+    /// @~
+    /// @see std::remove_if
+    template <typename Func>
+    void remove_if( const Func &pred )
+    {
+      auto i = this->begin();
+      while ( i != this->end() )
+      {
+        if ( pred(*i) )
+          this->erase(i);
+        else
+          ++i;
+      }
+    };
+    /// @~English
+    /// Works similar to the STL algorithm count_if.
+    /// Iterates and calls a function predicate for
+    /// each element in the Vectorset. If the predicate
+    /// call returns true, then a counter is incremented.
+    ///
+    /// @param pred Function predicate used to determine
+    /// if a value is counted.
+    ///
+    /// @returns An integer containing the number of
+    /// elements that were counted.
+    /// @~
+    /// @see std::count_if, count
+    template <typename Func>
+    int count_if( const Func &pred ) const
+    {
+      size_t rval = 0;
+      this->for_each( [&](_T t) 
+                      { 
+                        if ( pred(t) ) 
+                          ++rval; 
+                      } );
+      return rval;
+    };
+    /// @~English
+    /// Works similar to the STL algorithm count.
+    /// Iterates and compares each element of the
+    /// Vectorset to a value. If the value matches,
+    /// then a counter is incremented.
+    ///
+    /// @param val The value to compare each element
+    /// with.
+    ///
+    /// @returns An integer containing the number of
+    /// elements that were counted.
+    /// @~
+    /// @see std::count, count_if, size
+    int count(const _T &val) const
+    {
+      size_t rval = 0;
+      for ( auto i = this->begin(); i != this->end(); ++i )
+      {
+        if ( *i == val )
+          ++rval;
+      }
+      return rval;
+    };
   // -----------------------------------------------------------------
   private:
     // expand container when full
