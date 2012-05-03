@@ -696,21 +696,6 @@ namespace BWAPI
     };
   // ----------------------------------------------------------------- stl algorithms
     /// @~English
-    /// Works similar to the STL algorithm for_each, by
-    /// iterating and calling the function f for each 
-    /// element of the Vectorset.
-    ///
-    /// @param f Function that takes a parameter of
-    /// the same type that the Vectorset is storing.
-    /// @~
-    /// @see std::for_each
-    template <typename Func>
-    void for_each( const Func &f ) const
-    {
-      for ( auto i = this->begin(); i != this->end(); ++i )
-        f(*i);
-    };
-    /// @~English
     /// Works similar to the STL algorithm remove_if.
     /// Iterates and calls a function predicate for
     /// each element in the Vectorset. If the predicate
@@ -749,11 +734,11 @@ namespace BWAPI
     int count_if( const Func &pred ) const
     {
       size_t rval = 0;
-      this->for_each( [&](_T t) 
-                      { 
-                        if ( pred(t) ) 
-                          ++rval; 
-                      } );
+      for ( auto i = this->begin(); i != this->end(); ++i )
+      {
+        if ( pred(*i) )
+          ++rval;
+      }
       return rval;
     };
     /// @~English

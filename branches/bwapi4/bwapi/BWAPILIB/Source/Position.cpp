@@ -24,23 +24,19 @@ namespace BWAPI
   Point<_T,__Scale> &Point<_T,__Scale>::makeValid()
   {
     // Set x/y to 0 if less than 0
-    if ( this->x < 0 ) this->x = 0;
-    if ( this->y < 0 ) this->y = 0;
+    this->setMin(0, 0);
     
     if ( !Broodwar )  // If broodwar ptr doesn't exist, set to below max size
     {
       _T max = (256*32)/__Scale - 1;
-      if ( this->x > max ) this->x = max;
-      if ( this->y > max ) this->y = max;
+      this->setMax(max, max);
       return *this;
     }
 
     // If BW ptr exists then set it to map width/height
-    _T max = (_T)(Broodwar->mapWidth() * 32)/__Scale - 1;
-    if ( this->x > max ) this->x = max;
-
-    max = (_T)(Broodwar->mapHeight() * 32)/__Scale - 1;
-    if ( this->y > max ) this->y = max;
+    _T wid = (_T)(Broodwar->mapWidth() * 32)/__Scale - 1;
+    _T hgt = (_T)(Broodwar->mapHeight() * 32)/__Scale - 1;
+    this->setMax(wid,hgt);
     return *this;
   };
 

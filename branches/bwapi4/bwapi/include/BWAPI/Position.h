@@ -179,13 +179,71 @@ namespace BWAPI
     _OPERATOR_OP_VAL_CHK(%)
 
     // Functions
+    /// @~English
+    /// Checks if this point is within the game's
+    /// map bounds.
+    ///
+    /// @note If the Broodwar pointer is not
+    /// initialized, this function will check
+    /// validity against the largest (256x256)
+    /// map size.
+    ///
+    /// @retval true If it is a valid position and
+    /// on the map/playing field.
+    /// @retval false If this is not a valid position.
+    ///
+    /// @~
+    /// @see makeValid
     bool isValid() const;
+
+    /// @~English
+    /// Checks if this point is within the game's
+    /// map bounds, if not, then it will set
+    /// the x and y values to be within map
+    /// bounds.
+    ///
+    /// @example If x is less than 0, then
+    /// x is set to 0.
+    ///
+    /// @note If the Broodwar pointer is not
+    /// initialized, this function will check
+    /// validity against the largest (256x256)
+    /// map size.
+    ///
+    /// @returns A reference to itself.
+    /// @~
+    /// @see isValid
     Point &makeValid();
 
+    /// @~English
+    /// Gets an accurate distance measurement
+    /// from this point to the given position.
+    ///
+    /// @note This function impedes performance.
+    /// In most cases you should use getApproxDistance.
+    ///
+    /// @param position The target position to get the
+    /// distance to.
+    ///
+    /// @returns A double representing the distance
+    /// between this point and \p position.
+    /// @~
+    /// @see getApproxDistance
     double getDistance(const Point &position) const
     {
       return ((*this) - position).getLength();
     };
+    /// @~English
+    /// Gets the length of this point from
+    /// the top left corner of the map.
+    ///
+    /// @note This function impedes performance.
+    /// In most cases you should use getApproxDistance.
+    ///
+    /// @returns A double representing the length
+    /// of this point from (0,0).
+    /// @~
+    /// @see getApproxDistance
     double getLength() const
     {
       double x = (double)this->x;
@@ -193,6 +251,24 @@ namespace BWAPI
       return sqrt(x * x + y * y);
     };
 
+    /// @~English
+    /// Retrieves the approximate distance using
+    /// an algorithm from Starcraft: Broodwar.
+    ///
+    /// @note This function is desired because
+    /// it uses the same "imperfect" algorithm
+    /// used in Broodwar, so that calculations
+    /// will be consistent with the game. It
+    /// is also optimized for performance.
+    ///
+    /// @param position The target point
+    /// to measure the distance to.
+    ///
+    /// @returns An integer representing the
+    /// distance between this point and
+    /// \p position.
+    /// @~
+    /// @see getDistance
     int getApproxDistance(const Point &position) const
     {
       unsigned int min = abs((int)(this->x - position.x));
@@ -207,19 +283,44 @@ namespace BWAPI
       return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
     };
 
-    Point &setMax(_T _x, _T _y)
+    /// @~English
+    /// Sets the maximum x and y values. If the 
+    /// current x or y values exceed the given
+    /// maximum, then values are set to the
+    /// maximum.
+    ///
+    /// @param max_x Maximum x value.
+    /// @param max_y Maximum y value.
+    ///
+    /// @returns A reference to itself.
+    /// @~
+    /// @see setMin
+    Point &setMax(_T max_x, _T max_y)
     {
-      if ( x > _x )
-        x = _x;
-      if ( y > _y )
-        y = _y;
+      if ( x > max_x )
+        x = max_x;
+      if ( y > max_y )
+        y = max_y;
       return *this;
     };
+    /// @copydoc setMax
     Point &setMax(const Point &max)
     {
       this->setMax(max.x, max.y);
       return *this;
     };
+    /// @~English
+    /// Sets the minimum x and y values. If the 
+    /// current x or y values are below the given
+    /// minimum, then values are set to the
+    /// minimum.
+    ///
+    /// @param min_x Minimum x value.
+    /// @param min_y Minimum y value.
+    ///
+    /// @returns A reference to itself.
+    /// @~
+    /// @see setMax
     Point &setMin(_T _x, _T _y)
     {
       if ( x < _x )
@@ -228,13 +329,19 @@ namespace BWAPI
         y = _y;
       return *this;
     };
-    Point &setMin(const Point &max)
+    /// @copydoc setMin
+    Point &setMin(const Point &min)
     {
       this->setMin(max.x, max.y);
       return *this;
     };
 
-    // members
+    /// @~English
+    /// The x and y members for this class.
+    ///
+    /// Simply reference these members when
+    /// retrieving a position's x and y values.
+    /// @~
     _T x, y;
   };
 

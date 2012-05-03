@@ -203,18 +203,18 @@ namespace BWAPI
     this->setLastError();
     if ( !data->hasGUI ) return;
 
-    rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
-    SIZE mapTileSize = { Map::getWidth()*32, Map::getHeight()*32 };
+    Position scrSize(BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht + 80);
+    Position mapSize( TilePosition(Map::getWidth(), Map::getHeight()) );
 
     // Sets the screen's position relative to the map
-    x = clamp<int>(x, 0, mapTileSize.cx - scrLimit.right);
-    y = clamp<int>(y, 0, mapTileSize.cy - (scrLimit.bottom + 80));
+    Position movePos(x,y);
+    movePos.setMin(0, 0);
+    movePos.setMax( mapSize - scrSize);
 
-    x &= 0xFFFFFFF8;
-    y &= 0xFFFFFFF8;
-    *BW::BWDATA_MoveToX = x;
-    *BW::BWDATA_MoveToY = y;
-    *BW::BWDATA_MoveToTile = BW::TilePosition(Position(x,y));
+    movePos &= 0xFFFFFFF8;
+    *BW::BWDATA_MoveToX = movePos.x;
+    *BW::BWDATA_MoveToY = movePos.y;
+    *BW::BWDATA_MoveToTile = BW::TilePosition(movePos);
     BW::BWFXN_UpdateScreenPosition();
   }
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
