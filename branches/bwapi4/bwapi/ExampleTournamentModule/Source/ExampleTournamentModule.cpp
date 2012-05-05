@@ -1,5 +1,4 @@
 #include <windows.h>
-#include <Shlwapi.h>
 #include "ExampleTournamentModule.h"
 using namespace BWAPI;
 
@@ -86,64 +85,7 @@ void ExampleTournamentAI::onUnitRenegade(BWAPI::Unit* unit)
 }
 
 void ExampleTournamentAI::onSaveGame(std::string gameName)
-{
-}
-
-// Use some existing Battle.net filters
-const char *pszBadWords[] =
-{ 
-  "asshole",
-  "bitch",
-  "clit",
-  "cock",
-  "cunt",
-  "dick",
-  "dildo",
-  "faggot",
-  "fuck",
-  "gook",
-  "masturbat",
-  "nigga",
-  "nigger",
-  "penis",
-  "pussy",
-  "shit",
-  "slut",
-  "whore",
-  NULL
-};
-
-// as well as the Battle.net swear word filter algorithm
-const char szBadWordCharacters[] = { '!', '@', '#', '$', '%', '&' };
-void BadWordFilter(char *pszString)
-{
-  // Iterate each badword
-  for ( int f = 0; pszBadWords[f]; ++f )
-  {
-    // Find badword
-    char *pszMatch = StrStrI(pszString, pszBadWords[f]);
-    if ( !pszMatch )
-      continue; // continue if badword not found
-
-    // iterate characters in badword
-    char cLast = 0;
-    for ( int i = 0; pszBadWords[f][i]; ++i )
-    {
-      // make the character compatible with our replacements
-      int val = pszBadWords[f][i] & 7;
-      if ( val >= sizeof(szBadWordCharacters) )
-        val = 0;
-
-      // increment the replacement if it's the same as our last one, reset to 0 if it's out of bounds
-      if ( cLast == szBadWordCharacters[val] && ++val == sizeof(szBadWordCharacters) )
-        val = 0;
-
-      // apply our change to the original string and save the last character used
-      pszMatch[i] = szBadWordCharacters[val];
-      cLast       = szBadWordCharacters[val];
-    }
-  }
-}
+{}
 
 bool ExampleTournamentModule::onAction(int actionType, void *parameter)
 {
@@ -151,8 +93,7 @@ bool ExampleTournamentModule::onAction(int actionType, void *parameter)
   {
   case Tournament::SendText:
   case Tournament::Printf:
-    // Call our bad word filter and allow the AI module to send text
-    BadWordFilter((char*)parameter);
+    // Allow the AI module to send text
     return true;
   case Tournament::EnableFlag:
     switch ( *(int*)parameter )
