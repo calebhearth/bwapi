@@ -62,7 +62,6 @@ $(SolutionDir)\revisionUpdate.bat
     </ClCompile>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -70,8 +69,8 @@ $(SolutionDir)\revisionUpdate.bat
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Message>Copying BWAPId.dll to ChaosDir</Message>
-      <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.dll" "$(ChaosDir)"</Command>
+      <Message>Copying BWAPId.dll to Release_Binary</Message>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(TargetName)d$(TargetExt)"</Command>
     </PostBuildEvent>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -104,7 +103,6 @@ $(SolutionDir)\revisionUpdate.bat
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).dll</OutputFile>
       <AddModuleNamesToAssembly>%(AddModuleNamesToAssembly)</AddModuleNamesToAssembly>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -114,8 +112,8 @@ $(SolutionDir)\revisionUpdate.bat
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Message>Copying BWAPI.dll to ChaosDir</Message>
-      <Command>COPY /Y "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).dll" "$(ChaosDir)"</Command>
+      <Message>Copying BWAPI.dll to Release_Binary</Message>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(TargetName)$(TargetExt)"</Command>
     </PostBuildEvent>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>

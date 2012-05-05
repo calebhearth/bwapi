@@ -65,9 +65,6 @@ namespace BWAPI
       None, None, None, // unused
       Unknown, None, Unknown // random, none, unk
     };
-
-    // ALL RACES SET
-    // todo
   };// end local scope
 
   bool initializingRace = true;

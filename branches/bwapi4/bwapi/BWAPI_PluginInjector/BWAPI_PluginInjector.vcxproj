@@ -66,7 +66,7 @@ $(SolutionDir)\revisionUpdate.bat
     </ClCompile>
     <PreLinkEvent>
       <Message>Creating ChaosLauncherInjector readme</Message>
-      <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).txt" /Y</Command>
+      <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(ProjectName).txt" /Y</Command>
     </PreLinkEvent>
     <Link>
       <MapFileName>
@@ -81,9 +81,8 @@ $(SolutionDir)\revisionUpdate.bat
     </Link>
     <PostBuildEvent>
       <Message>Copying ChaosLauncherInjector to ChaosDir</Message>
-      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName).bwl"
-COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName).qdp"
-COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(ChaosDir).bwl"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(ProjectName).bwl"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName).qdp"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -105,7 +104,7 @@ $(SolutionDir)\revisionUpdate.bat
     </ClCompile>
     <PreLinkEvent>
       <Message>Creating ChaosLauncherInjector readme</Message>
-      <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.txt" /Y</Command>
+      <Command>COPY "$(SolutionDir)..\Release_Binary\README" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(ProjectName)d.txt" /Y</Command>
     </PreLinkEvent>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -118,9 +117,8 @@ $(SolutionDir)\revisionUpdate.bat
     </Link>
     <PostBuildEvent>
       <Message>Copying ChaosLauncherInjector to ChaosDir</Message>
-      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\$(ProjectName)d.bwl"
-COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName)d.qdp"
-COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(ChaosDir)d.bwl"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(ProjectName)d.bwl"
+COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MPQDraft\$(ProjectName)d.qdp"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

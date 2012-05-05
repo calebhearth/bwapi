@@ -239,7 +239,7 @@ namespace BWAPI
 
     /** Returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given
      * upgrade type, see Unit::upgrade. */
-    virtual int  getUpgradeLevel(UpgradeType upgrade) const = 0;
+    virtual int getUpgradeLevel(UpgradeType upgrade) const = 0;
 
     /** Returns true if the player has finished researching the given tech. To order a unit to research a
      * given tech type, see Unit::research. */
