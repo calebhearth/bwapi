@@ -3,24 +3,17 @@ MPQDraft can be downloaded at http://sourceforge.net/projects/mpqdraft/
 
 MPQDraft may be preferred by some users, but is the least used among AI and BWAPI developers. 
 
-How to:
+To use MPQDraft, follow one of the two processes listed below: 
 
-    * Download and Unzip MPQDraft
-    * Copy the BWAPI files from the BWAPI\MPQDraft\ folder to your MPQDraft folder.
-    * Run MPQDraft
-    * Follow one of the two processes listed below: 
+[Use MPQDraft as a launcher]:
+    1. Select LOAD MPQ PATCH
+    2. (Step 1 of 3) Select Starcraft, specify any command line parameters, and click Next
+    3. (Step 2 of 3) Click Next (or select any MPQ archives you wish to load)
+    4. (Step 3 of 3) Select the BWAPI injector with any other plugins and click Finish 
 
-Create a self-executing loader:
-
-    * Select CREATE SELF EXECUTING MPQ
-    * (Step 1 of 3) Set the paths for the input archive and output executable, then click Next
-    * (Step 2 of 3) Select Starcraft, specify any command line parameters, and click Next
-    * (Step 3 of 3) Select the BWAPI injector with any other plugins and click Finish
-    * Run the newly created executable 
-
-Immediately load BWAPI:
-
-    * Select LOAD MPQ PATCH
-    * (Step 1 of 3) Select Starcraft, specify any command line parameters, and click Next
-    * (Step 2 of 3) Select any MPQ archives you want to load and click Next
-    * (Step 3 of 3) Select the BWAPI injector with any other plugins and click Finish 
+[Create a self-executing loader]:
+    1. Select CREATE SELF EXECUTING MPQ
+    2. (Step 1 of 3) Set the paths for the input archive and output executable, then click Next
+    3. (Step 2 of 3) Select Starcraft, specify any command line parameters, and click Next
+    4. (Step 3 of 3) Select the BWAPI injector with any other plugins and click Finish
+    5. Run the newly created executable 

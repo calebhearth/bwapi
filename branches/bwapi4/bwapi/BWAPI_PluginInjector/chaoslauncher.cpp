@@ -4,6 +4,9 @@
 #include "chaoslauncher.h"
 #include "common.h"
 
+#include "valloc.h"
+#include "remotethread.h"
+
 #include "config.h"
 
 // GET Functions for BWLauncher
@@ -40,73 +43,37 @@ extern "C" __declspec(dllexport) bool ApplyPatch(HANDLE, DWORD)
 
 extern "C" __declspec(dllexport) bool ApplyPatchSuspended(HANDLE hProcess, DWORD)
 {
-  char envBuffer[MAX_PATH];
-  bool envFailed = false;
-  if ( !GetEnvironmentVariable("ChaosDir", envBuffer, MAX_PATH) )
-  {
-    envFailed = true;
-    if ( !GetCurrentDirectory(MAX_PATH, envBuffer) )
-      return BWAPIError("Could not find ChaosDir or CurrentDirectory.");
-  }
+  // Get target file name
+  char szTarget[MAX_PATH];
+  strncpy(szTarget, GetBWAPITarget().c_str(), MAX_PATH-1);
+  szTarget[MAX_PATH-1] = '\0';
 
-  strcat(envBuffer, "\\" MODULE);
-  DWORD dwFileAttribs = GetFileAttributes(envBuffer);
-  if ( dwFileAttribs == INVALID_FILE_ATTRIBUTES || dwFileAttribs & FILE_ATTRIBUTE_DIRECTORY )
-  {
-    if ( !envFailed && !GetCurrentDirectory(MAX_PATH, envBuffer) )
-      return BWAPIError("Could not find CurrentDirectory.");
-    strcat(envBuffer, "\\" MODULE);
-    dwFileAttribs = GetFileAttributes(envBuffer);
-    if ( dwFileAttribs == INVALID_FILE_ATTRIBUTES || dwFileAttribs & FILE_ATTRIBUTE_DIRECTORY )
-      return BWAPIError("Could not find file \"%s\".", envBuffer);
-  }
-  DWORD dwDllSize = strlen(envBuffer)+1;
-
+  // Get the address for the LoadLibrary procedure 
   LPTHREAD_START_ROUTINE loadLibAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle("Kernel32"), "LoadLibraryA" );
   if ( !loadLibAddress )
     return BWAPIError("Could not get Proc Address for LoadLibraryA.");
 
-
-  void* pathAddress = VirtualAllocEx(hProcess, NULL, dwDllSize, MEM_COMMIT, PAGE_READWRITE);
-  if ( !pathAddress )
+  // Create a remote allocation
+  VAlloc alloc(hProcess, MAX_PATH);
+  if ( !alloc )
     return BWAPIError("Could not allocate memory for DLL path.");
 
-  SIZE_T bytesWritten;
-  BOOL success = WriteProcessMemory(hProcess, pathAddress, envBuffer, dwDllSize, &bytesWritten);
-  if ( !success )
-  {
-    VirtualFreeEx(hProcess, pathAddress, dwDllSize, MEM_RELEASE);
-    return BWAPIError("Unable to write process memory.");
-  }
-  if ( bytesWritten != dwDllSize )
-    BWAPIError("WriteToProcessMemory bytesWritten is not the expected value.");
+  // Write the DLL path to the allocation
+  if ( !alloc.Write(szTarget, MAX_PATH) )
+    return BWAPIError("Write process memory failed.");
 
-  HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, loadLibAddress, pathAddress, 0, NULL);
-  if ( !hThread )
-  {
-    VirtualFreeEx(hProcess, pathAddress, dwDllSize, MEM_RELEASE);
+  // Create a remote thread for LoadLibrary and pass the DLL path as a parameter
+  RemoteThread thread(hProcess, loadLibAddress, alloc.GetAddress());
+  if ( !thread )
     return BWAPIError("Unable to create remote thread.");
-  }
 
-  if ( WaitForSingleObject(hThread, INFINITE) == WAIT_FAILED )
-  {
-    VirtualFreeEx(hProcess, pathAddress, dwDllSize, MEM_RELEASE);
-    CloseHandle(hThread);
+  // Wait for the thread to finish
+  if ( !thread.Wait() )
     return BWAPIError("WaitForSingleObject failed.");
-  }
 
-  DWORD dwExitCode = NULL;
-  if ( !GetExitCodeThread(hThread, &dwExitCode) )
-  {
-    VirtualFreeEx(hProcess, pathAddress, dwDllSize, MEM_RELEASE);
-    CloseHandle(hThread);
-    return BWAPIError("GetExitCodeThread failed.");
-  }
+  // The exit code for LoadLibrary is its return value, if it's NULL then loading failed
+  if ( thread.GetExitCode() == NULL )
+    return BWAPIError("Injection failed.\nThis is caused when BWAPI crashes before injecting completely.");
 
-  if ( !dwExitCode )
-    BWAPIError("Injection failed.\nThis is caused when BWAPI crashes before injecting completely.");
-
-  VirtualFreeEx(hProcess, pathAddress, dwDllSize, MEM_RELEASE);
-  CloseHandle(hThread);
   return true; //everything OK
 }

@@ -127,6 +127,8 @@ COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MP
     <ClCompile Include="config.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mpqdraft.cpp" />
+    <ClCompile Include="remotethread.cpp" />
+    <ClCompile Include="valloc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chaoslauncher.h" />
@@ -135,6 +137,8 @@ COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MP
     <ClInclude Include="main.h" />
     <ClInclude Include="mpqdraft.h" />
     <ClInclude Include="QDPlugin.h" />
+    <ClInclude Include="remotethread.h" />
+    <ClInclude Include="valloc.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="QDPlugin.def" />

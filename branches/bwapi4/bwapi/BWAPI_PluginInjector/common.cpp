@@ -6,9 +6,21 @@
 
 const char *pszPluginName = "BWAPI Injector (" STARCRAFT_VER ") r" SVN_REV_STR " (" BUILD_STR ")";
 
+std::string GetBWAPITarget()
+{
+  return GetBWAPIDataDirectory() + ("\\" MODULE);
+}
+
+std::string GetBWAPIDataDirectory()
+{
+  std::string sInstallPath = GetRegString("SOFTWARE\\Blizzard Entertainment\\Starcraft", "InstallPath");
+  return sInstallPath + "\\bwapi-data";
+}
+
 DWORD GetSingleRegString(HKEY hBaseKey, const char *pszSubKey, const char *pszValueName, char *pszOutput, DWORD *dwOutSize)
 {
-  HKEY hKey = NULL;;
+  HKEY hKey = NULL;
+  pszOutput[0] = '\0';
 
   // Open the key
   DWORD dwErrCode = RegOpenKeyEx(hBaseKey, pszSubKey, 0, KEY_QUERY_VALUE, &hKey);
@@ -28,9 +40,6 @@ std::string GetRegString(const char *pszSubKey, const char *pszValueName)
   // Declare temporary string and size
   char szTemp[MAX_PATH];
   DWORD dwSize = MAX_PATH;
-
-  // Initialize the string to ""
-  szTemp[0] = '\0';
 
   // Retrieve the key and value from HKCU
   DWORD dwErrCode = GetSingleRegString(HKEY_CURRENT_USER, pszSubKey, pszValueName, szTemp, &dwSize);

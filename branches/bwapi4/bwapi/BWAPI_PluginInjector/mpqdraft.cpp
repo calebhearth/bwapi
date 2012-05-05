@@ -53,29 +53,10 @@ BOOL WINAPI MPQDraftPluginInterface::GetModules(MPQDRAFTPLUGINMODULE* pluginmodu
 
 BOOL WINAPI MPQDraftPluginInterface::InitializePlugin(IMPQDraftServer* server)
 {
-  char envBuffer[MAX_PATH];
-  bool envFailed = false;
-  if ( !GetEnvironmentVariable("ChaosDir", envBuffer, MAX_PATH) )
-  {
-    envFailed = true;
-    if ( !GetCurrentDirectory(MAX_PATH, envBuffer) )
-      return BWAPIError("Could not find ChaosDir or CurrentDirectory.");
-  }
+  std::string target = GetBWAPITarget();
 
-  strcat(envBuffer, "\\" MODULE);
-  DWORD dwFileAttribs = GetFileAttributes(envBuffer);
-  if ( dwFileAttribs == INVALID_FILE_ATTRIBUTES || dwFileAttribs & FILE_ATTRIBUTE_DIRECTORY )
-  {
-    if ( !envFailed && !GetCurrentDirectory(MAX_PATH, envBuffer) )
-      return BWAPIError("Could not find CurrentDirectory.");
-    strcat(envBuffer, "\\" MODULE);
-    dwFileAttribs = GetFileAttributes(envBuffer);
-    if ( dwFileAttribs == INVALID_FILE_ATTRIBUTES || dwFileAttribs & FILE_ATTRIBUTE_DIRECTORY )
-      return BWAPIError("Could not find file \"%s\".", envBuffer);
-  }
-
-  if ( !LoadLibrary(envBuffer) )
-    return BWAPIError("Could not load \"%s\".", envBuffer);
+  if ( !LoadLibrary(target.c_str()) )
+    return BWAPIError("Could not load \"%s\".", target.c_str());
   return TRUE;
 }
 
