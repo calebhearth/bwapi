@@ -1,7 +1,8 @@
 #pragma once
 #include <map>
+
 #include <BWAPI/Position.h>
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {

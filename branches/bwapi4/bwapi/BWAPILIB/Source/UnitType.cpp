@@ -684,7 +684,6 @@ namespace BWAPI
       bool valid;
   };
   UnitTypeInternal unitTypeData[245];
-  std::map<std::string, UnitType> unitTypeMap;
   UnitType::set unitTypeSet;
   UnitType::set macroTypeSet;
   int maxWidth;
@@ -1371,22 +1370,12 @@ namespace BWAPI
 
       foreach(UnitType i, unitTypeSet)
       {
-        std::string name(i.getName());
-        fixName(&name);
-        unitTypeMap.insert(std::make_pair(name, i));
-
         int wid = i.dimensionLeft() + i.dimensionRight()  + 1;
         int hgt = i.dimensionUp()   + i.dimensionDown()   + 1;
         if ( wid > maxWidth )
           maxWidth = wid;
         if ( hgt > maxHeight )
           maxHeight = hgt;
-      }
-      foreach(UnitType i, macroTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        unitTypeMap.insert(std::make_pair(name, i));
       }
     }
   }
@@ -1712,11 +1701,12 @@ namespace BWAPI
   }
   UnitType UnitTypes::getUnitType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, UnitType>::iterator i = unitTypeMap.find(name);
-    if (i == unitTypeMap.end())
-      return UnitTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < UnitTypes::Enum::MAX; ++i )
+    {
+      if ( name == unitTypeNames[i] )
+        return UnitType(i);
+    }
+    return UnitTypes::Unknown;
   }
   const UnitType::set& UnitTypes::allUnitTypes()
   {

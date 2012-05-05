@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/PlayerType.h>
 #include <Util/Foreach.h>
 
@@ -25,7 +24,6 @@ namespace BWAPI
         "ComputerLeft",
         "Unknown"
   };
-  std::map<std::string, PlayerType> playerTypeMap;
   namespace PlayerTypeSet
   {
     using namespace PlayerTypes::Enum;
@@ -49,15 +47,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(PlayerType,ComputerLeft);
     BWAPI_TYPEDEF(PlayerType,Unknown);
 
-    void init()
-    {
-      foreach(PlayerType i, PlayerTypeSet::playerTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        playerTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   PlayerType::PlayerType(int id) : Type( id )
   {
@@ -72,11 +61,12 @@ namespace BWAPI
   }
   PlayerType PlayerTypes::getPlayerType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, PlayerType>::iterator i = playerTypeMap.find(name);
-    if (i == playerTypeMap.end())
-      return PlayerTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < PlayerTypes::Enum::MAX; ++i )
+    {
+      if ( name == playerTypeName[i] )
+        return PlayerType(i);
+    }
+    return PlayerTypes::Unknown;
   }
   const PlayerType::set& PlayerTypes::allPlayerTypes()
   {

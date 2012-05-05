@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -51,7 +51,6 @@ namespace BWAPI
 
     /** Returns the set of all the GameTypes. */
     const GameType::set& allGameTypes();
-    void init();
     
     extern const GameType Melee;
     extern const GameType Free_For_All;

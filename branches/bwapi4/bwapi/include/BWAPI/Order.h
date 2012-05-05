@@ -1,7 +1,5 @@
 #pragma once
-#include "Type.h"
-
-#include <string>
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -227,8 +225,6 @@ namespace BWAPI
 
     /** Returns the set of all the Orders. */
     const Order::set& allOrders();
-
-    void init();
 
     extern const Order Die;
     extern const Order Stop;

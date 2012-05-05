@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/WeaponType.h>
 #include <BWAPI/TechType.h>
@@ -73,7 +72,6 @@ namespace BWAPI
       bool valid;
   };
   WeaponTypeInternal weaponTypeData[132];
-  std::map<std::string, WeaponType> weaponTypeMap;
   namespace WeaponTypesSet
   {
     using namespace WeaponTypes::Enum;
@@ -321,13 +319,6 @@ namespace BWAPI
 
       weaponTypeData[None].set("None", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
       weaponTypeData[Unknown].set("Unknown", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
-
-      foreach(WeaponType i, WeaponTypesSet::weaponTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        weaponTypeMap.insert(std::make_pair(name, i));
-      }
     }
   }
   WeaponType::WeaponType(int id) : Type( id )
@@ -435,11 +426,12 @@ namespace BWAPI
   }
   WeaponType WeaponTypes::getWeaponType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, WeaponType>::iterator i = weaponTypeMap.find(name);
-    if (i == weaponTypeMap.end())
-      return WeaponTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < WeaponTypes::Enum::MAX; ++i )
+    {
+      if ( name == weaponTypeData[i].name )
+        return WeaponType(i);
+    }
+    return WeaponTypes::Unknown;
   }
   const WeaponType::set& WeaponTypes::allWeaponTypes()
   {

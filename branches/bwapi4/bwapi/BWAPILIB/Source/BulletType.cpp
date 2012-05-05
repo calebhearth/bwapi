@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/BulletType.h>
 #include <Util/Foreach.h>
 
@@ -9,7 +8,6 @@
 
 namespace BWAPI
 {
-  std::map<std::string, BulletType> bulletTypeMap;
   namespace BulletTypeSet
   {
     using namespace BulletTypes::Enum;
@@ -84,16 +82,6 @@ namespace BWAPI
       "Halo_Rockets", "Subterranean_Spines", "Corrosive_Acid_Shot", "Corrosive_Acid_Hit", "Neutron_Flare", 
       "", "", "None", "Unknown"
     };
-
-    void init()
-    {
-      foreach(BulletType i, BulletTypeSet::bulletTypeSet)
-      {
-        std::string name = i.getName();
-        fixName(&name);
-        bulletTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
 
   BulletType::BulletType(int id) : Type( id )
@@ -109,11 +97,12 @@ namespace BWAPI
   }
   BulletType BulletTypes::getBulletType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, BulletType>::iterator i = bulletTypeMap.find(name);
-    if (i == bulletTypeMap.end())
-      return BulletTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < BulletTypes::Enum::MAX; ++i )
+    {
+      if ( name == bulletTypeNames[i] )
+        return BulletType(i);
+    }
+    return BulletTypes::Unknown;
   }
   const BulletType::set& BulletTypes::allBulletTypes()
   {

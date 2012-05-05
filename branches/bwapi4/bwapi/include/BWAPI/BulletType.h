@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -74,8 +74,6 @@ namespace BWAPI
 
     /** Returns the set of all the BulletTypes. */
     const BulletType::set& allBulletTypes();
-
-    void init();
 
     extern const BulletType Melee;
     extern const BulletType Fusion_Cutter_Hit;

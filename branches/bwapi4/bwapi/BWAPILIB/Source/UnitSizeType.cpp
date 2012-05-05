@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/UnitSizeType.h>
 #include <Util/Foreach.h>
 
@@ -18,7 +17,6 @@ namespace BWAPI
     "None",
     "Unknown"  
   };
-  std::map<std::string, UnitSizeType> unitSizeTypeMap;
   namespace UnitSizeTypeSet
   {
     using namespace UnitSizeTypes::Enum;
@@ -33,15 +31,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitSizeType,None);
     BWAPI_TYPEDEF(UnitSizeType,Unknown);
 
-    void init()
-    {
-      foreach(UnitSizeType i, UnitSizeTypeSet::unitSizeTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        unitSizeTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   UnitSizeType::UnitSizeType(int id) : Type( id )
   {
@@ -56,11 +45,12 @@ namespace BWAPI
   }
   UnitSizeType UnitSizeTypes::getUnitSizeType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, UnitSizeType>::iterator i = unitSizeTypeMap.find(name);
-    if (i == unitSizeTypeMap.end())
-      return UnitSizeTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < UnitSizeTypes::Enum::MAX; ++i )
+    {
+      if ( name == unitSizeTypeName[i] )
+        return UnitSizeType(i);
+    }
+    return UnitSizeTypes::Unknown;
   }
   const UnitSizeType::set& UnitSizeTypes::allUnitSizeTypes()
   {

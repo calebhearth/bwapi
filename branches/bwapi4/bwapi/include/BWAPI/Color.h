@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -66,8 +66,6 @@ namespace BWAPI
   /// @~
   namespace Colors
   {
-    void init();
-
     /// @~English
     /// The default color for Player 1.
     /// @~

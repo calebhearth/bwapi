@@ -1,5 +1,7 @@
 #pragma once
-#include "Vectorset.h"
+#include <string>
+
+#include <BWAPI/Vectorset.h>
 
 namespace BWAPI
 {

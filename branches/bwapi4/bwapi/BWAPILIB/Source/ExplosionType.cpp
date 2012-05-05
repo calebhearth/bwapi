@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/ExplosionType.h>
 #include <Util/Foreach.h>
 
@@ -39,7 +38,6 @@ namespace BWAPI
     "Unknown"
   };
 
-  std::map<std::string, ExplosionType> explosionTypeMap;
   namespace ExplosionTypeSet
   {
     using namespace ExplosionTypes::Enum;
@@ -76,16 +74,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(ExplosionType,Maelstrom);
     BWAPI_TYPEDEF(ExplosionType,Air_Splash);
     BWAPI_TYPEDEF(ExplosionType,Unknown);
-
-    void init()
-    {
-      foreach(ExplosionType i, ExplosionTypeSet::explosionTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        explosionTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   ExplosionType::ExplosionType(int id) : Type( id )
   {
@@ -100,11 +88,12 @@ namespace BWAPI
   }
   ExplosionType ExplosionTypes::getExplosionType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, ExplosionType>::iterator i = explosionTypeMap.find(name);
-    if (i == explosionTypeMap.end())
-      return ExplosionTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < ExplosionTypes::Enum::MAX; ++i )
+    {
+      if ( name == explosionTypeName[i] )
+        return ExplosionType(i);
+    }
+    return ExplosionTypes::Unknown;
   }
   const ExplosionType::set& ExplosionTypes::allExplosionTypes()
   {

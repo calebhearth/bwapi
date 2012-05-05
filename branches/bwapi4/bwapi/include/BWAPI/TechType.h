@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 #include <BWAPI/UnitType.h>
 
 namespace BWAPI
@@ -112,7 +112,6 @@ namespace BWAPI
 
     /** Returns the set of all the TechTypes. */
     const TechType::set& allTechTypes();
-    void init();
 
     extern const TechType Stim_Packs;
     extern const TechType Lockdown;

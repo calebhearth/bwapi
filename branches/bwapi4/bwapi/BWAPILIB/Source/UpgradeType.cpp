@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>
@@ -51,7 +50,6 @@ namespace BWAPI
       bool valid;
   };
   UpgradeTypeInternal upgradeTypeData[63];
-  std::map<std::string, UpgradeType> upgradeTypeMap;
   namespace UpgradeTypeSet
   {
     using namespace UpgradeTypes::Enum;
@@ -281,13 +279,6 @@ namespace BWAPI
       upgradeTypeData[Protoss_Plasma_Shields].whatUses.insert(UnitTypes::Protoss_Stargate);
       upgradeTypeData[Protoss_Plasma_Shields].whatUses.insert(UnitTypes::Protoss_Templar_Archives);
       upgradeTypeData[Protoss_Plasma_Shields].whatUses.insert(UnitTypes::Protoss_Zealot);
-
-      foreach(UpgradeType i, UpgradeTypeSet::upgradeTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        upgradeTypeMap.insert(std::make_pair(name, i));
-      }
     }
   }
   UpgradeType::UpgradeType(int id) : Type( id )
@@ -351,11 +342,12 @@ namespace BWAPI
   }
   UpgradeType UpgradeTypes::getUpgradeType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, UpgradeType>::iterator i = upgradeTypeMap.find(name);
-    if (i == upgradeTypeMap.end())
-      return UpgradeTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < UpgradeTypes::Enum::MAX; ++i )
+    {
+      if ( name == upgradeTypeData[i].name )
+        return UpgradeType(i);
+    }
+    return UpgradeTypes::Unknown;
   }
   const UpgradeType::set& UpgradeTypes::allUpgradeTypes()
   {

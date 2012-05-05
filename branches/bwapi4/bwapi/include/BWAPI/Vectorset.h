@@ -106,10 +106,12 @@ namespace BWAPI
   template<typename _T>
   class Vectorset
   {
+#ifndef SWIG
     static_assert(std::has_trivial_copy<_T>::value == true &&
                   std::has_trivial_copy_constructor<_T>::value == true &&
                   std::has_trivial_destructor<_T>::value == true,
                   "Vectorset can only be used with classes that have a trivial destructor and trivial copy constructor.");
+#endif
   public:
     /// @~English
     /// The iterator is used to traverse the elements 

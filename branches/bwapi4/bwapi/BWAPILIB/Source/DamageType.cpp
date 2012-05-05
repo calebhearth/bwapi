@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/DamageType.h>
 
 #include <Util/Foreach.h>
@@ -21,7 +20,6 @@ namespace BWAPI
     "Unknown"
   };
 
-  std::map<std::string, DamageType> damageTypeMap;
   namespace DamageTypeSet
   {
     using namespace DamageTypes::Enum;
@@ -37,15 +35,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(DamageType,None);
     BWAPI_TYPEDEF(DamageType,Unknown);
 
-    void init()
-    {
-      foreach(DamageType i, DamageTypeSet::damageTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        damageTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   DamageType::DamageType(int id) : Type( id )
   {
@@ -60,11 +49,12 @@ namespace BWAPI
   }
   DamageType DamageTypes::getDamageType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, DamageType>::iterator i = damageTypeMap.find(name);
-    if (i == damageTypeMap.end())
-      return DamageTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < DamageTypes::Enum::MAX; ++i )
+    {
+      if ( name == damageTypeName[i] )
+        return DamageType(i);
+    }
+    return DamageTypes::Unknown;
   }
   const DamageType::set& DamageTypes::allDamageTypes()
   {

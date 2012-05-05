@@ -1,6 +1,5 @@
 #pragma once
-#include "Type.h"
-#include <string>
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -139,8 +138,6 @@ namespace BWAPI
     /// @returns Race::set containing all the Race types.
     /// @~
     const Race::set& allRaces();
-
-    void init();
 
     extern const Race Zerg;
     extern const Race Terran;

@@ -5,31 +5,36 @@
 #include <BWAPI/Vectorset.h>
 
 #ifndef _MAKE_POSITION_TEMPLATE
-#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;        \
-                      namespace _n ## s              \
-                      {  const _n Invalid(32000/_s,32000/_s);  \
-                        const _n None(32000/_s,32032/_s);    \
-                        const _n Unknown(32000/_s,32064/_s);  \
-                      }
 
-#define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const            \
-              { return Point(this->x op pos.x, this->y op pos.y); };  \
-              Point &operator op ## = (const Point &pos)              \
-              { this->x op ## = pos.x; this->y op ## = pos.y;          \
+#ifdef SWIG
+#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;
+#else
+#define _MAKE_POSITION_TEMPLATE(_n,_t,_s) typedef BWAPI::Point<_t,_s> _n;   \
+                      namespace _n ## s                                     \
+                      { const _n Invalid(32000/_s,32000/_s);                \
+                        const _n None(32000/_s,32032/_s);                   \
+                        const _n Unknown(32000/_s,32064/_s);                \
+                      }
+#endif
+
+#define _OPERATOR_OP_PT(op) Point operator op (const Point &pos) const      \
+              { return Point(this->x op pos.x, this->y op pos.y); };        \
+              Point &operator op ## = (const Point &pos)                    \
+              { this->x op ## = pos.x; this->y op ## = pos.y;               \
                 return *this; }; 
 
 #define _OPERATOR_OP_VAL(op) Point operator op (const _T &val) const        \
-              { return Point(this->x op val, this->y op val); };  \
-              Point &operator op ## = (const _T &val)            \
-              { this->x op ## = val; this->y op ## = val;          \
+              { return Point(this->x op val, this->y op val); };            \
+              Point &operator op ## = (const _T &val)                       \
+              { this->x op ## = val; this->y op ## = val;                   \
                 return *this; }; 
 
 #define _OPERATOR_OP_VAL_CHK(op) Point operator op (const _T &val) const                  \
-                { if ( val == 0 ) return Point(32000/__Scale,32000/__Scale);        \
-                  return Point(this->x op val, this->y op val); };          \
-                Point &operator op ## = (const _T &val)                      \
-                { if ( val == 0 ) { this->x = 32000/__Scale; this->y = 32000/__Scale; }  \
-                  else { this->x op ## = val; this->y op ## = val; }              \
+                { if ( val == 0 ) return Point(32000/__Scale,32000/__Scale);              \
+                  return Point(this->x op val, this->y op val); };                        \
+                Point &operator op ## = (const _T &val)                                   \
+                { if ( val == 0 ) { this->x = 32000/__Scale; this->y = 32000/__Scale; }   \
+                  else { this->x op ## = val; this->y op ## = val; }                      \
                   return *this; }; 
 
 #endif

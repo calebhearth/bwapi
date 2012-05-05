@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/TechType.h>
 #include <BWAPI/Race.h>
 #include <BWAPI/Order.h>
@@ -175,7 +174,6 @@ namespace BWAPI
     };
   }
 
-  std::map<std::string, TechType> techTypeMap;
   namespace TechTypeSet
   {
     using namespace TechTypes::Enum;
@@ -226,16 +224,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(TechType,None);
     BWAPI_TYPEDEF(TechType,Nuclear_Strike);
     BWAPI_TYPEDEF(TechType,Unknown);
-
-    void init()
-    {
-      foreach(TechType i, TechTypeSet::techTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        techTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   TechType::TechType(int id) : Type( id )
   {
@@ -294,11 +282,12 @@ namespace BWAPI
   }
   TechType TechTypes::getTechType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, TechType>::iterator i = techTypeMap.find(name);
-    if (i == techTypeMap.end()) 
-      return TechTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < TechTypes::Enum::MAX; ++i )
+    {
+      if ( name == techTypeNames[i] )
+        return TechType(i);
+    }
+    return TechTypes::Unknown;
   }
   const TechType::set& TechTypes::allTechTypes()
   {

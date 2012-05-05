@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -38,8 +38,6 @@ namespace BWAPI
 
     /** Returns the set of all the DamageTypes. */
     const DamageType::set& allDamageTypes();
-
-    void init();
 
     extern const DamageType Independent;
     extern const DamageType Explosive;

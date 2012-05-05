@@ -1,6 +1,5 @@
 #pragma once
-#include "Type.h"
-#include <string>
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -77,7 +76,6 @@ namespace BWAPI
 
     /** Returns the set of all the sizes, which are listed below: */
     const UnitCommandType::set& allUnitCommandTypes();
-    void init();
     
     extern const UnitCommandType Attack_Move;
     extern const UnitCommandType Attack_Unit;

@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>
 #include <Util/Foreach.h>
@@ -67,9 +66,6 @@ namespace BWAPI
     };
   };// end local scope
 
-  bool initializingRace = true;
-
-  std::map<std::string, Race> raceMap;
   namespace RaceSet
   {
     using namespace Races::Enum;
@@ -83,16 +79,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(Race,Random);
     BWAPI_TYPEDEF(Race,None);
     BWAPI_TYPEDEF(Race,Unknown);
-
-    void init()
-    {
-      foreach(Race i, RaceSet::raceSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        raceMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   Race::Race(int id) : Type(id)
   {
@@ -127,11 +113,12 @@ namespace BWAPI
   }
   Race Races::getRace(std::string &name)
   {
-    fixName(&name);
-    std::map<std::string, Race>::iterator i = raceMap.find(name);
-    if (i == raceMap.end())
-      return Races::Unknown;
-    return (*i).second;
+    for (int i = 0; i < Races::Enum::MAX; ++i )
+    {
+      if ( name == RaceInternal::raceNames[i] )
+        return Race(i);
+    }
+    return Races::Unknown;
   }
   const Race::set& Races::allRaces()
   {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 #define BWAPI_UNITSIZETYPEDEF(x) static const UnitSizeType x(Enum::x) /** ref x */
 
@@ -38,7 +38,6 @@ namespace BWAPI
 
     /** Returns the set of all the sizes, which are listed below: */
     const UnitSizeType::set& allUnitSizeTypes();
-    void init();
     
     extern const UnitSizeType Independent;
     extern const UnitSizeType Small;

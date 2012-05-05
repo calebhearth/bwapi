@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/UnitCommandType.h>
 #include <Util/Foreach.h>
 
@@ -58,7 +57,6 @@ namespace BWAPI
     "None",
     "Unknown"
   };
-  std::map<std::string, UnitCommandType> unitCommandTypeMap;
   namespace UnitCommandTypeSet
   {
     using namespace UnitCommandTypes::Enum;
@@ -117,16 +115,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitCommandType,Place_COP);
     BWAPI_TYPEDEF(UnitCommandType,None);
     BWAPI_TYPEDEF(UnitCommandType,Unknown);
-
-    void init()
-    {
-      foreach(UnitCommandType i, UnitCommandTypeSet::unitCommandTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        unitCommandTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   UnitCommandType::UnitCommandType(int id) : Type( id )
   {
@@ -141,11 +129,12 @@ namespace BWAPI
   }
   UnitCommandType UnitCommandTypes::getUnitCommandType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, UnitCommandType>::iterator i = unitCommandTypeMap.find(name);
-    if (i == unitCommandTypeMap.end())
-      return UnitCommandTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < UnitCommandTypes::Enum::MAX; ++i )
+    {
+      if ( name == unitCommandTypeName[i] )
+        return UnitCommandType(i);
+    }
+    return UnitCommandTypes::Unknown;
   }
   const UnitCommandType::set& UnitCommandTypes::allUnitCommandTypes()
   {

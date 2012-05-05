@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -55,8 +55,6 @@ namespace BWAPI
 
     /** Returns the set of all ExplosionTypes. */
     const ExplosionType::set& allExplosionTypes();
-
-    void init();
 
     extern const ExplosionType None;
     extern const ExplosionType Normal;

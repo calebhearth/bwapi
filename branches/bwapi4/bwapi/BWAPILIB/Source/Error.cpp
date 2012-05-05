@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/Error.h>
 #include <Util/Foreach.h>
 
@@ -42,7 +41,6 @@ namespace BWAPI
     "Unknown"
   };
 
-  std::map<std::string, Error> errorMap;
   namespace ErrorSet
   {
     using namespace Errors::Enum;
@@ -83,16 +81,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(Error,Invalid_Parameter);
     BWAPI_TYPEDEF(Error,None);
     BWAPI_TYPEDEF(Error,Unknown);
-
-    void init()
-    {
-      foreach(Error i, ErrorSet::errorSet)
-      {
-        std::string name(i.toString());
-        fixName(&name);
-        errorMap.insert(std::make_pair(name, i));
-      }
-    }
   }
 
   Error::Error(int id) : Type( id )
@@ -108,11 +96,12 @@ namespace BWAPI
   }
   Error Errors::getError(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, Error>::iterator i = errorMap.find(name);
-    if (i == errorMap.end())
-      return Errors::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < Errors::Enum::MAX; ++i )
+    {
+      if ( name == errorName[i] )
+        return Error(i);
+    }
+    return Errors::Unknown;
   }
   const Error::set& Errors::allErrors()
   {

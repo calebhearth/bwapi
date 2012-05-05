@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -78,8 +78,6 @@ namespace BWAPI
 
     /** The set of all the error codes. */
     const Error::set& allErrors();
-
-    void init();
 
     /** Returned if you try to order a unit or get information from a unit that no longer exists. */
     extern const Error Unit_Does_Not_Exist;

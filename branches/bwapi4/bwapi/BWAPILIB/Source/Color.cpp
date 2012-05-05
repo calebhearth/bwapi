@@ -88,10 +88,6 @@ namespace BWAPI
     const Color Cyan(128);
     const Color Black(0);
     const Color Grey(74);
-
-    void init()
-    {
-    } // init
   }
   Color::Color(int id) : Type(id)
   {

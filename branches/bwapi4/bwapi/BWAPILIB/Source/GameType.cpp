@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/GameType.h>
 #include <Util/Foreach.h>
 
@@ -31,8 +30,6 @@ namespace BWAPI
     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
     "Unknown"
   };
-  std::map<std::string, GameType> gameTypeMap;
-
   namespace GameTypeSet
   {
     using namespace GameTypes::Enum;
@@ -58,15 +55,6 @@ namespace BWAPI
     BWAPI_TYPEDEF(GameType,None);
     BWAPI_TYPEDEF(GameType,Unknown);
     
-    void init()
-    {
-      foreach(GameType i, GameTypeSet::gameTypeSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        gameTypeMap.insert(std::make_pair(name, i));
-      }
-    }
   }
   GameType::GameType(int id) : Type( id )
   {
@@ -81,10 +69,12 @@ namespace BWAPI
   }
   GameType GameTypes::getGameType(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, GameType>::iterator i = gameTypeMap.find(name);
-    if (i == gameTypeMap.end()) return GameTypes::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < GameTypes::Enum::MAX; ++i )
+    {
+      if ( name == gameTypeName[i] )
+        return GameType(i);
+    }
+    return GameTypes::Unknown;
   }
   const GameType::set& GameTypes::allGameTypes()
   {

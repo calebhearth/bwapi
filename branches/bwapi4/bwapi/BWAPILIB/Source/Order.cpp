@@ -1,5 +1,4 @@
 #include <string>
-#include <map>
 #include <BWAPI/Order.h>
 #include <Util/Foreach.h>
 
@@ -9,7 +8,6 @@
 
 namespace BWAPI
 {
-  std::map<std::string, Order> orderMap;
   namespace OrderSet
   {
     using namespace Orders::Enum;
@@ -227,15 +225,6 @@ namespace BWAPI
       "CastRestoratioin", "CastDisruptionWeb", "CastMindControl", "DarkArchonMeld", "CastFeedback",
       "CastOpticalFlare", "CastMaelstrom", "JunkYardDog", "Fatal", "None", "Unknown"
     };
-    void init()
-    {
-      foreach(Order i, OrderSet::orderSet)
-      {
-        std::string name(i.getName());
-        fixName(&name);
-        orderMap.insert(std::make_pair(name, i));
-      }
-    }
   }
 
   Order::Order(int id) : Type( id )
@@ -251,11 +240,12 @@ namespace BWAPI
   }
   Order Orders::getOrder(std::string name)
   {
-    fixName(&name);
-    std::map<std::string, Order>::iterator i = orderMap.find(name);
-    if (i == orderMap.end())
-      return Orders::Unknown;
-    return (*i).second;
+    for ( int i = 0; i < Orders::Enum::MAX; ++i )
+    {
+      if ( name == orderNames[i] )
+        return Order(i);
+    }
+    return Orders::Unknown;
   }
   const Order::set& Orders::allOrders()
   {

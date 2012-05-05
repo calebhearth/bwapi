@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 
 namespace BWAPI
 {
@@ -43,7 +43,6 @@ namespace BWAPI
 
     /** Returns the set of all the PlayerTypes. */
     const PlayerType::set& allPlayerTypes();
-    void init();
     
     extern const PlayerType None;
     extern const PlayerType Computer;

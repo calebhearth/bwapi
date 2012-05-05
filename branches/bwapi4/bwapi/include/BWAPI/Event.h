@@ -1,5 +1,6 @@
 #pragma once
 #include <BWAPI/Position.h>
+
 #include <string>
 
 namespace BWAPI

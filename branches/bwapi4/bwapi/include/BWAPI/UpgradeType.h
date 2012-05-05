@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include <BWAPI/Type.h>
 #include <BWAPI/UnitType.h>
 
 namespace BWAPI
