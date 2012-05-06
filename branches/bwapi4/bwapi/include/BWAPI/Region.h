@@ -1,9 +1,12 @@
 #pragma once
 #include <BWAPI/Position.h>
+#include <functional>
 
 namespace BWAPI
 {
   class Regionset;
+  class Unitset;
+  class Unit;
 
   class Region
   {
@@ -44,6 +47,21 @@ namespace BWAPI
     virtual BWAPI::Region *getClosestInaccessibleRegion() const = 0;
 
     /** Retrieves the center-to-center distance between two regions. */
-    virtual int getDistance(BWAPI::Region *other) const = 0;
+    int getDistance(BWAPI::Region *other) const;
+
+    /// @~English
+    /// Retrieves a Unitset containing all the units
+    /// that are in this region, including the
+    /// ability to filter the units before the
+    /// Unitset's creation.
+    ///
+    /// @param pred Optional function predicate
+    /// for filtering the units.
+    /// 
+    /// @returns A Unitset containing all units
+    /// in this region that have met the
+    /// requirements of \p pred.
+    /// @~
+    Unitset getUnits(std::function<bool(Unit*)> pred = NULL) const;
   };
 };

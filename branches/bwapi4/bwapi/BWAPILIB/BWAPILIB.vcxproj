@@ -122,6 +122,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClCompile Include="Source\Position.cpp" />
     <ClCompile Include="Source\PositionUnit.cpp" />
     <ClCompile Include="Source\Race.cpp" />
+    <ClCompile Include="Source\Region.cpp" />
     <ClCompile Include="Source\Regionset.cpp" />
     <ClCompile Include="Source\TechType.cpp" />
     <ClCompile Include="Source\Type.cpp" />

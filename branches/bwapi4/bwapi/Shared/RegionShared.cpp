@@ -62,8 +62,4 @@ namespace BWAPI
   {
     return this->closestInaccessibleRgn;
   }
-  int RegionImpl::getDistance(BWAPI::Region *other) const
-  {
-    return this->getCenter().getApproxDistance(other->getCenter());
-  }
 }

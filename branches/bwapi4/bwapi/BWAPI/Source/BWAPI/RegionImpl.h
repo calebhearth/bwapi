@@ -1,10 +1,9 @@
 #pragma once
 #include <BWAPI/Region.h>
+#include <BWAPI/Regionset.h>
 #include <BWAPI/Position.h>
 
 #include <BWAPI/Client/RegionData.h>
-
-#include <BWAPI/Regionset.h>
 
 namespace BWAPI
 {
@@ -27,8 +26,6 @@ namespace BWAPI
 
     virtual BWAPI::Region *getClosestAccessibleRegion() const;
     virtual BWAPI::Region *getClosestInaccessibleRegion() const;
-
-    virtual int getDistance(BWAPI::Region *other) const;
 
     RegionImpl(int id);
     ~RegionImpl();

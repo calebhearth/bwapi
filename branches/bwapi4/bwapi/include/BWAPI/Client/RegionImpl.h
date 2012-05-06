@@ -33,8 +33,6 @@ namespace BWAPI
 
     virtual BWAPI::Region *getClosestAccessibleRegion() const;
     virtual BWAPI::Region *getClosestInaccessibleRegion() const;
-
-    virtual int getDistance(BWAPI::Region *other) const;
   };
 
 };

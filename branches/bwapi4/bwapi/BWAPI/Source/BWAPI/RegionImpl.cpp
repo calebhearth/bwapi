@@ -22,13 +22,13 @@ namespace BWAPI
     self->center_x        = r->getCenter().x;
     self->center_y        = r->getCenter().y;
 
-    self->isWalkable    = r->accessabilityFlags != 0x1FFD;
+    self->isWalkable      = r->accessabilityFlags != 0x1FFD;
     self->isHigherGround  = r->accessabilityFlags == 0x1FF9;
-    self->priority      = r->properties & 0x7F;
-    self->leftMost      = r->rgnBox.left;
-    self->rightMost      = r->rgnBox.right;
-    self->topMost      = r->rgnBox.top;
-    self->bottomMost    = r->rgnBox.bottom;
+    self->priority        = r->properties & 0x7F;
+    self->leftMost        = r->rgnBox.left;
+    self->rightMost       = r->rgnBox.right;
+    self->topMost         = r->rgnBox.top;
+    self->bottomMost      = r->rgnBox.bottom;
 
     // Connect the BWAPI Region and BW Region two ways
     self->id  = id;
