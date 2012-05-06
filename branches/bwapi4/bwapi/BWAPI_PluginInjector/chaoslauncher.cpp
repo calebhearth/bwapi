@@ -48,6 +48,10 @@ extern "C" __declspec(dllexport) bool ApplyPatchSuspended(HANDLE hProcess, DWORD
   strncpy(szTarget, GetBWAPITarget().c_str(), MAX_PATH-1);
   szTarget[MAX_PATH-1] = '\0';
 
+  // Check if the file exists, INVALID_FILE_ATTRIBUTES will have this bit set too
+  if ( GetFileAttributes(szTarget) & FILE_ATTRIBUTE_DIRECTORY )
+    return BWAPIError("Unable to find %s.", szTarget);
+
   // Get the address for the LoadLibrary procedure 
   LPTHREAD_START_ROUTINE loadLibAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle("Kernel32"), "LoadLibraryA" );
   if ( !loadLibAddress )

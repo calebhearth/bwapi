@@ -14,7 +14,7 @@ std::string GetBWAPITarget()
 std::string GetBWAPIDataDirectory()
 {
   std::string sInstallPath = GetRegString("SOFTWARE\\Blizzard Entertainment\\Starcraft", "InstallPath");
-  return sInstallPath + "\\bwapi-data";
+  return sInstallPath + "bwapi-data";
 }
 
 DWORD GetSingleRegString(HKEY hBaseKey, const char *pszSubKey, const char *pszValueName, char *pszOutput, DWORD *dwOutSize)

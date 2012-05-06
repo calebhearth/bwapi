@@ -176,6 +176,15 @@
       <Filter>Enums</Filter>
     </ClInclude>
     <ClInclude Include="..\include\BWAPI\PositionUnit.h" />
+    <ClInclude Include="..\include\BWAPI\CoordinateType.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\Latency.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\Vectorset_iterator.h">
+      <Filter>Containers\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Types">

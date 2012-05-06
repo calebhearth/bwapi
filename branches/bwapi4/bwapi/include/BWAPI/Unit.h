@@ -3,6 +3,8 @@
 #include <BWAPI/PositionUnit.h>
 #include <BWAPI/UnitType.h>
 
+#include <functional>
+
 namespace BWAPI
 {
   // Forwards
@@ -500,10 +502,10 @@ namespace BWAPI
     virtual Unitset getLarva() const = 0;
 
     /** Returns the set of units within the given radius of this unit */
-    virtual Unitset& getUnitsInRadius(int radius) const = 0;
+    Unitset getUnitsInRadius(int radius, std::function<bool(Unit*)> pred = NULL) const;
 
     /** Returns the set of units within weapon range of this unit. */
-    virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const = 0;
+    Unitset getUnitsInWeaponRange(WeaponType weapon, std::function<bool(Unit*)> pred = NULL) const;
 
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
     virtual void* getClientInfo() const = 0;

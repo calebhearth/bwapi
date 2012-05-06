@@ -111,8 +111,6 @@ namespace BWAPI
       virtual Unitset  getInterceptors() const;
       virtual Unit*    getHatchery() const;
       virtual Unitset  getLarva() const;
-      virtual Unitset& getUnitsInRadius(int radius) const;
-      virtual Unitset& getUnitsInWeaponRange(WeaponType weapon) const;
 
       virtual void *getClientInfo() const;
       virtual void setClientInfo(void* clientinfo = NULL);

@@ -81,9 +81,7 @@ namespace BWAPI
       virtual bool    isFlagEnabled(int flag) const;
       virtual void    enableFlag(int flag);
 
-      virtual Unitset& getUnitsOnTile(int x, int y);
-      virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const;
-      virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const;
+      virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred = NULL) const;
 
       virtual Error   getLastError() const;
       virtual bool    setLastError(BWAPI::Error e = Errors::None);
@@ -311,8 +309,7 @@ namespace BWAPI
       Unitset accessibleUnits; //units that are accessible to the client on current frame
       Unitset evadeUnits; //units leaving accessibleUnits set on current frame
 
-      Unitset  selectedUnitSet;
-      Unitset emptyUnitset;
+      Unitset selectedUnitSet;
 
       TilePosition::set startLocations;
 
@@ -325,7 +322,6 @@ namespace BWAPI
       Bulletset     bullets;
       Position::set nukeDots;
       Unitset pylons;
-      Util::RectangleArray< Unitset > unitsOnTileData;
 
       Unitset staticMinerals;
       Unitset staticGeysers;

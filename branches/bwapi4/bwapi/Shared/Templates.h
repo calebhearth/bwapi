@@ -5,6 +5,8 @@
 #include <BWAPI/Unitset.h>
 #include <BWAPI/PositionUnit.h>
 
+#include <functional>
+
 namespace BWAPI
 {
   namespace Templates
@@ -64,13 +66,13 @@ namespace BWAPI
     }
     
     template <class finder>
-    void manageUnitFinder(finder *finder_x, finder *finder_y, DWORD *pdwFinderFlags, int left, int top, int right, int bottom, bool (__fastcall *callback)(Unit *uIterator), Unitset &finderSet)
+    void manageUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, std::function<bool(Unit*)> callback, Unitset &finderSet)
     {
-      // Clear the set
-      finderSet.clear();
-      
-      Templates::swapIfLarger<int>(left, right);
-      Templates::swapIfLarger<int>(top, bottom);
+      DWORD dwFinderFlags[1701] = { 0 };
+
+      // Swap values so that they are correct
+      Templates::swapIfLarger(left, right);
+      Templates::swapIfLarger(top, bottom);
       
       // Declare some variables
       int r = right, b = bottom;
@@ -93,44 +95,44 @@ namespace BWAPI
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
-        if ( pdwFinderFlags[iUnitIndex] == 1 )
+        if ( dwFinderFlags[iUnitIndex] == 1 )
           continue;
-        if ( isWidthExtended )
+        if ( isWidthExtended )  // If width is small, check unit bounds
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
           if ( u && u->getLeft() <= right )
-            pdwFinderFlags[iUnitIndex] = 1;
+            dwFinderFlags[iUnitIndex] = 1;
         }
         else
-          pdwFinderFlags[iUnitIndex] = 1;
+          dwFinderFlags[iUnitIndex] = 1;
       }
       // Iterate the Y entries of the finder
       for ( int y = iTop; y < iBottom; ++y )
       {
         int iUnitIndex = finder_y[y].unitIndex;
-        if ( pdwFinderFlags[iUnitIndex] != 1 )
+        if ( dwFinderFlags[iUnitIndex] != 1 )
           continue;
-        if ( isHeightExtended )
+        if ( isHeightExtended ) // If height is small, check unit bounds
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
           if ( u && u->getTop() <= bottom )
-            pdwFinderFlags[iUnitIndex] = 2;
+            dwFinderFlags[iUnitIndex] = 2;
         }
         else
-          pdwFinderFlags[iUnitIndex] = 2;
+          dwFinderFlags[iUnitIndex] = 2;
       }
       // Final Iteration
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
-        if ( pdwFinderFlags[iUnitIndex] == 2 )
+        if ( dwFinderFlags[iUnitIndex] == 2 )
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
-          if ( u && u->exists() && callback(u) )
+          if ( u && u->exists() && (!callback || callback(u)) )
             finderSet.push_back(u);
         }
         // Reset finderFlags so it can be reused without incident
-        pdwFinderFlags[iUnitIndex] = 0;
+        dwFinderFlags[iUnitIndex] = 0;
       }
     }
     //------------------------------------------- CAN BUILD HERE ---------------------------------------------
@@ -185,7 +187,8 @@ namespace BWAPI
       {
         for(int iy = lt.y; iy < rb.y; ++iy)
         {
-          foreach(Unit *u, Broodwar->getUnitsOnTile(ix,iy))
+          Unitset unitsOnTile = Broodwar->getUnitsOnTile(ix,iy);
+          foreach(Unit *u, unitsOnTile)
           {
             BWAPI::UnitType iterType = u->getType();
             if ( !iterType.isBuilding() &&

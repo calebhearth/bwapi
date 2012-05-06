@@ -12,6 +12,7 @@
 #include <Util/Types.h>
 #include <string>
 #include <cassert>
+#include <functional>
 
 #include <BWAPI/Unitset.h>
 
@@ -120,11 +121,6 @@ namespace BWAPI
     _enemies.clear();
     _observers.clear();
 
-    //clear unitsOnTileData
-    for(int x = 0; x < 256; ++x)
-      for(int y = 0; y < 256; ++y)
-        unitsOnTileData[x][y].clear();
-
     //clear unit data
     for(int i = 0; i < 10000; ++i)
       unitVector[i].clear();
@@ -219,9 +215,6 @@ namespace BWAPI
     for(int i = 0; i < data->nukeDotCount; ++i)
       nukeDots.insert(Position(data->nukeDots[i].x,data->nukeDots[i].y));
 
-    for ( TilePosition::iterator p(data->mapWidth, data->mapHeight); p; ++p )
-      unitsOnTileData[p.x][p.y].clear();
-
     for(int e = 0; e < data->eventCount; ++e)
     {
       events.push_back(this->makeEvent(data->events[e]));
@@ -292,17 +285,8 @@ namespace BWAPI
       u->connectedUnits.clear();
       u->loadedUnits.clear();
     }
-    foreach(Unit* u_, accessibleUnits)
+    foreach(Unit* u, accessibleUnits)
     {
-      UnitImpl* u = static_cast<UnitImpl*>(u_);
-      /* @TODO: Assign using getUnitsInRectangle */
-      TilePosition start( Position(u->getLeft(), u->getTop()) );
-      TilePosition end( Position(u->getRight(), u->getBottom()) + Position(TILE_SIZE-1, TILE_SIZE-1) ); // round up to next tile
-      end.setMax(mapWidth(), mapHeight());
-
-      for ( TilePosition::iterator p(start,end); p; ++p )
-          unitsOnTileData[p.x][p.y].insert(u);
-
       if ( u->getType() == UnitTypes::Zerg_Larva && u->getHatchery() )
         ((UnitImpl*)u->getHatchery())->connectedUnits.insert(u);
       if ( u->getType() == UnitTypes::Protoss_Interceptor && u->getCarrier() )
@@ -454,87 +438,19 @@ namespace BWAPI
     if ( data->flags[flag] == false )
       addCommand(BWAPIC::Command(BWAPIC::CommandType::EnableFlag,flag));
   }
-  //----------------------------------------------- GET UNITS ON TILE ----------------------------------------
-  Unitset& GameImpl::getUnitsOnTile(int x, int y)
-  {
-    return unitsOnTileData[x][y];
-  }
   //----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
-  bool __fastcall Client_squareIterator_callback(Unit *uIterator)
-  {
-    return true;
-  }
-  Unitset& GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
+  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred) const
   {
     static Unitset unitFinderResults;
-    static DWORD g_dwFinderFlags[1701] = { 0 };
-    static int lastLeft   = -1;
-    static int lastRight  = -1;
-    static int lastTop    = -1;
-    static int lastBottom = -1;
-    static int lastFrame  = -1;
-    if ( lastFrame == data->frameCount && lastLeft == left && lastTop == top && lastRight == right && lastBottom == bottom )
-      return unitFinderResults;
-    
-    lastLeft    = left;
-    lastTop     = top;
-    lastRight   = right;
-    lastBottom  = bottom;
-    lastFrame   = data->frameCount;
 
     // Have the unit finder do its stuff
     Templates::manageUnitFinder<unitFinder>(data->xUnitSearch, 
                                             data->yUnitSearch, 
-                                            g_dwFinderFlags, 
                                             left, 
                                             top, 
                                             right, 
                                             bottom,
-                                            &Client_squareIterator_callback,
-                                            unitFinderResults);
-    // Return results
-    return unitFinderResults;
-  }
-  //----------------------------------------------- GET UNITS IN RADIUS --------------------------------------
-  BWAPI::Position unitsInRadius_compare;
-  int             unitsInRadius_radius;
-  bool __fastcall Client_radiusIterator_callback(Unit *uIterator)
-  {
-    return uIterator->getDistance(unitsInRadius_compare) <= unitsInRadius_radius;
-  }
-  Unitset& GameImpl::getUnitsInRadius(BWAPI::Position center, int radius) const
-  {
-    static Unitset unitFinderResults;
-    static DWORD g_dwFinderFlags[1701] = { 0 };
-    static Position lastPosition = Positions::Invalid;
-    static int lastRadius        = -1;
-    static int lastFrame         = -1;
-    if ( lastFrame == data->frameCount && lastRadius == radius && lastPosition == center )
-      return unitFinderResults;
-
-    lastPosition  = center;
-    lastRadius    = radius;
-    lastFrame     = data->frameCount;
-
-    // Set rectangular values
-    int left    = center.x - radius;
-    int top     = center.y - radius;
-    int right   = center.x + radius;
-    int bottom  = center.y + radius;
-
-    // Store the data we are comparing found units to
-    unitsInRadius_compare = center;
-    unitsInRadius_radius  = radius;
-
-    // Have the unit finder do its stuff
-    Templates::manageUnitFinder<unitFinder>(data->xUnitSearch, 
-                                            data->yUnitSearch, 
-                                            g_dwFinderFlags, 
-                                            left, 
-                                            top, 
-                                            right, 
-                                            bottom,
-                                            &Client_radiusIterator_callback,
+                                            pred,
                                             unitFinderResults);
     // Return results
     return unitFinderResults;

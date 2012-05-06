@@ -36,7 +36,6 @@ namespace BWAPI
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
   GameImpl::GameImpl()
       : onStartCalled(false)
-      , unitsOnTileData(0, 0)
       , client(NULL)
       , inGame(false)
       , endTick(0)

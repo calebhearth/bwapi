@@ -244,10 +244,7 @@ namespace BWAPI
         this->players[p]->force = pNeutralForce;
     }
 
-    // Resize unitsOnTileData
-    SIZE mapSize = { Map::getWidth(), Map::getHeight() };
-    this->unitsOnTileData.resize(mapSize.cx, mapSize.cy);
-
+    // Get info for replay naming
     if ( !this->isReplay() )
     {
       if ( BWAPIPlayer )

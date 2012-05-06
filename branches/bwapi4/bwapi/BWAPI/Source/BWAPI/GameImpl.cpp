@@ -276,103 +276,24 @@ namespace BWAPI
       }
     }
   }
-  //--------------------------------------------- GET UNITS ON TILE ------------------------------------------
-  Unitset& GameImpl::getUnitsOnTile(int x, int y)
-  {
-    // Retrieves a set of units that are on the specified tile 
-    if ( !TilePosition(x, y) )
-      return this->emptyUnitset;
-    
-    if (!this->isFlagEnabled(Flag::CompleteMapInformation) && !isVisible(x,y))
-      return this->emptyUnitset;
-    return unitsOnTileData[x][y];
-  }
   //--------------------------------------------- GET UNITS IN RECTANGLE -------------------------------------
   Unit *GameImpl::_unitFromIndex(int index)
   {
     return this->unitArray[index-1];
   }
-  bool __fastcall BWAPI_squareIterator_callback(Unit *uIterator)
-  {
-    return ((UnitImpl*)uIterator)->canAccess();
-  }
-  Unitset &GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom) const
+  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred) const
   {
     // Initialize static variables
-    static Unitset unitFinderResults;
-    static DWORD g_dwFinderFlags[1701] = { 0 };
-    static int lastLeft   = -1;
-    static int lastRight  = -1;
-    static int lastTop    = -1;
-    static int lastBottom = -1;
-    static int lastFrame  = -1;
-    // Return this reference if the input was exactly the same as the last input
-    if ( lastFrame == this->frameCount && lastLeft == left && lastTop == top && lastRight == right && lastBottom == bottom )
-      return unitFinderResults;
-    
-    // Save the input values for this frame
-    lastLeft    = left;
-    lastTop     = top;
-    lastRight   = right;
-    lastBottom  = bottom;
-    lastFrame   = this->frameCount;
+    Unitset unitFinderResults;
 
     // Have the unit finder do its stuff
-    Templates::manageUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX, 
-                                                BW::BWDATA_UnitOrderingY, 
-                                                g_dwFinderFlags, 
-                                                left, 
-                                                top, 
-                                                right, 
+    Templates::manageUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX,
+                                                BW::BWDATA_UnitOrderingY,
+                                                left,
+                                                top,
+                                                right,
                                                 bottom,
-                                                &BWAPI_squareIterator_callback,
-                                                unitFinderResults);
-    // Return results
-    return unitFinderResults;
-  }
-  //--------------------------------------------- GET UNITS IN RADIUS ----------------------------------------
-  BWAPI::Position unitsInRadius_compare;
-  int             unitsInRadius_radius;
-  bool __fastcall BWAPI_radiusIterator_callback(Unit *uIterator)
-  {
-    return ((UnitImpl*)uIterator)->canAccess() && uIterator->getDistance(unitsInRadius_compare) <= unitsInRadius_radius;
-  }
-  Unitset &GameImpl::getUnitsInRadius(Position center, int radius) const
-  {
-    // Initialize static variables
-    static Unitset unitFinderResults;
-    static DWORD g_dwFinderFlags[1701] = { 0 };
-    static Position lastPosition = Positions::Invalid;
-    static int lastRadius        = -1;
-    static int lastFrame         = -1;
-    // Return this reference if the input was exactly the same as the last input
-    if ( lastFrame == this->frameCount && lastRadius == radius && lastPosition == center )
-      return unitFinderResults;
-
-    // save input values for this frame
-    lastPosition  = center;
-    lastRadius    = radius;
-    lastFrame     = this->frameCount;
-
-    // Set rectangular values
-    int left    = center.x - radius;
-    int top     = center.y - radius;
-    int right   = center.x + radius;
-    int bottom  = center.y + radius;
-
-    // Store the data we are comparing found units to
-    unitsInRadius_compare = center;
-    unitsInRadius_radius  = radius;
-
-    // Have the unit finder do its stuff
-    Templates::manageUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX, 
-                                                BW::BWDATA_UnitOrderingY, 
-                                                g_dwFinderFlags, 
-                                                left, 
-                                                top, 
-                                                right, 
-                                                bottom,
-                                                &BWAPI_radiusIterator_callback,
+                                                pred,
                                                 unitFinderResults);
     // Return results
     return unitFinderResults;
@@ -786,7 +707,7 @@ namespace BWAPI
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
     {
       this->setLastError(Errors::Access_Denied);
-      return emptyUnitset;
+      return Unitset::none;
     }
     return selectedUnitSet;
   }

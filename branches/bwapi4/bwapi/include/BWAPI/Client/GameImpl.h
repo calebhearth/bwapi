@@ -55,7 +55,6 @@ namespace BWAPI
       Position::set nukeDots;
       Unitset selectedUnits;
       Unitset pylons;
-      Unitset unitsOnTileData[256][256];
       Regionset regionsList;
 
       TilePosition::set startLocations;
@@ -119,9 +118,7 @@ namespace BWAPI
 
       virtual bool      isFlagEnabled(int flag) const;
       virtual void      enableFlag(int flag);
-      virtual Unitset&  getUnitsOnTile(int x, int y);
-      virtual Unitset&  getUnitsInRectangle(int left, int top, int right, int bottom) const;
-      virtual Unitset&  getUnitsInRadius(BWAPI::Position center, int radius) const;
+      virtual Unitset   getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred = NULL) const;
       virtual Error     getLastError() const;
       virtual bool      setLastError(BWAPI::Error e = Errors::None);
 

@@ -8,6 +8,9 @@
 
 namespace BWAPI
 {
+  // initialize no-set
+  const Unitset Unitset::none(1);
+
   ////////////////////////////////////////////////////////// ctors
   Unitset::Unitset(size_t initialSize) : Vectorset(initialSize) { };
   Unitset::Unitset(const Unitset &other) : Vectorset(other) { };

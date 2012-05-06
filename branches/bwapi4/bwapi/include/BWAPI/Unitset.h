@@ -27,6 +27,14 @@ namespace BWAPI
   {
   public:
     /// @~English
+    /// A blank Unitset containing no elements.
+    /// This is typically used as a return value
+    /// for BWAPI interface functions that
+    /// have encountered an error.
+    /// @~
+    static const Unitset none;
+
+    /// @~English
     /// The Unitset constructor.
     ///
     /// @param initialSize The initial maximum size of

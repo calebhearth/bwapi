@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <string>
+#include <functional>
 
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Error.h>
@@ -151,14 +152,14 @@ namespace BWAPI
     virtual void enableFlag(int flag) = 0;
 
     /** Returns the set of accessible units that are on the given build tile. */
-    virtual Unitset& getUnitsOnTile(int tileX, int tileY) = 0;
-    Unitset& getUnitsOnTile(BWAPI::TilePosition tile);
+    Unitset getUnitsOnTile(int tileX, int tileY, std::function<bool(Unit*)> pred = NULL) const;
+    Unitset getUnitsOnTile(BWAPI::TilePosition tile, std::function<bool(Unit*)> pred = NULL) const;
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
-    virtual Unitset& getUnitsInRectangle(int left, int top, int right, int bottom) const = 0;
+    virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred = NULL) const = 0;
 
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
-    virtual Unitset& getUnitsInRadius(BWAPI::Position center, int radius) const = 0;
+    Unitset getUnitsInRadius(BWAPI::Position center, int radius, std::function<bool(Unit*)> pred = NULL) const;
 
     /** Returns the last error that was set. If you try to order enemy units around, or morph bunkers into
      * lurkers, BWAPI will set error codes, which can be retrieved using this function. */

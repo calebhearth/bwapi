@@ -1,87 +1,12 @@
 #pragma once
-
 #include <stdlib.h>
 #include <string.h>
-
 #include <type_traits>
+
+#include "Vectorset_iterator.h"
 
 namespace BWAPI
 {
-  template<typename _T>
-  class iterator;
-
-  template<typename _T>
-  class Vectorset;
-
-
-  /// @~English
-  /// The iterator class template allows the iteration
-  /// of elements of a Vectorset with ease while
-  /// maintaining the compatibility with any familiar
-  /// STL container iteration.
-  ///
-  /// @~
-  /// @see Vectorset
-  template<typename _T>
-  class iterator
-  {
-  public:
-    iterator(_T *ptr = NULL) : __val(ptr) {};
-    iterator(const iterator<_T> &other) : __val(&other) {};
-    bool operator ==(const iterator<_T> &other) const
-    {
-      return this->__val == &other;
-    };
-    bool operator !=(const iterator<_T> &other) const
-    {
-      return this->__val != &other;
-    };
-    bool operator ==(const _T &element) const
-    {
-      return *this->__val == element;
-    };
-    bool operator !=(const _T &element) const
-    {
-      return *this->__val != element;
-    };
-    iterator &operator ++()
-    {
-      ++__val;
-      return *this;
-    };
-    iterator operator ++(int)
-    {
-      iterator copy = *this;
-      ++__val;
-      return copy;
-    };
-    iterator &operator --()
-    {
-      --__val;
-      return *this;
-    };
-    iterator operator --(int)
-    {
-      iterator copy = *this;
-      --__val;
-      return copy;
-    };
-    _T operator *() const
-    {
-      return *__val;
-    };
-    _T *operator &() const
-    {
-      return __val;
-    };
-    _T operator ->() const
-    {
-      return *__val;
-    };
-  private:
-    _T *__val;
-  };
-
   /// @~English
   /// The Vectorset is a class template designed
   /// specifically for trivial classes or PODs and 
@@ -280,7 +205,7 @@ namespace BWAPI
     ///
     /// @returns A pointer to the Vectorset's array data.
     /// @~
-    operator void*() const
+    inline operator void*() const
     {
       return this->__valArray;
     };
@@ -290,7 +215,7 @@ namespace BWAPI
     /// @retval true if the Vectorset is not empty.
     /// @retval false if the Vectorset is empty.
     /// @~
-    operator bool() const
+    inline operator bool() const
     {
       return !this->empty();
     };
@@ -302,7 +227,7 @@ namespace BWAPI
     /// @param index The array index in the Vectorset to 
     /// retrieve the value from.
     /// @~
-    _T operator [](unsigned int index) const
+    inline _T operator [](unsigned int index) const
     {
       if ( index < this->size() )
         return this->__valArray[index];
@@ -314,38 +239,6 @@ namespace BWAPI
     {
       free(this->__valArray);
     };
-  // ----------------------------------------------------------------- Custom functions
-    /// @~English
-    /// This function erases an element from a Vectorset.
-    /// Unlike erase, it assumes there exists only one element.
-    /// If the element is found, it is removed and the function
-    /// immediately returns.
-    ///
-    /// @param val The value to erase from the Vectorset.
-    /// @~
-    /// @see erase
-    void erase_once(const _T &val)
-    {
-      // declare iterators
-      _T *i = this->__valArray, *iend = this->__last;
-
-      // iterate everything
-      while ( i != iend )
-      {
-        if ( val == *i )  // if values are equal
-          break;  
-        ++i; // iterate to next one if it is not found
-      }
-      
-      if ( i == iend )  // ignore if not found
-        return;
-
-      // replace existing entry and assign the new last position
-      --iend;
-      *i = *iend;
-      this->__last = iend;
-    };
-
   // ----------------------------------------------------------------- Custom const functions
     /// @~English
     /// This function checks if an element exists in the
@@ -373,7 +266,7 @@ namespace BWAPI
     /// @returns The number of elements this Vectorset
     /// can contain before needing to allocate more memory.
     /// @~
-    size_t max_size() const
+    inline size_t max_size() const
     {
       return this->__totSize;
     };
@@ -423,6 +316,242 @@ namespace BWAPI
       }
       return this->__valArray[::rand()%size];
     };
+  // ----------------------------------------------------------------- erase
+    /// @~English
+    /// This function erases an element from a Vectorset.
+    /// Unlike erase, it assumes there exists only one element.
+    /// If the element is found, it is removed and the function
+    /// immediately returns.
+    ///
+    /// @param val The value to erase from the Vectorset.
+    ///
+    /// @note This function does not preserve order.
+    /// If you wish to preserve order, see remove_once.
+    /// @~
+    /// @see erase
+    void erase_once(const _T &val)
+    {
+      // iterate all elements
+      iterator i = this->begin();
+      for ( ; i != this->end(); ++i )
+      {
+        if ( val == *i )  // break if values are equal
+          break;
+      }
+      this->erase(i); // erase the value
+    };
+    /// @~English
+    /// Erases all values found in the Vectorset.
+    /// When a value is found, it is erased and the
+    /// function continues searching for the same
+    /// value until it reaches the end of the
+    /// Vectorset.
+    ///
+    /// @param val The value to search for and erase.
+    /// 
+    /// @note This function does not preserve order.
+    /// If you wish to preserve order, see remove.
+    /// @~
+    /// @see erase_once
+    void erase(const _T &val)
+    {
+      // iterate all elements
+      auto i = this->begin();
+      while ( i != this->end() )
+      {
+        if ( val == *i )  // erase if values are equal
+          this->erase_direct(i);
+        else
+          ++i;
+      }
+    };
+    /// @~English
+    /// Erases the value at an iterator for this
+    /// Vectorset. The advantage of this function
+    /// is that searching for the value is not
+    /// necessary.
+    ///
+    /// @param iter The iterator for the position
+    /// to erase.
+    ///
+    /// @note This function does not preserve order.
+    /// If you wish to preserve order, see remove.
+    /// @~
+    /// @see erase_once
+    void erase(const iterator &iter)
+    {
+      // Check if the iterator is in bounds (most common hit first)
+      if ( iter < this->end() && iter >= this->begin() )
+        this->erase_direct(iter);
+    };
+    /// @copydoc erase(const iterator&)
+    /// @note This function may be unsafe, but is
+    /// provided for performance.
+    void erase_direct(const iterator &iter)
+    {
+      // Remove the element by replacing it with the last one
+      --this->__last;
+      *(&iter) = *this->__last;
+    };
+    /// @~English
+    /// Works similar to the STL algorithm remove_if.
+    /// Iterates and calls a function predicate for
+    /// each element in the Vectorset. If the predicate
+    /// call returns true, then the value is erased by
+    /// calling erase.
+    ///
+    /// @param pred Function predicate used to determine
+    /// if a value is removed.
+    /// @~
+    /// @see std::remove_if, remove_if
+    template <typename Func>
+    void erase_if( const Func &pred )
+    {
+      // iterate all elements
+      auto i = this->begin();
+      while ( i != this->end() )
+      {
+        if ( pred(*i) )  // erase if predicate returns true
+          this->erase_direct(i);
+        else
+          ++i;
+      }
+    };
+  // ----------------------------------------------------------------- remove
+    /// @~English
+    /// This function removes an element from a Vectorset.
+    /// Unlike remove, it assumes there exists only one element.
+    /// If the element is found, it is removed and the function
+    /// immediately returns.
+    ///
+    /// @param val The value to remove from the Vectorset.
+    ///
+    /// @note This function preserves order. It is
+    /// recommended to use erase_once for performance if
+    /// order is not important.
+    /// @~
+    /// @see remove, erase_once
+    void remove_once(const _T &val)
+    {
+      // iterate all elements
+      for ( auto i = this->begin(); i != this->end(); ++i )
+      {
+        if ( val == *i )  // break if values are equal
+          break;
+      }
+      this->remove(i); // erase the value
+    };
+    /// @~English
+    /// Removes all values found in the Vectorset.
+    /// When a value is found, it is removed and the
+    /// function continues searching for the same
+    /// value until it reaches the end of the
+    /// Vectorset.
+    ///
+    /// @param val The value to search for and remove.
+    /// 
+    /// @note This function preserves order. It is
+    /// recommended to use erase for performance if
+    /// order is not important.
+    /// @~
+    /// @see remove_once, erase
+    void remove(const _T &val)
+    {
+      // Find the first instance
+      iterator i = this->begin();
+      while ( i < this->end() && val != *i )
+        ++i;
+
+      // Now do iteration with shifting
+      iterator skip = i;
+      while ( skip < this->end() )
+      {
+        while ( val == *skip )  // increment remove ptr if equal
+          ++skip;
+
+        // if we've not reached the end, then shift the value up,
+        // overwriting the one we removed
+        if ( skip < this->end() )
+          *(&i) = *(&skip);
+
+        // increment our position
+        ++i;
+        ++skip;
+      }
+      this->__last -= (&skip - &i);
+    };
+    /// @~English
+    /// Erases the value at an iterator for this
+    /// Vectorset. The advantage of this function
+    /// is that searching for the value is not
+    /// necessary.
+    ///
+    /// @param iter The iterator for the position
+    /// to erase.
+    ///
+    /// @note This function preserves order. It is
+    /// recommended to use erase for performance if
+    /// order is not important.
+    /// @~
+    /// @see remove_once, erase
+    void remove(const iterator &iter)
+    {
+      // Check if the iterator is in bounds (most common hit first)
+      if ( iter < this->end() && iter >= this->begin() )
+        this->remove_direct(iter);
+    };
+    /// @copydoc remove(const iterator&)
+    /// @note This function may be unsafe, but is
+    /// provided for performance.
+    void remove_direct(const iterator &iter)
+    {
+      // Remove the element by shifting positions
+      iterator t = iter;
+      iterator tnext = t + 1;
+      while ( tnext != this->end() )
+      {
+        *(&t) = *(&tnext);
+        ++t;
+        ++tnext;
+      }
+      --this->__last;
+    };
+    /// @~English
+    /// Works similar to the STL algorithm remove_if.
+    /// Iterates and calls a function predicate for
+    /// each element in the Vectorset. If the predicate
+    /// call returns true, then the value is removed.
+    ///
+    /// @param pred Function predicate used to determine
+    /// if a value is removed.
+    /// @~
+    /// @see std::remove_if, erase_if
+    template <typename Func>
+    void remove_if( const Func &pred )
+    {
+      // Find the first instance
+      iterator i = this->begin();
+      while ( i < this->end() && !pred(*i) )
+        ++i;
+
+      // Now do iteration with shifting
+      iterator skip = i;
+      while ( skip < this->end() )
+      {
+        while ( pred(*skip) )  // increment remove ptr if equal
+          ++skip;
+
+        // if we've not reached the end, then shift the value up,
+        // overwriting the one we removed
+        if ( skip < this->end() )
+          *(&i) = *(&skip);
+
+        // increment our position
+        ++i;
+        ++skip;
+      }
+      this->__last -= (&skip - &i);
+    };
   // ----------------------------------------------------------------- stl spinoff functions
     /// @~English
     /// Clears the Vectorset, removing all elements.
@@ -433,67 +562,11 @@ namespace BWAPI
     /// single instruction regardless of the
     /// number of entries.
     /// @~
-    void clear()
+    inline void clear()
     {
       this->__last = this->__valArray;
     };
-    /// @~English
-    /// Erases all values found in the set. When
-    /// a value is found, it is erased and the
-    /// function continues searching for the same
-    /// value until it reaches the end of the
-    /// Vectorset.
-    ///
-    /// @param val The value to search for and remove.
-    /// 
-    /// @~
-    /// @see erase_once
-    void erase(const _T &val)
-    {
-      // declare iterators
-      _T *i = this->__valArray, *iend = this->__last;
 
-      // iterate everything
-      while ( i != iend )
-      {
-        if ( val == *i )  // if values are equal
-        {
-          --iend; // subtract the end iterator
-          *i = *iend; // overwrite value with value that would be at the end
-        }
-        else
-        {
-          ++i;  // if values are not eq. then iterate to next one
-        }
-      }
-      
-      // assign the new last position
-      this->__last = iend;
-    };
-    /// @~English
-    /// Erases the value at an iterator for this
-    /// Vectorset. The advantage of this function
-    /// is that searching for the value is not
-    /// necessary.
-    ///
-    /// @param iter The iterator for the position
-    /// to erase.
-    /// 
-    /// @~
-    /// @see erase_once
-    void erase(const iterator &iter)
-    {
-      _T *i = &iter, *iend = this->__last;
-      if ( i < this->__valArray || i >= iend )  // small error checking
-        return;
-
-      while ( i+1 != iend )
-      {
-        *i = i[1];
-        ++i;
-      }
-      --this->__last;
-    };
 
   // element insertion
     /// @~English
@@ -504,13 +577,13 @@ namespace BWAPI
     /// 
     /// @~
     /// @see std::set
-    void insert(const _T &val)
+    inline void insert(const _T &val)
     {
       if ( !this->exists(val) )
         this->push_back(val);
     };
     /// @copydoc insert(const _T &val)
-    void insert(const iterator &val)
+    inline void insert(const iterator &val)
     {
       this->insert(*val);
     };
@@ -539,14 +612,14 @@ namespace BWAPI
     /// @note Duplicate entries are not removed.
     /// @~
     /// @see push_front
-    void push_back(const _T val)
+    inline void push_back(const _T val)
     {
       if ( this->__last == this->__end )
         this->expand();
       *(this->__last++) = val;
     };
     /// @copydoc push_back(const _T val)
-    void push_back(const iterator &val)
+    inline void push_back(const iterator &val)
     {
       this->push_back(*val);
     };
@@ -596,7 +669,7 @@ namespace BWAPI
       *this->__valArray = val;
     };
     /// @copydoc push_front(const _T val)
-    void push_front(const iterator &val)
+    inline void push_front(const iterator &val)
     {
       this->push_front(*val);
     };
@@ -604,7 +677,7 @@ namespace BWAPI
     /// @TODO change return value to copy of value that was popped
     /// @~
     /// @see pop_front
-    void pop_back()
+    inline void pop_back()
     {
       if ( !this->empty() )  // remove last element if non-empty
         --this->__last;
@@ -645,7 +718,7 @@ namespace BWAPI
     /// empty() to check if the Vectorset has 0 elements.
     /// @~
     /// @see empty
-    size_t size() const
+    inline size_t size() const
     {
       return ((size_t)this->__last - (size_t)this->__valArray)/sizeof(_T);
     };
@@ -655,25 +728,25 @@ namespace BWAPI
     /// @retval true if the Vectorset is empty.
     /// @retval false if the Vectorset contains elements.
     /// @~
-    bool empty() const
+    inline bool empty() const
     {
       return this->__last == this->__valArray;
     };
 
     // iterators
-    iterator begin() const
+    inline iterator begin() const
     {
       return this->__valArray;
     };
-    iterator rbegin() const
+    inline iterator rbegin() const
     {
       return this->__last - 1;
     };
-    iterator end() const
+    inline iterator end() const
     {
       return this->__last;
     };
-    iterator rend() const
+    inline iterator rend() const
     {
       return this->__valArray - 1;
     };
@@ -688,37 +761,15 @@ namespace BWAPI
       }
       return iend;
     };
-    _T front() const
+    inline _T front() const
     {
       return *this->__valArray;
     };
-    _T back() const
+    inline _T back() const
     {
       return *(this->__last - 1);
     };
   // ----------------------------------------------------------------- stl algorithms
-    /// @~English
-    /// Works similar to the STL algorithm remove_if.
-    /// Iterates and calls a function predicate for
-    /// each element in the Vectorset. If the predicate
-    /// call returns true, then the value is removed.
-    ///
-    /// @param pred Function predicate used to determine
-    /// if a value is removed.
-    /// @~
-    /// @see std::remove_if
-    template <typename Func>
-    void remove_if( const Func &pred )
-    {
-      auto i = this->begin();
-      while ( i != this->end() )
-      {
-        if ( pred(*i) )
-          this->erase(i);
-        else
-          ++i;
-      }
-    };
     /// @~English
     /// Works similar to the STL algorithm count_if.
     /// Iterates and calls a function predicate for

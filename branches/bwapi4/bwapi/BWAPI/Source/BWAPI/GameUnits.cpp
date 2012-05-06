@@ -90,7 +90,7 @@ namespace BWAPI
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase_once(u);
+        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
@@ -100,7 +100,7 @@ namespace BWAPI
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase_once(u);
+        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
@@ -110,7 +110,7 @@ namespace BWAPI
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase_once(u);
+        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
@@ -346,48 +346,13 @@ namespace BWAPI
           geysers.erase(u);
       }
       else if ( unitPlayer == Broodwar->self() && type == UnitTypes::Protoss_Pylon )
-      {        
-        pylons.erase(u);
-      }
-    }
-
-    // Clear the units on tile data
-    SIZE mapSize = { Map::getWidth(), Map::getHeight() };
-    for ( unsigned int x = 0; x < (unsigned int)mapSize.cx; ++x )
-    {
-      for ( unsigned int y = 0; y < (unsigned int)mapSize.cy; y += 4 )
       {
-        unitsOnTileData[x][y+0].clear();
-        unitsOnTileData[x][y+1].clear();
-        unitsOnTileData[x][y+2].clear();
-        unitsOnTileData[x][y+3].clear();
+        pylons.erase(u);
       }
     }
 
     foreach(UnitImpl* i, accessibleUnits)
     {
-      if ( i->getType().isBuilding() && !i->isLifted() )
-      {
-        // Retrieve the buildings on tile
-        int tx = i->getTilePosition().x;
-        int ty = i->getTilePosition().y;
-        SIZE typeTileSize = { i->getType().tileWidth(), i->getType().tileHeight() };
-        for(int x = tx; x < tx + typeTileSize.cx && x < mapSize.cx; ++x)
-          for(int y = ty; y < ty + typeTileSize.cy && y < mapSize.cy; ++y)
-            unitsOnTileData[x][y].push_back(i);
-      }
-      else
-      {
-        // @TODO: Assign using getUnitsInRectangle
-        // Retrieve the units on tile
-        int startX = i->getLeft() / TILE_SIZE;
-        int endX   = (i->getRight() + TILE_SIZE - 1) / TILE_SIZE; // Division - round up
-        int startY = i->getTop() / TILE_SIZE;
-        int endY   = (i->getBottom() + TILE_SIZE - 1) / TILE_SIZE;
-        for (int x = startX; x < endX && x < mapSize.cx; ++x)
-          for (int y = startY; y < endY && y < mapSize.cy; ++y)
-            unitsOnTileData[x][y].push_back(i);
-      }
       if (i->lastType != i->_getType && i->lastType != UnitTypes::Unknown && i->_getType != UnitTypes::Unknown)
       {
         events.push_back(Event::UnitMorph(i));
@@ -396,10 +361,10 @@ namespace BWAPI
           neutralUnits.erase(i);
           geysers.erase(i);
         }
-        if (i->_getType == UnitTypes::Resource_Vespene_Geyser)
+        else if (i->_getType == UnitTypes::Resource_Vespene_Geyser)
         {
-          neutralUnits.insert(i);
-          geysers.insert(i);
+          neutralUnits.push_back(i);
+          geysers.push_back(i);
         }
       }
       if (i->lastPlayer != i->_getPlayer && i->lastPlayer && i->_getPlayer )
@@ -512,15 +477,12 @@ namespace BWAPI
 
       int r = _u->getRight()  - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
       int b = _u->getBottom() - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
-      foreach ( UnitImpl *uInside, this->getUnitsInRectangle(_u->getLeft(), _u->getTop(), r, b) )
-      {
-        // Create a local copy of the unit type
-        UnitType insideType = uInside->getType();
-        
-        // Ignore unaffected unit types
-        if ( insideType.isSpell() || insideType.isFlyer() )
-          continue;
 
+      // Get units under the ability that are affected
+      Unitset unitsInside = this->getUnitsInRectangle(_u->getLeft(), _u->getTop(), r, b,
+                                                      [&ut](Unit *u){ return !u->getType().isSpell() && !u->getType().isFlyer(); });
+      foreach ( UnitImpl *uInside, unitsInside )
+      {
         // Assign the boolean for whatever spell the unit is under
         if ( ut == UnitTypes::Spell_Dark_Swarm )
           uInside->self->isUnderDarkSwarm = true;

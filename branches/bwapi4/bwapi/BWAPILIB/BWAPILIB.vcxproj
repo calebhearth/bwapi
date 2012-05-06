@@ -140,12 +140,15 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClInclude Include="..\include\BWAPI\Bulletset.h" />
     <ClInclude Include="..\include\BWAPI\BulletType.h" />
     <ClInclude Include="..\include\BWAPI\Color.h" />
+    <ClInclude Include="..\include\BWAPI\CoordinateType.h" />
     <ClInclude Include="..\include\BWAPI\Forceset.h" />
+    <ClInclude Include="..\include\BWAPI\Latency.h" />
     <ClInclude Include="..\include\BWAPI\Playerset.h" />
     <ClInclude Include="..\include\BWAPI\PositionUnit.h" />
     <ClInclude Include="..\include\BWAPI\Regionset.h" />
     <ClInclude Include="..\include\BWAPI\Unitset.h" />
     <ClInclude Include="..\include\BWAPI\Vectorset.h" />
+    <ClInclude Include="..\include\BWAPI\Vectorset_iterator.h" />
     <ClInclude Include="Source\Common.h" />
     <ClInclude Include="..\include\BWAPI\DamageType.h" />
     <ClInclude Include="..\include\BWAPI\Error.h" />

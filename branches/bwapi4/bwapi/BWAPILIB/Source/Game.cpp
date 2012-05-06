@@ -2,6 +2,10 @@
 #include <BWAPI/Position.h>
 #include <BWAPI/CoordinateType.h>
 #include <BWAPI/Color.h>
+#include <BWAPI/Unitset.h>
+#include <BWAPI/Unit.h>
+
+#include <functional>
 
 namespace BWAPI
 {
@@ -40,11 +44,26 @@ namespace BWAPI
   {
     return this->hasCreep(position.x, position.y);
   }
-  Unitset& Game::getUnitsOnTile(BWAPI::TilePosition tile)
+  Unitset Game::getUnitsOnTile(int tileX, int tileY, std::function<bool(Unit*)> pred) const
   {
-    return this->getUnitsOnTile(tile.x, tile.y);
+    return this->getUnitsOnTile(TilePosition(tileX,tileY), pred);
   }
+  Unitset Game::getUnitsOnTile(BWAPI::TilePosition tile, std::function<bool(Unit*)> pred) const
+  {
+    if ( !tile )  // if tileposition not valid
+      return Unitset::none;
 
+    Position p(tile); // convert to pixel position
+    return this->getUnitsInRectangle(p.x, p.y, p.x + 32, p.y + 32, pred);
+  }
+  Unitset Game::getUnitsInRadius(Position center, int radius, std::function<bool(Unit*)> pred) const
+  {
+    return this->getUnitsInRectangle(center.x - radius,
+                                     center.y - radius,
+                                     center.x + radius,
+                                     center.y + radius,
+                                     [&center,&radius,&pred](Unit *u){ return u->getDistance(center) <= radius && (!pred || pred(u)); });
+  }
   //------------------------------------------ REGIONS -----------------------------------------------
   BWAPI::Region *Game::getRegionAt(BWAPI::Position position) const
   {
