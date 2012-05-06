@@ -1,5 +1,6 @@
 #pragma once
 #include <BWAPI/Type.h>
+#include <string>
 
 namespace BWAPI
 {
@@ -62,7 +63,7 @@ namespace BWAPI
     ///
     /// @returns std::string object containing the name.
     /// @~
-    std::string toString() const;
+    const std::string &toString() const;
 
     /// @copydoc getName
     /// @~English

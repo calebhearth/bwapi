@@ -86,7 +86,7 @@ namespace BWAPI
   Error::Error(int id) : Type( id )
   {
   }
-  std::string Error::toString() const
+  const std::string &Error::toString() const
   {
     return errorName[this->getID()];
   }
