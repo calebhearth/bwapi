@@ -70,7 +70,8 @@ $(SolutionDir)\revisionUpdate.bat
     </Link>
     <PostBuildEvent>
       <Message>Copying BWAPId.dll to Release_Binary</Message>
-      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(TargetName)d$(TargetExt)"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Starcraft\bwapi-data\$(TargetName)d$(TargetExt)"
+$(OutDir)CopyToTarget.exe</Command>
     </PostBuildEvent>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -113,7 +114,8 @@ $(SolutionDir)\revisionUpdate.bat
     </Link>
     <PostBuildEvent>
       <Message>Copying BWAPI.dll to Release_Binary</Message>
-      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Chaoslauncher\Plugins\$(TargetName)$(TargetExt)"</Command>
+      <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Starcraft\bwapi-data\$(TargetName)$(TargetExt)"
+$(OutDir)CopyToTarget.exe</Command>
     </PostBuildEvent>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
