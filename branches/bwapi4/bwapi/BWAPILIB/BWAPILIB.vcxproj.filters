@@ -89,6 +89,7 @@
     <ClCompile Include="Source\Region.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Filters.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\Event.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="..\include\BWAPI\Vectorset_iterator.h">
       <Filter>Containers\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\BWAPI\Filters.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Types">

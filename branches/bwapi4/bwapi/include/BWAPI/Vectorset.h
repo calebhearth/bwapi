@@ -466,7 +466,7 @@ namespace BWAPI
       iterator skip = i;
       while ( skip < this->end() )
       {
-        while ( val == *skip )  // increment remove ptr if equal
+        while ( skip < this->end() && val == *skip )  // increment remove ptr if equal
           ++skip;
 
         // if we've not reached the end, then shift the value up,
@@ -538,7 +538,7 @@ namespace BWAPI
       iterator skip = i;
       while ( skip < this->end() )
       {
-        while ( pred(*skip) )  // increment remove ptr if equal
+        while ( skip < this->end() && pred(*skip) )  // increment remove ptr if equal
           ++skip;
 
         // if we've not reached the end, then shift the value up,

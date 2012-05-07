@@ -1,5 +1,7 @@
 #include "DevAIModule.h"
 
+#include <BWAPI/Filters.h>
+
 using namespace BWAPI;
 
 bool enabled;
@@ -27,10 +29,6 @@ void DevAIModule::onEnd(bool isWinner)
 {
 }
 
-UnitType::set excludeTierOne(UnitTypes::Terran_SCV | UnitTypes::Protoss_Probe | UnitTypes::Zerg_Drone | 
-                             UnitTypes::Terran_Marine | UnitTypes::Protoss_Zealot | UnitTypes::Zerg_Zergling);
-
-
 DWORD dwLastTickCount;
 bool testunload;
 void DevAIModule::onFrame()
@@ -44,26 +42,19 @@ void DevAIModule::onFrame()
 
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
-  Unitset myset(self->getUnits());
-  // makes myset contain the set of all non-workers
-  myset.remove_if( [](Unit *u){ return u->getType().isWorker(); } );
-  myset.rightClick( bw->getMousePosition() + bw->getScreenPosition() );
+  Unitset units( self->getUnits() );
+  units.remove_if( ResourceDepots );
 
-  Unitset altset(myset);
-  // makes the set contain the set of all unit types that are not in the "excludeTierOne" UnitType::set
-  altset.remove_if( [](Unit *u){ return excludeTierOne.exists(u->getType()); } );
-  altset.holdPosition();
+  Unit *center = units.front();
+  if ( center )
+  {
+    Unitset newUnits( center->getUnitsInRadius(200, Workers) );
+    for ( auto i = newUnits.begin(); i != newUnits.end(); ++i )
+    {
+      Broodwar->drawLineMap(center->getPosition(), i->getPosition(), Colors::Green);
+    }
+  }
 
-  // retrieve the number of units who have over 10 enemies within a 100-pixel radius
-  int num = myset.count_if( [](Unit *u)
-            {
-              return u->getUnitsInRadius(100).count_if( [](Unit *e)
-                                              {
-                                                return self->isEnemy(e->getPlayer());
-                                              }) > 10;
-            } );
-  if ( bw->getFrameCount() % 16 && num > 0 )
-    bw->printf("%d units have over 10 enemies within a 100 pixel radius.", num);
 }
 
 void DevAIModule::onSendText(std::string text)

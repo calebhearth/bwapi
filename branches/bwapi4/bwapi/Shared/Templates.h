@@ -95,6 +95,8 @@ namespace BWAPI
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
+        if ( iUnitIndex > 1700 )
+          MessageBox(NULL, "", "", 0);
         if ( dwFinderFlags[iUnitIndex] == 1 )
           continue;
         if ( isWidthExtended )  // If width is small, check unit bounds
@@ -110,6 +112,8 @@ namespace BWAPI
       for ( int y = iTop; y < iBottom; ++y )
       {
         int iUnitIndex = finder_y[y].unitIndex;
+        if ( iUnitIndex > 1700 )
+          MessageBox(NULL, "", "", 0);
         if ( dwFinderFlags[iUnitIndex] != 1 )
           continue;
         if ( isHeightExtended ) // If height is small, check unit bounds
@@ -125,6 +129,8 @@ namespace BWAPI
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
+        if ( iUnitIndex > 1700 )
+          MessageBox(NULL, "", "", 0);
         if ( dwFinderFlags[iUnitIndex] == 2 )
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
