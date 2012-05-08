@@ -46,7 +46,10 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   std::string sInstallPath = GetRegString("SOFTWARE\\Blizzard Entertainment\\Starcraft", "InstallPath");
   sInstallPath += "bwapi-data\\" MODULE;
 
-  if ( !CopyFile(".\\BWAPI.dll", sInstallPath.c_str(), FALSE) )
+  std::string from(lpCmdLine);
+  from += "BWAPI.dll";
+
+  if ( !CopyFile(from.c_str(), sInstallPath.c_str(), FALSE) )
     return EXIT_FAILURE;
 
   return EXIT_SUCCESS;

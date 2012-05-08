@@ -5,15 +5,21 @@ namespace BWAPI
 {
   class Unit;
 
-  typedef std::function<bool(Unit*)> Filter;
-  /*
+  //typedef boost::function<bool(Unit*)> Filter;
+  
   class Filter
   {
   private:
     std::function<bool(Unit*)> pred;
   public:
-    Filter(std::function<bool(Unit*)> inFunction) : pred(inFunction) {};
-    Filter(const Filter &other) : pred(other) {};
+    Filter(const std::function<bool(Unit*)> &inFunction)
+    {
+      pred = inFunction;
+    };
+    Filter(const Filter &other)
+    {
+      pred = other.pred;
+    };
 
     inline Filter &operator=(const Filter &other)
     {
@@ -26,7 +32,7 @@ namespace BWAPI
     {
       return [&](Unit *u){ return this->operator()(u) && other(u); };
     };
-    inline Filter operator ||(Filter other) const
+    inline Filter operator ||(const Filter &other) const
     {
       return [&](Unit *u){ return this->operator()(u) || other(u); };
     };
@@ -34,14 +40,14 @@ namespace BWAPI
     {
       return [&](Unit *u){ return !this->operator()(u); };
     };
-    bool operator()(Unit *u) const
+    inline bool operator()(Unit *u) const
     {
-      return pred.operator()(u);
+      return pred(u);
     };
-  };*/
+  };
 
   /*
-  class Filter : public std::function<bool(Unit*)>
+  class Filter : public boost::function<bool(Unit*)>
   {
   public:
     // FORWARD CONSTRUCTORS (pass directly to all function ctors)
@@ -86,6 +92,7 @@ namespace BWAPI
 */
   extern Filter Workers;
   extern Filter Transports;
+  extern Filter Larvae;
   extern Filter ResourceDepots;
 
   /*
@@ -95,11 +102,11 @@ namespace BWAPI
   public:
     Filter(){};
 
-    std::function<bool(Unit*)> operator &&( const Filter &other)
+    boost::function<bool(Unit*)> operator &&( const Filter &other)
     {
       return [](Unit *u){ return _pred(u) && other(u); };
     };
-    std::function<bool(Unit*)> operator ||( const Filter &other)
+    boost::function<bool(Unit*)> operator ||( const Filter &other)
     {
       return [](Unit *u){ return _pred(u) || other(u); };
     };

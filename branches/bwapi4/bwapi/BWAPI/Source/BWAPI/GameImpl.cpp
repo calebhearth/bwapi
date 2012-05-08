@@ -281,7 +281,7 @@ namespace BWAPI
   {
     return this->unitArray[index-1];
   }
-  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, std::function<bool(Unit*)> pred) const
+  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const std::function<bool(Unit*)> &pred) const
   {
     // Initialize static variables
     Unitset unitFinderResults;

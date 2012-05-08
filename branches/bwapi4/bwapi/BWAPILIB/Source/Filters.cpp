@@ -1,12 +1,13 @@
 #include <BWAPI/Filters.h>
-#include <functional>
 #include <BWAPI/Unit.h>
+#include <BWAPI/UnitType.h>
 
 namespace BWAPI
 {
-  Filter Workers         = [](Unit *u){ return u->getType().isWorker(); };
-  Filter Transports      = [](Unit *u){ return u->getType().spaceProvided() > 0; };
-  Filter ResourceDepots  = [](Unit *u){ return u->getType().isResourceDepot(); };
+  Filter Workers         = [&](Unit *u){ return u->getType().isWorker(); };
+  Filter Larvae          = [&](Unit *u){ return u->getType() == BWAPI::UnitTypes::Zerg_Larva; };
+  Filter Transports      = [&](Unit *u){ return u->getType().spaceProvided() > 0; };
+  Filter ResourceDepots  = [&](Unit *u){ return u->getType().isResourceDepot(); };
 
 }
 /*

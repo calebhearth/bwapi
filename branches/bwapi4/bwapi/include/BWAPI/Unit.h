@@ -502,10 +502,10 @@ namespace BWAPI
     virtual Unitset getLarva() const = 0;
 
     /** Returns the set of units within the given radius of this unit */
-    Unitset getUnitsInRadius(int radius, std::function<bool(Unit*)> pred = NULL) const;
+    Unitset getUnitsInRadius(int radius, const std::function<bool(Unit*)> &pred = NULL) const;
 
     /** Returns the set of units within weapon range of this unit. */
-    Unitset getUnitsInWeaponRange(WeaponType weapon, std::function<bool(Unit*)> pred = NULL) const;
+    Unitset getUnitsInWeaponRange(WeaponType weapon, const std::function<bool(Unit*)> &pred = NULL) const;
 
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
     virtual void* getClientInfo() const = 0;

@@ -11,7 +11,7 @@ namespace BWAPI
     return this->getCenter().getApproxDistance(other->getCenter());
   }
 
-  Unitset Region::getUnits(std::function<bool(Unit*)> pred) const
+  Unitset Region::getUnits(const std::function<bool(Unit*)> &pred) const
   {
     return Broodwar->getUnitsInRectangle(this->getBoundsLeft(),
                                          this->getBoundsTop(),

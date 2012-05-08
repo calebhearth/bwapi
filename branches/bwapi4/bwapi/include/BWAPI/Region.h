@@ -62,6 +62,6 @@ namespace BWAPI
     /// in this region that have met the
     /// requirements of \p pred.
     /// @~
-    Unitset getUnits(std::function<bool(Unit*)> pred = NULL) const;
+    Unitset getUnits(const std::function<bool(Unit*)> &pred = NULL) const;
   };
 };

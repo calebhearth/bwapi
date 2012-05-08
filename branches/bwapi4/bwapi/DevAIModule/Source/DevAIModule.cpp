@@ -43,12 +43,12 @@ void DevAIModule::onFrame()
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
   Unitset units( self->getUnits() );
-  units.remove_if( ResourceDepots );
+  units.remove_if( !ResourceDepots );
 
   Unit *center = units.front();
   if ( center )
   {
-    Unitset newUnits( center->getUnitsInRadius(200, Workers) );
+    Unitset newUnits( center->getUnitsInRadius(200, Workers || Larvae || Transports) );
     for ( auto i = newUnits.begin(); i != newUnits.end(); ++i )
     {
       Broodwar->drawLineMap(center->getPosition(), i->getPosition(), Colors::Green);

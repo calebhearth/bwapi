@@ -42,7 +42,6 @@
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Link>
-      <OutputFile>$(IntDir)storm.dll</OutputFile>
       <ModuleDefinitionFile>storm.def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <LinkTimeCodeGeneration>
@@ -53,7 +52,6 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>

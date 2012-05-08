@@ -11,7 +11,7 @@
 namespace BWAPI
 {
   //------------------------------------------------ GET UNITS IN RADIUS -------------------------------------
-  Unitset Unit::getUnitsInRadius(int radius, std::function<bool(Unit*)> pred) const
+  Unitset Unit::getUnitsInRadius(int radius, const std::function<bool(Unit*)> &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )
@@ -53,7 +53,7 @@ namespace BWAPI
 
     return wpnRangePred(uIterator);
   }
-  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, std::function<bool(Unit*)> pred) const
+  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const std::function<bool(Unit*)> &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )
