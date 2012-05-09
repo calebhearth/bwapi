@@ -112,6 +112,8 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
       CompressWrite(&dwChkBufferSize, sizeof(dwChkBufferSize), fw);
       if ( dwChkBufferSize )
         CompressWrite(pChkBuffer, dwChkBufferSize, fw);
+
+      log.close();
     } // if replay is damaged
   }
 
