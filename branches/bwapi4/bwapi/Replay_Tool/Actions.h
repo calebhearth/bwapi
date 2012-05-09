@@ -4,7 +4,7 @@
 #include <windows.h>
 
 extern DWORD g_dwHighestFrame;
-void ParseActions(FileReader &fr);
+void ParseActions(FileReader &fr, const char *pszFilename);
 
 namespace Actions
 {

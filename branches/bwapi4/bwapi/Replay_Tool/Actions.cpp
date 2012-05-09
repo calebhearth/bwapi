@@ -3,6 +3,7 @@
 #include "FileReader.h"
 #include <stdio.h>
 #include <BWAPI.h>
+#include <fstream>
 /*
 int GetActionSize(BYTE *pBuffer)
 {
@@ -76,9 +77,10 @@ int GetActionSize(BYTE *pBuffer)
 
 
 DWORD g_dwHighestFrame;
-void ParseActions(FileReader &fr)
+void ParseActions(FileReader &fr, const char *pszFilename)
 {
-  FILE *hFile = fopen("DebugActions.txt", "w");
+  FILE *hFile = fopen("DebugActions.txt", "a");
+  fprintf(hFile, "---------------------------------------------------------------> %s\n", pszFilename);
   while ( !fr.Eof() )
   {
     DWORD dwCurrentFrame  = fr.Read<DWORD>();

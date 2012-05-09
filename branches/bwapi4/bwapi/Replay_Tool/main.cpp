@@ -45,7 +45,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   }
   szFile[p] = 0;
 
-  MessageBox(NULL, "Pause", "dbg", 0);
   switch ( pOpts[1] )
   {
   case 'u':
@@ -68,10 +67,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   case 'R':
   case 'f':
   case 'F':
-    if ( ParseReplay(szFile, RFLAG_REPAIR) )
-      MessageBox(NULL, "Repaired successfully.", "Success", MB_OK);
-    else
-      MessageBox(NULL, "Failed reading process somewhere.", "Failure", MB_OK);
+    ParseReplay(szFile, RFLAG_REPAIR);
     break;
   default:
     return Usage();

@@ -2,6 +2,7 @@
 
 #include "PKShared.h"
 
+#include <fstream>
 #include "FileReader.h"
 #include "FileWriter.h"
 
@@ -21,7 +22,10 @@ void WriteBuffer(const char *pszFormat, const char *pszFilename, void *pBuffer, 
 
 bool errSimple(const char *pszText)
 {
-  MessageBox(NULL, pszText, NULL, 0);
+  //MessageBox(NULL, pszText, NULL, 0);
+  std::ofstream log("Replay_errLog.log", std::ios_base::app);
+  log << pszText << "\n";
+  log.close();
   return false;
 }
 
@@ -79,36 +83,36 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
   if ( dwFlags & RFLAG_REPAIR )
   {
     // Parse replay actions
-    ParseActions(frActions);
+    ParseActions(frActions, pszFilename);
 
     if ( replayHeader.dwFrameCount < g_dwHighestFrame )
     {
-      char szTmp[256];
-      sprintf(szTmp, "Fixed replay with %u frames. Desired: %u frames.", replayHeader.dwFrameCount, g_dwHighestFrame);
-      MessageBox(NULL, szTmp, "Fixed", 0);
+      std::ofstream log("Results.txt", std::ios_base::app);
+      log << pszFilename << " -- Fixed replay with " << replayHeader.dwFrameCount << " frames. Desired: " << g_dwHighestFrame << " frames.\n";
 
-      replayHeader.dwFrameCount = g_dwHighestFrame + 25;
-    }
+      replayHeader.dwFrameCount = g_dwHighestFrame + 100;
 
-    FileWriter fw;
-    fw.Open(pszFilename);
+      // Repair/reconstruct the replay
+      FileWriter fw;
+      fw.Open(pszFilename);
 
-    // write rep resource id
-    dwRepResourceID = mmioFOURCC('r','e','R','S');
-    CompressWrite(&dwRepResourceID, sizeof(dwRepResourceID), fw);
+      // write rep resource id
+      dwRepResourceID = mmioFOURCC('r','e','R','S');
+      CompressWrite(&dwRepResourceID, sizeof(dwRepResourceID), fw);
 
-    // write header
-    CompressWrite(&replayHeader, sizeof(replayHeader), fw);
+      // write header
+      CompressWrite(&replayHeader, sizeof(replayHeader), fw);
 
-    // write actions
-    CompressWrite(&dwActionBufferSize, sizeof(dwActionBufferSize), fw);
-    if ( dwActionBufferSize )
-      CompressWrite(pActionBuffer, dwActionBufferSize, fw);
+      // write actions
+      CompressWrite(&dwActionBufferSize, sizeof(dwActionBufferSize), fw);
+      if ( dwActionBufferSize )
+        CompressWrite(pActionBuffer, dwActionBufferSize, fw);
     
-    // write chk
-    CompressWrite(&dwChkBufferSize, sizeof(dwChkBufferSize), fw);
-    if ( dwChkBufferSize )
-      CompressWrite(pChkBuffer, dwChkBufferSize, fw);
+      // write chk
+      CompressWrite(&dwChkBufferSize, sizeof(dwChkBufferSize), fw);
+      if ( dwChkBufferSize )
+        CompressWrite(pChkBuffer, dwChkBufferSize, fw);
+    } // if replay is damaged
   }
 
   return true;
