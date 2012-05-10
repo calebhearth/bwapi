@@ -60,7 +60,7 @@ namespace BWAPI
     int getUnitFinderIndex(const finder *uf, int value, int start = 0)
     {
       unsigned int i = start;
-      while ( uf[i].searchValue < value && uf[i].unitIndex && i < 1700*2 )
+      while ( uf[i].searchValue < value && uf[i].unitIndex != 0 && i < 1700*2 )
         ++i;
       return i;
     }
@@ -70,10 +70,6 @@ namespace BWAPI
     {
       DWORD dwFinderFlags[1701] = { 0 };
 
-      // Swap values so that they are correct
-      Templates::swapIfLarger(left, right);
-      Templates::swapIfLarger(top, bottom);
-      
       // Declare some variables
       int r = right, b = bottom;
       bool isWidthExtended  = right - left + 1 < UnitTypes::maxUnitWidth();
@@ -95,42 +91,38 @@ namespace BWAPI
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
-        if ( iUnitIndex > 1700 )
-          MessageBox(NULL, "", "", 0);
-        if ( dwFinderFlags[iUnitIndex] == 1 )
-          continue;
-        if ( isWidthExtended )  // If width is small, check unit bounds
+        if ( dwFinderFlags[iUnitIndex] == 0 )
         {
-          Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
-          if ( u && u->getLeft() <= right )
+          if ( isWidthExtended )  // If width is small, check unit bounds
+          {
+            Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
+            if ( u && u->getLeft() <= right )
+              dwFinderFlags[iUnitIndex] = 1;
+          }
+          else
             dwFinderFlags[iUnitIndex] = 1;
         }
-        else
-          dwFinderFlags[iUnitIndex] = 1;
       }
       // Iterate the Y entries of the finder
       for ( int y = iTop; y < iBottom; ++y )
       {
         int iUnitIndex = finder_y[y].unitIndex;
-        if ( iUnitIndex > 1700 )
-          MessageBox(NULL, "", "", 0);
-        if ( dwFinderFlags[iUnitIndex] != 1 )
-          continue;
-        if ( isHeightExtended ) // If height is small, check unit bounds
+        if ( dwFinderFlags[iUnitIndex] == 1 )
         {
-          Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
-          if ( u && u->getTop() <= bottom )
+          if ( isHeightExtended ) // If height is small, check unit bounds
+          {
+            Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
+            if ( u && u->getTop() <= bottom )
+              dwFinderFlags[iUnitIndex] = 2;
+          }
+          else
             dwFinderFlags[iUnitIndex] = 2;
         }
-        else
-          dwFinderFlags[iUnitIndex] = 2;
       }
       // Final Iteration
       for ( int x = iLeft; x < iRight; ++x )
       {
         int iUnitIndex = finder_x[x].unitIndex;
-        if ( iUnitIndex > 1700 )
-          MessageBox(NULL, "", "", 0);
         if ( dwFinderFlags[iUnitIndex] == 2 )
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);

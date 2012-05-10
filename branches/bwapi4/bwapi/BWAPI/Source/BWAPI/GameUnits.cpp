@@ -479,8 +479,8 @@ namespace BWAPI
       int b = _u->getBottom() - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
 
       // Get units under the ability that are affected
-      Unitset unitsInside = this->getUnitsInRectangle(_u->getLeft(), _u->getTop(), r, b,
-                                                      [&ut](Unit *u){ return !u->getType().isSpell() && !u->getType().isFlyer(); });
+      Unitset unitsInside(this->getUnitsInRectangle(_u->getLeft(), _u->getTop(), r, b,
+                                                      [&ut](Unit *u){ return !u->getType().isSpell() && !u->getType().isFlyer(); }) );
       foreach ( UnitImpl *uInside, unitsInside )
       {
         // Assign the boolean for whatever spell the unit is under

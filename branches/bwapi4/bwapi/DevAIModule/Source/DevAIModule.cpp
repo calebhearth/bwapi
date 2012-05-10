@@ -43,7 +43,7 @@ void DevAIModule::onFrame()
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
   Unitset units( self->getUnits() );
-  units.remove_if( !ResourceDepots );
+  units.remove_if( ~ResourceDepots );
 
   Unit *center = units.front();
   if ( center )
