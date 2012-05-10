@@ -5,11 +5,11 @@
 
 namespace BWAPI
 {
-  
+  /*
   const Filter Workers([](Unit *u){ return u->getType().isWorker(); });
   const Filter Larvae([](Unit *u){ return u->getType() == BWAPI::UnitTypes::Zerg_Larva; });
   const Filter Transports([](Unit *u){ return u->getType().spaceProvided() > 0; });
   const Filter ResourceDepots([](Unit *u){ return u->getType().isResourceDepot(); });
-  
+  */
 }
 

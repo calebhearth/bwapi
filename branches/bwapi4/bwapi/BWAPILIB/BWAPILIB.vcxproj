@@ -139,9 +139,12 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\AIModule.h" />
+    <ClInclude Include="..\include\BWAPI\ArithmaticFilter.h" />
+    <ClInclude Include="..\include\BWAPI\BestFilter.h" />
     <ClInclude Include="..\include\BWAPI\Bulletset.h" />
     <ClInclude Include="..\include\BWAPI\BulletType.h" />
     <ClInclude Include="..\include\BWAPI\Color.h" />
+    <ClInclude Include="..\include\BWAPI\ComparisonFilter.h" />
     <ClInclude Include="..\include\BWAPI\CoordinateType.h" />
     <ClInclude Include="..\include\BWAPI\Filters.h" />
     <ClInclude Include="..\include\BWAPI\Forceset.h" />
@@ -149,6 +152,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClInclude Include="..\include\BWAPI\Playerset.h" />
     <ClInclude Include="..\include\BWAPI\PositionUnit.h" />
     <ClInclude Include="..\include\BWAPI\Regionset.h" />
+    <ClInclude Include="..\include\BWAPI\UnaryFilter.h" />
     <ClInclude Include="..\include\BWAPI\Unitset.h" />
     <ClInclude Include="..\include\BWAPI\Vectorset.h" />
     <ClInclude Include="..\include\BWAPI\Vectorset_iterator.h" />

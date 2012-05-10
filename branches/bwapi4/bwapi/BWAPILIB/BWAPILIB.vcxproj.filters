@@ -89,7 +89,9 @@
     <ClCompile Include="Source\Region.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Filters.cpp" />
+    <ClCompile Include="Source\Filters.cpp">
+      <Filter>Filters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\Event.h" />
@@ -189,7 +191,21 @@
     <ClInclude Include="..\include\BWAPI\Vectorset_iterator.h">
       <Filter>Containers\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\BWAPI\Filters.h" />
+    <ClInclude Include="..\include\BWAPI\Filters.h">
+      <Filter>Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\ArithmaticFilter.h">
+      <Filter>Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\ComparisonFilter.h">
+      <Filter>Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\UnaryFilter.h">
+      <Filter>Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWAPI\BestFilter.h">
+      <Filter>Filters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Types">
@@ -215,6 +231,9 @@
     </Filter>
     <Filter Include="Enums">
       <UniqueIdentifier>{86f33f3d-6219-4e6f-8a38-03764a96a390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filters">
+      <UniqueIdentifier>{e2978001-1978-4c91-96da-927212cbf403}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
