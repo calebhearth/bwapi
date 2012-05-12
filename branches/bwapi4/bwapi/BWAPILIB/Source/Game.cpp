@@ -5,7 +5,6 @@
 #include <BWAPI/Unitset.h>
 #include <BWAPI/Unit.h>
 
-#include <functional>
 
 namespace BWAPI
 {
@@ -44,11 +43,11 @@ namespace BWAPI
   {
     return this->hasCreep(position.x, position.y);
   }
-  Unitset Game::getUnitsOnTile(int tileX, int tileY, const std::function<bool(Unit*)> &pred) const
+  Unitset Game::getUnitsOnTile(int tileX, int tileY, const Unit::Filter &pred) const
   {
     return this->getUnitsOnTile(TilePosition(tileX,tileY), pred);
   }
-  Unitset Game::getUnitsOnTile(BWAPI::TilePosition tile, const std::function<bool(Unit*)> &pred) const
+  Unitset Game::getUnitsOnTile(BWAPI::TilePosition tile, const Unit::Filter &pred) const
   {
     if ( !tile )  // if tileposition not valid
       return Unitset::none;
@@ -56,7 +55,7 @@ namespace BWAPI
     Position p(tile); // convert to pixel position
     return this->getUnitsInRectangle(p.x, p.y, p.x + 32, p.y + 32, pred);
   }
-  Unitset Game::getUnitsInRadius(Position center, int radius, const std::function<bool(Unit*)> &pred) const
+  Unitset Game::getUnitsInRadius(Position center, int radius, const Unit::Filter &pred) const
   {
     return this->getUnitsInRectangle(center.x - radius,
                                      center.y - radius,

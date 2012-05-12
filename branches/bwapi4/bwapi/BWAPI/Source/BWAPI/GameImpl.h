@@ -81,7 +81,7 @@ namespace BWAPI
       virtual bool    isFlagEnabled(int flag) const;
       virtual void    enableFlag(int flag);
 
-      virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const std::function<bool(Unit*)> &pred = NULL) const;
+      virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const Unit::Filter &pred = NULL) const;
 
       virtual Error   getLastError() const;
       virtual bool    setLastError(BWAPI::Error e = Errors::None);

@@ -12,7 +12,6 @@
 #include <Util/Types.h>
 #include <string>
 #include <cassert>
-#include <functional>
 
 #include <BWAPI/Unitset.h>
 
@@ -439,7 +438,7 @@ namespace BWAPI
       addCommand(BWAPIC::Command(BWAPIC::CommandType::EnableFlag,flag));
   }
   //----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
-  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const std::function<bool(Unit*)> &pred) const
+  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const Unit::Filter &pred) const
   {
     static Unitset unitFinderResults;
 

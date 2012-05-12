@@ -1,7 +1,6 @@
 #include <BWAPI/Region.h>
 #include <BWAPI/Unitset.h>
 #include <BWAPI/Game.h>
-#include <functional>
 #include <BWAPI/Unit.h>
 
 namespace BWAPI
@@ -11,7 +10,7 @@ namespace BWAPI
     return this->getCenter().getApproxDistance(other->getCenter());
   }
 
-  Unitset Region::getUnits(const std::function<bool(Unit*)> &pred) const
+  Unitset Region::getUnits(const Unit::Filter &pred) const
   {
     return Broodwar->getUnitsInRectangle(this->getBoundsLeft(),
                                          this->getBoundsTop(),

@@ -79,6 +79,24 @@ namespace BWAPI
       memcpy(this->__valArray, &(other.begin()), other.size()*sizeof(_T));
     };
     /// @~English
+    /// This is the move constructor. The Vectorset
+    /// will steal the data pointer from the other
+    /// Vectorset.
+    ///
+    /// @param other Reference to the Vectorset of the 
+    /// same type whose contents will be moved.
+    ///
+    /// @note Duplicate entries are not removed.
+    /// @~
+    Vectorset(const Vectorset<_T> &&other)
+      : __totSize( other.__totSize )
+      , __valArray( other.__valArray )
+      , __end( other.__end )
+      , __last( other.__last )
+    { 
+      other.__valArray = NULL;
+    };
+    /// @~English
     /// This constructor uses an existing array
     /// of objects and copies them into the vector.
     /// The Vectorset will allocate only enough
@@ -111,6 +129,17 @@ namespace BWAPI
     {
       this->clear();
       this->push_back(other);
+      return *this;
+    };
+    Vectorset &operator =(const Vectorset<_T> &&other)
+    {
+      if ( this->__valArray != NULL )
+        free(this->__valArray);
+      this->__valArray  = other.__valArray;
+      this->__end       = other.__end;
+      this->__last      = other.__last;
+      this->__totSize   = other.__totSize;
+      other.__valArray  = NULL;
       return *this;
     };
     /// @copydoc push_back(const Vectorset<_T> &)
@@ -237,7 +266,8 @@ namespace BWAPI
   // ----------------------------------------------------------------- Destructor
     ~Vectorset()
     {
-      free(this->__valArray);
+      if ( this->__valArray != NULL )
+        free(this->__valArray);
     };
   // ----------------------------------------------------------------- Custom const functions
     /// @~English

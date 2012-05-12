@@ -48,11 +48,9 @@ void DevAIModule::onFrame()
   Unit *center = units.front();
   if ( center )
   {
-    Unitset newUnits( center->getUnitsInRadius(200, (Workers || Larvae || Transports) ) );
+    Unitset newUnits( center->getUnitsInRadius(200, (Workers || Transports) && HP + Shields < 30) );
     for ( auto i = newUnits.begin(); i != newUnits.end(); ++i )
-    {
       Broodwar->drawLineMap(center->getPosition(), i->getPosition(), Colors::Green);
-    }
   }
 
 }

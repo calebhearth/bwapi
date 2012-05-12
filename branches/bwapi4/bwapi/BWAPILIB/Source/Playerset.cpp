@@ -8,6 +8,7 @@ namespace BWAPI
 {
   Playerset::Playerset(size_t initialSize) : Vectorset(initialSize) { };
   Playerset::Playerset(const Playerset &other) : Vectorset(other) { };
+  Playerset::Playerset(const Playerset &&other) : Vectorset(other) { };
 
   Unitset Playerset::getUnits() const
   {

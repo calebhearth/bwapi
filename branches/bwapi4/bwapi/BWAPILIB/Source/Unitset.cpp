@@ -14,6 +14,7 @@ namespace BWAPI
   ////////////////////////////////////////////////////////// ctors
   Unitset::Unitset(size_t initialSize) : Vectorset(initialSize) { };
   Unitset::Unitset(const Unitset &other) : Vectorset(other) { };
+  Unitset::Unitset(const Unitset &&other) : Vectorset(other) { };
 
   ////////////////////////////////////////////////////////// Position
   Position Unitset::getPosition() const

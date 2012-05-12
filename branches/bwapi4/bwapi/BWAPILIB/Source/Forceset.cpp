@@ -5,6 +5,7 @@ namespace BWAPI
 {
   Forceset::Forceset(size_t initialSize) : Vectorset(initialSize) { };
   Forceset::Forceset(const Forceset &other) : Vectorset(other) { };
+  Forceset::Forceset(const Forceset &&other) : Vectorset(other) { };
 
 
 }

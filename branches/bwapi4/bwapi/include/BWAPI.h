@@ -10,6 +10,7 @@
 #include <BWAPI/Event.h>
 #include <BWAPI/EventType.h>
 #include <BWAPI/ExplosionType.h>
+#include <BWAPI/Filters.h>
 #include <BWAPI/Flag.h>
 #include <BWAPI/Force.h>
 #include <BWAPI/Forceset.h>

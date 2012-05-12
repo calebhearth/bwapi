@@ -2,11 +2,6 @@
 #include <BWAPI.h>
 #include <Util/Foreach.h>
 
-#include <BWAPI/Unitset.h>
-#include <BWAPI/PositionUnit.h>
-
-#include <functional>
-
 namespace BWAPI
 {
   namespace Templates
@@ -66,7 +61,7 @@ namespace BWAPI
     }
     
     template <class finder>
-    void manageUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, const std::function<bool(Unit*)> &callback, Unitset &finderSet)
+    void manageUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, const Unit::Filter &callback, Unitset &finderSet)
     {
       DWORD dwFinderFlags[1701] = { 0 };
 

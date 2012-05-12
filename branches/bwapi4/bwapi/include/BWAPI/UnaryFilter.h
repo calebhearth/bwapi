@@ -11,32 +11,22 @@ namespace BWAPI
   public:
     // Constructor
     template <typename _T>
-    UnaryFilterBase(const _T&& predicate) : pred(predicate)
+    UnaryFilterBase(const _T& predicate) : pred(predicate)
     {};
 
     // Assignment
     template <typename _T>
-    UnaryFilterBase &operator =(const _T&& other)
+    UnaryFilterBase &operator =(const _T& other)
     {
       this->pred.assign(other);
       return *this;
     };
 
-    // Bitwise operators
-    template <typename _T>
-    inline UnaryFilterBase operator &&(const _T&& other) const
-    {
-      return [&](_Param1 u){ return (*this)(u) && other(u); };
-    };
+    // Bitwise operators    
     template <typename _T>
     inline UnaryFilterBase operator &&(const _T& other) const
     {
       return [&](_Param1 u){ return (*this)(u) && other(u); };
-    };
-    template <typename _T>
-    inline UnaryFilterBase operator ||(const _T&& other) const
-    {
-      return [&](_Param1 u){ return (*this)(u) || other(u); };
     };
     template <typename _T>
     inline UnaryFilterBase operator ||(const _T& other) const
@@ -56,6 +46,11 @@ namespace BWAPI
       return pred(u);
     };
 
+    // operator bool
+    inline operator bool() const
+    {
+      return (bool)pred;
+    };
   };
 }
 

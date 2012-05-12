@@ -11,7 +11,7 @@
 namespace BWAPI
 {
   //------------------------------------------------ GET UNITS IN RADIUS -------------------------------------
-  Unitset Unit::getUnitsInRadius(int radius, const std::function<bool(Unit*)> &pred) const
+  Unitset Unit::getUnitsInRadius(int radius, const Unit::Filter &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )
@@ -24,53 +24,43 @@ namespace BWAPI
                                          [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); });
   }
   //--------------------------------------------- GET UNITS IN WEAPON RANGE ----------------------------------
-  const Unit *unitsInWpnRange_Unit;
-  WeaponType unitsInWpnRange_Wpn;
-  int unitsInWpnRange_Max;
-  std::function<bool(Unit*)> wpnRangePred;
-  bool Shared_unitInWpnRange_callback(Unit *uIterator)
-  {
-    // Unit check and unit status
-    if ( uIterator == unitsInWpnRange_Unit || uIterator->isInvincible() )
-      return false;
-
-    // Weapon distance check
-    int dist = unitsInWpnRange_Unit->getDistance(uIterator);
-    if ( (unitsInWpnRange_Wpn.minRange() && dist < unitsInWpnRange_Wpn.minRange()) || dist > unitsInWpnRange_Max )
-      return false;
-
-    // Weapon behavioural checks
-    UnitType ut = uIterator->getType();
-    if ( (( unitsInWpnRange_Wpn.targetsOwn()          && uIterator->getPlayer() != unitsInWpnRange_Unit->getPlayer() ) ||
-          ( !unitsInWpnRange_Wpn.targetsAir()         && (!uIterator->isLifted() && !ut.isFlyer()) ) ||
-          ( !unitsInWpnRange_Wpn.targetsGround()      && (uIterator->isLifted() || ut.isFlyer())   ) ||
-          ( unitsInWpnRange_Wpn.targetsMechanical()   && ut.isMechanical()                 ) ||
-          ( unitsInWpnRange_Wpn.targetsOrganic()      && ut.isOrganic()                    ) ||
-          ( unitsInWpnRange_Wpn.targetsNonBuilding()  && !ut.isBuilding()                  ) ||
-          ( unitsInWpnRange_Wpn.targetsNonRobotic()   && !ut.isRobotic()                   ) ||
-          ( unitsInWpnRange_Wpn.targetsOrgOrMech()    && (ut.isOrganic() || ut.isMechanical()) ))  )
-      return false;
-
-    return wpnRangePred(uIterator);
-  }
-  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const std::function<bool(Unit*)> &pred) const
+  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const Unit::Filter &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )
       return Unitset::none;
 
     int max = this->getPlayer()->weaponMaxRange(weapon);
-    
-    wpnRangePred          = pred;
-    unitsInWpnRange_Unit  = this;
-    unitsInWpnRange_Wpn   = weapon;
-    unitsInWpnRange_Max   = max;
 
     return Broodwar->getUnitsInRectangle(this->getLeft()    - max,
                                          this->getTop()     - max,
                                          this->getRight()   + max,
                                          this->getBottom()  + max,
-                                         &Shared_unitInWpnRange_callback);
+                                         [&](Unit *u)->bool
+                                         {
+                                          // Unit check and unit status
+                                          if ( u == this || u->isInvincible() )
+                                            return false;
+
+                                          // Weapon distance check
+                                          int dist = this->getDistance(u);
+                                          if ( (weapon.minRange() && dist < weapon.minRange()) || dist > max )
+                                            return false;
+
+                                          // Weapon behavioural checks
+                                          UnitType ut = u->getType();
+                                          if ( (( weapon.targetsOwn()          && u->getPlayer() != this->getPlayer() ) ||
+                                                ( !weapon.targetsAir()         && (!u->isLifted() && !ut.isFlyer()) ) ||
+                                                ( !weapon.targetsGround()      && (u->isLifted() || ut.isFlyer())   ) ||
+                                                ( weapon.targetsMechanical()   && ut.isMechanical()                 ) ||
+                                                ( weapon.targetsOrganic()      && ut.isOrganic()                    ) ||
+                                                ( weapon.targetsNonBuilding()  && !ut.isBuilding()                  ) ||
+                                                ( weapon.targetsNonRobotic()   && !ut.isRobotic()                   ) ||
+                                                ( weapon.targetsOrgOrMech()    && (ut.isOrganic() || ut.isMechanical()) ))  )
+                                            return false;
+
+                                          return pred(u);
+                                        });
   }
   // ------------------------------------------ STATUS ---------------------------------------------
   bool Unit::isDefenseMatrixed() const
