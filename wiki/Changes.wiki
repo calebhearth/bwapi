@@ -32,7 +32,9 @@
 === Player ===
  * groundWeaponMaxRange and airWeaponMaxRange have been removed. Use weaponMaxRange instead.
 
-=== Bug Fixes ===
+== Changes from BWAPI 3.7.2 (r4025) to BWAPI 3.7.3 (r4111) ==
+
+Bug Fixes:
  * Fixed a bug where UnitTypes::maxUnitHeight was returning the max unit width instead.
  * Fixed a regression where getUnitsIn functions did not function for non-client AI.
  * Fixed the client's Game::getForces which included the null force.
