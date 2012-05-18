@@ -117,6 +117,13 @@ namespace BWAPI
     {
       memcpy(this->__valArray, pArray, arrSize*sizeof(_T) );
     };
+
+  // ----------------------------------------------------------------- Destructor
+    ~Vectorset()
+    {
+      if ( this->__valArray != NULL )
+        free(this->__valArray);
+    };
   // ----------------------------------------------------------------- Operators
     /// @copydoc push_back(const Vectorset<_T> &)
     /// @~English
@@ -263,12 +270,6 @@ namespace BWAPI
       return __valArray[0];
     };
 
-  // ----------------------------------------------------------------- Destructor
-    ~Vectorset()
-    {
-      if ( this->__valArray != NULL )
-        free(this->__valArray);
-    };
   // ----------------------------------------------------------------- Custom const functions
     /// @~English
     /// This function checks if an element exists in the
@@ -345,6 +346,90 @@ namespace BWAPI
         return this->__valArray[::rand()%2048];
       }
       return this->__valArray[::rand()%size];
+    };
+    /// @~English
+    /// Iterates the Vectorset and retrieves the
+    /// best entry using two callback procedures.
+    /// The first returning the value to compare,
+    /// the second being a binary comparison.
+    ///
+    /// @param cmpValue A functor taking one argument,
+    /// _T, and returning a value to compare.
+    /// @param cmpProc A functor taking two values,
+    /// (the ones returned by cmpValue), and
+    /// returns a boolean indicating that the
+    /// first value passed in is the new best value.
+    ///
+    /// @retval NULL If the Vectorset is empty.
+    /// @returns A _T representing the best in
+    /// the Vectorset.
+    /// @~
+    ///
+    template < typename _V, typename _C >
+    _T getBest(const _V &cmpValue, const _C &cmpProc)
+    {
+      // Return if empty
+      if ( this->empty() )
+        return NULL;
+      
+      // retrieve a value as the placeholder for the "best"
+      _T best = this->front();
+      int bestVal = cmp(best);
+
+      // Iterate all (remaining) elements
+      for ( auto i = this->begin()+1; i != this->end(); ++i )
+      {
+        // Retrieve new value
+        int newVal = cmp(*i);
+
+        // Set as new best if new value > best
+        if ( cmpProc(newVal, bestVal) )
+        {
+          bestVal = newVal;
+          best = *i;
+        }
+      }
+
+      return best;
+    };
+    /// @copydoc getBest
+    /// @see getBest
+    template < typename _V >
+    _T most(const _V &cmpValue)
+    {
+      return this->getBest( std::forward<_V>(cmpValue), [](const int &v1, const int &v2)->bool{ return v1 > v2; } );
+    };
+    /// @copydoc getBest
+    /// @see getBest
+    template < typename _V >
+    _T least(const _V &cmpValue)
+    {
+      return this->getBest( std::forward<_V>(cmpValue), [](const int &v1, const int &v2)->bool{ return v1 < v2; } );
+    };
+    /// @~English
+    /// Calculates a total by applying a
+    /// functor to each element and adding
+    /// what the functor returns.
+    ///
+    /// @param valProc A unary functor
+    /// that takes _T as a parameter
+    /// and returns the integer used
+    /// to add to the total.
+    ///
+    /// @returns An integer representing
+    /// the sum of results from \p valProc
+    /// applied to every element in the
+    /// Vectorset.
+    /// @~
+    template < typename _V >
+    int total(const _V &valProc)
+    {
+      int sum = 0;
+      for ( auto i = this->begin(); i != this->end(); ++i )
+      {
+        sum += valProc(*i);
+      }
+      return sum;
     };
   // ----------------------------------------------------------------- erase
     /// @~English

@@ -2,6 +2,8 @@
 #include <BWAPI/Unit.h>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Player.h>
+#include <BWAPI/Unitset.h>
+#include <BWAPI/Game.h>
 
 #define ULAMBDA(x) [](Unit *u){ return (x); }
 
@@ -13,6 +15,7 @@ namespace BWAPI
   U_UFILTER(Workers, u->getType().isWorker() );
   U_UFILTER(Transports, u->getType().spaceProvided() > 0 );
   U_UFILTER(ResourceDepots, u->getType().isResourceDepot() );
+  
 
   U_CFILTER(HP, u->getHitPoints() );
   U_CFILTER(HP_Percent, (u->getHitPoints()*100) / u->getType().maxHitPoints() );
@@ -24,5 +27,20 @@ namespace BWAPI
   U_CFILTER(GetType, u->getType() );
 
   U_CFILTER(Resources, u->getResources() );
+  /*
+  class UnitsInRadius : public UnaryFilterBase<Unit*>
+  {
+  private:
+    int rad;
+  public:
+    // ctor
+    template < typename _T >
+    UnitsInRadius(int radius, const _T &predicate = NULL)
+      : rad(radius)
+      , UnaryFilterBase(predicate)
+    {};
+    
+
+  };*/
 }
 
