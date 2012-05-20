@@ -166,7 +166,7 @@ HANDLE WINAPI _FindFirstFile(LPCSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData
 }
 void setReplayName(char *pOutFilename, const char *pInFileName)
 {
-  if ( /*!BWAPI::BroodwarImpl.outOfGame &&*/ strstr(pInFileName, "LastReplay.rep") )
+  if ( strstr(pInFileName, "LastReplay.rep") )
   {
     if ( gszDesiredReplayName[0] )
       strcpy(pOutFilename, gszDesiredReplayName);
@@ -230,6 +230,7 @@ DWORD WINAPI _GetFileAttributes(LPCSTR lpFileName)
 HANDLE WINAPI _CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
   // obtain the alternative replay name
+  // @TODO: Check for read/write attributes
   char szNewFileName[MAX_PATH];
   setReplayName(szNewFileName, lpFileName);
 
@@ -498,14 +499,12 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   {
     BW::BWDATA_StringTableOff = (char*)rval;
     lastFile = "";
-    //MessageBox(0, "BWDATA_StringTableOff", "", 0);
   }
 
   /* Save the allocated fog of war pointer */
   if ( amount == 0x40000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 606 )
   {
     BW::BWDATA_ActiveTileArray = (BW::activeTile*)rval;
-    //MessageBox(0, "BWDATA_ActiveTileArray", "", 0);
   }
 
   /* Save the allocated mini-tile flags pointer */
@@ -513,14 +512,12 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   {
     BW::BWDATA_MiniTileFlags = (BW::MiniTileMaps_type*)rval;
     lastFile = "";
-    //MessageBox(0, "BWDATA_MiniTileFlags", "", 0);
   }
 
   /* Save the allocated SAI_Paths pointer */
   if ( strcmpi(logfilename, "Starcraft\\SWAR\\lang\\sai_PathCreate.cpp") == 0 && logline == 210 )
   {
     BW::BWDATA_SAIPathing = (BW::SAI_Paths*)rval;
-    //MessageBox(0, "BWDATA_SAIPathing", "", 0);
   }
 
   /* Save the allocated tileset pointer */
@@ -528,14 +525,12 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   {
     BW::BWDATA_TileSet    = (BW::TileType*)rval;
     lastFile = "";
-    //MessageBox(0, "BWDATA_TileSet", "", 0);
   }
 
   /* Save the allocated map tile array pointer */
   if ( amount == 0x20000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 603 )
   {
     BW::BWDATA_MapTileArray = (u16*)rval;
-    //MessageBox(0, "BWDATA_MapTileArray", "", 0);
   }
 
   return rval;

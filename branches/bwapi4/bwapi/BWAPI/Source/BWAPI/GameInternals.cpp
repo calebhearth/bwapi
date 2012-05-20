@@ -323,9 +323,6 @@ namespace BWAPI
   }
   void GameImpl::initializeData()
   {
-    // Set desired replay name to null
-    gszDesiredReplayName[0] = '\0';
-
     // Destroy the AI Module client
     if ( this->client )
       delete this->client;

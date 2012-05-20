@@ -1019,6 +1019,10 @@ namespace BWAPI
 
     if ( autoMenuSaveReplay != "" && !this->isReplay() )
     {
+      // Set desired replay name to null
+      gszDesiredReplayName[0] = '\0';
+
+      // Set replay envvars
       SYSTEMTIME systemTime;
       GetSystemTime(&systemTime);
       char szBuf[64];
