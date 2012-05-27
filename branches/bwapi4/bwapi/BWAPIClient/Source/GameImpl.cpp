@@ -438,7 +438,7 @@ namespace BWAPI
       addCommand(BWAPIC::Command(BWAPIC::CommandType::EnableFlag,flag));
   }
   //----------------------------------------------- GET UNITS IN RECTANGLE -----------------------------------
-  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const Unit::Filter &pred) const
+  Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred) const
   {
     static Unitset unitFinderResults;
 

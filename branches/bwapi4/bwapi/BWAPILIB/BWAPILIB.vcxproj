@@ -139,7 +139,6 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\AIModule.h" />
-    <ClInclude Include="..\include\BWAPI\ArithmaticFilter.h" />
     <ClInclude Include="..\include\BWAPI\BestFilter.h" />
     <ClInclude Include="..\include\BWAPI\Bulletset.h" />
     <ClInclude Include="..\include\BWAPI\BulletType.h" />

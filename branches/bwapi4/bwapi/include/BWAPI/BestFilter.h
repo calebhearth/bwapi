@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include "ComparisonFilter.h"
 
 namespace BWAPI
 {
@@ -15,49 +16,49 @@ namespace BWAPI
   /// NULL.
   /// 
   /// @~
-  template<typename _Param1>
-  class BestFilterBase
+  template<typename _Param>
+  class BestFilter
   {
   private:
-    std::function<_Param1(_Param1,_Param1)> pred;
+    std::function<_Param(_Param,_Param)> pred;
   public:
     // Constructor
     template <typename _T>
-    BestFilterBase(const _T&& predicate) : pred(predicate)
+    BestFilter(const _T &predicate) : pred(predicate)
     {};
 
     // Assignment
     template <typename _T>
-    BestFilterBase &operator =(const _T&& other)
+    BestFilter &operator =(const _T &other)
     {
-      this->pred.assign(other);
+      this->pred = other;
       return *this;
     };
 
     // Bitwise operators
     template <typename _T>
-    inline BestFilterBase operator &&(const _T&& other) const
+    inline BestFilterBase operator &&(const _T &other) const
     {
-      return [&](_Param1 p1, _Param1 p2){ return other( (*this)(u) ); };
-    };
-    template <typename _T>
-    inline BestFilterBase operator &&(const _T& other) const
-    {
-      return [&](_Param1 p1, _Param1 p2){ return other( (*this)(u) ); };
-    };
-
-    // operator not
-    inline BestFilterBase operator ~() const
-    {
-      return std::not1(this->pred);
+      return [&](_Param p1, _Param p2){ return other( (*this)(p1, p2) ); };
     };
 
     // call
-    inline bool operator()(_Param1 u) const
+    inline _Param operator()(_Param p1, _Param p2) const
     {
       return pred(u);
     };
 
+  };
+
+  template <typename _Param>
+  BestFilter<_Param> Lowest(const CompareFilter<_Param> &filter)
+  {
+    return [&](_Param p1, _Param p2)->_Param{ return filter(p2) < filter(p1) ? p2 : p1; };
+  };
+  template <typename _Param>
+  BestFilter<_Param> Highest(const CompareFilter<_Param> &filter)
+  {
+    return [&](_Param p1, _Param p2)->_Param{ return filter(p2) > filter(p1) ? p2 : p1; };
   };
 
 }

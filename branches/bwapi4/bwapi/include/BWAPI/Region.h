@@ -1,5 +1,6 @@
 #pragma once
 #include <BWAPI/Position.h>
+#include <BWAPI/Filters.h>
 #include <BWAPI/UnaryFilter.h>
 
 namespace BWAPI
@@ -62,6 +63,6 @@ namespace BWAPI
     /// in this region that have met the
     /// requirements of \p pred.
     /// @~
-    Unitset getUnits(const UnaryFilterBase<Unit*> &pred = NULL) const;
+    Unitset getUnits(const UnitFilter &pred = NULL) const;
   };
 };

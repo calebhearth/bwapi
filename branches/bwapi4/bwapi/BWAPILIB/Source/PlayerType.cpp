@@ -59,6 +59,22 @@ namespace BWAPI
   {
     return playerTypeName[this->getID()].c_str();
   }
+  bool PlayerType::isLobbyType() const
+  {
+    return this->getID() == PlayerTypes::Enum::EitherPreferComputer ||
+           this->getID() == PlayerTypes::Enum::EitherPreferHuman    ||
+           this->getID() == PlayerTypes::Enum::RescuePassive        ||
+           this->getID() == PlayerTypes::Enum::RescueActive         ||
+           this->getID() == PlayerTypes::Enum::Neutral;
+  }
+  bool PlayerType::isGameType() const
+  {
+    return this->getID() == PlayerTypes::Enum::Player         ||
+           this->getID() == PlayerTypes::Enum::Computer       ||
+           this->getID() == PlayerTypes::Enum::RescuePassive  ||
+           this->getID() == PlayerTypes::Enum::RescueActive   ||
+           this->getID() == PlayerTypes::Enum::Neutral;
+  }
   PlayerType PlayerTypes::getPlayerType(std::string name)
   {
     for ( int i = 0; i < PlayerTypes::Enum::MAX; ++i )

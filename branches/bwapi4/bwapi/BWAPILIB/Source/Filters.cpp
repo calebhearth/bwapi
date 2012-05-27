@@ -7,8 +7,8 @@
 
 #define ULAMBDA(x) [](Unit *u){ return (x); }
 
-#define U_UFILTER(n,x) const UnaryFilterBase<Unit*> n( ULAMBDA(x) )
-#define U_CFILTER(n,x) const CompareFilterBase<Unit*> n( ULAMBDA(x) )
+#define U_UFILTER(n,x) const UnitFilter n( ULAMBDA(x) )
+#define U_CFILTER(n,x) const CompareFilter<Unit*> n( ULAMBDA(x) )
 
 namespace BWAPI
 {
@@ -27,20 +27,6 @@ namespace BWAPI
   U_CFILTER(GetType, u->getType() );
 
   U_CFILTER(Resources, u->getResources() );
-  /*
-  class UnitsInRadius : public UnaryFilterBase<Unit*>
-  {
-  private:
-    int rad;
-  public:
-    // ctor
-    template < typename _T >
-    UnitsInRadius(int radius, const _T &predicate = NULL)
-      : rad(radius)
-      , UnaryFilterBase(predicate)
-    {};
-    
 
-  };*/
 }
 

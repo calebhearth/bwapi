@@ -194,9 +194,6 @@
     <ClInclude Include="..\include\BWAPI\Filters.h">
       <Filter>Filters</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\BWAPI\ArithmaticFilter.h">
-      <Filter>Filters</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\BWAPI\ComparisonFilter.h">
       <Filter>Filters</Filter>
     </ClInclude>

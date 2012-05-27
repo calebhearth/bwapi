@@ -7,11 +7,12 @@
 #include <BWAPI/Game.h>
 #include <BWAPI/WeaponType.h>
 #include <BWAPI/Player.h>
+#include <BWAPI/Filters.h>
 
 namespace BWAPI
 {
   //------------------------------------------------ GET UNITS IN RADIUS -------------------------------------
-  Unitset Unit::getUnitsInRadius(int radius, const Unit::Filter &pred) const
+  Unitset Unit::getUnitsInRadius(int radius, const UnitFilter &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )
@@ -24,7 +25,7 @@ namespace BWAPI
                                          [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); });
   }
   //--------------------------------------------- GET UNITS IN WEAPON RANGE ----------------------------------
-  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const Unit::Filter &pred) const
+  Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const UnitFilter &pred) const
   {
     // Return if this unit does not exist
     if ( !this->exists() )

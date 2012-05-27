@@ -3,45 +3,45 @@
 
 namespace BWAPI
 {
-  template<typename _Param1>
-  class UnaryFilterBase
+  template<typename _Param>
+  class UnaryFilter
   {
   private:
-    std::function<bool(_Param1)> pred;
+    std::function<bool(_Param)> pred;
   public:
     // Constructor
     template <typename _T>
-    UnaryFilterBase(const _T& predicate) : pred(predicate)
+    UnaryFilter(const _T& predicate) : pred(predicate)
     {};
 
     // Assignment
     template <typename _T>
-    UnaryFilterBase &operator =(const _T& other)
+    UnaryFilter &operator =(const _T& other)
     {
-      this->pred.assign(other);
+      this->pred = other;
       return *this;
     };
-
+    
     // Bitwise operators    
     template <typename _T>
-    inline UnaryFilterBase operator &&(const _T& other) const
+    inline UnaryFilter operator &&(const _T& other) const
     {
-      return [&](_Param1 u){ return (*this)(u) && other(u); };
+      return [&](_Param u){ return (*this)(u) && other(u); };
     };
     template <typename _T>
-    inline UnaryFilterBase operator ||(const _T& other) const
+    inline UnaryFilter operator ||(const _T& other) const
     {
-      return [&](_Param1 u){ return (*this)(u) || other(u); };
+      return [&](_Param u){ return (*this)(u) || other(u); };
     };
-
+    
     // operator not
-    inline UnaryFilterBase operator ~() const
+    inline UnaryFilter operator ~() const
     {
       return std::not1(this->pred);
     };
 
     // call
-    inline bool operator()(_Param1 u) const
+    inline bool operator()(_Param u) const
     {
       return pred(u);
     };
@@ -53,4 +53,3 @@ namespace BWAPI
     };
   };
 }
-

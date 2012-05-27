@@ -5,6 +5,7 @@
 #include <BWAPI/UnitType.h>
 #include <BWAPI/Error.h>
 
+#include <BWAPI/Filters.h>
 #include <BWAPI/UnaryFilter.h>
 
 namespace BWAPI
@@ -153,20 +154,71 @@ namespace BWAPI
     virtual void enableFlag(int flag) = 0;
 
     /** Returns the set of accessible units that are on the given build tile. */
-    Unitset getUnitsOnTile(int tileX, int tileY, const UnaryFilterBase<Unit*> &pred = NULL) const;
-    Unitset getUnitsOnTile(BWAPI::TilePosition tile, const UnaryFilterBase<Unit*> &pred = NULL) const;
+    Unitset getUnitsOnTile(int tileX, int tileY, const UnitFilter &pred = NULL) const;
+    Unitset getUnitsOnTile(BWAPI::TilePosition tile, const UnitFilter &pred = NULL) const;
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
-    virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnaryFilterBase<Unit*> &pred = NULL) const = 0;
+    virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = NULL) const = 0;
 
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
-    Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnaryFilterBase<Unit*> &pred = NULL) const;
+    Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = NULL) const;
 
-    /** Returns the last error that was set. If you try to order enemy units around, or morph bunkers into
-     * lurkers, BWAPI will set error codes, which can be retrieved using this function. */
+    /// @~English
+    /// Retrieves the closest unit to center that
+    /// matches the criteria of pred within a radius.
+    ///
+    /// @param center The position to start searching
+    /// for the closest unit.
+    /// @param pred The predicate to use to determine
+    /// which unit is acceptable.
+    /// @param radius The radius to search in.
+    ///
+    /// @returns The desired unit that is closest
+    /// to center.
+    /// @retval NULL If a suitable unit was not found.
+    /// @~
+    /// @see getBestUnit
+    virtual Unit *getClosestUnit(Position center, const UnitFilter &pred = NULL, int radius = 999999) const = 0;
+
+    /// @~English
+    /// Compares all units with pred to determine
+    /// which of them is the best. All units are
+    /// checked. If center and radius are specified,
+    /// then it will check all units that are within
+    /// the radius of the position.
+    ///
+    /// @param pred @TODO cannot be UnitFilter to determine "best"
+    /// @param center The position to use in the search.
+    /// @param radius The distance from \p center to search
+    /// for units.
+    /// 
+    /// @returns The desired unit that best matches
+    /// the given criteria.
+    /// @retval NULL if a suitable unit was not found.
+    /// @~
+    /// @see getClosestUnit
+    virtual Unit *getBestUnit(const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
+
+    /// @~English
+    /// Returns the last error that was set using setLastError.
+    /// If a function call in BWAPI has failed, you can use
+    /// this function to retrieve the reason it failed.
+    ///
+    /// @returns Error type containing the reason for failure.
+    /// @~
+    /// @see setLastError, Errors
     virtual Error getLastError() const = 0;
 
-    /** Sets the last error code. */
+    /// @~English
+    /// Sets the last error so that future calls to 
+    /// getLastError will return the value that was set.
+    ///
+    /// @param e The error code to set.
+    ///
+    /// @retval true If the type passed was Errors::None.
+    /// @retval false If any other error type was passed.
+    /// @~
+    /// @see getLastError, Errors
     virtual bool setLastError(BWAPI::Error e = Errors::None) = 0;
 
     /** Returns the width of the current map, in build tile units. To get the width of the current map in

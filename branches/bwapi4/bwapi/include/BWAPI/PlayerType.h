@@ -34,6 +34,9 @@ namespace BWAPI
        * std::string object containing "Computer". */
       const std::string &getName() const;
       const char *c_str() const;
+
+      bool isLobbyType() const;
+      bool isGameType() const;
   };
   namespace PlayerTypes
   {
