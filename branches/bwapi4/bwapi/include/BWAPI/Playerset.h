@@ -31,6 +31,16 @@ namespace BWAPI
     /// @see Player::getRace
     Race::set getRaces() const;
 
+    /// Sets the alliance status with all players
+    /// contained in the Playerset.
+    ///
+    /// @param allies Set to true to set the player
+    /// to allied, or false for enemy.
+    /// @param alliedVictory Set to true to turn on
+    /// allied victory, or false to disable it
+    /// @see Game::setAlliance
+    void setAlliance(bool allies = true, bool alliedVictory = true);
+
   };
 }
 

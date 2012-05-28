@@ -5,6 +5,7 @@
 #include <BWAPI/Player.h>
 
 #include <BWAPI/Filters.h>
+#include <BWAPI/Game.h>
 
 namespace BWAPI
 {
@@ -30,6 +31,10 @@ namespace BWAPI
     return retSet;
   }
 
-
+  void Playerset::setAlliance(bool allies, bool alliedVictory)
+  {
+    for ( auto i = this->begin(); i != this->end(); ++i )
+      Broodwar->setAlliance(*i, allies, alliedVictory);
+  }
 }
 

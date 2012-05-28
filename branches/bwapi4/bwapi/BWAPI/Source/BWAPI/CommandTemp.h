@@ -359,7 +359,7 @@ namespace BWAPI
     {
       unit->self->order = Orders::Cloak;
       if (frame < Broodwar->getLatency())
-        unit->self->energy -= unit->getType().cloakingTech().energyUsed();
+        unit->self->energy -= unit->getType().cloakingTech().energyCost();
     }
     else if (command.type == UnitCommandTypes::Decloak)
     {

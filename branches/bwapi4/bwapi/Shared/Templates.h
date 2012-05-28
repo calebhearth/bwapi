@@ -752,7 +752,7 @@ namespace BWAPI
           return Broodwar->setLastError(Errors::Insufficient_Tech);
 
         // energy check
-        if ( thisUnit->getEnergy() < tech.energyUsed() )
+        if ( thisUnit->getEnergy() < tech.energyCost() )
           return Broodwar->setLastError(Errors::Insufficient_Energy);
 
         // unit check

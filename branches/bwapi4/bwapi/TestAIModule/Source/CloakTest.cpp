@@ -29,9 +29,9 @@ void CloakTest::start()
   currentEnergy = unit->getEnergy();
   unit->cloak();
   if (unitType==UnitTypes::Terran_Ghost)
-    currentEnergy-=TechTypes::Personnel_Cloaking.energyUsed();
+    currentEnergy-=TechTypes::Personnel_Cloaking.energyCost();
   else
-    currentEnergy-=TechTypes::Cloaking_Field.energyUsed();
+    currentEnergy-=TechTypes::Cloaking_Field.energyCost();
   BWAssertF(unit->getEnergy()==currentEnergy,{fail=true;return;});
   BWAssertF(unit->getOrder()==Orders::Cloak,{fail=true;return;});
   startFrame = Broodwar->getFrameCount();

@@ -252,7 +252,7 @@ namespace BWAPI
   {
     return defaultTimeCost[this->getID()];
   }
-  int TechType::energyUsed() const
+  int TechType::energyCost() const
   {
     return defaultEnergyCost[this->getID()];
   }

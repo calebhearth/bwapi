@@ -37,7 +37,7 @@ public:
   DWORD sleep();
   void  killThread();
   void  showDebug(int x, int y);
-  void  saveDebug(const char *prefix, int iOpcode, const char *pszFormat = NULL, ...);
+  void  saveDebug(const char prefix, int iOpcode, const char *pszFormat = NULL, ...);
   void  retry();
 
 private:

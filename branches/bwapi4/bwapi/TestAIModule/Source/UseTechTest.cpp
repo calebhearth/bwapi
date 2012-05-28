@@ -35,7 +35,7 @@ void UseTechTest::start()
 
   startPosition = user->getPosition();
   Broodwar->printf("Testing %s...",techType.getName().c_str());
-  BWAssertF(user->getEnergy()>=techType.energyUsed(),{Broodwar->printf("Error: Not enough energy!");fail=true;return;});
+  BWAssertF(user->getEnergy()>=techType.energyCost(),{Broodwar->printf("Error: Not enough energy!");fail=true;return;});
 
   if (techType==TechTypes::Scanner_Sweep)
   {
@@ -366,7 +366,7 @@ void UseTechTest::update()
     if (user->getEnergy()!=currentEnergy)
     {
       if (user->getEnergy()<currentEnergy)
-        currentEnergy-=techType.energyUsed();
+        currentEnergy-=techType.energyCost();
       else
         currentEnergy++;
 
