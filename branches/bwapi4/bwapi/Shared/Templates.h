@@ -59,9 +59,9 @@ namespace BWAPI
         ++i;
       return i;
     }
-    
-    template <class finder>
-    void manageUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, const UnitFilter &callback, Unitset &finderSet)
+
+    template <class finder, typename _T>
+    void iterateUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, const _T &callback)
     {
       DWORD dwFinderFlags[1701] = { 0 };
 
@@ -121,8 +121,8 @@ namespace BWAPI
         if ( dwFinderFlags[iUnitIndex] == 2 )
         {
           Unit *u = ((GameImpl*)Broodwar)->_unitFromIndex(iUnitIndex);
-          if ( u && u->exists() && (!callback || callback(u)) )
-            finderSet.push_back(u);
+          if ( u && u->exists() )
+            callback(u);
         }
         // Reset finderFlags so it can be reused without incident
         dwFinderFlags[iUnitIndex] = 0;

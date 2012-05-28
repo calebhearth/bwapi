@@ -20,7 +20,7 @@ namespace BWAPI
       PlayerImpl(int id);
       virtual int getID() const;
       virtual std::string getName() const;
-      virtual const Unitset& getUnits() const;
+      virtual const Unitset getUnits(const UnitFilter &pred = NULL) const;
       virtual Race getRace() const;
       virtual PlayerType getType() const;
       virtual Force* getForce() const;

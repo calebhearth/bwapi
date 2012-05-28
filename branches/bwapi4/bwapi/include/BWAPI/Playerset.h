@@ -2,6 +2,7 @@
 #include <BWAPI/Vectorset.h>
 
 #include <BWAPI/Race.h>
+#include <BWAPI/Filters.h>
 
 namespace BWAPI
 {
@@ -21,7 +22,7 @@ namespace BWAPI
     ///
     /// @returns Unitset containing Playerset's units
     /// @see Player::getUnits
-    Unitset getUnits() const;
+    Unitset getUnits(const UnitFilter &pred = NULL) const;
 
     /// Returns the list of races that each player
     /// in the set is.

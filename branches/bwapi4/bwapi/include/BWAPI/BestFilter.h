@@ -29,7 +29,7 @@ namespace BWAPI
 
     // Assignment
     template <typename _T>
-    BestFilter &operator =(const _T &other)
+    BestFilter<_Param> &operator =(const _T &other)
     {
       this->pred = other;
       return *this;
@@ -37,26 +37,26 @@ namespace BWAPI
 
     // Bitwise operators
     template <typename _T>
-    inline BestFilterBase operator &&(const _T &other) const
+    inline BestFilter<_Param> operator &&(const _T &other) const
     {
-      return [&](_Param p1, _Param p2){ return other( (*this)(p1, p2) ); };
+      return [&](_Param p1, _Param p2)->_Param{ return other( (*this)(p1, p2) ); };
     };
 
     // call
-    inline _Param operator()(_Param p1, _Param p2) const
+    inline _Param operator()(const _Param &p1, const _Param &p2) const
     {
-      return pred(u);
+      return this->pred(p1, p2);
     };
 
   };
 
   template <typename _Param>
-  BestFilter<_Param> Lowest(const CompareFilter<_Param> &filter)
+  BestFilter<_Param> Lowest(const CompareFilter<_Param,int> &filter)
   {
     return [&](_Param p1, _Param p2)->_Param{ return filter(p2) < filter(p1) ? p2 : p1; };
   };
   template <typename _Param>
-  BestFilter<_Param> Highest(const CompareFilter<_Param> &filter)
+  BestFilter<_Param> Highest(const CompareFilter<_Param,int> &filter)
   {
     return [&](_Param p1, _Param p2)->_Param{ return filter(p2) > filter(p1) ? p2 : p1; };
   };

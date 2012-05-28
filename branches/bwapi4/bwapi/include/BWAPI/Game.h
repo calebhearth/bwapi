@@ -178,7 +178,8 @@ namespace BWAPI
     /// @retval NULL If a suitable unit was not found.
     /// @~
     /// @see getBestUnit
-    virtual Unit *getClosestUnit(Position center, const UnitFilter &pred = NULL, int radius = 999999) const = 0;
+    Unit *getClosestUnit(Position center, const UnitFilter &pred = NULL, int radius = 999999) const;
+    virtual Unit *getClosestUnitInRectangle(Position center, const UnitFilter &pred = NULL, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const = 0;
 
     /// @~English
     /// Compares all units with pred to determine
@@ -197,7 +198,7 @@ namespace BWAPI
     /// @retval NULL if a suitable unit was not found.
     /// @~
     /// @see getClosestUnit
-    virtual Unit *getBestUnit(const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
+    virtual Unit *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
 
     /// @~English
     /// Returns the last error that was set using setLastError.

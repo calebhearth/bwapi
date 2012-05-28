@@ -374,13 +374,13 @@ namespace BWAPI
       
       // retrieve a value as the placeholder for the "best"
       _T best = this->front();
-      int bestVal = cmp(best);
+      int bestVal = cmpValue(best);
 
       // Iterate all (remaining) elements
       for ( auto i = this->begin()+1; i != this->end(); ++i )
       {
         // Retrieve new value
-        int newVal = cmp(*i);
+        int newVal = cmpValue(*i);
 
         // Set as new best if new value > best
         if ( cmpProc(newVal, bestVal) )

@@ -71,6 +71,22 @@ namespace BWAPI
       i->setClientInfo(clientInfo);
   }
 
+  Unitset Unitset::getUnitsInRadius(int radius, const UnitFilter &pred) const
+  {
+    // Return if this unit does not exist
+    if ( this->empty() )
+      return Unitset::none;
+
+    return Broodwar->getUnitsInRadius(this->getPosition(), radius, pred);
+  }
+  Unit *Unitset::getClosestUnit(const UnitFilter &pred, int radius) const
+  {
+    // Return if this unit does not exist
+    if ( this->empty() )
+      return NULL;
+
+    return Broodwar->getClosestUnit(this->getPosition(), pred, radius);
+  }
 
   bool Unitset::issueCommand(UnitCommand command) const
   {

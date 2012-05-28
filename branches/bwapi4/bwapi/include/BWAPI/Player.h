@@ -3,6 +3,7 @@
 
 #include <BWAPI/Position.h>
 #include <BWAPI/Race.h>
+#include <BWAPI/Filters.h>
 
 namespace BWAPI
 {
@@ -58,6 +59,9 @@ namespace BWAPI
     /// Retrieves the set of all units that the player owns.
     /// This also includes incomplete units.
     ///
+    /// @param pred An optional predicate that can filter
+    /// the units to be more specific.
+    ///
     /// @returns Unitset containing the units.
     ///
     /// @note This does not include units that are loaded
@@ -66,7 +70,7 @@ namespace BWAPI
     ///
     /// @~
     /// @Ex player.cpp getUnits
-    virtual const Unitset& getUnits() const = 0;
+    virtual const Unitset getUnits(const UnitFilter &pred = NULL) const = 0;
 
     /// @~English
     /// Retrieves the race of the player. This allows

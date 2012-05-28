@@ -23,6 +23,11 @@ void DevAIModule::onStart()
   // save map info
   mapH = bw->mapHeight();
   mapW = bw->mapWidth();
+
+  // Order your workers to gather from the nearest mineral field
+  Unitset myWorkers( self->getUnits(IsWorker && IsCompleted && ~IsCarryingSomething) );
+  myWorkers.gather( myWorkers.getClosestUnit( IsMineralField && Resources > 100 ) );
+
 }
 
 void DevAIModule::onEnd(bool isWinner)
@@ -42,16 +47,6 @@ void DevAIModule::onFrame()
 
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
-  Unitset units( self->getUnits() );
-  units.remove_if( ~ResourceDepots );
-
-  Unit *center = units.front();
-  if ( center )
-  {
-    Unitset newUnits( center->getUnitsInRadius(200, (Workers || Transports) && HP + Shields < 30) );
-    for ( auto i = newUnits.begin(); i != newUnits.end(); ++i )
-      Broodwar->drawLineMap(center->getPosition(), i->getPosition(), Colors::Green);
-  }
 
 }
 

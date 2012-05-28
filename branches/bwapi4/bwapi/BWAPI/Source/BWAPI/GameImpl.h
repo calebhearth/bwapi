@@ -82,6 +82,8 @@ namespace BWAPI
       virtual void    enableFlag(int flag);
 
       virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = NULL) const;
+      virtual Unit    *getClosestUnitInRectangle(Position center, const UnitFilter &pred = NULL, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const;
+      virtual Unit    *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const;
 
       virtual Error   getLastError() const;
       virtual bool    setLastError(BWAPI::Error e = Errors::None);

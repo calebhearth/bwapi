@@ -2,6 +2,7 @@
 #include <BWAPI/Vectorset.h>
 #include <BWAPI/Position.h>
 #include <BWAPI/PositionUnit.h>
+#include <BWAPI/Filters.h>
 
 namespace BWAPI
 {
@@ -98,6 +99,9 @@ namespace BWAPI
     /// @~
     /// @see Unit::setClientInfo
     void setClientInfo(void *clientInfo = NULL) const;
+
+    Unitset getUnitsInRadius(int radius, const UnitFilter &pred = NULL) const;
+    Unit    *getClosestUnit(const UnitFilter &pred = NULL, int radius = 999999) const;
 
     /// @copydoc Unit::issueCommand
     bool issueCommand(UnitCommand command) const;

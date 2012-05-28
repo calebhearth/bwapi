@@ -284,20 +284,73 @@ namespace BWAPI
   }
   Unitset GameImpl::getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred) const
   {
-    // Initialize static variables
     Unitset unitFinderResults;
 
     // Have the unit finder do its stuff
-    Templates::manageUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX,
-                                                BW::BWDATA_UnitOrderingY,
-                                                left,
-                                                top,
-                                                right,
-                                                bottom,
-                                                pred,
-                                                unitFinderResults);
+    Templates::iterateUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX,
+                                                 BW::BWDATA_UnitOrderingY,
+                                                 left,
+                                                 top,
+                                                 right,
+                                                 bottom,
+                                                 [&](Unit *u){ if ( !pred || pred(u) )
+                                                                 unitFinderResults.push_back(u); });
     // Return results
     return unitFinderResults;
+  }
+  Unit *GameImpl::getClosestUnitInRectangle(Position center, const UnitFilter &pred, int left, int top, int right, int bottom) const
+  {
+    int bestDistance = 99999999;
+    Unit *pBestUnit = NULL;
+
+    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA_UnitOrderingX,
+                                                  BW::BWDATA_UnitOrderingY,
+                                                  left,
+                                                  top,
+                                                  right,
+                                                  bottom,
+                                                  [&](Unit *u){ if ( !pred || pred(u) )
+                                                                {
+                                                                  if ( !pBestUnit )
+                                                                    pBestUnit = u;
+                                                                  else
+                                                                  {
+                                                                    int newDistance = pBestUnit->getDistance(center);
+                                                                    if ( newDistance < bestDistance )
+                                                                    {
+                                                                      pBestUnit = u;
+                                                                      bestDistance = newDistance;
+                                                                    }
+                                                                  }
+                                                                } } );
+    return pBestUnit;
+  }
+  Unit *GameImpl::getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center, int radius) const
+  {
+    Unit *pBestUnit = NULL;
+    Position rad(radius,radius);
+    
+    Position topLeft(center - rad);
+    Position botRight(center + rad);
+
+    topLeft.makeValid();
+    botRight.makeValid();
+
+    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA_UnitOrderingX,
+                                                  BW::BWDATA_UnitOrderingY,
+                                                  topLeft.x,
+                                                  topLeft.y,
+                                                  botRight.x,
+                                                  botRight.y,
+                                                  [&](Unit *u){ if ( !pred || pred(u) )
+                                                                {
+                                                                  if ( !pBestUnit )
+                                                                    pBestUnit = u;
+                                                                  else
+                                                                    pBestUnit = best(pBestUnit,u); 
+                                                                } } );
+
+    return pBestUnit;
   }
   //----------------------------------------------- MAP WIDTH ------------------------------------------------
   int GameImpl::mapWidth() const

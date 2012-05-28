@@ -4,10 +4,10 @@
 
 #include "UnaryFilter.h"
 
-#define BWAPI_COMPARE_FILTER_OP(op) UnaryFilter<_Param> operator op(const int &cmp) const               \
+#define BWAPI_COMPARE_FILTER_OP(op) UnaryFilter<_Param> operator op(const _Cmp &cmp) const               \
                                     {   return [&](_Param u)->bool{ return (*this)(u) op cmp; };   }
 #define BWAPI_ARITHMATIC_FILTER_OP(op) template <typename _T>                                                 \
-                                       CompareFilter<_Param> operator op(const _T &other) const     \
+                                       CompareFilter<_Param,_Cmp> operator op(const _T &other) const     \
                                        {   return [&](_Param u)->int{ return (*this)(u) op other(u); };   }
 
 namespace BWAPI
@@ -20,11 +20,11 @@ namespace BWAPI
   /// a UnaryFilter.
   ///
   /// @~
-  template<typename _Param>
+  template<typename _Param, typename _Cmp = int>
   class CompareFilter
   {
   private:
-    std::function<int(_Param)> pred;
+    std::function<_Cmp(_Param)> pred;
   public:
     // Constructor
     template <typename _T>
@@ -55,14 +55,14 @@ namespace BWAPI
     BWAPI_ARITHMATIC_FILTER_OP(^);
 
     template <typename _T>
-    CompareFilter<_Param> operator /(const _T &other) const
+    CompareFilter<_Param,_Cmp> operator /(const _T &other) const
     {   
       return [&](_Param u)->int{ int rval = other(u);
                                  return rval == 0 ? INT_MAX : (*this)(u) / rval;
                                };
     };
     template <typename _T>
-    CompareFilter<_Param> operator %(const _T &other) const
+    CompareFilter<_Param,_Cmp> operator %(const _T &other) const
     {   
       return [&](_Param u)->int{ int rval = other(u);
                                  return rval == 0 ? 0 : (*this)(u) % rval;
@@ -70,7 +70,7 @@ namespace BWAPI
     };
 
     // call
-    inline int operator()(_Param u) const
+    inline _Cmp operator()(_Param u) const
     {
       return pred(u);
     };

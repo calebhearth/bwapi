@@ -46,7 +46,7 @@ namespace BWAPI
       virtual bool isDefeated() const;
       virtual bool leftGame() const;
 
-      virtual const Unitset& getUnits() const;
+      virtual const Unitset getUnits(const UnitFilter &pred = NULL) const;
       virtual TilePosition  getStartLocation() const;
 
       virtual int  minerals() const;

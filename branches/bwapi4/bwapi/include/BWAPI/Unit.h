@@ -507,6 +507,8 @@ namespace BWAPI
     /** Returns the set of units within weapon range of this unit. */
     Unitset getUnitsInWeaponRange(WeaponType weapon, const UnitFilter &pred = NULL) const;
 
+    Unit *getClosestUnit(const UnitFilter &pred = NULL, int radius = 999999) const;
+
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
     virtual void* getClientInfo() const = 0;
 

@@ -4,18 +4,20 @@
 #include <BWAPI/Unitset.h>
 #include <BWAPI/Player.h>
 
+#include <BWAPI/Filters.h>
+
 namespace BWAPI
 {
   Playerset::Playerset(size_t initialSize) : Vectorset(initialSize) { };
   Playerset::Playerset(const Playerset &other) : Vectorset(other) { };
   Playerset::Playerset(const Playerset &&other) : Vectorset(other) { };
 
-  Unitset Playerset::getUnits() const
+  Unitset Playerset::getUnits(const UnitFilter &pred) const
   {
     Unitset retSet;    // The return set
     // Iterate each player
     for ( Playerset::iterator i = this->begin(); i != this->end(); ++i )
-      retSet += i->getUnits();  // retrieve player's units
+      retSet += i->getUnits(pred);  // retrieve player's units
     return retSet;
   }
 

@@ -24,6 +24,20 @@ namespace BWAPI
                                          this->getBottom() + radius,
                                          [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); });
   }
+
+  Unit *Unit::getClosestUnit(const UnitFilter &pred, int radius) const
+  {
+    // Return if this unit does not exist
+    if ( !this->exists() )
+      return NULL;
+    
+    return Broodwar->getClosestUnitInRectangle(this->getPosition(), 
+                                                [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); }, 
+                                                this->getLeft()   - radius,
+                                                this->getTop()    - radius,
+                                                this->getRight()  + radius,
+                                                this->getBottom() + radius);
+  }
   //--------------------------------------------- GET UNITS IN WEAPON RANGE ----------------------------------
   Unitset Unit::getUnitsInWeaponRange(WeaponType weapon, const UnitFilter &pred) const
   {
