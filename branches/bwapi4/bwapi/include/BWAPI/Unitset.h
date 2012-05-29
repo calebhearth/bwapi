@@ -50,7 +50,7 @@ namespace BWAPI
     /// from.
     /// @~
     Unitset(const Unitset &other);
-    Unitset(const Unitset &&other);
+    Unitset(Unitset &&other);
 
     /// @~English
     /// Calculates the average of all valid Unit positions

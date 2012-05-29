@@ -11,7 +11,7 @@ namespace BWAPI
   public:
     Regionset(size_t initialSize = 16);
     Regionset(const Regionset &other);
-    Regionset(const Regionset &&other);
+    Regionset(Regionset &&other);
   };
 }
 

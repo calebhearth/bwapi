@@ -15,7 +15,7 @@ namespace BWAPI
   public:
     Playerset(size_t initialSize = 16);
     Playerset(const Playerset &other);
-    Playerset(const Playerset &&other);
+    Playerset(Playerset &&other);
 
     /// Returns the set of all units that every
     /// player in this set owns.

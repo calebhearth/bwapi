@@ -7,11 +7,13 @@
 #include <BWAPI/Filters.h>
 #include <BWAPI/Game.h>
 
+#include <utility>
+
 namespace BWAPI
 {
   Playerset::Playerset(size_t initialSize) : Vectorset(initialSize) { };
   Playerset::Playerset(const Playerset &other) : Vectorset(other) { };
-  Playerset::Playerset(const Playerset &&other) : Vectorset(other) { };
+  Playerset::Playerset(Playerset &&other) : Vectorset( std::forward<Playerset>(other) ) { };
 
   Unitset Playerset::getUnits(const UnitFilter &pred) const
   {

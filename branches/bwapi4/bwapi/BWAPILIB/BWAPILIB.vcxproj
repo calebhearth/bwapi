@@ -144,6 +144,7 @@ COPY /y "$(OutDir)BWAPId.pdb" "$(SolutionDir)..\Release_Binary\lib\BWAPId.pdb"
     <ClInclude Include="..\include\BWAPI\BulletType.h" />
     <ClInclude Include="..\include\BWAPI\Color.h" />
     <ClInclude Include="..\include\BWAPI\ComparisonFilter.h" />
+    <ClInclude Include="..\include\BWAPI\ConstVectorset.h" />
     <ClInclude Include="..\include\BWAPI\CoordinateType.h" />
     <ClInclude Include="..\include\BWAPI\Filters.h" />
     <ClInclude Include="..\include\BWAPI\Forceset.h" />

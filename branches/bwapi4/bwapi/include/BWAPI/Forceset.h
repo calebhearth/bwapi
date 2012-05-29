@@ -11,7 +11,7 @@ namespace BWAPI
   public:
     Forceset(size_t initialSize = 16);
     Forceset(const Forceset &other);
-    Forceset(const Forceset &&other);
+    Forceset(Forceset &&other);
   };
 }
 

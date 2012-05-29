@@ -6,6 +6,8 @@
 #include <BWAPI/Game.h>
 #include <BWAPI/TechType.h>
 
+#include <utility>
+
 namespace BWAPI
 {
   // initialize no-set
@@ -14,7 +16,7 @@ namespace BWAPI
   ////////////////////////////////////////////////////////// ctors
   Unitset::Unitset(size_t initialSize) : Vectorset(initialSize) { };
   Unitset::Unitset(const Unitset &other) : Vectorset(other) { };
-  Unitset::Unitset(const Unitset &&other) : Vectorset(other) { };
+  Unitset::Unitset(Unitset &&other) : Vectorset( std::forward<Unitset>(other) ) { };
 
   ////////////////////////////////////////////////////////// Position
   Position Unitset::getPosition() const
