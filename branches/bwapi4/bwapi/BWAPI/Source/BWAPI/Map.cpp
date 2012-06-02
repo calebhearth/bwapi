@@ -18,7 +18,7 @@ namespace BWAPI
 {
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
   Map::Map()
-      : activeTiles(NULL)
+      : activeTiles(nullptr)
   {
   }
   //----------------------------------------------- DESTRUCTOR -----------------------------------------------
@@ -27,7 +27,7 @@ namespace BWAPI
     if ( activeTiles )
     {
       delete activeTiles;
-      activeTiles = NULL;
+      activeTiles = nullptr;
     }
   }
   //----------------------------------------------- GET WIDTH ------------------------------------------------
@@ -162,7 +162,7 @@ namespace BWAPI
     if ( activeTiles )
     {
       delete activeTiles;
-      activeTiles = NULL;
+      activeTiles = nullptr;
     }
     buildability.resize(Map::getWidth(), Map::getHeight());
     walkability.resize(Map::getWidth()*4, Map::getHeight()*4);

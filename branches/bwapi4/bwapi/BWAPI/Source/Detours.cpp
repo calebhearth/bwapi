@@ -463,7 +463,7 @@ BOOL __stdcall _SFileOpenFile(const char *filename, HANDLE *phFile)
 void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defaultValue)
 {
   /* Call the original function */
-  void *rval = NULL;
+  void *rval = nullptr;
   if ( _SMemAllocOld )
     rval = _SMemAllocOld(amount, logfilename, logline, defaultValue);
   else

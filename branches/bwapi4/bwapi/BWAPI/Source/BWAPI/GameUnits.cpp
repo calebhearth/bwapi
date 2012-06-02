@@ -144,7 +144,7 @@ namespace BWAPI
         }
         if ( !u->wasAccessible )
         {
-          discoverUnits.insert(u);
+          discoverUnits.push_back(u);
           events.push_back(Event::UnitDiscover(u));
         }
         if ( u->isVisible() )
@@ -159,7 +159,7 @@ namespace BWAPI
             events.push_back(Event::UnitHide(u));
           u->wasVisible = false;
         }
-        accessibleUnits.insert(u);
+        accessibleUnits.push_back(u);
       }
       else
       {
@@ -170,7 +170,7 @@ namespace BWAPI
             u->wasVisible = false;
             events.push_back(Event::UnitHide(u));
           }
-          evadeUnits.insert(u);
+          evadeUnits.push_back(u);
           events.push_back(Event::UnitEvade(u));
         }
       }
@@ -468,19 +468,19 @@ namespace BWAPI
     } // for each in selectedU
 
     // Get all units under disruption web and dark swarm
-    foreach ( UnitImpl *_u, this->neutralUnits )
+    foreach ( UnitImpl *u, this->neutralUnits )
     {
-      BWAPI::UnitType ut = _u->getType();
+      BWAPI::UnitType ut = u->getType();
       if ( ut != UnitTypes::Spell_Dark_Swarm &&
            ut != UnitTypes::Spell_Disruption_Web )
         continue;
 
-      int r = _u->getRight()  - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
-      int b = _u->getBottom() - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
+      int r = u->getRight()  - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
+      int b = u->getBottom() - (ut == UnitTypes::Spell_Disruption_Web ? 1 : 0);
 
       // Get units under the ability that are affected
-      Unitset unitsInside(this->getUnitsInRectangle(_u->getLeft(), _u->getTop(), r, b,
-                                                      [&ut](Unit *u){ return !u->getType().isSpell() && !u->getType().isFlyer(); }) );
+      Unitset unitsInside(this->getUnitsInRectangle(u->getLeft(), u->getTop(), r, b,
+                                                    [](Unit *u){ return !u->getType().isSpell() && !u->getType().isFlyer(); }) );
       foreach ( UnitImpl *uInside, unitsInside )
       {
         // Assign the boolean for whatever spell the unit is under

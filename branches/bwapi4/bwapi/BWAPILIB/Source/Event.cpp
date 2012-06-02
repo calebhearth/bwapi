@@ -9,51 +9,73 @@ namespace BWAPI
   Event::Event()
     :type(EventType::None)
     ,position(Positions::None)
-    ,text(NULL)
-    ,unit(NULL)
-    ,player(NULL)
+    ,text(nullptr)
+    ,unit(nullptr)
+    ,player(nullptr)
     ,winner(false)
   {
   }
   Event::Event(const Event& other)
+    : type(other.type)
+    , position(other.position)
+    , text( other.text != nullptr ? new std::string(*other.text) : nullptr )
+    , unit( other.unit )
+    , player( other.player )
+    , winner( other.winner )
   {
-    type = other.type;
-    position = other.position;
-    if (other.text!=NULL)
-      text = new std::string(*other.text);
-    else
-      text = NULL;
-    unit = other.unit;
-    player = other.player;
-    winner = other.winner;
   }
+  /*Event::Event(Event &&other)
+    : type(other.type)
+    , position(other.position)
+    , text( other.text )
+    , unit( other.unit )
+    , player( other.player )
+    , winner( other.winner )
+  {
+    other.text = nullptr;
+  }*/
   Event::~Event()
   {
-    if (text!=NULL)
+    if ( text != nullptr )
+    {
       delete text;
-    text=NULL;
+      text = nullptr;
+    }
   }
   Event& Event::operator=(const Event& other)
   {
     type = other.type;
     position = other.position;
-    if (other.text!=NULL)
+    if (other.text != nullptr)
       text = new std::string(*other.text);
     else
-      text = NULL;
+      text = nullptr;
     unit = other.unit;
     player = other.player;
     winner = other.winner;
     return *this;
   }
+  /*Event& Event::operator=(Event &&other)
+  {
+    type = other.type;
+    position = other.position;
+
+    text = other.text;
+    other.text = nullptr;
+
+    unit = other.unit;
+    player = other.player;
+    winner = other.winner;
+    return *this;
+  }*/
   bool Event::operator==(const Event& other) const
   {
     return (type     == other.type &&
             position == other.position &&
-            ((text==NULL && other.text==NULL) || (text!=NULL && other.text!=NULL &&*text == *other.text)) &&
+            ((text==nullptr && other.text==nullptr) || (text!=nullptr && other.text!=nullptr && *text == *other.text)) &&
             unit     == other.unit &&
             player   == other.player &&
-            winner == other.winner);
+            winner   == other.winner);
   }
   Event Event::MatchStart()
   {
@@ -84,7 +106,7 @@ namespace BWAPI
   {
     Event e;
     e.type = EventType::SendText;
-    if (text!=NULL)
+    if (text != nullptr)
       e.text = new std::string(text);
     return e;
   }
@@ -93,7 +115,7 @@ namespace BWAPI
     Event e;
     e.type   = EventType::ReceiveText;
     e.player = player;
-    if (text!=NULL)
+    if (text != nullptr)
       e.text   = new std::string(text);
     return e;
   }
@@ -171,7 +193,7 @@ namespace BWAPI
   {
     Event e;
     e.type = EventType::SaveGame;
-    if (gameName!=NULL)
+    if (gameName != nullptr)
       e.text = new std::string(gameName);
     return e;
   }
@@ -192,7 +214,7 @@ namespace BWAPI
   }
   const std::string& Event::getText() const
   {
-    if (text==NULL)
+    if (text == nullptr)
       return emptyString;
     return *text;
   }
@@ -220,21 +242,21 @@ namespace BWAPI
   }
   Event& Event::setText(const char* text)
   {
-    if (this->text!=NULL)
+    if (this->text != nullptr)
     {
-      if (text!=NULL)
+      if (text != nullptr)
       {
         this->text->assign(text);
       }
       else
       {
         delete this->text;
-        this->text = NULL;
+        this->text = nullptr;
       }
     }
     else
     {
-      if (text!=NULL)
+      if (text != nullptr)
       {
         this->text = new std::string(text);
       }

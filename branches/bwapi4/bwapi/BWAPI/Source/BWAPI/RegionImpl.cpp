@@ -34,8 +34,8 @@ namespace BWAPI
     self->id  = id;
     r->unk_28 = (u32)this;
     
-    this->closestAccessibleRgn    = NULL;
-    this->closestInaccessibleRgn  = NULL;
+    this->closestAccessibleRgn    = nullptr;
+    this->closestInaccessibleRgn  = nullptr;
   }
   void RegionImpl::UpdateRegionRelations()
   {

@@ -66,10 +66,10 @@ namespace BWAPI
       : pStartArr( (_T*)pArray )
       , pEndArr( (_T*)pArray + arrSize )
     {};
-    ConstVectorset(const void *pStart, const void *pEnd)
+    /*ConstVectorset(const void *pStart, const void *pEnd)
       : pStartArr( (_T*)pStart )
       , pEndArr( (_T*)pEnd )
-    {};
+    {};*/
 
   // ----------------------------------------------------------------- Operators
     /// @~English
@@ -104,7 +104,6 @@ namespace BWAPI
     /// @returns A new Vectorset containing the contents
     /// of both this and other.
     /// @~
-    /// @see operator+
     Vectorset<_T> operator |(const ConstVectorset<_T> &other) const
     {
       Vectorset<_T> vcopy(this->size() + other.size());

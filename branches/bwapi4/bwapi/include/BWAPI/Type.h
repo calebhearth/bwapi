@@ -12,12 +12,16 @@ namespace BWAPI
     // Constructors
     Typeset() : Vectorset() {};
     // copy ctor
-    Typeset(const Typeset<_T> &other) : Vectorset(other) {};
+    Typeset(const Typeset<_T> &other) : Vectorset( other ) {};
+    // move ctor
+    Typeset(Typeset<_T> &&other) : Vectorset( std::forward< Typeset<_T> >(other) ) {};
     // type ctor
     Typeset(const _T &val) : Vectorset() { this->push_back(val); };
     // array ctor
     Typeset(const _T *pArray, size_t size) : Vectorset(pArray, size) {};
     Typeset(const int *pArray, size_t size) : Vectorset((const _T*)pArray, size) {};
+
+    ~Typeset() {};
 
     // Operators (adding elements)
     Typeset operator |(const _T &val) const

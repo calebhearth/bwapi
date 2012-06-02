@@ -179,7 +179,7 @@ namespace BWAPI
     int menu = *BW::BWDATA_glGluesMode;
 
     // Declare a commonly used dialog pointer
-    BW::dialog *tempDlg = NULL;
+    BW::dialog *tempDlg = nullptr;
 
     // Get some autoMenu properties
     bool isAutoSingle = autoMenuMode == "SINGLE_PLAYER";

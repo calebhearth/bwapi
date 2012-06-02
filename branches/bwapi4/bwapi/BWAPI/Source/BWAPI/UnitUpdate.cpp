@@ -127,7 +127,7 @@ namespace BWAPI
 
       //------------------------------------------------------------------------------------------------------
       //_getTransport
-      _getTransport = NULL;
+      _getTransport = nullptr;
       if (_getType == UnitTypes::Protoss_Interceptor  ||
           _getType == UnitTypes::Protoss_Scarab       ||
           _getType == UnitTypes::Terran_Vulture_Spider_Mine)
@@ -159,9 +159,9 @@ namespace BWAPI
       //isVisible
       MemZero(self->isVisible);
 
-      _getPlayer          = NULL;               //_getPlayer
+      _getPlayer          = nullptr;               //_getPlayer
       _getType            = UnitTypes::Unknown; //_getType
-      _getTransport       = NULL;               //_getTransport
+      _getTransport       = nullptr;               //_getTransport
       _getPosition        = Positions::Unknown; //_getPosition
       _getHitPoints       = 0;                  //_getHitPoints
       _getResources       = 0;                  //_getResources

@@ -46,11 +46,11 @@ namespace BWAPI
   BulletImpl* BulletImpl::BWBulletToBWAPIBullet(BW::Bullet* bullet)
   {
     if ( !bullet )
-      return NULL;
+      return nullptr;
 
     u16 index = (u16)( ((u32)bullet - (u32)BW::BWDATA_BulletNodeTable) / 112) & 0x7F;
     if ( index > BULLET_ARRAY_MAX_LENGTH )
-      return NULL;
+      return nullptr;
     return BroodwarImpl.getBulletFromIndex(index);
   }
   void BulletImpl::updateData()
@@ -82,7 +82,7 @@ namespace BWAPI
     {
       UnitImpl *_getSource = UnitImpl::BWUnitToBWAPIUnit(bwOriginalBullet->sourceUnit);
       UnitImpl *_getTarget = UnitImpl::BWUnitToBWAPIUnit(bwOriginalBullet->targetUnit);
-      Player   *_getPlayer = _getSource ? _getSource->_getPlayer : NULL;
+      Player   *_getPlayer = _getSource ? _getSource->_getPlayer : nullptr;
 
       // id, player, type, source
       self->id      = id;

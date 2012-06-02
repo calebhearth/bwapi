@@ -39,7 +39,7 @@ namespace BWAPI
   Unit *PositionOrUnit::getUnit() const
   {
     if ( this->isPosition() )
-      return NULL;
+      return nullptr;
     return this->unit.pUnit;
   }
 

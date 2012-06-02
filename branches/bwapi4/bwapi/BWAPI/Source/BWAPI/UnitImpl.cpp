@@ -38,7 +38,7 @@ namespace BWAPI
       , wasVisible(false)
       , staticInformation(false)
       , lastType(UnitTypes::Unknown)
-      , lastPlayer(NULL)
+      , lastPlayer(nullptr)
       , nukeDetected(false)
       , lastGroundWeaponCooldown(0)
       , lastAirWeaponCooldown(0)
@@ -46,7 +46,7 @@ namespace BWAPI
       , lastCommandFrame(0)
       , lastCommand()
       , id(-1)
-      , clientInfo(NULL)
+      , clientInfo(nullptr)
   {
     self = &data;
     clear();
@@ -120,14 +120,14 @@ namespace BWAPI
   UnitImpl* UnitImpl::BWUnitToBWAPIUnit(BW::Unit* unit)
   {
     if ( !unit )
-      return NULL;
+      return nullptr;
 
     u16 index = (u16)( ((u32)unit - (u32)BW::BWDATA_UnitNodeTable) / 336) & 0x7FF;
     if (index > UNIT_ARRAY_MAX_LENGTH)
     {
       if (BroodwarImpl.invalidIndices.find(index) == BroodwarImpl.invalidIndices.end())
         BroodwarImpl.invalidIndices.insert(index);
-      return NULL;
+      return nullptr;
     }
     return BroodwarImpl.getUnitFromIndex(index);
   }
@@ -135,7 +135,7 @@ namespace BWAPI
   void UnitImpl::die()
   {
     //set pointers to null so we don't read information from unit table anymore
-    getOriginalRawData = NULL;
+    getOriginalRawData = nullptr;
     index              = 0xFFFF;
     userSelected       = false;
     isAlive            = false;
@@ -145,8 +145,8 @@ namespace BWAPI
     wasVisible         = false;
     nukeDetected       = false;
     lastType           = UnitTypes::Unknown;
-    lastPlayer         = NULL;
-    clientInfo         = NULL;
+    lastPlayer         = nullptr;
+    clientInfo         = nullptr;
     updateData();
   }
 

@@ -128,9 +128,9 @@ namespace BWAPI
     BYTE bOwnerInfo[12] = { 0 };
 
     HANDLE hFile = NULL;
-    if ( SFileOpenFileEx(NULL, "staredit\\scenario.chk", SFILE_FROM_MPQ, &hFile) && hFile )
+    if ( SFileOpenFileEx(nullptr, "staredit\\scenario.chk", SFILE_FROM_MPQ, &hFile) && hFile )
     {
-      DWORD dwFilesize = SFileGetFileSize(hFile, NULL);
+      DWORD dwFilesize = SFileGetFileSize(hFile, nullptr);
       void *pData = SMAlloc(dwFilesize);
       if ( pData )
       {
@@ -711,7 +711,7 @@ namespace BWAPI
                             i == UnitCommandTypes::Train        ||
                             i == UnitCommandTypes::Unload_All   ||
                             i == UnitCommandTypes::Cancel_Morph ||
-                            i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : NULL;
+                            i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : nullptr;
 
               // execute command
               executeCommand(UnitCommand(unit, i, t, x, y, e));
@@ -734,7 +734,7 @@ namespace BWAPI
                           i == UnitCommandTypes::Train        ||
                           i == UnitCommandTypes::Unload_All   ||
                           i == UnitCommandTypes::Cancel_Morph ||
-                          i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : NULL;
+                          i == UnitCommandTypes::Use_Tech) ? groupOf12.front() : nullptr;
 
             // execute command
             executeCommand(UnitCommand(unit, i, t, x, y, e));

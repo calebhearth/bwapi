@@ -80,10 +80,10 @@ namespace BWAPI
     /// @note Duplicate entries are not removed.
     /// @~
     Vectorset(Vectorset<_T> &&other)
-      : ConstVectorset( other.pStartArr, other.pEndArr )
+      : ConstVectorset( other.pStartArr, other.size() )
       , pEndAlloc( other.pEndAlloc )
     { 
-      other.pStartArr = NULL;
+      other.pStartArr = nullptr;
     };
     /// @~English
     /// This constructor uses an existing array
@@ -108,8 +108,11 @@ namespace BWAPI
   // ----------------------------------------------------------------- Destructor
     ~Vectorset()
     {
-      if ( this->pStartArr != NULL )
+      if ( this->pStartArr != nullptr )
+      {
         free(this->pStartArr);
+        this->pStartArr = nullptr;
+      }
     };
   // ----------------------------------------------------------------- Operators
     /// @copydoc push_back(const Vectorset<_T> &)
@@ -125,14 +128,17 @@ namespace BWAPI
       this->push_back(other);
       return *this;
     };
-    Vectorset &operator =(const Vectorset<_T> &&other)
+    Vectorset &operator =(Vectorset<_T> &&other)
     {
-      if ( this->pStartArr != NULL )
+      if ( this->pStartArr != nullptr )
         free(this->pStartArr);
+      
       this->pStartArr = other.pStartArr;
+      other.pStartArr = nullptr;
+
       this->pEndArr   = other.pEndArr;
       this->pEndAlloc = other.pEndAlloc;
-      other.pStartArr = NULL;
+
       return *this;
     };
     /// @copydoc push_back(const Vectorset<_T> &)

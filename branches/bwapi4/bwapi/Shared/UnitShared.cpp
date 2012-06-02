@@ -18,7 +18,7 @@ namespace BWAPI
     initialPosition  = Positions::None;
     lastCommandFrame = 0;
     lastCommand      = UnitCommand();
-    clientInfo       = NULL;
+    clientInfo       = nullptr;
     connectedUnits.clear();
   }
   //------------------------------------- INITIAL INFORMATION FUNCTIONS --------------------------------------

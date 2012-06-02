@@ -63,7 +63,7 @@ namespace BWAPI
   Region *GameImpl::getRegion(int regionID) const
   {
     if ( !BW::BWDATA_SAIPathing || regionID < 0 || regionID >= (int)BW::BWDATA_SAIPathing->regionCount )
-      return NULL;
+      return nullptr;
     return (Region*)BW::BWDATA_SAIPathing->regions[regionID].unk_28;
   }
   //----------------------------------------------------------------------------------------------------------
@@ -80,11 +80,11 @@ namespace BWAPI
   Unit* GameImpl::indexToUnit(int unitIndex) const
   {
     if ( !this->isFlagEnabled(Flag::CompleteMapInformation) )
-      return NULL;
+      return nullptr;
     int i = (unitIndex & 0x7FF);
     if ( i < UNIT_ARRAY_MAX_LENGTH && this->unitArray[i]->canAccess() )
       return this->unitArray[i];
-    return NULL;
+    return nullptr;
   }
   //--------------------------------------------- GET GAME TYPE ----------------------------------------------
   GameType GameImpl::getGameType() const
@@ -301,7 +301,7 @@ namespace BWAPI
   Unit *GameImpl::getClosestUnitInRectangle(Position center, const UnitFilter &pred, int left, int top, int right, int bottom) const
   {
     int bestDistance = 99999999;
-    Unit *pBestUnit = NULL;
+    Unit *pBestUnit = nullptr;
 
     Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA_UnitOrderingX,
                                                   BW::BWDATA_UnitOrderingY,
@@ -327,7 +327,7 @@ namespace BWAPI
   }
   Unit *GameImpl::getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center, int radius) const
   {
-    Unit *pBestUnit = NULL;
+    Unit *pBestUnit = nullptr;
     Position rad(radius,radius);
     
     Position topLeft(center - rad);
@@ -923,13 +923,13 @@ namespace BWAPI
     if ( !Position(x, y) )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
-      return NULL;
+      return nullptr;
     }
     BW::region *rgn = BW::getRegionAt(x,y);
     if ( !rgn )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
-      return NULL;
+      return nullptr;
     }
     return (Region*)rgn->unk_28;
   }

@@ -71,7 +71,7 @@ $(SolutionDir)\revisionUpdate.bat
     <PostBuildEvent>
       <Message>Copying BWAPId.dll to Release_Binary</Message>
       <Command>COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\Starcraft\bwapi-data\$(TargetName)d$(TargetExt)"
-$(OutDir)CopyToTarget.exe</Command>
+$(OutDir)CopyToTarget.exe $(OutDir)</Command>
     </PostBuildEvent>
     <ProjectReference />
   </ItemDefinitionGroup>

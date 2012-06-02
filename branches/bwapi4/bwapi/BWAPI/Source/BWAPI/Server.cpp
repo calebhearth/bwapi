@@ -30,8 +30,8 @@ namespace BWAPI
   {
     connected = false;
     localOnly = false;
-    data      = NULL;
-    gameTable = NULL;
+    data      = nullptr;
+    gameTable = nullptr;
     gameTableIndex  = -1;
     mapFileHandle   = NULL;
 
@@ -150,7 +150,7 @@ namespace BWAPI
     if ( localOnly && data )
     {
       free(data);
-      data = NULL;
+      data = nullptr;
     }
   }
   void Server::update()
@@ -679,7 +679,7 @@ namespace BWAPI
   Force* Server::getForce(int id) const
   {
     if ((int)forceVector.size() <= id || id < 0)
-      return NULL;
+      return nullptr;
     return forceVector[id];
   }
   int Server::getPlayerID(Player* player)
@@ -696,7 +696,7 @@ namespace BWAPI
   Player* Server::getPlayer(int id) const
   {
     if ((int)playerVector.size() <= id || id < 0)
-      return NULL;
+      return nullptr;
     return playerVector[id];
   }
 
@@ -714,7 +714,7 @@ namespace BWAPI
   Unit* Server::getUnit(int id) const
   {
     if ((int)unitVector.size() <= id || id < 0)
-      return NULL;
+      return nullptr;
     return unitVector[id];
   }
 
@@ -835,7 +835,7 @@ namespace BWAPI
         if (data->unitCommands[i].unitIndex < 0 || data->unitCommands[i].unitIndex >= (int)unitVector.size())
           continue;
         Unit* unit   = unitVector[data->unitCommands[i].unitIndex];
-        Unit* target = NULL;
+        Unit* target = nullptr;
         if (data->unitCommands[i].targetIndex >= 0 && data->unitCommands[i].targetIndex < (int)unitVector.size())
           target = unitVector[data->unitCommands[i].targetIndex];
 

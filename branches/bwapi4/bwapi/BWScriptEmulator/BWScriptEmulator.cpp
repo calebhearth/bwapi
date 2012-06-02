@@ -71,12 +71,11 @@ void BWScriptEmulator::onFrame()
     return;
 
   UpdateScripts();
-  for ( Unitset::iterator u = self->getUnits().begin(); u != self->getUnits().end(); ++u )
+  Unitset myUnits( self->getUnits(Exists) );
+  for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
-    if ( !u->exists() )
-      continue;
     UnitProc *proc = (UnitProc*)u->getClientInfo();
-    if ( proc )
+    if ( proc != nullptr )
       proc->execute();
   }
 /*

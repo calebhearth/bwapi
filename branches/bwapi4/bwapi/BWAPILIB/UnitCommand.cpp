@@ -8,14 +8,13 @@
 namespace BWAPI
 {
   UnitCommand::UnitCommand() 
-  : target(NULL)
+  : target(nullptr)
   , extra(0)
-  , unit(NULL)
-  {
-    x    = Positions::None.x;
-    y    = Positions::None.y;
-    type  = UnitCommandTypes::None;
-  }
+  , unit(nullptr)
+  , x(Positions::None.x)
+  , y(Positions::None.y)
+  , type(UnitCommandTypes::None)
+  {}
   UnitCommand::UnitCommand(Unit* _unit, UnitCommandType _type, Unit* _target, int _x, int _y, int _extra)
   : unit(_unit)
   , type(_type)

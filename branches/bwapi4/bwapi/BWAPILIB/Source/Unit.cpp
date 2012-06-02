@@ -29,7 +29,7 @@ namespace BWAPI
   {
     // Return if this unit does not exist
     if ( !this->exists() )
-      return NULL;
+      return nullptr;
     
     return Broodwar->getClosestUnitInRectangle(this->getPosition(), 
                                                 [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); }, 
@@ -105,7 +105,7 @@ namespace BWAPI
 
   bool Unit::isLoaded() const
   {
-    return this->getTransport() != NULL;
+    return this->getTransport() != nullptr;
   }
 
   bool Unit::isLockedDown() const
@@ -346,7 +346,7 @@ namespace BWAPI
   //--------------------------------------------- USE TECH ---------------------------------------------------
   bool Unit::useTech(TechType tech, PositionOrUnit target)
   {
-    if ( target.isUnit() && target.getUnit() == NULL )
+    if ( target.isUnit() && target.getUnit() == nullptr )
       return this->issueCommand(UnitCommand::useTech(this,tech));
     return this->issueCommand(UnitCommand::useTech(this,tech,target));
   }

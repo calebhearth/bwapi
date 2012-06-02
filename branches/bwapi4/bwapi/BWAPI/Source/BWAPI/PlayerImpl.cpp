@@ -18,7 +18,7 @@ namespace BWAPI
   : index(index)
   , id(-1)
   , self(&data)
-  , force(NULL)
+  , force(nullptr)
   , wasSeenByBWAPIPlayer(false)
   {
     MemZero(data);

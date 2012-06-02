@@ -4,12 +4,19 @@
 #include <list>
 #include <deque>
 
+using namespace BWAPI;
+
 void UpdateScripts();
 bool LoadAIBinary(const char *pszFileName);
-int GetStandardUnitCount(BWAPI::UnitType type, bool bCompleted = true, BWAPI::Player *player = NULL);
+int GetStandardUnitCount(BWAPI::UnitType type, bool bCompleted = true, Player *player = NULL);
 
-void AICreateThread(WORD wStartBlock, BWAPI::Position location, void *pTown = NULL);
-void AICreateThread(char *pszScriptID, BWAPI::Position location);
+int GetTerranRushScore(Player *player);
+int GetZergGroundRushScore(Player *player);
+int GetZergAirRushScore(Player *player);
+int GetProtossAirRushScore(Player *player);
+
+void AICreateThread(WORD wStartBlock, Position location, void *pTown = NULL);
+void AICreateThread(char *pszScriptID, Position location);
 
 #define AI_THREAD_BROODWAR        0x01
 #define AI_THREAD_KILLABLE        0x02
@@ -54,5 +61,10 @@ private:
   int               threadId;
   DWORD             dwBytesRead;
   std::deque<char*> debugQueue;
+
+  bool retryBlock;
 };
+
+extern BYTE *pbAIScriptBinary;
+extern std::list<aithread> aiThreadList;
 

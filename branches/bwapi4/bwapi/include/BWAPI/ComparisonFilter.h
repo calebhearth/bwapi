@@ -6,7 +6,8 @@
 
 #define BWAPI_COMPARE_FILTER_OP(op) UnaryFilter<_Param> operator op(const _Cmp &cmp) const               \
                                     {   return [&](_Param u)->bool{ return (*this)(u) op cmp; };   }
-#define BWAPI_ARITHMATIC_FILTER_OP(op) template <typename _T>                                                 \
+
+#define BWAPI_ARITHMATIC_FILTER_OP(op) template <typename _T>                                            \
                                        CompareFilter<_Param,_Cmp> operator op(const _T &other) const     \
                                        {   return [&](_Param u)->int{ return (*this)(u) op other(u); };   }
 

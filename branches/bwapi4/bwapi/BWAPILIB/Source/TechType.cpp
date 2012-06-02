@@ -134,7 +134,7 @@ namespace BWAPI
   {
     using namespace UnitTypes;
     static const UnitType::set techWhatUses[TechTypes::Enum::MAX] =
-    {  Terran_Marine | Terran_Firebat | Hero_Jim_Raynor_Marine | Hero_Gui_Montag,
+    { Terran_Marine | Terran_Firebat | Hero_Jim_Raynor_Marine | Hero_Gui_Montag,
       Terran_Ghost | Hero_Alexei_Stukov | Hero_Infested_Duran | Hero_Samir_Duran | Hero_Sarah_Kerrigan,
       Terran_Science_Vessel | Hero_Magellan,
       Terran_Vulture | Hero_Jim_Raynor_Vulture,

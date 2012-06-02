@@ -36,7 +36,7 @@ namespace BWAPI
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
   GameImpl::GameImpl()
       : onStartCalled(false)
-      , client(NULL)
+      , client(nullptr)
       , inGame(false)
       , endTick(0)
       , pathDebug(false)
@@ -45,8 +45,8 @@ namespace BWAPI
       , grid(false)
       , calledMatchEnd(false)
       , lastAutoMapEntry(0)
-      , tournamentAI(NULL)
-      , tournamentController(NULL)
+      , tournamentAI(nullptr)
+      , tournamentController(nullptr)
       , isTournamentCall(false)
       , lastEventTime(0)
       , data(server.data)
@@ -326,7 +326,7 @@ namespace BWAPI
     // Destroy the AI Module client
     if ( this->client )
       delete this->client;
-    this->client = NULL;
+    this->client = nullptr;
 
     // Unload the AI Module library
     if ( hAIModule )
@@ -338,12 +338,12 @@ namespace BWAPI
     // Destroy the Tournament Module controller
     if ( this->tournamentController )
       delete this->tournamentController;
-    this->tournamentController = NULL;
+    this->tournamentController = nullptr;
 
     // Destroy the Tournament Module AI
     if ( this->tournamentAI )
       delete this->tournamentAI;
-    this->tournamentAI = NULL;
+    this->tournamentAI = nullptr;
     
     // Destroy the Tournament Module Library
     if ( hTournamentModule )
@@ -358,8 +358,8 @@ namespace BWAPI
     this->forces.clear();
 
     // Remove player references
-    this->BWAPIPlayer = NULL;
-    this->enemyPlayer = NULL;
+    this->BWAPIPlayer = nullptr;
+    this->enemyPlayer = nullptr;
 
     // Set random seed
     srand(GetTickCount());
@@ -436,10 +436,10 @@ namespace BWAPI
       unitArray[i]->staticInformation = false;
       unitArray[i]->nukeDetected      = false;
       unitArray[i]->lastType          = UnitTypes::Unknown;
-      unitArray[i]->lastPlayer        = NULL;
+      unitArray[i]->lastPlayer        = nullptr;
       unitArray[i]->lastCommandFrame  = 0;
       unitArray[i]->lastCommand       = UnitCommand();
-      unitArray[i]->clientInfo        = NULL;
+      unitArray[i]->clientInfo        = nullptr;
 
       unitArray[i]->setID(-1);
     }

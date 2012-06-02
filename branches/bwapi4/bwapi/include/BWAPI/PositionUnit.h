@@ -16,7 +16,7 @@ namespace BWAPI
   {
   public:
     // constructors
-    PositionOrUnit(Unit *unit = NULL);
+    PositionOrUnit(Unit *unit = nullptr);
     PositionOrUnit(Position pos);
 
     // operators

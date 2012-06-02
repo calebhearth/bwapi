@@ -18,7 +18,7 @@ namespace BWAPI
   {
   public:
     // constructors
-    iterator(_T *ptr = NULL) : __val(ptr) {};
+    iterator(_T *ptr = nullptr) : __val(ptr) {};
     iterator(const iterator<_T> &other) : __val(&other) {};
 
     // comparison operators

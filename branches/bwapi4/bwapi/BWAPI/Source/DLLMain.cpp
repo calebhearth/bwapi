@@ -153,14 +153,14 @@ DWORD WINAPI PersistentPatch(LPVOID)
     {
       // dialog/menu layer
       if ( BW::BWDATA_ScreenLayers[2].pUpdate != DrawDialogHook && 
-           BW::BWDATA_ScreenLayers[2].pUpdate != NULL )
+           BW::BWDATA_ScreenLayers[2].pUpdate != nullptr )
       {
         BW::pOldDrawDialogProc = BW::BWDATA_ScreenLayers[2].pUpdate;
         BW::BWDATA_ScreenLayers[2].pUpdate = DrawDialogHook;
       }
 
       // game layer
-      if ( BW::BWDATA_ScreenLayers[5].pUpdate != DrawHook && BW::BWDATA_ScreenLayers[5].pUpdate != NULL )
+      if ( BW::BWDATA_ScreenLayers[5].pUpdate != DrawHook && BW::BWDATA_ScreenLayers[5].pUpdate != nullptr )
       {
         BW::pOldDrawGameProc = BW::BWDATA_ScreenLayers[5].pUpdate;
         BW::BWDATA_ScreenLayers[5].pUpdate = DrawHook;
