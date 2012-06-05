@@ -208,10 +208,10 @@ namespace BWAPI
     const WeaponType::set& allWeaponTypes();
 
     /** Returns the set of all normal weapons in WeaponTypes. */
-    const WeaponType::set& normalWeaponTypes();
+    const WeaponType::const_set& normalWeaponTypes();
 
     /** Returns the set of all special weapons in WeaponTypes. */
-    const WeaponType::set& specialWeaponTypes();
+    const WeaponType::const_set& specialWeaponTypes();
 
     void init();
 

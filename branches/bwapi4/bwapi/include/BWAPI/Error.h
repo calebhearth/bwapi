@@ -78,7 +78,7 @@ namespace BWAPI
     Error getError(std::string name);
 
     /** The set of all the error codes. */
-    const Error::set& allErrors();
+    const Error::const_set& allErrors();
 
     /** Returned if you try to order a unit or get information from a unit that no longer exists. */
     extern const Error Unit_Does_Not_Exist;

@@ -37,6 +37,8 @@ namespace BWAPI
     // operator not
     inline UnaryFilter operator ~() const
     {
+      if ( !this->pred )
+        return nullptr;
       return std::not1(this->pred);
     };
 

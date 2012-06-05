@@ -12,9 +12,9 @@ namespace BWAPI
     return id;
   }
   //--------------------------------------------- GET UNITS --------------------------------------------------
-  const Unitset PlayerImpl::getUnits(const UnitFilter &pred) const
+  Unitset PlayerImpl::getUnits(const UnitFilter &pred) const
   {
-    Unitset filterset(units);
+    Unitset filterset(this->units);
     if ( pred )
       filterset.erase_if(~pred);
     return filterset;

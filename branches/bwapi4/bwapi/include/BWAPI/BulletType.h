@@ -73,7 +73,7 @@ namespace BWAPI
     BulletType getBulletType(std::string name);
 
     /** Returns the set of all the BulletTypes. */
-    const BulletType::set& allBulletTypes();
+    const BulletType::const_set& allBulletTypes();
 
     extern const BulletType Melee;
     extern const BulletType Fusion_Cutter_Hit;

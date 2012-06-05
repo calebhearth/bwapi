@@ -100,7 +100,7 @@ namespace BWAPI
 
       /** Returns the set of units that can use this tech type. Usually this will just be a set of one unit
        * type, however in some cases, such as TechTypes::Burrowing, several unit types will be returned. */
-      const UnitType::set& whatUses() const;
+      const UnitType::const_set& whatUses() const;
 
       /** Returns the order used to execute this tech type as an action. */
       Order getOrder() const;
@@ -111,7 +111,7 @@ namespace BWAPI
     TechType getTechType(std::string name);
 
     /** Returns the set of all the TechTypes. */
-    const TechType::set& allTechTypes();
+    const TechType::const_set& allTechTypes();
 
     extern const TechType Stim_Packs;
     extern const TechType Lockdown;

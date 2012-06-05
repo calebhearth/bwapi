@@ -12,7 +12,7 @@ namespace BWAPI
   // (local scope)
   namespace RaceInternal
   {
-    using namespace UnitTypes;
+    using namespace UnitTypes::Enum;
   
     // NAMES
     static const std::string raceNames[Races::Enum::MAX] =
@@ -26,7 +26,7 @@ namespace BWAPI
     std::string raceLocalNames[Races::Enum::MAX];
 
     // WORKER TYPES
-    static const UnitType workerTypes[Races::Enum::MAX] =
+    static const int workerTypes[Races::Enum::MAX] =
     {
       Zerg_Drone, Terran_SCV, Protoss_Probe, 
       None, None, None, // unused
@@ -34,7 +34,7 @@ namespace BWAPI
     };
 
     // BASE TYPES
-    static const UnitType baseTypes[Races::Enum::MAX] =
+    static const int baseTypes[Races::Enum::MAX] =
     {
       Zerg_Hatchery, Terran_Command_Center, Protoss_Nexus,
       None, None, None, // unused
@@ -42,7 +42,7 @@ namespace BWAPI
     };
 
     // REFINERY TYPES
-    static const UnitType refineryTypes[Races::Enum::MAX] =
+    static const int refineryTypes[Races::Enum::MAX] =
     {
       Zerg_Extractor, Terran_Refinery, Protoss_Assimilator,
       None, None, None, // unused
@@ -50,7 +50,7 @@ namespace BWAPI
     };
 
     // TRANSPORT TYPES
-    static const UnitType transportTypes[Races::Enum::MAX] =
+    static const int transportTypes[Races::Enum::MAX] =
     {
       Zerg_Overlord, Terran_Dropship, Protoss_Shuttle,
       None, None, None, // unused
@@ -58,7 +58,7 @@ namespace BWAPI
     };
 
     // SUPPLY TYPES
-    static const UnitType supplyTypes[Races::Enum::MAX] =
+    static const int supplyTypes[Races::Enum::MAX] =
     {
       Zerg_Overlord, Terran_Supply_Depot, Protoss_Pylon,
       None, None, None, // unused
@@ -120,7 +120,7 @@ namespace BWAPI
     }
     return Races::Unknown;
   }
-  const Race::set& Races::allRaces()
+  const Race::const_set& Races::allRaces()
   {
     return RaceSet::raceSet;
   }

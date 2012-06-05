@@ -37,7 +37,7 @@ namespace BWAPI
     UnitSizeType getUnitSizeType(std::string name);
 
     /** Returns the set of all the sizes, which are listed below: */
-    const UnitSizeType::set& allUnitSizeTypes();
+    const UnitSizeType::const_set& allUnitSizeTypes();
     
     extern const UnitSizeType Independent;
     extern const UnitSizeType Small;

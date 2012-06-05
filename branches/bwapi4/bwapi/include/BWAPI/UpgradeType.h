@@ -122,7 +122,7 @@ namespace BWAPI
     UpgradeType getUpgradeType(std::string name);
 
     /** Returns the set of all the UpgradeTypes. */
-    const UpgradeType::set& allUpgradeTypes();
+    const UpgradeType::const_set& allUpgradeTypes();
 
     void init();
 

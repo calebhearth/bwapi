@@ -95,7 +95,7 @@ namespace BWAPI
     }
     return ExplosionTypes::Unknown;
   }
-  const ExplosionType::set& ExplosionTypes::allExplosionTypes()
+  const ExplosionType::const_set& ExplosionTypes::allExplosionTypes()
   {
     return ExplosionTypeSet::explosionTypeSet;
   }

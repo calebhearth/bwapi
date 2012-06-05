@@ -104,7 +104,7 @@ namespace BWAPI
                   Subterranean_Spines, Warp_Blades, Warp_Blades_Hero, Warp_Blades_Zeratul, 
                   Independant_Laser_Battery, Twin_Autocannons_Floor_Trap, Hellfire_Missile_Pack_Wall_Trap, 
                   Hellfire_Missile_Pack_Floor_Trap, Flame_Thrower_Wall_Trap);
-    static const WeaponType::set weaponTypeSet( specialWeaponTypeSet | normalWeaponTypeSet | None | Unknown );
+    static const WeaponType::set weaponTypeSet( specialWeaponTypeSet | normalWeaponTypeSet | WeaponTypes::None | WeaponTypes::Unknown );
 
   }
   namespace WeaponTypes
@@ -437,11 +437,11 @@ namespace BWAPI
   {
     return WeaponTypesSet::weaponTypeSet;
   }
-  const WeaponType::set& WeaponTypes::normalWeaponTypes()
+  const WeaponType::const_set& WeaponTypes::normalWeaponTypes()
   {
     return WeaponTypesSet::normalWeaponTypeSet;
   }
-  const WeaponType::set& WeaponTypes::specialWeaponTypes()
+  const WeaponType::const_set& WeaponTypes::specialWeaponTypes()
   {
     return WeaponTypesSet::specialWeaponTypeSet;
   }

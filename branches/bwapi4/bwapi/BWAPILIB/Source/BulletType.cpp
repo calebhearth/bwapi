@@ -104,7 +104,7 @@ namespace BWAPI
     }
     return BulletTypes::Unknown;
   }
-  const BulletType::set& BulletTypes::allBulletTypes()
+  const BulletType::const_set& BulletTypes::allBulletTypes()
   {
     return BulletTypeSet::bulletTypeSet;
   }

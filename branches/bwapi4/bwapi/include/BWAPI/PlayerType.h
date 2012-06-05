@@ -45,7 +45,7 @@ namespace BWAPI
     PlayerType getPlayerType(std::string name);
 
     /** Returns the set of all the PlayerTypes. */
-    const PlayerType::set& allPlayerTypes();
+    const PlayerType::const_set& allPlayerTypes();
     
     extern const PlayerType None;
     extern const PlayerType Computer;

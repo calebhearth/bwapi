@@ -349,7 +349,7 @@ namespace BWAPI
     }
     return UpgradeTypes::Unknown;
   }
-  const UpgradeType::set& UpgradeTypes::allUpgradeTypes()
+  const UpgradeType::const_set& UpgradeTypes::allUpgradeTypes()
   {
     return UpgradeTypeSet::upgradeTypeSet;
   }

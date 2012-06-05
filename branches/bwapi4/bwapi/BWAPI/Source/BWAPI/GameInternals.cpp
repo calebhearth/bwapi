@@ -86,15 +86,33 @@ namespace BWAPI
   {
     /* destroy all UnitImpl */
     for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)
-      delete unitArray[i];
+    {
+      if ( unitArray[i] )
+      {
+        delete unitArray[i];
+        unitArray[i] = nullptr;
+      }
+    }
 
     /* destroy all PlayerImpl */
     for (int i = 0; i < PLAYER_COUNT; ++i)
-      delete players[i];
+    {
+      if ( players[i] )
+      {
+        delete players[i];
+        players[i] = nullptr;
+      }
+    }
 
     /* destroy all bullets */
     for(int i = 0; i < BULLET_ARRAY_MAX_LENGTH; ++i)
-      delete bulletArray[i];
+    {
+      if ( bulletArray[i] )
+      {
+        delete bulletArray[i];
+        bulletArray[i] = nullptr;
+      }
+    }
   }
   //---------------------------------------- REFRESH SELECTION STATES ----------------------------------------
   void GameImpl::refreshSelectionStates()
@@ -325,30 +343,40 @@ namespace BWAPI
   {
     // Destroy the AI Module client
     if ( this->client )
+    {
       delete this->client;
-    this->client = nullptr;
+      this->client = nullptr;
+    }
 
     // Unload the AI Module library
     if ( hAIModule )
+    {
       FreeLibrary(hAIModule);
-    hAIModule = NULL;
+      hAIModule = NULL;
+    }
     
     this->startedClient = false;
 
     // Destroy the Tournament Module controller
     if ( this->tournamentController )
+    {
       delete this->tournamentController;
-    this->tournamentController = nullptr;
+      this->tournamentController = nullptr;
+    }
 
     // Destroy the Tournament Module AI
     if ( this->tournamentAI )
+    {
       delete this->tournamentAI;
-    this->tournamentAI = nullptr;
+      this->tournamentAI = nullptr;
+    }
     
     // Destroy the Tournament Module Library
     if ( hTournamentModule )
+    {
       FreeLibrary(hTournamentModule);
-    hTournamentModule = NULL;
+      hTournamentModule = NULL;
+    }
 
     this->bTournamentMessageAppeared = false;
 

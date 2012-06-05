@@ -13,6 +13,8 @@ namespace BWAPI
     Typeset() : Vectorset() {};
     // copy ctor
     Typeset(const Typeset<_T> &other) : Vectorset( other ) {};
+    Typeset(const ConstVectorset<_T> &other) : Vectorset( other ) {};
+
     // move ctor
     Typeset(Typeset<_T> &&other) : Vectorset( std::forward< Typeset<_T> >(other) ) {};
     // type ctor
@@ -54,6 +56,7 @@ namespace BWAPI
     
     // Types
     typedef Typeset<_T> set;
+    typedef ConstVectorset<_T> const_set;
 
     // Operators
     operator int() const { return this->id; };

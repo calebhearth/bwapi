@@ -50,7 +50,7 @@ namespace BWAPI
     GameType getGameType(std::string name);
 
     /** Returns the set of all the GameTypes. */
-    const GameType::set& allGameTypes();
+    const GameType::const_set& allGameTypes();
     
     extern const GameType Melee;
     extern const GameType Free_For_All;

@@ -69,14 +69,13 @@ void UnitProc::EmulateIdleOrder()
       for ( auto i = r->getNeighbors().begin(); i != r->getNeighbors().end(); ++i )
       {
         // iterate all units within the bounds of the current region
-        for ( Unitset::iterator u = self->getUnits().begin(), uend = self->getUnits().end(); u != uend; ++u )
+        Unitset myUnits( self->getUnits(IsBuilding) );
+        for ( Unitset::iterator u = myUnits.begin(); u != myUnits.end(); ++u )
         {
-          UnitType ut = (*u)->getType();
-          if ( !ut.isBuilding() )
-            continue;
+          UnitType ut = u->getType();
 
           // Save the region if its center is within sight range of a building
-          if ( (*u)->getDistance( Position((*i)->getCenter()) ) <= ut.sightRange() )
+          if ( u->getDistance( i->getCenter() ) <= ut.sightRange() )
           {
             movetoRgnList.push_back(*i);
             break;

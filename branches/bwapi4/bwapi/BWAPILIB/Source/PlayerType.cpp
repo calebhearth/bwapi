@@ -84,7 +84,7 @@ namespace BWAPI
     }
     return PlayerTypes::Unknown;
   }
-  const PlayerType::set& PlayerTypes::allPlayerTypes()
+  const PlayerType::const_set& PlayerTypes::allPlayerTypes()
   {
     return PlayerTypeSet::playerTypeSet;
   }

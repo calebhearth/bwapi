@@ -54,7 +54,7 @@ namespace BWAPI
     ExplosionType getExplosionType(std::string name);
 
     /** Returns the set of all ExplosionTypes. */
-    const ExplosionType::set& allExplosionTypes();
+    const ExplosionType::const_set& allExplosionTypes();
 
     extern const ExplosionType None;
     extern const ExplosionType Normal;

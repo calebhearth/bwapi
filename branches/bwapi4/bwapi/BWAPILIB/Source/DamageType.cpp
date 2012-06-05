@@ -56,7 +56,7 @@ namespace BWAPI
     }
     return DamageTypes::Unknown;
   }
-  const DamageType::set& DamageTypes::allDamageTypes()
+  const DamageType::const_set& DamageTypes::allDamageTypes()
   {
     return DamageTypeSet::damageTypeSet;
   }

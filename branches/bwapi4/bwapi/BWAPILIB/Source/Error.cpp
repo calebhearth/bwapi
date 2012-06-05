@@ -103,7 +103,7 @@ namespace BWAPI
     }
     return Errors::Unknown;
   }
-  const Error::set& Errors::allErrors()
+  const Error::const_set& Errors::allErrors()
   {
     return ErrorSet::errorSet;
   }

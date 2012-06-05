@@ -247,7 +247,7 @@ namespace BWAPI
     }
     return Orders::Unknown;
   }
-  const Order::set& Orders::allOrders()
+  const Order::const_set& Orders::allOrders()
   {
     return OrderSet::orderSet;
   }

@@ -224,7 +224,7 @@ namespace BWAPI
     Order getOrder(std::string name);
 
     /** Returns the set of all the Orders. */
-    const Order::set& allOrders();
+    const Order::const_set& allOrders();
 
     extern const Order Die;
     extern const Order Stop;

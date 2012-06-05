@@ -137,7 +137,7 @@ namespace BWAPI
     ///
     /// @returns Race::set containing all the Race types.
     /// @~
-    const Race::set& allRaces();
+    const Race::const_set& allRaces();
 
     extern const Race Zerg;
     extern const Race Terran;

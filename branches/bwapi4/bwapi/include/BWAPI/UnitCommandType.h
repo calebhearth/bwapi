@@ -75,7 +75,7 @@ namespace BWAPI
     UnitCommandType getUnitCommandType(std::string name);
 
     /** Returns the set of all the sizes, which are listed below: */
-    const UnitCommandType::set& allUnitCommandTypes();
+    const UnitCommandType::const_set& allUnitCommandTypes();
     
     extern const UnitCommandType Attack_Move;
     extern const UnitCommandType Attack_Unit;

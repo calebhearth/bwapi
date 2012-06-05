@@ -136,7 +136,7 @@ namespace BWAPI
     }
     return UnitCommandTypes::Unknown;
   }
-  const UnitCommandType::set& UnitCommandTypes::allUnitCommandTypes()
+  const UnitCommandType::const_set& UnitCommandTypes::allUnitCommandTypes()
   {
     return UnitCommandTypeSet::unitCommandTypeSet;
   }

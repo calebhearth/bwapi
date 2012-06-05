@@ -40,6 +40,8 @@ namespace BWAPI
                   std::has_trivial_destructor<_T>::value == true,
                   "Vectorset can only be used with classes that have a trivial destructor and trivial copy constructor.");
 #endif
+  private:
+    ConstVectorset() {};
   public:
     /// @~English
     /// The iterator is used to traverse the elements 
@@ -66,11 +68,7 @@ namespace BWAPI
       : pStartArr( (_T*)pArray )
       , pEndArr( (_T*)pArray + arrSize )
     {};
-    /*ConstVectorset(const void *pStart, const void *pEnd)
-      : pStartArr( (_T*)pStart )
-      , pEndArr( (_T*)pEnd )
-    {};*/
-
+    
   // ----------------------------------------------------------------- Operators
     /// @~English
     /// Creates a new Vectorset containing all elements
@@ -93,6 +91,14 @@ namespace BWAPI
       vcopy.push_back(other);
       return vcopy;
     };
+    Vectorset<_T> operator +(const _T &val) const
+    {
+      Vectorset<_T> vcopy(this->size() + other.size());
+      vcopy.push_back(*this);
+      vcopy.push_back(val);
+      return vcopy;
+    };
+
     /// @~English
     /// Creates a new Vectorset containing all elements
     /// of the current Vectorset and all elements of
@@ -107,8 +113,15 @@ namespace BWAPI
     Vectorset<_T> operator |(const ConstVectorset<_T> &other) const
     {
       Vectorset<_T> vcopy(this->size() + other.size());
-      vcopy.insert(*this);
+      vcopy.push_back(*this);
       vcopy.insert(other);
+      return vcopy;
+    };
+    Vectorset<_T> operator |(const _T &val) const
+    {
+      Vectorset<_T> vcopy(this->size() + 1);
+      vcopy.push_back(*this);
+      vcopy.insert(val);
       return vcopy;
     };
     /// @~English

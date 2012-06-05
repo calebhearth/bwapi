@@ -76,7 +76,7 @@ namespace BWAPI
     }
     return GameTypes::Unknown;
   }
-  const GameType::set& GameTypes::allGameTypes()
+  const GameType::const_set& GameTypes::allGameTypes()
   {
     return GameTypeSet::gameTypeSet;
   }

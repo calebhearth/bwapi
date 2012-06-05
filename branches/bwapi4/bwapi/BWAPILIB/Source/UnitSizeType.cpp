@@ -52,7 +52,7 @@ namespace BWAPI
     }
     return UnitSizeTypes::Unknown;
   }
-  const UnitSizeType::set& UnitSizeTypes::allUnitSizeTypes()
+  const UnitSizeType::const_set& UnitSizeTypes::allUnitSizeTypes()
   {
     return UnitSizeTypeSet::unitSizeTypeSet;
   }

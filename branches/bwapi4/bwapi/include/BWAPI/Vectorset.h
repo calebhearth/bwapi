@@ -67,7 +67,7 @@ namespace BWAPI
       : ConstVectorset( (_T*)malloc( other.size()*sizeof(_T)), other.size() )
       , pEndAlloc( pEndArr )
     { 
-      memcpy(this->pStartArr, other.pStartArr, other.size()*sizeof(_T));
+      memcpy(this->pStartArr, (void*)other, other.size()*sizeof(_T));
     };
     /// @~English
     /// This is the move constructor. The Vectorset
@@ -122,7 +122,7 @@ namespace BWAPI
     ///
     /// @returns A reference to the current object.
     /// @~
-    Vectorset &operator =(const Vectorset<_T> &other)
+    Vectorset &operator =(const ConstVectorset<_T> &other)
     {
       this->clear();
       this->push_back(other);
@@ -146,7 +146,7 @@ namespace BWAPI
     /// @returns A reference to the current object.
     /// @~
     /// @see operator|=
-    Vectorset &operator +=(const Vectorset<_T> &other)
+    Vectorset &operator +=(const ConstVectorset<_T> &other)
     {
       this->push_back(other);
       return *this;
@@ -156,7 +156,7 @@ namespace BWAPI
     /// @returns A reference to the current object.
     /// @~
     /// @see operator+=
-    Vectorset &operator |=(const Vectorset<_T> &other)
+    Vectorset &operator |=(const ConstVectorset<_T> &other)
     {
       this->insert(other);
       return *this;
@@ -454,7 +454,7 @@ namespace BWAPI
     /// into this one.
     ///
     /// @~
-    void insert(const Vectorset<_T> &other)
+    void insert(const ConstVectorset<_T> &other)
     {
       for ( iterator i = other.begin(); i != other.end(); ++i )
         this->insert(i);
@@ -493,7 +493,7 @@ namespace BWAPI
     ///
     /// @note Duplicate entries are not removed.
     /// @~
-    void push_back(const Vectorset<_T> &other)
+    void push_back(const ConstVectorset<_T> &other)
     {
       // localize variables
       size_t nSize = other.size();

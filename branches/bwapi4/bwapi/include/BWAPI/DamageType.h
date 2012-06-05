@@ -37,7 +37,7 @@ namespace BWAPI
     DamageType getDamageType(std::string name);
 
     /** Returns the set of all the DamageTypes. */
-    const DamageType::set& allDamageTypes();
+    const DamageType::const_set& allDamageTypes();
 
     extern const DamageType Independent;
     extern const DamageType Explosive;
