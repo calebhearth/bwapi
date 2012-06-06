@@ -1,9 +1,11 @@
 #labels Featured
 == Changes in BWAPI4 ==
  * All BWAPI projects have been upgraded to use Microsoft Visual C++ 2010 Express.
+ * BWAPI no longer supports loading older revisions if the revision of the AI module is diffrent.
 
 === Launchers/Loaders ===
- * Both Chaoslauncher and MPQDraft are now included with BWAPI, and the location of BWAPI.dll has been moved to the bwapi-data folder.
+ * Both Chaoslauncher and MPQDraft are now included with BWAPI.
+ * The location of BWAPI.dll has been moved to the bwapi-data folder.
 
 === Sets and Vectors ===
  Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, and is used the same way (with Vectorset::iterator). Learning algorithms will get the most out of this.
