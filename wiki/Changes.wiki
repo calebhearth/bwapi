@@ -2,8 +2,13 @@
 == Changes in BWAPI4 ==
  * All BWAPI projects have been upgraded to use Microsoft Visual C++ 2010 Express.
 
+=== Launchers/Loaders ===
+ * Both Chaoslauncher and MPQDraft are now included with BWAPI, and the location of BWAPI.dll has been moved to the bwapi-data folder.
+
 === Sets and Vectors ===
  Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, and is used the same way (with Vectorset::iterator). Learning algorithms will get the most out of this.
+
+It can be treated like a vector or a set, and the user has the option of treating it as a vector for some cases and a set for others.
  
  Additional convenience members have been added, such as .rand(), which returns the value of a random element of the set.
  
@@ -31,6 +36,10 @@
 
 === Player ===
  * groundWeaponMaxRange and airWeaponMaxRange have been removed. Use weaponMaxRange instead.
+
+=== Unit ===
+ * The parameters for build have been rearranged.
+
 
 == Changes from BWAPI 3.7.2 (r4025) to BWAPI 3.7.3 (r4111) ==
 
