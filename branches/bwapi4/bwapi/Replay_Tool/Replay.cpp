@@ -55,7 +55,7 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
     return errSimple("Unable to read actions size.");
 
   // Allocate and Read replay actions
-  ReplayReader repActions(dwActionBufferSize);
+  ReplayReader repActions(dwActionBufferSize, "DebugOutput.txt");
   if ( dwActionBufferSize && (!repActions || !DecompressRead(repActions, dwActionBufferSize, fr)) )
     return errSimple("Decompressing actions failed.");
 

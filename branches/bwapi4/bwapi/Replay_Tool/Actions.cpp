@@ -121,7 +121,7 @@ void ParseActions(ReplayReader &rr, const char *pszFilename)
           for ( BYTE i = 0; i < bUnitCount; ++i )
           {
             wUnits[i] = rr.read<WORD>();
-            rr.log(", (%u, 0x%02X)", wUnits[i] & 0x7FF, wUnits[i] >> 12);
+            rr.log(", %u:%02X", wUnits[i] & 0x7FF, wUnits[i] >> 12);
           }
         }
         break;
@@ -221,7 +221,7 @@ void ParseActions(ReplayReader &rr, const char *pszFilename)
           WORD wTargetID = rr.read<WORD>();
           BWAPI::UnitType unitType( rr.readUnitType() );
           BYTE bHow = rr.read<BYTE>();
-          rr.log("(%d, %d), (%u, 0x%02X), %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), bHow ? ", Queued" : "");
+          rr.log("(%d, %d), %u:%02X, %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), bHow ? ", Queued" : "");
         }
         break;
       case Actions::Set_Replay_Speed:
@@ -240,7 +240,7 @@ void ParseActions(ReplayReader &rr, const char *pszFilename)
           BWAPI::UnitType unitType( rr.readUnitType() );
           BWAPI::Order orderType( rr.readOrder() );
           BYTE bHow = rr.read<BYTE>();
-          rr.log("(%d, %d), (%u, 0x%02X), %s, %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), orderType.c_str(), bHow ? ", Queued" : "");
+          rr.log("(%d, %d), %u:%02X, %s, %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), orderType.c_str(), bHow ? ", Queued" : "");
         }
         break;
       default:
