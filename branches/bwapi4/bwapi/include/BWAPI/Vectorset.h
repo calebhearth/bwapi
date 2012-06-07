@@ -471,10 +471,11 @@ namespace BWAPI
     /// @see push_front
     inline void push_back(const _T val)
     {
-      if ( this->pEndArr == this->pEndAlloc )
-        this->expand();
-      *this->pEndArr = val;
-      ++this->pEndArr;
+      if ( this->expand() )
+      {
+        *this->pEndArr = val;
+        ++this->pEndArr;
+      }
     };
     /// @copydoc push_back(const _T val)
     inline void push_back(const iterator &val)
@@ -499,13 +500,14 @@ namespace BWAPI
       size_t nSize = other.size();
 
       // manage existing set
-      this->expand(nSize);
-      
-      // copy the data to this set
-      memcpy( this->pEndArr, other, nSize*sizeof(_T) );
+      if ( this->expand(nSize) )
+      {
+        // copy the data to this set
+        memcpy( this->pEndArr, other, nSize*sizeof(_T) );
 
-      // update variables in this set
-      this->pEndArr += nSize;
+        // update variables in this set
+        this->pEndArr += nSize;
+      }
     };
     /// @~English
     /// Pushes a value to the front of the Vectorset,
@@ -520,11 +522,12 @@ namespace BWAPI
     /// @see push_back
     void push_front(const _T val)
     {
-      if ( this->pEndArr == this->pEndAlloc )
-        this->expand();
-      memmove(this->pStartArr+1, this->pStartArr, this->size()*sizeof(_T));
-      ++this->pEndArr;
-      *this->pStartArr = val;
+      if ( this->expand() )
+      {
+        memmove(this->pStartArr+1, this->pStartArr, this->size()*sizeof(_T));
+        ++this->pEndArr;
+        *this->pStartArr = val;
+      }
     };
     /// @copydoc push_front(const _T val)
     inline void push_front(const iterator &val)
@@ -566,36 +569,34 @@ namespace BWAPI
     };
   // -----------------------------------------------------------------
   private:
-    // expand container when full
-    void expand()
-    {
-      // localize the variables
-      size_t allocSize = this->max_size(), arrSize = this->size();
-
-      // double the size
-      allocSize *= 2;
-      
-      // Reallocate and store the new values, assume success
-      this->pStartArr  = (_T*)realloc(this->pStartArr, allocSize*sizeof(_T));
-      this->pEndArr    = this->pStartArr + arrSize;
-      this->pEndAlloc  = this->pStartArr + allocSize;
-    };
-    void expand(size_t expectedSize)
+    /// Expands the container if it currently
+    /// does not have the capacity for the
+    /// number of additional elements.
+    ///
+    /// @retval true If space is available.
+    /// @retval false If realloc failed.
+    bool expand(size_t additionalElements = 1)
     {
       // localize the variables
       size_t allocSize = this->max_size(), arrSize = this->size();
 
       // expand to expected size, or ignore of not necessary
-      if ( allocSize >= arrSize + expectedSize )
-        return;
+      if ( allocSize >= arrSize + additionalElements )
+        return true;
 
       // expand to desired size
-      allocSize = arrSize + expectedSize;
+      allocSize = ((arrSize + additionalElements)/256 + 1)*256;
 
       // Reallocate and store the new values
-      this->pStartArr  = (_T*)realloc(this->pStartArr, allocSize*sizeof(_T));
-      this->pEndArr    = this->pStartArr + arrSize;
-      this->pEndAlloc  = this->pStartArr + allocSize;
+      _T *pReallocated = (_T*)realloc(this->pStartArr, allocSize*sizeof(_T));
+      if ( pReallocated != nullptr )
+      {
+        this->pStartArr  = pReallocated;
+        this->pEndArr    = pReallocated + arrSize;
+        this->pEndAlloc  = pReallocated + allocSize;
+        return true;
+      }
+      return false;
     };
 
     // Variables

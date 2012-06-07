@@ -41,7 +41,7 @@ std::string GetRegString(const char *pszSubKey, const char *pszValueName)
   return std::string(szTemp);
 }
 
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
   std::string sInstallPath = GetRegString("SOFTWARE\\Blizzard Entertainment\\Starcraft", "InstallPath");
   sInstallPath += "bwapi-data\\" MODULE;

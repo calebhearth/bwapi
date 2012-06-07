@@ -5,6 +5,7 @@
 #include <fstream>
 #include "FileReader.h"
 #include "FileWriter.h"
+#include "ReplayReader.h"
 
 #include "RepHeader.h"
 #include "Actions.h"
@@ -54,9 +55,8 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
     return errSimple("Unable to read actions size.");
 
   // Allocate and Read replay actions
-  void *pActionBuffer = malloc(dwActionBufferSize);
-  FileReader frActions(pActionBuffer, dwActionBufferSize);
-  if ( dwActionBufferSize && !DecompressRead(pActionBuffer, dwActionBufferSize, fr) )
+  ReplayReader repActions(dwActionBufferSize);
+  if ( dwActionBufferSize && (!repActions || !DecompressRead(repActions, dwActionBufferSize, fr)) )
     return errSimple("Decompressing actions failed.");
 
 /////////////////// Map Chk
@@ -75,7 +75,7 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
   if ( dwFlags & RFLAG_EXTRACT )
   {
     WriteBuffer("%s.hdr", pszFilename, &replayHeader, sizeof(replayHeader));
-    WriteBuffer("%s.act", pszFilename, pActionBuffer, dwActionBufferSize);
+    WriteBuffer("%s.act", pszFilename, repActions, dwActionBufferSize);
     WriteBuffer("%s.chk", pszFilename, pChkBuffer, dwChkBufferSize);
   }
 
@@ -83,14 +83,14 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
   if ( dwFlags & RFLAG_REPAIR )
   {
     // Parse replay actions
-    ParseActions(frActions, pszFilename);
+    ParseActions(repActions, pszFilename);
 
-    if ( replayHeader.dwFrameCount < g_dwHighestFrame )
+    if ( replayHeader.dwFrameCount < repActions.highestFrameTick() )
     {
       std::ofstream log("Results.txt", std::ios_base::app);
-      log << pszFilename << " -- Fixed replay with " << replayHeader.dwFrameCount << " frames. Desired: " << g_dwHighestFrame << " frames.\n";
+      log << pszFilename << " -- Fixed replay with " << replayHeader.dwFrameCount << " frames. Desired: " << repActions.highestFrameTick() << " frames.\n";
 
-      replayHeader.dwFrameCount = g_dwHighestFrame + 100;
+      replayHeader.dwFrameCount = repActions.highestFrameTick() + 100;
 
       // Repair/reconstruct the replay
       FileWriter fw;
@@ -106,7 +106,7 @@ bool ParseReplay(const char *pszFilename, DWORD dwFlags)
       // write actions
       CompressWrite(&dwActionBufferSize, sizeof(dwActionBufferSize), fw);
       if ( dwActionBufferSize )
-        CompressWrite(pActionBuffer, dwActionBufferSize, fw);
+        CompressWrite(repActions, repActions.size(), fw);
     
       // write chk
       CompressWrite(&dwChkBufferSize, sizeof(dwChkBufferSize), fw);

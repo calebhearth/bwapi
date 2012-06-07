@@ -52,8 +52,12 @@ extern "C" __declspec(dllexport) bool ApplyPatchSuspended(HANDLE hProcess, DWORD
   if ( GetFileAttributes(szTarget) & FILE_ATTRIBUTE_DIRECTORY )
     return BWAPIError("Unable to find %s.", szTarget);
 
-  // Get the address for the LoadLibrary procedure 
-  LPTHREAD_START_ROUTINE loadLibAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle("Kernel32"), "LoadLibraryA" );
+  // Get the address for the LoadLibrary procedure
+  HMODULE hKernalModule = GetModuleHandle("Kernel32");
+  if ( !hKernalModule )
+    return BWAPIError("Unable to get module handle for Kernel32.");
+
+  LPTHREAD_START_ROUTINE loadLibAddress = (LPTHREAD_START_ROUTINE)GetProcAddress(hKernalModule, "LoadLibraryA" );
   if ( !loadLibAddress )
     return BWAPIError("Could not get Proc Address for LoadLibraryA.");
 

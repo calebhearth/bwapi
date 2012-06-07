@@ -560,7 +560,7 @@ SBmpDecodeImage(
     __in      DWORD        dwSrcBuffersize,
     __out_opt PALETTEENTRY *pPalette        = NULL,
     __out     void         *pDstBuffer      = NULL,
-    __out     DWORD        dwDstBuffersize  = 0,
+    __in      DWORD        dwDstBuffersize  = 0,
     __out_opt DWORD        *pdwWidth        = NULL,
     __out_opt DWORD        *pdwHeight       = NULL,
     __out_opt DWORD        *pdwBpp          = NULL);
@@ -586,7 +586,7 @@ SBmpLoadImage(
     __in      const char   *pszFileName,
     __out_opt PALETTEENTRY *pPalette    = NULL,
     __out     void         *pBuffer     = NULL,
-    __out     DWORD        dwBuffersize = 0,
+    __in      DWORD        dwBuffersize = 0,
     __out_opt DWORD        *pdwWidth    = NULL,
     __out_opt DWORD        *pdwHeight   = NULL,
     __out_opt DWORD        *pdwBpp      = NULL);

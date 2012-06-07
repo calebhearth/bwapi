@@ -70,7 +70,7 @@ namespace BWAPI
     ///
     /// @~
     /// @Ex player.cpp getUnits
-    virtual Unitset getUnits(const UnitFilter &pred = NULL) const = 0;
+    virtual Unitset getUnits(const UnitFilter &pred = nullptr) const = 0;
 
     /// @~English
     /// Retrieves the race of the player. This allows

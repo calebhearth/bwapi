@@ -1,10 +1,9 @@
 #pragma once
 
-#include "FileReader.h"
+#include "ReplayReader.h"
 #include <windows.h>
 
-extern DWORD g_dwHighestFrame;
-void ParseActions(FileReader &fr, const char *pszFilename);
+void ParseActions(ReplayReader &fr, const char *pszFilename);
 
 namespace Actions
 {

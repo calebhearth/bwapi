@@ -1,6 +1,8 @@
 #include "Actions.h"
 
 #include "FileReader.h"
+#include "ReplayReader.h"
+
 #include <stdio.h>
 #include <BWAPI.h>
 #include <fstream>
@@ -74,44 +76,36 @@ int GetActionSize(BYTE *pBuffer)
 }
 */
 
-
-
-DWORD g_dwHighestFrame;
-void ParseActions(FileReader &fr, const char *pszFilename)
+void ParseActions(ReplayReader &rr, const char *pszFilename)
 {
-  FILE *hFile = fopen("DebugActions.txt", "a");
-  fprintf(hFile, "---------------------------------------------------------------> %s\n", pszFilename);
-  while ( !fr.Eof() )
+  rr.log("---------------------------------------------------------------> %s\n", pszFilename);
+  while ( rr == true )
   {
-    DWORD dwCurrentFrame  = fr.Read<DWORD>();
-    if ( dwCurrentFrame > g_dwHighestFrame )
-      g_dwHighestFrame = dwCurrentFrame;
-
-    BYTE  bFrameSize      = fr.Read<BYTE>();
-    for ( BYTE i = 0; i < bFrameSize; )
+    // Begin reading a new replay frame
+    rr.newFrame();
+    while ( rr == true && rr.isValidFrame() )
     {
-      BYTE bPlayerID = fr.Read<BYTE>();
-      BYTE bCommand  = fr.Read<BYTE>();
-      i += 2;
-      fprintf(hFile, "(P%d) %s: ", bPlayerID, bCommand < Actions::Max ? Actions::pszActionNames[bCommand] : "INVALID");
+      // Get the player ID and opcode for the current command being executed
+      BYTE bPlayerID = rr.read<BYTE>();
+      BYTE bCommand  = rr.read<BYTE>();
+
+      rr.log("(P%d) %s: ", bPlayerID, bCommand < Actions::Max ? Actions::pszActionNames[bCommand] : "INVALID");
       switch ( bCommand )
       {
       case Actions::Save_Game:
       case Actions::Load_Game:
         {
-          DWORD dwSaveInfo = fr.Read<DWORD>();
-          std::string name = fr.ReadCString();
-          i += sizeof(dwSaveInfo) + name.length() + 1;
-          fprintf(hFile, "0x%08X, %s", dwSaveInfo, name.c_str());
+          DWORD dwSaveInfo = rr.read<DWORD>();
+          rr.log("0x%08X, %s", dwSaveInfo, rr.ReadCString().c_str());
         }
         break;
       case Actions::Chat_Replay:
         {
-          BYTE bPlayerID    = fr.Read<BYTE>();
+          BYTE bChatID = rr.read<BYTE>();
           char szMessage[80];
-          fr.Read(szMessage, sizeof(szMessage));
-          i += sizeof(bPlayerID) + sizeof(szMessage);
-          fprintf(hFile, "%u, %s", bPlayerID, szMessage);
+          for ( int i = 0; i < sizeof(szMessage); ++i )
+            szMessage[i] = rr.read<char>();
+          rr.log("%u, %s", bChatID, szMessage);
         }
         break;
       case Actions::Select_Delta_Add:
@@ -119,92 +113,71 @@ void ParseActions(FileReader &fr, const char *pszFilename)
       case Actions::Select_Units:
         {
           WORD wUnits[12] = { 0 };
-          BYTE bUnitCount = fr.Read<BYTE>();
-
-          i += sizeof(bUnitCount) + sizeof(WORD) * bUnitCount;
+          BYTE bUnitCount = rr.read<BYTE>();
 
           if ( bUnitCount > 12 )
             bUnitCount = 12;
-          fprintf(hFile, "%u", bUnitCount);
+          rr.log("%u", bUnitCount);
           for ( BYTE i = 0; i < bUnitCount; ++i )
           {
-            wUnits[i] = fr.Read<WORD>();
-            fprintf(hFile, ", (%u, 0x%02X)", wUnits[i] & 0x7FF, wUnits[i] >> 12);
+            wUnits[i] = rr.read<WORD>();
+            rr.log(", (%u, 0x%02X)", wUnits[i] & 0x7FF, wUnits[i] >> 12);
           }
-          
         }
         break;
       case Actions::Placebox:
         {
-          BWAPI::Order orderType(fr.Read<BYTE>());
-          short x = fr.Read<short>();
-          short y = fr.Read<short>();
-          BWAPI::UnitType unitType(fr.Read<WORD>());
-          fprintf(hFile, "%s, (%d, %d), %s", orderType.c_str(), x, y, unitType.c_str());
-          i += 7;
+          BWAPI::Order orderType( rr.readOrder() );
+          short x = rr.read<short>();
+          short y = rr.read<short>();
+          BWAPI::UnitType unitType( rr.readUnitType() );
+          rr.log("%s, (%d, %d), %s", orderType.c_str(), x, y, unitType.c_str());
         }
         break;
       case Actions::Set_Fog:
-        {
-          WORD wVision = fr.Read<WORD>();
-          fprintf(hFile, "%04X", wVision);
-          i += sizeof(wVision);
-        }
+          rr.log("%04X", rr.read<WORD>() );
         break;
       case Actions::Group_Units:
         {
-          BYTE bGroupType = fr.Read<BYTE>();
-          BYTE bGroupNum  = fr.Read<BYTE>();
+          BYTE bGroupType = rr.read<BYTE>();
+          BYTE bGroupNum  = rr.read<BYTE>();
 
-          fprintf(hFile, "%s, %u", bGroupType < 3 ? Actions::pszGroupType[bGroupType] : "INVALID", bGroupNum );
-          i += sizeof(bGroupType) + sizeof(bGroupNum);
+          rr.log("%s, %u", bGroupType < 3 ? Actions::pszGroupType[bGroupType] : "INVALID", bGroupNum );
         }
         break;
       case Actions::Train:
       case Actions::Unit_Morph:
       case Actions::Building_Morph:
-        {
-          BWAPI::UnitType unitType(fr.Read<WORD>());
-          fprintf(hFile, "%s", unitType.c_str());
-          i += 2;
-        }
+          rr.log("%s", rr.readUnitType().c_str());
         break;
       case Actions::Cancel_Train:
       case Actions::Exit_Transport:
         {
-          WORD wUnitID = fr.Read<WORD>();
-          fprintf(hFile, "(%u, 0x%02X)", wUnitID & 0x7FF, wUnitID >> 12);
-          i += 2;
+          WORD wUnitID = rr.read<WORD>();
+          rr.log("(%u, 0x%02X)", wUnitID & 0x7FF, wUnitID >> 12);
         }
         break;
       case Actions::Set_Allies:
-        {
-          DWORD dwAllies = fr.Read<DWORD>();
-          fprintf(hFile, "0x%08X", dwAllies);
-          i += 4;
-        }
+        rr.log("0x%08X", rr.read<DWORD>() );
         break;
       case Actions::Cheat:
         {
-          DWORD dwCheatFlags = fr.Read<DWORD>();
-          fprintf(hFile, "0x%08X", dwCheatFlags);
-          i += 4;
+          DWORD dwCheatFlags = rr.read<DWORD>();
+          rr.log("0x%08X", dwCheatFlags);
         }
         break;
       case Actions::Lift_Off:
       case Actions::Ping_Minimap:
         {
-          short x = fr.Read<short>();
-          short y = fr.Read<short>();
-          fprintf(hFile, "(%d, %d)", x, y);
-          i += 4;
+          short x = rr.read<short>();
+          short y = rr.read<short>();
+          rr.log("(%d, %d)", x, y);
         }
         break;
       case Actions::Set_Speed:
         {
-          BYTE bSpeed = fr.Read<BYTE>();
-          fprintf(hFile, "%s", bSpeed < 7 ? Actions::pszGameSpeed[bSpeed] : "INVALID");
-          i += sizeof(bSpeed);
+          BYTE bSpeed = rr.read<BYTE>();
+          rr.log("%s", bSpeed < 7 ? Actions::pszGameSpeed[bSpeed] : "INVALID");
         }
         break;
       case Actions::Stop:
@@ -217,86 +190,65 @@ void ParseActions(FileReader &fr, const char *pszFilename)
       case Actions::Hold_Position:
       case Actions::Burrow_Down:
       case Actions::Burrow_Up:
-        {
-          BYTE bHow = fr.Read<BYTE>();
-          fprintf(hFile, "%s", bHow ? "Queued" : "");
-          i += sizeof(bHow);
-        }
+        rr.log("%s", rr.read<BYTE>() ? "Queued" : "");
         break;
       case Actions::Research:
-        {
-          BWAPI::TechType tech(fr.Read<BYTE>());
-          fprintf(hFile, "%s", tech.c_str());
-          i += 1;
-        }
+        rr.log("%s", rr.readTechType().c_str());
         break;
       case Actions::Upgrade:
-        {
-          BWAPI::UpgradeType upgrade(fr.Read<BYTE>());
-          fprintf(hFile, "%s", upgrade.c_str());
-          i += 1;
-        }
+        rr.log("%s", rr.readUpgradeType().c_str());
         break;
-      case Actions::Voice_Enable:
-      case Actions::Voice_Squelch:
-        {
-          BYTE bPlayerID = fr.Read<BYTE>();
-          fprintf(hFile, "%u", bPlayerID);
-          i += sizeof(bPlayerID);
-        }
+      case Actions::Voice_Enable:   // Unused
+      case Actions::Voice_Squelch:  // Unused
+        rr.log("%u", rr.read<BYTE>());  // squelched player id
         break;
       case Actions::Set_Latency:
         {
-          BYTE bLatency = fr.Read<BYTE>();
-          fprintf(hFile, "%s", bLatency < 3 ? Actions::pszLatency[bLatency] : "INVALID");
-          i += sizeof(bLatency);
+          BYTE bLatency = rr.read<BYTE>();
+          rr.log("%s", bLatency < 3 ? Actions::pszLatency[bLatency] : "INVALID");
         }
         break;
       case Actions::Leave_Game:
         {
-          BYTE bLeaveType = fr.Read<BYTE>();
-          fprintf(hFile, "%s", bLeaveType < 6 ? Actions::pszLeaveType[bLeaveType] : "UNKNOWN");
-          i += sizeof(bLeaveType);
+          BYTE bLeaveType = rr.read<BYTE>();
+          rr.log("%s", bLeaveType < 6 ? Actions::pszLeaveType[bLeaveType] : "UNKNOWN");
         }
         break;
       case Actions::Right_Click:
         {
-          short x = fr.Read<short>();
-          short y = fr.Read<short>();
-          WORD wTargetID = fr.Read<WORD>();
-          BWAPI::UnitType unitType(fr.Read<WORD>());
-          BYTE bHow = fr.Read<BYTE>();
-          fprintf(hFile, "(%d, %d), (%u, 0x%02X), %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), bHow ? ", Queued" : "");
-          i += 9;
+          short x = rr.read<short>();
+          short y = rr.read<short>();
+          WORD wTargetID = rr.read<WORD>();
+          BWAPI::UnitType unitType( rr.readUnitType() );
+          BYTE bHow = rr.read<BYTE>();
+          rr.log("(%d, %d), (%u, 0x%02X), %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), bHow ? ", Queued" : "");
         }
         break;
       case Actions::Set_Replay_Speed:
         {
-          bool paused = fr.Read<bool>();
-          DWORD dwSpeed = fr.Read<DWORD>();
-          DWORD dwMultiplier = fr.Read<DWORD>();
-          fprintf(hFile, "%s%s, ×%u", paused ? "PAUSED, " : "", dwSpeed < 7 ? Actions::pszGameSpeed[dwSpeed] : "INVALID", dwMultiplier);
-          i += 9;
+          bool paused = rr.read<bool>();
+          DWORD dwSpeed = rr.read<DWORD>();
+          DWORD dwMultiplier = rr.read<DWORD>();
+          rr.log("%s%s, ×%u", paused ? "PAUSED, " : "", dwSpeed < 7 ? Actions::pszGameSpeed[dwSpeed] : "INVALID", dwMultiplier);
         }
         break;
       case Actions::Target_Click:
         {
-          short x = fr.Read<short>();
-          short y = fr.Read<short>();
-          WORD wTargetID = fr.Read<WORD>();
-          BWAPI::UnitType unitType(fr.Read<WORD>());
-          BWAPI::Order orderType(fr.Read<BYTE>());
-          BYTE bHow = fr.Read<BYTE>();
-          fprintf(hFile, "(%d, %d), (%u, 0x%02X), %s, %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), orderType.c_str(), bHow ? ", Queued" : "");
-          i += 10;
+          short x = rr.read<short>();
+          short y = rr.read<short>();
+          WORD wTargetID = rr.read<WORD>();
+          BWAPI::UnitType unitType( rr.readUnitType() );
+          BWAPI::Order orderType( rr.readOrder() );
+          BYTE bHow = rr.read<BYTE>();
+          rr.log("(%d, %d), (%u, 0x%02X), %s, %s%s", x, y, wTargetID & 0x7FF, wTargetID >> 12, unitType.c_str(), orderType.c_str(), bHow ? ", Queued" : "");
         }
         break;
       default:
         break;
       } // switch
-      fprintf(hFile, "\n");
-    } // for
-  } // while
-  if ( hFile )
-    fclose(hFile);
+      rr.log("\n");
+    } // per-frame loop
+
+  } // per-replay loop
+
 }

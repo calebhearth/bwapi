@@ -17,6 +17,12 @@
     <ClCompile Include="PKShared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReplayReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplayAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions.h">
@@ -35,6 +41,12 @@
       <Filter>Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="RepHeader.h">
+      <Filter>Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplayReader.h">
+      <Filter>Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplayAction.h">
       <Filter>Header FIles</Filter>
     </ClInclude>
   </ItemGroup>

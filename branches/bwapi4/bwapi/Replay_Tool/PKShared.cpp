@@ -50,30 +50,33 @@ bool DecompressRead(void *pOutput, size_t outputSize, FileReader &fr)
     }
 
     char *pTmp = (char*)malloc(chunkSize);
-    fr.Read(pTmp, chunkSize);
-    if ( chunkSize != outputSize )
+    if ( pTmp != nullptr )
     {
-      memset(&params, 0, sizeof(params));
-      params.pCompressedData    = pTmp;
-      params.dwMaxRead          = chunkSize;
-      params.pDecompressedData  = bSegment;
-      params.dwMaxWrite         = sizeof(bSegment);
-
-      if ( explode(&read_buf, &write_buf, bWorkBuff, &params) )
-        return false;
-
-      if ( params.dwWritePos <= sizeof(bSegment) )
+      fr.Read(pTmp, chunkSize);
+      if ( chunkSize != outputSize )
       {
-        memcpy(&_pOutput[dwPos], bSegment, params.dwWritePos);
-        dwPos     += params.dwWritePos;
+        memset(&params, 0, sizeof(params));
+        params.pCompressedData    = pTmp;
+        params.dwMaxRead          = chunkSize;
+        params.pDecompressedData  = bSegment;
+        params.dwMaxWrite         = sizeof(bSegment);
+
+        if ( explode(&read_buf, &write_buf, bWorkBuff, &params) )
+          return false;
+
+        if ( params.dwWritePos <= sizeof(bSegment) )
+        {
+          memcpy(&_pOutput[dwPos], bSegment, params.dwWritePos);
+          dwPos     += params.dwWritePos;
+        }
       }
+      else
+      {
+        memcpy(&_pOutput[dwPos], pTmp, chunkSize);
+        dwPos += chunkSize;
+      }
+      free(pTmp);
     }
-    else
-    {
-      memcpy(&_pOutput[dwPos], pTmp, chunkSize);
-      dwPos += chunkSize;
-    }
-    free(pTmp);
   }
 
   unsigned int  dwSize = outputSize;

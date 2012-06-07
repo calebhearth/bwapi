@@ -81,19 +81,19 @@ namespace BWAPI
     /** Returns the list of events */
     virtual const std::list< Event >& getEvents() const = 0;
 
-    /** Returns the force with the given ID, or NULL if no force has the given ID */
+    /** Returns the force with the given ID, or nullptr if no force has the given ID */
     virtual Force* getForce(int forceID) const = 0;
 
-    /** Returns the player with the given ID, or NULL if no player has the given ID */
+    /** Returns the player with the given ID, or nullptr if no player has the given ID */
     virtual Player* getPlayer(int playerID) const = 0;
 
-    /** Returns the unit with the given ID, or NULL if no unit has the given ID */
+    /** Returns the unit with the given ID, or nullptr if no unit has the given ID */
     virtual Unit* getUnit(int unitID) const = 0;
 
     /** Returns a pointer to a Unit given an index. */
     virtual Unit* indexToUnit(int unitIndex) const = 0;
 
-    /** Returns the Region with the given ID, or NULL if no region has the given ID */
+    /** Returns the Region with the given ID, or nullptr if no region has the given ID */
     virtual Region* getRegion(int regionID) const = 0;
 
     /** Returns the game type */
@@ -154,14 +154,14 @@ namespace BWAPI
     virtual void enableFlag(int flag) = 0;
 
     /** Returns the set of accessible units that are on the given build tile. */
-    Unitset getUnitsOnTile(int tileX, int tileY, const UnitFilter &pred = NULL) const;
-    Unitset getUnitsOnTile(BWAPI::TilePosition tile, const UnitFilter &pred = NULL) const;
+    Unitset getUnitsOnTile(int tileX, int tileY, const UnitFilter &pred = nullptr) const;
+    Unitset getUnitsOnTile(BWAPI::TilePosition tile, const UnitFilter &pred = nullptr) const;
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
-    virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = NULL) const = 0;
+    virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = nullptr) const = 0;
 
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
-    Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = NULL) const;
+    Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = nullptr) const;
 
     /// @~English
     /// Retrieves the closest unit to center that
@@ -175,11 +175,11 @@ namespace BWAPI
     ///
     /// @returns The desired unit that is closest
     /// to center.
-    /// @retval NULL If a suitable unit was not found.
+    /// @retval nullptr If a suitable unit was not found.
     /// @~
     /// @see getBestUnit
-    Unit *getClosestUnit(Position center, const UnitFilter &pred = NULL, int radius = 999999) const;
-    virtual Unit *getClosestUnitInRectangle(Position center, const UnitFilter &pred = NULL, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const = 0;
+    Unit *getClosestUnit(Position center, const UnitFilter &pred = nullptr, int radius = 999999) const;
+    virtual Unit *getClosestUnitInRectangle(Position center, const UnitFilter &pred = nullptr, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const = 0;
 
     /// @~English
     /// Compares all units with pred to determine
@@ -195,7 +195,7 @@ namespace BWAPI
     /// 
     /// @returns The desired unit that best matches
     /// the given criteria.
-    /// @retval NULL if a suitable unit was not found.
+    /// @retval nullptr if a suitable unit was not found.
     /// @~
     /// @see getClosestUnit
     virtual Unit *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
@@ -292,21 +292,21 @@ namespace BWAPI
     /** Returns true if the given unit type can be built at the given build tile position. Note the tile
      * position specifies the top left tile of the building. If builder is not null, the unit will be
      * discarded when determining whether or not any ground units are blocking the build location. */
-    virtual bool canBuildHere(TilePosition position, UnitType type, const Unit *builder = NULL, bool checkExplored = false) = 0;
+    virtual bool canBuildHere(TilePosition position, UnitType type, const Unit *builder = nullptr, bool checkExplored = false) = 0;
 
     /** Returns true if the AI player has enough resources, supply, tech, and required units in order to
      * make the given unit type. If builder is not null, canMake will return true only if the builder unit
      * can build the given unit type. */
-    virtual bool canMake(UnitType type, const Unit *builder = NULL) = 0;
+    virtual bool canMake(UnitType type, const Unit *builder = nullptr) = 0;
 
     /** Returns true if the AI player has enough resources required to research the given tech type. If unit
      * is not null, canResearch will return true only if the given unit can research the given tech type. */
-    virtual bool canResearch(TechType type, const Unit *unit = NULL) = 0;
+    virtual bool canResearch(TechType type, const Unit *unit = nullptr) = 0;
 
     /** Returns true if the AI player has enough resources required to upgrade the given upgrade type. If
      * unit is not null, canUpgrade will return true only if the given unit can upgrade the given upgrade
      * type. */
-    virtual bool canUpgrade(UpgradeType type, const Unit *unit = NULL) = 0;
+    virtual bool canUpgrade(UpgradeType type, const Unit *unit = nullptr) = 0;
 
     /** Returns the set of starting locations for the given map. To determine the starting location for the
      * players in the current match, see Player::getStartLocation. */
@@ -378,7 +378,7 @@ namespace BWAPI
 
     /** Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to
      * just one enemy (see enemies to get all enemies still in game). In replays this will
-     * return NULL. */
+     * return nullptr. */
     virtual Player* enemy() = 0;
 
     /** Returns a pointer to the neutral player. */
