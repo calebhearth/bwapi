@@ -73,7 +73,7 @@ namespace BWAPI
   int PlayerImpl::supplyTotal(Race race) const
   {
     if ( race == Races::None )  // Get current race's supply if None is specified
-      race = getRace();
+      race = this->getRace();
 
     if ( race < 0 || race >= 3 )  // bounds checking
       return 0;

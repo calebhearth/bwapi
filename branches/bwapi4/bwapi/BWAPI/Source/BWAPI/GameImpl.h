@@ -239,7 +239,6 @@ namespace BWAPI
       bool _isBattleNet() const;
       bool _isReplay() const;
       void _changeRace(int slot, BWAPI::Race race);
-      int _getLobbyRace(int slot);
       Race lastKnownRaceBeforeStart[8];
 
       void loadSelected();
@@ -301,6 +300,9 @@ namespace BWAPI
       AIModule *tournamentAI;
 
       PlayerImpl *players[PLAYER_COUNT];
+
+      void dropPlayers();
+      std::vector<PlayerImpl*> droppedPlayers;
     private :
       Map map;
 

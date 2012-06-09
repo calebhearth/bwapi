@@ -43,6 +43,56 @@ HANDLE (WINAPI   *_CreateFileOld)(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWO
 HWND   (WINAPI   *_CreateWindowExAOld)(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
 VOID   (WINAPI   *_SleepOld)(DWORD dwMilliseconds);
 
+//------------------------------------------------ RANDOM RACE --------------------------------------------------
+u8 savedRace[PLAYABLE_PLAYER_COUNT];
+int mappedIndex[PLAYABLE_PLAYER_COUNT];
+void _RandomizePlayerRaces()    // before
+{
+  // iterate each player
+  for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
+  {
+    // Save the player's initial race
+    savedRace[i] = BW::BWDATA_Players[i].nRace;
+
+    // Give computer players a unique storm id
+    if ( BW::BWDATA_Players[i].dwStormId == -1 )
+      BW::BWDATA_Players[i].dwStormId -= i;
+
+    // Save the ID so that we can map the saved race later
+    mappedIndex[i] = BW::BWDATA_Players[i].dwStormId;
+  }
+
+  // Call original fxn
+  BW::BWFXN_RandomizePlayerRaces();
+}
+
+int getMappedIndex(int stormID)
+{
+  for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
+  {
+    if ( mappedIndex[i] == stormID )
+      return i;
+  }
+  return -1;
+}
+
+void _InitializePlayerConsole()   // after
+{
+  for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
+  {
+    // Retrieve the original race value before randomization occurred from the mapped index
+    int mapID = getMappedIndex(BW::BWDATA_Players[i].dwStormId);
+    BWAPI::BroodwarImpl.lastKnownRaceBeforeStart[i] = (mapID == -1) ? BWAPI::Races::None : BWAPI::Race( savedRace[mapID] );
+
+    // Reset the computer player's storm ID
+    if ( BW::BWDATA_Players[i].dwStormId < 0 )
+      BW::BWDATA_Players[i].dwStormId = -1;
+  }
+
+  // Call original fxn
+  BW::BWFXN_InitializePlayerConsole();
+}
+
 //------------------------------------------------ TRIGGERS --------------------------------------------------
 void __stdcall ExecuteGameTriggers(DWORD dwMillisecondsPerFrame)
 {
@@ -392,6 +442,14 @@ void __stdcall DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds)
 
   if ( *BW::BWDATA_gwGameMode == BW::GAME_GLUES )
     BWAPI::BroodwarImpl.onMenuFrame();
+
+  BW::dialog *timeout = BW::FindDialogGlobal("TimeOut");
+  if ( timeout )
+  {
+    BW::dialog *dropbtn = timeout->findIndex(2);
+    if ( !dropbtn->isDisabled() )
+      BWAPI::BroodwarImpl.dropPlayers();
+  }
 
   // NOSOUND config option
   if ( !nosound )

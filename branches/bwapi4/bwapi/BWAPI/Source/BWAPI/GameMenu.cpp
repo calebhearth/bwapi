@@ -151,10 +151,6 @@ namespace BWAPI
     //this function is called each frame while starcraft is in the main menu system (not in-game).
     this->inGame        = false;
 
-    // Get races so we can catch random
-    for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
-      lastKnownRaceBeforeStart[i] = Race(_getLobbyRace(i));
-
     events.push_back(Event::MenuFrame());
     this->server.update();
 
@@ -472,21 +468,6 @@ namespace BWAPI
     
     // Send the change race command for multi-player
     QUEUE_COMMAND(BW::Orders::RequestChangeRace, slot, race);
-  }
-  //-------------------------------------------- GET LOBBY RACE ----------------------------------------------
-  int GameImpl::_getLobbyRace(int slot)
-  {
-    BW::dialog *custom = BW::FindDialogGlobal("Create");
-    if ( custom )
-    {
-      // Get single player race
-      BW::dialog *slotCtrl = custom->findIndex((short)(28 + slot));  // 28 is the CtrlID of the first slot
-      if ( slotCtrl )
-        return slotCtrl->getSelectedValue();
-    }
-    else
-      return BW::BWDATA_Players[slot].nRace;
-    return Races::None;
   }
 }
 

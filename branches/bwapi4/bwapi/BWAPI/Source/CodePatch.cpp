@@ -37,7 +37,9 @@ void ApplyCodePatches()
     HackUtil::JmpPatch(BW::BWFXN_QueueCommand,    &CommandFilter);
     HackUtil::JmpPatch(BW::BWFXN_DDrawDestroy,    &DDrawDestroy);
     HackUtil::JmpPatch(BW::BWFXN_NetSelectReturnMenu, &_SelectReturnMenu);
-
+    HackUtil::CallPatch(BW::BWDATA_RandomizeRacePatch, &_RandomizePlayerRaces);
+    HackUtil::CallPatch(BW::BWDATA_InitPlayerConsolePatch, &_InitializePlayerConsole);
+    
     // Perform code patches
     char zero = 0;
     HackUtil::WriteMem(BW::BWDATA_ServerMenuIn, &zero, 1);        // BNET Server menu in speed

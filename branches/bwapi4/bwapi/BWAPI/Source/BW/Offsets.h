@@ -139,6 +139,8 @@ namespace BW
   BWDATA(swishTimer*, gluScoreSwishController, 0x0051A844, 0);   // count: 1
   BWDATA(swishTimer*, gluChatSwishController, 0x0051A490, 0);  // count: 5
 
+  BWDATA(u32*, playerStatusArray, 0x0057F0B8, 0);
+
   // QueueGameCommand data
   BWDATA(u32*, sgdwBytesInCmdQueue, 0x00654AA0, 0);
   BWDATA(u8*, TurnBuffer, 0x00654880, 0);
@@ -312,6 +314,12 @@ namespace BW
   static void (* const BWDATA_DSoundDestroy)()  = (void (*)()) 0x004BC180;
 
   static const u32 BWFXN_NetSelectReturnMenu   = 0x004DC5B0;
+
+  static void (* const BWFXN_RandomizePlayerRaces)() = (void (*)()) 0x004A9A30;
+  BWDATA(u32, RandomizeRacePatch, 0x004EF20E, 0);
+
+  static void (* const BWFXN_InitializePlayerConsole)() = (void (*)()) 0x004EE180;
+  BWDATA(u32, InitPlayerConsolePatch, 0x004EF244, 0);
 
   //------------------------------------ POSITIONS (MOUSE/SCREEN) --------------------------------------------
   static void (__cdecl * const BWFXN_UpdateScreenPosition)()    = (void(__cdecl*)()) 0x0049BFD0;

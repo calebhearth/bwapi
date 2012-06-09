@@ -131,6 +131,21 @@ namespace BWAPI
       }
     }
   }
+  void GameImpl::dropPlayers()
+  {
+    for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
+    {
+      if ( BW::BWDATA_playerStatusArray[i] & 0x10000 )
+      {
+        int iplr = this->stormIdToPlayerId(i);
+        if ( iplr != -1 && iplr != (int)*BW::BWDATA_g_LocalHumanID )
+        {
+          this->droppedPlayers.push_back(this->players[iplr]);
+          SNetDropPlayer(i, 0x40000006);
+        }
+      }
+    }
+  }
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
   bool GameImpl::_isBattleNet() const
   {
