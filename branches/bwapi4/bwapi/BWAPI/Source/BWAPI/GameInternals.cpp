@@ -87,7 +87,7 @@ namespace BWAPI
     /* destroy all UnitImpl */
     for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)
     {
-      if ( unitArray[i] )
+      if ( unitArray[i] != nullptr )
       {
         delete unitArray[i];
         unitArray[i] = nullptr;
@@ -97,7 +97,7 @@ namespace BWAPI
     /* destroy all PlayerImpl */
     for (int i = 0; i < PLAYER_COUNT; ++i)
     {
-      if ( players[i] )
+      if ( players[i] != nullptr )
       {
         delete players[i];
         players[i] = nullptr;
@@ -107,7 +107,7 @@ namespace BWAPI
     /* destroy all bullets */
     for(int i = 0; i < BULLET_ARRAY_MAX_LENGTH; ++i)
     {
-      if ( bulletArray[i] )
+      if ( bulletArray[i] != nullptr )
       {
         delete bulletArray[i];
         bulletArray[i] = nullptr;

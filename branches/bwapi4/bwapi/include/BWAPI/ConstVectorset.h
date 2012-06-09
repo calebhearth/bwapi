@@ -41,7 +41,7 @@ namespace BWAPI
                   "Vectorset can only be used with classes that have a trivial destructor and trivial copy constructor.");
 #endif
   private:
-    ConstVectorset() {};
+    ConstVectorset();
   public:
     /// @~English
     /// The iterator is used to traverse the elements 
@@ -69,6 +69,11 @@ namespace BWAPI
       , pEndArr( (_T*)pArray + arrSize )
     {};
     
+    ConstVectorset(const ConstVectorset &other)
+      : pStartArr(other.pStartArr)
+      , pEndArr(other.pEndArr)
+    {}
+
   // ----------------------------------------------------------------- Operators
     /// @~English
     /// Creates a new Vectorset containing all elements

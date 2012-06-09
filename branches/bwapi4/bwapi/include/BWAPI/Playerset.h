@@ -22,7 +22,7 @@ namespace BWAPI
     ///
     /// @returns Unitset containing Playerset's units
     /// @see Player::getUnits
-    Unitset getUnits(const UnitFilter &pred = NULL) const;
+    Unitset getUnits() const;
 
     /// Returns the list of races that each player
     /// in the set is.

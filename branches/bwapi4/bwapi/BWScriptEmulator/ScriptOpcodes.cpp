@@ -250,11 +250,16 @@ void aithread::execute()
       bw->enemies().setAlliance(true); // closest thing to becoming neutral+rescuable
       continue;
     case AISCRIPT::MOVE_DT: // WORKAROUND
-      this->saveDebug(Text::Yellow, bOpcode);
-      self->getUnits( (GetType == UnitTypes::Protoss_Dark_Templar || GetType == UnitTypes::Hero_Dark_Templar)
-                      && Exists && IsCompleted ).move(this->locationCenter);
-      // Note: Needs special reassignment (CAIControl, AICaptain)
-      continue;
+      {
+        this->saveDebug(Text::Yellow, bOpcode);
+        Unitset myUnits(self->getUnits());
+      
+        myUnits.erase_if( ~((GetType == UnitTypes::Protoss_Dark_Templar || GetType == UnitTypes::Hero_Dark_Templar)
+                            && Exists && IsCompleted) );
+        myUnits.move(this->locationCenter);
+        // Note: Needs special reassignment (CAIControl, AICaptain)
+        continue;
+      }
     case AISCRIPT::DEBUG:   // COMPLETE
       {
         WORD wJump = this->read<WORD>();
@@ -409,7 +414,8 @@ void aithread::execute()
         WORD wJmpOffset = this->read<WORD>();
         this->saveDebug(Text::Green, bOpcode, "p_%X", wJmpOffset);
         
-        Unitset enemyUnits( bw->enemies().getUnits(Exists && IsBuilding && ~IsLifted) );
+        Unitset enemyUnits( bw->enemies().getUnits() );
+        enemyUnits.erase_if( ~(Exists && IsBuilding && ~IsLifted) );
         for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
         {
           if ( u->hasPath(this->locationCenter) )
@@ -502,7 +508,8 @@ void aithread::execute()
         
         int bestDistance = 99999999;
         Player *closestEnemy = NULL;
-        Unitset enemyUnits( Broodwar->enemies().getUnits( ~IsBuilding || IsLifted ) );
+        Unitset enemyUnits( Broodwar->enemies().getUnits() );
+        enemyUnits.erase_if( ~(~IsBuilding || IsLifted) );
         for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
         {
           int thisDistance = u->getPosition().getApproxDistance(this->locationCenter);
@@ -777,7 +784,9 @@ void aithread::execute()
         this->saveDebug(Text::Green, bOpcode, "%s p_%X", AISCRIPT::getUnitName(wType), wJump);
         
         // @TODO: BWAPI: Playerset::getUnitCount something
-        if ( !bw->enemies().getUnits(GetType == wType).empty() )
+        Unitset enemyUnits(bw->enemies().getUnits());
+        enemyUnits.erase_if( GetType != wType );
+        if ( !enemyUnits.empty() )
           this->dwScriptOffset = wJump;
         continue;
       }

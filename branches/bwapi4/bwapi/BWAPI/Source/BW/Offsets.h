@@ -61,19 +61,11 @@ namespace BW
 
   /*
   //----------------------------------------------- DATA TABLES ----------------------------------------------
-#ifdef _MAC
-  static const DatLoad * const upgradesDat = (const DatLoad*)0x0015AFCC;  // 1.16.1
-  static const DatLoad * const techdataDat = (const DatLoad*)0x0015A6F4;
-  static const DatLoad * const weaponsDat  = (const DatLoad*)0x0015C19C;
-  static const DatLoad * const unitsDat    = (const DatLoad*)0x0015AD38;
-  static const DatLoad * const flingyDat   = (const DatLoad*)0x0014BC08;
-#else
-  static const DatLoad * const upgradesDat = (const DatLoad*)0x005136E0;  // 1.15.3, 1.16, 1.16.1
-  static const DatLoad * const techdataDat = (const DatLoad*)0x005137D8;
-  static const DatLoad * const weaponsDat  = (const DatLoad*)0x00513868;
-  static const DatLoad * const unitsDat    = (const DatLoad*)0x00513C30;
-  static const DatLoad * const flingyDat   = (const DatLoad*)0x00515A38;
-#endif
+  BWDATA(DatLoad*, Upgrades_Table, 0x005136E0, 0x0015AFCC);   // Mac: for 1.16.1
+  BWDATA(DatLoad*, TechData_Table, 0x005137D8, 0x0015A6F4);   // PC: all for 1.15.3, 1.16, and 1.16.1
+  BWDATA(DatLoad*, Weapons_Table, 0x00513868, 0x0015C19C);
+  BWDATA(DatLoad*, Units_Table, 0x00513C30, 0x0015AD38);
+  BWDATA(DatLoad*, Flingy_Table, 0x00515A38, 0x0014BC08);
   */
   //----------------------------------------------- PLAYER DATA ----------------------------------------------
   /** Player resource counts */

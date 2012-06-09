@@ -12,12 +12,9 @@ namespace BWAPI
     return id;
   }
   //--------------------------------------------- GET UNITS --------------------------------------------------
-  Unitset PlayerImpl::getUnits(const UnitFilter &pred) const
+  const Unitset &PlayerImpl::getUnits() const
   {
-    Unitset filterset(this->units);
-    if ( pred )
-      filterset.erase_if(~pred);
-    return filterset;
+    return this->units;
   }
   //--------------------------------------------- MINERALS ---------------------------------------------------
   int PlayerImpl::minerals() const

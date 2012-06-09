@@ -25,7 +25,8 @@ void DevAIModule::onStart()
   mapW = bw->mapWidth();
 
   // Order your workers to gather from the nearest mineral field
-  Unitset myWorkers( self->getUnits(IsWorker && IsCompleted && ~IsCarryingSomething) );
+  Unitset myWorkers( self->getUnits() );
+  myWorkers.erase_if( ~(IsWorker && IsCompleted && ~IsCarryingSomething) );
   myWorkers.gather( myWorkers.getClosestUnit( IsMineralField && Resources > 100 ) );
 
 }

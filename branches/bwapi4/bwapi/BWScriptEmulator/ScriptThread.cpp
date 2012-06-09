@@ -284,7 +284,7 @@ void aithread::saveDebug(const char prefix, int iOpcode, const char *pszFormat, 
   char *tmp = (char*)malloc(strlen(szFinalBuffer)+1);
   strcpy(tmp, szFinalBuffer);
 
-  if ( debugQueue.size() > 40 )
+  if ( this->debugQueue.size() > 32 )
   {
     char *front = this->debugQueue.front();
     free(front);

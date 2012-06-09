@@ -15,12 +15,12 @@ namespace BWAPI
   Playerset::Playerset(const Playerset &other) : Vectorset(other) { };
   Playerset::Playerset(Playerset &&other) : Vectorset( std::forward<Playerset>(other) ) { };
 
-  Unitset Playerset::getUnits(const UnitFilter &pred) const
+  Unitset Playerset::getUnits() const
   {
     Unitset retSet;    // The return set
     // Iterate each player
     for ( Playerset::iterator i = this->begin(); i != this->end(); ++i )
-      retSet += i->getUnits(pred);  // retrieve player's units
+      retSet += i->getUnits();  // retrieve player's units
     return retSet;
   }
 
