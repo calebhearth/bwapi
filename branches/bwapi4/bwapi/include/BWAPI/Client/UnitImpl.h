@@ -109,7 +109,7 @@ namespace BWAPI
       virtual Unit*     getHatchery() const;
       virtual Unitset   getLarva() const;
       virtual void      *getClientInfo() const;
-      virtual void      setClientInfo(void* clientinfo = NULL);
+      virtual void      setClientInfo(void* clientinfo = nullptr);
 
       virtual bool exists() const;
       virtual bool hasNuke() const;
@@ -148,7 +148,7 @@ namespace BWAPI
       virtual bool isUnderDisruptionWeb() const;
       virtual bool isUnderStorm() const;
       virtual bool isUnpowered() const;
-      virtual bool isVisible(Player* player = NULL) const;
+      virtual bool isVisible(Player* player = nullptr) const;
 
       virtual bool canIssueCommand(UnitCommand command) const;
       virtual bool issueCommand(UnitCommand command);

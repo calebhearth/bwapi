@@ -27,7 +27,7 @@
 #define FLINGY_TYPE_COUNT       209
 #define UNIT_ARRAY_MAX_LENGTH  1700
 #define BULLET_ARRAY_MAX_LENGTH 100
-#define MAX_SEARCH             3400
+#define MAX_SEARCH             (UNIT_ARRAY_MAX_LENGTH*2)
 
 namespace BW
 {
@@ -216,7 +216,7 @@ namespace BW
   };
   // array size 3400 (1700 * 2) for each
   BWDATA(unitFinder*, UnitOrderingX, 0x0066FF78, 0);
-  BWDATA(unitFinder*, UnitOrderingY, &BWDATA_UnitOrderingX[MAX_SEARCH], 0);
+  BWDATA(unitFinder*, UnitOrderingY, 0x006769B8, 0);
 
   //------------------------------------------- DATA LEVEL ---------------------------------------------------
   /* Mode Stuff */

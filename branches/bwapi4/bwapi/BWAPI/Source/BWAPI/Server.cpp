@@ -609,9 +609,9 @@ namespace BWAPI
       const BW::unitFinder *bwxf = BW::BWDATA_UnitOrderingX;
       const BW::unitFinder *bwyf = BW::BWDATA_UnitOrderingY;
 
-      for ( int i = 0; i < UNIT_ARRAY_MAX_LENGTH*2 && (bwxf->unitIndex > 0 || bwyf->unitIndex > 0); ++i, bwxf++, bwyf++ )
+      for ( int i = 0; i < MAX_SEARCH && (bwxf->unitIndex > 0 || bwyf->unitIndex > 0); ++i, bwxf++, bwyf++ )
       {
-        if ( bwxf->unitIndex > 0 && bwxf->unitIndex <= 1700 )
+        if ( bwxf->unitIndex > 0 && bwxf->unitIndex <= UNIT_ARRAY_MAX_LENGTH )
         {
           UnitImpl *u = BroodwarImpl.unitArray[bwxf->unitIndex-1];
           if ( u && u->canAccess() )
@@ -622,7 +622,7 @@ namespace BWAPI
           }
         } // x index
 
-        if ( bwyf->unitIndex > 0 && bwyf->unitIndex <= 1700 )
+        if ( bwyf->unitIndex > 0 && bwyf->unitIndex <= UNIT_ARRAY_MAX_LENGTH )
         {
           UnitImpl *u = BroodwarImpl.unitArray[bwyf->unitIndex-1];
           if ( u && u->canAccess() )

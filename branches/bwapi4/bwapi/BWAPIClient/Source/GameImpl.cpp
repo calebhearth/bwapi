@@ -17,7 +17,7 @@
 
 namespace BWAPI
 {
-  Game* Broodwar = NULL;
+  Game* Broodwar = nullptr;
   GameImpl::GameImpl(GameData* data)
   {
     this->data = data;
@@ -457,7 +457,7 @@ namespace BWAPI
   Unit *GameImpl::getClosestUnitInRectangle(Position center, const UnitFilter &pred, int left, int top, int right, int bottom) const
   {
     int bestDistance = 99999999;
-    Unit *pBestUnit = NULL;
+    Unit *pBestUnit = nullptr;
 
     Templates::iterateUnitFinder<unitFinder>(data->xUnitSearch,
                                              data->yUnitSearch,
@@ -483,7 +483,7 @@ namespace BWAPI
   }
   Unit *GameImpl::getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center, int radius) const
   {
-    Unit *pBestUnit = NULL;
+    Unit *pBestUnit = nullptr;
     Position rad(radius,radius);
     
     Position topLeft(center - rad);
@@ -847,7 +847,7 @@ namespace BWAPI
   }
   void* GameImpl::getScreenBuffer()
   {
-    return (void*)NULL;
+    return nullptr;
   }
   int GameImpl::getLatencyFrames()
   {
@@ -994,7 +994,7 @@ namespace BWAPI
     if ( !Position(x,y) )
     {
       Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
-      return NULL;
+      return nullptr;
     }
     unsigned short idx = data->mapTileRegionId[x/32][y/32];
     if ( idx & 0x2000 )

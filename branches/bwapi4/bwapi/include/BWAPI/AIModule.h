@@ -101,7 +101,7 @@ namespace BWAPI
       /** BWAPI calls this any time some Game-related functions are called.
           Return true to allow them, or false to disallow them.
           This includes functions like Game::pauseGame and Game::enableFlag. */
-      virtual bool onAction(int actionType, void *parameter = NULL);
+      virtual bool onAction(int actionType, void *parameter = nullptr);
 
       /** BWAPI calls this when this module was the first to send out its 
           tournament advertisement. It can prevent both modules from performing

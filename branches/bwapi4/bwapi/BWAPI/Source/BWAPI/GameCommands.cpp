@@ -180,7 +180,7 @@ namespace BWAPI
       else if ( uct == UnitCommandTypes::Use_Tech_Unit &&   // Group Archon & Dark Archon merging
                 (command.getTechType() == TechTypes::Archon_Warp ||
                 command.getTechType() == TechTypes::Dark_Archon_Meld) )
-        command = UnitCommand::useTech(uthis, command.getTechType(), NULL);
+        command = UnitCommand::useTech(uthis, command.getTechType(), nullptr);
     }
     // Add command to the command optimizer buffer and unload it later
     commandOptimizer[command.getType().getID()].push_back(command);

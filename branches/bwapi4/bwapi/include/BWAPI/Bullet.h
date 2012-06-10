@@ -25,6 +25,6 @@ namespace BWAPI
     virtual Position getTargetPosition() const = 0;
     virtual int getRemoveTimer() const = 0;
     virtual bool exists() const = 0;
-    virtual bool isVisible(Player* player = NULL) const = 0;
+    virtual bool isVisible(Player* player = nullptr) const = 0;
   };
 }

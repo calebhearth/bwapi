@@ -55,7 +55,7 @@ namespace BWAPI
     int getUnitFinderIndex(const finder *uf, int value, int start = 0)
     {
       unsigned int i = start;
-      while ( uf[i].searchValue < value && uf[i].unitIndex != 0 && i < 1700*2 )
+      while ( i < 1700*2 && uf[i].searchValue < value && uf[i].unitIndex > 0 )
         ++i;
       return i;
     }

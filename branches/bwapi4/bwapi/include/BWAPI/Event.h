@@ -19,9 +19,9 @@ namespace BWAPI
       Event();
       ~Event();
       Event(const Event& other);
-      //Event(Event&& other);
+      Event(Event&& other);
       Event& operator=(const Event& other);
-      //Event& operator=(Event &&other);
+      Event& operator=(Event &&other);
       bool operator==(const Event& other) const;
       static Event MatchStart();
       static Event MatchEnd(bool isWinner);

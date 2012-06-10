@@ -118,8 +118,8 @@ namespace BWAPI
 
       virtual bool      isFlagEnabled(int flag) const;
       virtual void      enableFlag(int flag);
-      virtual Unitset   getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = NULL) const;
-      virtual Unit      *getClosestUnitInRectangle(Position center, const UnitFilter &pred = NULL, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const;
+      virtual Unitset   getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = nullptr) const;
+      virtual Unit      *getClosestUnitInRectangle(Position center, const UnitFilter &pred = nullptr, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const;
       virtual Unit      *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const;
       virtual Error     getLastError() const;
       virtual bool      setLastError(BWAPI::Error e = Errors::None);
@@ -144,10 +144,10 @@ namespace BWAPI
       virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
       virtual bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
 
-      virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = NULL, bool checkExplored = false);
-      virtual bool canMake(UnitType type, const Unit* builder = NULL);
-      virtual bool canResearch(TechType type, const Unit* unit = NULL);
-      virtual bool canUpgrade(UpgradeType type, const Unit* unit = NULL);
+      virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = nullptr, bool checkExplored = false);
+      virtual bool canMake(UnitType type, const Unit* builder = nullptr);
+      virtual bool canResearch(TechType type, const Unit* unit = nullptr);
+      virtual bool canUpgrade(UpgradeType type, const Unit* unit = nullptr);
       virtual const TilePosition::set& getStartLocations() const;
 
       virtual void printf(const char* format, ...);

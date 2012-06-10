@@ -29,7 +29,7 @@ namespace BWAPI
   {
     savedExtra  = -1;
     savedExtra2 = -1;
-    player      = NULL;
+    player      = nullptr;
   }
   template <class UnitImpl, class PlayerImpl>
   int CommandTemp<UnitImpl, PlayerImpl>::getUnitID(Unit* unit)

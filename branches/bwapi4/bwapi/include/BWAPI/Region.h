@@ -63,6 +63,6 @@ namespace BWAPI
     /// in this region that have met the
     /// requirements of \p pred.
     /// @~
-    Unitset getUnits(const UnitFilter &pred = NULL) const;
+    Unitset getUnits(const UnitFilter &pred = nullptr) const;
   };
 };

@@ -635,7 +635,7 @@ namespace BWAPI
         Unitset groupOf12;
 
         int e = 0, x = 0, y = 0;
-        Unit      *t = NULL;
+        Unit      *t = nullptr;
         UnitType  ut;
         bool      o = false;
 

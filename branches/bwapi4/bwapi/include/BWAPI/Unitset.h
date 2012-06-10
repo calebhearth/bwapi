@@ -98,10 +98,10 @@ namespace BWAPI
     /// information is to be cleared.
     /// @~
     /// @see Unit::setClientInfo
-    void setClientInfo(void *clientInfo = NULL) const;
+    void setClientInfo(void *clientInfo = nullptr) const;
 
-    Unitset getUnitsInRadius(int radius, const UnitFilter &pred = NULL) const;
-    Unit    *getClosestUnit(const UnitFilter &pred = NULL, int radius = 999999) const;
+    Unitset getUnitsInRadius(int radius, const UnitFilter &pred = nullptr) const;
+    Unit    *getClosestUnit(const UnitFilter &pred = nullptr, int radius = 999999) const;
 
     /// @copydoc Unit::issueCommand
     bool issueCommand(UnitCommand command) const;
@@ -203,7 +203,7 @@ namespace BWAPI
     bool cancelUpgrade() const;
     
     /// @copydoc Unit::useTech
-    bool useTech(TechType tech, PositionOrUnit target = NULL) const;
+    bool useTech(TechType tech, PositionOrUnit target = nullptr) const;
   };
 }
 

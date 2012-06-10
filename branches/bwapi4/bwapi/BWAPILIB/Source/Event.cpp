@@ -24,7 +24,7 @@ namespace BWAPI
     , winner( other.winner )
   {
   }
-  /*Event::Event(Event &&other)
+  Event::Event(Event &&other)
     : type(other.type)
     , position(other.position)
     , text( other.text )
@@ -33,7 +33,7 @@ namespace BWAPI
     , winner( other.winner )
   {
     other.text = nullptr;
-  }*/
+  }
   Event::~Event()
   {
     if ( text != nullptr )
@@ -55,7 +55,7 @@ namespace BWAPI
     winner = other.winner;
     return *this;
   }
-  /*Event& Event::operator=(Event &&other)
+  Event& Event::operator=(Event &&other)
   {
     type = other.type;
     position = other.position;
@@ -67,7 +67,7 @@ namespace BWAPI
     player = other.player;
     winner = other.winner;
     return *this;
-  }*/
+  }
   bool Event::operator==(const Event& other) const
   {
     return (type     == other.type &&

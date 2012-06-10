@@ -76,7 +76,7 @@ namespace BWAPI
     { 
       memcpy(this->pStartArr, (void*)other, other.size()*sizeof(_T));
     };*/
-    /*/// @~English
+    /// @~English
     /// This is the move constructor. The Vectorset
     /// will steal the data pointer from the other
     /// Vectorset.
@@ -91,7 +91,7 @@ namespace BWAPI
       , pEndAlloc( other.pEndAlloc )
     { 
       other.pStartArr = nullptr;
-    };*/
+    };
     /// @~English
     /// This constructor uses an existing array
     /// of objects and copies them into the vector.
@@ -141,7 +141,7 @@ namespace BWAPI
       this->push_back(other);
       return *this;
     };*/
-    /*Vectorset &operator =(Vectorset<_T> &&other)
+    Vectorset &operator =(Vectorset<_T> &&other)
     {
       if ( this->pStartArr != nullptr )
         free(this->pStartArr);
@@ -153,7 +153,7 @@ namespace BWAPI
       this->pEndAlloc = other.pEndAlloc;
 
       return *this;
-    };*/
+    };
     /// @copydoc push_back(const Vectorset<_T> &)
     /// @~English
     /// @returns A reference to the current object.

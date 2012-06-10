@@ -502,18 +502,18 @@ namespace BWAPI
     virtual Unitset getLarva() const = 0;
 
     /** Returns the set of units within the given radius of this unit */
-    Unitset getUnitsInRadius(int radius, const UnitFilter &pred = NULL) const;
+    Unitset getUnitsInRadius(int radius, const UnitFilter &pred = nullptr) const;
 
     /** Returns the set of units within weapon range of this unit. */
-    Unitset getUnitsInWeaponRange(WeaponType weapon, const UnitFilter &pred = NULL) const;
+    Unitset getUnitsInWeaponRange(WeaponType weapon, const UnitFilter &pred = nullptr) const;
 
-    Unit *getClosestUnit(const UnitFilter &pred = NULL, int radius = 999999) const;
+    Unit *getClosestUnit(const UnitFilter &pred = nullptr, int radius = 999999) const;
 
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
     virtual void* getClientInfo() const = 0;
 
     /** Sets the unit's custom client info. The client is responsible for deallocation. */
-    virtual void setClientInfo(void* clientinfo = NULL) = 0;
+    virtual void setClientInfo(void* clientinfo = nullptr) = 0;
 
     /**
      * 3 cases to consider:
@@ -724,7 +724,7 @@ namespace BWAPI
     /** Returns true if the unit is visible. If the CompleteMapInformation?  cheat flag is enabled, existing
      * units hidden by the fog of war will be accessible, but isVisible will still return false.
      * \see Unit::exists. */
-    virtual bool isVisible(Player* player = NULL) const = 0;
+    virtual bool isVisible(Player* player = nullptr) const = 0;
 
     /** Returns true if the unit is able to execute the given command, or false if there is an error */
     virtual bool canIssueCommand(UnitCommand command) const = 0;
@@ -971,7 +971,7 @@ namespace BWAPI
     
     /** Orders the unit to use a tech requiring a position target (ie Dark Swarm). Returns true if it is a
      * valid tech.*/
-    bool useTech(TechType tech, PositionOrUnit target = NULL);
+    bool useTech(TechType tech, PositionOrUnit target = nullptr);
 
     /** Moves a Flag Beacon to the target location. */
     bool placeCOP(TilePosition target);
