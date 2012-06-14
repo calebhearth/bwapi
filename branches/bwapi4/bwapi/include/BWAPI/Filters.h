@@ -123,6 +123,10 @@ namespace BWAPI
   extern const CompareFilter<Unit*,Order> SecondaryOrder;
   extern const CompareFilter<Unit*,Unit*> OrderTarget;
   extern const CompareFilter<Unit*,void*> ClientInfo;
+  extern const CompareFilter<Unit*> GetLeft;
+  extern const CompareFilter<Unit*> GetTop;
+  extern const CompareFilter<Unit*> GetRight;
+  extern const CompareFilter<Unit*> GetBottom;
 
   extern const UnitFilter Exists;
   extern const UnitFilter IsAttacking;

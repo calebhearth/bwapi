@@ -160,14 +160,11 @@ namespace BWAPI
       }
 
       /* Tile buildability check */
-      for(int ix = lt.x; ix < rb.x; ++ix)
+      for ( TilePosition::iterator i(lt,rb); i; ++i )
       {
-        for(int iy = lt.y; iy < rb.y; ++iy)
-        {
-          // Check if tile is buildable and explored
-          if ( !Broodwar->isBuildable(ix, iy, true) || ( checkExplored && !Broodwar->isExplored(ix, iy)) )
-            return false; // @TODO: Error code for !isExplored ??
-        }
+        // Check if tile is buildable and explored
+        if ( !Broodwar->isBuildable(i, true) || ( checkExplored && !Broodwar->isExplored(i)) )
+          return false; // @TODO: Error code for !isExplored ??
       }
 
       // Check if builder is capable of reaching the building site
@@ -176,29 +173,23 @@ namespace BWAPI
 
       /* Ground unit dimension check */
       Position targPos = lt + Position(TilePosition(width,height))/2;
-      for(int ix = lt.x; ix < rb.x; ++ix)
+      for ( TilePosition::iterator i(lt,rb); i; ++i )
       {
-        for(int iy = lt.y; iy < rb.y; ++iy)
+        Unitset unitsOnTile = Broodwar->getUnitsOnTile(i, ~IsBuilding &&
+                                                          ~IsFlyer    &&
+                                                          ~IsLoaded   &&
+                                                          [&builder](Unit *u){ return u != builder;} &&
+                                                          GetLeft   <= targPos.x + type.dimensionRight()  &&
+                                                          GetTop    <= targPos.y + type.dimensionDown()   &&
+                                                          GetRight  >= targPos.x - type.dimensionLeft()   &&
+                                                          GetBottom >= targPos.y - type.dimensionUp() );
+        foreach(Unit *u, unitsOnTile)
         {
-          Unitset unitsOnTile = Broodwar->getUnitsOnTile(ix,iy);
-          foreach(Unit *u, unitsOnTile)
-          {
-            BWAPI::UnitType iterType = u->getType();
-            if ( !iterType.isBuilding() &&
-                 !iterType.isFlyer()    &&
-                 !u->isLoaded()         &&
-                 u != builder           &&
-                 u->getLeft()    <= targPos.x + type.dimensionRight()  &&
-                 u->getTop()     <= targPos.y + type.dimensionDown()   &&
-                 u->getRight()   >= targPos.x - type.dimensionLeft()   &&
-                 u->getBottom()  >= targPos.y - type.dimensionUp()  )
-            {
-              if ( !type.isAddon() )
-                return false;
-              else if ( !iterType.canMove() )
-                return false;
-            }
-          }
+          BWAPI::UnitType iterType = u->getType();
+          if ( !type.isAddon() )
+            return false;
+          else if ( !iterType.canMove() )
+            return false;
         }
       }
 
@@ -206,17 +197,17 @@ namespace BWAPI
       if ( type.getRace() == Races::Zerg )
       { // Creep requirement, or ignore creep if there isn't one
         if ( type.requiresCreep() )
-          for(int ix = lt.x; ix < rb.x; ++ix)
-            for(int iy = lt.y; iy < rb.y; ++iy)
-              if (!Broodwar->hasCreep(ix, iy))
-                return false;
+        {
+          for ( TilePosition::iterator i(lt, rb); i; ++i )
+            if ( !Broodwar->hasCreep(i) )
+              return false;
+        }
       }
       else
       { // Can't build on the creep
-        for(int ix = lt.x; ix < rb.x; ++ix)
-          for(int iy = lt.y; iy < rb.y; ++iy)
-            if (Broodwar->hasCreep(ix, iy))
-              return false;
+        for ( TilePosition::iterator i(lt, rb); i; ++i )
+          if ( Broodwar->hasCreep(i) )
+            return false;
       }
 
       /* Power Check */
@@ -374,7 +365,6 @@ namespace BWAPI
     static inline bool canResearch(const Unit* unit, TechType type)
     {
       /* Error checking */
-      Broodwar->setLastError();
       if ( !Broodwar->self() )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
@@ -401,12 +391,11 @@ namespace BWAPI
       if (Broodwar->self()->gas() < type.gasPrice())
         return Broodwar->setLastError(Errors::Insufficient_Gas);
 
-      return true;
+      return Broodwar->setLastError();
     }
     //------------------------------------------- CAN UPGRADE ------------------------------------------------
     static inline bool canUpgrade(const Unit* unit, UpgradeType type)
     {
-      Broodwar->setLastError();
       Player *self = Broodwar->self();
       if ( !self )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
@@ -479,7 +468,7 @@ namespace BWAPI
       if ( self->gas() < type.gasPrice(nextLvl) )
         return Broodwar->setLastError(Errors::Insufficient_Gas);
 
-      return true;
+      return Broodwar->setLastError();
     }
 
     //------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
@@ -494,10 +483,7 @@ namespace BWAPI
         if (thisUnit->getType().producesLarva() && c.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
         {
           if (thisUnit->getLarva().empty())
-          {
-            Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
-            return false;
-          }
+            return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
           c.unit = (UnitImpl*)(*thisUnit->getLarva().begin());
           thisUnit = c.unit;
         }
