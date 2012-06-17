@@ -501,7 +501,45 @@ namespace BWAPI
      * GUI. */
     virtual Unitset getLarva() const = 0;
 
-    /** Returns the set of units within the given radius of this unit */
+    /* --------------------------------------------------------------------------------------------------- */
+
+    /// @~English
+    /// Retrieves the set of all units in a given radius of the current unit.
+    ///
+    /// Takes into account this unit's dimensions. Can optionally specify a filter that is composed using
+    /// BWAPI Filter semantics to include only specific units (such as only ground units, etc.)
+    ///
+    /// @param radius
+    ///   The radius, in pixels, to search for units.
+    /// @param pred (optional)
+    ///   The composed function predicate to include only specific (desired) units in the set. Defaults to
+    ///   nullptr, which means no filter.
+    ///
+    /// @returns A Unitset containing the set of units that match the given criteria.
+    ///
+    /// @code
+    /// // Get main building closest to start location.
+    /// Unit *pMain = Broodwar->getClosestUnit( Broodwar->self()->getStartLocation(), IsResourceDepot );
+    /// if ( pMain != nullptr ) // check if pMain is valid
+    /// {
+    ///   // Get sets of resources and workers
+    ///   Unitset myResources = pMain->getUnitsInRadius(1024, IsMineralField);
+    ///   if ( !myResources.empty() ) // check if we have resources nearby
+    ///   {
+    ///     Unitset myWorkers = pMain->getUnitsInRadius(512, IsWorker && IsIdle && IsOwned );
+    ///     while ( !myWorkers.empty() ) // make sure we command all nearby idle workers, if any
+    ///     {
+    ///       for ( auto u = myResources.begin(); u != myResources.end(); ++u )
+    ///       {
+    ///         myWorkers.back()->harvest(*u);
+    ///         myWorkers.pop_back();
+    ///       }
+    ///     }
+    ///   } // myResources not empty
+    /// } // pMain != nullptr
+    /// @endcode
+    /// @~
+    /// @see getClosestUnit, getUnitsInWeaponRange, Game::getUnitsInRadius, Game::getUnitsInRectangle
     Unitset getUnitsInRadius(int radius, const UnitFilter &pred = nullptr) const;
 
     /** Returns the set of units within weapon range of this unit. */

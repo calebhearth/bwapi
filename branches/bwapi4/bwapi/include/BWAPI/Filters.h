@@ -178,6 +178,8 @@ namespace BWAPI
   extern const UnitFilter IsUnpowered;
   extern const UnitFilter IsVisible;
   
-
+  extern const UnitFilter IsEnemy;
+  extern const UnitFilter IsAlly;
+  extern const UnitFilter IsOwned;
 }
 

@@ -48,7 +48,7 @@ namespace BWAPI
   template<class _T, int __unk>
   class Type
   {
-  private:
+  protected:
     int id;
   public:
     // Constructor
