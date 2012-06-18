@@ -31,13 +31,13 @@
  * The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors.
  * Most type data is now made constant and no longer requires an initialization to be made.
  * Added a Type::isValid function.
- * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: UnitTypes::Enum::Terran_Marine).
+ * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: {{{UnitTypes::Enum::Terran_Marine}}}).
  * TechType::energyUsed has been renamed to energyCost.
 
 === Game ===
  * Draw functions now take Position parameters as an alternative to individual x and y.
  * The parameters for canBuildHere, canMake, canResearch, and canUpgrade have been rearranged.
- * getUnits_ functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
+ * {{{getUnits_}}} functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
  * Added getClosestUnit, getBestUnit, getClosestUnitInRectangle
 
 === Player ===
@@ -45,7 +45,7 @@
 
 === Unit ===
  * The parameters for build have been rearranged.
- * getUnits_ functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
+ * {{{getUnits_}}} functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
  * Added getClosestUnit, getUnitsInRadius
 
 === Region ===
@@ -59,7 +59,7 @@ Changes:
 
 Bug Fixes:
  * Fixed a regression that involved save_replay not working correctly.
- * Fixed a bug where getUnitsIn_ functions were unable to properly retrieve unit data on the edge of the map.
+ * Fixed a bug where {{{getUnitsIn_}}} functions were unable to properly retrieve unit data on the edge of the map.
  * Fixed several minor buffer overflows.
 
 
