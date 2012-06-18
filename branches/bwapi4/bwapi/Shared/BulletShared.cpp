@@ -66,16 +66,22 @@ namespace BWAPI
   //----------------------------------------------- IS VISIBLE -----------------------------------------------
   bool BulletImpl::isVisible(BWAPI::Player* player) const
   {
-    if ( player )
-      return self->isVisible[player->getID()];
+    if ( player == nullptr )  // Default to self
+      player = Broodwar->self();
 
-    if ( Broodwar->self())
-      return self->isVisible[Broodwar->self()->getID()];
-
-    for(int i = 0; i < 9; ++i)
+    if ( player != nullptr ) // Only if player is valid
     {
-      if (self->isVisible[i])
-        return true;
+      int id = player->getID();
+      if ( id >= 0 && id < 9 ) // Check if ID is valid
+        return self->isVisible[id]; // return visibility
+    }
+    else  // fallback for self also being null
+    {
+      for(int i = 0; i < 9; ++i) // check if the bullet is visible by ANY player
+      {
+        if ( self->isVisible[i] )
+          return true;
+      }
     }
     return false;
   }

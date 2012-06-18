@@ -28,8 +28,7 @@ void DevAIModule::onStart()
   Unitset myWorkers( self->getUnits() );
   myWorkers.erase_if( ~(IsWorker && IsCompleted && ~IsCarryingSomething) );
   myWorkers.gather( myWorkers.getClosestUnit( IsMineralField && Resources > 100 ) );
-  Unit *blah;
-  //blah->getUn
+
 }
 
 void DevAIModule::onEnd(bool isWinner)

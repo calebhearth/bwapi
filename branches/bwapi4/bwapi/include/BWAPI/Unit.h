@@ -48,18 +48,38 @@ namespace BWAPI
     virtual ~Unit() {};
   public:
     /// @English
-    /// Retrieves a unique ID for this unit.
+    /// Retrieves a unique identifier for this unit.
     ///
-    /// @returns An integer containing the unit's ID.
+    /// @returns An integer containing the unit's identifier.
     /// @~
     /// @see getReplayID
     virtual int getID() const = 0;
 
+    /// @~English
+    /// Checks if the Unit exists in the view of the BWAPI player.
+    ///
+    /// This is used primarily to check if BWAPI has access to a specific unit, or if the
+    /// unit is alive. This function is more general and would be synonymous to an isAlive
+    /// function if such a function were necessary.
+    ///
+    /// @retval true If the unit exists on the map and is visible according to BWAPI.
+    /// @retval false If the unit is not accessible or the unit is dead.
+    ///
+    /// In the event that this function returns false, there are two cases to consider:
+    ///   1. You own the unit. This means the unit is dead.
+    ///   2. Another player owns the unit. This could either mean that you don't have access
+    ///      to the unit or that the unit has died. You can specifically identify dead units
+    ///      by polling onUnitDestroy.
+    /// @~
+    /// @see isVisible, isCompleted
+    virtual bool exists() const = 0;
+
     /// @English
-    /// Retrieves the unit ID for this unit as seen in replay data.
+    /// Retrieves the unit identifier for this unit as seen in replay data.
+    ///
     /// @note This is only available if Flag::CompleteMapInformation is enabled.
     ///
-    /// @returns An integer containing the replay unit ID.
+    /// @returns An integer containing the replay unit identifier.
     /// @~
     /// @see getID
     virtual int getReplayID() const = 0;
@@ -67,7 +87,7 @@ namespace BWAPI
     /// @English
     /// Retrieves the player that owns this unit.
     ///
-    /// @retval Game::neutral() If the unit is a neutral unit or inaccessable.
+    /// @retval Game::neutral() If the unit is a neutral unit or inaccessible.
     ///
     /// @returns A pointer to the owning Player object.
     /// @~
@@ -552,17 +572,6 @@ namespace BWAPI
 
     /** Sets the unit's custom client info. The client is responsible for deallocation. */
     virtual void setClientInfo(void* clientinfo = nullptr) = 0;
-
-    /**
-     * 3 cases to consider:
-     *
-     * - If exists() returns true, the unit exists.
-     * - If exists() returns false and the unit is owned by self(), then the unit does not exist.
-     * - If exists() returns false and the unit is not owned by self(), then the unit may or may not exist.
-     *
-     * \see Unit::isVisible.
-     * */
-    virtual bool exists() const = 0;
 
     /* Returns true if the Nuclear Missile Silo has a nuke */
     virtual bool hasNuke() const = 0;

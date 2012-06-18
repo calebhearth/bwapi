@@ -21,6 +21,7 @@ namespace BWAPI
   {
     public:
       virtual int        getID() const;
+      virtual bool       exists() const;
       virtual Player*    getPlayer() const;
       virtual BulletType getType() const;
       virtual Unit*      getSource() const;
@@ -31,7 +32,6 @@ namespace BWAPI
       virtual Unit*      getTarget() const;
       virtual Position   getTargetPosition() const;
       virtual int        getRemoveTimer() const;
-      virtual bool       exists() const;
       virtual bool       isVisible(Player* player = nullptr) const;
 
       BulletImpl(BW::Bullet* originalBullet, u16 index);

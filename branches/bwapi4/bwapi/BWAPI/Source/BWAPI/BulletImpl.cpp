@@ -117,16 +117,16 @@ namespace BWAPI
     {
       self->id              = -1;
       self->player          = -1;
-      self->type            = BulletTypes::None;
+      self->type            = BulletTypes::Unknown;
       self->source          = -1;
-      self->positionX       = Positions::None.x;
-      self->positionY       = Positions::None.y;
+      self->positionX       = Positions::Unknown.x;
+      self->positionY       = Positions::Unknown.y;
       self->angle           = 0;
       self->velocityX       = 0;
       self->velocityY       = 0;
       self->target          = -1;
-      self->targetPositionX = 0;
-      self->targetPositionY = 0;
+      self->targetPositionX = Positions::Unknown.x;
+      self->targetPositionY = Positions::Unknown.y;
       self->removeTimer     = 0;
       self->exists          = false;
     }

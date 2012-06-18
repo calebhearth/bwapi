@@ -41,10 +41,10 @@ namespace BWAPI
     virtual int getBoundsRight() const = 0;
     virtual int getBoundsBottom() const = 0;
 
-    /** Retrieves the closest accessable neighbor region. */
+    /** Retrieves the closest accessible neighbor region. */
     virtual BWAPI::Region *getClosestAccessibleRegion() const = 0;
 
-    /** Retrieves the closest inaccessable neighbor region. */
+    /** Retrieves the closest inaccessible neighbor region. */
     virtual BWAPI::Region *getClosestInaccessibleRegion() const = 0;
 
     /** Retrieves the center-to-center distance between two regions. */

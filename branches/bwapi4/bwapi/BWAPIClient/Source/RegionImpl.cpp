@@ -16,7 +16,7 @@ namespace BWAPI
       BWAPI::Region *neighbor = Broodwar->getRegion(self->neighbors[i]);
       this->neighbors.insert(neighbor);
 
-      // Obtain the closest accessable and inaccessable Regions from their Region center
+      // Obtain the closest accessible and inaccessible Regions from their Region center
       int dst = this->getCenter().getApproxDistance(neighbor->getCenter());
       if ( this->getRegionGroupID() == neighbor->getRegionGroupID() )
       {

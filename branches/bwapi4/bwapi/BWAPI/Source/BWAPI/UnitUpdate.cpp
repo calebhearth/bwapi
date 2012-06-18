@@ -415,8 +415,8 @@ namespace BWAPI
       self->removeTimer         = 0;      //getRemoveTimer
       self->stasisTimer         = 0;      //getStasisTimer
       self->stimTimer           = 0;      //getStimTimer
-      self->order               = Orders::None;  //getOrder
-      self->secondaryOrder      = Orders::None;  //getSecondaryOrder
+      self->order               = Orders::Unknown;  //getOrder
+      self->secondaryOrder      = Orders::Unknown;  //getSecondaryOrder
       self->buildUnit           = -1;     //getBuildUnit
       self->isTraining          = false;  //isTraining
       self->isMorphing          = false;  //isMorphing
@@ -445,7 +445,7 @@ namespace BWAPI
       self->isUnpowered         = false;  //isUnpowered
       self->isStuck             = false;  //isStuck
       self->isInterruptible     = false;  //isInterruptible
-      self->buttonset           = 228;
+      self->buttonset           = UnitTypes::None;
       self->lastAttackerPlayer  = -1;
       self->recentlyAttacked    = false;
     }

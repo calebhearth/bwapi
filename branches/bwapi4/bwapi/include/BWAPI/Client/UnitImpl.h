@@ -27,6 +27,7 @@ namespace BWAPI
       UnitImpl(int id);
 
       virtual int           getID() const;
+      virtual bool          exists() const;
       virtual int           getReplayID() const;
       virtual Player*       getPlayer() const;
       virtual UnitType      getType() const;
@@ -111,7 +112,6 @@ namespace BWAPI
       virtual void      *getClientInfo() const;
       virtual void      setClientInfo(void* clientinfo = nullptr);
 
-      virtual bool exists() const;
       virtual bool hasNuke() const;
       virtual bool isAccelerating() const;
       virtual bool isAttackFrame() const;
