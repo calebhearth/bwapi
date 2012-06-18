@@ -2,6 +2,7 @@
 == Changes in BWAPI4 ==
  * All BWAPI projects have been upgraded to use Microsoft Visual C++ 2010 Express.
  * BWAPI no longer supports loading older revisions if the revision of the AI module is diffrent.
+ * BWAPI will be using some C++11 features, such as: r-value references, std::function, lambdas, nullptr, auto, and range-based for loops.
 
 === Launchers/Loaders ===
  * Both Chaoslauncher and MPQDraft are now included with BWAPI.
@@ -10,7 +11,7 @@
 === Sets and Vectors ===
  Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, and is used the same way (with Vectorset::iterator). Learning algorithms will get the most out of this.
 
-It can be treated like a vector or a set, and the user has the option of treating it as a vector for some cases and a set for others.
+ It can be treated like a vector or a set, and the user has the option of treating it as a vector for some cases and a set for others.
  
  Additional convenience members have been added, such as .rand(), which returns the value of a random element of the set.
  
@@ -31,16 +32,35 @@ It can be treated like a vector or a set, and the user has the option of treatin
  * Most type data is now made constant and no longer requires an initialization to be made.
  * Added a Type::isValid function.
  * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: UnitTypes::Enum::Terran_Marine).
+ * TechType::energyUsed has been renamed to energyCost.
 
 === Game ===
  * Draw functions now take Position parameters as an alternative to individual x and y.
  * The parameters for canBuildHere, canMake, canResearch, and canUpgrade have been rearranged.
+ * getUnits_ functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
+ * Added getClosestUnit, getBestUnit, getClosestUnitInRectangle
 
 === Player ===
  * groundWeaponMaxRange and airWeaponMaxRange have been removed. Use weaponMaxRange instead.
 
 === Unit ===
  * The parameters for build have been rearranged.
+ * getUnits_ functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
+ * Added getClosestUnit, getUnitsInRadius
+
+=== Region ===
+ * Added a getUnits function.
+
+
+== Changes from BWAPI 3.7.3 (r4111) to Current (r4143) ==
+
+Changes:
+ * The Random race feature has been corrected and re-enabled. Players who chose Random will have their race displayed as Unknown until they are scouted.
+
+Bug Fixes:
+ * Fixed a regression that involved save_replay not working correctly.
+ * Fixed a bug where getUnitsIn_ functions were unable to properly retrieve unit data on the edge of the map.
+ * Fixed several minor buffer overflows.
 
 
 == Changes from BWAPI 3.7.2 (r4025) to BWAPI 3.7.3 (r4111) ==
