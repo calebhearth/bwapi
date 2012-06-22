@@ -163,11 +163,8 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\Bullet.h" />
     <ClInclude Include="Source\BW\CheatFlags.h" />
     <ClInclude Include="Source\BW\CheatType.h" />
-    <ClInclude Include="Source\BW\DamageID.h" />
     <ClInclude Include="Source\BW\Dialog.h" />
-    <ClInclude Include="Source\BW\ExplosionID.h" />
     <ClInclude Include="Source\BW\FlingyID.h" />
-    <ClInclude Include="Source\BW\GameType.h" />
     <ClInclude Include="Source\BW\GroupFlags.h" />
     <ClInclude Include="Source\BW\Image.h" />
     <ClInclude Include="Source\BW\Latency.h" />
@@ -190,7 +187,6 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\Triggers.h" />
     <ClInclude Include="Source\BW\Unit.h" />
     <ClInclude Include="Source\BW\UnitPrototypeFlags.h" />
-    <ClInclude Include="Source\BW\UnitSizeType.h" />
     <ClInclude Include="Source\BW\UnitStatusFlags.h" />
     <ClInclude Include="Source\BW\UnitTarget.h" />
     <ClInclude Include="Source\BW\WeaponTargetFlags.h" />

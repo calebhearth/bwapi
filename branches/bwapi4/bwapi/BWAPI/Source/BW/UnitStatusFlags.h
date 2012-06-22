@@ -14,7 +14,7 @@ namespace BW
       Burrowed            = 0x00000010,
       InBuilding          = 0x00000020,
       InTransport         = 0x00000040,
-      UNKNOWN1            = 0x00000080,  /**< @todo Unknown */
+      UNKNOWN1            = 0x00000080,  /**< @todo Unknown */ // EDIT: found in target acquisition
       RequiresDetection   = 0x00000100,
       Cloaked             = 0x00000200,
       DoodadStatesThing   = 0x00000400,  /**< @todo Unknown */

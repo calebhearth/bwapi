@@ -184,9 +184,6 @@
     <ClInclude Include="Source\BW\UnitPrototypeFlags.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BW\UnitSizeType.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\Triggers.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
@@ -208,16 +205,7 @@
     <ClInclude Include="Source\BW\GroupFlags.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BW\GameType.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\FlingyID.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\ExplosionID.h">
-      <Filter>BW\Enumerations</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\DamageID.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\CheatFlags.h">

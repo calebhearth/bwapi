@@ -37,7 +37,6 @@
 #include <BW/Latency.h>
 #include <BW/TileType.h>
 #include <BW/TileSet.h>
-#include <BW/GameType.h>
 #include <BW/CheatType.h>
 #include <BW/Dialog.h>
 
