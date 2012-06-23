@@ -14,6 +14,7 @@
                       { const _n Invalid(32000/_s,32000/_s);                \
                         const _n None(32000/_s,32032/_s);                   \
                         const _n Unknown(32000/_s,32064/_s);                \
+                        const _n Origin(0,0);                               \
                       }
 #endif
 
