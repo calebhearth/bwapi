@@ -11,7 +11,15 @@ _Note: In most cases you do not need to be present at the tournament location, s
 = In Progress =
 
  == _AIIDE 2012_ ==
-   * _*Details to be announced.*_
+ === Info ===
+   * *Official Website:* http://webdocs.cs.ualberta.ca/~cdavid/starcraftaicomp/registration.shtml
+
+ === Dates ===
+   * *Registration Deadline:* July 1, 2012
+   * *Submission Deadline:* August 13, 2012
+   * *Testing:* August 13 - 19, 2012
+   * *Tournament:* August 20 - 24, 2012
+   * *Results:* October, 2012
 
  == _CIG 2012_ ==
   * _*Details to be announced.*_
