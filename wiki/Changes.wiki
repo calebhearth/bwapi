@@ -52,7 +52,7 @@
  * Added a getUnits function.
 
 
-== Changes from BWAPI 3.7.3 (r4111) to Current (r4143) ==
+== Changes from BWAPI 3.7.3 (r4111) to Current (r4149) ==
 
 Changes:
  * The Random race feature has been corrected and re-enabled. Players who chose Random will have their race displayed as Unknown until they are scouted.
@@ -61,6 +61,7 @@ Bug Fixes:
  * Fixed a regression that involved save_replay not working correctly.
  * Fixed a bug where {{{getUnitsIn_}}} functions were unable to properly retrieve unit data on the edge of the map.
  * Fixed several minor buffer overflows.
+ * Fixed a bug that caused some replays to save with 0 frame time (causing a division by 0 exception on loading).
 
 
 == Changes from BWAPI 3.7.2 (r4025) to BWAPI 3.7.3 (r4111) ==
