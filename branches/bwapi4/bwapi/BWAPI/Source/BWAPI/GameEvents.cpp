@@ -616,7 +616,8 @@ namespace BWAPI
       this->frameCount++;
 
     // Set the replay time, this is a workaround to fixing the replay DIVIDE_BY_ZERO exception bug
-    *BW::BWDATA::ReplayFrames = this->getFrameCount()+20;
+    if ( !this->isReplay() )
+      *BW::BWDATA::ReplayFrames = this->getFrameCount()+20;
 
     // Check if the window is iconic, if so, go super fast!
     static bool bLastIconic = false;
