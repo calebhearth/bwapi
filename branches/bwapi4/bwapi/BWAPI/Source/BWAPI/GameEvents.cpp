@@ -40,9 +40,9 @@ namespace BWAPI
     this->savedMapHash = Map::getMapHash();
 
     // Obtain Broodwar Regions
-    if ( BW::BWDATA_SAIPathing )
+    if ( BW::BWDATA::SAIPathing )
     {
-      u32 rgnCount = BW::BWDATA_SAIPathing->regionCount;
+      u32 rgnCount = BW::BWDATA::SAIPathing->regionCount;
       // Iterate regions and insert into region list
       for ( u32 i = 0; i < rgnCount; ++i )
         this->regionsList.insert(new BWAPI::RegionImpl(i));
@@ -66,7 +66,7 @@ namespace BWAPI
       // First check if player owns a unit at start
       for ( int u = 0; u < UnitTypes::None; ++u )
       {
-        if ( BW::BWDATA_AllScores->unitCounts.all[u][i] )
+        if ( BW::BWDATA::AllScores->unitCounts.all[u][i] )
         {
           if ( this->players[i] )
             this->players[i]->setParticipating();
@@ -76,7 +76,7 @@ namespace BWAPI
 
       // Then iterate each trigger
       // checking if a unit can be created or given to the player later in the game
-      for ( BW::BlizzVectorEntry<BW::Triggers::Trigger> *t = BW::BWDATA_TriggerVectors[i].begin; (u32)t != ~(u32)&BW::BWDATA_TriggerVectors[i].end && (u32)t != (u32)&BW::BWDATA_TriggerVectors[i].begin; t = t->next )
+      for ( BW::BlizzVectorEntry<BW::Triggers::Trigger> *t = BW::BWDATA::TriggerVectors[i].begin; (u32)t != ~(u32)&BW::BWDATA::TriggerVectors[i].end && (u32)t != (u32)&BW::BWDATA::TriggerVectors[i].begin; t = t->next )
       {
         // check if trigger conditions can be met
         if ( t->container.conditionsCanBeMet() )
@@ -97,7 +97,7 @@ namespace BWAPI
     } // playercount iterator
 
 
-    if ( *(BW::BWDATA_InReplay) ) /* set replay flags */
+    if ( *(BW::BWDATA::InReplay) ) /* set replay flags */
     {
       // Set every cheat flag to true
       for (int i = 0; i < Flag::Max; ++i)
@@ -164,7 +164,7 @@ namespace BWAPI
     }
 
     // get the set of start locations
-    BW::Position *StartLocs = BW::BWDATA_startPositions;
+    BW::Position *StartLocs = BW::BWDATA::startPositions;
     // Iterate all players
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
@@ -190,8 +190,8 @@ namespace BWAPI
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
       if ( this->players[i] && 
-           BW::BWDATA_Players[i].nType != PlayerTypes::None &&
-           BW::BWDATA_Players[i].nType <  PlayerTypes::Closed )
+           BW::BWDATA::Players[i].nType != PlayerTypes::None &&
+           BW::BWDATA::Players[i].nType <  PlayerTypes::Closed )
       {
         players[i]->setID(server.getPlayerID(players[i]));
         this->playerSet.insert(this->players[i]);
@@ -223,15 +223,15 @@ namespace BWAPI
 
     for ( int f = 1; f <= 4; ++f )
     {
-      ForceImpl *newForce = new ForceImpl( std::string(BW::BWDATA_ForceNames[f-1].name) );
+      ForceImpl *newForce = new ForceImpl( std::string(BW::BWDATA::ForceNames[f-1].name) );
       this->forces.insert( newForce );
       for ( int p = 0; p < PLAYABLE_PLAYER_COUNT; ++p )
       {
-        if ( this->players[p] && BW::BWDATA_Players[p].nTeam == f )
+        if ( this->players[p] && BW::BWDATA::Players[p].nTeam == f )
         {
           this->players[p]->force = newForce;
-          if ( BW::BWDATA_Players[p].nType != PlayerTypes::None &&
-               BW::BWDATA_Players[p].nType <  PlayerTypes::Closed )
+          if ( BW::BWDATA::Players[p].nType != PlayerTypes::None &&
+               BW::BWDATA::Players[p].nType <  PlayerTypes::Closed )
             newForce->players.insert(this->players[p]);
         }
       }
@@ -354,10 +354,10 @@ namespace BWAPI
       if ( this->calledMatchEnd ) return;
 
       // Update unit selection
-      if ( wantSelectionUpdate && memcmp(savedUnitSelection, BW::BWDATA_ClientSelectionGroup, sizeof(savedUnitSelection)) != 0 )
+      if ( wantSelectionUpdate && memcmp(savedUnitSelection, BW::BWDATA::ClientSelectionGroup, sizeof(savedUnitSelection)) != 0 )
       {
         wantSelectionUpdate = false;
-        memcpy(savedUnitSelection, BW::BWDATA_ClientSelectionGroup, sizeof(savedUnitSelection));
+        memcpy(savedUnitSelection, BW::BWDATA::ClientSelectionGroup, sizeof(savedUnitSelection));
         refreshSelectionStates();
       }
 
@@ -593,7 +593,7 @@ namespace BWAPI
     {
       deadUnits.push_back(u);
       int index = u->getIndex();
-      unitArray[index] = new UnitImpl(&BW::BWDATA_UnitNodeTable[index],(u16)index);
+      unitArray[index] = new UnitImpl(&BW::BWDATA::UnitNodeTable[index],(u16)index);
       u->die();
     }
 
@@ -605,15 +605,18 @@ namespace BWAPI
       {
         deadUnits.push_back(u);
         int index = u->getIndex();
-        unitArray[index] = new UnitImpl(&BW::BWDATA_UnitNodeTable->unit[index],(u16)index);
+        unitArray[index] = new UnitImpl(&BW::BWDATA::UnitNodeTable->unit[index],(u16)index);
         u->die();
       }
     }
     */
 
     //increment frame count if the game is not paused
-    if ( *BW::BWDATA_isGamePaused == 0 )
+    if ( *BW::BWDATA::isGamePaused == 0 )
       this->frameCount++;
+
+    // Set the replay time, this is a workaround to fixing the replay DIVIDE_BY_ZERO exception bug
+    *BW::BWDATA::ReplayFrames = this->getFrameCount()+20;
 
     // Check if the window is iconic, if so, go super fast!
     static bool bLastIconic = false;
@@ -626,7 +629,7 @@ namespace BWAPI
 
     // If we should process our commands just before sending them
     // @TODO: Only process on the frame before commands are sent
-    //if ( *BW::BWDATA_FramesUntilNextTurn == 1 )
+    //if ( *BW::BWDATA::FramesUntilNextTurn == 1 )
     {
       // Iterate the command types
       for ( int i = 0; i < UnitCommandTypes::Enum::None; ++i )
@@ -752,9 +755,9 @@ namespace BWAPI
       BWAPI::Position scrPos = getScreenPosition();
 
       // draw mtx grid
-      for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA_GameScreenBuffer->ht)/32 + 1; ++y )
+      for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA::GameScreenBuffer->ht)/32 + 1; ++y )
       {
-        for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA_GameScreenBuffer->wid)/32 + 1; ++x )
+        for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA::GameScreenBuffer->wid)/32 + 1; ++x )
         {
           for ( int i = 0; i < 32; i += 4 )
           {
@@ -787,7 +790,7 @@ namespace BWAPI
       BWAPI::Color c = Colors::Red;
       int x = this->getMousePosition().x + this->getScreenPosition().x;
       int y = this->getMousePosition().y + this->getScreenPosition().y;
-      if ( BW::isCollidingWithContour(BW::BWDATA_SAIPathing->contours, 
+      if ( BW::isCollidingWithContour(BW::BWDATA::SAIPathing->contours, 
                                   x,
                                   y,
                                   UnitTypes::Terran_Marine.dimensionLeft(),
@@ -802,22 +805,22 @@ namespace BWAPI
     } // unitdebug
 
     // pathdebug
-    if ( pathDebug && BW::BWDATA_SAIPathing )
+    if ( pathDebug && BW::BWDATA::SAIPathing )
     {
       BWAPI::Position mouse   = getMousePosition() + getScreenPosition();
       BW::region *selectedRgn = BW::getRegionAt(mouse);
       int scrx = (getScreenPosition().x/32 - 1)*32;
       int scry = (getScreenPosition().y/32 - 1)*32;
-      for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x + BW::BWDATA_ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
+      for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
       {
-        for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y + BW::BWDATA_ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
+        for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
         {
           BW::TilePosition tp((u16)x/32, (u16)y/32);
 
-          u16 idx = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y][tp.x];
+          u16 idx = BW::BWDATA::SAIPathing->mapTileRegionId[tp.y][tp.x];
           if ( idx & 0x2000 )
           {
-            BW::split *t = &BW::BWDATA_SAIPathing->splitTiles[idx & 0x1FFF];
+            BW::split *t = &BW::BWDATA::SAIPathing->splitTiles[idx & 0x1FFF];
             for ( int mTileY = 0; mTileY < 4; ++mTileY )
             {
               for ( int mTileX = 0; mTileX < 4; ++mTileX )
@@ -862,9 +865,9 @@ namespace BWAPI
           }
         } // iterate y
       } // iterate x
-      for ( unsigned int i = 0; i < BW::BWDATA_SAIPathing->regionCount; ++i )
+      for ( unsigned int i = 0; i < BW::BWDATA::SAIPathing->regionCount; ++i )
       {
-        BW::region *r = &BW::BWDATA_SAIPathing->regions[i];
+        BW::region *r = &BW::BWDATA::SAIPathing->regions[i];
         if ( r->accessabilityFlags != 0x1FFD )
           drawBoxMap(r->rgnBox.left, r->rgnBox.top, r->rgnBox.right, r->rgnBox.bottom, r == selectedRgn ? Colors::Cyan : Colors::Purple);
         for ( u8 n = 0; n < r->neighborCount; ++n )
@@ -878,15 +881,15 @@ namespace BWAPI
       }
       for ( int i = 0; i < 4; ++i )
       {
-        BW::contourHub *hub = BW::BWDATA_SAIPathing->contours;
+        BW::contourHub *hub = BW::BWDATA::SAIPathing->contours;
         for ( int c = 0; c < hub->contourCount[i]; ++c )
         {
           BW::contour *cont = &hub->contours[i][c];
           bool select = false;
           int l = getScreenPosition().x;
-          int r = getScreenPosition().x + BW::BWDATA_ScreenLayers[5].width;
+          int r = getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width;
           int t = getScreenPosition().y;
-          int b = getScreenPosition().y + BW::BWDATA_ScreenLayers[5].height;
+          int b = getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height;
 
           switch ( cont->type )
           {
@@ -940,7 +943,7 @@ namespace BWAPI
           recordingUpdated )
     {
       recordingUpdated = false;
-      RecordFrame(wmode ? pVidBuffer : BW::BWDATA_GameScreenBuffer->data);
+      RecordFrame(wmode ? pVidBuffer : BW::BWDATA::GameScreenBuffer->data);
     }
     setTextSize(); // Reset text size
 

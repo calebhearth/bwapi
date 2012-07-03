@@ -303,24 +303,24 @@ namespace BWAPI
     {
         data->isBuildable[p.x][p.y]     = Broodwar->isBuildable(p.x, p.y);
         data->getGroundHeight[p.x][p.y] = Broodwar->getGroundHeight(p.x, p.y);
-        if ( BW::BWDATA_SAIPathing )
-          data->mapTileRegionId[p.x][p.y] = BW::BWDATA_SAIPathing->mapTileRegionId[p.y][p.x];
+        if ( BW::BWDATA::SAIPathing )
+          data->mapTileRegionId[p.x][p.y] = BW::BWDATA::SAIPathing->mapTileRegionId[p.y][p.x];
         else
           data->mapTileRegionId[p.x][p.y] = 0;
     }
 
     // Load pathing info
-    if ( BW::BWDATA_SAIPathing )
+    if ( BW::BWDATA::SAIPathing )
     {
-      data->regionCount = BW::BWDATA_SAIPathing->regionCount;
+      data->regionCount = BW::BWDATA::SAIPathing->regionCount;
       for(int i = 0; i < 5000; ++i)
       {
-        data->mapSplitTilesMiniTileMask[i] = BW::BWDATA_SAIPathing->splitTiles[i].minitileMask;
-        data->mapSplitTilesRegion1[i]      = BW::BWDATA_SAIPathing->splitTiles[i].rgn1;
-        data->mapSplitTilesRegion2[i]      = BW::BWDATA_SAIPathing->splitTiles[i].rgn2;
+        data->mapSplitTilesMiniTileMask[i] = BW::BWDATA::SAIPathing->splitTiles[i].minitileMask;
+        data->mapSplitTilesRegion1[i]      = BW::BWDATA::SAIPathing->splitTiles[i].rgn1;
+        data->mapSplitTilesRegion2[i]      = BW::BWDATA::SAIPathing->splitTiles[i].rgn2;
         // Region hack using a possibly unused variable
-        if ( BW::BWDATA_SAIPathing->regions[i].unk_28 )
-          data->regions[i] = *((RegionImpl*)BW::BWDATA_SAIPathing->regions[i].unk_28)->getData();
+        if ( BW::BWDATA::SAIPathing->regions[i].unk_28 )
+          data->regions[i] = *((RegionImpl*)BW::BWDATA::SAIPathing->regions[i].unk_28)->getData();
         else
           MemZero(data->regions[i]);
       }
@@ -606,8 +606,8 @@ namespace BWAPI
 
       unitFinder     *xf   = data->xUnitSearch;
       unitFinder     *yf   = data->yUnitSearch;
-      const BW::unitFinder *bwxf = BW::BWDATA_UnitOrderingX;
-      const BW::unitFinder *bwyf = BW::BWDATA_UnitOrderingY;
+      const BW::unitFinder *bwxf = BW::BWDATA::UnitOrderingX;
+      const BW::unitFinder *bwyf = BW::BWDATA::UnitOrderingY;
 
       for ( int i = 0; i < MAX_SEARCH && (bwxf->unitIndex > 0 || bwyf->unitIndex > 0); ++i, bwxf++, bwyf++ )
       {

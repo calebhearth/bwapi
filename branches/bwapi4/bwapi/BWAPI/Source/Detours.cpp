@@ -52,14 +52,14 @@ void _RandomizePlayerRaces()    // before
   for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
   {
     // Save the player's initial race
-    savedRace[i] = BW::BWDATA_Players[i].nRace;
+    savedRace[i] = BW::BWDATA::Players[i].nRace;
 
     // Give computer players a unique storm id
-    if ( BW::BWDATA_Players[i].dwStormId == -1 )
-      BW::BWDATA_Players[i].dwStormId -= i;
+    if ( BW::BWDATA::Players[i].dwStormId == -1 )
+      BW::BWDATA::Players[i].dwStormId -= i;
 
     // Save the ID so that we can map the saved race later
-    mappedIndex[i] = BW::BWDATA_Players[i].dwStormId;
+    mappedIndex[i] = BW::BWDATA::Players[i].dwStormId;
   }
 
   // Call original fxn
@@ -81,12 +81,12 @@ void _InitializePlayerConsole()   // after
   for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
   {
     // Retrieve the original race value before randomization occurred from the mapped index
-    int mapID = getMappedIndex(BW::BWDATA_Players[i].dwStormId);
+    int mapID = getMappedIndex(BW::BWDATA::Players[i].dwStormId);
     BWAPI::BroodwarImpl.lastKnownRaceBeforeStart[i] = (mapID == -1) ? BWAPI::Races::None : BWAPI::Race( savedRace[mapID] );
 
     // Reset the computer player's storm ID
-    if ( BW::BWDATA_Players[i].dwStormId < 0 )
-      BW::BWDATA_Players[i].dwStormId = -1;
+    if ( BW::BWDATA::Players[i].dwStormId < 0 )
+      BW::BWDATA::Players[i].dwStormId = -1;
   }
 
   // Call original fxn
@@ -96,7 +96,7 @@ void _InitializePlayerConsole()   // after
 //------------------------------------------------ TRIGGERS --------------------------------------------------
 void __stdcall ExecuteGameTriggers(DWORD dwMillisecondsPerFrame)
 {
-  dwMillisecondsPerFrame = BW::OriginalSpeedModifiers[*BW::BWDATA_GameSpeed];
+  dwMillisecondsPerFrame = BW::OriginalSpeedModifiers[*BW::BWDATA::GameSpeed];
   BW::BWFXN_ExecuteGameTriggers(dwMillisecondsPerFrame);
 }
 
@@ -146,7 +146,7 @@ HWND WINAPI _CreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindo
     detourCreateWindow = true;
     if ( switchToWMode )
     {
-      HackUtil::CallPatch(BW::BWDATA_DDrawInitCallPatch, &DDInit);
+      HackUtil::CallPatch(BW::BWDATA::DDrawInitCallPatch, &DDInit);
       if ( _CreateWindowExAOld )
         hWndReturn = _CreateWindowExAOld(dwExStyle, 
                                           lpClassName, 
@@ -323,7 +323,7 @@ BOOL STORMAPI _SDrawCaptureScreen(const char *pszOutput)
       pal[i].peBlue   = wmodebmp.bmiColors[i].rgbBlue;
       pal[i].peFlags  = 0;
     }
-    return SBmpSaveImage(szNewScreenshotFilename, pal, pBits, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht);
+    return SBmpSaveImage(szNewScreenshotFilename, pal, pBits, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht);
   }
   // Call the old fxn
   if ( _SDrawCaptureScreenOld )
@@ -345,7 +345,7 @@ BOOL __stdcall _SNetLeaveGame(int type)
 int __cdecl _nextFrameHook()
 {
   BWAPI::BroodwarImpl.update();
-  return *BW::BWDATA_isGamePaused;
+  return *BW::BWDATA::isGamePaused;
 }
 
 //------------------------------------------------- SEND TEXT ------------------------------------------------
@@ -353,9 +353,9 @@ int __stdcall _SStrCopy(char *dest, const char *source, size_t size)
 {
   if ( source[0] && isCorrectVersion )
   {
-    if ( size == 0x7FFFFFFF && *BW::BWDATA_gwGameMode == 3 )
+    if ( size == 0x7FFFFFFF && *BW::BWDATA::gwGameMode == 3 )
     {
-      if ( dest == BW::BWDATA_SaveGameFile )
+      if ( dest == BW::BWDATA::SaveGameFile )
       {
         /* onSaveGame */
         BWAPI::BroodwarImpl.onSaveGame((char*)source);
@@ -368,7 +368,7 @@ int __stdcall _SStrCopy(char *dest, const char *source, size_t size)
         return 0;
       }
     }
-    else if ( size == 120 && *BW::BWDATA_gwGameMode != 3 )
+    else if ( size == 120 && *BW::BWDATA::gwGameMode != 3 )
     {
       /* onSend Lobby */
     }
@@ -403,14 +403,14 @@ void __stdcall DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds)
   if ( wantRefresh )
   {
     wantRefresh = false;
-    memset(BW::BWDATA_RefreshRegions, 1, 1200);
+    memset(BW::BWDATA::RefreshRegions, 1, 1200);
   }
 
   //GameUpdate(pSurface, pBounds);
   if ( BW::pOldDrawGameProc )
     BW::pOldDrawGameProc(pSurface, pBounds);
 
-  if ( BW::BWDATA_GameScreenBuffer->data )
+  if ( BW::BWDATA::GameScreenBuffer->data )
   {
     if ( gdwHoliday )
       DrawHoliday();
@@ -440,7 +440,7 @@ void __stdcall DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds)
   if ( BW::pOldDrawDialogProc && !hideHUD )
     BW::pOldDrawDialogProc(pSurface, pBounds);
 
-  if ( *BW::BWDATA_gwGameMode == BW::GAME_GLUES )
+  if ( *BW::BWDATA::gwGameMode == BW::GAME_GLUES )
     BWAPI::BroodwarImpl.onMenuFrame();
 
   BW::dialog *timeout = BW::FindDialogGlobal("TimeOut");
@@ -456,7 +456,7 @@ void __stdcall DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds)
   {
     nosound = true;
     if ( LoadConfigString("starcraft", "sound", "ON") == "OFF" )
-      BW::BWDATA_DSoundDestroy();
+      BW::BWFXN_DSoundDestroy();
   }
 
   // WMODE config option
@@ -538,16 +538,16 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
         if ( leakUIClassLoc )
           SMFree(leakUIClassLoc);
         leakUIClassLoc = rval;
-        BW::BWDATA_customList_UIDlgData[0] = BW::BWDATA_customList_UIDlgData;  // list with custom allocator?
-        BW::BWDATA_customList_UIDlgData[1] = (void*)~(u32)BW::BWDATA_customList_UIDlgData;
+        BW::BWDATA::customList_UIDlgData[0] = BW::BWDATA::customList_UIDlgData;  // list with custom allocator?
+        BW::BWDATA::customList_UIDlgData[1] = (void*)~(u32)BW::BWDATA::customList_UIDlgData;
       }
       else if ( strcmpi(logfilename, "Starcraft\\SWAR\\lang\\game.cpp") == 0 )
       {
         if ( leakUIGrpLoc )
           SMFree(leakUIGrpLoc);
         leakUIGrpLoc = rval;
-        BW::BWDATA_customList_UIDlgData[0] = BW::BWDATA_customList_UIDlgData;  // list with custom allocator?
-        BW::BWDATA_customList_UIDlgData[1] = (void*)~(u32)BW::BWDATA_customList_UIDlgData;
+        BW::BWDATA::customList_UIDlgData[0] = BW::BWDATA::customList_UIDlgData;  // list with custom allocator?
+        BW::BWDATA::customList_UIDlgData[1] = (void*)~(u32)BW::BWDATA::customList_UIDlgData;
       }
     }
   } // isCorrectVer
@@ -555,40 +555,40 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   /* Save the allocated string table pointer */
   if ( lastFile == "rez\\stat_txt.tbl" )
   {
-    BW::BWDATA_StringTableOff = (char*)rval;
+    BW::BWDATA::StringTableOff = (char*)rval;
     lastFile = "";
   }
 
   /* Save the allocated fog of war pointer */
   if ( amount == 0x40000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 606 )
   {
-    BW::BWDATA_ActiveTileArray = (BW::activeTile*)rval;
+    BW::BWDATA::ActiveTileArray = (BW::activeTile*)rval;
   }
 
   /* Save the allocated mini-tile flags pointer */
   if ( lastFile.find(".vf4") != std::string::npos )
   {
-    BW::BWDATA_MiniTileFlags = (BW::MiniTileMaps_type*)rval;
+    BW::BWDATA::MiniTileFlags = (BW::MiniTileMaps_type*)rval;
     lastFile = "";
   }
 
   /* Save the allocated SAI_Paths pointer */
   if ( strcmpi(logfilename, "Starcraft\\SWAR\\lang\\sai_PathCreate.cpp") == 0 && logline == 210 )
   {
-    BW::BWDATA_SAIPathing = (BW::SAI_Paths*)rval;
+    BW::BWDATA::SAIPathing = (BW::SAI_Paths*)rval;
   }
 
   /* Save the allocated tileset pointer */
   if ( lastFile.find(".cv5") != std::string::npos )
   {
-    BW::BWDATA_TileSet    = (BW::TileType*)rval;
+    BW::BWDATA::TileSet    = (BW::TileType*)rval;
     lastFile = "";
   }
 
   /* Save the allocated map tile array pointer */
   if ( amount == 0x20000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 603 )
   {
-    BW::BWDATA_MapTileArray = (u16*)rval;
+    BW::BWDATA::MapTileArray = (u16*)rval;
   }
 
   return rval;
@@ -659,7 +659,7 @@ void __fastcall CommandFilter(BYTE *buffer, DWORD length)
          buffer[0] == 0x5A )
     {
       //reload the unit selection states (so that the user doesn't notice any changes in selected units in the Starcraft GUI.
-      BW::Orders::Select sel = BW::Orders::Select(*BW::BWDATA_ClientSelectionCount, BW::BWDATA_ClientSelectionGroup);
+      BW::Orders::Select sel = BW::Orders::Select(*BW::BWDATA::ClientSelectionCount, BW::BWDATA::ClientSelectionGroup);
       QueueGameCommand(&sel, sel.size);
     } // user select
     QueueGameCommand(buffer, length);

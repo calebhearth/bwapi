@@ -668,13 +668,13 @@ void DrawHoliday()
         seq = seq ? 0 : 1;
         wantRefresh = true;
       }
-      for ( int p = 0; p <= BW::BWDATA_GameScreenBuffer->wid / 51; ++p )
+      for ( int p = 0; p <= BW::BWDATA::GameScreenBuffer->wid / 51; ++p )
       {
         for ( int y = 0; y < 69; ++y )
-          for ( int x = 0; x < 51 && (p*51)+x < BW::BWDATA_GameScreenBuffer->wid; ++x )
+          for ( int x = 0; x < 51 && (p*51)+x < BW::BWDATA::GameScreenBuffer->wid; ++x )
           {
             if ( cl[p%4][seq][y][x] )
-              BW::BWDATA_GameScreenBuffer->data[(p*51) + x + y * BW::BWDATA_GameScreenBuffer->wid] = cl[p%4][seq][y][x];
+              BW::BWDATA::GameScreenBuffer->data[(p*51) + x + y * BW::BWDATA::GameScreenBuffer->wid] = cl[p%4][seq][y][x];
           }
       }
       break;

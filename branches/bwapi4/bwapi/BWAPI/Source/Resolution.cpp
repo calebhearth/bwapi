@@ -30,27 +30,27 @@ void SetResolution(int width, int height)
 
   // Resize game screen data buffer
   void *newBuf = SMAlloc(width * height);
-  void *oldBuf = BW::BWDATA_GameScreenBuffer->data;
-  SetBitmap(BW::BWDATA_GameScreenBuffer, width, height, newBuf);
+  void *oldBuf = BW::BWDATA::GameScreenBuffer->data;
+  SetBitmap(BW::BWDATA::GameScreenBuffer, width, height, newBuf);
   if ( oldBuf )
     SMFree(oldBuf);
 
   // Set new screen limits
-  BW::BWDATA_ScreenLayers[5].width  = (WORD)width;
-  BW::BWDATA_ScreenLayers[5].height = (WORD)height;
-  SetRect(BW::BWDATA_ScrLimit, 0, 0, width - 1, height - 1);
-  SetRect(BW::BWDATA_ScrSize,  0, 0, width,     height);
+  BW::BWDATA::ScreenLayers[5].width  = (WORD)width;
+  BW::BWDATA::ScreenLayers[5].height = (WORD)height;
+  SetRect(BW::BWDATA::ScrLimit, 0, 0, width - 1, height - 1);
+  SetRect(BW::BWDATA::ScrSize,  0, 0, width,     height);
 
   // Resize game screen console (HUD) buffer
   newBuf = SMAlloc(width * height);
-  oldBuf = BW::BWDATA_GameScreenConsole->data;
-  SetBitmap(BW::BWDATA_GameScreenConsole, width, height, newBuf);
+  oldBuf = BW::BWDATA::GameScreenConsole->data;
+  SetBitmap(BW::BWDATA::GameScreenConsole, width, height, newBuf);
   if ( oldBuf )
     SMFree(oldBuf);
 
   // Recreate STrans thingy
-  BW::BlizzVectorEntry<BW::TransVectorEntry> *transEntry = BW::BWDATA_TransMaskVector->begin;
-  if ( (u32)transEntry && (u32)transEntry != (u32)&BW::BWDATA_TransMaskVector->begin )
+  BW::BlizzVectorEntry<BW::TransVectorEntry> *transEntry = BW::BWDATA::TransMaskVector->begin;
+  if ( (u32)transEntry && (u32)transEntry != (u32)&BW::BWDATA::TransMaskVector->begin )
   {
     HANDLE oldTrans = transEntry->container.hTrans;
     SetRect(&transEntry->container.info, 0, 0, width, height);
@@ -72,21 +72,21 @@ HMODULE ddLib;
 void DDrawDestroy()
 {
   SDrawManualInitialize(ghMainWnd);
-  if ( *BW::BWDATA_PrimaryPalette )
-    (*BW::BWDATA_PrimaryPalette)->Release();
-  *BW::BWDATA_PrimaryPalette = NULL;
+  if ( *BW::BWDATA::PrimaryPalette )
+    (*BW::BWDATA::PrimaryPalette)->Release();
+  *BW::BWDATA::PrimaryPalette = NULL;
 
-  if ( *BW::BWDATA_PrimarySurface > (LPDIRECTDRAWSURFACE)1 )
-    (*BW::BWDATA_PrimarySurface)->Release();
-  *BW::BWDATA_PrimarySurface = NULL;
+  if ( *BW::BWDATA::PrimarySurface > (LPDIRECTDRAWSURFACE)1 )
+    (*BW::BWDATA::PrimarySurface)->Release();
+  *BW::BWDATA::PrimarySurface = NULL;
 
-  if ( *BW::BWDATA_BackSurface )
-    (*BW::BWDATA_BackSurface)->Release();
-  *BW::BWDATA_BackSurface = NULL;
+  if ( *BW::BWDATA::BackSurface )
+    (*BW::BWDATA::BackSurface)->Release();
+  *BW::BWDATA::BackSurface = NULL;
 
-  if ( *BW::BWDATA_DDInterface )
-    (*BW::BWDATA_DDInterface)->Release();
-  *BW::BWDATA_DDInterface = NULL;
+  if ( *BW::BWDATA::DDInterface )
+    (*BW::BWDATA::DDInterface)->Release();
+  *BW::BWDATA::DDInterface = NULL;
 
   if ( ghMainWnd )
     ShowWindow(ghMainWnd, SW_MINIMIZE);
@@ -113,22 +113,22 @@ void DDrawInitialize(int width, int height)
   DDCHECK(_DirectDrawCreate);
 
   // Create and initialize DirectDrawInterface
-  DDCHECK( _DirectDrawCreate(NULL, BW::BWDATA_DDInterface, NULL) == DD_OK );
-  DDCHECK( (*BW::BWDATA_DDInterface)->SetCooperativeLevel(ghMainWnd, DDSCL_FULLSCREEN | DDSCL_ALLOWREBOOT | DDSCL_EXCLUSIVE) == DD_OK );
-  if ( (*BW::BWDATA_DDInterface)->SetDisplayMode(width, height, 8) != DD_OK )
-    DDCHECK( (*BW::BWDATA_DDInterface)->SetDisplayMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 8) == DD_OK );
+  DDCHECK( _DirectDrawCreate(NULL, BW::BWDATA::DDInterface, NULL) == DD_OK );
+  DDCHECK( (*BW::BWDATA::DDInterface)->SetCooperativeLevel(ghMainWnd, DDSCL_FULLSCREEN | DDSCL_ALLOWREBOOT | DDSCL_EXCLUSIVE) == DD_OK );
+  if ( (*BW::BWDATA::DDInterface)->SetDisplayMode(width, height, 8) != DD_OK )
+    DDCHECK( (*BW::BWDATA::DDInterface)->SetDisplayMode(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 8) == DD_OK );
 
   // Create DirectDrawPalette
-  DDCHECK( (*BW::BWDATA_DDInterface)->CreatePalette(DDPCAPS_8BIT | DDPCAPS_ALLOW256, BW::BWDATA_GamePalette, BW::BWDATA_PrimaryPalette, NULL) == DD_OK );
+  DDCHECK( (*BW::BWDATA::DDInterface)->CreatePalette(DDPCAPS_8BIT | DDPCAPS_ALLOW256, BW::BWDATA::GamePalette, BW::BWDATA::PrimaryPalette, NULL) == DD_OK );
 
   DDSURFACEDESC surfaceDesc = { 0 };
   surfaceDesc.dwSize          = sizeof(DDSURFACEDESC);
   surfaceDesc.dwFlags         = DDSD_CAPS;
   surfaceDesc.ddsCaps.dwCaps  = DDSCAPS_PRIMARYSURFACE;
 
-  DDCHECK( (*BW::BWDATA_DDInterface)->CreateSurface(&surfaceDesc, BW::BWDATA_PrimarySurface, NULL) == DD_OK );
-  DDCHECK( (*BW::BWDATA_PrimarySurface)->SetPalette(*BW::BWDATA_PrimaryPalette) == DD_OK );
-  if ( (*BW::BWDATA_PrimarySurface)->Lock(NULL, &surfaceDesc, DDLOCK_WAIT, NULL) != DD_OK )
+  DDCHECK( (*BW::BWDATA::DDInterface)->CreateSurface(&surfaceDesc, BW::BWDATA::PrimarySurface, NULL) == DD_OK );
+  DDCHECK( (*BW::BWDATA::PrimarySurface)->SetPalette(*BW::BWDATA::PrimaryPalette) == DD_OK );
+  if ( (*BW::BWDATA::PrimarySurface)->Lock(NULL, &surfaceDesc, DDLOCK_WAIT, NULL) != DD_OK )
   {
     memset(&surfaceDesc, 0, sizeof(DDSURFACEDESC));
     surfaceDesc.dwSize          = sizeof(DDSURFACEDESC);
@@ -137,13 +137,13 @@ void DDrawInitialize(int width, int height)
     surfaceDesc.dwWidth         = width;
     surfaceDesc.dwHeight        = height;
 
-    DDCHECK( (*BW::BWDATA_DDInterface)->CreateSurface(&surfaceDesc, BW::BWDATA_BackSurface, NULL) == DD_OK );
+    DDCHECK( (*BW::BWDATA::DDInterface)->CreateSurface(&surfaceDesc, BW::BWDATA::BackSurface, NULL) == DD_OK );
   }
   else
   {
-    (*BW::BWDATA_PrimarySurface)->Unlock(&surfaceDesc);
+    (*BW::BWDATA::PrimarySurface)->Unlock(&surfaceDesc);
   }
-  SDrawManualInitialize(ghMainWnd, *BW::BWDATA_DDInterface, *BW::BWDATA_PrimarySurface, NULL, NULL, *BW::BWDATA_BackSurface, *BW::BWDATA_PrimaryPalette, NULL);
+  SDrawManualInitialize(ghMainWnd, *BW::BWDATA::DDInterface, *BW::BWDATA::PrimarySurface, NULL, NULL, *BW::BWDATA::BackSurface, *BW::BWDATA::PrimaryPalette, NULL);
 }
 /*
 void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
@@ -174,9 +174,9 @@ void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
 
 void updateImageDrawingData()
 {
-  for ( int y = 0; y < BW::BWDATA_MapSize->y; ++y )
+  for ( int y = 0; y < BW::BWDATA::MapSize->y; ++y )
   {
-    for ( BW::Sprite *s = BW::BWDATA_spriteGroups[y]; s; s = s->next )
+    for ( BW::Sprite *s = BW::BWDATA::spriteGroups[y]; s; s = s->next )
     {
       for ( BW::Image *i = s->underlay; i; i = i->next )
         i->updateGraphicData();
@@ -186,29 +186,29 @@ void updateImageDrawingData()
 
 void blitGameText(int line, int x, int y)
 {
-  if ( BW::BWDATA_Chat_GameText[line].txt[0] )
+  if ( BW::BWDATA::Chat_GameText[line].txt[0] )
   {
     char szString[256];
     szString[0] = 0;
-    if ( BW::BWDATA_Chat_ColorBytes[line] )
+    if ( BW::BWDATA::Chat_ColorBytes[line] )
     {
-      szString[0] = BW::BWDATA_Chat_ColorBytes[line];
+      szString[0] = BW::BWDATA::Chat_ColorBytes[line];
       szString[1] = 0;
     }
-    strncat(szString, BW::BWDATA_Chat_GameText[line].txt, sizeof(BW::_gametext));
-    BW::BlitText(szString, BW::BWDATA_GameScreenBuffer, x, y, 1);
+    strncat(szString, BW::BWDATA::Chat_GameText[line].txt, sizeof(BW::_gametext));
+    BW::BlitText(szString, BW::BWDATA::GameScreenBuffer, x, y, 1);
   }
 }
 
 void drawGameText()
 {
-  int l = *BW::BWDATA_Chat_NextLine;
+  int l = *BW::BWDATA::Chat_NextLine;
 
   int y = 112;
   for ( int i = 11; i > 0; i-- )
   {
     blitGameText(l, 10, y);
-    y += *BW::BWDATA_Chat_IncrementY;
+    y += *BW::BWDATA::Chat_IncrementY;
     l = (l + 1) % 11;
   }
   blitGameText(12, 10, 295);

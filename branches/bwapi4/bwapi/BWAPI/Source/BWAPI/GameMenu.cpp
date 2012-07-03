@@ -129,7 +129,7 @@ namespace BWAPI
     unsigned int rval = 0;
     for ( unsigned int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
-      if ( BW::BWDATA_Players[i].nType == PlayerTypes::Player  && BW::BWDATA_PlayerDownloadStatus[i] >= 100 )
+      if ( BW::BWDATA::Players[i].nType == PlayerTypes::Player  && BW::BWDATA::PlayerDownloadStatus[i] >= 100 )
         ++rval;
     }
     return rval;
@@ -139,7 +139,7 @@ namespace BWAPI
     unsigned int rval = 0;
     for ( unsigned int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
-      if ( BW::BWDATA_Players[i].nType == PlayerTypes::EitherPreferHuman )
+      if ( BW::BWDATA::Players[i].nType == PlayerTypes::EitherPreferHuman )
         ++rval;
     }
     return rval;
@@ -172,7 +172,7 @@ namespace BWAPI
 #endif
 
     // Get the menu mode
-    int menu = *BW::BWDATA_glGluesMode;
+    int menu = *BW::BWDATA::glGluesMode;
 
     // Declare a commonly used dialog pointer
     BW::dialog *tempDlg = nullptr;
@@ -281,7 +281,7 @@ namespace BWAPI
           pszFile = &pszTmp[1];
 
         // Apply the altered name to all vector entries
-        for ( BW::BlizzVectorEntry<BW::MapVectorEntry> *i = BW::BWDATA_MapListVector->begin; (u32)i != ~(u32)&BW::BWDATA_MapListVector->end && (u32)i != (u32)&BW::BWDATA_MapListVector->begin; i = i->next )
+        for ( BW::BlizzVectorEntry<BW::MapVectorEntry> *i = BW::BWDATA::MapListVector->begin; (u32)i != ~(u32)&BW::BWDATA::MapListVector->end && (u32)i != (u32)&BW::BWDATA::MapListVector->begin; i = i->next )
         {
           i->container.bTotalPlayers  = 8;
           i->container.bHumanSlots    = 8;
@@ -293,9 +293,9 @@ namespace BWAPI
         }
 
         // update map folder location
-        SStrCopy(BW::BWDATA_CurrentMapFolder, mapName, MAX_PATH);
+        SStrCopy(BW::BWDATA::CurrentMapFolder, mapName, MAX_PATH);
         // Go to last backslash
-        char *pszPos = BW::BWDATA_CurrentMapFolder;
+        char *pszPos = BW::BWDATA::CurrentMapFolder;
         pszTmp = strrchr(pszPos, '\\');
         if ( pszTmp )
           pszPos = pszTmp;
@@ -306,7 +306,7 @@ namespace BWAPI
           pszPos = pszTmp;
         
         // Trim the "file"
-        if ( pszPos != BW::BWDATA_CurrentMapFolder )
+        if ( pszPos != BW::BWDATA::CurrentMapFolder )
           pszPos[0] = 0;
 
         // if we encounter an unknown error when attempting to load the map
@@ -359,7 +359,7 @@ namespace BWAPI
         if ( playerRace != Races::Unknown && playerRace != Races::None )
         {
           // Check if the race was selected correctly, and prevent further changing afterwords
-          u8 currentRace = BW::BWDATA_Players[_currentPlayerId()].nRace;
+          u8 currentRace = BW::BWDATA::Players[_currentPlayerId()].nRace;
 
           if ( (currentRace == playerRace ||
             (this->autoMenuRace == "RANDOMTP" &&

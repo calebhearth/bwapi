@@ -48,7 +48,7 @@ namespace BWAPI
     if ( !bullet )
       return nullptr;
 
-    u16 index = (u16)( ((u32)bullet - (u32)BW::BWDATA_BulletNodeTable) / sizeof(BW::Bullet) ) & 0x7F;
+    u16 index = (u16)( ((u32)bullet - (u32)BW::BWDATA::BulletNodeTable) / sizeof(BW::Bullet) ) & 0x7F;
     if ( index > BULLET_ARRAY_MAX_LENGTH )
       return nullptr;
     return BroodwarImpl.getBulletFromIndex(index);

@@ -23,7 +23,7 @@ void ApplyCodePatches()
   {
     // Create function-level hooks
     HackUtil::CallPatch(BW::BWFXN_P_IsGamePaused, &_nextFrameHook);
-    HackUtil::CallPatch(BW::BWDATA_ExecuteGameTrigsCallPatch, &ExecuteGameTriggers);
+    HackUtil::CallPatch(BW::BWDATA::ExecuteGameTrigsCallPatch, &ExecuteGameTriggers);
     HackUtil::WriteNops(BW::BWFXN_SpendRepair, 7);
     HackUtil::JmpPatch(BW::BWFXN_SpendRepair, &_repairHook);
     HackUtil::JmpPatch(BW::BWFXN_RefundMinerals, &_refundMineralsHook);
@@ -37,33 +37,33 @@ void ApplyCodePatches()
     HackUtil::JmpPatch(BW::BWFXN_QueueCommand,    &CommandFilter);
     HackUtil::JmpPatch(BW::BWFXN_DDrawDestroy,    &DDrawDestroy);
     HackUtil::JmpPatch(BW::BWFXN_NetSelectReturnMenu, &_SelectReturnMenu);
-    HackUtil::CallPatch(BW::BWDATA_RandomizeRacePatch, &_RandomizePlayerRaces);
-    HackUtil::CallPatch(BW::BWDATA_InitPlayerConsolePatch, &_InitializePlayerConsole);
+    HackUtil::CallPatch(BW::BWDATA::RandomizeRacePatch, &_RandomizePlayerRaces);
+    HackUtil::CallPatch(BW::BWDATA::InitPlayerConsolePatch, &_InitializePlayerConsole);
     
     // Perform code patches
     char zero = 0;
-    HackUtil::WriteMem(BW::BWDATA_ServerMenuIn, &zero, 1);        // BNET Server menu in speed
-    HackUtil::WriteMem(BW::BWDATA_ServerMenuOut, &zero, 1);       // BNET Server menu out speed
-    HackUtil::WriteMem(BW::BWDATA_OpponentStartHack, &zero, 1);   // Start without an opponent
-    HackUtil::WriteNops(BW::BWDATA_SingleSpeedHack, 11);          // Use multiplayer speed setting instead
+    HackUtil::WriteMem(BW::BWDATA::ServerMenuIn, &zero, 1);        // BNET Server menu in speed
+    HackUtil::WriteMem(BW::BWDATA::ServerMenuOut, &zero, 1);       // BNET Server menu out speed
+    HackUtil::WriteMem(BW::BWDATA::OpponentStartHack, &zero, 1);   // Start without an opponent
+    HackUtil::WriteNops(BW::BWDATA::SingleSpeedHack, 11);          // Use multiplayer speed setting instead
                                                                   // of always setting speed to "Normal" in
                                                                   // single player
     // Write menu animation speed hack
     for ( int i = 0; i < 43; ++i )
-      BW::BWDATA_commonSwishControllers[i].wType = 4;
+      BW::BWDATA::commonSwishControllers[i].wType = 4;
     for ( int i = 0; i < 5; ++i )
     {
-      BW::BWDATA_gluCustmSwishController[i].wType = 4;
-      BW::BWDATA_gluChatSwishController[i].wType  = 4;
+      BW::BWDATA::gluCustmSwishController[i].wType = 4;
+      BW::BWDATA::gluChatSwishController[i].wType  = 4;
     }
-    BW::BWDATA_gluCmpgnSwishController[0].wType = 4;
-    BW::BWDATA_gluCmpgnSwishController[1].wType = 4;
-    BW::BWDATA_gluScoreSwishController[0].wType = 4;
+    BW::BWDATA::gluCmpgnSwishController[0].wType = 4;
+    BW::BWDATA::gluCmpgnSwishController[1].wType = 4;
+    BW::BWDATA::gluScoreSwishController[0].wType = 4;
 
     // Write trigger action detours
-    memcpy(BWTriggerActionFxnTable, BW::BWDATA_TriggerActionFxnTable, sizeof(BWTriggerActionFxnTable));
+    memcpy(BWTriggerActionFxnTable, BW::TriggerActionCallbacks, sizeof(BWTriggerActionFxnTable));
     for ( int i = 0; i < countof(BWTriggerActionFxnTable); ++i )
-      BW::BWDATA_TriggerActionFxnTable[i] = &TriggerActionReplacement;
+      BW::TriggerActionCallbacks[i] = &TriggerActionReplacement;
   }
   // ---------------------------------- VERSION INDEPENDENT --------------------------------------------------
   // Write storm authentication patch (allow custom network modes)
@@ -100,10 +100,10 @@ void ApplyCodePatches()
 //----------------------------------------- NET-MODE RETURN MENU ---------------------------------------------
 void _SelectReturnMenu()
 {
-  switch ( *BW::BWDATA_NetMode )
+  switch ( *BW::BWDATA::NetMode )
   {
   case 'BNET':
-    *BW::BWDATA_glGluesMode = BW::GLUE_BATTLE;  // battle.net
+    *BW::BWDATA::glGluesMode = BW::GLUE_BATTLE;  // battle.net
     break;
   case 'IPXN':
   case 'ATLK':
@@ -113,17 +113,17 @@ void _SelectReturnMenu()
   case 'LPIP':
   case 'DRIP':
   case 'SMEM':
-    *BW::BWDATA_glGluesMode = BW::GLUE_GAME_SELECT; // game select
+    *BW::BWDATA::glGluesMode = BW::GLUE_GAME_SELECT; // game select
     break;
   case 'MDMX':
   case 'MODM':
-    *BW::BWDATA_glGluesMode = BW::GLUE_MODEM; // modem
+    *BW::BWDATA::glGluesMode = BW::GLUE_MODEM; // modem
     break;
   case 'SCBL':
-    *BW::BWDATA_glGluesMode = BW::GLUE_DIRECT; // direct connect
+    *BW::BWDATA::glGluesMode = BW::GLUE_DIRECT; // direct connect
     break;
   default:
-    *BW::BWDATA_glGluesMode = BW::GLUE_MAIN_MENU;  // main menu
+    *BW::BWDATA::glGluesMode = BW::GLUE_MAIN_MENU;  // main menu
     break;
   }
 }

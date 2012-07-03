@@ -19,7 +19,7 @@ namespace BW
       : target(target)
   {
     int index = 336 * ((target.getTarget() & 0x7FF) - 1);
-    Unit* unit = (Unit*)((int)BWDATA_UnitNodeTable + index);
+    Unit* unit = (Unit*)((int)BWDATA::UnitNodeTable + index);
     this->position = unit->position;
   }
   //----------------------------------------------------------------------------------------------------------

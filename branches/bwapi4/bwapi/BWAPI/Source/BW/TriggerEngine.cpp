@@ -64,7 +64,7 @@ namespace BW
       case PlayerGroups::Force2:
       case PlayerGroups::Force3:
       case PlayerGroups::Force4:
-        return BW::BWDATA_Players[dwCheckingPlayer].nTeam == (dwActionGroup - PlayerGroups::Force1 + 1);
+        return BW::BWDATA::Players[dwCheckingPlayer].nTeam == (dwActionGroup - PlayerGroups::Force1 + 1);
       default:
         return false;
       };

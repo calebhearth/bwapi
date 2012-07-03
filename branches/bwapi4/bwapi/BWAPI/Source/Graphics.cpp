@@ -14,12 +14,12 @@ static inline void bwPlot(const int &x, const int &y, const int &color)
 {
   if ( x < 0 ||
        y < 0 ||
-       x >= BW::BWDATA_GameScreenBuffer->wid - 2 ||
-       y >= BW::BWDATA_GameScreenBuffer->ht - 2)
+       x >= BW::BWDATA::GameScreenBuffer->wid - 2 ||
+       y >= BW::BWDATA::GameScreenBuffer->ht - 2)
     return;
 
-  u8 *data = BW::BWDATA_GameScreenBuffer->data;
-  data[y * BW::BWDATA_GameScreenBuffer->wid + x] = (u8)color;
+  u8 *data = BW::BWDATA::GameScreenBuffer->data;
+  data[y * BW::BWDATA::GameScreenBuffer->wid + x] = (u8)color;
 }
 
 static inline void convertCoordType(int &x, int &y, const int &ctype)
@@ -27,12 +27,12 @@ static inline void convertCoordType(int &x, int &y, const int &ctype)
   switch ( ctype )
   {
   case BWAPI::CoordinateType::Map:
-    x -= *(BW::BWDATA_ScreenX);
-    y -= *(BW::BWDATA_ScreenY);
+    x -= *(BW::BWDATA::ScreenX);
+    y -= *(BW::BWDATA::ScreenY);
     break;
   case BWAPI::CoordinateType::Mouse:
-    x += BW::BWDATA_Mouse->x;
-    y += BW::BWDATA_Mouse->y;
+    x += BW::BWDATA::Mouse->x;
+    y += BW::BWDATA::Mouse->y;
     break;
   }
 }
@@ -41,7 +41,7 @@ void bwDrawBox(int x, int y, int w, int h, int color, int ctype)
 {
   convertCoordType(x, y, ctype);
 
-  u16 scrWid = BW::BWDATA_GameScreenBuffer->wid, scrHgt = BW::BWDATA_GameScreenBuffer->ht;
+  u16 scrWid = BW::BWDATA::GameScreenBuffer->wid, scrHgt = BW::BWDATA::GameScreenBuffer->ht;
 
   int right  = x + w;
   int bottom = y + h;
@@ -70,12 +70,12 @@ void bwDrawBox(int x, int y, int w, int h, int color, int ctype)
   if ( w == 1 )
   {
     for ( int iy = y; iy < bottom; ++iy )
-      BW::BWDATA_GameScreenBuffer->data[iy * scrWid + x] = (u8)color;
+      BW::BWDATA::GameScreenBuffer->data[iy * scrWid + x] = (u8)color;
   }
   else
   {
     for ( int iy = y; iy < bottom; ++iy )
-      memset(&BW::BWDATA_GameScreenBuffer->data[iy * scrWid + x], (u8)color, w);
+      memset(&BW::BWDATA::GameScreenBuffer->data[iy * scrWid + x], (u8)color, w);
   }
 }
 
@@ -84,7 +84,7 @@ void bwDrawBoxEx(int _x, int _y, int _w, int _h, int borderColor, int borderThic
   iRect box = { _x, _y, _w, _h };
   convertCoordType(box.left, box.top, ctype);
 
-  SIZE screen = { BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
+  SIZE screen = { BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
 
   int right  = box.left + box.right;
   int bottom = box.top  + box.bottom;
@@ -117,7 +117,7 @@ void bwDrawBoxEx(int _x, int _y, int _w, int _h, int borderColor, int borderThic
     border.bottom += box.left;
     box.top     =  0;
   }
-  u8 *data    = BW::BWDATA_GameScreenBuffer->data;
+  u8 *data    = BW::BWDATA::GameScreenBuffer->data;
   right  = box.left + box.right;
   bottom = box.top  + box.bottom;
   
@@ -204,9 +204,9 @@ void bwDrawText(int x, int y, const char* ptext, int ctype, char size)
 
   if (x + BW::GetTextWidth(ptext, size)  < 0 || 
       y + BW::GetTextHeight(ptext, size) < 0 || 
-      x >= BW::BWDATA_GameScreenBuffer->wid   || 
-      y >= BW::BWDATA_GameScreenBuffer->ht)
+      x >= BW::BWDATA::GameScreenBuffer->wid   || 
+      y >= BW::BWDATA::GameScreenBuffer->ht)
     return;
 
-  BW::BlitText(ptext, BW::BWDATA_GameScreenBuffer, x, y, size);
+  BW::BlitText(ptext, BW::BWDATA::GameScreenBuffer, x, y, size);
 }

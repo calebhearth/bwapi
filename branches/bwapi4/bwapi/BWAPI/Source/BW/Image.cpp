@@ -29,7 +29,7 @@ namespace BW
 
     rect bounds = { 0, 0, pGrpFrame->right, pGrpFrame->bottom };
     BW::Position screen(this->mapPosition);
-    screen -= Position((short)*BW::BWDATA_MoveToX, (short)*BW::BWDATA_MoveToY);
+    screen -= Position((short)*BW::BWDATA::MoveToX, (short)*BW::BWDATA::MoveToY);
     
     if ( screen.x < 0 )
     {
@@ -43,8 +43,8 @@ namespace BW
       bounds.top    += -screen.y;  // -screenY is positive
       screen.y  = 0;
     }
-    bounds.right  = (s16)std::min<int>(bounds.right,  BW::BWDATA_GameScreenBuffer->wid - screen.x);
-    bounds.bottom = (s16)std::min<int>(bounds.bottom, BW::BWDATA_GameScreenBuffer->ht  - screen.y);
+    bounds.right  = (s16)std::min<int>(bounds.right,  BW::BWDATA::GameScreenBuffer->wid - screen.x);
+    bounds.bottom = (s16)std::min<int>(bounds.bottom, BW::BWDATA::GameScreenBuffer->ht  - screen.y);
 
     this->screenPosition = screen;
     this->grpBounds = bounds;

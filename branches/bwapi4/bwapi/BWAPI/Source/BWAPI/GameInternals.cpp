@@ -69,11 +69,11 @@ namespace BWAPI
 
       /* iterate through units and create UnitImpl for each */
       for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)
-        unitArray[i] = new UnitImpl(&BW::BWDATA_UnitNodeTable[i], (u16)i);
+        unitArray[i] = new UnitImpl(&BW::BWDATA::UnitNodeTable[i], (u16)i);
 
       /* iterate through bullets and create BulletImpl for each */
       for (int i = 0; i < BULLET_ARRAY_MAX_LENGTH; ++i)
-        bulletArray[i] = new BulletImpl(&BW::BWDATA_BulletNodeTable[i], (u16)i);
+        bulletArray[i] = new BulletImpl(&BW::BWDATA::BulletNodeTable[i], (u16)i);
     }
     catch (GeneralException& exception)
     {
@@ -121,11 +121,11 @@ namespace BWAPI
       this->unitArray[i]->setSelected(false);
 
     selectedUnitSet.clear();
-    for (int i = 0; i < *BW::BWDATA_ClientSelectionCount && i < 12; ++i)
+    for (int i = 0; i < *BW::BWDATA::ClientSelectionCount && i < 12; ++i)
     {
-      if ( BW::BWDATA_ClientSelectionGroup[i] )
+      if ( BW::BWDATA::ClientSelectionGroup[i] )
       {
-        BWAPI::UnitImpl *u = UnitImpl::BWUnitToBWAPIUnit(BW::BWDATA_ClientSelectionGroup[i]);
+        BWAPI::UnitImpl *u = UnitImpl::BWUnitToBWAPIUnit(BW::BWDATA::ClientSelectionGroup[i]);
         u->setSelected(true);
         selectedUnitSet.push_back(u);
       }
@@ -135,10 +135,10 @@ namespace BWAPI
   {
     for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
     {
-      if ( BW::BWDATA_playerStatusArray[i] & 0x10000 )
+      if ( BW::BWDATA::playerStatusArray[i] & 0x10000 )
       {
         int iplr = this->stormIdToPlayerId(i);
-        if ( iplr != -1 && iplr != (int)*BW::BWDATA_g_LocalHumanID )
+        if ( iplr != -1 && iplr != (int)*BW::BWDATA::g_LocalHumanID )
         {
           this->droppedPlayers.push_back(this->players[iplr]);
           SNetDropPlayer(i, 0x40000006);
@@ -149,22 +149,22 @@ namespace BWAPI
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
   bool GameImpl::_isBattleNet() const
   {
-    return *BW::BWDATA_NetMode == 'BNET';
+    return *BW::BWDATA::NetMode == 'BNET';
   }
   //-------------------------------------------- IS SINGLE PLAYER --------------------------------------------
   bool GameImpl::_isSinglePlayer() const
   {
-    return *BW::BWDATA_NetMode == 0 || *BW::BWDATA_NetMode == -1;
+    return *BW::BWDATA::NetMode == 0 || *BW::BWDATA::NetMode == -1;
   }
   //------------------------------------------------ IS IN GAME ----------------------------------------------
   bool GameImpl::_isInGame() const
   {
-    return *BW::BWDATA_InGame != 0;
+    return *BW::BWDATA::InGame != 0;
   }
   //----------------------------------------------- IN REPLAY ------------------------------------------------
   bool  GameImpl::_isReplay() const
   {
-    return *BW::BWDATA_InReplay != 0;
+    return *BW::BWDATA::InReplay != 0;
   }
   //------------------------------------------------ MOUSE/KEY INPUT -----------------------------------------
   void GameImpl::pressKey(int key)
@@ -194,7 +194,7 @@ namespace BWAPI
     /* Translates a storm ID to a player Index */
     for (int i = 0; i < PLAYER_COUNT; ++i)
     {
-      if ( BW::BWDATA_Players[i].dwStormId == dwStormId )
+      if ( BW::BWDATA::Players[i].dwStormId == dwStormId )
         return i;
     }
     return -1;
@@ -260,7 +260,7 @@ namespace BWAPI
     }
     else if (parsed[0] == "/wmode")
     {
-      SetWMode(BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht, !wmode);
+      SetWMode(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, !wmode);
       printf("Toggled windowed mode.");
     }
     else if (parsed[0] == "/grid")
@@ -341,7 +341,7 @@ namespace BWAPI
   }
   int GameImpl::_currentPlayerId()
   {
-    return *BW::BWDATA_g_LocalHumanID;
+    return *BW::BWDATA::g_LocalHumanID;
   }
   bool GameImpl::tournamentCheck(int type, void *parameter)
   {

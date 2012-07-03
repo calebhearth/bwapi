@@ -22,18 +22,18 @@ namespace BWAPI
     switch ( ctype )
     {
     case BWAPI::CoordinateType::Map: // if we're using map coordinates, subtract the position of the screen to convert the coordinates into screen coordinates
-      screen_x1 -= *(BW::BWDATA_ScreenX);
-      screen_y1 -= *(BW::BWDATA_ScreenY);
+      screen_x1 -= *(BW::BWDATA::ScreenX);
+      screen_y1 -= *(BW::BWDATA::ScreenY);
       break;
     case BWAPI::CoordinateType::Mouse: // if we're using mouse coordinates, add the position of the mouse to convert the coordinates into screen coordinates
-      screen_x1 += BW::BWDATA_Mouse->x;
-      screen_y1 += BW::BWDATA_Mouse->y;
+      screen_x1 += BW::BWDATA::Mouse->x;
+      screen_y1 += BW::BWDATA::Mouse->y;
       break;
     }
     if (screen_x1 < 0 || 
         screen_y1 < 0 ||
-        screen_x1 > BW::BWDATA_GameScreenBuffer->wid || 
-        screen_y1 > BW::BWDATA_GameScreenBuffer->ht)
+        screen_x1 > BW::BWDATA::GameScreenBuffer->wid || 
+        screen_y1 > BW::BWDATA::GameScreenBuffer->ht)
       return false;
     return true;
   }
@@ -58,20 +58,20 @@ namespace BWAPI
              (y1 >= maxH && y2 >= maxH) )
           return false;
 
-        screen_x1 -= *(BW::BWDATA_ScreenX);
-        screen_y1 -= *(BW::BWDATA_ScreenY);
-        screen_x2 -= *(BW::BWDATA_ScreenX);
-        screen_y2 -= *(BW::BWDATA_ScreenY);
+        screen_x1 -= *(BW::BWDATA::ScreenX);
+        screen_y1 -= *(BW::BWDATA::ScreenY);
+        screen_x2 -= *(BW::BWDATA::ScreenX);
+        screen_y2 -= *(BW::BWDATA::ScreenY);
         break;
       }
     case BWAPI::CoordinateType::Mouse: // if we're using mouse coordinates, add the position of the mouse to convert the coordinates into screen coordinates
-      screen_x1 += BW::BWDATA_Mouse->x;
-      screen_y1 += BW::BWDATA_Mouse->y;
-      screen_x2 += BW::BWDATA_Mouse->x;
-      screen_y2 += BW::BWDATA_Mouse->y;
+      screen_x1 += BW::BWDATA::Mouse->x;
+      screen_y1 += BW::BWDATA::Mouse->y;
+      screen_x2 += BW::BWDATA::Mouse->x;
+      screen_y2 += BW::BWDATA::Mouse->y;
       break;
     }
-    rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
+    rect scrLimit = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
     if ((screen_x1 < 0 && screen_x2 < 0) ||
         (screen_y1 < 0 && screen_y2 < 0) ||
         (screen_x1 > scrLimit.right  && screen_x2 > scrLimit.right) ||
@@ -101,24 +101,24 @@ namespace BWAPI
              (x1 >= maxW && x2 >= maxW && x3 >= maxW) ||
              (y1 >= maxH && y2 >= maxH && y3 >= maxH) )
           return false;
-        screen_x1 -= *(BW::BWDATA_ScreenX);
-        screen_y1 -= *(BW::BWDATA_ScreenY);
-        screen_x2 -= *(BW::BWDATA_ScreenX);
-        screen_y2 -= *(BW::BWDATA_ScreenY);
-        screen_x3 -= *(BW::BWDATA_ScreenX);
-        screen_y3 -= *(BW::BWDATA_ScreenY);
+        screen_x1 -= *(BW::BWDATA::ScreenX);
+        screen_y1 -= *(BW::BWDATA::ScreenY);
+        screen_x2 -= *(BW::BWDATA::ScreenX);
+        screen_y2 -= *(BW::BWDATA::ScreenY);
+        screen_x3 -= *(BW::BWDATA::ScreenX);
+        screen_y3 -= *(BW::BWDATA::ScreenY);
         break;
       }
     case BWAPI::CoordinateType::Mouse: // if we're using mouse coordinates, add the position of the mouse to convert the coordinates into screen coordinates
-      screen_x1 += BW::BWDATA_Mouse->x;
-      screen_y1 += BW::BWDATA_Mouse->y;
-      screen_x2 += BW::BWDATA_Mouse->x;
-      screen_y2 += BW::BWDATA_Mouse->y;
-      screen_x3 += BW::BWDATA_Mouse->x;
-      screen_y3 += BW::BWDATA_Mouse->y;
+      screen_x1 += BW::BWDATA::Mouse->x;
+      screen_y1 += BW::BWDATA::Mouse->y;
+      screen_x2 += BW::BWDATA::Mouse->x;
+      screen_y2 += BW::BWDATA::Mouse->y;
+      screen_x3 += BW::BWDATA::Mouse->x;
+      screen_y3 += BW::BWDATA::Mouse->y;
       break;
     }
-    rect scrLimit = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
+    rect scrLimit = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
     if ((screen_x1 < 0 && screen_x2 < 0 && screen_x3 < 0) ||
         (screen_y1 < 0 && screen_y2 < 0 && screen_y3 < 0) ||
         (screen_x1 > scrLimit.right && screen_x2 > scrLimit.right && screen_x3 > scrLimit.right) ||
@@ -228,7 +228,7 @@ namespace BWAPI
   //------------------------------------------------ SCREEN BUFFER -------------------------------------------
   void *GameImpl::getScreenBuffer()
   {
-    return BW::BWDATA_GameScreenBuffer->data;
+    return BW::BWDATA::GameScreenBuffer->data;
   }
   //--------------------------------------------------- HAS GUI ----------------------------------------------
   bool GameImpl::isGUIEnabled()

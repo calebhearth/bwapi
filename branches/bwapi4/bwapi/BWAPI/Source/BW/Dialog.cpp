@@ -241,7 +241,7 @@ namespace BW
         dlg->rct.right  = dlg->rct.left + dlg->srcBits.wid - 1;
         dlg->rct.top    = evt->cursor.y - mouseOffset->y;
         dlg->rct.bottom = dlg->rct.top + dlg->srcBits.ht - 1;
-        rect scrLimit   = { 0, 0, BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht };
+        rect scrLimit   = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
         if ( dlg->rct.left < 0 )
         {
           dlg->rct.right -= dlg->rct.left;
@@ -343,8 +343,8 @@ namespace BW
   // ------------------ FIND GLOBAL ------------------
   dialog *FindDialogGlobal(const char *pszName)
   {
-    if ( (*BW::BWDATA_DialogList) && pszName )
-      return (*BW::BWDATA_DialogList)->findDialog(pszName);
+    if ( (*BW::BWDATA::DialogList) && pszName )
+      return (*BW::BWDATA::DialogList)->findDialog(pszName);
     return NULL;
   }
   // ----------------- GET WIDTH ---------------------
@@ -355,7 +355,7 @@ namespace BW
       return 0;
 
     // localize pointer
-    fntHead *font = BWDATA_FontBase[bSize];
+    fntHead *font = BWDATA::FontBase[bSize];
     if ( !font )
       return 0;
 
@@ -398,7 +398,7 @@ namespace BW
       return 0;
 
     // localize pointer
-    fntHead *font = BWDATA_FontBase[bSize];
+    fntHead *font = BWDATA::FontBase[bSize];
     if ( !font )
       return 0;
 
@@ -426,7 +426,7 @@ namespace BW
       return false;
 
     // localize pointer
-    fntHead *font = BWDATA_FontBase[bSize];
+    fntHead *font = BWDATA::FontBase[bSize];
     if ( !font || !dst->data )
       return false;
 
@@ -558,11 +558,11 @@ namespace BW
     srcBits.ht  = height;
 
     // Set callback functions
-    pfcnUpdate  = BW::BWDATA_GenericDlgUpdateFxns[wCtrlType];
+    pfcnUpdate  = BW::GenericDlgUpdateFxns[wCtrlType];
     if ( pfInteract )
       pfcnInteract = pfInteract;
     else
-      pfcnInteract = BW::BWDATA_GenericDlgInteractFxns[wCtrlType];
+      pfcnInteract = BW::GenericDlgInteractFxns[wCtrlType];
 
     // Set control type-specific options
     switch ( ctrlType )
@@ -879,8 +879,8 @@ namespace BW
     if ( this && this->pfcnInteract )
     {
       dlgEvent evt;
-      evt.cursor.x    = (WORD)BW::BWDATA_Mouse->x;
-      evt.cursor.y    = (WORD)BW::BWDATA_Mouse->y;
+      evt.cursor.x    = (WORD)BW::BWDATA::Mouse->x;
+      evt.cursor.y    = (WORD)BW::BWDATA::Mouse->y;
       evt.wVirtKey    = wVirtKey;
       evt.wSelection  = wSelect;
       evt.wNo         = wEvtNum;
@@ -893,7 +893,7 @@ namespace BW
   bool dialog::defaultInteract(BW::dlgEvent *pEvent)
   {
     if ( this && pEvent && this->wCtrlType < ctrls::max )
-      return BWDATA_GenericDlgInteractFxns[this->wCtrlType](this, pEvent);
+      return GenericDlgInteractFxns[this->wCtrlType](this, pEvent);
     return false;
   }
   // -------------------- ACTIVATE -------------------
@@ -973,7 +973,7 @@ namespace BW
   {
     if ( this )
     {
-      for ( dialog *i = *BW::BWDATA_DialogList; i; i = i->next() )
+      for ( dialog *i = *BW::BWDATA::DialogList; i; i = i->next() )
       {
         if ( this == i )
           return true;

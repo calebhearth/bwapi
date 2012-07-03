@@ -23,7 +23,7 @@ namespace BW
 
   bool region::isConnectedTo(u16 index)
   {
-    if ( index < BW::BWDATA_SAIPathing->regionCount )
+    if ( index < BW::BWDATA::SAIPathing->regionCount )
       return this->groupIndex == getRegionFromId(index)->groupIndex;
     return false;
   }
@@ -60,7 +60,7 @@ namespace BW
 
   u16 region::getIndex()
   {
-    return (u16)( ((u32)this - (u32)(&BW::BWDATA_SAIPathing->regions)) / sizeof(BW::region) );
+    return (u16)( ((u32)this - (u32)(&BW::BWDATA::SAIPathing->regions)) / sizeof(BW::region) );
   }
 
 // searchInner: 0 = top
@@ -176,7 +176,7 @@ namespace BW
       return NULL;
 
     // Obtain the region IDs from the positions
-    u16 id = BW::BWDATA_SAIPathing->mapTileRegionId[tp.y][tp.x];
+    u16 id = BW::BWDATA::SAIPathing->mapTileRegionId[tp.y][tp.x];
 
     if ( id & 0x2000 )
     {
@@ -184,13 +184,13 @@ namespace BW
       int minitilePosX = (x&0x1F)/8;
       int minitilePosY = (y&0x1F)/8;
       int minitileShift = minitilePosX + minitilePosY * 4;
-      BW::split *t = &BW::BWDATA_SAIPathing->splitTiles[id&0x1FFF];
+      BW::split *t = &BW::BWDATA::SAIPathing->splitTiles[id&0x1FFF];
       if ( (t->minitileMask >> minitileShift) & 1 )
-        return &BW::BWDATA_SAIPathing->regions[t->rgn2];
-      return &BW::BWDATA_SAIPathing->regions[t->rgn1];
+        return &BW::BWDATA::SAIPathing->regions[t->rgn2];
+      return &BW::BWDATA::SAIPathing->regions[t->rgn1];
     }
     // Get source region from tile
-    return &BW::BWDATA_SAIPathing->regions[id];
+    return &BW::BWDATA::SAIPathing->regions[id];
   }
   BW::region *getRegionAt(Position pos)
   {

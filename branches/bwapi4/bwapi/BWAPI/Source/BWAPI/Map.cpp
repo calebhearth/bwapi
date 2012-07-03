@@ -33,17 +33,17 @@ namespace BWAPI
   //----------------------------------------------- GET WIDTH ------------------------------------------------
   u16 Map::getWidth()
   {
-    return BW::BWDATA_MapSize->x;
+    return BW::BWDATA::MapSize->x;
   }
   //----------------------------------------------- GET HEIGHT -----------------------------------------------
   u16 Map::getHeight()
   {
-    return BW::BWDATA_MapSize->y;
+    return BW::BWDATA::MapSize->y;
   }
   //---------------------------------------------- GET PATH NAME ---------------------------------------------
   std::string Map::getPathName()
   {
-    char *map = BW::BWDATA_CurrentMapFileName;
+    char *map = BW::BWDATA::CurrentMapFileName;
     if ( szInstallPath[0] && !strnicmp(map, szInstallPath, strlen(szInstallPath)) )
       map = &map[strlen(szInstallPath)];
     std::string mapPathName(map);
@@ -52,16 +52,16 @@ namespace BWAPI
   //---------------------------------------------- GET FILE NAME ---------------------------------------------
   std::string Map::getFileName()
   {
-    char *pszMapName = strrchr(BW::BWDATA_CurrentMapFileName, '\\');
+    char *pszMapName = strrchr(BW::BWDATA::CurrentMapFileName, '\\');
     if ( !pszMapName )
-      pszMapName = strrchr(BW::BWDATA_CurrentMapFileName, '/');
-    std::string mapNameAbsolute(pszMapName ? &pszMapName[1] : BW::BWDATA_CurrentMapFileName);
+      pszMapName = strrchr(BW::BWDATA::CurrentMapFileName, '/');
+    std::string mapNameAbsolute(pszMapName ? &pszMapName[1] : BW::BWDATA::CurrentMapFileName);
     return mapNameAbsolute;
   }
   //------------------------------------------------ GET NAME ------------------------------------------------
   std::string Map::getName()
   {
-    std::string mapName(BW::BWDATA_CurrentMapName);
+    std::string mapName(BW::BWDATA::CurrentMapName);
     return mapName;
   }
   void Map::copyToSharedMemory()
@@ -166,15 +166,15 @@ namespace BWAPI
     }
     buildability.resize(Map::getWidth(), Map::getHeight());
     walkability.resize(Map::getWidth()*4, Map::getHeight()*4);
-    activeTiles = new Util::RectangleArray<BW::activeTile>(Map::getHeight(), Map::getWidth(), BW::BWDATA_ActiveTileArray);
+    activeTiles = new Util::RectangleArray<BW::activeTile>(Map::getHeight(), Map::getWidth(), BW::BWDATA::ActiveTileArray);
     setBuildability();
     setWalkability();
   }
   //------------------------------------------------ GET TILE ------------------------------------------------
   BW::TileID Map::getTile(int x, int y)
   {
-    if ( BW::BWDATA_MapTileArray )
-      return *(BW::BWDATA_MapTileArray + x + y * Map::getWidth());
+    if ( BW::BWDATA::MapTileArray )
+      return *(BW::BWDATA::MapTileArray + x + y * Map::getWidth());
     return 0;
   }
   //------------------------------------------- GET TILE VARIATION -------------------------------------------
@@ -229,8 +229,8 @@ namespace BWAPI
     int my = y % 4;
     BW::TileID tileID = BWAPI::Map::getTile(tx, ty);
     BW::TileType* tile = BW::TileSet::getTileType(tileID);
-    if ( tile && BW::BWDATA_MiniTileFlags )
-      return BW::BWDATA_MiniTileFlags->tile[tile->miniTile[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
+    if ( tile && BW::BWDATA::MiniTileFlags )
+      return BW::BWDATA::MiniTileFlags->tile[tile->miniTile[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
     return 0;
   }
   //------------------------------------------ GET MAP HASH --------------------------------------------------

@@ -33,23 +33,23 @@ void __fastcall QueueGameCommand(void *pBuffer, DWORD dwLength)
   SNetGetProviderCaps(&caps);
 
   DWORD dwMaxBuffer = clamp<DWORD>(caps.maxmessagesize, 0, 512);
-  if ( dwLength + *BW::BWDATA_sgdwBytesInCmdQueue <= dwMaxBuffer )
+  if ( dwLength + *BW::BWDATA::sgdwBytesInCmdQueue <= dwMaxBuffer )
   {
     // Copy data to primary turn buffer
-    memcpy(&BW::BWDATA_TurnBuffer[*BW::BWDATA_sgdwBytesInCmdQueue], pBuffer, dwLength);
-    *BW::BWDATA_sgdwBytesInCmdQueue += dwLength;
+    memcpy(&BW::BWDATA::TurnBuffer[*BW::BWDATA::sgdwBytesInCmdQueue], pBuffer, dwLength);
+    *BW::BWDATA::sgdwBytesInCmdQueue += dwLength;
     return;
   }
   
   // Verify game mode
-  if ( *BW::BWDATA_gwGameMode == 4 )
+  if ( *BW::BWDATA::gwGameMode == 4 )
     return;
 
   int turns;
   if ( SNetGetTurnsInTransit(&turns) ) // Buffer is full
   {
     int callDelay = 1;
-    if ( *BW::BWDATA_NetMode )
+    if ( *BW::BWDATA::NetMode )
       callDelay = clamp<DWORD>(caps.dwCallDelay, 2, 8);
 
     // This statement will probably never be hit, but just in case
@@ -58,8 +58,8 @@ void __fastcall QueueGameCommand(void *pBuffer, DWORD dwLength)
 
     // Send the turn and fill the new buffer
     BW::BWFXN_sendTurn();
-    memcpy(&BW::BWDATA_TurnBuffer[*BW::BWDATA_sgdwBytesInCmdQueue], pBuffer, dwLength);
-    *BW::BWDATA_sgdwBytesInCmdQueue += dwLength;
+    memcpy(&BW::BWDATA::TurnBuffer[*BW::BWDATA::sgdwBytesInCmdQueue], pBuffer, dwLength);
+    *BW::BWDATA::sgdwBytesInCmdQueue += dwLength;
   }
   // assume no error, would be fatal in Starcraft anyway
 }
@@ -152,18 +152,18 @@ DWORD WINAPI PersistentPatch(LPVOID)
     if ( isCorrectVersion )
     {
       // dialog/menu layer
-      if ( BW::BWDATA_ScreenLayers[2].pUpdate != DrawDialogHook && 
-           BW::BWDATA_ScreenLayers[2].pUpdate != nullptr )
+      if ( BW::BWDATA::ScreenLayers[2].pUpdate != DrawDialogHook && 
+           BW::BWDATA::ScreenLayers[2].pUpdate != nullptr )
       {
-        BW::pOldDrawDialogProc = BW::BWDATA_ScreenLayers[2].pUpdate;
-        BW::BWDATA_ScreenLayers[2].pUpdate = DrawDialogHook;
+        BW::pOldDrawDialogProc = BW::BWDATA::ScreenLayers[2].pUpdate;
+        BW::BWDATA::ScreenLayers[2].pUpdate = DrawDialogHook;
       }
 
       // game layer
-      if ( BW::BWDATA_ScreenLayers[5].pUpdate != DrawHook && BW::BWDATA_ScreenLayers[5].pUpdate != nullptr )
+      if ( BW::BWDATA::ScreenLayers[5].pUpdate != DrawHook && BW::BWDATA::ScreenLayers[5].pUpdate != nullptr )
       {
-        BW::pOldDrawGameProc = BW::BWDATA_ScreenLayers[5].pUpdate;
-        BW::BWDATA_ScreenLayers[5].pUpdate = DrawHook;
+        BW::pOldDrawGameProc = BW::BWDATA::ScreenLayers[5].pUpdate;
+        BW::BWDATA::ScreenLayers[5].pUpdate = DrawHook;
       }
     }
 

@@ -61,9 +61,9 @@ namespace BWAPI
   //----------------------------------------------------------------------------------------------------------
   Region *GameImpl::getRegion(int regionID) const
   {
-    if ( !BW::BWDATA_SAIPathing || regionID < 0 || regionID >= (int)BW::BWDATA_SAIPathing->regionCount )
+    if ( !BW::BWDATA::SAIPathing || regionID < 0 || regionID >= (int)BW::BWDATA::SAIPathing->regionCount )
       return nullptr;
-    return (Region*)BW::BWDATA_SAIPathing->regions[regionID].unk_28;
+    return (Region*)BW::BWDATA::SAIPathing->regions[regionID].unk_28;
   }
   //----------------------------------------------------------------------------------------------------------
   Player* GameImpl::getPlayer(int playerID) const
@@ -90,7 +90,7 @@ namespace BWAPI
   {
     if (isReplay())
       return GameTypes::None;
-    return GameType(*BW::BWDATA_gameType);
+    return GameType(*BW::BWDATA::gameType);
   }
   //---------------------------------------------- GET LATENCY -----------------------------------------------
   int GameImpl::getLatency() const
@@ -101,7 +101,7 @@ namespace BWAPI
 
     if (_isBattleNet())
     {
-      switch(*BW::BWDATA_Latency)
+      switch(*BW::BWDATA::Latency)
       {
         case 0:
           return BWAPI::Latency::BattlenetLow;
@@ -115,7 +115,7 @@ namespace BWAPI
     }
     else
     {
-      switch(*BW::BWDATA_Latency)
+      switch(*BW::BWDATA::Latency)
       {
         case 0:
           return BWAPI::Latency::LanLow;
@@ -136,7 +136,7 @@ namespace BWAPI
   //--------------------------------------------- GET REPLAY FRAME COUNT -------------------------------------
   int GameImpl::getReplayFrameCount() const
   {
-    return (int)*BW::BWDATA_ReplayFrames;
+    return (int)*BW::BWDATA::ReplayFrames;
   }
   //------------------------------------------------ GET FPS -------------------------------------------------
   int GameImpl::getFPS() const
@@ -153,7 +153,7 @@ namespace BWAPI
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return BWAPI::Positions::Unknown;
-    return BWAPI::Position(BW::BWDATA_Mouse->x, BW::BWDATA_Mouse->y);
+    return BWAPI::Position(BW::BWDATA::Mouse->x, BW::BWDATA::Mouse->y);
   }
   //--------------------------------------------- GET MOUSE STATE --------------------------------------------
   bool GameImpl::getMouseState(int button) const
@@ -195,7 +195,7 @@ namespace BWAPI
   {
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
       return BWAPI::Positions::Unknown;
-    return BWAPI::Position(*(BW::BWDATA_ScreenX),*(BW::BWDATA_ScreenY));
+    return BWAPI::Position(*(BW::BWDATA::ScreenX),*(BW::BWDATA::ScreenY));
   }
   //------------------------------------------- SET SCREEN POSITION ------------------------------------------
   void GameImpl::setScreenPosition(int x, int y)
@@ -203,7 +203,7 @@ namespace BWAPI
     this->setLastError();
     if ( !data->hasGUI ) return;
 
-    Position scrSize(BW::BWDATA_GameScreenBuffer->wid, BW::BWDATA_GameScreenBuffer->ht + 80);
+    Position scrSize(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht + 80);
     Position mapSize( TilePosition(Map::getWidth(), Map::getHeight()) );
 
     // Sets the screen's position relative to the map
@@ -212,9 +212,9 @@ namespace BWAPI
     movePos.setMax( mapSize - scrSize);
 
     movePos &= 0xFFFFFFF8;
-    *BW::BWDATA_MoveToX = movePos.x;
-    *BW::BWDATA_MoveToY = movePos.y;
-    *BW::BWDATA_MoveToTile = BW::TilePosition(movePos);
+    *BW::BWDATA::MoveToX = movePos.x;
+    *BW::BWDATA::MoveToY = movePos.y;
+    *BW::BWDATA::MoveToTile = BW::TilePosition(movePos);
     BW::BWFXN_UpdateScreenPosition();
   }
   //---------------------------------------------- PING MINIMAP ----------------------------------------------
@@ -286,8 +286,8 @@ namespace BWAPI
     Unitset unitFinderResults;
 
     // Have the unit finder do its stuff
-    Templates::iterateUnitFinder<BW::unitFinder>(BW::BWDATA_UnitOrderingX,
-                                                 BW::BWDATA_UnitOrderingY,
+    Templates::iterateUnitFinder<BW::unitFinder>(BW::BWDATA::UnitOrderingX,
+                                                 BW::BWDATA::UnitOrderingY,
                                                  left,
                                                  top,
                                                  right,
@@ -302,8 +302,8 @@ namespace BWAPI
     int bestDistance = 99999999;
     Unit *pBestUnit = nullptr;
 
-    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA_UnitOrderingX,
-                                                  BW::BWDATA_UnitOrderingY,
+    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA::UnitOrderingX,
+                                                  BW::BWDATA::UnitOrderingY,
                                                   left,
                                                   top,
                                                   right,
@@ -335,8 +335,8 @@ namespace BWAPI
     topLeft.makeValid();
     botRight.makeValid();
 
-    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA_UnitOrderingX,
-                                                  BW::BWDATA_UnitOrderingY,
+    Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA::UnitOrderingX,
+                                                  BW::BWDATA::UnitOrderingY,
                                                   topLeft.x,
                                                   topLeft.y,
                                                   botRight.x,
@@ -508,8 +508,8 @@ namespace BWAPI
       if ( toAllies )
       {
         for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
-          if ( this->BWAPIPlayer->isAlly(players[i]) && BW::BWDATA_Players[i].dwStormId != -1 )
-            SNetSendMessage(BW::BWDATA_Players[i].dwStormId, szMessage, msgLen + 3);
+          if ( this->BWAPIPlayer->isAlly(players[i]) && BW::BWDATA::Players[i].dwStormId != -1 )
+            SNetSendMessage(BW::BWDATA::Players[i].dwStormId, szMessage, msgLen + 3);
       }
       else
       {
@@ -539,22 +539,22 @@ namespace BWAPI
   //-------------------------------------------- IS SINGLE PLAYER --------------------------------------------
   bool GameImpl::isMultiplayer() const
   {
-    return *BW::BWDATA_NetMode != 0 && *BW::BWDATA_NetMode != -1;
+    return *BW::BWDATA::NetMode != 0 && *BW::BWDATA::NetMode != -1;
   }
   //--------------------------------------------- IS BATTLE NET ----------------------------------------------
   bool GameImpl::isBattleNet() const
   {
-    return *BW::BWDATA_NetMode == 'BNET';
+    return *BW::BWDATA::NetMode == 'BNET';
   }
   //----------------------------------------------- IS PAUSED ------------------------------------------------
   bool GameImpl::isPaused() const
   {
-    return *BW::BWDATA_isGamePaused != 0;
+    return *BW::BWDATA::isGamePaused != 0;
   }
   //----------------------------------------------- IN REPLAY ------------------------------------------------
   bool  GameImpl::isReplay() const
   {
-    return *BW::BWDATA_InReplay != 0;
+    return *BW::BWDATA::InReplay != 0;
   }
   //----------------------------------------------- START GAME -----------------------------------------------
   void GameImpl::startGame()
@@ -590,8 +590,8 @@ namespace BWAPI
     this->setLastError();
     if ( !this->tournamentCheck(Tournament::LeaveGame) )
       return;
-    *BW::BWDATA_GameState      = 0;
-    *BW::BWDATA_gwNextGameMode = 6;
+    *BW::BWDATA::GameState      = 0;
+    *BW::BWDATA::gwNextGameMode = 6;
   }
   //--------------------------------------------- RESTART GAME -----------------------------------------------
   void GameImpl::restartGame()
@@ -618,7 +618,7 @@ namespace BWAPI
 
     u32 alliance = 0;
     for ( int i = 0; i < PLAYER_COUNT; ++i )
-      alliance |= (BW::BWDATA_Alliance[BWAPIPlayer->getIndex()].player[i] & 3) << (i*2);
+      alliance |= (BW::BWDATA::Alliance[BWAPIPlayer->getIndex()].player[i] & 3) << (i*2);
     
     u8 newAlliance = allied ? (alliedVictory ? 2 : 1) : 0;
     if ( allied )
@@ -635,7 +635,7 @@ namespace BWAPI
     if ( !BWAPIPlayer || isReplay() || !player || player == BWAPIPlayer )
       return this->setLastError(Errors::Invalid_Parameter);
 
-    u16 vision = (u16)BW::BWDATA_PlayerVision[BWAPIPlayer->getIndex()];    
+    u16 vision = (u16)BW::BWDATA::PlayerVision[BWAPIPlayer->getIndex()];    
     if ( enabled )
       vision |= 1 << ((PlayerImpl*)player)->getIndex();
     else
@@ -654,8 +654,8 @@ namespace BWAPI
       // Reset the speed if it is negative 
       for ( int i = 0; i < 7; ++i )
       {
-        BW::BWDATA_GameSpeedModifiers[i]    = BW::OriginalSpeedModifiers[i];
-        BW::BWDATA_GameSpeedModifiers[i+7]  = BW::OriginalSpeedModifiers[i] * 3;
+        BW::BWDATA::GameSpeedModifiers[i]    = BW::OriginalSpeedModifiers[i];
+        BW::BWDATA::GameSpeedModifiers[i+7]  = BW::OriginalSpeedModifiers[i] * 3;
       }
     }
     else
@@ -663,8 +663,8 @@ namespace BWAPI
       // Set all speeds if it is positive */
       for ( int i = 0; i < 7; ++i )
       {
-        BW::BWDATA_GameSpeedModifiers[i]    = speed;
-        BW::BWDATA_GameSpeedModifiers[i+7]  = speed * 3;
+        BW::BWDATA::GameSpeedModifiers[i]    = speed;
+        BW::BWDATA::GameSpeedModifiers[i+7]  = speed * 3;
       }
     }
   }
@@ -676,7 +676,7 @@ namespace BWAPI
 
     if ( frameSkip > 0 )
     {
-      *BW::BWDATA_FrameSkip = frameSkip;
+      *BW::BWDATA::FrameSkip = frameSkip;
       return;
     }
     setLastError(Errors::Invalid_Parameter);
@@ -810,7 +810,7 @@ namespace BWAPI
   int GameImpl::getLatencyFrames()
   {
     DWORD dwCallDelay = 1;
-    if ( *BW::BWDATA_NetMode )
+    if ( *BW::BWDATA::NetMode )
     {
       CAPS caps;
       caps.dwSize = sizeof(CAPS);
@@ -818,11 +818,11 @@ namespace BWAPI
 
       dwCallDelay = clamp<DWORD>(caps.dwCallDelay, 2, 8);
     }
-    return (BW::BWDATA_LatencyFrames[*BW::BWDATA_GameSpeed]) * (*BW::BWDATA_Latency + dwCallDelay + 1);
+    return (BW::BWDATA::LatencyFrames[*BW::BWDATA::GameSpeed]) * (*BW::BWDATA::Latency + dwCallDelay + 1);
   }
   int GameImpl::getLatencyTime()
   {
-    return getLatencyFrames() * BW::BWDATA_GameSpeedModifiers[*BW::BWDATA_GameSpeed];
+    return getLatencyFrames() * BW::BWDATA::GameSpeedModifiers[*BW::BWDATA::GameSpeed];
   }
   int GameImpl::getRemainingLatencyFrames()
   {
@@ -830,7 +830,7 @@ namespace BWAPI
   }
   int GameImpl::getRemainingLatencyTime()
   {
-    return (getLatencyFrames() * BW::BWDATA_GameSpeedModifiers[*BW::BWDATA_GameSpeed]) - (GetTickCount() - lastTurnTime);
+    return (getLatencyFrames() * BW::BWDATA::GameSpeedModifiers[*BW::BWDATA::GameSpeed]) - (GetTickCount() - lastTurnTime);
   }
   //--------------------------------------------------- VERSION ----------------------------------------------
   int GameImpl::getRevision()
@@ -876,7 +876,7 @@ namespace BWAPI
     if ( !this->tournamentCheck(Tournament::SetMap, (void*)mapFileName) )
       return setLastError(Errors::None);
 
-    strcpy(BW::BWDATA_CurrentMapFileName, mapFileName);
+    strcpy(BW::BWDATA::CurrentMapFileName, mapFileName);
     return setLastError(Errors::None);
   }
   //--------------------------------------------------- HAS PATH ---------------------------------------------
@@ -886,7 +886,7 @@ namespace BWAPI
     if ( !source.isValid() || !destination.isValid() )
       return Broodwar->setLastError(Errors::Unreachable_Location);
 
-    if ( BW::BWDATA_SAIPathing )
+    if ( BW::BWDATA::SAIPathing )
     {
       BW::region *srcRgn = BW::getRegionAt( BW::Position(source) );
       BW::region *dstRgn = BW::getRegionAt( BW::Position(destination) );
@@ -900,7 +900,7 @@ namespace BWAPI
   //------------------------------------------------- ELAPSED TIME -------------------------------------------
   int GameImpl::elapsedTime() const
   {
-    return (int)*BW::BWDATA_ElapsedTime;
+    return (int)*BW::BWDATA::ElapsedTime;
   }
   //-------------------------------------- SET COMMAND OPTIMIZATION LEVEL ------------------------------------
   void GameImpl::setCommandOptimizationLevel(int level)
@@ -913,7 +913,7 @@ namespace BWAPI
   //----------------------------------------------- COUNTDOWN TIMER ------------------------------------------
   int GameImpl::countdownTimer() const
   {
-    return (int)*BW::BWDATA_CountdownTimer;
+    return (int)*BW::BWDATA::CountdownTimer;
   }
   //------------------------------------------------- GET REGION AT ------------------------------------------
   BWAPI::Region *GameImpl::getRegionAt(int x, int y) const
@@ -942,19 +942,19 @@ namespace BWAPI
     if ( !isReplay() || !player )
       return this->setLastError(Errors::Invalid_Parameter);
 
-    u32 vision = *BW::BWDATA_ReplayVision;
+    u32 vision = *BW::BWDATA::ReplayVision;
     if ( enabled )
       vision |= 1 << ((PlayerImpl*)player)->getIndex();
     else
       vision &= ~(1 <<  ((PlayerImpl*)player)->getIndex() );
-    *BW::BWDATA_ReplayVision = vision;
+    *BW::BWDATA::ReplayVision = vision;
     return this->setLastError();
   }
   bool GameImpl::setRevealAll(bool reveal)
   {
     if ( !isReplay() )
       return this->setLastError(Errors::Invalid_Parameter);
-    *BW::BWDATA_ReplayRevealAll = reveal ? 1 : 0;
+    *BW::BWDATA::ReplayRevealAll = reveal ? 1 : 0;
     return this->setLastError();
   }
 };

@@ -4,7 +4,7 @@
 #include <Util/Types.h>
 #include <vector>
 
-#define getRegionFromId(x) (&(BW::BWDATA_SAIPathing->regions[(x)&0x1FFF]))
+#define getRegionFromId(x) (&(BW::BWDATA::SAIPathing->regions[(x)&0x1FFF]))
 
 namespace BW
 {
