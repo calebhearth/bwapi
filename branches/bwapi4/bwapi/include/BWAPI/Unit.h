@@ -568,10 +568,39 @@ namespace BWAPI
     Unit *getClosestUnit(const UnitFilter &pred = nullptr, int radius = 999999) const;
 
     /** Returns the unit's custom client info. The client is responsible for deallocation. */
-    virtual void* getClientInfo() const = 0;
+    /// @~English
+    /// Retrieves a pointer or value at an index that was stored for this Unit using
+    /// setClientInfo.
+    ///
+    /// @param index
+    ///   The index to retrieve the data from. Must be between 0 and 255.
+    /// 
+    /// @retval nullptr if index is out of bounds.
+    ///
+    /// @returns A pointer to the client info at that index.
+    /// @~
+    /// @see setClientInfo, getClientInfoInt
+    virtual void* getClientInfo(int index = 0) const = 0;
 
-    /** Sets the unit's custom client info. The client is responsible for deallocation. */
-    virtual void setClientInfo(void* clientinfo = nullptr) = 0;
+    /// @~English
+    /// Associates one or more pointers or values with a Unit.
+    ///
+    /// This client information is managed entirely by the AI module. It is not modified by BWAPI.
+    /// If pointer to allocated memory is used, then the AI module is responsible for deallocating
+    /// the memory.
+    ///
+    /// @param clientinfo
+    ///   The data to associate with this unit.
+    /// @param index
+    ///   The index to use for this data. It can be between 0 and 255. Default is 0. No action will
+    ///   be taken if this value is out of bounds.
+    ///  
+    /// @~
+    /// @see getClientInfo
+    virtual void setClientInfo(void* clientinfo = nullptr, int index = 0) = 0;
+
+    /// @copydoc setClientInfo
+    void setClientInfo(int clientInfo = 0, int index = 0);
 
     /* Returns true if the Nuclear Missile Silo has a nuke */
     virtual bool hasNuke() const = 0;

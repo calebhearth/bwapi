@@ -18,7 +18,7 @@ namespace BWAPI
     initialPosition  = Positions::None;
     lastCommandFrame = 0;
     lastCommand      = UnitCommand();
-    clientInfo       = nullptr;
+    memset(clientInfo, 0, sizeof(clientInfo));
     connectedUnits.clear();
   }
   //------------------------------------- INITIAL INFORMATION FUNCTIONS --------------------------------------
@@ -454,14 +454,18 @@ namespace BWAPI
     return connectedUnits;
   }
   //--------------------------------------------- GET CLIENT INFO --------------------------------------------
-  void* UnitImpl::getClientInfo() const
+  void* UnitImpl::getClientInfo(int index) const
   {
-    return clientInfo;
+    if ( index < 0 || index > 255 )
+      return nullptr;
+    return clientInfo[index];
   }
   //--------------------------------------------- SET CLIENT INFO --------------------------------------------
-  void UnitImpl::setClientInfo(void* clientinfo)
+  void UnitImpl::setClientInfo(void* clientinfo, int index)
   {
-    clientInfo = clientinfo;
+    if ( index < 0 || index > 255 )
+      return;
+    this->clientInfo[index] = clientinfo;
   }
   //--------------------------------------------- EXISTS -----------------------------------------------------
   bool UnitImpl::exists() const

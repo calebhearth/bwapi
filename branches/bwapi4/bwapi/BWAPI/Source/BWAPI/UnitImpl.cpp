@@ -46,7 +46,6 @@ namespace BWAPI
       , lastCommandFrame(0)
       , lastCommand()
       , id(-1)
-      , clientInfo(nullptr)
   {
     self = &data;
     clear();
@@ -146,7 +145,7 @@ namespace BWAPI
     nukeDetected       = false;
     lastType           = UnitTypes::Unknown;
     lastPlayer         = nullptr;
-    clientInfo         = nullptr;
+    MemZero(clientInfo);
     updateData();
   }
 

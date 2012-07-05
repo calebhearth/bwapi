@@ -160,7 +160,10 @@ namespace BWAPI
     return this->getOrder() == Orders::Upgrade;
   }
 
-
+  void Unit::setClientInfo(int clientInfo, int index)
+  {
+    this->setClientInfo((void*)clientInfo, index);
+  }
   //--------------------------------------------- ATTACK MOVE ------------------------------------------------
   bool Unit::attack(PositionOrUnit target, bool shiftQueueCommand)
   {

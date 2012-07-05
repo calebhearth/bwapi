@@ -16,7 +16,7 @@ namespace BWAPI
       Position    initialPosition;
       int         lastCommandFrame;
       UnitCommand lastCommand;
-      void        *clientInfo;
+      void        *clientInfo[256];
     public:
       UnitData* self;
       Unitset   connectedUnits;
@@ -109,8 +109,8 @@ namespace BWAPI
       virtual Unitset   getInterceptors() const;
       virtual Unit*     getHatchery() const;
       virtual Unitset   getLarva() const;
-      virtual void      *getClientInfo() const;
-      virtual void      setClientInfo(void* clientinfo = nullptr);
+      virtual void      *getClientInfo(int index = 0) const;
+      virtual void      setClientInfo(void* clientinfo = nullptr, int index = 0);
 
       virtual bool hasNuke() const;
       virtual bool isAccelerating() const;

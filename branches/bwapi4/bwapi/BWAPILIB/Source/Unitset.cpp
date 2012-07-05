@@ -66,11 +66,18 @@ namespace BWAPI
     return retSet;
   }
   ////////////////////////////////////////////////////////// Misc
-  void Unitset::setClientInfo(void *clientInfo) const
+  void Unitset::setClientInfo(void *clientInfo, int index) const
   {
+    if ( index < 0 || index > 255 )
+      return;
+
     // Assign the client info to all units in the set
     for ( Unitset::iterator i = this->begin(); i != this->end(); ++i )
-      i->setClientInfo(clientInfo);
+      i->setClientInfo(clientInfo, index);
+  }
+  void Unitset::setClientInfo(int clientInfo, int index) const
+  {
+    this->setClientInfo((void*)clientInfo, index);
   }
 
   Unitset Unitset::getUnitsInRadius(int radius, const UnitFilter &pred) const

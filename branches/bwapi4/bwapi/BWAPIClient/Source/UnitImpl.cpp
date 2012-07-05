@@ -13,7 +13,6 @@
 namespace BWAPI
 {
   UnitImpl::UnitImpl(int id)
-    : clientInfo(nullptr)
   {
     this->self = &(BWAPI::BWAPIClient.data->units[id]);
     this->id   = id;

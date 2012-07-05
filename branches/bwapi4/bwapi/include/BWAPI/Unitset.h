@@ -98,7 +98,8 @@ namespace BWAPI
     /// information is to be cleared.
     /// @~
     /// @see Unit::setClientInfo
-    void setClientInfo(void *clientInfo = nullptr) const;
+    void setClientInfo(void *clientInfo = nullptr, int index = 0) const;
+    void setClientInfo(int clientInfo = 0, int index = 0) const;
 
     Unitset getUnitsInRadius(int radius, const UnitFilter &pred = nullptr) const;
     Unit    *getClosestUnit(const UnitFilter &pred = nullptr, int radius = 999999) const;
