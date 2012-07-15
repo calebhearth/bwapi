@@ -455,7 +455,7 @@ BOOL STORMAPI SNetReportGameResult(unsigned int a1, int size, int a3, int a4, in
 int  STORMAPI SNetSendLeagueCommand(char *cmd, char *callback);
 int  STORMAPI SNetSendReplayPath(int a1, int a2, char *replayPath);
 int  STORMAPI SNetGetLeagueName(int leagueID);
-BOOL STORMAPI SNet144(char *buffer);
+BOOL STORMAPI SNet144(char *buffer); // get player something (void **data[8])
 int  STORMAPI SNetLeagueLogout(char *bnetName);
 int  STORMAPI SNetGetLeaguePlayerName(char *curPlayerLeageName, size_t nameSize);
 
@@ -506,7 +506,7 @@ BOOL STORMAPI SFileOpenFileEx(HANDLE hMpq, const char *szFileName, DWORD dwSearc
 #define SFILE_FROM_MPQ        0x00000000
 #define SFILE_FROM_ABSOLUTE   0x00000001
 #define SFILE_FROM_RELATIVE   0x00000002
-#define SFILE_UNKNOWN_04      0x00000004
+#define SFILE_FROM_DISK       0x00000004
 
 #endif
 
@@ -514,7 +514,12 @@ BOOL STORMAPI SFileReadFile(HANDLE hFile, void *buffer, DWORD nNumberOfBytesToRe
 
 void STORMAPI SFileSetLocale(LCID lcLocale);
 
-BOOL STORMAPI SFileSetIoErrorMode(int mode, BOOL (STORMAPI *callback)(char*,int,int) );
+// mode:    0 - Silent (callback is NULL)
+//          1 - Application Defined
+//          2 - Handled by storm (callback is NULL)
+// BOOL STORMAPI callback(const char *pszFilename, DWORD dwErrCode, DWORD dwErrCount)
+BOOL STORMAPI SFileSetIoErrorMode(DWORD mode, BOOL (STORMAPI *callback)(const char*,DWORD,DWORD) );
+
 BOOL STORMAPI SFileGetArchiveName(HANDLE hArchive, char *name, int length);
 BOOL STORMAPI SFileGetFileName(HANDLE hFile, char *buffer, int length);
 
@@ -889,14 +894,34 @@ BOOL STORMAPI SVidPlayBegin(char *filename, int arg4, int a3, int a4, int a5, in
 BOOL STORMAPI SVidPlayContinueSingle(HANDLE video, int a2, int a3);
 BOOL STORMAPI SVidPlayEnd(HANDLE video);
 
-// dwErrMessage - Message from GetLastError
-// logfile/logline - Same as SMemAlloc/SMemFree
-// message - additional message/info
-// allowOption - Gives user the option to attempt to continue execution instead of immediate exit.
-// exitCode - the exit code to pass to TerminateProcess
-//BOOL STORMAPI SErrDisplayError(DWORD dwErrMsg, const char *logfilename, int logline, const char *message, BOOL allowOption, int exitCode);
-// Instead of const char *message, has formatting.
-//BOOL SErrDisplayErrorFmt(DWORD dwErrMsg, const char *logfilename, int logline, BOOL allowOption, int exitCode, const char *format, ...);
+/* SErrDisplayError @ 461
+ *
+ * Displays a formatted error message. The message is detailed and flexible for many applications.
+ * The message will be different if there is a debugger attached. Will typically terminate the application
+ * unless the option to continue is given.
+ *
+ *  dwErrMessage:   The error code. See SErrGetLastError and GetLastError.
+ *  logfilename:    The name of the file or object that this call belongs to.
+ *  logline:        The line in the file or one of the SLOG_ macros.
+ *  message:        A message or expression with additional information.
+ *  allowOption:    If TRUE, allows the user the option to continue execution, otherwise the program will terminate.
+ *  exitCode:       The exit code used for program termination.
+ *
+ *  Returns TRUE if the user chose to continue execution, FALSE otherwise.
+ */
+BOOL
+STORMAPI
+SErrDisplayError(
+    __in DWORD dwErrMsg,
+    __in const char *logfilename,
+    __in int logline,
+    __in const char *message = NULL,
+    __in BOOL allowOption = FALSE,
+    __in int exitCode = 1);
+
+#define SAssert(x) { if ( !(x) ) SErrDisplayError(STORM_ERROR_ASSERTION, __FILE__, __LINE__, #x) }
+
+#define SEDisplayError(err) SErrDisplayError(e, __FILE__, __LINE__)
 
 /*  SErrGetErrorStr @ 462
  *  
@@ -917,6 +942,7 @@ SErrGetErrorStr(
     __in  size_t bufferchars);
 
 #define SEGetErrorStr(e,b) SErrGetErrorStr(e,b,sizeof(b))
+
 
 /*  SErrGetLastError @ 463
  *  
@@ -1182,6 +1208,44 @@ void  STORMAPI SRgnCreateRegion(HANDLE *hRgn, int a2);
 void  STORMAPI SRgnDeleteRegion(HANDLE hRgn);
 
 void  STORMAPI SRgn529i(int handle, int a2, int a3);
+
+
+/* SErrDisplayErrorFmt @ 562
+ *
+ * Displays a formatted error message. The message is detailed and flexible for many applications.
+ * The message will be different if there is a debugger attached. Will typically terminate the application
+ * unless the option to continue is given.
+ *
+ *  dwErrMessage:   The error code. See SErrGetLastError and GetLastError.
+ *  logfilename:    The name of the file or object that this call belongs to.
+ *  logline:        The line in the file or one of the SLOG_ macros.
+ *  allowOption:    If TRUE, allows the user the option to continue execution, otherwise the program will terminate.
+ *  exitCode:       The exit code used for program termination.
+ *  format:         Additional message formatting. See printf.
+ *
+ *  Returns TRUE if the user chose to continue execution, FALSE otherwise.
+ */
+BOOL
+SErrDisplayErrorFmt(
+    __in DWORD dwErrMsg,
+    __in const char *logfilename,
+    __in int logline,
+    __in BOOL allowOption,
+    __in int exitCode,
+    __in const char *format,
+    ...);
+
+#define SEDisplayErrorFmt(err,...) SErrDisplayErrorFmt(err, __FILE__, __LINE__, FALSE, 1, __VA_ARGS__)
+
+/*  SErrCatchUnhandledExceptions @ 567
+ *  
+ *  Registers a top-level exception filter managed entirely by Storm.
+ *  The registered filter will display formatted exception information by calling SErrDisplayError.
+ */
+void
+STORMAPI
+SErrCatchUnhandledExceptions();
+
 
 /*  SStrChr @ 571
  *  

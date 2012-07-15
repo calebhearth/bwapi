@@ -170,6 +170,7 @@ BOOL STORMAPI SVidPlayBegin(char *filename, int arg4, int a3, int a4, int a5, in
 BOOL STORMAPI SVidPlayContinueSingle(HANDLE video, int a2, int a3) rBool;
 BOOL STORMAPI SVidPlayEnd(HANDLE video) rBool;
 
+BOOL STORMAPI SErrDisplayError(DWORD dwErrMsg, const char *logfilename, int logline, const char *message, BOOL allowOption, int exitCode) rBool;
 BOOL STORMAPI SErrGetErrorStr(DWORD dwErrCode, char *buffer, size_t bufferchars) rBool;
 DWORD STORMAPI SErrGetLastError() rInt;
 
@@ -198,6 +199,10 @@ void STORMAPI SRgnCreateRegion(HANDLE *hRgn, int a2) rVoid;
 void STORMAPI SRgnDeleteRegion(HANDLE hRgn) rVoid;
 
 void STORMAPI SRgn529i(int handle, int a2, int a3) rVoid;
+
+BOOL SErrDisplayErrorFmt(DWORD dwErrMsg, const char *logfilename, int logline, BOOL allowOption, int exitCode, const char *format, ...) rBool;
+
+void STORMAPI SErrCatchUnhandledExceptions() rVoid;
 
 char* STORMAPI SStrChr(const char *string, char c) rPVoid;
 char* STORMAPI SStrChrR(const char *string, char c) rPVoid;
