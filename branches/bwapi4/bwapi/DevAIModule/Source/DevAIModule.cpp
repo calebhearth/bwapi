@@ -24,11 +24,12 @@ void DevAIModule::onStart()
   mapH = bw->mapHeight();
   mapW = bw->mapWidth();
 
-  // Order your workers to gather from the nearest mineral field
-  Unitset myWorkers( self->getUnits() );
-  myWorkers.erase_if( ~(IsWorker && IsCompleted && ~IsCarryingSomething) );
-  myWorkers.gather( myWorkers.getClosestUnit( IsMineralField && Resources > 100 ) );
+  // make things go fast
+  bw->setLocalSpeed(0);
+  bw->setFrameSkip(16);
 
+  // set command optimization
+  bw->setCommandOptimizationLevel(3);
 }
 
 void DevAIModule::onEnd(bool isWinner)
@@ -39,16 +40,42 @@ DWORD dwLastTickCount;
 bool testunload;
 void DevAIModule::onFrame()
 {
-  if ( bw->isReplay() )
+  if ( bw->isReplay() ) // ignore everything if in a replay
     return;
 
+
+  // Get the best logical FPS
   int tFPS = bw->getFPS();
   if ( tFPS > bestFPS )
     bestFPS = tFPS;
 
+  // Display it
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
 
+  // Limit logical frames processed to prevent stacking commands
+  if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
+    return;
+
+  Unitset myUnits = self->getUnits();
+  for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
+  {
+    if ( u->isIdle() )  // idle units
+    {
+      if ( u->getType().isWorker() ) // worker units
+      {
+        u->gather( u->getClosestUnit(IsMineralField, 1024) );
+        
+      }
+
+      if ( u->getType().isResourceDepot() ) // center
+      {
+        u->train( u->getType().getRace().getWorker() );
+      }
+      
+    }
+
+  }
 }
 
 void DevAIModule::onSendText(std::string text)

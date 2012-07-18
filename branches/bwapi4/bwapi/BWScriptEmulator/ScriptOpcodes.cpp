@@ -254,7 +254,7 @@ void aithread::execute()
         this->saveDebug(Text::Yellow, bOpcode);
         Unitset myUnits(self->getUnits());
       
-        myUnits.erase_if( ~((GetType == UnitTypes::Protoss_Dark_Templar || GetType == UnitTypes::Hero_Dark_Templar)
+        myUnits.erase_if( !((GetType == UnitTypes::Protoss_Dark_Templar || GetType == UnitTypes::Hero_Dark_Templar)
                             && Exists && IsCompleted) );
         myUnits.move(this->locationCenter);
         // Note: Needs special reassignment (CAIControl, AICaptain)
@@ -415,7 +415,7 @@ void aithread::execute()
         this->saveDebug(Text::Green, bOpcode, "p_%X", wJmpOffset);
         
         Unitset enemyUnits( bw->enemies().getUnits() );
-        enemyUnits.erase_if( ~(Exists && IsBuilding && ~IsLifted) );
+        enemyUnits.erase_if( !(Exists && IsBuilding && !IsLifted) );
         for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
         {
           if ( u->hasPath(this->locationCenter) )
@@ -509,7 +509,7 @@ void aithread::execute()
         int bestDistance = 99999999;
         Player *closestEnemy = NULL;
         Unitset enemyUnits( Broodwar->enemies().getUnits() );
-        enemyUnits.erase_if( ~(~IsBuilding || IsLifted) );
+        enemyUnits.erase_if( !(!IsBuilding || IsLifted) );
         for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
         {
           int thisDistance = u->getPosition().getApproxDistance(this->locationCenter);
@@ -743,7 +743,7 @@ void aithread::execute()
     case AISCRIPT::EXIT_TRANSPORT: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom,
-                              IsCompleted && GetPlayer == self && ~IsHallucination && 
+                              IsCompleted && GetPlayer == self && !IsHallucination && 
                               (GetType != UnitTypes::Zerg_Overlord || [](Unit*){return self->getUpgradeLevel(UpgradeTypes::Ventral_Sacs);} ) && IsTransport ).unloadAll();
       continue;
     case AISCRIPT::SHAREDVISION_ON: // WORKAROUND (performs reverse vision)

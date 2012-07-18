@@ -292,7 +292,7 @@ namespace BWAPI
                                                  top,
                                                  right,
                                                  bottom,
-                                                 [&](Unit *u){ if ( !pred || pred(u) )
+                                                 [&](Unit *u){ if ( !pred.isValid() || pred(u) )
                                                                  unitFinderResults.push_back(u); });
     // Return results
     return unitFinderResults;
@@ -308,7 +308,7 @@ namespace BWAPI
                                                   top,
                                                   right,
                                                   bottom,
-                                                  [&](Unit *u){ if ( !pred || pred(u) )
+                                                  [&](Unit *u){ if ( !pred.isValid() || pred(u) )
                                                                 {
                                                                   if ( !pBestUnit )
                                                                     pBestUnit = u;
@@ -341,7 +341,7 @@ namespace BWAPI
                                                   topLeft.y,
                                                   botRight.x,
                                                   botRight.y,
-                                                  [&](Unit *u){ if ( !pred || pred(u) )
+                                                  [&](Unit *u){ if ( !pred.isValid() || pred(u) )
                                                                 {
                                                                   if ( !pBestUnit )
                                                                     pBestUnit = u;

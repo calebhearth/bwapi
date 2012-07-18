@@ -22,7 +22,7 @@ namespace BWAPI
                                          this->getTop()    - radius,
                                          this->getRight()  + radius,
                                          this->getBottom() + radius,
-                                         [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); });
+                                         [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred.isValid() || pred(u)); });
   }
 
   Unit *Unit::getClosestUnit(const UnitFilter &pred, int radius) const
@@ -32,7 +32,7 @@ namespace BWAPI
       return nullptr;
     
     return Broodwar->getClosestUnitInRectangle(this->getPosition(), 
-                                                [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred || pred(u)); }, 
+                                                [&](Unit *u){ return this != u && this->getDistance(u) <= radius && (!pred.isValid() || pred(u)); }, 
                                                 this->getLeft()   - radius,
                                                 this->getTop()    - radius,
                                                 this->getRight()  + radius,

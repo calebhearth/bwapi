@@ -175,9 +175,9 @@ namespace BWAPI
       Position targPos = lt + Position(TilePosition(width,height))/2;
       for ( TilePosition::iterator i(lt,rb); i; ++i )
       {
-        Unitset unitsOnTile = Broodwar->getUnitsOnTile(i, ~IsBuilding &&
-                                                          ~IsFlyer    &&
-                                                          ~IsLoaded   &&
+        Unitset unitsOnTile = Broodwar->getUnitsOnTile(i, !IsBuilding &&
+                                                          !IsFlyer    &&
+                                                          !IsLoaded   &&
                                                           [&builder](Unit *u){ return u != builder;} &&
                                                           GetLeft   <= targPos.x + type.dimensionRight()  &&
                                                           GetTop    <= targPos.y + type.dimensionDown()   &&
