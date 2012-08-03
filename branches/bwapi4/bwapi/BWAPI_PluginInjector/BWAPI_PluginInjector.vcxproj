@@ -45,9 +45,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Message>Updating revision information</Message>
-      <Command>cd "$(SolutionDir)"
+      <Command>pushd "$(SolutionDir)"
 $(SolutionDir)\revisionUpdate.bat
-</Command>
+popd</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
@@ -88,9 +88,9 @@ COPY /Y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\Release_Binary\MP
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Message>Updating revision information</Message>
-      <Command>cd "$(SolutionDir)"
+      <Command>pushd "$(SolutionDir)"
 $(SolutionDir)\revisionUpdate.bat
-</Command>
+popd</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>

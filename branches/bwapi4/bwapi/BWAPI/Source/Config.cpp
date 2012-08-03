@@ -118,7 +118,7 @@ void InitPrimaryConfig()
   if ( gdwProcNum > 0 )
   {
     char szWmodeCfg[MAX_PATH];
-    sprintf_s(szWmodeCfg, MAX_PATH, "%s\\wmode.ini", szInstallPath);
+    sprintf_s(szWmodeCfg, MAX_PATH, "%swmode.ini", szInstallPath);
 
     DWORD dwWmodeConfigExists = GetFileAttributes(szWmodeCfg);
     if ( dwWmodeConfigExists != INVALID_FILE_ATTRIBUTES && 

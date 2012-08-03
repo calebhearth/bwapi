@@ -43,9 +43,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Message>Updating revision information</Message>
-      <Command>cd "$(SolutionDir)"
+      <Command>pushd "$(SolutionDir)"
 $(SolutionDir)\revisionUpdate.bat
-</Command>
+popd</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -78,9 +78,9 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Message>Updating revision information</Message>
-      <Command>cd "$(SolutionDir)"
+      <Command>pushd "$(SolutionDir)"
 $(SolutionDir)\revisionUpdate.bat
-</Command>
+popd</Command>
     </PreBuildEvent>
     <ClCompile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>

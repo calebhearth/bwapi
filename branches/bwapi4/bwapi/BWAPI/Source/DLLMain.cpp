@@ -189,33 +189,48 @@ DWORD WINAPI PersistentPatch(LPVOID)
 //------------------------------------------------- DLL MAIN -------------------------------------------------
 BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
 {
+  // Event to prevent the injection of more than one BWAPI DLL
+  static HANDLE hEvent = nullptr;
+  
+  static char szEventName[32];  // The name of the event, unique for this process
+  sprintf(szEventName, "BWAPI #%u", GetCurrentProcessId());
+
   switch (ul_reason_for_call)
   {
-    case DLL_PROCESS_ATTACH:
-      {
+  case DLL_PROCESS_DETACH:
+    if ( hEvent != nullptr )
+      CloseHandle(hEvent);  // destroy the event
+
+    break;
+  case DLL_PROCESS_ATTACH:
+
+    // Create a BWAPI event for this process
+    hEvent = CreateEvent(NULL, FALSE, FALSE, szEventName);
+    if ( GetLastError() == ERROR_ALREADY_EXISTS ) // There is a BWAPI module already injected
+      return FALSE; // Prevent the injection of this DLL
+
 #ifdef _DEBUG
-        _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-        // Retrieve the initial configuration stuff if not already
-        InitPrimaryConfig();
+    // Retrieve the initial configuration stuff if not already
+    InitPrimaryConfig();
 
-        // Do version checking
-        CheckVersion();
+    // Do version checking
+    CheckVersion();
 
-        // Load the auto-menu config
-        BWAPI::BroodwarImpl.loadAutoMenuData();
+    // Load the auto-menu config
+    BWAPI::BroodwarImpl.loadAutoMenuData();
 
-        // Apply all hacks and patches to the game
-        ApplyCodePatches();
+    // Apply all hacks and patches to the game
+    ApplyCodePatches();
 
-        // Initialize BWAPI
-        BWAPI::BWAPI_init();
+    // Initialize BWAPI
+    BWAPI::BWAPI_init();
 
-        // Create our thread that persistently applies hacks
-        CreateThread(NULL, 0, &PersistentPatch, NULL, 0, NULL);
+    // Create our thread that persistently applies hacks
+    CreateThread(NULL, 0, &PersistentPatch, NULL, 0, NULL);
 
-        return TRUE;
-      }
+    break;
   }
   return TRUE;
 }
