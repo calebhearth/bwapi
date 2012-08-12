@@ -475,7 +475,7 @@ void __stdcall DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds)
 }
 
 //------------------------------------------- AUTH ARCHIVE HOOK ----------------------------------------------
-BOOL __stdcall _SFileAuthenticateArchive(HANDLE hArchive, DWORD *dwReturnVal)
+BOOL __stdcall _SFileAuthenticateArchive(HANDLE /*hArchive*/, DWORD *dwReturnVal)
 {
   /* Always return a successful check to bypass our custom SNP module authentication */
   if ( dwReturnVal )
@@ -533,7 +533,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
          lastFile == "dlgs\\terran.grp"  ||
          lastFile == "dlgs\\zerg.grp" )
     {
-      if ( strcmpi(logfilename, ".?AU_DLGGRP@@") == 0 )
+      if ( _strcmpi(logfilename, ".?AU_DLGGRP@@") == 0 )
       {
         if ( leakUIClassLoc )
           SMFree(leakUIClassLoc);
@@ -541,7 +541,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
         BW::BWDATA::customList_UIDlgData[0] = BW::BWDATA::customList_UIDlgData;  // list with custom allocator?
         BW::BWDATA::customList_UIDlgData[1] = (void*)~(u32)BW::BWDATA::customList_UIDlgData;
       }
-      else if ( strcmpi(logfilename, "Starcraft\\SWAR\\lang\\game.cpp") == 0 )
+      else if ( _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\game.cpp") == 0 )
       {
         if ( leakUIGrpLoc )
           SMFree(leakUIGrpLoc);
@@ -560,7 +560,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   }
 
   /* Save the allocated fog of war pointer */
-  if ( amount == 0x40000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 606 )
+  if ( amount == 0x40000 && _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 606 )
   {
     BW::BWDATA::ActiveTileArray = (BW::activeTile*)rval;
   }
@@ -573,7 +573,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   }
 
   /* Save the allocated SAI_Paths pointer */
-  if ( strcmpi(logfilename, "Starcraft\\SWAR\\lang\\sai_PathCreate.cpp") == 0 && logline == 210 )
+  if ( _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\sai_PathCreate.cpp") == 0 && logline == 210 )
   {
     BW::BWDATA::SAIPathing = (BW::SAI_Paths*)rval;
   }
@@ -586,7 +586,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
   }
 
   /* Save the allocated map tile array pointer */
-  if ( amount == 0x20000 && strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 603 )
+  if ( amount == 0x20000 && _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 603 )
   {
     BW::BWDATA::MapTileArray = (u16*)rval;
   }

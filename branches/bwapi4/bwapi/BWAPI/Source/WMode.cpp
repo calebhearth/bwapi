@@ -281,8 +281,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             GetClientRect(hWnd, &tempRect);
             windowRect.right  = tempRect.right;
             windowRect.bottom = tempRect.bottom;
-            WritePrivateProfileString("window", "width",  itoa(tempRect.right,  szTemp, 10), szConfigPath);
-            WritePrivateProfileString("window", "height", itoa(tempRect.bottom, szTemp, 10), szConfigPath);
+            WritePrivateProfileString("window", "width",  _itoa(tempRect.right,  szTemp, 10), szConfigPath);
+            WritePrivateProfileString("window", "height", _itoa(tempRect.bottom, szTemp, 10), szConfigPath);
             break;
           }
         }// wParam switch
@@ -301,8 +301,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
           windowRect.top  = tempRect.top;
 
           char szTemp[32];
-          WritePrivateProfileString("window", "left", itoa(tempRect.left, szTemp, 10), szConfigPath);
-          WritePrivateProfileString("window", "top",  itoa(tempRect.top, szTemp, 10), szConfigPath);
+          WritePrivateProfileString("window", "left", _itoa(tempRect.left, szTemp, 10), szConfigPath);
+          WritePrivateProfileString("window", "top",  _itoa(tempRect.top, szTemp, 10), szConfigPath);
         }
         break;
       } // case WM_MOVE

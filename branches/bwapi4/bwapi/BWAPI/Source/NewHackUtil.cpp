@@ -97,7 +97,7 @@ namespace HackUtil
       }
       else
       {
-        if (strcmpi(name, (const char*)((PIMAGE_IMPORT_BY_NAME)((u32)importOrigin[i].u1.AddressOfData + (u32)tempModule))->Name) == 0)
+        if (_strcmpi(name, (const char*)((PIMAGE_IMPORT_BY_NAME)((u32)importOrigin[i].u1.AddressOfData + (u32)tempModule))->Name) == 0)
         {
           FARPROC oldFxn = (FARPROC)importFunction[i];
           WriteMem(&importFunction[i], &patchFunction, 4);

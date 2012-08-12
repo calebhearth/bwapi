@@ -79,7 +79,7 @@ void bwDrawBox(int x, int y, int w, int h, int color, int ctype)
   }
 }
 
-void bwDrawBoxEx(int _x, int _y, int _w, int _h, int borderColor, int borderThickness, int color, int ctype, int style, int intensity)
+void bwDrawBoxEx(int _x, int _y, int _w, int _h, int borderColor, int borderThickness, int color, int ctype, int /*style*/, int intensity)
 {
   iRect box = { _x, _y, _w, _h };
   convertCoordType(box.left, box.top, ctype);

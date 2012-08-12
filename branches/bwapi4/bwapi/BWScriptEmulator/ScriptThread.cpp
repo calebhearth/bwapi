@@ -244,12 +244,12 @@ void aithread::showDebug(int x, int y)
   for each ( char *s in this->debugQueue )
   {
     char n[512];
-    strcpy(n, s);
+    strcpy_s(n, 512, s);
     
     char *mid = strchr(n, ' ');
     if ( mid )
     {
-      *mid = 0;
+      *mid = '\0';
       ++mid;
     }
     
@@ -282,7 +282,7 @@ void aithread::saveDebug(const char prefix, int iOpcode, const char *pszFormat, 
   sprintf_s(szFinalBuffer, 512, "%c%s %s", prefix, AISCRIPT::getOpcodeName(iOpcode), szBuffer);
 
   char *tmp = (char*)malloc(strlen(szFinalBuffer)+1);
-  strcpy(tmp, szFinalBuffer);
+  strcpy_s(tmp, strlen(szFinalBuffer)+1, szFinalBuffer);
 
   if ( this->debugQueue.size() > 32 )
   {

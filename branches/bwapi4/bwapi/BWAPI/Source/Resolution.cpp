@@ -215,7 +215,7 @@ void drawGameText()
   blitGameText(11, 420, 24);
 }
 
-void GameUpdate(BW::bitmap *pSurface, BW::bounds *pBounds)
+void GameUpdate(BW::bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)
 {
   updateImageDrawingData();   //BW::BWFXN_updateImageData();
   BW::BWFXN_drawMapTiles();

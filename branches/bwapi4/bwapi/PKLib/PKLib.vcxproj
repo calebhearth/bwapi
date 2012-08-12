@@ -40,7 +40,6 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
-      <DisableSpecificWarnings>4201;4057;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Lib>

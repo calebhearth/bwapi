@@ -26,6 +26,9 @@ DWORD d_eaxSave, d_ebxSave, d_ecxSave, d_edxSave, d_esiSave, d_ediSave, d_espSav
                                   __asm mov esp, d_espSave  \
                                   __asm mov ebp, d_ebpSave }
 
+
+#pragma warning( disable: 4740 )
+
 //--------------------------------------------- REPAIR HOOK --------------------------------------------------
 void __declspec(naked) _repairHook()
 {
@@ -163,3 +166,5 @@ void __declspec(naked) _refundMinAndGas5Hook()
     jmp BW::BWFXN_RefundMinAndGas5ReturnAddress
   }
 }
+
+#pragma warning( default: 4740 )

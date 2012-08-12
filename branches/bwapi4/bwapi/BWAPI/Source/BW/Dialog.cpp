@@ -688,7 +688,7 @@ namespace BW
       
       while ( parent )
       {
-        if (parent->pszText && strcmpi(parent->pszText, pszName) == 0 )
+        if (parent->pszText && _strcmpi(parent->pszText, pszName) == 0 )
           return parent;
         parent = parent->next();
       }

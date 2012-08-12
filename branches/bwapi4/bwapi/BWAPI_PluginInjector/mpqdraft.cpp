@@ -28,12 +28,12 @@ BOOL WINAPI MPQDraftPluginInterface::GetPluginName(LPSTR pPluginName, DWORD name
   return TRUE;
 }
 
-BOOL WINAPI MPQDraftPluginInterface::CanPatchExecutable(LPCSTR exefilename)
+BOOL WINAPI MPQDraftPluginInterface::CanPatchExecutable(LPCSTR /*exefilename*/)
 {  //Generally you check if the version is right here
   return TRUE;
 }
   
-BOOL WINAPI MPQDraftPluginInterface::Configure(HWND parentwindow)
+BOOL WINAPI MPQDraftPluginInterface::Configure(HWND /*parentwindow*/)
 {
   return RunConfig() ? TRUE : FALSE;
 }
@@ -43,7 +43,7 @@ BOOL WINAPI MPQDraftPluginInterface::ReadyForPatch()
   return TRUE;
 }
 
-BOOL WINAPI MPQDraftPluginInterface::GetModules(MPQDRAFTPLUGINMODULE* pluginmodules, LPDWORD nummodules)
+BOOL WINAPI MPQDraftPluginInterface::GetModules(MPQDRAFTPLUGINMODULE* /*pluginmodules*/, LPDWORD nummodules)
 {  //Weird stuff, i doubt you'll use it
   if (!nummodules)
     return FALSE;
@@ -51,7 +51,7 @@ BOOL WINAPI MPQDraftPluginInterface::GetModules(MPQDRAFTPLUGINMODULE* pluginmodu
   return TRUE;
 }
 
-BOOL WINAPI MPQDraftPluginInterface::InitializePlugin(IMPQDraftServer* server)
+BOOL WINAPI MPQDraftPluginInterface::InitializePlugin(IMPQDraftServer* /*server*/)
 {
   std::string target = GetBWAPITarget();
 

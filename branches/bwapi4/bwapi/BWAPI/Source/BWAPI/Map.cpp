@@ -44,7 +44,7 @@ namespace BWAPI
   std::string Map::getPathName()
   {
     char *map = BW::BWDATA::CurrentMapFileName;
-    if ( szInstallPath[0] && !strnicmp(map, szInstallPath, strlen(szInstallPath)) )
+    if ( szInstallPath[0] && !_strnicmp(map, szInstallPath, strlen(szInstallPath)) )
       map = &map[strlen(szInstallPath)];
     std::string mapPathName(map);
     return mapPathName;

@@ -4,7 +4,7 @@
 
 HINSTANCE hGlobInstance;
 
-BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
   switch ( dwReason )
   {

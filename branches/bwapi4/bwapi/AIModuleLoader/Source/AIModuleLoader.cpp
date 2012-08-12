@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <cstdio>
+#include <iostream>
 
 #include <BWAPI/Client.h>
 #include <BWAPI.h>
@@ -19,14 +20,15 @@ void reconnect()
 int main(int argc, const char* argv[])
 {
   const char* szDllPath = "";
-  char buffer[1024] = { 0 };
+  std::string buff;
+
   if (argc>=2)
     szDllPath = argv[1];
   else
   {
-    printf("Enter path name to AI DLL:");
-    scanf("%1024s", buffer);
-    szDllPath = buffer;
+    std::cout << "Enter path name to AI DLL: " << std::endl;
+    std::getline(std::cin, buff);
+    szDllPath = buff.c_str();
   }
   BWAPI::BWAPI_init();
   printf("Connecting...");

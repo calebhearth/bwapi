@@ -32,7 +32,7 @@ DWORD getProcessCount(const char *pszProcName)
   {
     do
     {
-      if( strcmpi(pe32.szExeFile, pszProcName) == 0 )
+      if( _strcmpi(pe32.szExeFile, pszProcName) == 0 )
         ++dwCount;
     } while( Process32Next(hSnapshot, &pe32) );
   }
@@ -45,13 +45,13 @@ std::string LoadConfigString(const char *pszKey, const char *pszItem, const char
 {
   char buffer[MAX_PATH];
   GetPrivateProfileString(pszKey, pszItem, pszDefault ? pszDefault : "", buffer, MAX_PATH, szConfigPath);
-  return std::string(strupr(buffer));
+  return std::string(_strupr(buffer));
 }
 int LoadConfigInt(const char *pszKey, const char *pszItem, const int iDefault)
 {
   return GetPrivateProfileInt(pszKey, pszItem, iDefault, szConfigPath);
 }
-std::string LoadRegString(const char *pszKeyName, const char *pszValueName, BYTE bSRegFlags)
+std::string LoadRegString(const char *pszKeyName, const char *pszValueName)
 {
   char szTemp[MAX_PATH] = { 0 };
   SRegLoadString(pszKeyName, pszValueName, SREG_NONE, szTemp, MAX_PATH);
