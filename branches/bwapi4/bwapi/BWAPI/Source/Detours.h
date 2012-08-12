@@ -28,6 +28,7 @@ DWORD  WINAPI _GetFileAttributes(LPCTSTR lpFileName);
 HANDLE WINAPI _CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 HWND   WINAPI _CreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
 VOID   WINAPI _Sleep(DWORD dwMilliseconds);
+HANDLE WINAPI _CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 extern bool hideHUD;
 extern DWORD lastTurnTime;
@@ -52,6 +53,7 @@ extern DWORD  (WINAPI   *_GetFileAttributesOld)(LPCTSTR lpFileName);
 extern HANDLE (WINAPI   *_CreateFileOld)(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 extern HWND   (WINAPI   *_CreateWindowExAOld)(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
 extern VOID   (WINAPI   *_SleepOld)(DWORD dwMilliseconds);
+extern HANDLE (WINAPI   *_CreateThreadOld)(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 bool __fastcall TriggerActionReplacement(BW::Triggers::Action *pAction);
 extern bool (__fastcall *BWTriggerActionFxnTable[60])(BW::Triggers::Action*);

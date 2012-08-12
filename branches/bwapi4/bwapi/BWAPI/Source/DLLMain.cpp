@@ -1,6 +1,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <stdio.h>
+#include <cstdio>
+#include "Thread.h"
 
 #include <Util/Gnu.h>
 #include <Util/Foreach.h>
@@ -144,6 +145,7 @@ void CheckVersion()
 
 DWORD WINAPI PersistentPatch(LPVOID)
 {
+  RegisterThreadName("BWAPI Persistent Patch");
   for ever
   {
     Sleep(300);
@@ -183,6 +185,9 @@ DWORD WINAPI PersistentPatch(LPVOID)
         }
       }
     }
+
+    // Checks and names all registered threads, does not need to be called elsewhere
+    CheckRegisteredThreads();
   } //loop
 }
 

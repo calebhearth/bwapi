@@ -229,6 +229,9 @@
     <ClInclude Include="..\include\BWAPI.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Thread.h">
+      <Filter>Hacks\Header FIles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">
@@ -368,6 +371,9 @@
       <Filter>BWAPI\Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Holiday.cpp">
+      <Filter>Hacks\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Thread.cpp">
       <Filter>Hacks\Source</Filter>
     </ClCompile>
   </ItemGroup>

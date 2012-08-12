@@ -7,6 +7,7 @@
 
 #include "Config.h"
 #include "Recording.h"
+#include "Thread.h"
 
 #include "../../Debug.h"
 
@@ -447,6 +448,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
       break;
     }
   }
+
+  // Register Broodwar thread name
+  RegisterThreadName("Broodwar Main");
 
   // Call the original WndProc
   if ( wOriginalProc )

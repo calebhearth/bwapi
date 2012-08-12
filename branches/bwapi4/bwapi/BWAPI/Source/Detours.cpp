@@ -9,6 +9,7 @@
 #include "DLLMain.h"
 #include "Resolution.h"
 #include "Holiday.h"
+#include "Thread.h"
 
 #include "Detours.h"
 #include "BWAPI/GameImpl.h"
@@ -42,6 +43,7 @@ DWORD  (WINAPI   *_GetFileAttributesOld)(LPCTSTR lpFileName);
 HANDLE (WINAPI   *_CreateFileOld)(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 HWND   (WINAPI   *_CreateWindowExAOld)(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
 VOID   (WINAPI   *_SleepOld)(DWORD dwMilliseconds);
+HANDLE (WINAPI   *_CreateThreadOld)(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 //------------------------------------------------ RANDOM RACE --------------------------------------------------
 u8 savedRace[PLAYABLE_PLAYER_COUNT];
@@ -114,6 +116,20 @@ bool __fastcall TriggerActionReplacement(BW::Triggers::Action *pAction)
   return rval;
 }
 
+//--------------------------------------------- CREATE THREAD ------------------------------------------------
+HANDLE WINAPI _CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
+{
+  HANDLE rval = NULL;
+  if ( _CreateThreadOld )
+    rval = _CreateThreadOld(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+  else
+    rval = CreateThread(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+
+  if ( rval != NULL )
+    RegisterThreadName("Starcraft Broodwar", GetThreadId(rval) );
+  return rval;
+}
+
 //------------------------------------------------ SLEEP ----------------------------------------------------
 VOID WINAPI _Sleep(DWORD dwMilliseconds)
 {
@@ -122,6 +138,8 @@ VOID WINAPI _Sleep(DWORD dwMilliseconds)
 
   if ( _SleepOld )
     _SleepOld(dwMilliseconds);
+  else
+    Sleep(dwMilliseconds);
 }
 
 //------------------------------------------- DIRECT DRAW INIT -----------------------------------------------

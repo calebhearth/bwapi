@@ -200,6 +200,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\NewHackUtil.h" />
     <ClInclude Include="Source\Recording.h" />
     <ClInclude Include="Source\Resolution.h" />
+    <ClInclude Include="Source\Thread.h" />
     <ClInclude Include="Source\WMode.h" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +250,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClCompile Include="Source\NewHackUtil.cpp" />
     <ClCompile Include="Source\Recording.cpp" />
     <ClCompile Include="Source\Resolution.cpp" />
+    <ClCompile Include="Source\Thread.cpp" />
     <ClCompile Include="Source\WMode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

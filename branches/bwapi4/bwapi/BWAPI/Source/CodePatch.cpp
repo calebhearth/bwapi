@@ -95,6 +95,7 @@ void ApplyCodePatches()
   *(FARPROC*)&_CreateFileOld        = HackUtil::PatchImport("kernel32.dll", "CreateFileA", &_CreateFile);
   *(FARPROC*)&_FindFirstFileOld     = HackUtil::PatchImport("kernel32.dll", "FindFirstFileA", &_FindFirstFile);
   *(FARPROC*)&_SleepOld             = HackUtil::PatchImport("kernel32.dll", "Sleep", &_Sleep);
+  *(FARPROC*)&_CreateThreadOld      = HackUtil::PatchImport("kernel32.dll", "CreateThread", &_CreateThread);
 }
 
 //----------------------------------------- NET-MODE RETURN MENU ---------------------------------------------
