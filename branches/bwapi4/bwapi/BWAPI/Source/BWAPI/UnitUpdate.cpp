@@ -153,7 +153,7 @@ namespace BWAPI
       hasEmptyBuildQueue = getBuildQueueSlot < 5 ? (getBuildQueue[getBuildQueueSlot] == UnitTypes::None) : false;  //hasEmptyBuildQueue
       _isCompleted = o->statusFlag(BW::StatusFlags::Completed); //_isCompleted
     }
-    else
+    else // not alive
     {
       //------------------------------------------------------------------------------------------------------
       //isVisible

@@ -25,8 +25,8 @@ void DevAIModule::onStart()
   mapW = bw->mapWidth();
 
   // make things go fast
-  bw->setLocalSpeed(0);
-  bw->setFrameSkip(16);
+  //bw->setLocalSpeed(0);
+  //bw->setFrameSkip(16);
 
   // set command optimization
   bw->setCommandOptimizationLevel(3);
@@ -60,12 +60,38 @@ void DevAIModule::onFrame()
   Unitset myUnits = self->getUnits();
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
-    if ( u->isIdle() )  // idle units
+    if ( u->isIdle() && u->isCompleted() )  // idle units
     {
       if ( u->getType().isWorker() ) // worker units
       {
-        u->gather( u->getClosestUnit(IsMineralField, 1024) );
-        
+        // test radius units
+        //Unitset uset = u->getUnitsInRadius(1024, IsMineralField);
+        //for ( auto i = uset.begin(); i != uset.end(); ++i )
+          //Broodwar->drawLineMap(u->getPosition(), i->getPosition(), Colors::Brown);
+
+        Unit *pMineral = u->getClosestUnit(IsMineralField, 1024);
+        if ( pMineral != nullptr )
+          Broodwar->drawLineMap(u->getPosition(), pMineral->getPosition(), Colors::Green);
+        //u->gather( u->getClosestUnit(IsMineralField, 1024) );
+
+/*        
+        int bestDistance = 99999999;
+        Unit *pBestUnit = nullptr;
+
+        Unitset resources = Broodwar->getMinerals();
+        for ( auto m = resources.begin(); m != resources.end(); ++m )
+        {
+          int newDistance = m->getDistance(u->getPosition());
+          if ( newDistance < bestDistance )
+          {
+            pBestUnit = *m;
+            bestDistance = newDistance;
+          }
+        }
+        if ( pBestUnit != nullptr )
+          Broodwar->drawLineMap(u->getPosition(), pBestUnit->getPosition(), Colors::Orange);
+          */
+
       }
 
       if ( u->getType().isResourceDepot() ) // center
@@ -140,12 +166,12 @@ void DevAIModule::onUnitHide(BWAPI::Unit* unit)
 
 void DevAIModule::onUnitCreate(BWAPI::Unit* unit)
 {
-  //bw->printf("%s created", unit->getType().c_str());
+  bw->printf("%s created", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitDestroy(BWAPI::Unit* unit)
 {
-  //bw->printf("%s destroyed", unit->getType().c_str());
+  bw->printf("%s destroyed", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitMorph(BWAPI::Unit* unit)
@@ -164,5 +190,5 @@ void DevAIModule::onSaveGame(std::string gameName)
 
 void DevAIModule::onUnitComplete(BWAPI::Unit *unit)
 {
-  //bw->printf("%s completed", unit->getType().c_str());
+  bw->printf("%s completed", unit->getType().c_str());
 }

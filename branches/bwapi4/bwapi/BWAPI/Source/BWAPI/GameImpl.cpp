@@ -310,16 +310,11 @@ namespace BWAPI
                                                   bottom,
                                                   [&](Unit *u){ if ( !pred.isValid() || pred(u) )
                                                                 {
-                                                                  if ( !pBestUnit )
-                                                                    pBestUnit = u;
-                                                                  else
+                                                                  int newDistance = u->getDistance(center);
+                                                                  if ( newDistance < bestDistance )
                                                                   {
-                                                                    int newDistance = pBestUnit->getDistance(center);
-                                                                    if ( newDistance < bestDistance )
-                                                                    {
-                                                                      pBestUnit = u;
-                                                                      bestDistance = newDistance;
-                                                                    }
+                                                                    pBestUnit = u;
+                                                                    bestDistance = newDistance;
                                                                   }
                                                                 } } );
     return pBestUnit;
@@ -343,7 +338,7 @@ namespace BWAPI
                                                   botRight.y,
                                                   [&](Unit *u){ if ( !pred.isValid() || pred(u) )
                                                                 {
-                                                                  if ( !pBestUnit )
+                                                                  if ( pBestUnit == nullptr )
                                                                     pBestUnit = u;
                                                                   else
                                                                     pBestUnit = best(pBestUnit,u); 
