@@ -74,24 +74,6 @@ void DevAIModule::onFrame()
           Broodwar->drawLineMap(u->getPosition(), pMineral->getPosition(), Colors::Green);
         //u->gather( u->getClosestUnit(IsMineralField, 1024) );
 
-/*        
-        int bestDistance = 99999999;
-        Unit *pBestUnit = nullptr;
-
-        Unitset resources = Broodwar->getMinerals();
-        for ( auto m = resources.begin(); m != resources.end(); ++m )
-        {
-          int newDistance = m->getDistance(u->getPosition());
-          if ( newDistance < bestDistance )
-          {
-            pBestUnit = *m;
-            bestDistance = newDistance;
-          }
-        }
-        if ( pBestUnit != nullptr )
-          Broodwar->drawLineMap(u->getPosition(), pBestUnit->getPosition(), Colors::Orange);
-          */
-
       }
 
       if ( u->getType().isResourceDepot() ) // center

@@ -14,7 +14,7 @@ namespace BW
   {
 
     //--------------------------------------- ATTACK LOCATION CONSTRUCTOR -----------------------------------
-    Attack::Attack(BWAPI::Unit* target, int OrderID, bool queued)
+    Attack::Attack(const BWAPI::Unit* target, int OrderID, bool queued)
         : always0x15(0x15)
         , target((BWAPI::UnitImpl*)target)
         , always0xe4((u16)BWAPI::UnitTypes::None)
@@ -49,7 +49,7 @@ namespace BW
     {
     }
     //--------------------------------------- RIGHT CLICK CONSTRUCTOR ---------------------------------------
-    RightClick::RightClick(BWAPI::Unit* target, bool queued)
+    RightClick::RightClick(const BWAPI::Unit* target, bool queued)
         : always0x14(0x14)
         , target((BWAPI::UnitImpl*)target)
         , always0xe4((u16)BWAPI::UnitTypes::None)
@@ -385,7 +385,7 @@ namespace BW
     {
     }
     //------------------------------------------------ UNLOAD UNIT -------------------------------------------
-    UnloadUnit::UnloadUnit(BWAPI::Unit* unload)
+    UnloadUnit::UnloadUnit(const BWAPI::Unit* unload)
         : always0x29(0x29)
         , target((BWAPI::UnitImpl*)unload)
     {

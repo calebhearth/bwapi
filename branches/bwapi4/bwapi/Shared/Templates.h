@@ -244,17 +244,22 @@ namespace BWAPI
     //------------------------------------------- CAN MAKE ---------------------------------------------------
     static inline bool canMake(const Unit* builder, UnitType type)
     {
-      /* Error checking */
+      // Error checking
       Broodwar->setLastError();
       if ( !Broodwar->self() )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
+      // Check if the unit type is available (UMS game)
+      if ( !Broodwar->self()->isUnitAvailable(type) )
+        return Broodwar->setLastError(Errors::Access_Denied);
+
+      // Get the required UnitType
       BWAPI::UnitType requiredType = type.whatBuilds().first;
 
       Player *pSelf = Broodwar->self();
-      if ( builder )
+      if ( builder != nullptr ) // do checks if a builder is provided
       {
-        /* Check if the owner of the unit is you */
+        // Check if the owner of the unit is you
         if (builder->getPlayer() != pSelf)
           return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
@@ -270,55 +275,55 @@ namespace BWAPI
           return true;
         }
 
-        /* Check if this unit can actually build the unit type */
+        // Check if this unit can actually build the unit type
         if ( requiredType == UnitTypes::Zerg_Larva && builderType.producesLarva() )
         {
           if ( builder->getLarva().size() == 0 )
             return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
         }
         else if ( builderType != requiredType )
+        {
           return Broodwar->setLastError(Errors::Incompatible_UnitType);
+        }
 
-        /* Carrier space */
-        if ( builderType == UnitTypes::Protoss_Carrier )
+        // Carrier/Reaver space checking
+        int max_amt;
+        switch ( builderType )
         {
-          int max_amt = 4;
-          if (pSelf->getUpgradeLevel(UpgradeTypes::Carrier_Capacity) > 0)
+        case UnitTypes::Enum::Protoss_Carrier:
+        case UnitTypes::Enum::Hero_Gantrithor:
+          // Get max interceptors
+          max_amt = 4;
+          if ( pSelf->getUpgradeLevel(UpgradeTypes::Carrier_Capacity) > 0 || builderType == UnitTypes::Hero_Gantrithor )
             max_amt += 4;
-          if (builder->getInterceptorCount() + (int)builder->getTrainingQueue().size() >= max_amt)
-            return Broodwar->setLastError(Errors::Insufficient_Space);
-        }
-        else if ( builderType == UnitTypes::Hero_Gantrithor )
-        {
-          if (builder->getInterceptorCount() + (int)builder->getTrainingQueue().size() >= 8)
-            return Broodwar->setLastError(Errors::Insufficient_Space);
-        }
 
-        /* Reaver Space */
-        if ( builderType == UnitTypes::Protoss_Reaver )
-        {
-          int max_amt = 5;
-          if (pSelf->getUpgradeLevel(UpgradeTypes::Reaver_Capacity) > 0)
+          // Check if there is room
+          if ( builder->getInterceptorCount() + (int)builder->getTrainingQueue().size() >= max_amt )
+            return Broodwar->setLastError(Errors::Insufficient_Space);
+          break;
+        case UnitTypes::Enum::Protoss_Reaver:
+        case UnitTypes::Enum::Hero_Warbringer:
+          // Get max scarabs
+          max_amt = 5;
+          if ( pSelf->getUpgradeLevel(UpgradeTypes::Reaver_Capacity) > 0 || builderType == UnitTypes::Hero_Warbringer )
             max_amt += 5;
+
+          // check if there is room
           if (builder->getScarabCount() + (int)builder->getTrainingQueue().size() >= max_amt)
             return Broodwar->setLastError(Errors::Insufficient_Space);
+          break;
         }
-        else if ( builderType == UnitTypes::Hero_Warbringer )
-        {
-          if (builder->getScarabCount() + (int)builder->getTrainingQueue().size() >= 10)
-            return Broodwar->setLastError(Errors::Insufficient_Space);
-        }
-      } // builder
+      } // if builder != nullptr
 
-      /* Check if player has enough minerals */
+      // Check if player has enough minerals
       if ( pSelf->minerals() < type.mineralPrice() )
         return Broodwar->setLastError(Errors::Insufficient_Minerals);
 
-      /* Check if player has enough gas */
+      // Check if player has enough gas
       if ( pSelf->gas() < type.gasPrice() )
         return Broodwar->setLastError(Errors::Insufficient_Gas);
       
-      /* Check if player has enough supplies */
+      // Check if player has enough supplies
       BWAPI::Race typeRace = type.getRace();
       if ( type.supplyRequired() > 0 && pSelf->supplyTotal(typeRace) < pSelf->supplyUsed(typeRace) + type.supplyRequired() - (requiredType.getRace() == typeRace ? requiredType.supplyRequired() : 0) )
         return Broodwar->setLastError(Errors::Insufficient_Supply);
@@ -359,6 +364,7 @@ namespace BWAPI
            addon.whatBuilds().first == type.whatBuilds().first &&
            (!builder->getAddon() || builder->getAddon()->getType() != addon) )
         return Broodwar->setLastError(Errors::Insufficient_Tech);
+
       return true;
     }
     //------------------------------------------- CAN RESEARCH -----------------------------------------------
@@ -384,6 +390,9 @@ namespace BWAPI
 
       if (Broodwar->self()->hasResearched(type))
         return Broodwar->setLastError(Errors::Already_Researched);
+
+      if ( !Broodwar->self()->isResearchAvailable(type) )
+        return Broodwar->setLastError(Errors::Access_Denied);
 
       if (Broodwar->self()->minerals() < type.mineralPrice())
         return Broodwar->setLastError(Errors::Insufficient_Minerals);
@@ -459,7 +468,7 @@ namespace BWAPI
       if (self->isUpgrading(type))
         return Broodwar->setLastError(Errors::Currently_Upgrading);
 
-      if (self->getUpgradeLevel(type) >= type.maxRepeats())
+      if ( self->getUpgradeLevel(type) >= self->getMaxUpgradeLevel(type) )
         return Broodwar->setLastError(Errors::Fully_Upgraded);
 
       if ( self->minerals() < type.mineralPrice(nextLvl) )
@@ -472,22 +481,25 @@ namespace BWAPI
     }
 
     //------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
-    static inline bool canIssueCommand(const Unit* thisUnit, UnitCommand c)
+    static inline bool canIssueCommand(const Unit *thisUnit, UnitCommand c)
     {
-      c.unit = (Unit*)thisUnit;
+      // Get the command type
       BWAPI::UnitCommandType ct = c.type;
-      // train/morph helper, get first larva
-      if (UnitCommandTypes::Train == ct ||
-          UnitCommandTypes::Morph == ct)
+
+      // train/morph helper, get first larva if the unit is a hatchery type
+      if ( (UnitCommandTypes::Train == ct || UnitCommandTypes::Morph == ct) &&
+            thisUnit->getType().producesLarva() )
       {
-        if (thisUnit->getType().producesLarva() && c.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
-        {
-          if (thisUnit->getLarva().empty())
-            return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
-          c.unit = (UnitImpl*)(*thisUnit->getLarva().begin());
-          thisUnit = c.unit;
-        }
+        // Get the set of larvae
+        Unitset larvae( thisUnit->getLarva() );
+        if ( larvae.empty() ) // return an error if there are none
+          return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+
+        // Otherwise use the first larva as the current unit
+        thisUnit = larvae.front();
       }
+
+      c.unit = (Unit*)thisUnit;
 
       // Basic header
       Broodwar->setLastError();
@@ -641,9 +653,9 @@ namespace BWAPI
 
       // Research/Upgrade requirements
       if ( UnitCommandTypes::Research == ct && !Broodwar->canResearch(c.getTechType(), thisUnit) )
-        return false;
+        return false; // error set in canResearch
       if ( UnitCommandTypes::Upgrade  == ct && !Broodwar->canUpgrade(c.getUpgradeType(), thisUnit) )
-        return false;
+        return false; // error set in canUpgrade
 
       // Set Rally 
       if ( (UnitCommandTypes::Set_Rally_Position == ct || UnitCommandTypes::Set_Rally_Unit == ct) && !thisUnit->getType().canProduce() )

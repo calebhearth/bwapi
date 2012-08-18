@@ -27,7 +27,7 @@ namespace BW
         Attack(const BW::Position& target, int order, bool queued = false);
         Attack(int x, int y, int order, bool queued = false);
         /** Attack Location on unit. */
-        Attack(BWAPI::Unit* target, int order, bool queued = false);
+        Attack(const BWAPI::Unit* target, int order, bool queued = false);
         /** Attack Location on general target. */
         Attack(const PositionUnitTarget& target, int order, bool queued = false);
       private :
@@ -46,7 +46,7 @@ namespace BW
         RightClick(const BW::Position& target, bool queued = false);
         RightClick(int x, int y, bool queued = false);
         /** Right-click on unit. */
-        RightClick(BWAPI::Unit* target, bool queued = false);
+        RightClick(const BWAPI::Unit* target, bool queued = false);
         /** Right-click on general target. */
         RightClick(const PositionUnitTarget& target, bool queued = false);
       private :
@@ -391,7 +391,7 @@ namespace BW
     class UnloadUnit
     {
       public :
-        UnloadUnit(BWAPI::Unit* unload);
+        UnloadUnit(const BWAPI::Unit* unload);
         /** 0x29 = Unload Unit */
         u8 always0x29;
         /** The unit to unload bw index */

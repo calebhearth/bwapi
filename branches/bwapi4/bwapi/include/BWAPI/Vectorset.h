@@ -1,6 +1,6 @@
 #pragma once
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include <type_traits>
 
 #include "Vectorset_iterator.h"
@@ -581,7 +581,7 @@ namespace BWAPI
       }
     };
   // -----------------------------------------------------------------
-  private:
+  protected:
     /// Expands the container if it currently
     /// does not have the capacity for the
     /// number of additional elements.
