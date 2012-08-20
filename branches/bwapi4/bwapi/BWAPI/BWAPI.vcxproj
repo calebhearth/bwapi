@@ -44,7 +44,7 @@
     <PreBuildEvent>
       <Message>Updating revision information</Message>
       <Command>pushd "$(SolutionDir)"
-$(SolutionDir)\revisionUpdate.bat
+"$(SolutionDir)\revisionUpdate.bat"
 popd</Command>
     </PreBuildEvent>
     <ClCompile>
@@ -79,7 +79,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <PreBuildEvent>
       <Message>Updating revision information</Message>
       <Command>pushd "$(SolutionDir)"
-$(SolutionDir)\revisionUpdate.bat
+"$(SolutionDir)\revisionUpdate.bat"
 popd</Command>
     </PreBuildEvent>
     <ClCompile>
