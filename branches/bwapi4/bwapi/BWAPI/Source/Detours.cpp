@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <string>
 #include <vector>
-#include <math.h>
+#include <cmath>
 #include <Util/Exceptions.h>
 #include "../Storm/storm.h"
 
@@ -119,14 +119,23 @@ bool __fastcall TriggerActionReplacement(BW::Triggers::Action *pAction)
 //--------------------------------------------- CREATE THREAD ------------------------------------------------
 HANDLE WINAPI _CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
 {
-  HANDLE rval = NULL;
-  if ( _CreateThreadOld )
-    rval = _CreateThreadOld(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
-  else
-    rval = CreateThread(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+  HANDLE rval = NULL;     // return value
+  DWORD dwThreadId = 0;   // Local thread ID for thread labelling
 
+  // Call the original function to obtain return val and thread ID
+  if ( _CreateThreadOld )
+    rval = _CreateThreadOld(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, &dwThreadId);
+  else
+    rval = CreateThread(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, &dwThreadId);
+
+  // Register the created thread
   if ( rval != NULL )
-    RegisterThreadName("Starcraft Broodwar", GetThreadId(rval) );
+    RegisterThreadName("Starcraft Broodwar", dwThreadId );
+
+  // Perform the expected behaviour if lpThreadId was provided
+  if ( lpThreadId )
+    *lpThreadId = dwThreadId;
+
   return rval;
 }
 
