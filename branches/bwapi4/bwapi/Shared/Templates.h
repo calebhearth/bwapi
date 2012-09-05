@@ -488,7 +488,7 @@ namespace BWAPI
 
       // train/morph helper, get first larva if the unit is a hatchery type
       if ( (UnitCommandTypes::Train == ct || UnitCommandTypes::Morph == ct) &&
-            thisUnit->getType().producesLarva() )
+            thisUnit->getType().producesLarva() && c.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
       {
         // Get the set of larvae
         Unitset larvae( thisUnit->getLarva() );

@@ -62,21 +62,21 @@ void MapTest::onStart()
   //check start locations
   TilePosition::set startLocations = Broodwar->getStartLocations();
   BWAssert(startLocations.size()==4);
-  BWAssert((*startLocations.begin()).x==0);
-  BWAssert((*startLocations.begin()).y==0);
-  startLocations.erase(startLocations.begin());
+  BWAssert(startLocations.front().x==0);
+  BWAssert(startLocations.front().y==0);
+  startLocations.pop_front();
   BWAssert(startLocations.size()==3);
-  BWAssert((*startLocations.begin()).x==4);
-  BWAssert((*startLocations.begin()).y==3);
-  startLocations.erase(startLocations.begin());
+  BWAssert(startLocations.front().x==4);
+  BWAssert(startLocations.front().y==3);
+  startLocations.pop_front();
   BWAssert(startLocations.size()==2);
-  BWAssert((*startLocations.begin()).x==8);
-  BWAssert((*startLocations.begin()).y==6);
-  startLocations.erase(startLocations.begin());
+  BWAssert(startLocations.front().x==8);
+  BWAssert(startLocations.front().y==6);
+  startLocations.pop_front();
   BWAssert(startLocations.size()==1);
-  BWAssert((*startLocations.begin()).x==12);
-  BWAssert((*startLocations.begin()).y==9);
-  startLocations.erase(startLocations.begin());
+  BWAssert(startLocations.front().x==12);
+  BWAssert(startLocations.front().y==9);
+  startLocations.pop_front();
   BWAssert(startLocations.empty());
   Broodwar->printf("Completed all asserts");
 }

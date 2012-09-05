@@ -603,7 +603,7 @@ namespace BW
   struct _bwUpgrs {    u8 level[PLAYER_COUNT][15];  };
   BW_DATA(_scUpgrs*, UpgradeMaxSC, 0x0058D088, 0);
   BW_DATA(_scUpgrs*, UpgradeLevelSC, 0x0058D2B0, 0);
-  BW_DATA(_bwUpgrs*, UpgradeMaxBW, 0x0058F24A, 0);
+  BW_DATA(_bwUpgrs*, UpgradeMaxBW, 0x0058F278, 0);
   BW_DATA(_bwUpgrs*, UpgradeLevelBW, 0x0058F32C, 0);
 
   BW_DATA(u32, UpgradeProgress, 0x0058F3E0, 0);
