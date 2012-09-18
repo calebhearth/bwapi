@@ -145,7 +145,8 @@ namespace BWAPI
     nukeDetected       = false;
     lastType           = UnitTypes::Unknown;
     lastPlayer         = nullptr;
-    MemZero(clientInfo);
+    this->clientInfo.clear();
+
     updateData();
   }
 

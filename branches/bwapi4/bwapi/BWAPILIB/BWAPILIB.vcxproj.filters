@@ -92,6 +92,9 @@
     <ClCompile Include="Source\Filters.cpp">
       <Filter>Filters</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Interface.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\Event.h" />

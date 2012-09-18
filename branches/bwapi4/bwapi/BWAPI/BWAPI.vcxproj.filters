@@ -232,6 +232,9 @@
     <ClInclude Include="Source\Thread.h">
       <Filter>Hacks\Header FIles</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\BWAPI\Interface.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">

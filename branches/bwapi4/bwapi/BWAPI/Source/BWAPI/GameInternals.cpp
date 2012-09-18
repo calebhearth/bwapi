@@ -476,7 +476,7 @@ namespace BWAPI
       unitArray[i]->lastPlayer        = nullptr;
       unitArray[i]->lastCommandFrame  = 0;
       unitArray[i]->lastCommand       = UnitCommand();
-      MemZero(unitArray[i]->clientInfo);
+      this->clientInfo.clear();
 
       unitArray[i]->setID(-1);
     }

@@ -141,6 +141,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="..\include\BWAPI\Bullet.h" />
     <ClInclude Include="..\include\BWAPI\Force.h" />
     <ClInclude Include="..\include\BWAPI\Game.h" />
+    <ClInclude Include="..\include\BWAPI\Interface.h" />
     <ClInclude Include="..\include\BWAPI\Player.h" />
     <ClInclude Include="..\include\BWAPI\Region.h" />
     <ClInclude Include="..\include\BWAPI\Unit.h" />

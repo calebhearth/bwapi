@@ -119,7 +119,6 @@ namespace BWAPI
   U_CFILTERX(CurrentOrder, u->getOrder(), Order );
   U_CFILTERX(SecondaryOrder, u->getSecondaryOrder(), Order );
   U_CFILTERX(OrderTarget, u->getOrderTarget(), Unit* );
-  U_CFILTERX(ClientInfo, u->getClientInfo(), void* );
   U_CFILTER(GetLeft, u->getLeft() );
   U_CFILTER(GetTop, u->getTop() );
   U_CFILTER(GetRight, u->getRight() );
