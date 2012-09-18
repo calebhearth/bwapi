@@ -32,7 +32,7 @@ public:
   template <class _T>
   _T read()
   {
-    _T rval = *(_T*)&pbAIScriptBinary[this->dwScriptOffset];
+    _T rval = (_T&)pbAIScriptBinary[this->dwScriptOffset];
     this->dwScriptOffset += sizeof(_T);
     this->dwBytesRead    += sizeof(_T);
     return rval;

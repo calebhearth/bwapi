@@ -368,15 +368,15 @@ void InitializeSymFunctions()
   if ( !hDbgHlp )
     return;
 
-  *(FARPROC*)&_SymInitialize          = GetProcAddress(hDbgHlp, "SymInitialize");
-  *(FARPROC*)&_SymSetOptions          = GetProcAddress(hDbgHlp, "SymSetOptions");
-  *(FARPROC*)&_SymLoadModule          = GetProcAddress(hDbgHlp, "SymLoadModule");
-  *(FARPROC*)&_StackWalk              = GetProcAddress(hDbgHlp, "StackWalk");
-  *(FARPROC*)&_SymFunctionTableAccess = GetProcAddress(hDbgHlp, "SymFunctionTableAccess");
-  *(FARPROC*)&_SymGetModuleBase       = GetProcAddress(hDbgHlp, "SymGetModuleBase");
-  *(FARPROC*)&_SymGetSymFromAddr      = GetProcAddress(hDbgHlp, "SymGetSymFromAddr");
-  *(FARPROC*)&_SymGetLineFromAddr     = GetProcAddress(hDbgHlp, "SymGetLineFromAddr");
-  *(FARPROC*)&_SymCleanup             = GetProcAddress(hDbgHlp, "SymCleanup");
+  (FARPROC&)_SymInitialize          = GetProcAddress(hDbgHlp, "SymInitialize");
+  (FARPROC&)_SymSetOptions          = GetProcAddress(hDbgHlp, "SymSetOptions");
+  (FARPROC&)_SymLoadModule          = GetProcAddress(hDbgHlp, "SymLoadModule");
+  (FARPROC&)_StackWalk              = GetProcAddress(hDbgHlp, "StackWalk");
+  (FARPROC&)_SymFunctionTableAccess = GetProcAddress(hDbgHlp, "SymFunctionTableAccess");
+  (FARPROC&)_SymGetModuleBase       = GetProcAddress(hDbgHlp, "SymGetModuleBase");
+  (FARPROC&)_SymGetSymFromAddr      = GetProcAddress(hDbgHlp, "SymGetSymFromAddr");
+  (FARPROC&)_SymGetLineFromAddr     = GetProcAddress(hDbgHlp, "SymGetLineFromAddr");
+  (FARPROC&)_SymCleanup             = GetProcAddress(hDbgHlp, "SymCleanup");
 }
 
 TopLevelExceptionFilter::TopLevelExceptionFilter()

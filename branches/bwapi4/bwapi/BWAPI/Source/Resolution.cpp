@@ -109,7 +109,7 @@ void DDrawInitialize(int width, int height)
 
   // Obtain function DirectDrawCreate
   HRESULT (WINAPI *_DirectDrawCreate)(GUID FAR* lpGUID, LPDIRECTDRAW FAR* lplpDD, IUnknown FAR* pUnkOuter);
-  *(FARPROC*)&_DirectDrawCreate = GetProcAddress(ddLib, "DirectDrawCreate");
+  (FARPROC&)_DirectDrawCreate = GetProcAddress(ddLib, "DirectDrawCreate");
   DDCHECK(_DirectDrawCreate);
 
   // Create and initialize DirectDrawInterface

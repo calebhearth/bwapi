@@ -18,7 +18,7 @@ namespace BW
   const char *GetStatString(int index)
   {
     if ( BWDATA::StringTableOff )
-      return (const char*)&BWDATA::StringTableOff[*(u16*)&BWDATA::StringTableOff[index * 2 + 2]];
+      return (const char*)&BWDATA::StringTableOff[(u16&)BWDATA::StringTableOff[index * 2 + 2]];
     else
       return "Unable to initialize BWDATA::StringTableOff.";
   }
