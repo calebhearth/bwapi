@@ -6,8 +6,8 @@
 #include <BWAPI/CoordinateType.h>
 
 #include "BW/Offsets.h"
-#include "BW/Sprite.h"
-#include "BW/Image.h"
+#include "BW/CSprite.h"
+#include "BW/CImage.h"
 #include "BW/Dialog.h"
 
 #include "NewHackUtil.h"
@@ -176,9 +176,9 @@ void updateImageDrawingData()
 {
   for ( int y = 0; y < BW::BWDATA::MapSize->y; ++y )
   {
-    for ( BW::Sprite *s = BW::BWDATA::spriteGroups[y]; s; s = s->next )
+    for ( BW::CSprite *s = BW::BWDATA::spriteGroups[y]; s; s = s->next )
     {
-      for ( BW::Image *i = s->underlay; i; i = i->next )
+      for ( BW::CImage *i = s->underlay; i; i = i->next )
         i->updateGraphicData();
     }
   }

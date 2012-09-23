@@ -70,10 +70,10 @@ namespace BW
   // Position steps[num_segments];
   // u16      regions[num_areas];  // region ID for SAI_Paths->regions; typically fills the rest of the struct with region IDs to the destination, and cut off if there isn't enough room
 
-  class Unit;
+  class CUnit;
   struct pathCreate
   {
-    /* 0x000 */BW::Unit *pUnit;
+    /* 0x000 */BW::CUnit *pUnit;
     /* 0x004 */Position src;
     /* 0x008 */Position dst;
     /* 0x00C */DWORD    dw__0C;

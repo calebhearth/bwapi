@@ -18,8 +18,8 @@
 #include <BWAPI/RegionImpl.h>
 #include "Command.h"
 
-#include <BW/Bullet.h>
-#include <BW/Unit.h>
+#include <BW/CBullet.h>
+#include <BW/CUnit.h>
 #include <BW/Dialog.h>
 
 #include "../../../Debug.h"
@@ -313,6 +313,9 @@ namespace BWAPI
     else if (parsed[0] == "/test")
     {
       //SetResolution(640, 480);
+      Unitset sel = this->getSelectedUnits();
+      for ( auto i = sel.begin(); i != sel.end(); ++i )
+        this->printf("Ground str: %d; Air str: %d", ((UnitImpl*)*i)->getOriginalRawData->groundStrength, ((UnitImpl*)*i)->getOriginalRawData->airStrength);
     }
 #endif
     else

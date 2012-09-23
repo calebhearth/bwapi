@@ -13,9 +13,9 @@
 #include <BWAPI/PlayerImpl.h>
 #include <BWAPI/WeaponType.h>
 
-#include <BW/Unit.h>
-#include <BW/Sprite.h>
-#include <BW/Image.h>
+#include <BW/CUnit.h>
+#include <BW/CSprite.h>
+#include <BW/CImage.h>
 #include <BW/UnitTarget.h>
 #include <BW/UnitStatusFlags.h>
 #include <BW/MovementFlags.h>
@@ -30,7 +30,7 @@ namespace BWAPI
 {
   void UnitImpl::updateInternalData()
   {
-    BW::Unit *o = getOriginalRawData;
+    BW::CUnit *o = getOriginalRawData;
     if ( !o )
       return;
     int selfPlayerID = BroodwarImpl.server.getPlayerID(Broodwar->self());
@@ -132,9 +132,9 @@ namespace BWAPI
           _getType == UnitTypes::Protoss_Scarab       ||
           _getType == UnitTypes::Terran_Vulture_Spider_Mine)
       {
-        if (o->interceptor.inHanger == 0 ||
+        if (o->fighter.inHanger == false ||
             o->statusFlag(BW::StatusFlags::InTransport | BW::StatusFlags::InBuilding) )
-          _getTransport = (Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->interceptor.parent));
+          _getTransport = (Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->fighter.parent));
       }
       else if (o->statusFlag(BW::StatusFlags::InTransport | BW::StatusFlags::InBuilding) )
         _getTransport = (Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->connectedUnit));
@@ -174,7 +174,7 @@ namespace BWAPI
   }
   void UnitImpl::updateData()
   {
-    BW::Unit *o = getOriginalRawData;
+    BW::CUnit *o = getOriginalRawData;
     self->isUnderDarkSwarm = false;
     self->isUnderDWeb      = false;
     if (canAccess())
@@ -333,12 +333,12 @@ namespace BWAPI
                        self->order == Orders::Burrowed     ||
                        self->order == Orders::NukeTrain    ||
                        self->order == Orders::Larva;
-      self->target               = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveToUnit)); //getTarget
-      self->targetPositionX      = o->moveToPos.x;  //getTargetPosition
-      self->targetPositionY      = o->moveToPos.y;  //getTargetPosition
-      self->orderTargetPositionX = o->orderTargetPos.x;
-      self->orderTargetPositionY = o->orderTargetPos.y;
-      self->orderTarget          = BroodwarImpl.server.getUnitID(UnitImpl::BWUnitToBWAPIUnit(o->orderTargetUnit));  //getOrderTarget
+      self->target               = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveTarget.pUnit)); //getTarget
+      self->targetPositionX      = o->moveTarget.position.x;  //getTargetPosition
+      self->targetPositionY      = o->moveTarget.position.y;  //getTargetPosition
+      self->orderTargetPositionX = o->orderTarget.position.x;
+      self->orderTargetPositionY = o->orderTarget.position.y;
+      self->orderTarget          = BroodwarImpl.server.getUnitID(UnitImpl::BWUnitToBWAPIUnit(o->orderTarget.pUnit));  //getOrderTarget
       //------------------------------------------------------------------------------------------------------
       //getAddon
       self->addon = -1;
@@ -523,7 +523,7 @@ namespace BWAPI
           self->remainingTrainTime = o->building.larvaTimer * 9 + ((o->orderQueueTimer + 8) % 9);
         break;
       case UnitTypes::Enum::Protoss_Interceptor:
-        self->carrier = BroodwarImpl.server.getUnitID((Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->interceptor.parent)));
+        self->carrier = BroodwarImpl.server.getUnitID((Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->fighter.parent)));
         break;
       case UnitTypes::Enum::Zerg_Larva:
         self->hatchery = BroodwarImpl.server.getUnitID((Unit*)(UnitImpl::BWUnitToBWAPIUnit(o->connectedUnit)));

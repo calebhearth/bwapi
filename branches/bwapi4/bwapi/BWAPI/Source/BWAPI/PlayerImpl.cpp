@@ -406,9 +406,9 @@ namespace BWAPI
     return BW::BWDATA::ForceNames[team].name;
   }
   //--------------------------------------------- SELECTED UNIT ----------------------------------------------
-  BW::Unit** PlayerImpl::selectedUnit()
+  BW::CUnit** PlayerImpl::selectedUnit()
   {
-    return (BW::Unit**)(BW::BWDATA::PlayerSelection + index * 48);
+    return (BW::CUnit**)(BW::BWDATA::PlayerSelection + index * 48);
   }
   //----------------------------------------------------------------------------------------------------------
   void PlayerImpl::onGameEnd()

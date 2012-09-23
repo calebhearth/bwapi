@@ -5,7 +5,7 @@
 #include <Util/Types.h>
 #include <BWAPI/Position.h>
 #include <BWAPI/Client/BulletData.h>
-namespace BW    { struct Bullet; };
+namespace BW    { class CBullet; };
 
 namespace BWAPI
 {
@@ -34,20 +34,20 @@ namespace BWAPI
       virtual int        getRemoveTimer() const;
       virtual bool       isVisible(Player* player = nullptr) const;
 
-      BulletImpl(BW::Bullet* originalBullet, u16 index);
+      BulletImpl(BW::CBullet* originalBullet, u16 index);
       ~BulletImpl();
 
       void        setExists(bool exists);
-      BW::Bullet* getRawData() const;
+      BW::CBullet* getRawData() const;
       void        saveExists();
 
       BulletData* self;
       BulletData  data;
       void        updateData();
 
-      static BulletImpl* BWBulletToBWAPIBullet(BW::Bullet* bullet);
+      static BulletImpl* BWBulletToBWAPIBullet(BW::CBullet* bullet);
     private:
-      BW::Bullet* bwOriginalBullet; /**< Pointer to broodwar unit data table. */
+      BW::CBullet* bwOriginalBullet; /**< Pointer to broodwar unit data table. */
       u16 index;
       int id;
       bool __exists;

@@ -4,24 +4,25 @@
 #include <BW/Position.h>
 
 #include <BW/Offsets.h>
+#include "Target.h"
 
 namespace BW
 {
-#pragma pack(1)
   // forwards
   class Sprite;
 
   // See Unit.h and compare this entire structure with the first part of the unit structure
   // I'm not sure how much of it is the same so I didn't bother updating this.
-  struct Bullet
+  // Must be on a 4-byte alignment
+  class CBullet
   {
+  public:
 // v-- POSSIBLE SHARED BULLET/UNIT STRUCTURE BEGIN
-    /*0x00*/ BW::Bullet*  prev;
-    /*0x04*/ BW::Bullet*  next;
-    /*0x08*/ u32          unknown_0x08; //usually holds 1 (exists?)
-    /*0x0C*/ BW::Sprite   *sprite; // sprite pointer
-    /*0x10*/ BW::Position unknown_0x10; //address? animation related? changes a during the same bullet
-    /*0x14*/ BW::Unit     *unknown_0x14; //usually holds 0
+    /*0x00*/ BW::CBullet  *prev;
+    /*0x04*/ BW::CBullet  *next;
+    /*0x08*/ u32          exists; //usually holds 1 (exists?)
+    /*0x0C*/ BW::CSprite  *sprite; // sprite pointer
+    /*0x10*/ BW::Target   moveTarget; //address? animation related? changes a during the same bullet
     /*0x18*/ BW::Position targetPosition;
     /*0x1C*/ BW::Position targetPosition2; //usually same as targetPosition
     /*0x20*/ u8           movementFlags; //usually holds 0x09 for probes, 0x0b for dragoons, 0x11 for mutas
@@ -52,18 +53,17 @@ namespace BW
     /*0x50*/ u16          someUnitType; //usually holds UnitTypes::None (Unknown unit type stuff?)
     /*0x52*/ u16          unknown_0x52; // possibly padding
     /*0x54*/ s32          unknown_0x54; //usually holds 0
-    /*0x58*/ BW::Position flyToPosition;
-    /*0x5C*/ BW::Unit*    targetUnit;
+    /*0x58*/ BW::Target   attackTarget;
 // ^-- POSSIBLE SHARED BULLET/UNIT STRUCTURE END
 
     /*0x60*/ u8           weaponType;
     /*0x61*/ u8           time_remaining;
     /*0x62*/ u8           hitFlags;           // 0x01 = miss target; 0x02 = no damage (hallucination)
     /*0x63*/ u8           remainingBounces;   // Bounce count for mutalisk weapon (official name: ubChain)
-    /*0x64*/ BW::Unit*    sourceUnit;
-    /*0x68*/ BW::Unit*    nextBounceUnit;     // Next unit for bounce, temporary
-    /*0x6C*/ u32          unknown_0x6C;       // some sort of cyclic burst counter (used by valkyries, goliath air attack)
+    /*0x64*/ BW::CUnit    *sourceUnit;
+    /*0x68*/ BW::CUnit    *nextBounceUnit;     // Next unit for bounce, temporary
+    /*0x6C*/ u32          cyclicMissileIndex;       // some sort of cyclic burst counter (used by valkyries, goliath air attack)
   };
-  static_assert( sizeof(Bullet) == 112, "BW::Bullet is incorrect." );
-#pragma pack()
+  static_assert( sizeof(CBullet) == 112, "BW::CBullet is incorrect." );
+
 };

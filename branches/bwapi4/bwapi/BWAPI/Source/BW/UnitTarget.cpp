@@ -3,7 +3,7 @@
 #include "Offsets.h"
 
 #include <BWAPI/UnitImpl.h>
-#include <BW/Unit.h>
+#include <BW/CUnit.h>
 
 #include "../../../Debug.h"
 
@@ -23,7 +23,7 @@ namespace BW
     else
       this->targetID = 0;
   }
-  UnitTarget::UnitTarget(BW::Unit* target)
+  UnitTarget::UnitTarget(BW::CUnit* target)
   {
     u16 unitID = (u16)( ((u32)target - (u32)BWDATA::UnitNodeTable) / 336 + 1);
     if (unitID <= UNIT_ARRAY_MAX_LENGTH)

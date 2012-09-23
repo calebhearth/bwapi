@@ -36,22 +36,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BW\Bullet.h">
-      <Filter>BW\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\CheatType.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\Dialog.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BW\Image.h">
-      <Filter>BW\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\Offsets.h">
-      <Filter>BW\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\Order.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\OrderTypes.h">
@@ -72,9 +63,6 @@
     <ClInclude Include="Source\BW\PositionUnitTarget.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BW\Sprite.h">
-      <Filter>BW\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BW\TileSet.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
@@ -82,9 +70,6 @@
       <Filter>BW\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\TriggerEngine.h">
-      <Filter>BW\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BW\Unit.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\UnitTarget.h">
@@ -235,15 +220,30 @@
     <ClInclude Include="..\include\BWAPI\Interface.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BW\Target.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\CUnit.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\COrder.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\CImage.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\CBullet.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\CSprite.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BW\CheatType.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\Dialog.cpp">
-      <Filter>BW\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BW\Image.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\Internal.cpp">
@@ -265,9 +265,6 @@
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\TriggerEngine.cpp">
-      <Filter>BW\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BW\Unit.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\UnitTarget.cpp">
@@ -378,6 +375,15 @@
     </ClCompile>
     <ClCompile Include="Source\Thread.cpp">
       <Filter>Hacks\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\Target.cpp">
+      <Filter>BW\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\CUnit.cpp">
+      <Filter>BW\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\CImage.cpp">
+      <Filter>BW\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

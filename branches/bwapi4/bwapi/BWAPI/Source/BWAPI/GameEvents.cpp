@@ -8,7 +8,7 @@
 #include "../Recording.h"
 
 #include <BW/Pathing.h>
-#include <BW/Unit.h>
+#include <BW/CUnit.h>
 #include <BW/Dialog.h>
 
 #include <BWAPI/PlayerImpl.h>

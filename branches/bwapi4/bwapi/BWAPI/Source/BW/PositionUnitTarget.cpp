@@ -1,5 +1,5 @@
 #include "PositionUnitTarget.h"
-#include "Unit.h"
+#include "CUnit.h"
 
 #include "../../../Debug.h"
 
@@ -19,7 +19,7 @@ namespace BW
       : target(target)
   {
     int index = 336 * ((target.getTarget() & 0x7FF) - 1);
-    Unit* unit = (Unit*)((int)BWDATA::UnitNodeTable + index);
+    CUnit* unit = (CUnit*)((int)BWDATA::UnitNodeTable + index);
     this->position = unit->position;
   }
   //----------------------------------------------------------------------------------------------------------

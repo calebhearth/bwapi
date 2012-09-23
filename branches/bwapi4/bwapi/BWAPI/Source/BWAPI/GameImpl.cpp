@@ -29,8 +29,8 @@
 
 #include <BWAPI/Unitset.h>
 
-#include <BW/Unit.h>
-#include <BW/Bullet.h>
+#include <BW/CUnit.h>
+#include <BW/CBullet.h>
 #include <BW/Offsets.h>
 #include <BW/UnitTarget.h>
 #include <BW/OrderTypes.h>

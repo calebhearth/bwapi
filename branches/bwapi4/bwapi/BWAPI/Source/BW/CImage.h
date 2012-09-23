@@ -3,11 +3,10 @@
 
 #include "Offsets.h"
 
-namespace BW { class Sprite; };
-
-#pragma pack(1)
 namespace BW
 {
+  class Sprite;
+
   struct grpFrame
   {
     s8  left;
@@ -23,7 +22,9 @@ namespace BW
     s16       height;
     grpFrame  frames[1];
   };
-  class Image
+
+  // Must be on a 4-byte alignment
+  class CImage
   {
   public:
     void updateGraphicData();
@@ -32,8 +33,8 @@ namespace BW
     grpFrame      *getCurrentFrame() const;
     BW::Position  getPosition() const;
 
-    /* 0x00 */ Image        *prev;
-    /* 0x04 */ Image        *next;
+    /* 0x00 */ CImage       *prev;
+    /* 0x04 */ CImage       *next;
     /* 0x08 */ u16          imageID;
     /* 0x0A */ u8           paletteType;
     /* 0x0B */ u8           direction;
@@ -71,11 +72,11 @@ namespace BW
     /* 0x30 */ void         *coloringData;
     // void __fastcall renderFunction(int screenX, int screenY, grpFrame *pFrame, RECT *grpRect, int colorData);
     /* 0x34 */ void (__fastcall *renderFunction)(int,int,grpFrame*,RECT*,int);
-    /* 0x38 */ void (__fastcall *updateFunction)(Image*);
-    /* 0x3C */ Sprite       *spriteOwner;
+    /* 0x38 */ void (__fastcall *updateFunction)(CImage*);
+    /* 0x3C */ CSprite       *spriteOwner;
   };
 
-  static_assert( sizeof(Image) == 64, "BW::Image is incorrect.");
+  static_assert( sizeof(CImage) == 64, "BW::CImage is incorrect.");
 
   namespace Anims
   {
@@ -113,4 +114,5 @@ namespace BW
   };
 
 };
-#pragma pack()
+
+

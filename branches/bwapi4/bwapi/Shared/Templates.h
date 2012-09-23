@@ -51,6 +51,7 @@ namespace BWAPI
         std::swap(smaller, larger);
     }
     //-------------------------------------------- UNIT FINDER -----------------------------------------------
+    // @TODO: get size and use binary search instead
     template <class finder>
     int getUnitFinderIndex(const finder *uf, int value, int start = 0)
     {

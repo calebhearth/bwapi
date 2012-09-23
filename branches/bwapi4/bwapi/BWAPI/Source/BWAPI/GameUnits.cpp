@@ -1,7 +1,7 @@
 #include "GameImpl.h"
 #include <Util/Foreach.h>
 
-#include <BW/Unit.h>
+#include <BW/CUnit.h>
 #include <BW/Dialog.h>
 
 #include <BWAPI/UnitImpl.h>
@@ -26,7 +26,7 @@ namespace BWAPI
 
     if ( !i ) return false;
 
-    BW::Unit *u = i->getOriginalRawData;
+    BW::CUnit *u = i->getOriginalRawData;
     if ( !u ) return false;
 
     UnitType _getType = BWAPI::UnitType(u->unitType);
@@ -220,7 +220,7 @@ namespace BWAPI
       if ( i->getOriginalRawData->unitType == UnitTypes::Terran_Ghost)
       {
         if (i->getOriginalRawData->orderID == Orders::NukePaint)
-          i->nukePosition = BWAPI::Position(i->getOriginalRawData->orderTargetPos);
+          i->nukePosition = BWAPI::Position(i->getOriginalRawData->orderTarget.position);
         if (i->getOriginalRawData->orderID != Orders::NukeTrack)
           i->nukeDetected = false;
         else
@@ -245,7 +245,7 @@ namespace BWAPI
     //this function modifies the extracted unit data for build unit, loaded units, larva, and interceptors
     foreach(UnitImpl* i, accessibleUnits)
     {
-      UnitImpl* orderTargetUnit = UnitImpl::BWUnitToBWAPIUnit(i->getOriginalRawData->orderTargetUnit);
+      UnitImpl* orderTargetUnit = UnitImpl::BWUnitToBWAPIUnit(i->getOriginalRawData->orderTarget.pUnit);
       if ( orderTargetUnit && orderTargetUnit->exists() && i->getOrder() == Orders::ConstructingBuilding )
       {
         UnitImpl* j             = orderTargetUnit;

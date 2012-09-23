@@ -5,7 +5,7 @@ namespace BWAPI { class UnitImpl; }
 #pragma pack(1)
 namespace BW
 {
-  class Unit;
+  class CUnit;
   /**
    * Representation of pointer to unit in bw structure that uses index (not
    * pointer). When pointer to another unit is present in bw structure, it uses
@@ -25,7 +25,7 @@ namespace BW
       UnitTarget();
       /** Constructor, takes BWAPI unit pointer, and decodes it to bw index type.*/
       UnitTarget(BWAPI::UnitImpl* target);
-      UnitTarget(BW::Unit* target);
+      UnitTarget(BW::CUnit* target);
       u16 getTarget() const;
     private :
       u16 targetID; /**< Unit index pointer stored in the way bw understands it */

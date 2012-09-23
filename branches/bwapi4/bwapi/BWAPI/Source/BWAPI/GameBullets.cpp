@@ -1,6 +1,6 @@
 #include "GameImpl.h"
 
-#include <BW/Bullet.h>
+#include <BW/CBullet.h>
 
 #include <BWAPI/BulletImpl.h>
 
@@ -23,7 +23,7 @@ namespace BWAPI
     bullets.clear();
 
     // Repopulate bullets set
-    for ( BW::Bullet *curritem = *BW::BWDATA::BulletNodeTable_FirstElement; 
+    for ( BW::CBullet *curritem = *BW::BWDATA::BulletNodeTable_FirstElement; 
           curritem; 
           curritem = curritem->next )
     {

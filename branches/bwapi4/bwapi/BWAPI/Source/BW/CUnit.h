@@ -3,6 +3,7 @@
 #include <Util/Types.h>
 #include <BW/Position.h>
 #include <BW/Offsets.h>
+#include <BW/Target.h>
 
 namespace BWAPI
 {
@@ -12,17 +13,20 @@ namespace BW
 {
   // Forwards
   class Sprite;
-  struct Order;
+  class COrder;
   struct Path;  
 
-  /**
-   * Direct data mapping of the broodwar unit structure. Most of the information here is derived
-   * from http://farty1billion.dyndns.org/EUDDB/?pg=ref&a=unitnode
-   * Values marked @todo Unknown are labeled as the EUDDB has them labeled, but the true meaning
-   * is not understood. Values marked @todo Verify have known meanings, but are not confirmed.
+  /** Broodwar CUnit class.
+   * Started from http://farty1billion.dyndns.org/EUDDB/?pg=ref&a=unitnode
+   * Heavily altered and corrected.
+   * Most members are known, including some padding/alignment bytes that have been identified.
+   * Members that are marked as "unknown", "todo", "maybe", etc. must still be researched.
+   *
+   * The Broodwar project has a 4-byte alignment, this structure follows that directive and
+   * excludes some bytes that have been marked as padding bytes.
    */
-#pragma pack(1) // Note: alignment is probably default 4, not 1
-  class Unit
+//#pragma pack(1) // Note: alignment is probably default 4, not 1
+  class CUnit
   {
   public:
     BWAPI::UnitType type() const;
@@ -30,17 +34,17 @@ namespace BW
     bool statusFlag(u32 flags) const;
 
 // v-- POSSIBLE SHARED BULLET/UNIT STRUCTURE BEGIN
-    /*0x000*/ BW::Unit      *prev;
-    /*0x004*/ BW::Unit      *next;      /**< Pointer to next unit in the unit linked list, we use
+    // CLink<CUnit> link;
+    /*0x000*/ BW::CUnit     *prev;
+    /*0x004*/ BW::CUnit     *next;      /**< Pointer to next unit in the unit linked list, we use
                                           *   it to iterate units.
                                           *   @see BW#BWXFN_UnitNodeTable_FirstElement
                                           **/
     /*0x008*/ s32           hitPoints;  /**< Hit points of unit, note that the displayed value
                                           *   in broodwar is ceil(healthPoints/256)
                                           */
-    /*0x00C*/ BW::Sprite    *sprite;
-    /*0x010*/ BW::Position  moveToPos;
-    /*0x014*/ BW::Unit      *moveToUnit;            // The original description "target unit" was incorrect
+    /*0x00C*/ BW::CSprite   *sprite;
+    /*0x010*/ BW::Target    moveTarget;             // The position or unit to move to. It is NOT an order target.
     /*0x018*/ BW::Position  nextMovementWaypoint;   /**< The next way point in the path the unit is following to get to its destination.
                                                       * Equal to moveToPos for air units since they don't need to navigate around buildings
                                                       * or other units.
@@ -81,53 +85,62 @@ namespace BW
                                               0x10  Lift/Land state
                                           */
     /*0x050*/ u16           orderUnitType;
-    /*0x052*/ u16           _unused_0x052;        // possible alignment
+    
+    u16 __0x52;  // 2-byte padding
+
     /*0x054*/ u8            mainOrderTimer;       // A timer for orders, example: time left before minerals are harvested
     /*0x055*/ u8            groundWeaponCooldown;
     /*0x056*/ u8            airWeaponCooldown;
     /*0x057*/ u8            spellCooldown;
-    /*0x058*/ BW::Position  orderTargetPos;
-    /*0x05C*/ BW::Unit      *orderTargetUnit;
+    /*0x058*/ BW::Target    orderTarget;
 // ^-- POSSIBLE SHARED BULLET/UNIT STRUCTURE END
 
-    /*0x060*/ u32         shieldPoints;      // BW shows this value/256
+    /*0x060*/ u32         shieldPoints;      // BW shows this value/256, possibly not u32?
     /*0x064*/ u16         unitType;        // Specifies the type of unit.
-    /*0x066*/ u16         _padding_0x066;
-    /*0x068*/ BW::Unit    *previousPlayerUnit;
-    /*0x06C*/ BW::Unit    *nextPlayerUnit;
-    /*0x070*/ BW::Unit    *subUnit;
-    /*0x074*/ BW::Order   *orderQueueHead;
-    /*0x078*/ BW::Order   *orderQueueTail;
-    /*0x07C*/ BW::Unit    *AutoTargetUnit;    // The auto-acquired target
-    /*0x080*/ BW::Unit    *connectedUnit;      // Addon is connected to building (addon has conntected building, but not in other direction
-    /*0x084*/ u8          orderQueueCount;    // @todo Verify
-    /*0x085*/ u8          orderQueueTimer;    // counts/cycles down from from 8 to 0 (inclusive). See also 0x122.
-    /*0x086*/ u8          _unknown_0x086;      // pathing related?
+    
+    u16 __0x66;  // 2-byte padding
+
+    // CLink<CUnit> player_link;
+    /*0x068*/ BW::CUnit   *previousPlayerUnit;
+    /*0x06C*/ BW::CUnit   *nextPlayerUnit;
+
+    /*0x070*/ BW::CUnit   *subUnit;
+
+    // CLink<COrder> orderQueue_link;
+    /*0x074*/ BW::COrder   *orderQueueHead;
+    /*0x078*/ BW::COrder   *orderQueueTail;
+
+    /*0x07C*/ BW::CUnit   *autoTargetUnit;      // The auto-acquired target
+    /*0x080*/ BW::CUnit   *connectedUnit;       // Addon is connected to building (addon has conntected building, but not in other direction
+    /*0x084*/ u8          orderQueueCount;      // @todo Verify
+    /*0x085*/ u8          orderQueueTimer;      // counts/cycles down from from 8 to 0 (inclusive). See also 0x122.
+    /*0x086*/ u8          _unknown_0x086;       // pathing related?
     /*0x087*/ u8          attackNotifyTimer;    // Prevent "Your forces are under attack." on every attack
     /*0x088*/ u16         displayedUnitID;
-    /*0x08A*/ u8          lastEventTimer;      // countdown that stops being recent when it hits 0 
-    /*0x08B*/ u8          lastEventColor;      // 17 = was completed (train, morph), 174 = was attacked
-    /*0x08C*/ u16         _unused_0x08C;      // might have originally been RGB from lastEventColor
-    /*0x08E*/ u8          rankIncrease;      // Adds this value to the unit's base rank
-    /*0x08F*/ u8          killCount;        // Killcount
+    /*0x08A*/ u8          lastEventTimer;       // countdown that stops being recent when it hits 0 
+    /*0x08B*/ u8          lastEventColor;       // 17 = was completed (train, morph), 174 = was attacked
+    /*0x08C*/ u16         _unused_0x08C;        // might have originally been RGB from lastEventColor
+    /*0x08E*/ u8          rankIncrease;         // Adds this value to the unit's base rank
+    /*0x08F*/ u8          killCount;            // Killcount
     /*0x090*/ u8          lastAttackingPlayer;  // the player that last attacked this unit
     /*0x091*/ u8          secondaryOrderTimer;
     /*0x092*/ u8          _unknown_0x091;
-    /*0x093*/ u8          userActionFlags;    // some flags that change when the user interacts with the unit
-                                             // 2 = issued an order, 3 = interrupted an order, 4 = self destructing
-    /*0x094*/ u16         currentButtonSet;    // The u16 is a guess, used to be u8
-    /*0x096*/ u8          cloaked;        // 1 for cloaked
-    /*0x097*/ u8          movementState;      // A value based on conditions related to pathing, see Path.h for info
-    /*0x098*/ u16         buildQueue[5];      /**< Queue of units to build. Note that it doesn't begin with index 0, but with #buildQueueSlot index. */
-    /*0x0A2*/ u16         energy;             /**< Energy Points */
-    /*0x0A4*/ u8          buildQueueSlot;      /**< Index of active unit in #buildQueue. */
-    /*0x0A5*/ u8          targetOrderSpecial;    /**< A byte used to determine the target ID for the unit */
-    /*0x0A6*/ u8          secondaryOrderID;    /**< (Build addon verified) @todo verify (Cloak, Build, ExpandCreep suggested by EUDDB) */
-    /*0x0A7*/ u8          buildingOverlayState;  // 0 means the building has the largest amount of fire/blood
-    /*0x0A8*/ u16         hpGainDuringRepair;    /**< @todo Verify */
+    /*0x093*/ u8          userActionFlags;        // some flags that change when the user interacts with the unit
+                                                  // 2 = issued an order, 3 = interrupted an order, 4 = self destructing
+
+    /*0x094*/ u16         currentButtonSet;       // The u16 is a guess, used to be u8
+    /*0x096*/ bool        isCloaked;
+    /*0x097*/ u8          movementState;          // A value based on conditions related to pathing, see Path.h for info
+    /*0x098*/ u16         buildQueue[5];          /**< Queue of units to build. Note that it doesn't begin with index 0, but with #buildQueueSlot index. */
+    /*0x0A2*/ u16         energy;                 /**< Energy Points */
+    /*0x0A4*/ u8          buildQueueSlot;         /**< Index of active unit in #buildQueue. */
+    /*0x0A5*/ u8          targetOrderSpecial;     /**< A byte used to determine the target ID for the unit */
+    /*0x0A6*/ u8          secondaryOrderID;       /**< (Build addon verified) @todo verify (Cloak, Build, ExpandCreep suggested by EUDDB) */
+    /*0x0A7*/ u8          buildingOverlayState;   // 0 means the building has the largest amount of fire/blood
+    /*0x0A8*/ u16         hpGainDuringRepair;     /**< @todo Verify */
     /*0x0AA*/ u16         _unknown_0x0AA;
-    /*0x0AC*/ u16         remainingBuildTime;    /**< Remaining bulding time; This is also the timer for powerups (flags) to return to their original location. */
-    /*0x0AE*/ u16         previousHP;        // The HP of the unit before it changed (example Drone->Hatchery, the Drone's HP will be stored here)
+    /*0x0AC*/ u16         remainingBuildTime;     /**< Remaining bulding time; This is also the timer for powerups (flags) to return to their original location. */
+    /*0x0AE*/ u16         previousHP;             // The HP of the unit before it changed (example Drone->Hatchery, the Drone's HP will be stored here)
     /*0x0B0*/ u16         loadedUnitIndex[8];
     /*0x0C0*/ union
               {
@@ -138,19 +151,20 @@ namespace BW
                 
                 struct
                 {
-                  BW::Unit  *inHangerChild;     // 0   first child inside the hanger
-                  BW::Unit  *outHangerChild;    // 4   first child outside the hanger
+                  BW::CUnit *inHangerChild;     // 0   first child inside the hanger
+                  BW::CUnit *outHangerChild;    // 4   first child outside the hanger
                   u8        inHangerCount;      // 8   number inside the hanger
                   u8        outHangerCount;     // 9   number outside the hanger
                 } carrier; // also applies to reaver
                 
                 struct
                 {
-                  BW::Unit  *parent;    // 0
-                  BW::Unit  *prev;      // 4
-                  BW::Unit  *next;      // 8
-                  u8        inHanger;   // C
-                } interceptor;  // also applies to scarab
+                  BW::CUnit  *parent;    // 0
+                  // CLink<CUnit> hanger_link;
+                  BW::CUnit  *prev;      // 4
+                  BW::CUnit  *next;      // 8
+                  bool       inHanger;   // C
+                } fighter;  // also applies to scarab
                 
                 struct
                 {
@@ -161,7 +175,7 @@ namespace BW
 
                 struct
                 {
-                  BW::Unit  *addon;               // 0
+                  BW::CUnit *addon;               // 0
                   u16       addonBuildType;       // 4
                   u16       upgradeResearchTime;  // 6
                   u8        techType;             // 8
@@ -170,29 +184,26 @@ namespace BW
                   u8        landingTimer;         // B
                   u8        creepTimer;           // C
                   u8        upgradeLevel;         // D
-                  u16       _padding_0E;          // E    // possible alignment
+                  u16 __E;  // 2-byte padding
                   union                           // 10
                   { 
                     struct
                     { u16       resourceCount;  // amount of resources
                       u8        resourceIscript;
                       u8        gatherQueueCount;
-                      BW::Unit  *nextGatherer;    // 14  // pointer to the next workerunit waiting in line to gather
+                      BW::CUnit *nextGatherer;    // 14  // pointer to the next workerunit waiting in line to gather
                       u8        resourceGroup;    // 18
                       u8        resourceBelongsToAI;
                     } resource;  // When the unit is resource container
-                    struct { BW::Unit *exit; } nydus; // connected nydius canal
-                    struct { BW::Sprite *nukeDot; } ghost;
-                    struct { BW::Sprite *pylonAura; } pylon;
+                    struct { BW::CUnit    *exit; } nydus; // connected nydius canal
+                    struct { BW::CSprite  *nukeDot; } ghost;
+                    struct { BW::CSprite  *pylonAura; } pylon;
                     struct
-                    { BW::Unit *nuke;   // attached nuke
-                      u32 hasNuke;      // 14
+                    { BW::CUnit *nuke;   // attached nuke
+                      bool hasNuke;      // 14
                     } silo;
                     struct
-                    { u16 harvestValueLeft;
-                      u16 harvestValueTop;
-                      u16 harvestValueRight;  // 14
-                      u16 harvestValueBottom;
+                    { ::rect harvestValue;
                     } hatchery; // wtf???
                     struct { POINTS origin; } powerup;
                   };
@@ -200,15 +211,16 @@ namespace BW
                 
                 struct 
                 {
-                  BW::Unit  *powerup;                 // 0
+                  BW::CUnit *powerup;                 // 0
                   POINTS    targetResource;           // 4
-                  BW::Unit  *targetResourceUnit;      // 8
+                  BW::CUnit *targetResourceUnit;      // 8
                   u16       repairResourceLossTimer;  // C
-                  u8        isCarryingSomething;      // E
+                  bool      isCarryingSomething;      // E
                   u8        resourceCarryCount;       // F
-                  BW::Unit  *harvestTarget;           // 10
-                  BW::Unit  *prevHarvestUnit;         // 14   // When there is a gather conflict
-                  BW::Unit  *nextHarvestUnit;         // 18
+                  BW::CUnit *harvestTarget;           // 10
+                  // CLINK<CUnit> harvest_link;
+                  BW::CUnit *prevHarvestUnit;         // 14   // When there is a gather conflict
+                  BW::CUnit *nextHarvestUnit;         // 18
                 } worker;
               };
     /*0x0DC*/ u32       statusFlags;
@@ -220,25 +232,27 @@ namespace BW
     /*0x0E4*/ s32       visibilityStatus;     // Flags specifying which players can detect this unit (cloaked/burrowed)
     /*0x0E8*/ u16       _unknown_0x0E8;       // ??
     /*0x0EA*/ u16       _unknown_0x0EA;       // possible alignment
-    /*0x0EC*/ BW::Unit  *currentBuildUnit;
-    /*0x0F0*/ BW::Unit  *previousBurrowedUnit;
-    /*0x0F4*/ BW::Unit  *nextBurrowedUnit;
+    /*0x0EC*/ BW::CUnit *currentBuildUnit;
+    // CLink<CUnit> burrow_link;
+    /*0x0F0*/ BW::CUnit *previousBurrowedUnit;
+    /*0x0F4*/ BW::CUnit *nextBurrowedUnit;
     /*0x0F8*/ union
         { struct
           { POINTS    position;
-            BW::Unit *unit;
+            BW::CUnit *unit;
           } rally;  // If the unit is rally type
 
           struct
-          { BW::Unit *prevPsiProvider;
-            BW::Unit *nextPsiProvider;
+          { // CLink<CUnit> power_link;
+            BW::CUnit *prevPsiProvider;
+            BW::CUnit *nextPsiProvider;
           } pylon;  // If the unit is psi provider
         };
     /*0x100*/ BW::Path  *path;
     /*0x104*/ u8        pathingCollisionInterval; // unknown
     /*0x105*/ u8        pathingFlags;             // 0x01 = uses pathing; 0x02 = ?; 0x04 = ?
     /*0x106*/ u8        _unused_0x106;
-    /*0x107*/ u8        isBeingHealed;    // 1 if a medic is currently healing this unit
+    /*0x107*/ bool      isBeingHealed;    // 1 if a medic is currently healing this unit
     /*0x108*/ rect      contourBounds;    // a rect that specifies the closest contour (collision) points
     struct
     {
@@ -251,12 +265,12 @@ namespace BW
       /*0x118*/ u8        irradiateTimer;
       /*0x119*/ u8        stasisTimer;
       /*0x11A*/ u8        plagueTimer;
-      /*0x11B*/ u8        isUnderStorm;
-      /*0x11C*/ BW::Unit  *irradiatedBy;
+      /*0x11B*/ bool      isUnderStorm;
+      /*0x11C*/ BW::CUnit *irradiatedBy;
       /*0x120*/ u8        irradiatePlayerID;
       /*0x121*/ u8        parasiteFlags;
       /*0x122*/ u8        cycleCounter;     // counts/cycles up from 0 to 7 (inclusive). See also 0x85.
-      /*0x123*/ u8        isBlind;
+      /*0x123*/ bool      isBlind;
       /*0x124*/ u8        maelstromTimer;
       /*0x125*/ u8        _unused_0x125;    // ?? Might be afterburner timer or ultralisk roar timer
       /*0x126*/ u8        acidSporeCount;
@@ -264,21 +278,23 @@ namespace BW
     } status;
     /*0x130*/ u16   bulletBehaviour3by3AttackSequence;  // Counts up for the number of bullets shot by a unit using
                                                         // this weapon behaviour and resets after it reaches 12
-    /*0x132*/ u16   _padding_0x132;
+
+    u16   _padding_0x132;   // 2-byte padding
+
     /*0x134*/ void  *CAIControl;            // pointer to AI class, we're not using this though
     /*0x138*/ u16   airStrength;
     /*0x13A*/ u16   groundStrength;
-    /*0x13C*/ u32   unitFinderIndexLeft;    // Order for the unit's left boundry
-    /*0x140*/ u32   unitFinderIndexRight;   // Order for the unit's right boundry
-    /*0x144*/ u32   unitFinderIndexTop;     // Order for the unit's top boundry
-    /*0x148*/ u32   unitFinderIndexBottom;  // Order for the unit's bottom boundry
+    struct
+    {
+      u32 left, right, top, bottom; // Ordering for unit boundries in unit finder for binary search
+    } finder;
     /*0x14C*/ u8    _repulseUnknown;        // @todo Unknown
     /*0x14D*/ u8    repulseAngle;           // updated only when air unit is being pushed
     /*0x14E*/ u8    driftPosX;              //  (mapsizex/1.5 max)
     /*0x14F*/ u8    driftPosY;              //  (mapsizex/1.5 max)
   };
-#pragma pack()
+//#pragma pack()
 
-  static_assert( sizeof(Unit) == 336, "BW::Unit is incorrect." );
+  static_assert( sizeof(CUnit) == 336, "BW::CUnit is incorrect." );
 };
 

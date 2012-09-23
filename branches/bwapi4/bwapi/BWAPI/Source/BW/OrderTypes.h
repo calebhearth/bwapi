@@ -61,7 +61,7 @@ namespace BW
     {
       public :
         SelectAdd(int count, BWAPI::UnitImpl **units);
-        SelectAdd(int count, BW::Unit **units);
+        SelectAdd(int count, BW::CUnit **units);
         /** 0x0A = Shift-Select command-code in bw */
         u8         always0x0A;
         u8         targCount;
@@ -73,7 +73,7 @@ namespace BW
     {
       public :
         Select(int count, BWAPI::UnitImpl **units);
-        Select(int count, BW::Unit **units);
+        Select(int count, BW::CUnit **units);
         Select(const BWAPI::Unitset &unitset);
         /** 0x09 = Select command-code in bw */
         u8         always0x09;

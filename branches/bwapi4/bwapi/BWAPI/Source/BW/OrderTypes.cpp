@@ -91,7 +91,7 @@ namespace BW
       targCount = (u8)finalCount;
       size      = 2 + targCount * 2;
     }
-    SelectAdd::SelectAdd(int count, BW::Unit **units)
+    SelectAdd::SelectAdd(int count, BW::CUnit **units)
         : always0x0A(0x0A)
     {
       unsigned int finalCount = 0;
@@ -114,7 +114,7 @@ namespace BW
       targCount = (u8)finalCount;
       size      = 2 + targCount * 2;
     }
-    Select::Select(int count, BW::Unit **units)
+    Select::Select(int count, BW::CUnit **units)
         : always0x09(0x09)
     {
       unsigned int finalCount = 0;

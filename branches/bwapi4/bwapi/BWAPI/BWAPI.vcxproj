@@ -59,6 +59,7 @@ popd</Command>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4238</DisableSpecificWarnings>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -97,6 +98,7 @@ popd</Command>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4238</DisableSpecificWarnings>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
     </ClCompile>
     <PreLinkEvent>
       <Command>
@@ -161,19 +163,19 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BWAPI\UnitImpl.h" />
     <ClInclude Include="Source\BW\AIController.h" />
     <ClInclude Include="Source\BW\BNETCommands.h" />
-    <ClInclude Include="Source\BW\Bullet.h" />
+    <ClInclude Include="Source\BW\CBullet.h" />
     <ClInclude Include="Source\BW\CheatFlags.h" />
     <ClInclude Include="Source\BW\CheatType.h" />
     <ClInclude Include="Source\BW\Dialog.h" />
     <ClInclude Include="Source\BW\FlingyID.h" />
     <ClInclude Include="Source\BW\GroupFlags.h" />
-    <ClInclude Include="Source\BW\Image.h" />
+    <ClInclude Include="Source\BW\CImage.h" />
     <ClInclude Include="Source\BW\Latency.h" />
     <ClInclude Include="Source\BW\MenuPosition.h" />
     <ClInclude Include="Source\BW\MiniTileFlags.h" />
     <ClInclude Include="Source\BW\MovementFlags.h" />
     <ClInclude Include="Source\BW\Offsets.h" />
-    <ClInclude Include="Source\BW\Order.h" />
+    <ClInclude Include="Source\BW\COrder.h" />
     <ClInclude Include="Source\BW\OrderFlags.h" />
     <ClInclude Include="Source\BW\OrderTypes.h" />
     <ClInclude Include="Source\BW\Path.h" />
@@ -181,12 +183,13 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\PlayerID.h" />
     <ClInclude Include="Source\BW\Position.h" />
     <ClInclude Include="Source\BW\PositionUnitTarget.h" />
-    <ClInclude Include="Source\BW\Sprite.h" />
+    <ClInclude Include="Source\BW\CSprite.h" />
+    <ClInclude Include="Source\BW\Target.h" />
     <ClInclude Include="Source\BW\TileSet.h" />
     <ClInclude Include="Source\BW\TileType.h" />
     <ClInclude Include="Source\BW\TriggerEngine.h" />
     <ClInclude Include="Source\BW\Triggers.h" />
-    <ClInclude Include="Source\BW\Unit.h" />
+    <ClInclude Include="Source\BW\CUnit.h" />
     <ClInclude Include="Source\BW\UnitPrototypeFlags.h" />
     <ClInclude Include="Source\BW\UnitStatusFlags.h" />
     <ClInclude Include="Source\BW\UnitTarget.h" />
@@ -231,15 +234,16 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClCompile Include="Source\BWAPI\UnitUpdate.cpp" />
     <ClCompile Include="Source\BW\CheatType.cpp" />
     <ClCompile Include="Source\BW\Dialog.cpp" />
-    <ClCompile Include="Source\BW\Image.cpp" />
+    <ClCompile Include="Source\BW\CImage.cpp" />
     <ClCompile Include="Source\BW\Internal.cpp" />
     <ClCompile Include="Source\BW\OrderTypes.cpp" />
     <ClCompile Include="Source\BW\Path.cpp" />
     <ClCompile Include="Source\BW\Pathing.cpp" />
     <ClCompile Include="Source\BW\PositionUnitTarget.cpp" />
+    <ClCompile Include="Source\BW\Target.cpp" />
     <ClCompile Include="Source\BW\TileSet.cpp" />
     <ClCompile Include="Source\BW\TriggerEngine.cpp" />
-    <ClCompile Include="Source\BW\Unit.cpp" />
+    <ClCompile Include="Source\BW\CUnit.cpp" />
     <ClCompile Include="Source\BW\UnitTarget.cpp" />
     <ClCompile Include="Source\CodePatch.cpp" />
     <ClCompile Include="Source\Config.cpp" />

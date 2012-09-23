@@ -1,16 +1,16 @@
 #pragma once
 #include "Position.h"
 
-#pragma pack(1)
 namespace BW
 {
-  class Image;
+  class CImage;
 
-  class Sprite
+  // Must be on 4-byte alignment
+  class CSprite
   {
   public:
-    /*0x00*/ Sprite    *prev;
-    /*0x04*/ Sprite    *next;
+    /*0x00*/ CSprite   *prev;
+    /*0x04*/ CSprite   *next;
     /*0x08*/ u16       spriteID;
     /*0x0A*/ u8        playerID;
     /*0x0B*/ u8        selectionIndex; //0 <= selectionIndex <= 11. Index in the selection area at bottom of screen.
@@ -29,11 +29,11 @@ namespace BW
     /*0x0F*/ u8        selectionTimer;
     /*0x10*/ u32       index;
     /*0x14*/ Position  position;
-    /*0x18*/ Image     *mainGraphic;
-    /*0x1C*/ Image     *underlay;
-    /*0x20*/ Image     *overlay;
+    /*0x18*/ CImage    *mainGraphic;
+    /*0x1C*/ CImage    *underlay;
+    /*0x20*/ CImage    *overlay;
   };
 
-  static_assert( sizeof(Sprite) == 36, "BW::Sprite is incorrect." );
+  static_assert( sizeof(CSprite) == 36, "BW::CSprite is incorrect." );
 };
-#pragma pack()
+

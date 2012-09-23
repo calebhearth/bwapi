@@ -15,7 +15,7 @@
 
 namespace BW
 { 
-  class Unit;
+  class CUnit;
 };
 namespace BWAPI
 {
@@ -155,10 +155,10 @@ namespace BWAPI
       virtual bool issueCommand(UnitCommand command);
 
       //Internal BWAPI commands:
-      UnitImpl(BW::Unit* originalUnit,
+      UnitImpl(BW::CUnit* originalUnit,
                u16 index);
       ~UnitImpl();
-      static UnitImpl* BWUnitToBWAPIUnit(BW::Unit* unit);
+      static UnitImpl* BWUnitToBWAPIUnit(BW::CUnit* unit);
       void die();
       void setID(int newID);
       bool canAccess() const;
@@ -184,7 +184,7 @@ namespace BWAPI
       void setLoaded(bool loadedState);
       UnitImpl* getNext() const;
       /** Gets #bwOriginalUnit */
-      BW::Unit* getOriginalRawData;
+      BW::CUnit* getOriginalRawData;
       /** Gets #bwUnitLocal */
       u8 getBuildQueueSlot;
       /** Gets #bwUnit->BW#Unit#buildQueue */

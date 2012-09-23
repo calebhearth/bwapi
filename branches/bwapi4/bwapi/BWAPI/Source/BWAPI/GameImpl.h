@@ -12,8 +12,8 @@
 
 namespace BW
 {
-  class Unit;
-  struct Bullet;
+  class CUnit;
+  class CBullet;
   class Dialog;
 }
 /**
@@ -277,7 +277,7 @@ namespace BWAPI
       /** Count of game-frames passed from game start. */
       int frameCount;
       void refreshSelectionStates();
-      BW::Unit *savedUnitSelection[12];
+      BW::CUnit *savedUnitSelection[12];
       bool wantSelectionUpdate;
 
       bool startedClient;

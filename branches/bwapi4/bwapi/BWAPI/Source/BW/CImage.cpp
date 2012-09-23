@@ -1,20 +1,20 @@
-#include "Image.h"
+#include "CImage.h"
 
 #include <BW/Dialog.h>
-#include <BW/Sprite.h>
+#include <BW/CSprite.h>
 
 namespace BW
 {
   /////////////////////////////////////// IMAGE functions
-  grpFrame *Image::getCurrentFrame() const
+  grpFrame *CImage::getCurrentFrame() const
   {
     return &this->GRPFile->frames[this->frameIndex];
   }
-  BW::Position Image::getPosition() const
+  BW::Position CImage::getPosition() const
   {
     return Position(this->horizontalOffset, this->verticalOffset) + this->spriteOwner->position;
   }
-  void Image::updateGraphicData()
+  void CImage::updateGraphicData()
   {
     grpHead  *pGrpHead  = this->GRPFile;
     grpFrame *pGrpFrame = this->getCurrentFrame();
@@ -50,7 +50,7 @@ namespace BW
     this->grpBounds = bounds;
   }
 
-  void Image::drawImage()
+  void CImage::drawImage()
   {
     if ( (this->flags & 0x40)       && 
          this->grpBounds.bottom > 0 &&

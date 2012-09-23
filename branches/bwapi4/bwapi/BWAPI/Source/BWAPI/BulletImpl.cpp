@@ -1,6 +1,6 @@
 #include "BulletImpl.h"
-#include <BW/Bullet.h>
-#include <BW/Sprite.h>
+#include <BW/CBullet.h>
+#include <BW/CSprite.h>
 #include <BW/Offsets.h>
 
 #include "GameImpl.h"
@@ -12,7 +12,7 @@
 namespace BWAPI
 {
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
-  BulletImpl::BulletImpl(BW::Bullet* originalBullet, u16 index)
+  BulletImpl::BulletImpl(BW::CBullet* originalBullet, u16 index)
       : bwOriginalBullet(originalBullet)
       , index(index)
       , __exists(false)
@@ -38,17 +38,17 @@ namespace BWAPI
     lastExists = __exists;
   }
   //---------------------------------------------- GET RAW DATA ----------------------------------------------
-  BW::Bullet* BulletImpl::getRawData() const
+  BW::CBullet* BulletImpl::getRawData() const
   {
     return this->bwOriginalBullet;
   }
   //---------------------------------------- BW BULLET TO BWAPI BULLET ---------------------------------------
-  BulletImpl* BulletImpl::BWBulletToBWAPIBullet(BW::Bullet* bullet)
+  BulletImpl* BulletImpl::BWBulletToBWAPIBullet(BW::CBullet* bullet)
   {
     if ( !bullet )
       return nullptr;
 
-    u16 index = (u16)( ((u32)bullet - (u32)BW::BWDATA::BulletNodeTable) / sizeof(BW::Bullet) ) & 0x7F;
+    u16 index = (u16)( ((u32)bullet - (u32)BW::BWDATA::BulletNodeTable) / sizeof(BW::CBullet) ) & 0x7F;
     if ( index > BULLET_ARRAY_MAX_LENGTH )
       return nullptr;
     return BroodwarImpl.getBulletFromIndex(index);
@@ -81,7 +81,7 @@ namespace BWAPI
           isVisible()) )
     {
       UnitImpl *_getSource = UnitImpl::BWUnitToBWAPIUnit(bwOriginalBullet->sourceUnit);
-      UnitImpl *_getTarget = UnitImpl::BWUnitToBWAPIUnit(bwOriginalBullet->targetUnit);
+      UnitImpl *_getTarget = UnitImpl::BWUnitToBWAPIUnit(bwOriginalBullet->attackTarget.pUnit);
       Player   *_getPlayer = _getSource ? _getSource->_getPlayer : nullptr;
 
       // id, player, type, source

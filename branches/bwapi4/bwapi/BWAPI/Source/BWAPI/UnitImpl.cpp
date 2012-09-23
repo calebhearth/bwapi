@@ -17,8 +17,8 @@
 #include "../Detours.h"
 #include "TemplatesImpl.h"
 
-#include <BW/Unit.h>
-#include <BW/Order.h>
+#include <BW/CUnit.h>
+#include <BW/COrder.h>
 #include <BW/Offsets.h>
 
 #include "../../../Debug.h"
@@ -26,7 +26,7 @@
 namespace BWAPI
 {
   //--------------------------------------------- CONSTRUCTOR ------------------------------------------------
-  UnitImpl::UnitImpl(BW::Unit* originalUnit,
+  UnitImpl::UnitImpl(BW::CUnit* originalUnit,
                      u16 index)
       : getOriginalRawData(originalUnit)
       , index(index)
@@ -116,7 +116,7 @@ namespace BWAPI
     QueueGameCommand(&sel, sel.size);
   }
   //----------------------------------------------------------------------------------------------------------
-  UnitImpl* UnitImpl::BWUnitToBWAPIUnit(BW::Unit* unit)
+  UnitImpl* UnitImpl::BWUnitToBWAPIUnit(BW::CUnit* unit)
   {
     if ( !unit )
       return nullptr;

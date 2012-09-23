@@ -31,10 +31,10 @@
 
 namespace BW
 {
-  class  Unit;
-  class  Sprite;
-  class  Image;
-  struct Bullet;
+  class  CUnit;
+  class  CSprite;
+  class  CImage;
+  class  CBullet;
   class  TileType;
   class  dialog;
   struct bitmap;
@@ -201,13 +201,13 @@ namespace BW
   BW_DATA(RECT*, ScrSize, 0x0051A16C, 0);
 
   //------------------------------------------- CLIST DATA ---------------------------------------------------
-  BW_DATA(Unit**, UnitNodeList_VisibleUnit_First, 0x00628430, 0);
-  BW_DATA(Unit**, UnitNodeList_HiddenUnit_First, 0x006283EC, 0);
-  BW_DATA(Unit**, UnitNodeList_ScannerSweep_First, 0x006283F4, 0);
-  BW_DATA(Unit*, UnitNodeTable, 0x0059CCA8, 0);
+  BW_DATA(CUnit**, UnitNodeList_VisibleUnit_First, 0x00628430, 0);
+  BW_DATA(CUnit**, UnitNodeList_HiddenUnit_First, 0x006283EC, 0);
+  BW_DATA(CUnit**, UnitNodeList_ScannerSweep_First, 0x006283F4, 0);
+  BW_DATA(CUnit*, UnitNodeTable, 0x0059CCA8, 0);
 
-  BW_DATA(Bullet**, BulletNodeTable_FirstElement, 0x0064DEC4, 0);
-  BW_DATA(Bullet*, BulletNodeTable, 0x0064B2E8, 0);
+  BW_DATA(CBullet**, BulletNodeTable_FirstElement, 0x0064DEC4, 0);
+  BW_DATA(CBullet*, BulletNodeTable, 0x0064B2E8, 0);
 
   struct unitFinder
   {
@@ -239,7 +239,7 @@ namespace BW
 
   BW_DATA(void**, customList_UIDlgData, 0x0051A350, 0);
   //--------------------------------------- FOR RESOLUTION HACK ----------------------------------------------
-  BW_DATA(BW::Sprite**, spriteGroups, 0x00629688, 0);
+  BW_DATA(BW::CSprite**, spriteGroups, 0x00629688, 0);
 
   struct _gametext
   {
@@ -264,7 +264,7 @@ namespace BW
   BW_DATA(u8*, InputFlags, 0x006CDDC0, 0);
 
   //----------------------------------------- FUNCTION LEVEL -------------------------------------------------
-  BW_DATA(Unit**, ClientSelectionGroup, 0x00597208, 0);
+  BW_DATA(CUnit**, ClientSelectionGroup, 0x00597208, 0);
   BW_DATA(u8*, ClientSelectionCount, 0x0059723D, 0);
   BW_DATA(u32, PlayerSelection, 0x006284E0, 0);
 
