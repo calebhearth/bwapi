@@ -63,6 +63,13 @@ namespace BW
     /*0x64*/ BW::CUnit    *sourceUnit;
     /*0x68*/ BW::CUnit    *nextBounceUnit;     // Next unit for bounce, temporary
     /*0x6C*/ u32          cyclicMissileIndex;       // some sort of cyclic burst counter (used by valkyries, goliath air attack)
+
+    ////////////////////////////////////////////////////////////////////
+    // Official Broodwar methods (from beta), ignore these
+    /*
+    Init
+    void RunOrders();
+    */
   };
   static_assert( sizeof(CBullet) == 112, "BW::CBullet is incorrect." );
 

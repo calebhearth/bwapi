@@ -580,7 +580,7 @@ namespace BW
     case ctrls::cDFLTBTN:
     case ctrls::cFLCBTN:
       lFlags   |= CTRL_USELOCALGRAPHIC | CTRL_FONT_LARGE | CTRL_TRANSLUCENT;
-      wGraphic = 112;
+      wUser = 112;
     case ctrls::cCHKBOX:
     case ctrls::cOPTION:
     case ctrls::cHSCROLL:

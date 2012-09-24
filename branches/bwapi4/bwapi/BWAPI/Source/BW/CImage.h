@@ -17,7 +17,7 @@ namespace BW
   };
   struct grpHead
   {
-    s16       frameCount;
+    WORD      wFrames;  // official
     s16       width;
     s16       height;
     grpFrame  frames[1];
@@ -35,8 +35,12 @@ namespace BW
 
     /* 0x00 */ CImage       *prev;
     /* 0x04 */ CImage       *next;
-    /* 0x08 */ u16          imageID;
-    /* 0x0A */ u8           paletteType;
+    /* 0x08 */ u16          imageID;        // officially "uwNo"
+    /* 0x0A */ u8           paletteType;    // officially "ubRLE"
+                                            // RLE_SHADOW = 10
+                                            // RLE_HPFLOATDRAW = 11
+                                            // RLE_OUTLINE = 13
+                                            // RLE_PLAYER_SIDE = 14
     /* 0x0B */ u8           direction;
     /* 0x0C */ u16          flags;
                             /*  0x0001  - 
@@ -62,7 +66,7 @@ namespace BW
     /* 0x12 */ u16          iscriptOffset;
     /* 0x14 */ u16          unknown_14;
     /* 0x16 */ u8           anim;
-    /* 0x17 */ u8           wait;
+    /* 0x17 */ u8           wait;       // officially "sleep"?
     /* 0x18 */ u16          frameSet;
     /* 0x1A */ u16          frameIndex;
     /* 0x1C */ BW::Position mapPosition;
@@ -71,9 +75,16 @@ namespace BW
     /* 0x2C */ grpHead      *GRPFile;
     /* 0x30 */ void         *coloringData;
     // void __fastcall renderFunction(int screenX, int screenY, grpFrame *pFrame, RECT *grpRect, int colorData);
-    /* 0x34 */ void (__fastcall *renderFunction)(int,int,grpFrame*,RECT*,int);
-    /* 0x38 */ void (__fastcall *updateFunction)(CImage*);
+    /* 0x34 */ void (__fastcall *renderFunction)(int,int,grpFrame*,RECT*,int);    // officially "DrawFunction"
+    /* 0x38 */ void (__fastcall *updateFunction)(CImage*);                        // officially "UpdateFunction"
     /* 0x3C */ CSprite       *spriteOwner;
+
+    ////////////////////////////////////////////////////////////////////
+    // Official Broodwar methods (from beta), ignore these
+    /*
+    RunScript
+    PathRunScript
+    */
   };
 
   static_assert( sizeof(CImage) == 64, "BW::CImage is incorrect.");

@@ -578,46 +578,7 @@ void *__stdcall _SMemAlloc(int amount, char *logfilename, int logline, char defa
       }
     }
   } // isCorrectVer
-
-  /* Save the allocated string table pointer */
-  if ( lastFile == "rez\\stat_txt.tbl" )
-  {
-    BW::BWDATA::StringTableOff = (char*)rval;
-    lastFile = "";
-  }
-
-  /* Save the allocated fog of war pointer */
-  if ( amount == 0x40000 && _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 606 )
-  {
-    BW::BWDATA::ActiveTileArray = (BW::activeTile*)rval;
-  }
-
-  /* Save the allocated mini-tile flags pointer */
-  if ( lastFile.find(".vf4") != std::string::npos )
-  {
-    BW::BWDATA::MiniTileFlags = (BW::MiniTileMaps_type*)rval;
-    lastFile = "";
-  }
-
-  /* Save the allocated SAI_Paths pointer */
-  if ( _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\sai_PathCreate.cpp") == 0 && logline == 210 )
-  {
-    BW::BWDATA::SAIPathing = (BW::SAI_Paths*)rval;
-  }
-
-  /* Save the allocated tileset pointer */
-  if ( lastFile.find(".cv5") != std::string::npos )
-  {
-    BW::BWDATA::TileSet    = (BW::TileType*)rval;
-    lastFile = "";
-  }
-
-  /* Save the allocated map tile array pointer */
-  if ( amount == 0x20000 && _strcmpi(logfilename, "Starcraft\\SWAR\\lang\\Gamemap.cpp") == 0 && logline == 603 )
-  {
-    BW::BWDATA::MapTileArray = (u16*)rval;
-  }
-
+  
   return rval;
 }
 

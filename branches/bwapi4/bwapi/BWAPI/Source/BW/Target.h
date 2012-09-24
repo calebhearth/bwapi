@@ -11,7 +11,7 @@ namespace BW
    */
   struct Target
   {
-    BW::Position  position;
+    BW::Position  pt;       // official name
     CUnit         *pUnit;
   };
 

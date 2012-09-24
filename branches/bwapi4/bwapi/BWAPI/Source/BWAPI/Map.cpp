@@ -166,15 +166,15 @@ namespace BWAPI
     }
     buildability.resize(Map::getWidth(), Map::getHeight());
     walkability.resize(Map::getWidth()*4, Map::getHeight()*4);
-    activeTiles = new Util::RectangleArray<BW::activeTile>(Map::getHeight(), Map::getWidth(), BW::BWDATA::ActiveTileArray);
+    activeTiles = new Util::RectangleArray<BW::activeTile>(Map::getHeight(), Map::getWidth(), *BW::BWDATA::ActiveTileArray);
     setBuildability();
     setWalkability();
   }
   //------------------------------------------------ GET TILE ------------------------------------------------
   BW::TileID Map::getTile(int x, int y)
   {
-    if ( BW::BWDATA::MapTileArray )
-      return *(BW::BWDATA::MapTileArray + x + y * Map::getWidth());
+    if ( *BW::BWDATA::MapTileArray )
+      return *((*BW::BWDATA::MapTileArray) + x + y * Map::getWidth());
     return 0;
   }
   //------------------------------------------- GET TILE VARIATION -------------------------------------------
@@ -230,7 +230,7 @@ namespace BWAPI
     BW::TileID tileID = BWAPI::Map::getTile(tx, ty);
     BW::TileType* tile = BW::TileSet::getTileType(tileID);
     if ( tile && BW::BWDATA::MiniTileFlags )
-      return BW::BWDATA::MiniTileFlags->tile[tile->miniTile[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
+      return (*BW::BWDATA::MiniTileFlags)->tile[tile->miniTile[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
     return 0;
   }
   //------------------------------------------ GET MAP HASH --------------------------------------------------

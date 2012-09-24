@@ -61,9 +61,9 @@ namespace BWAPI
   //----------------------------------------------------------------------------------------------------------
   Region *GameImpl::getRegion(int regionID) const
   {
-    if ( !BW::BWDATA::SAIPathing || regionID < 0 || regionID >= (int)BW::BWDATA::SAIPathing->regionCount )
+    if ( !(*BW::BWDATA::SAIPathing) || regionID < 0 || regionID >= (int)(*BW::BWDATA::SAIPathing)->regionCount )
       return nullptr;
-    return (Region*)BW::BWDATA::SAIPathing->regions[regionID].unk_28;
+    return (Region*)(*BW::BWDATA::SAIPathing)->regions[regionID].unk_28;
   }
   //----------------------------------------------------------------------------------------------------------
   Player* GameImpl::getPlayer(int playerID) const
@@ -881,7 +881,7 @@ namespace BWAPI
     if ( !source.isValid() || !destination.isValid() )
       return Broodwar->setLastError(Errors::Unreachable_Location);
 
-    if ( BW::BWDATA::SAIPathing )
+    if ( *BW::BWDATA::SAIPathing )
     {
       BW::region *srcRgn = BW::getRegionAt( BW::Position(source) );
       BW::region *dstRgn = BW::getRegionAt( BW::Position(destination) );

@@ -334,10 +334,10 @@ namespace BWAPI
                        self->order == Orders::NukeTrain    ||
                        self->order == Orders::Larva;
       self->target               = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveTarget.pUnit)); //getTarget
-      self->targetPositionX      = o->moveTarget.position.x;  //getTargetPosition
-      self->targetPositionY      = o->moveTarget.position.y;  //getTargetPosition
-      self->orderTargetPositionX = o->orderTarget.position.x;
-      self->orderTargetPositionY = o->orderTarget.position.y;
+      self->targetPositionX      = o->moveTarget.pt.x;  //getTargetPosition
+      self->targetPositionY      = o->moveTarget.pt.y;  //getTargetPosition
+      self->orderTargetPositionX = o->orderTarget.pt.x;
+      self->orderTargetPositionY = o->orderTarget.pt.y;
       self->orderTarget          = BroodwarImpl.server.getUnitID(UnitImpl::BWUnitToBWAPIUnit(o->orderTarget.pUnit));  //getOrderTarget
       //------------------------------------------------------------------------------------------------------
       //getAddon
@@ -366,7 +366,7 @@ namespace BWAPI
       //------------------------------------------------------------------------------------------------------
       //getPowerUp
       self->powerUp = -1;
-      UnitImpl* powerUp = UnitImpl::BWUnitToBWAPIUnit(o->worker.powerup);
+      UnitImpl* powerUp = UnitImpl::BWUnitToBWAPIUnit(o->worker.pPowerup);
       if (powerUp && powerUp->isAlive)
         self->powerUp = BroodwarImpl.server.getUnitID(powerUp);
 
@@ -512,7 +512,7 @@ namespace BWAPI
           self->trainingQueue[0]   = UnitTypes::Enum::Terran_Nuclear_Missile;
           self->trainingQueueCount = 1;
         }
-        self->hasNuke = (o->building.silo.hasNuke != 0);
+        self->hasNuke = (o->building.silo.bReady != 0);
         break;
       case UnitTypes::Enum::Zerg_Hatchery:
       case UnitTypes::Enum::Zerg_Lair:

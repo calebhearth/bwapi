@@ -15,7 +15,7 @@ namespace BWAPI
     MemZero(this->data);
 
     // Assuming this is called via GameInternals, so no checks are made
-    BW::region *r         = &BW::BWDATA::SAIPathing->regions[id];
+    BW::region *r         = &(*BW::BWDATA::SAIPathing)->regions[id];
 
     // Assign common region properties
     self->islandID        = r->groupIndex;
@@ -40,7 +40,7 @@ namespace BWAPI
   void RegionImpl::UpdateRegionRelations()
   {
     // Assuming this is called via GameInternals, so no checks are made
-    BW::region *r = &BW::BWDATA::SAIPathing->regions[self->id];
+    BW::region *r = &(*BW::BWDATA::SAIPathing)->regions[self->id];
 
     // Assign region neighbors
     this->neighbors.clear();

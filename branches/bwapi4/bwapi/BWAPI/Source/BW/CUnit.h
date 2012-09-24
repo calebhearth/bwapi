@@ -24,8 +24,9 @@ namespace BW
    *
    * The Broodwar project has a 4-byte alignment, this structure follows that directive and
    * excludes some bytes that have been marked as padding bytes.
+   *
+   * Additional notes: possibly missing a "Cloaked" link, has a static member "nSorted"
    */
-//#pragma pack(1) // Note: alignment is probably default 4, not 1
   class CUnit
   {
   public:
@@ -40,10 +41,10 @@ namespace BW
                                           *   it to iterate units.
                                           *   @see BW#BWXFN_UnitNodeTable_FirstElement
                                           **/
-    /*0x008*/ s32           hitPoints;  /**< Hit points of unit, note that the displayed value
-                                          *   in broodwar is ceil(healthPoints/256)
-                                          */
+    /*0x008*/ s32           hitPoints;  // Hit points of unit, note that the displayed value in broodwar is ceil(healthPoints/256)
+                                        // Officially called "xLife"
     /*0x00C*/ BW::CSprite   *sprite;
+                                                    // One of these Position structs are just called "swLocX" and "swLocY"
     /*0x010*/ BW::Target    moveTarget;             // The position or unit to move to. It is NOT an order target.
     /*0x018*/ BW::Position  nextMovementWaypoint;   /**< The next way point in the path the unit is following to get to its destination.
                                                       * Equal to moveToPos for air units since they don't need to navigate around buildings
@@ -60,8 +61,8 @@ namespace BW
     /*0x024*/ u16           flingyID;
     /*0x026*/ u8            _unknown_0x026;
     /*0x027*/ u8            flingyMovementType;
-    /*0x028*/ BW::Position  position;        // Current position of the unit
-    /*0x02C*/ POINT         halt;          // @todo Unknown
+    /*0x028*/ BW::Position  position;         // Current position of the unit
+    /*0x02C*/ POINT         halt;             // @todo Unknown    // Either this or current_speed is officially called "xDX, xDY" (no POINT struct)
     /*0x034*/ u32           flingyTopSpeed;
     /*0x038*/ s32           current_speed1;
     /*0x03C*/ s32           current_speed2;
@@ -72,7 +73,7 @@ namespace BW
     /*0x04B*/ u8            velocityDirection2;   // pathing related, gets this value from Path::unk_1A?
     /*0x04C*/ u8            playerID;             // Specification of owner of this unit.
     /*0x04D*/ u8            orderID;              // Specification of type of order currently given.
-    /*0x04E*/ u8            orderState;  /**< Additional order info (mostly unknown, wander property investigated so far) */
+    /*0x04E*/ u8            orderState;  //< Additional order info (mostly unknown, wander property investigated so far)  // officially "ubActionState"
                                          /*  0x01  Moving/Following Order
                                              0x02  No collide (Larva)?
                                              0x04  Harvesting? Working?
@@ -84,7 +85,7 @@ namespace BW
                                               0x04  Reset collision? Always enabled for hallucination...
                                               0x10  Lift/Land state
                                           */
-    /*0x050*/ u16           orderUnitType;
+    /*0x050*/ u16           orderUnitType;      // officially "uwFoggedTarget"
     
     u16 __0x52;  // 2-byte padding
 
@@ -92,7 +93,7 @@ namespace BW
     /*0x055*/ u8            groundWeaponCooldown;
     /*0x056*/ u8            airWeaponCooldown;
     /*0x057*/ u8            spellCooldown;
-    /*0x058*/ BW::Target    orderTarget;
+    /*0x058*/ BW::Target    orderTarget;        // officially called ActionFocus
 // ^-- POSSIBLE SHARED BULLET/UNIT STRUCTURE END
 
     /*0x060*/ u32         shieldPoints;      // BW shows this value/256, possibly not u32?
@@ -111,8 +112,8 @@ namespace BW
     /*0x078*/ BW::COrder   *orderQueueTail;
 
     /*0x07C*/ BW::CUnit   *autoTargetUnit;      // The auto-acquired target
-    /*0x080*/ BW::CUnit   *connectedUnit;       // Addon is connected to building (addon has conntected building, but not in other direction
-    /*0x084*/ u8          orderQueueCount;      // @todo Verify
+    /*0x080*/ BW::CUnit   *connectedUnit;       // Addon is connected to building (addon has conntected building, but not in other direction  (officially "pAttached")
+    /*0x084*/ u8          orderQueueCount;      // @todo Verify   // officially "ubQueuedOrders"
     /*0x085*/ u8          orderQueueTimer;      // counts/cycles down from from 8 to 0 (inclusive). See also 0x122.
     /*0x086*/ u8          _unknown_0x086;       // pathing related?
     /*0x087*/ u8          attackNotifyTimer;    // Prevent "Your forces are under attack." on every attack
@@ -131,17 +132,17 @@ namespace BW
     /*0x094*/ u16         currentButtonSet;       // The u16 is a guess, used to be u8
     /*0x096*/ bool        isCloaked;
     /*0x097*/ u8          movementState;          // A value based on conditions related to pathing, see Path.h for info
-    /*0x098*/ u16         buildQueue[5];          /**< Queue of units to build. Note that it doesn't begin with index 0, but with #buildQueueSlot index. */
-    /*0x0A2*/ u16         energy;                 /**< Energy Points */
-    /*0x0A4*/ u8          buildQueueSlot;         /**< Index of active unit in #buildQueue. */
-    /*0x0A5*/ u8          targetOrderSpecial;     /**< A byte used to determine the target ID for the unit */
-    /*0x0A6*/ u8          secondaryOrderID;       /**< (Build addon verified) @todo verify (Cloak, Build, ExpandCreep suggested by EUDDB) */
+    /*0x098*/ u16         buildQueue[5];          //< Queue of units to build. Note that it doesn't begin with index 0, but with #buildQueueSlot index. 
+    /*0x0A2*/ u16         energy;                 //< Energy Points   // officially "xwMagic"
+    /*0x0A4*/ u8          buildQueueSlot;         //< Index of active unit in #buildQueue. 
+    /*0x0A5*/ u8          targetOrderSpecial;     //< A byte used to determine the target ID for the unit 
+    /*0x0A6*/ u8          secondaryOrderID;       //< (Build addon verified) @todo verify (Cloak, Build, ExpandCreep suggested by EUDDB) 
     /*0x0A7*/ u8          buildingOverlayState;   // 0 means the building has the largest amount of fire/blood
-    /*0x0A8*/ u16         hpGainDuringRepair;     /**< @todo Verify */
+    /*0x0A8*/ u16         hpGainDuringRepair;     //< @todo Verify 
     /*0x0AA*/ u16         _unknown_0x0AA;
-    /*0x0AC*/ u16         remainingBuildTime;     /**< Remaining bulding time; This is also the timer for powerups (flags) to return to their original location. */
+    /*0x0AC*/ u16         remainingBuildTime;     //< Remaining bulding time; This is also the timer for powerups (flags) to return to their original location.
     /*0x0AE*/ u16         previousHP;             // The HP of the unit before it changed (example Drone->Hatchery, the Drone's HP will be stored here)
-    /*0x0B0*/ u16         loadedUnitIndex[8];
+    /*0x0B0*/ u16         loadedUnitIndex[8];     // officially called "uwTransport[8]"
     /*0x0C0*/ union
               {
                 struct
@@ -151,11 +152,11 @@ namespace BW
                 
                 struct
                 {
-                  BW::CUnit *inHangerChild;     // 0   first child inside the hanger
-                  BW::CUnit *outHangerChild;    // 4   first child outside the hanger
+                  BW::CUnit *pInHanger;     // 0   first child inside the hanger    // official
+                  BW::CUnit *pOutHanger;    // 4   first child outside the hanger
                   u8        inHangerCount;      // 8   number inside the hanger
                   u8        outHangerCount;     // 9   number outside the hanger
-                } carrier; // also applies to reaver
+                } carrier; // also applies to reaver (Carrier is official)
                 
                 struct
                 {
@@ -197,11 +198,11 @@ namespace BW
                     } resource;  // When the unit is resource container
                     struct { BW::CUnit    *exit; } nydus; // connected nydius canal
                     struct { BW::CSprite  *nukeDot; } ghost;
-                    struct { BW::CSprite  *pylonAura; } pylon;
+                    struct { BW::CSprite  *pylonAura; } pylon;  // Should be "CUnit::Pylon::pPowerTemplate"
                     struct
-                    { BW::CUnit *nuke;   // attached nuke
-                      bool hasNuke;      // 14
-                    } silo;
+                    { BW::CUnit *pNuke;   // attached nuke    // official name
+                      bool bReady;      // 14   // official name
+                    } silo;   // Should be "CUnit::Silo::"
                     struct
                     { ::rect harvestValue;
                     } hatchery; // wtf???
@@ -211,17 +212,17 @@ namespace BW
                 
                 struct 
                 {
-                  BW::CUnit *powerup;                 // 0
+                  BW::CUnit *pPowerup;                // 0    // official
                   POINTS    targetResource;           // 4
                   BW::CUnit *targetResourceUnit;      // 8
                   u16       repairResourceLossTimer;  // C
-                  bool      isCarryingSomething;      // E
+                  bool      isCarryingSomething;      // E    // There is a "ubIsHarvesting" somewhere
                   u8        resourceCarryCount;       // F
                   BW::CUnit *harvestTarget;           // 10
                   // CLINK<CUnit> harvest_link;
                   BW::CUnit *prevHarvestUnit;         // 14   // When there is a gather conflict
                   BW::CUnit *nextHarvestUnit;         // 18
-                } worker;
+                } worker;   // Official name, but there is also a "CUnit::WorkerList::pHarvestBldg" somewhere
               };
     /*0x0DC*/ u32       statusFlags;
     /*0x0E0*/ u8        resourceType;         // Resource being held by worker: 1 = gas, 2 = ore
@@ -248,7 +249,7 @@ namespace BW
             BW::CUnit *nextPsiProvider;
           } pylon;  // If the unit is psi provider
         };
-    /*0x100*/ BW::Path  *path;
+    /*0x100*/ BW::Path  *path;    // officially "unitPath"
     /*0x104*/ u8        pathingCollisionInterval; // unknown
     /*0x105*/ u8        pathingFlags;             // 0x01 = uses pathing; 0x02 = ?; 0x04 = ?
     /*0x106*/ u8        _unused_0x106;
@@ -281,19 +282,135 @@ namespace BW
 
     u16   _padding_0x132;   // 2-byte padding
 
-    /*0x134*/ void  *CAIControl;            // pointer to AI class, we're not using this though
+    /*0x134*/ void  *pAI;            // pointer to AI class, we're not using this though  // official name
     /*0x138*/ u16   airStrength;
     /*0x13A*/ u16   groundStrength;
     struct
-    {
+    {             // Official names are "posSortXL, posSortXR, posSortYT, posSortYB"
       u32 left, right, top, bottom; // Ordering for unit boundries in unit finder for binary search
     } finder;
     /*0x14C*/ u8    _repulseUnknown;        // @todo Unknown
     /*0x14D*/ u8    repulseAngle;           // updated only when air unit is being pushed
-    /*0x14E*/ u8    driftPosX;              //  (mapsizex/1.5 max)
-    /*0x14F*/ u8    driftPosY;              //  (mapsizex/1.5 max)
+    /*0x14E*/ u8    driftPosX;              //  (mapsizex/1.5 max)    // officially "bRepMtxX"   // repulse matrix X/Y
+    /*0x14F*/ u8    driftPosY;              //  (mapsizex/1.5 max)    // "bRepMtxY"
+
+    ////////////////////////////////////////////////////////////////////
+    // Official Broodwar methods (from beta), ignore these
+    /*
+    bool  IsAddOn() const;
+    bool  IsATransport() const;
+    bool  IsBuilding() const;     // Checks unit status flags
+    bool  IsBuildingEx() const;   // Checks unit type (special ability flags)
+    bool  IsBurrower() const;
+    bool  IsCarrier() const;
+    bool  IsCarrierType() const;
+    bool  IsCloakable() const;
+    bool  IsCloaker() const;
+    bool  IsCompleted() const;
+    bool  IsConstructing() const;
+    bool  IsDead() const;
+    bool  IsDoodad() const;
+    bool  IsDoorType() const;
+    bool  IsFighterType() const;
+    bool  IsGhostType() const;
+    bool  IsGoliathHead() const;
+    bool  IsHallucination() const;
+    bool  IsHidden() const;
+    bool  IsJuiceMaker() const;     // same as IsPylon
+    bool  IsMedic() const;
+    bool  IsMobileBuilding() const;
+    bool  IsMoving() const;
+    bool  IsNydusCanal() const;
+    bool  IsPowerup() const;
+    bool  IsPylonType() const;
+    bool  IsQueenType() const;
+    bool  IsRallyer() const;
+    bool  IsReaver() const;
+    bool  IsRevealer() const;
+    bool  IsResourceDest() const;
+    bool  IsResourceSrc() const;
+    bool  IsScanner() const;
+    bool  IsSelected() const;
+    bool  IsShieldBattery() const;
+    bool  IsSiloType() const;
+    bool  IsTemplar() const;
+    u16   IsTrainingUnit(int id) const;
+    bool  IsTurret() const;
+    bool  IsVulture() const;
+    bool  IsWorker() const;
+    bool  IsZergBldgUpgrading() const;
+    bool  IsZergTownhall() const;
+    
+    bool  HasAI() const;
+    CAIControl  *GetAI() const;
+    
+    CUnit *GetAddOn() const;
+    u16   GetAddOn2BldType() const;
+    CUnit *GetAttached() const;
+    u8    GetBGOrder() const;
+    int   GetFixedMaxHP() const;
+    int   GetHangarCapacity() const;
+    int   GetMaxHP() const;
+    int   GetNumInterceptors() const;
+    u8    GetOrder() const;
+    u8    GetOwner() const;
+    u16   GetType() const;
+    u16   GetUnitID() const;
+    u8    GetWeaponGndEx() const;
+
+    bool  HasGas() const;
+    bool  HasMinerals() const;
+    bool  HasNuke() const;
+    bool  HasPath() const;
+
+    bool  CompletionCounted() const;
+    bool  ExistenceCounted() const;
+    COrder  *PeekOrder() const;
+    CUnit *Target() const;
+    bool  CantBeHit() const;
+    bool  AtMoveTarget() const;
+    bool  CanEnterTransport(CUnit *trans) const;
+    bool  InTransport() const;
+    int   UnitPlaceboxWidth() const;  // Also has a global version taking unit type as param
+    int   UnitPlaceboxHeight() const; // Also has a global version taking unit type as param
+    int   ProvidedFood() const;
+    int   TownSpot() const;   // resource base ID (0-250)
+    int   X() const;
+    int   Y() const;
+    void  FindFree_FromUnit(Position *pResult, CUnit *) const;
+    bool  CanTarget(CUnit *pTarg, bool) const;
+
+    void  DispatchEnterTransport();
+    void  DispatchDecloak();
+    void  RunBGOrders();
+    void  RunTransportOrders();
+    void  RunBGTransportOrders();
+    SetOrderEx
+    AppendOrderEx
+    void FixupAIPointer(bool);
+    void UnfixupAIPointer(bool);
+    void RemoveFromStatusBar();
+    void AddToHarvestWaitingList(CUnit *pWorker);
+    void PlaceUnplaceBldg(short x, short y, bool);
+
+    bool  StdTargetTracking();
+    void  PathCalcMove();
+    bool  CheckResolveCollision();
+    bool  SetMoveTarget_CUnit(CUnit *pUnit);
+    bool  SetMoveTarget_xy(int x, int y);
+    bool  ApproachMoveTarget_CUnit(CUnit *pUnit);
+    bool  ApproachMoveTarget_xy(int x, int y);
+    void  SetSubTarget(int x, int y);
+
+    CUnit *NextNode() const;
+    CUnit *PrevNode() const;
+    bool  OnUsedList() const;   // scrapped (used in debug)
+    bool  OnTransList() const;  // scrapped
+    bool  OnFreeList() const;   // scrapped
+    bool  OnDeadList() const;   // scrapped
+
+    */
   };
-//#pragma pack()
 
   static_assert( sizeof(CUnit) == 336, "BW::CUnit is incorrect." );
 };

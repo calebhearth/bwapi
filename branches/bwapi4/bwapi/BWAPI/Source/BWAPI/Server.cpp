@@ -303,8 +303,8 @@ namespace BWAPI
     {
         data->isBuildable[p.x][p.y]     = Broodwar->isBuildable(p.x, p.y);
         data->getGroundHeight[p.x][p.y] = Broodwar->getGroundHeight(p.x, p.y);
-        if ( BW::BWDATA::SAIPathing )
-          data->mapTileRegionId[p.x][p.y] = BW::BWDATA::SAIPathing->mapTileRegionId[p.y][p.x];
+        if ( *BW::BWDATA::SAIPathing )
+          data->mapTileRegionId[p.x][p.y] = (*BW::BWDATA::SAIPathing)->mapTileRegionId[p.y][p.x];
         else
           data->mapTileRegionId[p.x][p.y] = 0;
     }
@@ -312,15 +312,15 @@ namespace BWAPI
     // Load pathing info
     if ( BW::BWDATA::SAIPathing )
     {
-      data->regionCount = BW::BWDATA::SAIPathing->regionCount;
+      data->regionCount = (*BW::BWDATA::SAIPathing)->regionCount;
       for(int i = 0; i < 5000; ++i)
       {
-        data->mapSplitTilesMiniTileMask[i] = BW::BWDATA::SAIPathing->splitTiles[i].minitileMask;
-        data->mapSplitTilesRegion1[i]      = BW::BWDATA::SAIPathing->splitTiles[i].rgn1;
-        data->mapSplitTilesRegion2[i]      = BW::BWDATA::SAIPathing->splitTiles[i].rgn2;
+        data->mapSplitTilesMiniTileMask[i] = (*BW::BWDATA::SAIPathing)->splitTiles[i].minitileMask;
+        data->mapSplitTilesRegion1[i]      = (*BW::BWDATA::SAIPathing)->splitTiles[i].rgn1;
+        data->mapSplitTilesRegion2[i]      = (*BW::BWDATA::SAIPathing)->splitTiles[i].rgn2;
         // Region hack using a possibly unused variable
-        if ( BW::BWDATA::SAIPathing->regions[i].unk_28 )
-          data->regions[i] = *((RegionImpl*)BW::BWDATA::SAIPathing->regions[i].unk_28)->getData();
+        if ( (*BW::BWDATA::SAIPathing)->regions[i].unk_28 )
+          data->regions[i] = *((RegionImpl*)(*BW::BWDATA::SAIPathing)->regions[i].unk_28)->getData();
         else
           MemZero(data->regions[i]);
       }

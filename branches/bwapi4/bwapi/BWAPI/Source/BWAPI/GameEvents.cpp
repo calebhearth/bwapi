@@ -40,9 +40,9 @@ namespace BWAPI
     this->savedMapHash = Map::getMapHash();
 
     // Obtain Broodwar Regions
-    if ( BW::BWDATA::SAIPathing )
+    if ( *BW::BWDATA::SAIPathing )
     {
-      u32 rgnCount = BW::BWDATA::SAIPathing->regionCount;
+      u32 rgnCount = (*BW::BWDATA::SAIPathing)->regionCount;
       // Iterate regions and insert into region list
       for ( u32 i = 0; i < rgnCount; ++i )
         this->regionsList.insert(new BWAPI::RegionImpl(i));
@@ -791,7 +791,7 @@ namespace BWAPI
       BWAPI::Color c = Colors::Red;
       int x = this->getMousePosition().x + this->getScreenPosition().x;
       int y = this->getMousePosition().y + this->getScreenPosition().y;
-      if ( BW::isCollidingWithContour(BW::BWDATA::SAIPathing->contours, 
+      if ( BW::isCollidingWithContour((*BW::BWDATA::SAIPathing)->contours, 
                                   x,
                                   y,
                                   UnitTypes::Terran_Marine.dimensionLeft(),
@@ -806,7 +806,7 @@ namespace BWAPI
     } // unitdebug
 
     // pathdebug
-    if ( pathDebug && BW::BWDATA::SAIPathing )
+    if ( pathDebug && *BW::BWDATA::SAIPathing )
     {
       BWAPI::Position mouse   = getMousePosition() + getScreenPosition();
       BW::region *selectedRgn = BW::getRegionAt(mouse);
@@ -818,10 +818,10 @@ namespace BWAPI
         {
           BW::TilePosition tp((u16)x/32, (u16)y/32);
 
-          u16 idx = BW::BWDATA::SAIPathing->mapTileRegionId[tp.y][tp.x];
+          u16 idx = (*BW::BWDATA::SAIPathing)->mapTileRegionId[tp.y][tp.x];
           if ( idx & 0x2000 )
           {
-            BW::split *t = &BW::BWDATA::SAIPathing->splitTiles[idx & 0x1FFF];
+            BW::split *t = &(*BW::BWDATA::SAIPathing)->splitTiles[idx & 0x1FFF];
             for ( int mTileY = 0; mTileY < 4; ++mTileY )
             {
               for ( int mTileX = 0; mTileX < 4; ++mTileX )
@@ -866,9 +866,9 @@ namespace BWAPI
           }
         } // iterate y
       } // iterate x
-      for ( unsigned int i = 0; i < BW::BWDATA::SAIPathing->regionCount; ++i )
+      for ( unsigned int i = 0; i < (*BW::BWDATA::SAIPathing)->regionCount; ++i )
       {
-        BW::region *r = &BW::BWDATA::SAIPathing->regions[i];
+        BW::region *r = &(*BW::BWDATA::SAIPathing)->regions[i];
         if ( r->accessabilityFlags != 0x1FFD )
           drawBoxMap(r->rgnBox.left, r->rgnBox.top, r->rgnBox.right, r->rgnBox.bottom, r == selectedRgn ? Colors::Cyan : Colors::Purple);
         for ( u8 n = 0; n < r->neighborCount; ++n )
@@ -882,7 +882,7 @@ namespace BWAPI
       }
       for ( int i = 0; i < 4; ++i )
       {
-        BW::contourHub *hub = BW::BWDATA::SAIPathing->contours;
+        BW::contourHub *hub = (*BW::BWDATA::SAIPathing)->contours;
         for ( int c = 0; c < hub->contourCount[i]; ++c )
         {
           BW::contour *cont = &hub->contours[i][c];

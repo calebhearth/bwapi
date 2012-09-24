@@ -1,5 +1,4 @@
 #pragma once
-#pragma pack(1)
 
 #include <windows.h>
 #include <Util/Types.h>
@@ -7,6 +6,8 @@
 
 #include "TriggerEngine.h"
 #include "Position.h"
+
+#pragma pack(1)
 
 /**
  * Broodwar content access tools. The namespace contains:
@@ -68,7 +69,7 @@ namespace BW
   BW_DATA(DatLoad*, Flingy_Table, 0x00515A38, 0x0014BC08);
   */
   //----------------------------------------------- PLAYER DATA ----------------------------------------------
-  /** Player resource counts */
+  // Player resource counts
   struct PlayerResources
   {
     s32 minerals[PLAYER_COUNT];
@@ -81,14 +82,14 @@ namespace BW
   BW_DATA(u8*, PlayerVictory, 0x00650974, 0);
   BW_DATA(BW::Position*, startPositions, 0x0058D720, 0);
   
-  /** Force Names */
+  // Force Names
   struct ForceName
   {
     char  name[30];
   };
   BW_DATA(ForceName*, ForceNames, 0x0058D5BC, 0);
 
-  /** Player Information */
+  // Player Information
   struct PlayerInfo
   {
     int  dwPlayerID;
@@ -102,7 +103,7 @@ namespace BW
 
   BW_DATA(u32*, PlayerDownloadStatus, 0x0068F4FC, 0);
 
-  /** Player Alliances */
+  // Player Alliances
   struct PlayerAlliance
   {
     u8 player[PLAYER_COUNT];
@@ -114,7 +115,7 @@ namespace BW
   BW_DATA(u32*, ReplayVision, 0x006D0F18, 0);
   BW_DATA(u32*, ReplayRevealAll, 0x006D0F1C, 0);
 
-  /** Code Patches */
+  // Code Patches
   BW_DATA(u32, ServerMenuIn, 0x004DD5A2, 0);
   BW_DATA(u32, ServerMenuOut, 0x004DD5C9, 0);
   BW_DATA(u32, OpponentStartHack, 0x004B995D, 0);
@@ -139,7 +140,7 @@ namespace BW
   static void  (* const BWFXN_sendTurn)()          = (void(*)()) 0x00485A40;
   const u32 BWFXN_QueueCommand = 0x00485BD0;
 
-  /** Speed & Latency */
+  // Speed & Latency
   static const u32     OriginalSpeedModifiers[7]  =        { 167, 111, 83, 67, 56, 48, 42};
   BW_DATA(u32*, GameSpeedModifiers, 0x005124D8, 0x0014BF3C);
   BW_DATA(u32*, GameSpeed, 0x006CDFD4, 0x00228458);
@@ -149,7 +150,7 @@ namespace BW
   BW_DATA(int*, FrameSkip, 0x005124D4, 0);
   BW_DATA(u8*, Latency, 0x006556e4, 0);
   //----------------------------------------- VIDEO & DRAWING ------------------------------------------------
-  /** Dialog and drawing offsets */
+  // Dialog and drawing offsets
   static bool (__fastcall ** const GenericDlgInteractFxns)(dialog*,dlgEvent*)   = (bool (__fastcall**)(dialog*,dlgEvent*))    0x005014AC;
   static void (__fastcall ** const GenericDlgUpdateFxns)(dialog*,int,int,rect*) = (void (__fastcall**)(dialog*,int,int,rect*))0x00501504;
 
@@ -219,7 +220,7 @@ namespace BW
   BW_DATA(unitFinder*, UnitOrderingY, 0x006769B8, 0);
 
   //------------------------------------------- DATA LEVEL ---------------------------------------------------
-  /* Mode Stuff */
+  // Mode Stuff
   BW_DATA(u8*, gameType, 0x00596820, 0);
   BW_DATA(u32*, InGame, 0x006556E0, 0);
   BW_DATA(u32*, InReplay, 0x006D0F14, 0);
@@ -450,7 +451,7 @@ namespace BW
   BW_DATA(u32, ExecuteGameTrigsCallPatch, 0x004D9798, 0);
 
   const char            *GetStatString(int index);
-  namespace BWDATA{  extern char *StringTableOff; };
+  BW_DATA(char**, StringTableOff, 0x006D1238, 0);
 
   //------------------------------------------------ SUPPLIES ------------------------------------------------
   struct AllScores
@@ -474,7 +475,7 @@ namespace BW
     s32 allFactoriesLost[PLAYER_COUNT];
     s32 allFactoriesRazed[PLAYER_COUNT];
 
-    /** Supply available, used, and maximum for all players and every race */
+    // Supply available, used, and maximum for all players and every race
     struct SuppliesPerRace
     {
       s32 available[PLAYER_COUNT];
@@ -484,7 +485,7 @@ namespace BW
     SuppliesPerRace supplies[RACE_COUNT];
     s32 customScore[PLAYER_COUNT];
 
-    /** Unit counts: all, completed, killed, dead */
+    // Unit counts: all, completed, killed, dead
     struct Counts
     {
       s32 all[UNIT_TYPE_COUNT][PLAYER_COUNT];
@@ -627,14 +628,12 @@ namespace BW
   BW_DATA(u32, ResearchProgress, 0x0058F230, 0);
 
   //------------------------------------------------ MAPPING -------------------------------------------------
-  /** Higher 12 bits for tile group, lower 4 bits for variant of tile in the tile group. */
+  // Higher 12 bits for tile group, lower 4 bits for variant of tile in the tile group.
   typedef u16 TileID;
-  namespace BWDATA
-  {
-    extern TileID   *MapTileArray;
-    extern TileType *TileSet;
-  };
-  /** Direct mapping of minitile flags array */
+  BW_DATA(TileID**, MapTileArray, 0x005993C4, 0); // MTXM
+  BW_DATA(TileType**, TileSet, 0x006D5EC8, 0);  // cv5
+
+  /// Direct mapping of minitile flags array
   struct MiniTileMaps_type
   {
     struct MiniTileFlagArray
@@ -643,10 +642,7 @@ namespace BW
     };
     MiniTileFlagArray tile[0x10000];
   };
-  namespace BWDATA
-  {
-    extern MiniTileMaps_type *MiniTileFlags;
-  };
+  BW_DATA(MiniTileMaps_type**, MiniTileFlags, 0x005993D0, 0);   // vf4
 
   struct activeTile
   {
@@ -662,14 +658,13 @@ namespace BW
     u8 bCurrentlyOccupied : 1; // unbuildable but can be made buildable
     u8 bCreepReceeding    : 1; // Set when the nearby structure supporting the creep is destroyed
     u8 bCliffEdge         : 1; // Set if the tile is a cliff edge
-    u8 bTemporaryCreep    : 1; // Set when the creep occupying the area was created. Not set if creep tiles were preplaced.
+    u8 bTemporaryCreep    : 1; // Set when the creep occupying the area was created. Not set if creep tiles were preplaced. Used in drawing routine.
     u8 bUnknown3          : 1; // Unused?
   };
-  namespace BWDATA
-  {
-    extern activeTile        *ActiveTileArray;
-    extern SAI_Paths         *SAIPathing;
-  }
+
+  BW_DATA(activeTile**, ActiveTileArray, 0x006D1260,0);
+  BW_DATA(SAI_Paths**, SAIPathing, 0x006D5BFC,0);
+
   // EXPERIMENTAL
   //static int (__stdcall *BWFXN_getTileDistance)(int x, int y, int x2, int y2) = (int (__stdcall*)(int,int,int,int))0x00444100;
   

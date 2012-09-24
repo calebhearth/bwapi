@@ -218,15 +218,15 @@ namespace BW
 
     // Data //
     dialog  *pNext;         // 0x00
-    rect    rct;            // 0x04   // official name
+    rect    rct;            // 0x04   // official
     bitmap  srcBits;        // 0x0C   // official
-    char    *pszText;       // 0x14   // official name
-    LONG    lFlags;         // 0x18   // official name
+    char    *pszText;       // 0x14   // official
+    LONG    lFlags;         // 0x18   // official
     WORD    wUnk_0x1C;
     WORD    wUnk_0x1E;
-    short   wIndex;         // 0x20   // official name
-    WORD    wCtrlType;      // 0x22   // official name
-    WORD    wGraphic;       // 0x24
+    short   wIndex;         // 0x20   // official
+    WORD    wCtrlType;      // 0x22   // official
+    WORD    wUser;          // 0x24   // official
     /*
       CHECKBOX
         0-2 Show/Hide minimap button
