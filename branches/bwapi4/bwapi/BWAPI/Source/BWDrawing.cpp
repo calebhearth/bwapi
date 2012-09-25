@@ -2,7 +2,9 @@
 
 #include <BW/CImage.h>
 #include <BW/CSprite.h>
+#include <BW/CThingy.h>
 #include <BW/Dialog.h>
+#include <BW/Offsets.h>
 
 /*
 void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
@@ -74,16 +76,52 @@ void drawGameText()
   blitGameText(11, 420, 24);
 }
 
+void drawThingys()
+{
+  if ( *BW::BWDATA::wantThingyUpdate )
+  {
+    BW::CThingy *pThingyFirst = (*BW::BWDATA::ThingyList_UsedFirst);
+    for ( BW::CImage *p = pThingyFirst->sprite->underlay; p; p = p->next )
+      p->updateGraphicData();
+
+    pThingyFirst->sprite->draw();
+    for ( BW::CImage *p = pThingyFirst->sprite->underlay; p; p = p->next )
+      p->flags |= 1;
+  }
+}
+
+void drawMapTiles()
+{
+
+}
+
 void GameUpdate(BW::bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)
 {
-  updateImageDrawingData();   //BW::BWFXN_updateImageData();
-  BW::BWFXN_drawMapTiles();
-  BW::BWFXN_blitMapTiles();
+  // if gameLayer.bits & 1 )
+  {
+    // maskSomething0();
+    // memcpy(sgpMaskMapCopy, sgpCurrMaskMap, 408);
+    updateImageDrawingData();   //BW::BWFXN_updateImageData();
+    // maskSomething2();
+    BW::BWFXN_drawMapTiles();
+    BW::BWFXN_blitMapTiles();
+  }
+  // else
+  //{
+  //  maskSomething1();
+  //  refreshImageRange(_top_y, _bot_y);
+  //  maskSomething2();
+  //  drawMapTiles();
+  //  blitMapTiles2();
+  //}
 
   //
   BW::BWFXN_drawAllSprites();// sprites
-  // Space tileset stars
+  // Space tileset stars/parallax thing goes here
+  // updateAllFog(gameLayer.bits & 1);
   drawGameText();
   BW::BWFXN_drawDragSelBox();
-  BW::BWFXN_drawAllThingys(); // draw thingys
+  
+  //BW::BWFXN_drawAllThingys(); // draw thingys
+  drawThingys();
 }

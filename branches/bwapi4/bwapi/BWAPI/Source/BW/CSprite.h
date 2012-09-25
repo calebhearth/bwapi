@@ -33,6 +33,7 @@ namespace BW
     /*0x1C*/ CImage    *underlay;       // officially "pImageHead"
     /*0x20*/ CImage    *overlay;        // officially "pImageTail"
 
+    void draw();
     ////////////////////////////////////////////////////////////////////
     // Official Broodwar methods (from beta), ignore these
     /*

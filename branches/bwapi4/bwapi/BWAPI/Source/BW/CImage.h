@@ -43,13 +43,13 @@ namespace BW
                                             // RLE_PLAYER_SIDE = 14
     /* 0x0B */ u8           direction;
     /* 0x0C */ u16          flags;
-                            /*  0x0001  - 
-                                0x0002  - 
-                                0x0004  - 
+                            /*  0x0001  - Redraw
+                                0x0002  - Don't update x?
+                                0x0004  - Don't update y?
                                 0x0008  - 
                                 0x0010  - 
                                 0x0020  - 
-                                0x0040  - 
+                                0x0040  - Hidden/Invisible (don't draw)
                                 0x0080  - 
                                 0x0100  - 
                                 0x0200  - 

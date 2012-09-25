@@ -35,6 +35,7 @@ namespace BW
   class  CUnit;
   class  CSprite;
   class  CImage;
+  class  CThingy;
   class  CBullet;
   class  TileType;
   class  dialog;
@@ -207,6 +208,8 @@ namespace BW
   BW_DATA(CUnit**, UnitNodeList_ScannerSweep_First, 0x006283F4, 0);
   BW_DATA(CUnit*, UnitNodeTable, 0x0059CCA8, 0);
 
+  BW_DATA(CThingy**, ThingyList_UsedFirst, 0x00652918, 0);
+
   BW_DATA(CBullet**, BulletNodeTable_FirstElement, 0x0064DEC4, 0);
   BW_DATA(CBullet*, BulletNodeTable, 0x0064B2E8, 0);
 
@@ -220,6 +223,8 @@ namespace BW
   BW_DATA(unitFinder*, UnitOrderingY, 0x006769B8, 0);
 
   //------------------------------------------- DATA LEVEL ---------------------------------------------------
+  BW_DATA(u32*, wantThingyUpdate, 0x00652920, 0);
+
   // Mode Stuff
   BW_DATA(u8*, gameType, 0x00596820, 0);
   BW_DATA(u32*, InGame, 0x006556E0, 0);

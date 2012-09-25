@@ -166,6 +166,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\CBullet.h" />
     <ClInclude Include="Source\BW\CheatFlags.h" />
     <ClInclude Include="Source\BW\CheatType.h" />
+    <ClInclude Include="Source\BW\CThingy.h" />
     <ClInclude Include="Source\BW\Dialog.h" />
     <ClInclude Include="Source\BW\FlingyID.h" />
     <ClInclude Include="Source\BW\GroupFlags.h" />
@@ -234,6 +235,8 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClCompile Include="Source\BWAPI\UnitImpl.cpp" />
     <ClCompile Include="Source\BWAPI\UnitUpdate.cpp" />
     <ClCompile Include="Source\BW\CheatType.cpp" />
+    <ClCompile Include="Source\BW\CSprite.cpp" />
+    <ClCompile Include="Source\BW\CThingy.cpp" />
     <ClCompile Include="Source\BW\Dialog.cpp" />
     <ClCompile Include="Source\BW\CImage.cpp" />
     <ClCompile Include="Source\BW\Internal.cpp" />
