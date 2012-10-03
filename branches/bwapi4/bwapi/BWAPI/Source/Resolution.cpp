@@ -12,26 +12,16 @@
 
 #include "../../Debug.h"
 
-void SetBitmap(BW::bitmap *Bitmap, int width, int height, void *data)
-{
-  if ( !Bitmap )
-    return;
-  Bitmap->wid   = (WORD)width;
-  Bitmap->ht    = (WORD)height;
-  Bitmap->data  = (BYTE*)data;
-}
-
 void SetResolution(int width, int height)
 {
   if ( !isCorrectVersion )
     return;
 
   // Resize game screen data buffer
-  void *newBuf = SMAlloc(width * height);
-  void *oldBuf = BW::BWDATA::GameScreenBuffer->data;
-  SetBitmap(BW::BWDATA::GameScreenBuffer, width, height, newBuf);
-  if ( oldBuf )
-    SMFree(oldBuf);
+  BW::BWDATA::GameScreenBuffer->reAlloc(width, height);
+
+  // Resize game terrain drawing buffer
+  *BW::BWDATA::GameTerrainBuffer = (BYTE*)SMReAlloc(*BW::BWDATA::GameTerrainBuffer, (width+32)*(height-32) );
 
   // Set new screen limits
   BW::BWDATA::ScreenLayers[5].width  = (WORD)width;
@@ -40,19 +30,15 @@ void SetResolution(int width, int height)
   SetRect(BW::BWDATA::ScrSize,  0, 0, width,     height);
 
   // Resize game screen console (HUD) buffer
-  newBuf = SMAlloc(width * height);
-  oldBuf = BW::BWDATA::GameScreenConsole->data;
-  SetBitmap(BW::BWDATA::GameScreenConsole, width, height, newBuf);
-  if ( oldBuf )
-    SMFree(oldBuf);
-
+  BW::BWDATA::GameScreenConsole->reAlloc(width, height);
+  
   // Recreate STrans thingy
   BW::BlizzVectorEntry<BW::TransVectorEntry> *transEntry = BW::BWDATA::TransMaskVector->begin;
   if ( (u32)transEntry && (u32)transEntry != (u32)&BW::BWDATA::TransMaskVector->begin )
   {
     HANDLE oldTrans = transEntry->container.hTrans;
     SetRect(&transEntry->container.info, 0, 0, width, height);
-    STransCreateE(newBuf, width, height, 8, 0, 0, &transEntry->container.hTrans);
+    STransCreateE(BW::BWDATA::GameScreenConsole->data, width, height, 8, 0, 0, &transEntry->container.hTrans);
     if ( oldTrans )
       STransDelete(oldTrans);
 

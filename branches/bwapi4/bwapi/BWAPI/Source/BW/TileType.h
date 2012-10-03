@@ -20,7 +20,7 @@ namespace BW
                     o 3 = Left edge piece.*/
       u16 _3;
       u16 _4;
-      u16 miniTile[16]; /** MegaTile References (VF4/VX4) */
+      u16 megaTileRef[16]; /** MegaTile References (VF4/VX4) */
   };
 }
 #pragma pack()

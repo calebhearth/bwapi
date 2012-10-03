@@ -159,6 +159,7 @@ namespace BW
   BW_DATA(fntHead**, FontBase, 0x006CE0F4, 0);
   BW_DATA(bitmap*, GameScreenBuffer, 0x006CEFF0, 0);
   BW_DATA(bitmap*, GameScreenConsole, 0x00597240, 0);
+  BW_DATA(BYTE**, GameTerrainBuffer, 0x00628454,0);
   
   BW_DATA(PALETTEENTRY*, GamePalette, 0x006CE320, 0);
   BW_DATA(LPDIRECTDRAWSURFACE*, PrimarySurface, 0x006D5E00, 0);
@@ -172,6 +173,8 @@ namespace BW
 
   BW_DATA(u8*, RefreshRegions, 0x006CEFF8, 0);
   BW_DATA(u8*, PlayerColors, 0x00581DD6, 0);
+
+  static bool (__stdcall *BWFXN_CreepManagementCB)(int,WORD*,int,int,int*) = (bool (__stdcall*)(int,WORD*,int,int,int*))0x00414440;
 
   struct bounds
   {
@@ -635,8 +638,11 @@ namespace BW
   //------------------------------------------------ MAPPING -------------------------------------------------
   // Higher 12 bits for tile group, lower 4 bits for variant of tile in the tile group.
   typedef u16 TileID;
-  BW_DATA(TileID**, MapTileArray, 0x005993C4, 0); // MTXM
+  BW_DATA(TileID**, MapTileArray, 0x005993C4, 0); // MTXM (Matrix Map) -- gfpMIMap
+  BW_DATA(WORD**,CellMap, 0x00628494,0); // gfpCellMap (terrain)
   BW_DATA(TileType**, TileSet, 0x006D5EC8, 0);  // cv5
+
+  BW_DATA(bool*, HasMegatileUpdate, 0x0059CB58,0);
 
   /// Direct mapping of minitile flags array
   struct MiniTileMaps_type

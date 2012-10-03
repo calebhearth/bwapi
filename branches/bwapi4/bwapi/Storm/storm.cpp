@@ -133,9 +133,11 @@ BOOL STORMAPI SGdiSetPitch(int pitch) rBool;
 
 BOOL STORMAPI Ordinal393(char *string, int, int) rBool;
 
-void* STORMAPI SMemAlloc(int amount, char *logfilename, int logline, char defaultValue) rPVoid;
+void* STORMAPI SMemAlloc(size_t amount, char *logfilename, int logline, char defaultValue) rPVoid;
 
 BOOL STORMAPI SMemFree(void *location, char *logfilename, int logline, char defaultValue) rBool;
+
+void* STORMAPI SMemReAlloc(void *location, size_t amount, char *logfilename, int logline, char defaultValue) rPVoid;
 
 BOOL STORMAPI SRegLoadData(const char *keyname, const char *valuename, int size, LPBYTE lpData, BYTE flags, LPDWORD lpcbData) rBool;
 BOOL STORMAPI SRegLoadString(const char *keyname, const char *valuename, BYTE flags, char *buffer, size_t buffersize) rBool;

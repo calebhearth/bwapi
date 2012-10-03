@@ -230,7 +230,7 @@ namespace BWAPI
     BW::TileID tileID = BWAPI::Map::getTile(tx, ty);
     BW::TileType* tile = BW::TileSet::getTileType(tileID);
     if ( tile && BW::BWDATA::MiniTileFlags )
-      return (*BW::BWDATA::MiniTileFlags)->tile[tile->miniTile[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
+      return (*BW::BWDATA::MiniTileFlags)->tile[tile->megaTileRef[Map::getTileVariation(tileID)]].miniTile[mx + my*4];
     return 0;
   }
   //------------------------------------------ GET MAP HASH --------------------------------------------------

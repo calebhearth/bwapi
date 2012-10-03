@@ -114,6 +114,13 @@ namespace BW
     u16 wid;
     u16 ht;
     u8  *data;
+
+    void reAlloc(int wid, int hgt)
+    {
+      this->wid = (u16)wid;
+      this->ht  = (u16)hgt;
+      this->data = (u8*)SMReAlloc(this->data,wid*hgt);
+    };
   };
 
   struct dlgEvent

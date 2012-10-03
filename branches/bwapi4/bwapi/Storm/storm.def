@@ -197,7 +197,7 @@ EXPORTS
   ;SMemDestroy                   @402 NONAME
   SMemFree                      @403 NONAME
   ;SMemGetSize                   @404 NONAME
-  ;SMemReAlloc                   @405 NONAME
+  SMemReAlloc                   @405 NONAME
   ;Storm406                      @406 NONAME
 
   ;SMsgDispatchMessage           @412 NONAME

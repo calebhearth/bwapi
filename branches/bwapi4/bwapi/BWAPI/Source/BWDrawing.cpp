@@ -5,6 +5,8 @@
 #include <BW/CThingy.h>
 #include <BW/Dialog.h>
 #include <BW/Offsets.h>
+#include <BW/TileType.h>
+
 
 /*
 void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
@@ -90,9 +92,89 @@ void drawThingys()
   }
 }
 
+BW::activeTile *getActiveTile(int x, int y)
+{
+  return &(*BW::BWDATA::ActiveTileArray)[x + y * BW::BWDATA::MapSize->x];
+}
+
+WORD *getMtxTile(int x, int y)
+{
+  return &(*BW::BWDATA::MapTileArray)[x + y * BW::BWDATA::MapSize->x];
+}
+
+WORD *getCellTile(int x, int y)
+{
+  return &(*BW::BWDATA::CellMap)[x + y * BW::BWDATA::MapSize->x];
+}
+
+bool hasCreep(int x, int y)
+{
+  return (*getMtxTile(x,y) & 0x7FF0) == 0x10;
+}
+
+WORD getTileRef(WORD tile)
+{
+  return (*BW::BWDATA::TileSet)[(tile >> 4) & 0x7FF].megaTileRef[tile & 0xF];
+}
+
+#define TILE_SIZE (32)
+
+BW::Position directions[] = { 
+  BW::Position( 1, 1),
+  BW::Position( 0, 1),
+  BW::Position(-1, 1),
+  BW::Position( 1, 0),
+  BW::Position(-1, 0),
+  BW::Position( 1,-1),
+  BW::Position( 0,-1),
+  BW::Position(-1,-1),
+  BW::Position( 0, 0)
+};
+
+// bool (__stdcall *cb)(int direction, WORD *pMtxTile, int x, int y, int *lParam);
+void IterateDirectionalCallback( bool (__stdcall *cb)(int,WORD*,int,int,int*), int x, int y, int *lParam = nullptr)
+{
+  BW::Position origin(x,y);
+  for ( int i = 0; i < countof(directions); ++i )
+  {
+    BW::Position p = origin + directions[i];
+    if ( p.isValid() && !cb(i, getMtxTile(p.x, p.y), p.x, p.y, lParam) )
+      return;
+  }
+}
+
 void drawMapTiles()
 {
+  BW::TilePosition moveTo = *BW::BWDATA::MoveToTile;
+  BW::TilePosition mapMax = *BW::BWDATA::MapSize;
+  int win_wid = BW::BWDATA::GameScreenBuffer->wid + 32;
+  int win_hgt = BW::BWDATA::GameScreenBuffer->ht - 32;
 
+  unsigned tileOffs = moveTo.x + (moveTo.y * mapMax.x);
+
+  WORD *pCellMap;
+  WORD *pMIMap;
+  BW::activeTile *pActiveTiles;
+
+  for ( int y = moveTo.y; y < min(moveTo.y + win_hgt/TILE_SIZE, mapMax.y); ++y )
+  {
+    for ( int x = moveTo.x; x < min(moveTo.x + win_wid/TILE_SIZE, mapMax.x); ++x )
+    {
+      WORD tileRef = getTileRef( *getMtxTile(x,y) );
+      WORD *drawTile = getCellTile(x,y);
+      if ( tileRef != *drawTile )
+      {
+        *drawTile = tileRef;
+        getActiveTile(x,y)->bTemporaryCreep = hasCreep(x,y);
+
+        IterateDirectionalCallback(BW::BWFXN_CreepManagementCB, x, y);
+
+        //drawMegatileImageData(tileType, offset, __x, tileY);
+        *BW::BWDATA::HasMegatileUpdate = true;
+      }
+
+    }
+  }
 }
 
 void GameUpdate(BW::bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)

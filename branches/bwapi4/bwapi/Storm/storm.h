@@ -801,7 +801,7 @@ BOOL STORMAPI Ordinal393(char *string, int, int);
 void*
 STORMAPI
 SMemAlloc(
-    __in  int   amount,
+    __in  size_t amount,
     __in  char  *logfilename,
     __in  int   logline,
     __in  char  defaultValue = 0);
@@ -833,6 +833,34 @@ SMemFree(
 
 #ifndef SMFree
 #define SMFree(loc) SMemFree((loc), __FILE__, __LINE__)
+#endif
+
+/*  SMemReAlloc @ 405
+ *  
+ *  Reallocates a block of memory that was created using SMemAlloc, 
+ *  includes the log file and line for debugging purposes.
+ *
+ *  location:     The memory location to be re-allocated. If this parameter
+ *                is NULL, then SMemAlloc is called with the remaining parameters.
+ *  amount:       The amount of memory to re-allocate.
+ *  logfilename:  The name of the file or object that this call belongs to.
+ *  logline:      The line in the file or one of the SLOG_ macros.
+ *  defaultValue: 
+ *
+ *  Returns a pointer to the re-allocated memory. This pointer does NOT include
+ *  the additional storm header.
+ */
+void*
+STORMAPI
+SMemReAlloc(
+    __in  void    *location,
+    __in  size_t  amount,
+    __in  char    *logfilename,
+    __in  int     logline,
+    __in  char    defaultValue = 0);
+
+#ifndef SMReAlloc
+#define SMReAlloc(loc,s) SMemReAlloc((loc),(s), __FILE__, __LINE__)
 #endif
 
 
