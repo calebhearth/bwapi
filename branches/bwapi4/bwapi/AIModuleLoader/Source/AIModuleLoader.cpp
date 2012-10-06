@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <iostream>
+#include <cassert>
 
 #include <BWAPI/Client.h>
 #include <BWAPI.h>
@@ -12,44 +12,53 @@ using namespace BWAPI;
 
 void reconnect()
 {
-  while(!BWAPIClient.connect())
-  {
+  while ( !BWAPIClient.connect() )
     Sleep(1000);
-  }
 }
+
 int main(int argc, const char* argv[])
 {
   const char* szDllPath = "";
   std::string buff;
 
-  if (argc>=2)
+  if ( argc >= 2 )
+  {
     szDllPath = argv[1];
+  }
   else
   {
     std::cout << "Enter path name to AI DLL: " << std::endl;
     std::getline(std::cin, buff);
     szDllPath = buff.c_str();
   }
+  
   BWAPI::BWAPI_init();
-  printf("Connecting...");
+  std::cout << "Connecting..." << std::endl;
+
+  assert(BWAPIClient.isConnected() == false);
   reconnect();
-  while(true)
+  assert(Broodwar != nullptr);
+
+  while( true )
   {
-    printf("waiting to enter match\n");
-    while (!Broodwar->isInGame())
+    std::cout << "waiting to enter match" << std::endl;
+    while ( !Broodwar->isInGame() )
     {
+      std::cout << "attempting update" << std::endl;
       BWAPI::BWAPIClient.update();
       if (!BWAPI::BWAPIClient.isConnected())
       {
-        printf("Reconnecting...\n");
+        std::cout << "Reconnecting..." << std::endl;
         reconnect();
       }
     }
+    std::cout << "entered match" << std::endl;
+
     AIModule* client = NULL;
     HMODULE hMod = LoadLibraryA(szDllPath);
     if (hMod == NULL)
     {
-      printf("ERROR: Failed to load the AI Module\n");
+      std::cerr << "ERROR: Failed to load the AI Module" << std::endl;
       client = new AIModule();
       Broodwar->sendText("Error: Failed to load the AI Module");
     }
@@ -59,7 +68,7 @@ int main(int argc, const char* argv[])
       PFNCreateA1 newAIModule = (PFNCreateA1)GetProcAddress(hMod, LPCSTR("newAIModule"));
       client = newAIModule(Broodwar);
     }
-    printf("starting match!\n");
+    std::cout << "starting match!" << std::endl;
     while ( Broodwar->isInGame() )
     {
       for ( std::list<Event>::const_iterator e = Broodwar->getEvents().begin(); e != Broodwar->getEvents().end(); ++e )
@@ -127,13 +136,13 @@ int main(int argc, const char* argv[])
       BWAPI::BWAPIClient.update();
       if (!BWAPI::BWAPIClient.isConnected())
       {
-        printf("Reconnecting...\n");
+        std::cout << "Reconnecting..." << std::endl;
         reconnect();
       }
     }
     delete client;
     FreeLibrary(hMod);
-    printf("Game ended\n");
+    std::cout << "Game ended" << std::endl;
   }
   system("pause");
   return 0;

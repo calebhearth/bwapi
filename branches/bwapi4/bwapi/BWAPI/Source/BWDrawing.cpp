@@ -134,7 +134,7 @@ BW::Position directions[] = {
 // bool (__stdcall *cb)(int direction, WORD *pMtxTile, int x, int y, int *lParam);
 void IterateDirectionalCallback( bool (__stdcall *cb)(int,WORD*,int,int,int*), int x, int y, int *lParam = nullptr)
 {
-  BW::Position origin(x,y);
+  BW::Position origin((short)x,(short)y);
   for ( int i = 0; i < countof(directions); ++i )
   {
     BW::Position p = origin + directions[i];
@@ -150,11 +150,11 @@ void drawMapTiles()
   int win_wid = BW::BWDATA::GameScreenBuffer->wid + 32;
   int win_hgt = BW::BWDATA::GameScreenBuffer->ht - 32;
 
-  unsigned tileOffs = moveTo.x + (moveTo.y * mapMax.x);
+  //unsigned tileOffs = moveTo.x + (moveTo.y * mapMax.x);
 
-  WORD *pCellMap;
-  WORD *pMIMap;
-  BW::activeTile *pActiveTiles;
+  //WORD *pCellMap;
+  //WORD *pMIMap;
+  //BW::activeTile *pActiveTiles;
 
   for ( int y = moveTo.y; y < min(moveTo.y + win_hgt/TILE_SIZE, mapMax.y); ++y )
   {

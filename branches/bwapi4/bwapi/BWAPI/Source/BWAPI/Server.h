@@ -19,18 +19,23 @@ namespace BWAPI
   public:
     Server();
     ~Server();
-    void update();
-    bool isConnected();
-    int addEvent(BWAPI::Event e);
-    int addString(const char* text);
-    int getForceID(Force* force);
-    Force* getForce(int id) const;
-    int getPlayerID(Player* player);
-    Player* getPlayer(int id) const;
-    int getUnitID(Unit* unit);
-    Unit* getUnit(int id) const;
-    GameData* data;
-    void clearAll();
+    
+    void      update();
+    bool      isConnected();
+    int       addEvent(BWAPI::Event e);
+    int       addString(const char* text);
+    void      clearAll();
+
+    int       getForceID(Force* force);
+    Force     *getForce(int id) const;
+    
+    int       getPlayerID(Player* player);
+    Player    *getPlayer(int id) const;
+    
+    int       getUnitID(Unit* unit);
+    Unit      *getUnit(int id) const;
+
+    GameData  *data;
   private:
     void onMatchStart();
     void checkForConnections();
