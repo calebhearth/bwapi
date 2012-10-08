@@ -1,6 +1,7 @@
 #pragma once
 #include "Position.h"
 
+#pragma pack(1)
 namespace BW
 {
   class CImage;
@@ -44,4 +45,4 @@ namespace BW
 
   static_assert( sizeof(CSprite) == 36, "BW::CSprite is incorrect." );
 };
-
+#pragma pack()

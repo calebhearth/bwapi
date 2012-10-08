@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Position.h"
+#pragma pack(1)
 
 namespace BW
 {
@@ -16,3 +17,4 @@ namespace BW
   };
 
 }
+#pragma pack()

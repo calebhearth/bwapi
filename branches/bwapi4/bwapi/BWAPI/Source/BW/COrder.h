@@ -1,6 +1,7 @@
 #pragma once
 #include "Target.h"
 
+#pragma pack(1)
 namespace BW
 {
   // Forwards
@@ -19,3 +20,4 @@ namespace BW
 
   static_assert( sizeof(COrder) == 20, "BW::COrder is incorrect." );
 };
+#pragma pack()

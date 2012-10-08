@@ -3,6 +3,7 @@
 
 #include "Offsets.h"
 
+#pragma pack(1)
 namespace BW
 {
   class Sprite;
@@ -125,5 +126,5 @@ namespace BW
   };
 
 };
-
+#pragma pack()
 

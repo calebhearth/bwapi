@@ -3,6 +3,8 @@
 
 #include "Position.h"
 
+#pragma pack(1)
+
 namespace BW
 {
   // forwards
@@ -109,3 +111,5 @@ namespace BW
     } u;
   };
 }
+
+#pragma pack()

@@ -1,5 +1,6 @@
 #pragma once
 
+#pragma pack(1)
 namespace BW
 {
   class CSprite;
@@ -16,3 +17,4 @@ namespace BW
 
 
 }
+#pragma pack()

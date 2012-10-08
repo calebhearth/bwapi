@@ -6,6 +6,7 @@
 #include <BW/Offsets.h>
 #include "Target.h"
 
+#pragma pack(1)
 namespace BW
 {
   // forwards
@@ -74,3 +75,4 @@ namespace BW
   static_assert( sizeof(CBullet) == 112, "BW::CBullet is incorrect." );
 
 };
+#pragma pack()

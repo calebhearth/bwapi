@@ -59,7 +59,6 @@ popd</Command>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4238</DisableSpecificWarnings>
-      <StructMemberAlignment>4Bytes</StructMemberAlignment>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -98,7 +97,6 @@ popd</Command>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4238</DisableSpecificWarnings>
-      <StructMemberAlignment>4Bytes</StructMemberAlignment>
     </ClCompile>
     <PreLinkEvent>
       <Command>

@@ -1,8 +1,9 @@
 #pragma once
-#pragma pack(1)
 #include "Position.h"
 #include <Util/Types.h>
 #include <vector>
+
+#pragma pack(1)
 
 #define getRegionFromId(x) (&((*BW::BWDATA::SAIPathing)->regions[(x)&0x1FFF]))
 
@@ -124,5 +125,4 @@ namespace BW
   BW::region *getRegionAt(int x, int y);
   BW::region *getRegionAt(Position pos);
 }
-
 #pragma pack()

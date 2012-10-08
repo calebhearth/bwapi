@@ -1,9 +1,9 @@
 #pragma once
-#pragma pack(1)
 #include "Position.h"
 
-/* Defines are official */
+#pragma pack(1)
 
+/* Defines are official */
 #define UM_Init          0x00
 #define UM_InitSeq       0x01
 #define UM_Lump          0x02

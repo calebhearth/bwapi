@@ -3,6 +3,8 @@
 
 #include "offsets.h"
 
+#pragma pack(1)
+
 #define CTRL_UPDATE           0x00000001
 #define CTRL_DISABLED         0x00000002
 #define CTRL_ACTIVE           0x00000004
@@ -404,3 +406,4 @@ List entry: Format for lists (map list for example)
   BYTE  bComputers; // for UMS
   BYTE  bHumans; // guess
 */
+#pragma pack()

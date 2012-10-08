@@ -5,6 +5,7 @@
 #include <BW/Offsets.h>
 #include <BW/Target.h>
 
+#pragma pack(1)
 namespace BWAPI
 {
   class UnitType;
@@ -414,4 +415,4 @@ namespace BW
 
   static_assert( sizeof(CUnit) == 336, "BW::CUnit is incorrect." );
 };
-
+#pragma pack()

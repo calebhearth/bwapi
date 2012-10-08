@@ -3,6 +3,7 @@
 
 #include "Triggers.h"
 
+#pragma pack(1)
 namespace BW
 {
   namespace Triggers
@@ -56,3 +57,4 @@ namespace BW
 
   };
 };
+#pragma pack()
