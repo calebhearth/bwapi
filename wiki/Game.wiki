@@ -25,6 +25,21 @@ Returns the set of all players in the match. Note that this includes the Neutral
 std::set< [Unit]`*` >& getAllUnits();</code>
 Returns all the visible units. If [Flag]::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones. Note that units inside refineries are not included in this set yet.
 
+==== Warning about Multi-Threaded AIs ====
+If you are using multiple threads for your AI(s) AND you are using these units outside of a BWAPI event thread, it is not recommended to use this function as of BWAPI4.  Currently you may run into a Heap corruption error if you do related to the destructor of Vectorset.  One possible way around this is:
+
+{{{
+Playerset players = Broodwar->getPlayers();
+
+for (Playerset::iterator it = players.begin();it != players.end();it++)
+{
+  Player* player = *it;
+  Unitset units = player->getUnits();
+  
+  ... Do whatever you need to do with the units ...
+}
+}}}
+
   _See also: [Player#getUnits Player::getUnits], [Game#getMinerals Game::getMinerals], [Game#getGeysers Game::getGeysers], [Game#getNeutralUnits Game::getNeutralUnits], [Game#getStaticMinerals Game::getStaticMinerals], [Game#getStaticGeysers Game::getStaticGeysers], [Game#getStaticNeutralUnits Game::getStaticNeutralUnits]_
 
 == getMinerals ==
