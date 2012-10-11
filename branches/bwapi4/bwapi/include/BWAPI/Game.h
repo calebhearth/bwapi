@@ -50,7 +50,23 @@ namespace BWAPI
 
     /** Returns all the visible units. If Flag::CompleteMapInformation is enabled, the set of all units
      * is returned, not just visible ones. Note that units inside refineries are not included in this set
-     * yet. */
+     * yet
+	 *
+	 * Warning about multi-threaded AIs:
+	 *
+	 * If you are using multiple threads for your AI AND you are using units from this outside of the BWAPI
+	 * event thread, it is not recommended to use this function.  Currently you may run into heap corruption
+	 * related to the destruction of Vectorset.  One possible way around this is to do the following:
+	 *
+	 * Playerset players = Broodwar->getPlayers();
+	 * 
+	 * for (Playerset::iterator it = players.begin();it != players.end();it++)
+	 * {
+	 *    Player* player = *it;
+	 *    Unitset units = player->getUnits();
+	 *
+	 *    ... Do whatever you need to do with "units" ...
+	 * } */
     virtual const Unitset& getAllUnits() const = 0;
 
     /** Returns the set of all accessible mineral patches. */
