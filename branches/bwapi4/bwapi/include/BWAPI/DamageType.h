@@ -29,6 +29,8 @@ namespace BWAPI
        * std::string("Explosive"). */
       const std::string &getName() const;
       const char *c_str() const;
+
+      friend std::ostream &operator << (std::ostream &out, const DamageType &t);
   };
   namespace DamageTypes
   {

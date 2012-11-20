@@ -67,6 +67,8 @@ namespace BWAPI
      * UnitCommandTypes::Set_Rally_Position.getName() returns std::string("Set Rally Position")*/
     const std::string &getName() const;
     const char *c_str() const;
+
+    friend std::ostream &operator << (std::ostream &out, const UnitCommandType &t);
   };
   namespace UnitCommandTypes
   {

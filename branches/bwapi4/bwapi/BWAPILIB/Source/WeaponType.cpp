@@ -445,4 +445,9 @@ namespace BWAPI
   {
     return WeaponTypesSet::specialWeaponTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const WeaponType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

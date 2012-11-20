@@ -108,4 +108,9 @@ namespace BWAPI
   {
     return BulletTypeSet::bulletTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const BulletType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

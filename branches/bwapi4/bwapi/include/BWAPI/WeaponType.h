@@ -140,6 +140,8 @@ namespace BWAPI
       const std::string &getName() const;
       const char *c_str() const;
 
+      friend std::ostream &operator << (std::ostream &out, const WeaponType &t);
+
       /** Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if
        * no tech type is required. */
       TechType getTech() const;

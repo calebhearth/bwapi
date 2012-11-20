@@ -60,4 +60,9 @@ namespace BWAPI
   {
     return DamageTypeSet::damageTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const DamageType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

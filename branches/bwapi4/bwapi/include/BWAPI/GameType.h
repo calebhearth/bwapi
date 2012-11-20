@@ -42,6 +42,8 @@ namespace BWAPI
        * std::string object containing "Melee". */
       const std::string &getName() const;
       const char *c_str() const;
+
+      friend std::ostream &operator << (std::ostream &out, const GameType &t);
   };
   namespace GameTypes
   {

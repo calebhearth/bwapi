@@ -124,4 +124,9 @@ namespace BWAPI
   {
     return RaceSet::raceSet;
   }
+  std::ostream &operator << (std::ostream &out, const Race &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

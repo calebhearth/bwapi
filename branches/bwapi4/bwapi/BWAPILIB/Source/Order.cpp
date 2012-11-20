@@ -251,4 +251,9 @@ namespace BWAPI
   {
     return OrderSet::orderSet;
   }
+  std::ostream &operator << (std::ostream &out, const Order &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

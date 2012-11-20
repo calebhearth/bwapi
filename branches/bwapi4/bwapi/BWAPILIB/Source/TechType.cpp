@@ -302,5 +302,10 @@ namespace BWAPI
   {
     return TechTypeSet::techTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const TechType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }
 

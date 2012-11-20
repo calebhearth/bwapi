@@ -1724,5 +1724,9 @@ namespace BWAPI
   {
     return maxHeight;
   }
-
+  std::ostream &operator << (std::ostream &out, const UnitType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

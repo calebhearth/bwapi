@@ -80,4 +80,9 @@ namespace BWAPI
   {
     return GameTypeSet::gameTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const GameType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

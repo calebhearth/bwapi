@@ -65,11 +65,13 @@ namespace BWAPI
     /// @~
     const std::string &toString() const;
 
-    /// @copydoc getName
+    /// @copydoc toString
     /// @~English
     /// @returns Pointer to c-style string.
     /// @~
     const char *c_str() const;
+
+    friend std::ostream &operator << (std::ostream &out, const Error &t);
   };
   namespace Errors
   {

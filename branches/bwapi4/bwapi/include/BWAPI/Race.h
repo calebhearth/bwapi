@@ -54,6 +54,8 @@ namespace BWAPI
       /// @~
       const char *c_str() const;
 
+      friend std::ostream &operator << (std::ostream &out, const Race &t);
+
       /// @~English
       ///  Retrieves the default worker type for this Race.
       /// 

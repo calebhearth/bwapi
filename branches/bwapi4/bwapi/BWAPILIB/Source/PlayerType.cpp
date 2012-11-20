@@ -88,4 +88,9 @@ namespace BWAPI
   {
     return PlayerTypeSet::playerTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const PlayerType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

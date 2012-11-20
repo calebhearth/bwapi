@@ -217,6 +217,8 @@ namespace BWAPI
       /** Returns the name of this order. */
       const std::string &getName() const;
       const char *c_str() const;
+
+      friend std::ostream &operator << (std::ostream &out, const Order &t);
   };
   namespace Orders
   {

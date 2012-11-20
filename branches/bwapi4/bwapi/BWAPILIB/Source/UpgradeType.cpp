@@ -353,4 +353,9 @@ namespace BWAPI
   {
     return UpgradeTypeSet::upgradeTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const UpgradeType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

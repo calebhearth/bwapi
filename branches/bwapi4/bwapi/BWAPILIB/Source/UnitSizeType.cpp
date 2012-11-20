@@ -56,5 +56,10 @@ namespace BWAPI
   {
     return UnitSizeTypeSet::unitSizeTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const UnitSizeType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }
 

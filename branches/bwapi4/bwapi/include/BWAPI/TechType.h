@@ -67,6 +67,8 @@ namespace BWAPI
       const std::string &getName() const;
       const char *c_str() const;
 
+      friend std::ostream &operator << (std::ostream &out, const TechType &t);
+
       /** Returns the race that uses the TechType. For example, TechTypes::Scanner_Sweep?.getRace() will
        * return Races::Terran. */
       Race getRace() const;

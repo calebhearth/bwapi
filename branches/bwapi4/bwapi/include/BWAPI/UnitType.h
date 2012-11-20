@@ -271,6 +271,8 @@ namespace BWAPI
     const std::string &getName() const;
     const char *c_str() const;
 
+    friend std::ostream &operator << (std::ostream &out, const UnitType &t);
+
     /** Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return
      * Races::Terran. */
     Race getRace() const;

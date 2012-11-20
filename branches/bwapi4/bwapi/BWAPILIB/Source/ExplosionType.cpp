@@ -99,4 +99,9 @@ namespace BWAPI
   {
     return ExplosionTypeSet::explosionTypeSet;
   }
+  std::ostream &operator << (std::ostream &out, const ExplosionType &t)
+  {
+    out << t.getName();
+    return out;
+  }
 }

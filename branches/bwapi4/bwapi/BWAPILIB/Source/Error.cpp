@@ -107,4 +107,9 @@ namespace BWAPI
   {
     return ErrorSet::errorSet;
   }
+  std::ostream &operator << (std::ostream &out, const Error &t)
+  {
+    out << t.toString();
+    return out;
+  }
 }

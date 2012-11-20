@@ -9,6 +9,8 @@
 #include <BWAPI/UnaryFilter.h>
 #include <BWAPI/Interface.h>
 
+#include <sstream>
+
 namespace BWAPI
 {
   // Forward Declarations

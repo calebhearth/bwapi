@@ -35,6 +35,8 @@ namespace BWAPI
       const std::string &getName() const;
       const char *c_str() const;
 
+      friend std::ostream &operator << (std::ostream &out, const PlayerType &t);
+
       bool isLobbyType() const;
       bool isGameType() const;
   };

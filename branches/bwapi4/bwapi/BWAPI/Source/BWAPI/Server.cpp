@@ -106,13 +106,6 @@ namespace BWAPI
       static char szShareName[MAX_PATH] = { 0 };
       sprintf(szShareName, "Local\\bwapi_shared_memory_%u", processID);
 
-      /*
-      // DEBUG            @TODO: REMOVE
-      char testmsg[512];
-      sprintf(testmsg, "%d %s", size, szShareName);
-      MessageBox(NULL, testmsg, NULL, 0);
-      */
-      
       // Create the file mapping and shared memory
       mapFileHandle = CreateFileMapping( INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, size, szShareName );
       if ( mapFileHandle )

@@ -82,6 +82,8 @@ namespace BWAPI
     const std::string &getName() const;
     const char *c_str() const;
 
+    friend std::ostream &operator << (std::ostream &out, const UpgradeType &t);
+
     /** Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace()
      * will return Races::Terran. */
     Race getRace() const;
