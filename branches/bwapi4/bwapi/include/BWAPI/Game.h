@@ -549,5 +549,54 @@ namespace BWAPI
     /** Enables or disables the Fog of War in a replay. */
     virtual bool setRevealAll(bool reveal = true) = 0;
   };
-  extern Game* Broodwar;
+
+  extern Game *Broodwar;
+
+  /// Broodwar wrapper
+  class GameWrapper
+  {
+  private:
+    std::ostringstream ss;
+  public:
+    /// Member access operator to retain the original Broodwar-> behaviour.
+    Game *operator ->() const
+    {
+      return Broodwar;
+    };
+
+    /// Output stream operator for printing text to Broodwar. Using this operator invokes
+    /// Game::printf when a newline character is encountered.
+    template < class T >
+    GameWrapper &operator <<(const T &in)
+    {
+      // Pass whatever into the stream
+      ss << in;
+      return *this;
+    };
+
+    typedef std::ostream& (*ostream_manipulator)(std::ostream&);
+    GameWrapper &operator <<( ostream_manipulator fn )
+    {
+      // Pass manipulator into the stream
+      ss << fn;
+
+      // Flush to Broodwar's printf if we see endl or ends
+      if ( fn == (ostream_manipulator)std::endl || fn == (ostream_manipulator)std::ends )
+        this->flush();
+      return *this;
+    };
+
+    void flush()
+    {
+      if ( !Broodwar )
+        return;
+
+      Broodwar->printf("%s", ss.str().c_str() );
+      ss.str("");
+    };
+  };
+
+  static GameWrapper Starcraft;
+
 }
+

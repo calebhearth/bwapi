@@ -51,6 +51,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <WarningLevel>Level4</WarningLevel>
+      <DisableSpecificWarnings>4480</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Copying include files to final release</Message>
@@ -81,6 +82,7 @@ COPY /Y "$(SolutionDir)..\Release_Binary\COPYING" "$(SolutionDir)..\Release_Bina
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4480</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Copying include files to final release</Message>

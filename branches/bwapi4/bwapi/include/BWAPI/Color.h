@@ -129,7 +129,7 @@ namespace BWAPI
     /// Such codes are used in calls to Game::drawText
     /// and Game::printf.
     /// @~
-    enum Enum
+    enum Enum : char
     {
       /// @~English
       /// Uses the previous color that was specified

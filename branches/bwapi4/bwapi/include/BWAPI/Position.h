@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include <algorithm>
+#include <iostream>
 
 #include <BWAPI/Vectorset.h>
 
@@ -178,11 +179,14 @@ namespace BWAPI
     _OPERATOR_OP_VAL(&)
     _OPERATOR_OP_VAL(|)
     _OPERATOR_OP_VAL(^)
-    _OPERATOR_OP_VAL(>>)
-    _OPERATOR_OP_VAL(<<)
 
     _OPERATOR_OP_VAL_CHK(/)
     _OPERATOR_OP_VAL_CHK(%)
+
+    friend std::ostream &operator << (std::ostream &out, const Point<_T,__Scale> &pt)
+    {
+      return out << '(' << pt.x << ',' << pt.y << ')';
+    };
 
     // Functions
     /// @~English

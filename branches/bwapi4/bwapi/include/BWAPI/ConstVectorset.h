@@ -147,6 +147,7 @@ namespace BWAPI
     {
       return this->pStartArr;
     };
+
     /// @~English
     /// Used as a macro to check if the Vectorset is empty.
     ///
@@ -157,6 +158,7 @@ namespace BWAPI
     {
       return !this->empty();
     };
+
     /// @~English
     /// Array indexing operator.
     /// 
