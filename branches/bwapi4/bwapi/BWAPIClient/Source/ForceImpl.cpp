@@ -20,7 +20,7 @@ namespace BWAPI
     Playerset players;
     for( int i = 0; i < 12; ++i )
       if ( BWAPI::BWAPIClient.data->players[i].force == id )
-        players.insert( ((GameImpl*)Broodwar)->getPlayer(i) );
+        players.insert( Broodwar->getPlayer(i) );
     return players;
   }
 }

@@ -6,36 +6,36 @@ using namespace BWAPI;
 void ExampleAIModule::onStart()
 {
   // Hello World!
-  Starcraft->sendText("Hello world!");
+  Broodwar->sendText("Hello world!");
 
   // Print the map name.
   // BWAPI returns std::string when retrieving a string, don't forget to add .c_str() when printing!
-  Starcraft << "The map is " << Broodwar->mapName() << "!" << std::endl;
+  Broodwar << "The map is " << Broodwar->mapName() << "!" << std::endl;
 
   // Enable the UserInput flag, which allows us to control the bot and type messages.
-  Starcraft->enableFlag(Flag::UserInput);
+  Broodwar->enableFlag(Flag::UserInput);
 
   // Uncomment the following line and the bot will know about everything through the fog of war (cheat).
-  //Starcraft->enableFlag(Flag::CompleteMapInformation);
+  //Broodwar->enableFlag(Flag::CompleteMapInformation);
 
   // Set the command optimization level so that common commands can be grouped
   // and reduce the bot's APM (Actions Per Minute).
-  Starcraft->setCommandOptimizationLevel(2);
+  Broodwar->setCommandOptimizationLevel(2);
 
   // Check if this is a replay
-  if ( Starcraft->isReplay() )
+  if ( Broodwar->isReplay() )
   {
 
     // Announce the players in the replay
-    Starcraft << "The following players are in this replay:" << std::endl;
+    Broodwar << "The following players are in this replay:" << std::endl;
     
     // Iterate all the players in the game using a std:: iterator
-    Playerset players = Starcraft->getPlayers();
+    Playerset players = Broodwar->getPlayers();
     for(auto p = players.begin(); p != players.end(); ++p)
     {
       // Only print the player if they are not an observer
       if ( !p->isObserver() )
-        Starcraft << p->getName() << ", playing as " << p->getRace() << std::endl;
+        Broodwar << p->getName() << ", playing as " << p->getRace() << std::endl;
     }
 
   }
@@ -43,8 +43,8 @@ void ExampleAIModule::onStart()
   {
     // Retrieve you and your enemy's races. enemy() will just return the first enemy.
     // If you wish to deal with multiple enemies then you must use enemies().
-    if ( Starcraft->enemy() ) // First make sure there is an enemy
-      Starcraft << "The matchup is " << Starcraft->self()->getRace() << " vs " << Starcraft->enemy()->getRace() << std::endl;
+    if ( Broodwar->enemy() ) // First make sure there is an enemy
+      Broodwar << "The matchup is " << Broodwar->self()->getRace() << " vs " << Broodwar->enemy()->getRace() << std::endl;
   }
 
 }
@@ -63,20 +63,20 @@ void ExampleAIModule::onFrame()
   // Called once every game frame
 
   // Display the game frame rate as text in the upper left area of the screen
-  Starcraft->drawTextScreen(200, 0,  "FPS: %d", Starcraft->getFPS() );
-  Starcraft->drawTextScreen(200, 20, "Average FPS: %f", Starcraft->getAverageFPS() );
+  Broodwar->drawTextScreen(200, 0,  "FPS: %d", Broodwar->getFPS() );
+  Broodwar->drawTextScreen(200, 20, "Average FPS: %f", Broodwar->getAverageFPS() );
 
   // Return if the game is a replay or is paused
-  if ( Starcraft->isReplay() || Starcraft->isPaused() )
+  if ( Broodwar->isReplay() || Broodwar->isPaused() )
     return;
 
   // Prevent spamming by only running our onFrame once every number of latency frames.
   // Latency frames are the number of frames before commands are processed.
-  if ( Starcraft->getFrameCount() % Starcraft->getLatencyFrames() != 0 )
+  if ( Broodwar->getFrameCount() % Broodwar->getLatencyFrames() != 0 )
     return;
 
   // Iterate through all the units that we own
-  Unitset myUnits = Starcraft->self()->getUnits();
+  Unitset myUnits = Broodwar->self()->getUnits();
   for ( Unitset::iterator u = myUnits.begin(); u != myUnits.end(); ++u )
   {
     // Ignore the unit if it no longer exists
@@ -121,7 +121,7 @@ void ExampleAIModule::onFrame()
           {
 
             // If the call fails, then print the last error message
-            Starcraft << Starcraft->getLastError() << std::endl;
+            Broodwar << Broodwar->getLastError() << std::endl;
 
           }
 
@@ -135,9 +135,8 @@ void ExampleAIModule::onFrame()
       // Order the depot to construct more workers! But only when it is idle.
       if ( u->isIdle() && !u->train(u->getType().getRace().getWorker()) )
       {
-
         // If that fails, draw the error at the location so that you can visibly see what went wrong!
-        Starcraft->drawTextMap( u->getPosition().x, u->getPosition().y, "%s", Starcraft->getLastError().c_str() );
+        Broodwar->drawTextMap( u->getPosition().x, u->getPosition().y, "%s", Broodwar->getLastError().c_str() );
       }
 
     }
@@ -149,7 +148,7 @@ void ExampleAIModule::onSendText(std::string text)
 {
 
   // Send the text to the game if it is not being processed.
-  Starcraft->sendText("%s", text.c_str());
+  Broodwar->sendText("%s", text.c_str());
 
 
   // Make sure to use %s and pass the text as a parameter,
@@ -160,14 +159,14 @@ void ExampleAIModule::onSendText(std::string text)
 void ExampleAIModule::onReceiveText(BWAPI::Player* player, std::string text)
 {
   // Parse the received text
-  Starcraft << player->getName() << " said \"" << text << "\"" << std::endl;
+  Broodwar << player->getName() << " said \"" << text << "\"" << std::endl;
 }
 
 void ExampleAIModule::onPlayerLeft(BWAPI::Player* player)
 {
   // Interact verbally with the other players in the game by
   // announcing that the other player has left.
-  Starcraft->sendText("Goodbye %s!", player->getName().c_str());
+  Broodwar->sendText("Goodbye %s!", player->getName().c_str());
 }
 
 void ExampleAIModule::onNukeDetect(BWAPI::Position target)
@@ -177,17 +176,17 @@ void ExampleAIModule::onNukeDetect(BWAPI::Position target)
   if ( target )
   {
     // if so, print the location of the nuclear strike target
-    Starcraft << "Nuclear Launch Detected at " << target << std::endl;
+    Broodwar << "Nuclear Launch Detected at " << target << std::endl;
   }
   else 
   {
 
     // Otherwise, ask other players where the nuke is!
-    Starcraft->sendText("Where's the nuke?");
+    Broodwar->sendText("Where's the nuke?");
 
   }
 
-  // You can also retrieve all the nuclear missile targets using Starcraft->getNukeDots()!
+  // You can also retrieve all the nuclear missile targets using Broodwar->getNukeDots()!
 
 }
 
@@ -209,15 +208,15 @@ void ExampleAIModule::onUnitHide(BWAPI::Unit* unit)
 
 void ExampleAIModule::onUnitCreate(BWAPI::Unit* unit)
 {
-  if ( Starcraft->isReplay() )
+  if ( Broodwar->isReplay() )
   {
     // if we are in a replay, then we will print out the build order of the structures
     if ( unit->getType().isBuilding() && !unit->getPlayer()->isNeutral() )
     {
-      int seconds = Starcraft->getFrameCount()/24;
+      int seconds = Broodwar->getFrameCount()/24;
       int minutes = seconds/60;
       seconds %= 60;
-      Starcraft->sendText("%.2d:%.2d: %s creates a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
+      Broodwar->sendText("%.2d:%.2d: %s creates a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
     }
   }
 }
@@ -228,15 +227,15 @@ void ExampleAIModule::onUnitDestroy(BWAPI::Unit* unit)
 
 void ExampleAIModule::onUnitMorph(BWAPI::Unit* unit)
 {
-  if ( Starcraft->isReplay() )
+  if ( Broodwar->isReplay() )
   {
     // if we are in a replay, then we will print out the build order of the structures
     if ( unit->getType().isBuilding() && !unit->getPlayer()->isNeutral() )
     {
-      int seconds = Starcraft->getFrameCount()/24;
+      int seconds = Broodwar->getFrameCount()/24;
       int minutes = seconds/60;
       seconds %= 60;
-      Starcraft->sendText("%.2d:%.2d: %s morphs a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
+      Broodwar->sendText("%.2d:%.2d: %s morphs a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
     }
   }
 }
@@ -247,7 +246,7 @@ void ExampleAIModule::onUnitRenegade(BWAPI::Unit* unit)
 
 void ExampleAIModule::onSaveGame(std::string gameName)
 {
-  Starcraft << "The game was saved to \"" << gameName << "\"" << std::endl;
+  Broodwar << "The game was saved to \"" << gameName << "\"" << std::endl;
 }
 
 void ExampleAIModule::onUnitComplete(BWAPI::Unit *unit)

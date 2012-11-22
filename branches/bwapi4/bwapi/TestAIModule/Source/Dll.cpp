@@ -16,7 +16,7 @@
 #include "EventTest.h"
 #include "MicroTest.h"
 #include "DefaultTestModule.h"
-namespace BWAPI { Game* Broodwar; }
+namespace BWAPI { Game* BroodwarPtr; }
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 
                        LPVOID lpReserved
@@ -38,7 +38,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 
  extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule(BWAPI::Game* game)
 {
-  BWAPI::Broodwar=game;
+  BWAPI::BroodwarPtr=game;
   if ( game->getGameType() == BWAPI::GameTypes::Use_Map_Settings )
   {
     if (game->mapFileName()=="testmap1.scm")

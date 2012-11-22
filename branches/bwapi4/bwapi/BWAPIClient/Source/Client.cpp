@@ -111,9 +111,9 @@ namespace BWAPI
     }
 
     // Create new instance of Game/Broodwar
-    if ( BWAPI::Broodwar )
-      delete (GameImpl*)BWAPI::Broodwar;
-    BWAPI::Broodwar = new GameImpl(data);
+    if ( BWAPI::BroodwarPtr )
+      delete (GameImpl*)BWAPI::BroodwarPtr;
+    BWAPI::BroodwarPtr = new GameImpl(data);
     assert( BWAPI::Broodwar != nullptr );
 
     if (BWAPI::BWAPI_getRevision() != BWAPI::Broodwar->getRevision())
@@ -165,9 +165,9 @@ namespace BWAPI
     this->connected = false;
     std::cout << "Disconnected" << std::endl;
 
-    if ( BWAPI::Broodwar )
-      delete (GameImpl*)BWAPI::Broodwar;
-    BWAPI::Broodwar = nullptr;
+    if ( BWAPI::BroodwarPtr )
+      delete (GameImpl*)BWAPI::BroodwarPtr;
+    BWAPI::BroodwarPtr = nullptr;
   }
   void Client::update()
   {
@@ -194,11 +194,11 @@ namespace BWAPI
       EventType::Enum type(data->events[i].type);
 
       if ( type == EventType::MatchStart )
-        ((GameImpl*)BWAPI::Broodwar)->onMatchStart();
+        ((GameImpl*)BWAPI::BroodwarPtr)->onMatchStart();
       if ( type == EventType::MatchFrame || type == EventType::MenuFrame )
-        ((GameImpl*)BWAPI::Broodwar)->onMatchFrame();
+        ((GameImpl*)BWAPI::BroodwarPtr)->onMatchFrame();
     }
-    if ( BWAPI::Broodwar && ((GameImpl*)BWAPI::Broodwar)->inGame && !Broodwar->isInGame() )
-      ((GameImpl*)BWAPI::Broodwar)->onMatchEnd();
+    if ( BWAPI::BroodwarPtr != nullptr && ((GameImpl*)BWAPI::BroodwarPtr)->inGame && !Broodwar->isInGame() )
+      ((GameImpl*)BWAPI::BroodwarPtr)->onMatchEnd();
   }
 }

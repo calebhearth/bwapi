@@ -30,7 +30,7 @@
 
 namespace BWAPI
 {
-  Game* Broodwar;
+  Game* BroodwarPtr;
   GameImpl BroodwarImpl;
 
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
@@ -58,7 +58,7 @@ namespace BWAPI
       , externalModuleConnected(false)
       , isHost(false)
   {
-    BWAPI::Broodwar = static_cast<Game*>(this);
+    BWAPI::BroodwarPtr = static_cast<Game*>(this);
 
     BWtoBWAPI_init();
     try

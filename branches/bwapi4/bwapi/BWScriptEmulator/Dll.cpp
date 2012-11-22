@@ -6,7 +6,7 @@
 
 #include "BWScriptEmulator.h"
 
-namespace BWAPI { Game* Broodwar; }
+namespace BWAPI { Game* BroodwarPtr; }
 
 BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
@@ -21,6 +21,6 @@ BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
 
  extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule(BWAPI::Game* game)
 {
-  BWAPI::Broodwar = game;
+  BWAPI::BroodwarPtr = game;
   return new BWScriptEmulator();
 }

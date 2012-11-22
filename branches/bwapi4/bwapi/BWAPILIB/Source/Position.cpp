@@ -11,7 +11,7 @@ namespace BWAPI
       return false;
     
     // If Broodwar pointer is not initialized, just assume maximum map size
-    if ( !Broodwar ) 
+    if ( !BroodwarPtr ) 
       return this->x < (256 * 32)/__Scale &&
               this->y < (256 * 32)/__Scale;
 
@@ -26,7 +26,7 @@ namespace BWAPI
     // Set x/y to 0 if less than 0
     this->setMin(0, 0);
     
-    if ( !Broodwar )  // If broodwar ptr doesn't exist, set to below max size
+    if ( !BroodwarPtr )  // If broodwar ptr doesn't exist, set to below max size
     {
       _T max = (256*32)/__Scale - 1;
       this->setMax(max, max);

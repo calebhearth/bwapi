@@ -42,7 +42,7 @@ namespace BWAPI
     c.y     = command.y;
     c.extra = command.extra;
     Command(command).execute(0);
-    ((GameImpl*)Broodwar)->addUnitCommand(c);
+    ((GameImpl*)BroodwarPtr)->addUnitCommand(c);
     lastCommandFrame = Broodwar->getFrameCount();
     lastCommand      = command;
     return true;

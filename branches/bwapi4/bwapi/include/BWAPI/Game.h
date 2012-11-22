@@ -550,7 +550,7 @@ namespace BWAPI
     virtual bool setRevealAll(bool reveal = true) = 0;
   };
 
-  extern Game *Broodwar;
+  extern Game *BroodwarPtr;
 
   /// Broodwar wrapper
   class GameWrapper
@@ -561,7 +561,7 @@ namespace BWAPI
     /// Member access operator to retain the original Broodwar-> behaviour.
     Game *operator ->() const
     {
-      return Broodwar;
+      return BroodwarPtr;
     };
 
     /// Output stream operator for printing text to Broodwar. Using this operator invokes
@@ -588,15 +588,15 @@ namespace BWAPI
 
     void flush()
     {
-      if ( !Broodwar )
+      if ( !BroodwarPtr )
         return;
 
-      Broodwar->printf("%s", ss.str().c_str() );
+      BroodwarPtr->printf("%s", ss.str().c_str() );
       ss.str("");
     };
   };
 
-  static GameWrapper Starcraft;
+  static GameWrapper Broodwar;
 
 }
 

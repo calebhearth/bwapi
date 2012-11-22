@@ -170,8 +170,8 @@ namespace BWAPI
       // Update BWAPI DLL
       BroodwarImpl.processEvents();
 
-      ((GameImpl*)Broodwar)->events.clear();
-      if (!((GameImpl*)Broodwar)->startedClient)
+      ((GameImpl*)BroodwarPtr)->events.clear();
+      if (!((GameImpl*)BroodwarPtr)->startedClient)
         checkForConnections();
     }
     // Reset data going out to client
@@ -483,7 +483,7 @@ namespace BWAPI
     foreach(UnitImpl* u, BroodwarImpl.lastEvadedUnits)
       data->units[u->getID()] = u->data;
 
-    ((GameImpl*)Broodwar)->events.clear();
+    ((GameImpl*)BroodwarPtr)->events.clear();
 
     data->frameCount        = Broodwar->getFrameCount();
     data->replayFrameCount      = Broodwar->getReplayFrameCount();

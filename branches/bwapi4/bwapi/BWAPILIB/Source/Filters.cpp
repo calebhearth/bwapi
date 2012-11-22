@@ -174,17 +174,17 @@ namespace BWAPI
   U_UFILTER(IsUnpowered, u->isUnpowered() );
   U_UFILTER(IsVisible, u->isVisible() );
 
-  const UnitFilter IsEnemy( [](Unit *u)->bool{  if ( BWAPI::Broodwar == nullptr )
+  const UnitFilter IsEnemy( [](Unit *u)->bool{  if ( BWAPI::BroodwarPtr == nullptr )
                                                   return false;
                                                 BWAPI::Player *self = BWAPI::Broodwar->self();
                                                 return self == nullptr ? false : self->isEnemy( u->getPlayer() ); } );
 
-  const UnitFilter IsAlly( [](Unit *u)->bool{ if ( BWAPI::Broodwar == nullptr )
+  const UnitFilter IsAlly( [](Unit *u)->bool{ if ( BWAPI::BroodwarPtr == nullptr )
                                                 return false;
                                               BWAPI::Player *self = BWAPI::Broodwar->self();
                                               return self == nullptr ? false : self->isAlly( u->getPlayer() ); } );
 
-  U_UFILTER(IsOwned, BWAPI::Broodwar == nullptr ? false : u->getPlayer() == BWAPI::Broodwar->self() );
+  U_UFILTER(IsOwned, BWAPI::BroodwarPtr == nullptr ? false : u->getPlayer() == BWAPI::Broodwar->self() );
 
 }
 

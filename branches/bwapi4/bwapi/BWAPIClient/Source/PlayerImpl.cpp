@@ -30,7 +30,7 @@ namespace BWAPI
   }
   Force* PlayerImpl::getForce() const
   {
-    return ((GameImpl*)Broodwar)->getForce(self->force);
+    return Broodwar->getForce(self->force);
   }
   bool PlayerImpl::isAlly(Player* player) const
   {

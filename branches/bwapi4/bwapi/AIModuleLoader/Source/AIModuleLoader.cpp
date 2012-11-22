@@ -66,7 +66,7 @@ int main(int argc, const char* argv[])
     {
       typedef AIModule* (*PFNCreateA1)(BWAPI::Game*);
       PFNCreateA1 newAIModule = (PFNCreateA1)GetProcAddress(hMod, LPCSTR("newAIModule"));
-      client = newAIModule(Broodwar);
+      client = newAIModule(BroodwarPtr);
     }
     std::cout << "starting match!" << std::endl;
     while ( Broodwar->isInGame() )
