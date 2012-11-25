@@ -9,9 +9,13 @@ namespace BWAPI
     {
       enum Enum
       {
-#define BWAPI_PARAM(x) x,
-#define COL_B
-#include <BWAPI/def/DamageTypes.csv>
+        Independent,
+        Explosive,
+        Concussive,
+        Normal,
+        Ignore_Armor,
+        None,
+        Unknown,
         MAX
       };
     }
@@ -26,8 +30,12 @@ namespace BWAPI
     /** Returns the set of all the DamageTypes. */
     const DamageType::const_set& allDamageTypes();
 
-#define BWAPI_PARAM(x) extern const DamageType x;
-#define COL_B
-#include <BWAPI/def/DamageTypes.csv>
+    extern const DamageType Independent;
+    extern const DamageType Explosive;
+    extern const DamageType Concussive;
+    extern const DamageType Normal;
+    extern const DamageType Ignore_Armor;
+    extern const DamageType None;
+    extern const DamageType Unknown;
   }
 }
