@@ -13,6 +13,142 @@
 
 namespace BWAPI
 {
+  const std::string WeaponType::typeNames[WeaponTypes::Enum::MAX] = 
+  {
+    "Gauss_Rifle",
+    "Gauss_Rifle_Jim_Raynor",
+    "C_10_Canister_Rifle",
+    "C_10_Canister_Rifle_Sarah_Kerrigan",
+    "Fragmentation_Grenade",
+    "Fragmentation_Grenade_Jim_Raynor",
+    "Spider_Mines",
+    "Twin_Autocannons",
+    "Hellfire_Missile_Pack",
+    "Twin_Autocannons_Alan_Schezar",
+    "Hellfire_Missile_Pack_Alan_Schezar",
+    "Arclite_Cannon",
+    "Arclite_Cannon_Edmund_Duke",
+    "Fusion_Cutter",
+    "",
+    "Gemini_Missiles",
+    "Burst_Lasers",
+    "Gemini_Missiles_Tom_Kazansky",
+    "Burst_Lasers_Tom_Kazansky",
+    "ATS_Laser_Battery",
+    "ATA_Laser_Battery",
+    "ATS_Laser_Battery_Hero",
+    "ATA_Laser_Battery_Hero",
+    "ATS_Laser_Battery_Hyperion",
+    "ATA_Laser_Battery_Hyperion",
+    "Flame_Thrower",
+    "Flame_Thrower_Gui_Montag",
+    "Arclite_Shock_Cannon",
+    "Arclite_Shock_Cannon_Edmund_Duke",
+    "Longbolt_Missile",
+    "Yamato_Gun",
+    "Nuclear_Strike",
+    "Lockdown",
+    "EMP_Shockwave",
+    "Irradiate",
+    "Claws",
+    "Claws_Devouring_One",
+    "Claws_Infested_Kerrigan",
+    "Needle_Spines",
+    "Needle_Spines_Hunter_Killer",
+    "Kaiser_Blades",
+    "Kaiser_Blades_Torrasque",
+    "Toxic_Spores",
+    "Spines",
+    "",
+    "",
+    "Acid_Spore",
+    "Acid_Spore_Kukulza",
+    "Glave_Wurm",
+    "Glave_Wurm_Kukulza",
+    "",
+    "",
+    "Seeker_Spores",
+    "Subterranean_Tentacle",
+    "Suicide_Infested_Terran",
+    "Suicide_Scourge",
+    "Parasite",
+    "Spawn_Broodlings",
+    "Ensnare",
+    "Dark_Swarm",
+    "Plague",
+    "Consume",
+    "Particle_Beam",
+    "",
+    "Psi_Blades",
+    "Psi_Blades_Fenix",
+    "Phase_Disruptor",
+    "Phase_Disruptor_Fenix",
+    "",
+    "Psi_Assault",
+    "Psionic_Shockwave",
+    "Psionic_Shockwave_TZ_Archon",
+    "",
+    "Dual_Photon_Blasters",
+    "Anti_Matter_Missiles",
+    "Dual_Photon_Blasters_Mojo",
+    "Anti_Matter_Missiles_Mojo",
+    "Phase_Disruptor_Cannon",
+    "Phase_Disruptor_Cannon_Danimoth",
+    "Pulse_Cannon",
+    "STS_Photon_Cannon",
+    "STA_Photon_Cannon",
+    "Scarab",
+    "Stasis_Field",
+    "Psionic_Storm",
+    "Warp_Blades_Zeratul",
+    "Warp_Blades_Hero",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Independant_Laser_Battery",
+    "",
+    "",
+    "Twin_Autocannons_Floor_Trap",
+    "Hellfire_Missile_Pack_Wall_Trap",
+    "Flame_Thrower_Wall_Trap",
+    "Hellfire_Missile_Pack_Floor_Trap",
+    "Neutron_Flare",
+    "Disruption_Web",
+    "Restoration",
+    "Halo_Rockets",
+    "Corrosive_Acid",
+    "Mind_Control",
+    "Feedback",
+    "Optical_Flare",
+    "Maelstrom",
+    "Subterranean_Spines",
+    "",
+    "Warp_Blades",
+    "C_10_Canister_Rifle_Samir_Duran",
+    "C_10_Canister_Rifle_Infested_Duran",
+    "Dual_Photon_Blasters_Artanis",
+    "Anti_Matter_Missiles_Artanis",
+    "C_10_Canister_Rifle_Alexei_Stukov",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "None",
+    "Unknown"
+  };
+
   class WeaponTypeInternal
   {
     public:
@@ -324,14 +460,6 @@ namespace BWAPI
   WeaponType::WeaponType(int id) : Type( id )
   {
   }
-  const std::string &WeaponType::getName() const
-  {
-    return weaponTypeData[this->getID()].name;
-  }
-  const char *WeaponType::c_str() const
-  {
-    return weaponTypeData[this->getID()].name.c_str();
-  }
   TechType WeaponType::getTech() const
   {
     return weaponTypeData[this->getID()].techType;
@@ -424,15 +552,6 @@ namespace BWAPI
   {
     return weaponTypeData[this->getID()].targetsOwn;
   }
-  WeaponType WeaponTypes::getWeaponType(std::string name)
-  {
-    for ( int i = 0; i < WeaponTypes::Enum::MAX; ++i )
-    {
-      if ( name == weaponTypeData[i].name )
-        return WeaponType(i);
-    }
-    return WeaponTypes::Unknown;
-  }
   const WeaponType::set& WeaponTypes::allWeaponTypes()
   {
     return WeaponTypesSet::weaponTypeSet;
@@ -444,10 +563,5 @@ namespace BWAPI
   const WeaponType::const_set& WeaponTypes::specialWeaponTypes()
   {
     return WeaponTypesSet::specialWeaponTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const WeaponType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }

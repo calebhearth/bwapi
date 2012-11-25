@@ -219,7 +219,7 @@ namespace BWAPI
         if ( getFileType(this->lastMapGen.c_str()) == 1 )
         {
           // convert to game type
-          GameType gt = GameTypes::getGameType(this->autoMenuGameType);
+          GameType gt = GameType::getType(this->autoMenuGameType);
 
           // retrieve gametype dropdown
           BW::dialog *gameTypeDropdown = tempDlg->findIndex(17);
@@ -238,7 +238,7 @@ namespace BWAPI
             else if ( this->autoMenuRace == "RANDOMPZ" )
               playerRace = rand() % 2 == 0 ? Races::Protoss : Races::Zerg;
             else
-              playerRace = Races::getRace(this->autoMenuRace);
+              playerRace = Race::getType(this->autoMenuRace);
 
             // set race dropdown
             if ( playerRace != Races::Unknown && playerRace != Races::None )
@@ -246,7 +246,7 @@ namespace BWAPI
 
             for ( unsigned int i = 1; i <= this->autoMenuEnemyCount; ++i )
             {
-              Race enemyRace = Races::getRace(this->autoMenuEnemyRace[i]);
+              Race enemyRace = Race::getType(this->autoMenuEnemyRace[i]);
               if ( this->autoMenuEnemyRace[i] == "RANDOMTP" )
                 enemyRace = rand() % 2 == 0 ? Races::Terran : Races::Protoss;
               else if ( this->autoMenuEnemyRace[i] == "RANDOMTZ" )
@@ -377,7 +377,7 @@ namespace BWAPI
         else if ( this->autoMenuRace == "RANDOMPZ" )
           playerRace = rand() % 2 == 0 ? Races::Protoss : Races::Zerg;
         else
-          playerRace = Races::getRace(this->autoMenuRace);
+          playerRace = Race::getType(this->autoMenuRace);
 
         if ( playerRace != Races::Unknown && playerRace != Races::None )
         {

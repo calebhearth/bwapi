@@ -78,12 +78,6 @@ namespace BWAPI
   public:
     UpgradeType(int id = UpgradeTypes::Enum::None);
 
-    /** Returns the name for the upgrade type. */
-    const std::string &getName() const;
-    const char *c_str() const;
-
-    friend std::ostream &operator << (std::ostream &out, const UpgradeType &t);
-
     /** Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace()
      * will return Races::Terran. */
     Race getRace() const;
@@ -120,9 +114,6 @@ namespace BWAPI
   };
   namespace UpgradeTypes
   {
-    /** Given a string, this will return the upgrade type. */
-    UpgradeType getUpgradeType(std::string name);
-
     /** Returns the set of all the UpgradeTypes. */
     const UpgradeType::const_set& allUpgradeTypes();
 

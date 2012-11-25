@@ -5,13 +5,13 @@
 
 namespace BWAPI
 {
-  /// @~English
+  
   /// The iterator class template allows the iteration
   /// of elements of a Vectorset with ease while
   /// maintaining the compatibility with any familiar
   /// STL container iteration.
   ///
-  /// @~
+  
   /// @see Vectorset
   template<typename _T>
   class iterator

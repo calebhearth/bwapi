@@ -13,7 +13,7 @@
 namespace BWAPI
 {
   // NAMES
-  static const std::string techTypeNames[TechTypes::Enum::MAX] =
+  const std::string TechType::typeNames[TechTypes::Enum::MAX] =
   {
     "Stim_Packs",
     "Lockdown",
@@ -237,14 +237,6 @@ namespace BWAPI
   TechType::TechType(int id) : Type( id )
   {
   }
-  const std::string &TechType::getName() const
-  {
-    return techTypeNames[this->getID()];
-  }
-  const char *TechType::c_str() const
-  {
-    return techTypeNames[this->getID()].c_str();
-  }
   Race TechType::getRace() const
   {
     return techInternalRaces::techRaces[this->getID()];
@@ -289,23 +281,9 @@ namespace BWAPI
   {
     return techInternalOrders::techOrders[this->getID()];
   }
-  TechType TechTypes::getTechType(std::string name)
-  {
-    for ( int i = 0; i < TechTypes::Enum::MAX; ++i )
-    {
-      if ( name == techTypeNames[i] )
-        return TechType(i);
-    }
-    return TechTypes::Unknown;
-  }
   const TechType::const_set& TechTypes::allTechTypes()
   {
     return TechTypeSet::techTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const TechType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }
 

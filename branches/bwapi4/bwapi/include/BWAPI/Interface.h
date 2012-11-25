@@ -3,10 +3,10 @@
 
 namespace BWAPI
 {
-  /// @~English
+  
   /// This generalized class allows the application of features that are common to all interface
   /// classes.
-  /// @~
+  
   class Interface
   {
   protected:
@@ -15,7 +15,7 @@ namespace BWAPI
 
     std::map<int,void*> clientInfo;
   public:
-    /// @~English
+    
     /// Retrieves a pointer or value at an index that was stored for this interface using
     /// setClientInfo.
     ///
@@ -25,11 +25,11 @@ namespace BWAPI
     /// @retval nullptr if index is out of bounds.
     ///
     /// @returns A pointer to the client info at that index.
-    /// @~
+    
     /// @see setClientInfo
     void *getClientInfo(int index = 0) const;
 
-    /// @~English
+    
     /// Associates one or more pointers or values with any BWAPI interface.
     ///
     /// This client information is managed entirely by the AI module. It is not modified by BWAPI.
@@ -43,7 +43,7 @@ namespace BWAPI
     /// @param index
     ///   The key to use for this data. Default is 0.
     ///  
-    /// @~
+    
     /// @see getClientInfo
     template < typename V >
     void setClientInfo(const V &clientInfo, int index = 0)

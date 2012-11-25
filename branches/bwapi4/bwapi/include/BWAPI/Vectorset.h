@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  /// @~English
+  
   /// The Vectorset is a class template designed specifically for trivial classes or PODs and 
   /// performance. It mimics the usage of various stl containers (specifically the Vector and Set)
   /// in order to replace them. The Vectorset is designed for BWAPI usage and is recommended, 
@@ -19,25 +19,25 @@ namespace BWAPI
   /// or the behaviour will be undefined. Use with caution.
   ///
   /// @note The Vectorset will only free memory when the object is destroyed.
-  /// @~
+  
   /// @see std::vector, std::set
   template<typename _T>
   class Vectorset : public ConstVectorset<_T>
   {
   public:
   // ----------------------------------------------------------------- Constructors
-    /// @~English
+    
     /// This is the default constructor. The Vectorset will allocate memory for the given number
     /// of elements (or 16 by default).
     ///
     /// @param initialSize
     ///   The number of elements of type _T to allocate memory for.
-    /// @~
+    
     Vectorset(size_t initialSize = 16)
       : ConstVectorset( (_T*)malloc(initialSize*sizeof(_T)) )
       , pEndAlloc( pStartArr + initialSize )
     {};
-    /// @~English
+    
     /// This is the copy constructor. The Vectorset will allocate only the necessary space to
     /// copy the other Vectorset's contents.
     ///
@@ -45,7 +45,7 @@ namespace BWAPI
     ///   Reference to the Vectorset of the same type whose contents will be copied.
     ///
     /// @note Duplicate entries are not removed.
-    /// @~
+    
     Vectorset(const Vectorset<_T> &other)
       : ConstVectorset( (_T*)malloc( other.size()*sizeof(_T)), other.size() )
       , pEndAlloc( pEndArr )
@@ -59,7 +59,7 @@ namespace BWAPI
     { 
       memcpy(this->pStartArr, (void*)other, other.size()*sizeof(_T));
     };*/
-    /// @~English
+    
     /// This is the move constructor. The Vectorset will steal the data pointer from the other
     /// Vectorset.
     ///
@@ -67,14 +67,14 @@ namespace BWAPI
     ///   Reference to the Vectorset of the same type whose contents will be moved.
     ///
     /// @note Duplicate entries are not removed.
-    /// @~
+    
     Vectorset(Vectorset<_T> &&other)
       : ConstVectorset( other.pStartArr, other.size() )
       , pEndAlloc( other.pEndAlloc )
     { 
       other.pStartArr = nullptr;
     };
-    /// @~English
+    
     /// This constructor uses an existing array of objects and copies them into the vector.
     /// The Vectorset will allocate only enough memory to copy the array's contents.
     ///
@@ -84,7 +84,7 @@ namespace BWAPI
     ///   The number of elements contained in the given array.
     ///
     /// @note Duplicate entries are not removed.
-    /// @~
+    
     Vectorset(const _T *pArray, size_t arrSize)
       : ConstVectorset( (_T*)malloc(arrSize*sizeof(_T)), arrSize )
       , pEndAlloc( pEndArr )
@@ -103,11 +103,11 @@ namespace BWAPI
     };
   // ----------------------------------------------------------------- Operators
     /// @copydoc push_back(const Vectorset<_T> &)
-    /// @~English
+    
     /// @note The Vectorset is emptied before the contents of other are copied.
     ///
     /// @returns A reference to the current object.
-    /// @~
+    
     Vectorset<_T> &operator =(const Vectorset<_T> &other)
     {
       this->clear();
@@ -134,9 +134,9 @@ namespace BWAPI
       return *this;
     };
     /// @copydoc push_back(const Vectorset<_T> &)
-    /// @~English
+    
     /// @returns A reference to the current object.
-    /// @~
+    
     /// @see operator|=
     Vectorset &operator +=(const ConstVectorset<_T> &other)
     {
@@ -144,9 +144,9 @@ namespace BWAPI
       return *this;
     };
     /// @copydoc insert(const Vectorset<_T> &)
-    /// @~English
+    
     /// @returns A reference to the current object.
-    /// @~
+    
     /// @see operator+=
     Vectorset &operator |=(const ConstVectorset<_T> &other)
     {
@@ -154,18 +154,18 @@ namespace BWAPI
       return *this;
     };
   // ----------------------------------------------------------------- Custom const functions
-    /// @~English
+    
     /// Retrieves the current capacity of the Vectorset.
     ///
     /// @returns The number of elements this Vectorset can contain before needing to allocate more
     /// memory.
-    /// @~
+    
     inline size_t max_size() const
     {
       return ((size_t)this->pEndAlloc - (size_t)this->pStartArr)/sizeof(_T);
     };
   // ----------------------------------------------------------------- erase
-    /// @~English
+    
     /// This function erases an element from a Vectorset. Unlike erase, it assumes there exists
     /// only one element. If the element is found, it is removed and the function immediately
     /// returns.
@@ -175,7 +175,7 @@ namespace BWAPI
     ///
     /// @note This function does not preserve order. If you wish to preserve order, see
     /// remove_once.
-    /// @~
+    
     /// @see erase
     void erase_once(const _T &val)
     {
@@ -189,7 +189,7 @@ namespace BWAPI
       // erase the value (also does nothing if end() has been reached)
       this->erase(i);
     };
-    /// @~English
+    
     /// Erases all values found in the Vectorset. When a value is found, it is erased and the
     /// function continues searching for the same value until it reaches the end of the
     /// Vectorset.
@@ -198,7 +198,7 @@ namespace BWAPI
     ///   The value to search for and erase.
     /// 
     /// @note This function does not preserve order. If you wish to preserve order, see remove.
-    /// @~
+    
     /// @see erase_once
     void erase(const _T &val)
     {
@@ -212,7 +212,7 @@ namespace BWAPI
           ++i;
       }
     };
-    /// @~English
+    
     /// Erases the value at an iterator for this Vectorset. The advantage of this function is that
     /// searching for the value is not necessary.
     ///
@@ -220,7 +220,7 @@ namespace BWAPI
     ///   The iterator for the position to erase.
     ///
     /// @note This function does not preserve order. If you wish to preserve order, see remove.
-    /// @~
+    
     /// @see erase_once
     void erase(const iterator &iter)
     {
@@ -236,14 +236,14 @@ namespace BWAPI
       --this->pEndArr;
       *(&iter) = *this->pEndArr;
     };
-    /// @~English
+    
     /// Works similar to the STL algorithm remove_if. Iterates and calls a function predicate for
     /// each element in the Vectorset. If the predicate call returns true, then the value is
     /// erased by calling erase.
     ///
     /// @param pred
     ///   Function predicate used to determine if a value is removed.
-    /// @~
+    
     /// @see std::remove_if, remove_if
     template <typename Func>
     void erase_if( const Func &pred )
@@ -259,7 +259,7 @@ namespace BWAPI
       }
     };
   // ----------------------------------------------------------------- remove
-    /// @~English
+    
     /// This function removes an element from a Vectorset. Unlike remove, it assumes there exists
     /// only one element. If the element is found, it is removed and the function immediately
     /// returns.
@@ -269,7 +269,7 @@ namespace BWAPI
     ///
     /// @note This function preserves order. It is recommended to use erase_once for performance
     /// if order is not important.
-    /// @~
+    
     /// @see remove, erase_once
     void remove_once(const _T &val)
     {
@@ -281,7 +281,7 @@ namespace BWAPI
       }
       this->remove(i); // remove the value (does check for end())
     };
-    /// @~English
+    
     /// Removes all values found in the Vectorset. When a value is found, it is removed and the
     /// function continues searching for the same value until it reaches the end of the Vectorset.
     ///
@@ -290,7 +290,7 @@ namespace BWAPI
     /// 
     /// @note This function preserves order. It is recommended to use erase for performance if
     /// order is not important.
-    /// @~
+    
     /// @see remove_once, erase
     void remove(const _T &val)
     {
@@ -317,7 +317,7 @@ namespace BWAPI
       }
       this->pEndArr -= (&skip - &i);
     };
-    /// @~English
+    
     /// Erases the value at an iterator for this Vectorset. The advantage of this function
     /// is that searching for the value is not necessary.
     ///
@@ -326,7 +326,7 @@ namespace BWAPI
     ///
     /// @note This function preserves order. It is recommended to use erase for performance if
     /// order is not important.
-    /// @~
+    
     /// @see remove_once, erase
     void remove(const iterator &iter)
     {
@@ -350,12 +350,12 @@ namespace BWAPI
       }
       --this->pEndArr;
     };
-    /// @~English
+    
     /// Works similar to the STL algorithm remove_if. Iterates and calls a function predicate for
     /// each element in the Vectorset. If the predicate call returns true, then the value is removed.
     ///
     /// @param pred Function predicate used to determine if a value is removed.
-    /// @~
+    
     /// @see std::remove_if, erase_if
     template <typename Func>
     void remove_if( const Func &pred )
@@ -384,12 +384,12 @@ namespace BWAPI
       this->pEndArr -= (&skip - &i);
     };
   // ----------------------------------------------------------------- stl spinoff functions
-    /// @~English
+    
     /// Clears the Vectorset, removing all elements. Used the same way as stl containers.
     ///
     /// @note Because of the restrictions placed on the Vectorset, this function executes a
     /// single instruction regardless of the number of entries.
-    /// @~
+    
     inline void clear()
     {
       this->pEndArr = this->pStartArr;
@@ -397,13 +397,13 @@ namespace BWAPI
 
 
   // element insertion
-    /// @~English
+    
     /// Inserts a new value into the Vectorset only if it does not already exist.
     ///
     /// @param val
     ///   The value to insert.
     /// 
-    /// @~
+    
     /// @see std::set
     inline void insert(const _T &val)
     {
@@ -415,26 +415,26 @@ namespace BWAPI
     {
       this->insert(*val);
     };
-    /// @~English
+    
     /// Inserts all elements of another vector only if each element does not already exsist.
     ///
     /// @param other
     ///   Another Vectorset of the same type whose elements will be inserted into this one.
     ///
-    /// @~
+    
     void insert(const ConstVectorset<_T> &other)
     {
       for ( iterator i = other.begin(); i != other.end(); ++i )
         this->insert(i);
     };
-    /// @~English
+    
     /// Pushes a value to the back of the Vectorset, expanding it if necessary.
     /// 
     /// @param val
     ///   The value to add to the back of this Vectorset.
     ///
     /// @note Duplicate entries are not removed.
-    /// @~
+    
     /// @see push_front
     inline void push_back(const _T val)
     {
@@ -449,7 +449,7 @@ namespace BWAPI
     {
       this->push_back(*val);
     };
-    /// @~English
+    
     /// Pushes all values of another Vectorset to the back of this one, expanding it to contain
     /// exactly the number of elements in both Vectorsets if necessary.
     /// 
@@ -457,7 +457,7 @@ namespace BWAPI
     ///   The other Vectorset of the same type whose values will be appended to this one.
     ///
     /// @note Duplicate entries are not removed.
-    /// @~
+    
     void push_back(const ConstVectorset<_T> &other)
     {
       // localize variables
@@ -473,7 +473,7 @@ namespace BWAPI
         this->pEndArr += nSize;
       }
     };
-    /// @~English
+    
     /// Pushes a value to the front of the Vectorset, expanding it if necessary.
     /// 
     /// @param val
@@ -481,7 +481,7 @@ namespace BWAPI
     ///
     /// @note Duplicate entries are not removed.
     /// @note For efficiency, it is recommended to use push_back.
-    /// @~
+    
     /// @see push_back
     void push_front(const _T val)
     {
@@ -497,19 +497,19 @@ namespace BWAPI
     {
       this->push_front(*val);
     };
-    /// @~English
+    
     /// @TODO change return value to copy of value that was popped
-    /// @~
+    
     /// @see pop_front
     inline void pop_back()
     {
       if ( !this->empty() )  // remove last element if non-empty
         --this->pEndArr;
     };
-    /// @~English
+    
     /// @TODO change return value to copy of value that was popped
     /// @note For efficiency, it is recommended to use pop_back.
-    /// @~
+    
     /// @see pop_back
     void pop_front()
     {

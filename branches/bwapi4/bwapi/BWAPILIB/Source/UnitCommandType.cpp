@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  static const std::string unitCommandTypeName[UnitCommandTypes::Enum::MAX] =
+  const std::string UnitCommandType::typeNames[UnitCommandTypes::Enum::MAX] =
   {
     "Attack_Move",
     "Attack_Unit",
@@ -117,33 +117,10 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitCommandType,Unknown);
   }
   UnitCommandType::UnitCommandType(int id) : Type( id )
-  {
-  }
-  const std::string &UnitCommandType::getName() const
-  {
-    return unitCommandTypeName[this->getID()];
-  }
-  const char *UnitCommandType::c_str() const
-  {
-    return unitCommandTypeName[this->getID()].c_str();
-  }
-  UnitCommandType UnitCommandTypes::getUnitCommandType(std::string name)
-  {
-    for ( int i = 0; i < UnitCommandTypes::Enum::MAX; ++i )
-    {
-      if ( name == unitCommandTypeName[i] )
-        return UnitCommandType(i);
-    }
-    return UnitCommandTypes::Unknown;
-  }
+  {}
   const UnitCommandType::const_set& UnitCommandTypes::allUnitCommandTypes()
   {
     return UnitCommandTypeSet::unitCommandTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const UnitCommandType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }
 

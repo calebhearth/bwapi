@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  static const std::string playerTypeName[PlayerTypes::Enum::MAX] =
+  const std::string PlayerType::typeNames[PlayerTypes::Enum::MAX] =
   {
         "None",
         "Computer",
@@ -51,14 +51,6 @@ namespace BWAPI
   PlayerType::PlayerType(int id) : Type( id )
   {
   }
-  const std::string &PlayerType::getName() const
-  {
-    return playerTypeName[this->getID()];
-  }
-  const char *PlayerType::c_str() const
-  {
-    return playerTypeName[this->getID()].c_str();
-  }
   bool PlayerType::isLobbyType() const
   {
     return this->getID() == PlayerTypes::Enum::EitherPreferComputer ||
@@ -75,22 +67,8 @@ namespace BWAPI
            this->getID() == PlayerTypes::Enum::RescueActive   ||
            this->getID() == PlayerTypes::Enum::Neutral;
   }
-  PlayerType PlayerTypes::getPlayerType(std::string name)
-  {
-    for ( int i = 0; i < PlayerTypes::Enum::MAX; ++i )
-    {
-      if ( name == playerTypeName[i] )
-        return PlayerType(i);
-    }
-    return PlayerTypes::Unknown;
-  }
   const PlayerType::const_set& PlayerTypes::allPlayerTypes()
   {
     return PlayerTypeSet::playerTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const PlayerType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }

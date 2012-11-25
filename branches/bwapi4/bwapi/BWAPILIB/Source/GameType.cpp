@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  static const std::string gameTypeName[GameTypes::Enum::MAX] =
+  const std::string GameType::typeNames[GameTypes::Enum::MAX] =
   {
     "None",
     "Custom",
@@ -57,32 +57,9 @@ namespace BWAPI
     
   }
   GameType::GameType(int id) : Type( id )
-  {
-  }
-  const std::string &GameType::getName() const
-  {
-    return gameTypeName[this->getID()];
-  }
-  const char *GameType::c_str() const
-  {
-    return gameTypeName[this->getID()].c_str();
-  }
-  GameType GameTypes::getGameType(std::string name)
-  {
-    for ( int i = 0; i < GameTypes::Enum::MAX; ++i )
-    {
-      if ( name == gameTypeName[i] )
-        return GameType(i);
-    }
-    return GameTypes::Unknown;
-  }
+  {}
   const GameType::const_set& GameTypes::allGameTypes()
   {
     return GameTypeSet::gameTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const GameType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }

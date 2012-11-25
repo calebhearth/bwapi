@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  static const std::string explosionTypeName[ExplosionTypes::Enum::MAX] =
+  const std::string ExplosionType::typeNames[ExplosionTypes::Enum::MAX] =
   {
     "None",
     "Normal",
@@ -76,32 +76,9 @@ namespace BWAPI
     BWAPI_TYPEDEF(ExplosionType,Unknown);
   }
   ExplosionType::ExplosionType(int id) : Type( id )
-  {
-  }
-  const std::string &ExplosionType::getName() const
-  {
-    return explosionTypeName[this->getID()];
-  }
-  const char *ExplosionType::c_str() const
-  {
-    return explosionTypeName[this->getID()].c_str();
-  }
-  ExplosionType ExplosionTypes::getExplosionType(std::string name)
-  {
-    for ( int i = 0; i < ExplosionTypes::Enum::MAX; ++i )
-    {
-      if ( name == explosionTypeName[i] )
-        return ExplosionType(i);
-    }
-    return ExplosionTypes::Unknown;
-  }
+  {}
   const ExplosionType::const_set& ExplosionTypes::allExplosionTypes()
   {
     return ExplosionTypeSet::explosionTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const ExplosionType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }

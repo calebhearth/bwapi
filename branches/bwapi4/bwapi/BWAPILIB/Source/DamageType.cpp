@@ -9,60 +9,31 @@
 
 namespace BWAPI
 {
-  static const std::string damageTypeName[DamageTypes::Enum::MAX] = 
+  const std::string DamageType::typeNames[DamageTypes::Enum::MAX] = 
   {
-    "Independent",
-    "Explosive",
-    "Concussive",
-    "Normal",
-    "Ignore_Armor",
-    "None",
-    "Unknown"
+#define BWAPI_PARAM(x) #x,
+#define COL_B
+#include <BWAPI/def/DamageTypes.csv>
   };
 
-  namespace DamageTypeSet
-  {
-    using namespace DamageTypes::Enum;
-    BWAPI_TYPESET(damageTypeSet, DamageType, Independent, Explosive, Concussive, Normal, Ignore_Armor, None, Unknown);
-  }
   namespace DamageTypes
   {
-    BWAPI_TYPEDEF(DamageType,Independent);
-    BWAPI_TYPEDEF(DamageType,Explosive);
-    BWAPI_TYPEDEF(DamageType,Concussive);
-    BWAPI_TYPEDEF(DamageType,Normal);
-    BWAPI_TYPEDEF(DamageType,Ignore_Armor);
-    BWAPI_TYPEDEF(DamageType,None);
-    BWAPI_TYPEDEF(DamageType,Unknown);
+    static const int setArr[DamageTypes::Enum::MAX]={ 
+#define BWAPI_PARAM(x) Enum::x,
+#define COL_B
+#include <BWAPI/def/DamageTypes.csv>    
+    };
+    static const DamageType::const_set typeSet(setArr, countof(setArr));
 
+#define BWAPI_PARAM(x) const DamageType x(Enum::x);
+#define COL_B
+#include <BWAPI/def/DamageTypes.csv>
   }
   DamageType::DamageType(int id) : Type( id )
   {
   }
-  const std::string &DamageType::getName() const
-  {
-    return damageTypeName[this->getID()];
-  }
-  const char *DamageType::c_str() const
-  {
-    return damageTypeName[this->getID()].c_str();
-  }
-  DamageType DamageTypes::getDamageType(std::string name)
-  {
-    for ( int i = 0; i < DamageTypes::Enum::MAX; ++i )
-    {
-      if ( name == damageTypeName[i] )
-        return DamageType(i);
-    }
-    return DamageTypes::Unknown;
-  }
   const DamageType::const_set& DamageTypes::allDamageTypes()
   {
-    return DamageTypeSet::damageTypeSet;
-  }
-  std::ostream &operator << (std::ostream &out, const DamageType &t)
-  {
-    out << t.getName();
-    return out;
+    return DamageTypes::typeSet;
   }
 }

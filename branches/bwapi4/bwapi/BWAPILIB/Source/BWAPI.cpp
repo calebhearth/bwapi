@@ -2,7 +2,8 @@
 #include "../../svnrev.h"
 
 #include "../../Debug.h"
-void BWAPI::BWAPI_init()
+
+void BWAPI::BWAPI_init()  // @TODO: Remove this initialization dependency
 {
   BWAPI::UpgradeTypes::init();
   BWAPI::WeaponTypes::init();

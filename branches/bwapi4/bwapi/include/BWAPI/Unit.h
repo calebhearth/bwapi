@@ -18,7 +18,7 @@ namespace BWAPI
   class Unitset;
   class WeaponType;
 
-  /// @~English
+  
   /// The Unit class is used to get information about individual units as well as issue orders to units. Each
   /// unit in the game has a unique Unit object, and Unit objects are not deleted until the end of the match
   /// (so you don't need to worry about unit pointers becoming invalid).
@@ -42,21 +42,21 @@ namespace BWAPI
   /// If a Unit is not accessible, then only the getInitial__ functions will be available to the AI.
   /// However for units that were owned by the player, getPlayer and getType will continue to work for units
   /// that have been destroyed.
-  /// @~
+  
   class Unit : public Interface
   {
   protected:
     virtual ~Unit() {};
   public:
-    /// @English
+    /// @
     /// Retrieves a unique identifier for this unit.
     ///
     /// @returns An integer containing the unit's identifier.
-    /// @~
+    
     /// @see getReplayID
     virtual int getID() const = 0;
 
-    /// @~English
+    
     /// Checks if the Unit exists in the view of the BWAPI player.
     ///
     /// This is used primarily to check if BWAPI has access to a specific unit, or if the
@@ -71,50 +71,50 @@ namespace BWAPI
     ///   2. Another player owns the unit. This could either mean that you don't have access
     ///      to the unit or that the unit has died. You can specifically identify dead units
     ///      by polling onUnitDestroy.
-    /// @~
+    
     /// @see isVisible, isCompleted
     virtual bool exists() const = 0;
 
-    /// @English
+    /// @
     /// Retrieves the unit identifier for this unit as seen in replay data.
     ///
     /// @note This is only available if Flag::CompleteMapInformation is enabled.
     ///
     /// @returns An integer containing the replay unit identifier.
-    /// @~
+    
     /// @see getID
     virtual int getReplayID() const = 0;
 
-    /// @English
+    /// @
     /// Retrieves the player that owns this unit.
     ///
     /// @retval Game::neutral() If the unit is a neutral unit or inaccessible.
     ///
     /// @returns A pointer to the owning Player object.
-    /// @~
+    
     virtual Player* getPlayer() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's type.
     ///
     /// @retval UnitTypes::Unknown if this unit is inaccessible or cannot be determined.
     ///
     /// @returns A UnitType objects representing the unit's type.
-    /// @~
+    
     /// @see getInitialType
     virtual UnitType getType() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's position from the upper left corner of the map in pixels.
     ///
     /// @retval Positions::Unknown if this unit is inaccessible.
     ///
     /// @returns Position object representing the unit's current position.
-    /// @~
+    
     /// @see getTilePosition, getInitialPosition
     virtual Position getPosition() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's build position from the upper left corner of the map in tiles.
     ///
     /// @note: This tile position is the tile that is at the top left corner of the structure.
@@ -122,82 +122,82 @@ namespace BWAPI
     /// @retval TilePositions::Unknown if this unit is inaccessible.
     ///
     /// @returns TilePosition object representing the unit's current tile position.
-    /// @~
+    
     /// @see getPosition, getInitialTilePosition
     virtual TilePosition getTilePosition() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's facing direction in radians.
     ///
     /// @note A value of 0.0 means the unit is facing east.
     ///
     /// @returns A double with the angle measure in radians.
-    /// @~
+    
     virtual double getAngle() const = 0;
 
-    /// @~English
+    
     /// Retrieves the x component of the unit's velocity, measured in pixels per frame.
     ///
     /// @returns A double that represents the velocity's x component.
-    /// @~
+    
     /// @see getVelocityY
     virtual double getVelocityX() const = 0;
 
-    /// @~English
+    
     /// Retrieves the y component of the unit's velocity, measured in pixels per frame.
     ///
     /// @returns A double that represents the velocity's y component.
-    /// @~
+    
     /// @see getVelocityX
     virtual double getVelocityY() const = 0;
 
-    /// @~English
+    
     /// Retrieves the Region that the center of the unit is in.
     ///
     /// @retval nullptr If the unit is inaccessible.
     ///
     /// @returns A pointer to a Region object that contains this unit.
-    /// @~
+    
     virtual BWAPI::Region *getRegion() const = 0;
 
-    /// @~English
+    
     /// Retrieves the X coordinate of the unit's left boundry, measured in pixels from the left
     /// side of the map.
     ///
     /// @returns An integer representing the position of the left side of the unit.
     ///
-    /// @~
+    
     /// @see getTop, getRight, getBottom
     virtual int getLeft() const = 0;
 
-    /// @~English
+    
     /// Retrieves the Y coordinate of the unit's top boundry, measured in pixels from the top of
     /// the map.
     ///
     /// @returns An integer representing the position of the top side of the unit.
-    /// @~
+    
     /// @see getLeft, getRight, getBottom
     virtual int getTop() const = 0;
 
-    /// @~English
+    
     /// Retrieves the X coordinate of the unit's right boundry, measured in pixels from the left
     /// side of the map.
     ///
     /// @returns An integer representing the position of the right side of the unit.
-    /// @~
+    
     /// @see getLeft, getTop, getBottom
     virtual int getRight() const = 0;
 
-    /// @~English
+    
     /// Retrieves the Y coordinate of the unit's bottom boundry, measured in pixels from the top
     /// of the map.
     ///
     /// @returns An integer representing the position of the bottom side of the unit.
-    /// @~
+    
     /// @see getLeft, getTop, getRight
     virtual int getBottom() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's current Hit Points (HP) as seen in the game.
     ///
     /// @returns An integer representing the amount of hit points a unit currently has.
@@ -207,41 +207,41 @@ namespace BWAPI
     /// Battle.net. Such values include units that have 0 HP (can't be killed conventionally)
     /// or even negative HP (death in one hit).
     ///
-    /// @~
+    
     /// @see UnitType::maxHitPoints, getShields, getInitialHitPoints
     virtual int getHitPoints() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's current Shield Points (Shields) as seen in the game.
     ///
     /// @returns An integer representing the amount of shield points a unit currently has.
     ///
-    /// @~
+    
     /// @see UnitType::maxShields, getHitPoints
     virtual int getShields() const = 0;
 
-    /// @~English
+    
     /// Retrieves the unit's current Energy Points (Energy) as seen in the game.
     ///
     /// @returns An integer representing the amount of energy points a unit currently has.
     ///
     /// @note Energy is required in order for units to use abilities.
     ///
-    /// @~
+    
     /// @see UnitType::maxEnergy
     virtual int getEnergy() const = 0;
 
-    /// @~English
+    
     /// Retrieves the resource amount from a resource container, such as a Mineral Field and
     /// Vespene Geyser.
     ///
     /// @returns An integer representing the amount of resources remaining in this resource.
     ///
-    /// @~
+    
     /// @see getInitialResources
     virtual int getResources() const = 0;
 
-    /// @~English
+    
     /// Retrieves a grouping index from a resource container. Other resource containers of the
     /// same value are considered part of one expansion location (group of resources that are
     /// close together).
@@ -252,10 +252,10 @@ namespace BWAPI
     /// @returns An integer with an identifier between 0 and 250 that determine which resources
     /// are grouped together to form an expansion.
     ///
-    /// @~
+    
     virtual int getResourceGroup() const = 0;
 
-    /// @~English
+    
     /// Retrieves the distance between this unit and a target.
     ///
     /// @note Distance is calculated from the edge of this unit, using Starcraft's own distance
@@ -268,10 +268,10 @@ namespace BWAPI
     /// @returns An integer representation of the number of pixels between this unit and the
     /// \p target.
     ///
-    /// @~
+    
     virtual int getDistance(PositionOrUnit target) const = 0;
 
-    /// @~English
+    
     /// Using data provided by Starcraft, checks if there is a path available from this unit to
     /// the given target.
     ///
@@ -288,7 +288,7 @@ namespace BWAPI
     /// @retval false If the target is on a different piece of land than this one (such as an
     /// island).
     ///
-    /// @~
+    
     virtual bool hasPath(PositionOrUnit target) const = 0;
 
     /** Returns the frame of the last successful command. Frame is comparable to Game::getFrameCount(). */
@@ -494,7 +494,7 @@ namespace BWAPI
 
     /* --------------------------------------------------------------------------------------------------- */
 
-    /// @~English
+    
     /// Retrieves the set of all units in a given radius of the current unit.
     ///
     /// Takes into account this unit's dimensions. Can optionally specify a filter that is composed using
@@ -529,7 +529,7 @@ namespace BWAPI
     ///   } // myResources not empty
     /// } // pMain != nullptr
     /// @endcode
-    /// @~
+    
     /// @see getClosestUnit, getUnitsInWeaponRange, Game::getUnitsInRadius, Game::getUnitsInRectangle
     Unitset getUnitsInRadius(int radius, const UnitFilter &pred = nullptr) const;
 
@@ -741,7 +741,7 @@ namespace BWAPI
     /** Returns true if the unit is able to execute the given command, or false if there is an error */
     virtual bool canIssueCommand(UnitCommand command) const = 0;
 
-    /// @~English
+    
     /// This function issues a command to the unit(s), however it is used for interfacing only,
     /// and is recommended to use one of the more specific command functions when writing an AI.
     ///
@@ -750,11 +750,11 @@ namespace BWAPI
     ///
     /// @retval true if BWAPI determined that the command was valid and passed it to Starcraft.
     /// @retval false if an error occured and the command could not be executed.
-    /// @~
+    
     /// @see UnitCommandTypes, Game::getLastError
     virtual bool issueCommand(UnitCommand command) = 0;
 
-    /// @~English
+    
     /// Orders the unit(s) to attack move to the specified location.
     ///
     /// @param target
@@ -767,11 +767,11 @@ namespace BWAPI
     /// @retval false if an error occured and the command could not be executed.
     ///
     /// @note A @Medic will use Heal Move instead of attack.
-    /// @~
+    
     /// @see Game::getLastError
     bool attack(PositionOrUnit target, bool shiftQueueCommand = false);
 
-    /// @~English
+    
     /// Orders the worker unit(s) to construct a structure at a target
     /// position.
     ///
@@ -788,11 +788,11 @@ namespace BWAPI
     /// @note You must have sufficient resources and meet the necessary requirements in order to
     /// build a structure.
     ///
-    /// @~
+    
     /// @see Game::getLastError, Unit::train, Unit::cancelConstruction
     bool build(UnitType type, TilePosition target = TilePositions::None);
 
-    /// @~English
+    
     /// Orders the @Terran structure(s) to construct an add-on.
     ///
     /// @param type
@@ -804,11 +804,11 @@ namespace BWAPI
     /// @note You must have sufficient resources and meet the necessary requirements in order to
     /// build a structure.
     ///
-    /// @~
+    
     /// @see Game::getLastError, Unit::build, Unit::cancelAddon
     bool buildAddon(UnitType type);
 
-    /// @~English
+    
     /// Orders the unit(s) to add a UnitType to its training queue, or morphs into the UnitType if
     /// it is @Zerg.
     ///
@@ -824,11 +824,11 @@ namespace BWAPI
     /// @note If you call this using a @Hatchery, @Lair, or @Hive, then it will automatically
     /// pass the command to one of its @Larvae.
     ///
-    /// @~
+    
     /// @see Game::getLastError, Unit::build, Unit::morph, Unit::cancelTrain, Unit::isTraining
     bool train(UnitType type);
 
-    /// @~English
+    
     /// Orders the unit(s) to morph into a different UnitType.
     ///
     /// @param type
@@ -837,7 +837,7 @@ namespace BWAPI
     /// @retval true if BWAPI determined that the command was valid and passed it to Starcraft.
     /// @retval false if an error occured and the command could not be executed.
     ///
-    /// @~
+    
     /// @see Game::getLastError, Unit::build, Unit::morph
     bool morph(UnitType type);
 

@@ -189,7 +189,7 @@ namespace BWAPI
     };
 
     // Functions
-    /// @~English
+    
     /// Checks if this point is within the game's
     /// map bounds.
     ///
@@ -202,11 +202,11 @@ namespace BWAPI
     /// on the map/playing field.
     /// @retval false If this is not a valid position.
     ///
-    /// @~
+    
     /// @see makeValid
     bool isValid() const;
 
-    /// @~English
+    
     /// Checks if this point is within the game's
     /// map bounds, if not, then it will set
     /// the x and y values to be within map
@@ -221,11 +221,11 @@ namespace BWAPI
     /// map size.
     ///
     /// @returns A reference to itself.
-    /// @~
+    
     /// @see isValid
     Point &makeValid();
 
-    /// @~English
+    
     /// Gets an accurate distance measurement
     /// from this point to the given position.
     ///
@@ -237,13 +237,13 @@ namespace BWAPI
     ///
     /// @returns A double representing the distance
     /// between this point and \p position.
-    /// @~
+    
     /// @see getApproxDistance
     double getDistance(const Point &position) const
     {
       return ((*this) - position).getLength();
     };
-    /// @~English
+    
     /// Gets the length of this point from
     /// the top left corner of the map.
     ///
@@ -252,7 +252,7 @@ namespace BWAPI
     ///
     /// @returns A double representing the length
     /// of this point from (0,0).
-    /// @~
+    
     /// @see getApproxDistance
     double getLength() const
     {
@@ -261,7 +261,7 @@ namespace BWAPI
       return sqrt(x * x + y * y);
     };
 
-    /// @~English
+    
     /// Retrieves the approximate distance using
     /// an algorithm from Starcraft: Broodwar.
     ///
@@ -277,7 +277,7 @@ namespace BWAPI
     /// @returns An integer representing the
     /// distance between this point and
     /// \p position.
-    /// @~
+    
     /// @see getDistance
     int getApproxDistance(const Point &position) const
     {
@@ -293,7 +293,7 @@ namespace BWAPI
       return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
     };
 
-    /// @~English
+    
     /// Sets the maximum x and y values. If the 
     /// current x or y values exceed the given
     /// maximum, then values are set to the
@@ -303,7 +303,7 @@ namespace BWAPI
     /// @param max_y Maximum y value.
     ///
     /// @returns A reference to itself.
-    /// @~
+    
     /// @see setMin
     Point &setMax(_T max_x, _T max_y)
     {
@@ -319,7 +319,7 @@ namespace BWAPI
       this->setMax(max.x, max.y);
       return *this;
     };
-    /// @~English
+    
     /// Sets the minimum x and y values. If the 
     /// current x or y values are below the given
     /// minimum, then values are set to the
@@ -329,7 +329,7 @@ namespace BWAPI
     /// @param min_y Minimum y value.
     ///
     /// @returns A reference to itself.
-    /// @~
+    
     /// @see setMax
     Point &setMin(_T _x, _T _y)
     {
@@ -346,12 +346,12 @@ namespace BWAPI
       return *this;
     };
 
-    /// @~English
+    
     /// The x and y members for this class.
     ///
     /// Simply reference these members when
     /// retrieving a position's x and y values.
-    /// @~
+    
     _T x, y;
   };
 

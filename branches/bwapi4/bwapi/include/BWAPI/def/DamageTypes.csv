@@ -1,0 +1,10 @@
+//,Variable Name,
+#include "begin.h" //,,
+BWAPI_DEF(,Independent,)
+BWAPI_DEF(,Explosive,)
+BWAPI_DEF(,Concussive,)
+BWAPI_DEF(,Normal,)
+BWAPI_DEF(,Ignore_Armor,)
+BWAPI_DEF(,None,)
+BWAPI_DEF(,Unknown,)
+#include "end.h" //,,

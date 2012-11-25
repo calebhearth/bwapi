@@ -182,7 +182,7 @@ namespace BWAPI
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
     Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = nullptr) const;
 
-    /// @~English
+    
     /// Retrieves the closest unit to center that
     /// matches the criteria of pred within a radius.
     ///
@@ -195,12 +195,12 @@ namespace BWAPI
     /// @returns The desired unit that is closest
     /// to center.
     /// @retval nullptr If a suitable unit was not found.
-    /// @~
+    
     /// @see getBestUnit
     Unit *getClosestUnit(Position center, const UnitFilter &pred = nullptr, int radius = 999999) const;
     virtual Unit *getClosestUnitInRectangle(Position center, const UnitFilter &pred = nullptr, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const = 0;
 
-    /// @~English
+    
     /// Compares all units with pred to determine
     /// which of them is the best. All units are
     /// checked. If center and radius are specified,
@@ -215,21 +215,21 @@ namespace BWAPI
     /// @returns The desired unit that best matches
     /// the given criteria.
     /// @retval nullptr if a suitable unit was not found.
-    /// @~
+    
     /// @see getClosestUnit
     virtual Unit *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
 
-    /// @~English
+    
     /// Returns the last error that was set using setLastError.
     /// If a function call in BWAPI has failed, you can use
     /// this function to retrieve the reason it failed.
     ///
     /// @returns Error type containing the reason for failure.
-    /// @~
+    
     /// @see setLastError, Errors
     virtual Error getLastError() const = 0;
 
-    /// @~English
+    
     /// Sets the last error so that future calls to 
     /// getLastError will return the value that was set.
     ///
@@ -237,7 +237,7 @@ namespace BWAPI
     ///
     /// @retval true If the type passed was Errors::None.
     /// @retval false If any other error type was passed.
-    /// @~
+    
     /// @see getLastError, Errors
     virtual bool setLastError(BWAPI::Error e = Errors::None) = 0;
 

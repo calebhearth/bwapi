@@ -8,7 +8,7 @@
 
 namespace BWAPI
 {
-  static const std::string unitSizeTypeName[UnitSizeTypes::Enum::MAX] =
+  const std::string UnitSizeType::typeNames[UnitSizeTypes::Enum::MAX] =
   {
     "Independent",
     "Small",
@@ -33,25 +33,7 @@ namespace BWAPI
 
   }
   UnitSizeType::UnitSizeType(int id) : Type( id )
-  {
-  }
-  const std::string &UnitSizeType::getName() const
-  {
-    return unitSizeTypeName[this->getID()];
-  }
-  const char *UnitSizeType::c_str() const
-  {
-    return unitSizeTypeName[this->getID()].c_str();
-  }
-  UnitSizeType UnitSizeTypes::getUnitSizeType(std::string name)
-  {
-    for ( int i = 0; i < UnitSizeTypes::Enum::MAX; ++i )
-    {
-      if ( name == unitSizeTypeName[i] )
-        return UnitSizeType(i);
-    }
-    return UnitSizeTypes::Unknown;
-  }
+  {}
   const UnitSizeType::const_set& UnitSizeTypes::allUnitSizeTypes()
   {
     return UnitSizeTypeSet::unitSizeTypeSet;

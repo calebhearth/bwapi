@@ -267,12 +267,6 @@ namespace BWAPI
   public:
     UnitType(int id = UnitTypes::Enum::None);
 
-    /** Returns the name of the unit. */
-    const std::string &getName() const;
-    const char *c_str() const;
-
-    friend std::ostream &operator << (std::ostream &out, const UnitType &t);
-
     /** Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return
      * Races::Terran. */
     Race getRace() const;
@@ -534,10 +528,6 @@ namespace BWAPI
   /// Namespace containing unit types
   namespace UnitTypes
   {
-    /** Given the name of a unit type, this function will return the unit type.
-     * For example, UnitTypes::getUnitType("Terran Marine") will return UnitTypes::Terran_Marine. */
-    UnitType getUnitType(std::string name);
-
     /// max unit width
     int maxUnitWidth();
     

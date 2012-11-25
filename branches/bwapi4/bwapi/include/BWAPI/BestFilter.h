@@ -4,7 +4,7 @@
 
 namespace BWAPI
 {
-  /// @~English
+  
   /// The BestFilter is used to compare two
   /// objects with each other. Each function
   /// object compares two of the same object
@@ -15,7 +15,7 @@ namespace BWAPI
   /// Both parameters being given should never be
   /// NULL.
   /// 
-  /// @~
+  
   template<typename _Param>
   class BestFilter
   {

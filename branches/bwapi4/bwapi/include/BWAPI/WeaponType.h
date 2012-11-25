@@ -136,12 +136,6 @@ namespace BWAPI
     public:
       WeaponType(int id = WeaponTypes::Enum::None);
 
-      /** Returns the name of the weapon. */
-      const std::string &getName() const;
-      const char *c_str() const;
-
-      friend std::ostream &operator << (std::ostream &out, const WeaponType &t);
-
       /** Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if
        * no tech type is required. */
       TechType getTech() const;
@@ -203,9 +197,6 @@ namespace BWAPI
   };
   namespace WeaponTypes
   {
-    /** Given the name of a weapon, this will return the corresponding weapon type object. */
-    WeaponType getWeaponType(std::string name);
-
     /** Returns the set of all the WeaponTypes. */
     const WeaponType::set& allWeaponTypes();
 

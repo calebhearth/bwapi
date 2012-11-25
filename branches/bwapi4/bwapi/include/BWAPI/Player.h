@@ -21,29 +21,29 @@ namespace BWAPI
 
   struct PlayerData;
 
-  /// @~English
+  
   /// The Player represents a unique controller in the game.
   /// Each player in a match will have his or her own player
   /// instance. There is also a neutral player which owns 
   /// all the neutral units (such as mineral patches and
   /// vespene geysers).
   ///
-  /// @~
+  
   /// @see Playerset, PlayerType, Race
   class Player : public Interface
   {
   protected:
     virtual ~Player() {};
   public :
-    /// @~English
+    
     /// Retrieves a unique ID that represents the player.
     ///
     /// @returns The ID of the player.
     ///
-    /// @~
+    
     virtual int getID() const = 0;
 
-    /// @~English
+    
     /// Retrieves the name of the player as a string object.
     ///
     /// @returns The player name.
@@ -52,11 +52,11 @@ namespace BWAPI
     /// passing this parameter to Game::sendText and other
     /// variadic functions.
     ///
-    /// @~
+    
     /// @Ex player.cpp getName
     virtual std::string getName() const = 0;
 
-    /// @~English
+    
     /// Retrieves the set of all units that the player owns.
     /// This also includes incomplete units.
     ///
@@ -69,22 +69,22 @@ namespace BWAPI
     /// into transports, @Bunkers, @Refineries, @Assimilators,
     /// or @Extractors.
     ///
-    /// @~
+    
     /// @Ex player.cpp getUnits
     virtual const Unitset &getUnits() const = 0;
 
-    /// @~English
+    
     /// Retrieves the race of the player. This allows
     /// you to change strategies against different
     /// races.
     ///
     /// @returns The Race that the player is using.
     ///
-    /// @~
+    
     /// @Ex player.cpp getRace
     virtual Race getRace() const = 0;
 
-    /// @~English
+    
     /// Retrieves the player's controller type.
     /// This allows you to distinguish betweeen 
     /// computer and human players.
@@ -95,11 +95,11 @@ namespace BWAPI
     /// treated as a human player and return
     /// PlayerTypes::Player.
     ///
-    /// @~
+    
     /// @Ex player.cpp getType
     virtual PlayerType getType() const = 0;
 
-    /// @~English
+    
     /// Retrieves the player's force. A force
     /// is the team that the player is playing
     /// on. This is only used in non-melee
@@ -111,10 +111,10 @@ namespace BWAPI
     /// players on the same force do not necessarily
     /// need to be allied at the beginning of a match.
     ///
-    /// @~
+    
     virtual Force* getForce() const = 0;
 
-    /// @~English
+    
     /// Checks if this player is allied to the specified
     /// player.
     ///
@@ -127,11 +127,11 @@ namespace BWAPI
     /// player is neutral or an observer, or if \p player
     /// is neutral or an observer.
     ///
-    /// @~
+    
     /// @see isEnemy
     virtual bool isAlly(Player* player) const = 0;
 
-    /// @~English
+    
     /// Checks if this player is unallied to the specified
     /// player.
     ///
@@ -144,20 +144,20 @@ namespace BWAPI
     /// player is neutral or an observer, or if \p player
     /// is neutral or an observer.
     ///
-    /// @~
+    
     /// @see isAlly
     virtual bool isEnemy(Player* player) const = 0;
 
-    /// @~English
+    
     /// Checks if this player is the neutral player.
     ///
     /// @retval true if this player is the neutral player.
     /// @retval false if this player is any other player.
     ///
-    /// @~
+    
     virtual bool isNeutral() const = 0;
 
-    /// @~English
+    
     /// Retrieve's the player's starting location.
     ///
     /// @returns A TilePosition containing the position
@@ -168,7 +168,7 @@ namespace BWAPI
     /// @retval TilePositions::Unknown if an error occured
     /// while trying to retrieve the start location.
     ///
-    /// @~
+    
     /// @see Game::getStartLocations, Game::getLastError
     virtual TilePosition getStartLocation() const = 0;
 

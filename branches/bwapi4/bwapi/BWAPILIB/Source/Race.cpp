@@ -9,18 +9,18 @@
 
 namespace BWAPI
 {
+  // NAMES
+  const std::string Race::typeNames[Races::Enum::MAX] =
+  {
+    "Zerg", "Terran", "Protoss",
+    "", "", "",
+    "Random", "None", "Unknown"
+  };
+  
   // (local scope)
   namespace RaceInternal
   {
     using namespace UnitTypes::Enum;
-  
-    // NAMES
-    static const std::string raceNames[Races::Enum::MAX] =
-    {
-      "Zerg", "Terran", "Protoss",
-      "", "", "",
-      "Random", "None", "Unknown"
-    };
   
     // LOCALIZATION
     std::string raceLocalNames[Races::Enum::MAX];
@@ -81,16 +81,7 @@ namespace BWAPI
     BWAPI_TYPEDEF(Race,Unknown);
   }
   Race::Race(int id) : Type(id)
-  {
-  }
-  const std::string &Race::getName() const
-  {
-    return RaceInternal::raceNames[this->getID()];
-  }
-  const char *Race::c_str() const
-  {
-    return RaceInternal::raceNames[this->getID()].c_str();
-  }
+  {}
   UnitType Race::getWorker() const
   {
     return RaceInternal::workerTypes[this->getID()];
@@ -111,22 +102,8 @@ namespace BWAPI
   {
     return RaceInternal::supplyTypes[this->getID()];
   }
-  Race Races::getRace(std::string &name)
-  {
-    for (int i = 0; i < Races::Enum::MAX; ++i )
-    {
-      if ( name == RaceInternal::raceNames[i] )
-        return Race(i);
-    }
-    return Races::Unknown;
-  }
   const Race::const_set& Races::allRaces()
   {
     return RaceSet::raceSet;
-  }
-  std::ostream &operator << (std::ostream &out, const Race &t)
-  {
-    out << t.getName();
-    return out;
   }
 }

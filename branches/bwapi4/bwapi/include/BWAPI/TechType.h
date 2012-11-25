@@ -63,12 +63,6 @@ namespace BWAPI
     public:
       TechType(int id = TechTypes::Enum::None);
 
-      /** Returns the name of the tech type. */
-      const std::string &getName() const;
-      const char *c_str() const;
-
-      friend std::ostream &operator << (std::ostream &out, const TechType &t);
-
       /** Returns the race that uses the TechType. For example, TechTypes::Scanner_Sweep?.getRace() will
        * return Races::Terran. */
       Race getRace() const;
@@ -109,9 +103,6 @@ namespace BWAPI
   };
   namespace TechTypes
   {
-    /** Given a string, this will return the tech type. */
-    TechType getTechType(std::string name);
-
     /** Returns the set of all the TechTypes. */
     const TechType::const_set& allTechTypes();
 

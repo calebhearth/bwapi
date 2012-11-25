@@ -19,7 +19,7 @@ namespace BWAPI
   std::string unitLongNames[UnitTypes::Enum::MAX];
   std::string unitLocalNames[UnitTypes::Enum::MAX];
 
-  static const std::string unitTypeNames[UnitTypes::Enum::MAX] = 
+  const std::string UnitType::typeNames[UnitTypes::Enum::MAX] = 
   {
     "Terran_Marine",
     "Terran_Ghost",
@@ -1380,16 +1380,7 @@ namespace BWAPI
     }
   }
   UnitType::UnitType(int id) : Type( id )
-  {
-  }
-  const std::string &UnitType::getName() const
-  {
-    return unitTypeData[this->getID()].name;
-  }
-  const char *UnitType::c_str() const
-  {
-    return unitTypeData[this->getID()].name.c_str();
-  }
+  {}
   Race UnitType::getRace() const
   {
     return unitTypeData[this->getID()].race;
@@ -1699,15 +1690,6 @@ namespace BWAPI
            this->getID() == UnitTypes::Terran_Starport        ||
            this->getID() == UnitTypes::Terran_Science_Facility;
   }
-  UnitType UnitTypes::getUnitType(std::string name)
-  {
-    for ( int i = 0; i < UnitTypes::Enum::MAX; ++i )
-    {
-      if ( name == unitTypeNames[i] )
-        return UnitType(i);
-    }
-    return UnitTypes::Unknown;
-  }
   const UnitType::set& UnitTypes::allUnitTypes()
   {
     return unitTypeSet;
@@ -1723,10 +1705,5 @@ namespace BWAPI
   int UnitTypes::maxUnitHeight()
   {
     return maxHeight;
-  }
-  std::ostream &operator << (std::ostream &out, const UnitType &t)
-  {
-    out << t.getName();
-    return out;
   }
 }
