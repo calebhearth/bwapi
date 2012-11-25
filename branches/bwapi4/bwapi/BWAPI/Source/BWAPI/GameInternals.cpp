@@ -30,7 +30,6 @@
 
 namespace BWAPI
 {
-  Game* BroodwarPtr;
   GameImpl BroodwarImpl;
 
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------

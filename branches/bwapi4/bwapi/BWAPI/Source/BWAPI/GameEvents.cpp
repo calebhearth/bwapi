@@ -407,7 +407,8 @@ namespace BWAPI
     if ( !this->startedClient )
     {
       // Declare typedefs for function pointers
-      typedef AIModule* (*PFNCreateA1)(BWAPI::Game*);
+      typedef void (*PFNGameInit)(Game *);
+      typedef AIModule* (*PFNCreateA1)();
       typedef TournamentModule* (*PFNCreateTournament)();
 
       // Initialize Tournament Variables
@@ -421,13 +422,15 @@ namespace BWAPI
       if ( hTournamentModule )
       {
         // Obtain our tournament functions
+        PFNGameInit         newGameInit         = (PFNGameInit)GetProcAddress(hTournamentModule, TEXT("gameInit"));
         PFNCreateA1         newTournamentAI     = (PFNCreateA1)GetProcAddress(hTournamentModule, TEXT("newTournamentAI"));
         PFNCreateTournament newTournamentModule = (PFNCreateTournament)GetProcAddress(hTournamentModule, TEXT("newTournamentModule"));
 
         // Call the tournament functions if they exist
-        if ( newTournamentAI && newTournamentModule )
+        if ( newTournamentAI && newTournamentModule && newGameInit )
         {
-          this->tournamentAI         = newTournamentAI(this);
+          newGameInit(this);
+          this->tournamentAI         = newTournamentAI();
           this->tournamentController = newTournamentModule();
         }
         else // error when one function is not found
@@ -520,11 +523,13 @@ namespace BWAPI
         else
         {
           // Obtain the AI module function
+          PFNGameInit newGame     = (PFNGameInit)GetProcAddress(hAIModule, TEXT("gameInit"));
           PFNCreateA1 newAIModule = (PFNCreateA1)GetProcAddress(hAIModule, TEXT("newAIModule"));
-          if ( newAIModule )
+          if ( newAIModule && newGame )
           {
             // Call the AI module function and assign the client variable
-            this->client = newAIModule(this);
+            newGame(this);
+            this->client = newAIModule();
 
             // Hide success strings in tournament mode
             if ( !hTournamentModule )

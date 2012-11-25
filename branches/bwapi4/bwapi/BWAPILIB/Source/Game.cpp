@@ -8,6 +8,9 @@
 
 namespace BWAPI
 {
+  GameWrapper Broodwar;
+  Game *BroodwarPtr;
+
   //------------------------------------------ ACTIONS -----------------------------------------------
   void Game::setScreenPosition(BWAPI::Position p)
   {

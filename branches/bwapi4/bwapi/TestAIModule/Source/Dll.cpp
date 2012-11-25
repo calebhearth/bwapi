@@ -16,13 +16,9 @@
 #include "EventTest.h"
 #include "MicroTest.h"
 #include "DefaultTestModule.h"
-namespace BWAPI { Game* BroodwarPtr; }
-BOOL APIENTRY DllMain( HANDLE hModule, 
-                       DWORD  ul_reason_for_call, 
-                       LPVOID lpReserved
-           )
+
+BOOL APIENTRY DllMain( HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved )
 {
-    
   switch (ul_reason_for_call)
   {
   case DLL_PROCESS_ATTACH:
@@ -32,32 +28,31 @@ BOOL APIENTRY DllMain( HANDLE hModule,
     break;
   }
 
-
   return TRUE;
 }
 
- extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule(BWAPI::Game* game)
+ extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule()
 {
-  BWAPI::BroodwarPtr=game;
-  if ( game->getGameType() == BWAPI::GameTypes::Use_Map_Settings )
+  if ( BWAPI::Broodwar->getGameType() == BWAPI::GameTypes::Use_Map_Settings )
   {
-    if (game->mapFileName()=="testmap1.scm")
+    std::string map = BWAPI::Broodwar->mapFileName();
+    if ( map == "testmap1.scm" )
       return new TestMap1();
-    if (game->mapFileName()=="TerranTest.scm")
+    if ( map == "TerranTest.scm" )
       return new TerranTest();
-    if (game->mapFileName()=="ProtossTest.scm")
+    if ( map == "ProtossTest.scm" )
       return new ProtossTest();
-    if (game->mapFileName()=="ZergTest.scm")
+    if ( map == "ZergTest.scm" )
       return new ZergTest();
-    if (game->mapFileName()=="InterceptorTest.scm")
+    if ( map == "InterceptorTest.scm" )
       return new InterceptorTest();
-    if (game->mapFileName()=="ExistenceTest.scx")
+    if ( map == "ExistenceTest.scx" )
       return new ExistenceTest();
-    if (game->mapFileName()=="MapTest.scx")
+    if ( map == "MapTest.scx" )
       return new MapTest();
-    if (game->mapFileName()=="EventTest.scm")
+    if ( map == "EventTest.scm" )
       return new EventTest();
-    if (game->mapFileName()=="MicroTest.scm")
+    if ( map == "MicroTest.scm" )
       return new MicroTest();
   }
   return new DefaultTestModule();

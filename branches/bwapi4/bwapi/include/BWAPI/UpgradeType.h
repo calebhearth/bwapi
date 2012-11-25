@@ -110,14 +110,12 @@ namespace BWAPI
     UnitType whatsRequired(int level = 1) const;
 
     /** Returns the set of units that are affected by this upgrade. */
-    const UnitType::set& whatUses() const;
+    const UnitType::const_set& whatUses() const;
   };
   namespace UpgradeTypes
   {
     /** Returns the set of all the UpgradeTypes. */
     const UpgradeType::const_set& allUpgradeTypes();
-
-    void init();
 
     extern const UpgradeType Terran_Infantry_Armor;
     extern const UpgradeType Terran_Vehicle_Plating;

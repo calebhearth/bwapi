@@ -6,8 +6,6 @@
 
 #include "DevAIModule.h"
 
-namespace BWAPI { Game* BroodwarPtr; }
-
 BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
   switch ( dwReason )
@@ -19,8 +17,7 @@ BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
   return TRUE;
 }
 
- extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule(BWAPI::Game* game)
+extern "C" __declspec(dllexport) BWAPI::AIModule* newAIModule()
 {
-  BWAPI::BroodwarPtr = game;
   return new DevAIModule();
 }

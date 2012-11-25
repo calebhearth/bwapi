@@ -596,7 +596,7 @@ namespace BWAPI
     };
   };
 
-  static GameWrapper Broodwar;
+  extern GameWrapper Broodwar;
 
 }
 

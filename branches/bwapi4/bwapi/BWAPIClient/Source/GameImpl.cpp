@@ -17,7 +17,6 @@
 
 namespace BWAPI
 {
-  Game* BroodwarPtr = nullptr;
   GameImpl::GameImpl(GameData* data)
   {
     this->data = data;

@@ -60,7 +60,7 @@ namespace BWAPI
   std::string techLocalNames[TechTypes::Enum::MAX];
 
   // DEFAULTS
-  static const int defaultOreCost[TechTypes::Enum::MAX] = 
+  static const int defaultOreCost[TechTypes::Enum::MAX] =         // Same as default gas cost
   { 100, 200, 200, 100, 0, 150, 0, 200, 100, 150, 100, 100, 0, 100, 0, 200, 100, 100, 0, 200, 150, 150, 150, 0, 100, 200, 0, 200, 0, 100, 100, 100, 200 };
   static const int defaultTimeCost[TechTypes::Enum::MAX] =
   { 1200, 1500, 1800, 1200, 0, 1200, 0, 1200, 1800, 1500, 1200, 1200, 0, 1200, 0, 1500, 1500, 1200, 0, 1800, 1200, 1800, 1500, 0, 1200, 1200, 0, 1800, 0, 1800, 1800, 1500, 1800 };

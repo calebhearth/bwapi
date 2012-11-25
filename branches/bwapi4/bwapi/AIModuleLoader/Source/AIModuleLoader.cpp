@@ -64,9 +64,23 @@ int main(int argc, const char* argv[])
     }
     else
     {
-      typedef AIModule* (*PFNCreateA1)(BWAPI::Game*);
+      typedef AIModule* (*PFNCreateA1)();
+      typedef void (*PFNGameInit)(Game *);
+
+      PFNGameInit newGame = (PFNGameInit)GetProcAddress(hMod, LPCSTR("newGame"));
       PFNCreateA1 newAIModule = (PFNCreateA1)GetProcAddress(hMod, LPCSTR("newAIModule"));
-      client = newAIModule(BroodwarPtr);
+
+      if ( !newGame || !newAIModule )
+      {
+        std::cerr << "ERROR: Failed to find AI Module exports" << std::endl;
+        client = new AIModule();
+        Broodwar->sendText("Error: Failed to find AI Module exports");
+      }
+      else
+      {
+        newGame(BroodwarPtr);
+        client = newAIModule();
+      }
     }
     std::cout << "starting match!" << std::endl;
     while ( Broodwar->isInGame() )
