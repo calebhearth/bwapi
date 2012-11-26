@@ -444,6 +444,7 @@ namespace BWAPI
     // Have the unit finder do its stuff
     Templates::iterateUnitFinder<unitFinder>(data->xUnitSearch,
                                              data->yUnitSearch,
+                                             data->unitSearchSize,
                                              left,
                                              top,
                                              right,
@@ -460,6 +461,7 @@ namespace BWAPI
 
     Templates::iterateUnitFinder<unitFinder>(data->xUnitSearch,
                                              data->yUnitSearch,
+                                             data->unitSearchSize,
                                              left,
                                              top,
                                              right,
@@ -488,6 +490,7 @@ namespace BWAPI
 
     Templates::iterateUnitFinder<unitFinder>(data->xUnitSearch,
                                              data->yUnitSearch,
+                                             data->unitSearchSize,
                                              topLeft.x,
                                              topLeft.y,
                                              botRight.x,

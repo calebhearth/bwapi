@@ -604,8 +604,9 @@ namespace BWAPI
       unitFinder     *yf   = data->yUnitSearch;
       const BW::unitFinder *bwxf = BW::BWDATA::UnitOrderingX;
       const BW::unitFinder *bwyf = BW::BWDATA::UnitOrderingY;
+      int bwSearchSize = *BW::BWDATA::UnitOrderingCount;
 
-      for ( int i = 0; i < MAX_SEARCH && (bwxf->unitIndex > 0 || bwyf->unitIndex > 0); ++i, bwxf++, bwyf++ )
+      for ( int i = 0; i < bwSearchSize; ++i, bwxf++, bwyf++ )
       {
         if ( bwxf->unitIndex > 0 && bwxf->unitIndex <= UNIT_ARRAY_MAX_LENGTH )
         {
@@ -630,17 +631,10 @@ namespace BWAPI
         } // x index
 
       } // loop unit finder
-      // Set final values (prevent searching beyond this index)
-      if ( yf <= &data->yUnitSearch[UNIT_ARRAY_MAX_LENGTH*2-1] )
-      {
-        yf->searchValue = -1;
-        yf->unitIndex   = -1;
-      } // final y
-      if ( xf <= &data->xUnitSearch[UNIT_ARRAY_MAX_LENGTH*2-1] )
-      {
-        xf->searchValue = -1;
-        xf->unitIndex   = -1;
-      } // final x
+      
+      // Set size
+      data->unitSearchSize = xf - data->xUnitSearch; // we assume and equal number of y values was put into the array
+      
 
       //dynamic bullet data
       for(int id = 0; id < 100; ++id)

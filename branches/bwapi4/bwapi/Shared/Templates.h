@@ -1,6 +1,7 @@
 #pragma once
 #include <BWAPI.h>
 #include <Util/Foreach.h>
+#include <algorithm>
 
 namespace BWAPI
 {
@@ -43,26 +44,9 @@ namespace BWAPI
       }
       return false;
     }
-    //---------------------------------------------- GENERAL -------------------------------------------------
-    template <class _T>
-    void swapIfLarger(_T &smaller, _T &larger)
-    {
-      if ( smaller > larger )
-        std::swap(smaller, larger);
-    }
     //-------------------------------------------- UNIT FINDER -----------------------------------------------
-    // @TODO: get size and use binary search instead
-    template <class finder>
-    int getUnitFinderIndex(const finder *uf, int value, int start = 0)
-    {
-      unsigned int i = start;
-      while ( i < 1700*2 && uf[i].searchValue < value && uf[i].unitIndex > 0 )
-        ++i;
-      return i;
-    }
-
     template <class finder, typename _T>
-    void iterateUnitFinder(finder *finder_x, finder *finder_y, int left, int top, int right, int bottom, const _T &callback)
+    void iterateUnitFinder(finder *finder_x, finder *finder_y, int finderCount, int left, int top, int right, int bottom, const _T &callback)
     {
       DWORD dwFinderFlags[1701] = { 0 };
 
@@ -78,15 +62,26 @@ namespace BWAPI
         b += UnitTypes::maxUnitHeight();
 
       // Obtain finder indexes for all bounds
-      int iLeft   = Templates::getUnitFinderIndex<finder>(finder_x, left);
-      int iTop    = Templates::getUnitFinderIndex<finder>(finder_y, top);
-      int iRight  = Templates::getUnitFinderIndex<finder>(finder_x, r + 1, iLeft);
-      int iBottom = Templates::getUnitFinderIndex<finder>(finder_y, b + 1, iTop);
-      
+      finder *p_xend = finder_x + finderCount;
+      finder *p_yend = finder_y + finderCount;
+
+      // Create finder elements for compatibility
+      finder leftFinder   = { 0, left };
+      finder topFinder    = { 0, top };
+      finder rightFinder  = { 0, r+1 };
+      finder bottomFinder = { 0, b+1 };
+
+      // Search for the values using built-in binary search algorithm and comparator
+      const auto cmp = [](const finder &a,const finder &b){ return a.searchValue < b.searchValue; };
+      finder *pLeft   = std::lower_bound<finder*>(finder_x, p_xend, leftFinder, cmp);
+      finder *pTop    = std::lower_bound<finder*>(finder_y, p_yend, topFinder, cmp);
+      finder *pRight  = std::upper_bound<finder*>(pLeft, p_xend, rightFinder, cmp);
+      finder *pBottom = std::upper_bound<finder*>(pTop, p_yend, bottomFinder, cmp);
+
       // Iterate the X entries of the finder
-      for ( int x = iLeft; x < iRight; ++x )
+      for ( finder *px = pLeft; px < pRight; ++px )
       {
-        int iUnitIndex = finder_x[x].unitIndex;
+        int iUnitIndex = px->unitIndex;
         if ( dwFinderFlags[iUnitIndex] == 0 )
         {
           if ( isWidthExtended )  // If width is small, check unit bounds
@@ -100,9 +95,9 @@ namespace BWAPI
         }
       }
       // Iterate the Y entries of the finder
-      for ( int y = iTop; y < iBottom; ++y )
+      for ( finder *py = pTop; py < pBottom; ++py )
       {
-        int iUnitIndex = finder_y[y].unitIndex;
+        int iUnitIndex = py->unitIndex;
         if ( dwFinderFlags[iUnitIndex] == 1 )
         {
           if ( isHeightExtended ) // If height is small, check unit bounds
@@ -116,9 +111,9 @@ namespace BWAPI
         }
       }
       // Final Iteration
-      for ( int x = iLeft; x < iRight; ++x )
+      for ( finder *px = pLeft; px < pRight; ++px )
       {
-        int iUnitIndex = finder_x[x].unitIndex;
+        int iUnitIndex = px->unitIndex;
         if ( dwFinderFlags[iUnitIndex] == 2 )
         {
           Unit *u = ((GameImpl*)BroodwarPtr)->_unitFromIndex(iUnitIndex);
@@ -175,14 +170,14 @@ namespace BWAPI
 
       /* Ground unit dimension check */
       Position targPos = lt + Position(TilePosition(width,height))/2;
-      Unitset unitsInRect = Broodwar->getUnitsInRectangle((Position)lt, (Position)rb, !IsBuilding &&
+      Unitset unitsInRect( Broodwar->getUnitsInRectangle((Position)lt, (Position)rb, !IsBuilding &&
                                                                                       !IsFlyer    &&
                                                                                       !IsLoaded   &&
                                                                                       [&builder](Unit *u){ return u != builder;} &&
                                                                                       GetLeft   <= targPos.x + type.dimensionRight()  &&
                                                                                       GetTop    <= targPos.y + type.dimensionDown()   &&
                                                                                       GetRight  >= targPos.x - type.dimensionLeft()   &&
-                                                                                      GetBottom >= targPos.y - type.dimensionUp() );
+                                                                                      GetBottom >= targPos.y - type.dimensionUp() )    );
       foreach(Unit *u, unitsInRect)
       {
         BWAPI::UnitType iterType = u->getType();

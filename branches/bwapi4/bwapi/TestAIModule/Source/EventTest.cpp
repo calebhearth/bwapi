@@ -23,7 +23,7 @@ void EventTest::onStart()
   BWAssert(Broodwar->isReplay()==false);
   Broodwar->enableFlag(Flag::UserInput);
   Broodwar->setLocalSpeed(0);
-  Broodwar->setFrameSkip(256);
+  Broodwar->setFrameSkip(512);
   Broodwar->sendText("show me the money");
   onStartCalled = true;
 }

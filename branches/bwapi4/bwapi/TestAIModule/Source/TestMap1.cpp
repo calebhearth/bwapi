@@ -261,7 +261,7 @@ void TestMap1::onStart()
   Broodwar->sendText("show me the money");
   Broodwar->sendText("operation cwal");
   Broodwar->setLocalSpeed(0);
-  Broodwar->setFrameSkip(256);
+  Broodwar->setFrameSkip(512);
 }
 void TestMap1::onEnd(bool isWinner)
 {

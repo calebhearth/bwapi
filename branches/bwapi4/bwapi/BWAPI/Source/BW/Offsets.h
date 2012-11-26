@@ -224,6 +224,7 @@ namespace BW
   // array size 3400 (1700 * 2) for each
   BW_DATA(unitFinder*, UnitOrderingX, 0x0066FF78, 0);
   BW_DATA(unitFinder*, UnitOrderingY, 0x006769B8, 0);
+  BW_DATA(int*, UnitOrderingCount, 0x0066FF74, 0);
 
   //------------------------------------------- DATA LEVEL ---------------------------------------------------
   BW_DATA(u32*, wantThingyUpdate, 0x00652920, 0);

@@ -288,6 +288,7 @@ namespace BWAPI
     // Have the unit finder do its stuff
     Templates::iterateUnitFinder<BW::unitFinder>(BW::BWDATA::UnitOrderingX,
                                                  BW::BWDATA::UnitOrderingY,
+                                                 *BW::BWDATA::UnitOrderingCount,
                                                  left,
                                                  top,
                                                  right,
@@ -304,6 +305,7 @@ namespace BWAPI
 
     Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA::UnitOrderingX,
                                                   BW::BWDATA::UnitOrderingY,
+                                                  *BW::BWDATA::UnitOrderingCount,
                                                   left,
                                                   top,
                                                   right,
@@ -332,6 +334,7 @@ namespace BWAPI
 
     Templates::iterateUnitFinder<BW::unitFinder>( BW::BWDATA::UnitOrderingX,
                                                   BW::BWDATA::UnitOrderingY,
+                                                  *BW::BWDATA::UnitOrderingCount,
                                                   topLeft.x,
                                                   topLeft.y,
                                                   botRight.x,
