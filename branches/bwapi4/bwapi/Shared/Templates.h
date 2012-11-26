@@ -161,12 +161,13 @@ namespace BWAPI
       }
 
       /* Tile buildability check */
-      for ( TilePosition::iterator i(lt,rb); i; ++i )
-      {
-        // Check if tile is buildable and explored
-        if ( !Broodwar->isBuildable(i, true) || ( checkExplored && !Broodwar->isExplored(i)) )
-          return false; // @TODO: Error code for !isExplored ??
-      }
+      for ( int x = lt.x; x < rb.x; ++x )
+        for ( int y = lt.y; y < rb.y; ++y )
+        {
+          // Check if tile is buildable and explored
+          if ( !Broodwar->isBuildable(x, y, true) || ( checkExplored && !Broodwar->isExplored(x,y)) )
+            return false; // @TODO: Error code for !isExplored ??
+        }
 
       // Check if builder is capable of reaching the building site
       if ( builder && !builder->getType().isFlagBeacon() && !builder->hasPath( Position(lt + TilePosition(width/2, height/2)) ) )
@@ -174,41 +175,48 @@ namespace BWAPI
 
       /* Ground unit dimension check */
       Position targPos = lt + Position(TilePosition(width,height))/2;
-      for ( TilePosition::iterator i(lt,rb); i; ++i )
-      {
-        Unitset unitsOnTile = Broodwar->getUnitsOnTile(i, !IsBuilding &&
-                                                          !IsFlyer    &&
-                                                          !IsLoaded   &&
-                                                          [&builder](Unit *u){ return u != builder;} &&
-                                                          GetLeft   <= targPos.x + type.dimensionRight()  &&
-                                                          GetTop    <= targPos.y + type.dimensionDown()   &&
-                                                          GetRight  >= targPos.x - type.dimensionLeft()   &&
-                                                          GetBottom >= targPos.y - type.dimensionUp() );
-        foreach(Unit *u, unitsOnTile)
+      for ( int x = lt.x; x < rb.x; ++x )
+        for ( int y = lt.y; y < rb.y; ++y )
         {
-          BWAPI::UnitType iterType = u->getType();
-          if ( !type.isAddon() )
-            return false;
-          else if ( !iterType.canMove() )
-            return false;
+          Unitset unitsOnTile = Broodwar->getUnitsOnTile(x, y, !IsBuilding &&
+                                                            !IsFlyer    &&
+                                                            !IsLoaded   &&
+                                                            [&builder](Unit *u){ return u != builder;} &&
+                                                            GetLeft   <= targPos.x + type.dimensionRight()  &&
+                                                            GetTop    <= targPos.y + type.dimensionDown()   &&
+                                                            GetRight  >= targPos.x - type.dimensionLeft()   &&
+                                                            GetBottom >= targPos.y - type.dimensionUp() );
+          foreach(Unit *u, unitsOnTile)
+          {
+            BWAPI::UnitType iterType = u->getType();
+            if ( !type.isAddon() )
+              return false;
+            else if ( !iterType.canMove() )
+              return false;
+          }
         }
-      }
 
       /* Creep Check */
       if ( type.getRace() == Races::Zerg )
       { // Creep requirement, or ignore creep if there isn't one
         if ( type.requiresCreep() )
         {
-          for ( TilePosition::iterator i(lt, rb); i; ++i )
-            if ( !Broodwar->hasCreep(i) )
-              return false;
+          for ( int x = lt.x; x < rb.x; ++x )
+            for ( int y = lt.y; y < rb.y; ++y )
+            {
+              if ( !Broodwar->hasCreep(x,y) )
+                return false;
+            }
         }
       }
       else
       { // Can't build on the creep
-        for ( TilePosition::iterator i(lt, rb); i; ++i )
-          if ( Broodwar->hasCreep(i) )
-            return false;
+        for ( int x = lt.x; x < rb.x; ++x )
+          for ( int y = lt.y; y < rb.y; ++y )
+          {
+            if ( Broodwar->hasCreep(x,y) )
+              return false;
+          }
       }
 
       /* Power Check */

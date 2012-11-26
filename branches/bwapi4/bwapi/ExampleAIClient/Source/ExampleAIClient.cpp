@@ -319,13 +319,15 @@ void drawBullets()
 
 void drawVisibilityData()
 {
-  for( TilePosition::iterator i(Broodwar->mapWidth(), Broodwar->mapHeight()); i; ++i)
-  {
-    if ( Broodwar->isExplored(i.x, i.y) )
-      Broodwar->drawDotMap(i.x*32+16, i.y*32+16, Broodwar->isVisible(i.x, i.y) ? Colors::Green : Colors::Blue);
-    else
-      Broodwar->drawDotMap(i.x*32+16, i.y*32+16, Colors::Red);
-  }
+  int wid = Broodwar->mapHeight(), hgt = Broodwar->mapWidth();
+  for ( int x = 0; x < wid; ++x )
+    for ( int y = 0; y < hgt; ++y )
+    {
+      if ( Broodwar->isExplored(x, y) )
+        Broodwar->drawDotMap(x*32+16, y*32+16, Broodwar->isVisible(x, y) ? Colors::Green : Colors::Blue);
+      else
+        Broodwar->drawDotMap(x*32+16, y*32+16, Colors::Red);
+    }
 }
 /*
 void drawTerrainData()

@@ -284,23 +284,26 @@ namespace BWAPI
 
     // Locally store the map size
     TilePosition mapSize( Broodwar->mapWidth(), Broodwar->mapHeight() );
+    WalkPosition mapWalkSize( mapSize );
 
     // Load walkability
-    for ( WalkPosition::iterator w( (WalkPosition(mapSize)) ); w; ++w )
-    {
-      data->isWalkable[w.x][w.y] = Broodwar->isWalkable(w.x, w.y);
-    }
+    for ( int x = 0; x < mapWalkSize.x; ++x )
+      for ( int y = 0; y < mapWalkSize.y; ++y )
+      {
+        data->isWalkable[x][y] = Broodwar->isWalkable(x, y);
+      }
 
     // Load buildability, ground height, tile region id
-    for ( TilePosition::iterator p(mapSize.x, mapSize.y); p; ++p )
-    {
-        data->isBuildable[p.x][p.y]     = Broodwar->isBuildable(p.x, p.y);
-        data->getGroundHeight[p.x][p.y] = Broodwar->getGroundHeight(p.x, p.y);
+    for ( int x = 0; x < mapSize.x; ++x )
+      for ( int y = 0; y < mapSize.y; ++y )
+      {
+        data->isBuildable[x][y]     = Broodwar->isBuildable(x, y);
+        data->getGroundHeight[x][y] = Broodwar->getGroundHeight(x, y);
         if ( *BW::BWDATA::SAIPathing )
-          data->mapTileRegionId[p.x][p.y] = (*BW::BWDATA::SAIPathing)->mapTileRegionId[p.y][p.x];
+          data->mapTileRegionId[x][y] = (*BW::BWDATA::SAIPathing)->mapTileRegionId[y][x];
         else
-          data->mapTileRegionId[p.x][p.y] = 0;
-    }
+          data->mapTileRegionId[x][y] = 0;
+      }
 
     // Load pathing info
     if ( BW::BWDATA::SAIPathing )

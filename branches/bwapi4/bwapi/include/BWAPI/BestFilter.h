@@ -4,18 +4,11 @@
 
 namespace BWAPI
 {
-  
-  /// The BestFilter is used to compare two
-  /// objects with each other. Each function
-  /// object compares two of the same object
-  /// and returns the most desirable one.
+  /// The BestFilter is used to compare two objects with each other. Each function object compares
+  /// two of the same object and returns the most desirable one.
   ///
-  /// @note: A function object should return
-  /// one of the two given parameters, never NULL. 
-  /// Both parameters being given should never be
-  /// NULL.
-  /// 
-  
+  /// @note: A function object should return one of the two given parameters, never nullptr. Both
+  /// parameters being given should never be nullptr.
   template<typename _Param>
   class BestFilter
   {

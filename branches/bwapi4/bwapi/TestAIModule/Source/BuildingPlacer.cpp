@@ -13,9 +13,12 @@ bool BuildingPlacer::canBuildHere(BWAPI::TilePosition position, BWAPI::UnitType 
   //returns true if we can build this type of unit here. Takes into account reserved tiles.
   if (!BWAPI::Broodwar->canBuildHere(position, type))
     return false;
-  for ( BWAPI::TilePosition::iterator p(position, position + type.tileSize()); p; ++p )
-    if (reserveMap[p.x][p.y])
-      return false;
+  for ( int x = position.x; x < position.x + type.tileSize().x; ++x )
+    for ( int y = position.y; y < position.y + type.tileSize().y; ++y )
+    {
+      if (reserveMap[x][y])
+        return false;
+    }
   return true;
 }
 bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::UnitType type) const
@@ -37,44 +40,56 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
   //make sure we leave space for add-ons. These types of units can have addons:
   if ( type.canBuildAddon() )
   {
-    width+=2;
+    width += 2;
   }
   BWAPI::TilePosition start(position - BWAPI::TilePosition(buildDist,buildDist));
   BWAPI::TilePosition end(position + BWAPI::TilePosition(width, height) + BWAPI::TilePosition(buildDist,buildDist));
   if ( !start || !end )
     return false;
 
-  for ( BWAPI::TilePosition::iterator p(start,end); p; ++p )
-  {
-    if ( !type.isRefinery() && (!buildable(p) || reserveMap[p.x][p.y]) )
-      return false;
-  }
+  for ( int x = start.x; x < end.x; ++x )
+    for ( int y = start.y; y < end.y; ++y )
+    {
+      if ( !type.isRefinery() && (!buildable(BWAPI::TilePosition(x,y)) || reserveMap[x][y]) )
+        return false;
+    }
 
   if (position.x > 3)
   {
+    BWAPI::Position start2( BWAPI::TilePosition(start.x-2, start.y) );
+    BWAPI::Position end2( BWAPI::TilePosition(start.x, end.y) );
+    if ( !BWAPI::Broodwar->getUnitsInRectangle(start2.makeValid(), end2.makeValid(), !BWAPI::IsLifted && BWAPI::CanBuildAddon).empty() )
+      return false;
+    /*
     BWAPI::TilePosition start2(start.x-2, start.y);
     BWAPI::TilePosition end2(start.x, end.y);
     start2.makeValid();
     end2.makeValid();
 
-    for ( BWAPI::TilePosition::iterator p(start2,end2); p; ++p )
-    {
-      BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(p);
-      for( auto i = units.begin(); i != units.end(); ++i )
+    for ( int x = start2.x; x < end2.x; ++x )
+      for ( int y = start2.y; y < end2.y; ++y )
       {
-        if ( !i->isLifted() && i->getType().canBuildAddon() )
-          return false;
-      }
-    }
+        BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(x,y);
+        for( auto i = units.begin(); i != units.end(); ++i )
+        {
+          if ( !i->isLifted() && i->getType().canBuildAddon() )
+            return false;
+        }
+      }*/
   }
   return true;
 }
 BWAPI::TilePosition BuildingPlacer::getBuildLocation(BWAPI::UnitType type) const
 {
   //returns a valid build location if one exists, scans the map left to right
-  for ( BWAPI::TilePosition::iterator p(BWAPI::Broodwar->mapWidth(), BWAPI::Broodwar->mapHeight()); p; ++p )
-    if (this->canBuildHere(p, type))
-      return p;
+  int wid = BWAPI::Broodwar->mapWidth(), hgt = BWAPI::Broodwar->mapHeight();
+  for ( int x = 0; x < wid; ++x )
+    for ( int y = 0; y < hgt; ++y )
+    {
+      BWAPI::TilePosition tp(x,y);
+      if (this->canBuildHere( tp, type))
+        return tp;
+    }
   return BWAPI::TilePositions::None;
 }
 
@@ -136,10 +151,12 @@ bool BuildingPlacer::buildable(BWAPI::TilePosition position) const
 {
   //returns true if this tile is currently buildable, takes into account units on tile
   if (!BWAPI::Broodwar->isBuildable(position)) return false;
-  BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(position);
+  if ( !BWAPI::Broodwar->getUnitsOnTile(position, BWAPI::IsBuilding && !BWAPI::IsLifted).empty() )
+    return false;
+  /*
   for ( auto i = units.begin(); i != units.end(); ++i )
     if (i->getType().isBuilding() && !i->isLifted())
-      return false;
+      return false;*/
   return true;
 }
 
@@ -148,8 +165,9 @@ void BuildingPlacer::reserveTiles(BWAPI::TilePosition position, int width, int h
   BWAPI::TilePosition end(position + BWAPI::TilePosition(width,height));
   end.setMin((int)reserveMap.getWidth(), (int)reserveMap.getHeight());
 
-  for ( BWAPI::TilePosition::iterator p(position,end); p; ++p )
-    reserveMap[p.x][p.y] = true;
+  for ( int x = position.x; x < end.x; ++x )
+    for ( int y = position.y; y < end.y; ++y )
+      reserveMap[x][y] = true;
 }
 
 void BuildingPlacer::freeTiles(BWAPI::TilePosition position, int width, int height)
@@ -157,8 +175,9 @@ void BuildingPlacer::freeTiles(BWAPI::TilePosition position, int width, int heig
   BWAPI::TilePosition end(position + BWAPI::TilePosition(width,height));
   end.setMin((int)reserveMap.getWidth(), (int)reserveMap.getHeight());
 
-  for ( BWAPI::TilePosition::iterator p(position,end); p; ++p )
-    reserveMap[p.x][p.y] = false;
+  for ( int x = position.x; x < end.x; ++x )
+    for ( int y = position.y; y < end.y; ++y )
+      reserveMap[x][y] = false;
 }
 
 void BuildingPlacer::setBuildDistance(int distance)

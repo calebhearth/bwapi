@@ -178,6 +178,7 @@ namespace BWAPI
 
     /** Returns the set of accessible units that are in or overlapping the given rectangle. */
     virtual Unitset getUnitsInRectangle(int left, int top, int right, int bottom, const UnitFilter &pred = nullptr) const = 0;
+    Unitset getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight, const UnitFilter &pred = nullptr) const;
 
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
     Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = nullptr) const;

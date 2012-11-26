@@ -58,73 +58,7 @@ namespace BWAPI
   template<int __Scale> class PointIterator<char, __Scale> {};
   template<int __Scale> class PointIterator<unsigned char, __Scale> {};
   template<int __Scale> class PointIterator<bool, __Scale> {};
-
-  // ------------------------------------------------------ Point Iterator template ----------------
-  template<typename _T, int __Scale>
-  class PointIterator
-  {
-  public:
-    // ----------------------------- CONSTRUCTORS --------------------------------
-    PointIterator(const Point<_T,__Scale> &bottomRight) 
-      : begin( Point<_T,__Scale>(0,0) )
-      , end(bottomRight)
-      , x(0)
-      , y(0)
-    {};
-    PointIterator(_T xMax, _T yMax)
-      : begin( Point<_T,__Scale>(0,0) )
-      , end( Point<_T,__Scale>(xMax,yMax) )
-      , x(0)
-      , y(0)
-    {};
-    PointIterator(const Point<_T,__Scale> &topLeft, const Point<_T,__Scale> &bottomRight) 
-      : begin(topLeft)
-      , end(bottomRight)
-      , x(topLeft.x)
-      , y(topLeft.y)
-    {};
-    // ----------------------------- OPERATORS --------------------------------
-    operator bool()
-    {
-      return this->x >= begin.x && this->x < end.x &&
-             this->y >= begin.y && this->y < end.y;
-    };
-    PointIterator &operator =(const PointIterator &other)
-    {
-      this->x = other.x;
-      this->y = other.y;
-      this->begin = other.begin;
-      this->end = other.end;
-    };
-    PointIterator &operator ++()
-    {
-      ++this->y;
-      if ( this->y >= this->end.y )
-      {
-        this->y = this->begin.y;
-        ++this->x;
-      }
-      return *this;
-    };
-    PointIterator operator ++(int)
-    {
-      PointIterator copy = *this;
-      ++this->y;
-      if ( this->y >= this->end.y )
-      {
-        this->y = this->begin.y;
-        ++this->x;
-      }
-      return copy;
-    };
-
-    _T x;
-    _T y;
-
-    const Point<_T,__Scale> begin;
-    const Point<_T,__Scale> end;
-  };
-
+  
   // ------------------------------------------------------ Point template ----------------
   template<typename _T, int __Scale>
   class Point
@@ -182,77 +116,60 @@ namespace BWAPI
 
     _OPERATOR_OP_VAL_CHK(/)
     _OPERATOR_OP_VAL_CHK(%)
-
+    
     friend std::ostream &operator << (std::ostream &out, const Point<_T,__Scale> &pt)
     {
       return out << '(' << pt.x << ',' << pt.y << ')';
     };
 
+    friend std::istream &operator >> (std::istream &in, Point<_T,__Scale> &pt)
+    {
+      return in >> pt.x >> pt.y;
+    };
+
     // Functions
     
-    /// Checks if this point is within the game's
-    /// map bounds.
+    /// Checks if this point is within the game's map bounds.
     ///
-    /// @note If the Broodwar pointer is not
-    /// initialized, this function will check
-    /// validity against the largest (256x256)
-    /// map size.
+    /// @note If the Broodwar pointer is not initialized, this function will check validity
+    /// against the largest (256x256) map size.
     ///
-    /// @retval true If it is a valid position and
-    /// on the map/playing field.
+    /// @retval true If it is a valid position and on the map/playing field.
     /// @retval false If this is not a valid position.
     ///
-    
     /// @see makeValid
     bool isValid() const;
 
-    
-    /// Checks if this point is within the game's
-    /// map bounds, if not, then it will set
-    /// the x and y values to be within map
-    /// bounds.
+    /// Checks if this point is within the game's map bounds, if not, then it will set the x and y
+    /// values to be within map bounds.
     ///
-    /// @example If x is less than 0, then
-    /// x is set to 0.
+    /// @example If x is less than 0, then x is set to 0.
     ///
-    /// @note If the Broodwar pointer is not
-    /// initialized, this function will check
-    /// validity against the largest (256x256)
-    /// map size.
+    /// @note If the Broodwar pointer is not initialized, this function will check validity
+    /// against the largest (256x256) map size.
     ///
     /// @returns A reference to itself.
-    
     /// @see isValid
     Point &makeValid();
 
-    
-    /// Gets an accurate distance measurement
-    /// from this point to the given position.
+    /// Gets an accurate distance measurement from this point to the given position.
     ///
-    /// @note This function impedes performance.
-    /// In most cases you should use getApproxDistance.
+    /// @note This function impedes performance. In most cases you should use getApproxDistance.
     ///
-    /// @param position The target position to get the
-    /// distance to.
+    /// @param position The target position to get the distance to.
     ///
-    /// @returns A double representing the distance
-    /// between this point and \p position.
-    
+    /// @returns A double representing the distance between this point and \p position.
     /// @see getApproxDistance
     double getDistance(const Point &position) const
     {
       return ((*this) - position).getLength();
     };
     
-    /// Gets the length of this point from
-    /// the top left corner of the map.
+    /// Gets the length of this point from the top left corner of the map.
     ///
-    /// @note This function impedes performance.
-    /// In most cases you should use getApproxDistance.
+    /// @note This function impedes performance. In most cases you should use getApproxDistance.
     ///
-    /// @returns A double representing the length
-    /// of this point from (0,0).
-    
+    /// @returns A double representing the length of this point from (0,0).
     /// @see getApproxDistance
     double getLength() const
     {
@@ -260,24 +177,17 @@ namespace BWAPI
       double y = (double)this->y;
       return sqrt(x * x + y * y);
     };
-
     
-    /// Retrieves the approximate distance using
-    /// an algorithm from Starcraft: Broodwar.
+    /// Retrieves the approximate distance using an algorithm from Starcraft: Broodwar.
     ///
-    /// @note This function is desired because
-    /// it uses the same "imperfect" algorithm
-    /// used in Broodwar, so that calculations
-    /// will be consistent with the game. It
-    /// is also optimized for performance.
+    /// @note This function is desired because it uses the same "imperfect" algorithm used in
+    /// Broodwar, so that calculations will be consistent with the game. It is also optimized
+    /// for performance.
     ///
-    /// @param position The target point
-    /// to measure the distance to.
+    /// @param position
+    ///     The target point to measure the distance to.
     ///
-    /// @returns An integer representing the
-    /// distance between this point and
-    /// \p position.
-    
+    /// @returns An integer representing the distance between this point and \p position.
     /// @see getDistance
     int getApproxDistance(const Point &position) const
     {
@@ -292,18 +202,16 @@ namespace BWAPI
       unsigned int minCalc = (3*min) >> 3;
       return (minCalc >> 5) + minCalc + max - (max >> 4) - (max >> 6);
     };
-
     
-    /// Sets the maximum x and y values. If the 
-    /// current x or y values exceed the given
-    /// maximum, then values are set to the
-    /// maximum.
+    /// Sets the maximum x and y values. If the  current x or y values exceed the given maximum,
+    /// then values are set to the maximum.
     ///
-    /// @param max_x Maximum x value.
-    /// @param max_y Maximum y value.
+    /// @param max_x
+    ///     Maximum x value.
+    /// @param max_y
+    ///     Maximum y value.
     ///
     /// @returns A reference to itself.
-    
     /// @see setMin
     Point &setMax(_T max_x, _T max_y)
     {
@@ -320,16 +228,15 @@ namespace BWAPI
       return *this;
     };
     
-    /// Sets the minimum x and y values. If the 
-    /// current x or y values are below the given
-    /// minimum, then values are set to the
-    /// minimum.
+    /// Sets the minimum x and y values. If the current x or y values are below the given minimum,
+    /// then values are set to the minimum.
     ///
-    /// @param min_x Minimum x value.
-    /// @param min_y Minimum y value.
+    /// @param min_x
+    ///     Minimum x value.
+    /// @param min_y
+    ///     Minimum y value.
     ///
     /// @returns A reference to itself.
-    
     /// @see setMax
     Point &setMin(_T _x, _T _y)
     {
@@ -346,12 +253,9 @@ namespace BWAPI
       return *this;
     };
 
-    
     /// The x and y members for this class.
     ///
-    /// Simply reference these members when
-    /// retrieving a position's x and y values.
-    
+    /// Simply reference these members when retrieving a position's x and y values.
     _T x, y;
   };
 

@@ -66,6 +66,10 @@ namespace BWAPI
                                      center.y + radius,
                                      [&center,&radius,&pred](Unit *u){ return u->getDistance(center) <= radius && (!pred.isValid() || pred(u)); });
   }
+  Unitset Game::getUnitsInRectangle(BWAPI::Position topLeft, BWAPI::Position bottomRight, const UnitFilter &pred) const
+  {
+    return this->getUnitsInRectangle(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y, pred);
+  }
   Unit *Game::getClosestUnit(Position center, const UnitFilter &pred, int radius) const
   {
     return this->getClosestUnitInRectangle(center,
