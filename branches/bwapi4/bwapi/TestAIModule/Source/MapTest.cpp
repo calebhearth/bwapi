@@ -6,6 +6,7 @@ void MapTest::onStart()
   BWAssert(Broodwar->isReplay()==false);
   Broodwar->enableFlag(Flag::CompleteMapInformation);
   Broodwar->setLocalSpeed(0);
+  Broodwar->setFrameSkip(256);
   BWAssert(Broodwar->mapWidth()==192);
   BWAssert(Broodwar->mapHeight()==128);
   BWAssert(Broodwar->mapFileName()=="MapTest.scx");

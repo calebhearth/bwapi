@@ -60,22 +60,6 @@ bool BuildingPlacer::canBuildHereWithSpace(BWAPI::TilePosition position, BWAPI::
     BWAPI::Position end2( BWAPI::TilePosition(start.x, end.y) );
     if ( !BWAPI::Broodwar->getUnitsInRectangle(start2.makeValid(), end2.makeValid(), !BWAPI::IsLifted && BWAPI::CanBuildAddon).empty() )
       return false;
-    /*
-    BWAPI::TilePosition start2(start.x-2, start.y);
-    BWAPI::TilePosition end2(start.x, end.y);
-    start2.makeValid();
-    end2.makeValid();
-
-    for ( int x = start2.x; x < end2.x; ++x )
-      for ( int y = start2.y; y < end2.y; ++y )
-      {
-        BWAPI::Unitset units = BWAPI::Broodwar->getUnitsOnTile(x,y);
-        for( auto i = units.begin(); i != units.end(); ++i )
-        {
-          if ( !i->isLifted() && i->getType().canBuildAddon() )
-            return false;
-        }
-      }*/
   }
   return true;
 }
@@ -150,13 +134,12 @@ BWAPI::TilePosition BuildingPlacer::getBuildLocationNear(BWAPI::TilePosition pos
 bool BuildingPlacer::buildable(BWAPI::TilePosition position) const
 {
   //returns true if this tile is currently buildable, takes into account units on tile
-  if (!BWAPI::Broodwar->isBuildable(position)) return false;
+  if ( !BWAPI::Broodwar->isBuildable(position) )
+    return false;
+
   if ( !BWAPI::Broodwar->getUnitsOnTile(position, BWAPI::IsBuilding && !BWAPI::IsLifted).empty() )
     return false;
-  /*
-  for ( auto i = units.begin(); i != units.end(); ++i )
-    if (i->getType().isBuilding() && !i->isLifted())
-      return false;*/
+
   return true;
 }
 

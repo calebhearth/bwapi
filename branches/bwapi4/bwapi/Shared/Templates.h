@@ -175,26 +175,22 @@ namespace BWAPI
 
       /* Ground unit dimension check */
       Position targPos = lt + Position(TilePosition(width,height))/2;
-      for ( int x = lt.x; x < rb.x; ++x )
-        for ( int y = lt.y; y < rb.y; ++y )
-        {
-          Unitset unitsOnTile = Broodwar->getUnitsOnTile(x, y, !IsBuilding &&
-                                                            !IsFlyer    &&
-                                                            !IsLoaded   &&
-                                                            [&builder](Unit *u){ return u != builder;} &&
-                                                            GetLeft   <= targPos.x + type.dimensionRight()  &&
-                                                            GetTop    <= targPos.y + type.dimensionDown()   &&
-                                                            GetRight  >= targPos.x - type.dimensionLeft()   &&
-                                                            GetBottom >= targPos.y - type.dimensionUp() );
-          foreach(Unit *u, unitsOnTile)
-          {
-            BWAPI::UnitType iterType = u->getType();
-            if ( !type.isAddon() )
-              return false;
-            else if ( !iterType.canMove() )
-              return false;
-          }
-        }
+      Unitset unitsInRect = Broodwar->getUnitsInRectangle((Position)lt, (Position)rb, !IsBuilding &&
+                                                                                      !IsFlyer    &&
+                                                                                      !IsLoaded   &&
+                                                                                      [&builder](Unit *u){ return u != builder;} &&
+                                                                                      GetLeft   <= targPos.x + type.dimensionRight()  &&
+                                                                                      GetTop    <= targPos.y + type.dimensionDown()   &&
+                                                                                      GetRight  >= targPos.x - type.dimensionLeft()   &&
+                                                                                      GetBottom >= targPos.y - type.dimensionUp() );
+      foreach(Unit *u, unitsInRect)
+      {
+        BWAPI::UnitType iterType = u->getType();
+        if ( !type.isAddon() )
+          return false;
+        else if ( !iterType.canMove() )
+          return false;
+      }
 
       /* Creep Check */
       if ( type.getRace() == Races::Zerg )
