@@ -1,13 +1,12 @@
 #include "CSprite.h"
 #include "CImage.h"
-#include <Windows.h>
 
 namespace BW
 {
   void CSprite::draw()
   {
-    BYTE color = 0;
-    //BYTE color = getColourID(this->playerID);
+    u8 color = 0;
+    //u8 color = getColourID(this->playerID);
     
     //imgDrawPalettteIndex[2] = tunit_image_palette[2*color];
     //imgDrawPalettteIndex[3] = tunit_image_palette[2*color + 1];

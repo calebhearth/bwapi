@@ -9,19 +9,19 @@
 ///////////////////////////////////////////////////////////////////////
 //////// The "official"ly modified version of SetThreadName
 ////////
-const DWORD MS_VC_EXCEPTION=0x406D1388;
+const unsigned MS_VC_EXCEPTION = 0x406D1388;
 
 #pragma pack(push,8)
 typedef struct tagTHREADNAME_INFO
 {
-   DWORD dwType; // Must be 0x1000.
+   unsigned dwType; // Must be 0x1000.
    LPCSTR szName; // Pointer to name (in user addr space).
-   DWORD dwThreadID; // Thread ID (-1=caller thread).
-   DWORD dwFlags; // Reserved for future use, must be zero.
+   unsigned dwThreadID; // Thread ID (-1=caller thread).
+   unsigned dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 #pragma pack(pop)
 
-void SetThreadName( const char *threadName, DWORD threadId)
+void SetThreadName( const char *threadName, unsigned threadId)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;
@@ -41,10 +41,10 @@ void SetThreadName( const char *threadName, DWORD threadId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Map of thread names
-std::map<DWORD,LPCSTR> threadNames;
+std::map<unsigned,LPCSTR> threadNames;
 
 // Function to register the name of a thread
-void RegisterThreadName(const char *threadName, DWORD threadId)
+void RegisterThreadName(const char *threadName, unsigned threadId)
 {
   threadNames[threadId == ~0 ? GetCurrentThreadId() : threadId] = threadName;
 }

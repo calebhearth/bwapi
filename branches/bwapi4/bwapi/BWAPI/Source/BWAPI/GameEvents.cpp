@@ -761,9 +761,9 @@ namespace BWAPI
       BWAPI::Position scrPos = getScreenPosition();
 
       // draw mtx grid
-      for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA::GameScreenBuffer->ht)/32 + 1; ++y )
+      for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA::GameScreenBuffer->height())/32 + 1; ++y )
       {
-        for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA::GameScreenBuffer->wid)/32 + 1; ++x )
+        for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA::GameScreenBuffer->width())/32 + 1; ++x )
         {
           for ( int i = 0; i < 32; i += 4 )
           {
@@ -876,6 +876,7 @@ namespace BWAPI
         BW::region *r = &(*BW::BWDATA::SAIPathing)->regions[i];
         if ( r->accessabilityFlags != 0x1FFD )
           drawBoxMap(r->rgnBox.left, r->rgnBox.top, r->rgnBox.right, r->rgnBox.bottom, r == selectedRgn ? Colors::Cyan : Colors::Purple);
+
         for ( u8 n = 0; n < r->neighborCount; ++n )
         {
           BW::region *neighbor = r->getNeighbor(n);
@@ -949,7 +950,7 @@ namespace BWAPI
           recordingUpdated )
     {
       recordingUpdated = false;
-      RecordFrame(wmode ? pVidBuffer : BW::BWDATA::GameScreenBuffer->data);
+      RecordFrame(wmode ? pVidBuffer : BW::BWDATA::GameScreenBuffer->getData());
     }
     setTextSize(); // Reset text size
 

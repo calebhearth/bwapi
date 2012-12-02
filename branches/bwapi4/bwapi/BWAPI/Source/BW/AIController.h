@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include <util/types.h>
 
 #include "Position.h"
 

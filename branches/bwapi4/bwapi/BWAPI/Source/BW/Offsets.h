@@ -1,6 +1,4 @@
 #pragma once
-
-#include <windows.h>
 #include <Util/Types.h>
 #include "../Storm/storm.h"
 
@@ -39,10 +37,11 @@ namespace BW
   class  CBullet;
   class  TileType;
   class  dialog;
-  struct bitmap;
+  class  Bitmap;
   struct dlgEvent;
-  struct fntHead;
+  class  Font;
   struct SAI_Paths;
+  struct grpHead;
 
   struct DatLoad
   {
@@ -156,9 +155,9 @@ namespace BW
   static void (__fastcall ** const GenericDlgUpdateFxns)(dialog*,int,int,rect*) = (void (__fastcall**)(dialog*,int,int,rect*))0x00501504;
 
   BW_DATA(dialog**, DialogList, 0x006D5E34, 0);
-  BW_DATA(fntHead**, FontBase, 0x006CE0F4, 0);
-  BW_DATA(bitmap*, GameScreenBuffer, 0x006CEFF0, 0);
-  BW_DATA(bitmap*, GameScreenConsole, 0x00597240, 0);
+  BW_DATA(Font**, FontBase, 0x006CE0F4, 0);
+  BW_DATA(Bitmap*, GameScreenBuffer, 0x006CEFF0, 0);
+  BW_DATA(Bitmap*, GameScreenConsole, 0x00597240, 0);
   BW_DATA(BYTE**, GameTerrainBuffer, 0x00628454,0);
   
   BW_DATA(PALETTEENTRY*, GamePalette, 0x006CE320, 0);
@@ -195,12 +194,12 @@ namespace BW
     WORD    width;
     WORD    height;
     WORD    alignment;
-    bitmap  *pSurface;
-    void (__stdcall *pUpdate)(bitmap *pSurface, bounds *pBounds);
+    Bitmap  *pSurface;
+    void (__stdcall *pUpdate)(Bitmap *pSurface, bounds *pBounds);
   };
   BW_DATA(layer*, ScreenLayers, 0x006CEF50, 0);
-  extern void (__stdcall *pOldDrawGameProc)(BW::bitmap *pSurface, BW::bounds *pBounds);
-  extern void (__stdcall *pOldDrawDialogProc)(BW::bitmap *pSurface, BW::bounds *pBounds);
+  extern void (__stdcall *pOldDrawGameProc)(BW::Bitmap *pSurface, BW::bounds *pBounds);
+  extern void (__stdcall *pOldDrawDialogProc)(BW::Bitmap *pSurface, BW::bounds *pBounds);
 
   BW_DATA(RECT*, ScrLimit, 0x0051A15C, 0);
   BW_DATA(RECT*, ScrSize, 0x0051A16C, 0);
@@ -642,9 +641,19 @@ namespace BW
   BW_DATA(TileID**, MapTileArray, 0x005993C4, 0); // MTXM (Matrix Map) -- gfpMIMap
   BW_DATA(WORD**,CellMap, 0x00628494,0); // gfpCellMap (terrain)
   BW_DATA(TileType**, TileSet, 0x006D5EC8, 0);  // cv5
+  typedef struct
+  {
+    WORD wImageRef[4][4];
+  } vx4entry;
+  BW_DATA(vx4entry**, VX4Data, 0x00628458, 0);
+  typedef struct
+  {
+    BYTE cdata[8][8];
+  } vr4entry;
+  BW_DATA(vr4entry**,VR4Data, 0x00628444, 0);
 
   BW_DATA(bool*, HasMegatileUpdate, 0x0059CB58,0);
-
+  
   /// Direct mapping of minitile flags array
   struct MiniTileMaps_type
   {
@@ -675,7 +684,10 @@ namespace BW
   };
 
   BW_DATA(activeTile**, ActiveTileArray, 0x006D1260,0);
+  BW_DATA(u8**, CreepEdgeData, 0x006D0E80,0);
   BW_DATA(SAI_Paths**, SAIPathing, 0x006D5BFC,0);
+
+  BW_DATA(grpHead**, TerrainGraphics, 0x006D0C64,0);
 
   // EXPERIMENTAL
   //static int (__stdcall *BWFXN_getTileDistance)(int x, int y, int x2, int y2) = (int (__stdcall*)(int,int,int,int))0x00444100;

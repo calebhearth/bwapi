@@ -1,4 +1,4 @@
 #pragma once
 #include "BW/Offsets.h"
 
-void GameUpdate(BW::bitmap *pSurface, BW::bounds *pBounds);
+void GameUpdate(BW::Bitmap *pSurface, BW::bounds *pBounds);

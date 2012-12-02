@@ -51,38 +51,6 @@ BYTE gbTinyBtnGfx[3][12*12] = {
   }
 };
 
-BYTE bFontColors[24][8] = {
-  { 0xC0, 0x9B, 0x9A, 0x95, 0x43, 0x00, 0x00, 0x28 }, 
-  { 0x56, 0xA7, 0x6D, 0x65, 0x5C, 0x00, 0x00, 0x8A }, 
-  { 0x41, 0xFF, 0x53, 0x97, 0x47, 0x00, 0x00, 0x8A }, 
-  { 0x40, 0x96, 0x49, 0x90, 0x42, 0x00, 0x00, 0x8A }, 
-  { 0xA8, 0xAE, 0x17, 0x5E, 0xAA, 0x00, 0x00, 0x8A }, 
-  { 0xB5, 0x75, 0xBA, 0xB9, 0xB7, 0x00, 0x00, 0x8A }, 
-  { 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08 }, 
-  { 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08 }, 
-  { 0x8A, 0x6F, 0x17, 0x5E, 0xAA, 0x8A, 0x8A, 0x8A }, 
-  { 0x28, 0xA5, 0xA2, 0x2D, 0xA0, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x9F, 0x9E, 0x9D, 0xB7, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0xA4, 0xA3, 0xA1, 0x0E, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x9C, 0x1C, 0x1A, 0x13, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x13, 0x12, 0x11, 0x57, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x54, 0x51, 0x4E, 0x4A, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x87, 0xA6, 0x81, 0x93, 0x8A, 0x8A, 0x8A }, 
-  { 0xB5, 0xB9, 0xB8, 0xB7, 0xB6, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x88, 0x84, 0x81, 0x60, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x86, 0x72, 0x70, 0x69, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x33, 0x7C, 0x7A, 0xA0, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x4D, 0x26, 0x23, 0x22, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x9A, 0x97, 0x95, 0x91, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x88, 0x84, 0x81, 0x60, 0x8A, 0x8A, 0x8A }, 
-  { 0x8A, 0x80, 0x34, 0x31, 0x2E, 0x8A, 0x8A, 0x8A }
-};
-
-BYTE bColorTable[] = { 
-   0,  0,  0,  1,  2,  3,  4,  5,  8,  0,  0,  0,  0,  0,  9, 10, 
-  11, 12,  0,  0,  0, 13, 14, 15, 16, 17,  0, 18, 19, 20, 21, 23
-};
-
 namespace BW
 {
   // ------------------ TEMPLATE ---------------------
@@ -177,6 +145,7 @@ namespace BW
     }
     return dlg->defaultInteract(evt);
   }
+  /*
   // ------------------ BUTTON INTERACT --------------
   bool __fastcall TinyButtonInteract(dialog *dlg, dlgEvent *evt)
   {
@@ -199,9 +168,9 @@ namespace BW
         case 255: // minimize
           if ( (WORD)dlg->lUser )
           {
-            dlg->parent()->srcBits.ht = (WORD)dlg->lUser;
-            dlg->parent()->rct.bottom = dlg->parent()->rct.top + dlg->parent()->srcBits.ht - 1;
-            dlg->parent()->u.dlg.dstBits.ht = dlg->parent()->srcBits.ht;
+            dlg->parent()->srcBits.height() = (WORD)dlg->lUser;
+            dlg->parent()->rct.bottom = dlg->parent()->rct.top + dlg->parent()->srcBits.height() - 1;
+            dlg->parent()->u.dlg.dstBits.ht = dlg->parent()->srcBits.height();
             dlg->lUser = 0;
           }
           else
@@ -238,10 +207,10 @@ namespace BW
       if ( dlg->wUnk_0x1E )
       {
         dlg->rct.left   = evt->cursor.x - mouseOffset->x;
-        dlg->rct.right  = dlg->rct.left + dlg->srcBits.wid - 1;
+        dlg->rct.right  = dlg->rct.left + dlg->srcBits.width() - 1;
         dlg->rct.top    = evt->cursor.y - mouseOffset->y;
-        dlg->rct.bottom = dlg->rct.top + dlg->srcBits.ht - 1;
-        rect scrLimit   = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
+        dlg->rct.bottom = dlg->rct.top + dlg->srcBits.height() - 1;
+        rect scrLimit   = { 0, 0, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height() };
         if ( dlg->rct.left < 0 )
         {
           dlg->rct.right -= dlg->rct.left;
@@ -339,185 +308,13 @@ namespace BW
     dlg->addControl(close);
 
     return dlg;
-  }
+  }*/
   // ------------------ FIND GLOBAL ------------------
   dialog *FindDialogGlobal(const char *pszName)
   {
     if ( (*BW::BWDATA::DialogList) && pszName )
       return (*BW::BWDATA::DialogList)->findDialog(pszName);
     return NULL;
-  }
-  // ----------------- GET WIDTH ---------------------
-  int GetTextWidth(const char *pszString, BYTE bSize)
-  {
-    // verify valid size index
-    if ( bSize > 3 || !pszString )
-      return 0;
-
-    // localize pointer
-    fntHead *font = BWDATA::FontBase[bSize];
-    if ( !font )
-      return 0;
-
-    // Reference an unsigned character array
-    const BYTE *pbChars = (BYTE*)pszString;
-
-    // Retrieve size
-    int dwSize = 0;
-    for ( int i = 0; pbChars[i]; ++i )
-    {
-      switch ( pbChars[i] )
-      {
-      case 9:
-        dwSize += font->Xmax * 2;
-        continue;
-      case ' ':
-        dwSize += font->Xmax >> 1;
-        continue;
-      }
-
-      // must be valid character
-      if ( pbChars[i] > font->high || pbChars[i] < font->low)
-        continue;
-
-      // localize character pointer
-      fntChr *chr = font->chrs[pbChars[i] - font->low];
-      if ( chr == (fntChr*)font )
-        continue;
-
-      // increase the size
-      dwSize += chr->w;
-    }
-    return dwSize;
-  }
-  // ----------------- GET WIDTH ---------------------
-  int GetTextHeight(const char *pszString, BYTE bSize)
-  {
-    // verify valid size index
-    if ( bSize > 3 || !pszString )
-      return 0;
-
-    // localize pointer
-    fntHead *font = BWDATA::FontBase[bSize];
-    if ( !font )
-      return 0;
-
-    // Reference an unsigned character array
-    const BYTE *pbChars = (BYTE*)pszString;
-
-    // Retrieve size
-    int dwSize = font->Ymax;
-    for ( int i = 0; pbChars[i]; ++i )
-    {
-      switch ( pbChars[i] )
-      {
-      case 10:
-        dwSize += font->Ymax;
-        break;
-      }
-    }
-    return dwSize;
-  }
-  // ----------------- BLIT TEXT ---------------------
-  bool BlitText(const char *pszString, bitmap *dst, int x, int y, BYTE bSize)
-  {
-    // verify valid size index
-    if ( bSize > 3 || !dst || !pszString )
-      return false;
-
-    // localize pointer
-    fntHead *font = BWDATA::FontBase[bSize];
-    if ( !font || !dst->data )
-      return false;
-
-    // Reference an unsigned character array
-    const BYTE *pbChars = (BYTE*)pszString;
-
-    BYTE lastColor = 0, color   = 0;
-    int  Xoffset   = x, Yoffset = y;
-
-    // Iterate all characters in the message
-    for ( int c = 0; pbChars[c]; ++c )
-    {
-      // Perform control character and whitespace functions
-      if ( pbChars[c] <= ' ' )
-      {
-        switch ( pbChars[c] )
-        {
-        case 1:
-          color = lastColor;
-          continue;
-        case 9:
-          Xoffset += font->Xmax * 2;
-          continue;
-        case 10:
-          Xoffset = x;
-          Yoffset += font->Ymax;
-          continue;
-        case 11:
-        case 20:
-          color = (BYTE)~0;
-          continue;
-        case 12:
-          break;
-        case 13:
-        case 26:
-          continue;
-        case 18:
-          Xoffset += dst->wid - GetTextWidth(pszString, bSize) - x;
-          continue;
-        case 19:
-          Xoffset += dst->wid / 2 - GetTextWidth(pszString, bSize) / 2 - x;
-          continue;
-        case ' ':
-          Xoffset += font->Xmax / 2;
-          continue;
-        default:
-          lastColor = color;
-          color     = bColorTable[pbChars[c]];
-          continue;
-        }
-      }
-
-      // Skip if the character is not supported by the font
-      if ( pbChars[c] > font->high || pbChars[c] < font->low )
-        continue;
-
-      // localize character pointer
-      fntChr *chr = font->chrs[pbChars[c] - font->low];
-      if ( chr == (fntChr*)font )
-        continue;
-
-      if ( color != ~0 )
-      {
-        // begin drawing character process
-        for ( int i = 0, pos = 0; pos < chr->h * chr->w; ++i, ++pos )
-        {
-          // font position
-          pos += chr->data[i] >> 3;
-
-          // x offset
-          int newX = Xoffset + (chr->x + pos % chr->w);
-          if ( newX >= dst->wid ) break;
-          if ( newX < 0 ) continue;
-
-          // y offset
-          int newY = Yoffset + (chr->y + pos / chr->w);
-          if ( newY >= dst->ht ) break;
-          if ( newY < 0 ) continue;
-
-          // blit offset
-          int offset = newY * dst->wid + newX;
-          if ( offset >= dst->wid * dst->ht ) break;
-          if ( offset < 0 ) continue;
-
-          // Plot pixel
-          dst->data[offset] = bFontColors[color][chr->data[i] & 0x07];
-        }
-      }
-      Xoffset += chr->w;
-    }
-    return true;
   }
   // ----------------- CONSTRUCTORS ------------------
   dialog::dialog(WORD ctrlType, short index, const char *text, WORD left, WORD top, WORD width, WORD height, bool (__fastcall *pfInteract)(dialog*,dlgEvent*))
@@ -526,6 +323,7 @@ namespace BW
     , lFlags( CTRL_VISIBLE )
     , wIndex( index )
     , wCtrlType( ctrlType )
+    , srcBits(width,height)
   {
     if ( ctrlType > ctrls::max)
       ctrlType = ctrls::cLSTATIC;
@@ -554,22 +352,17 @@ namespace BW
     rct.top     = top;
     rct.right   = rct.left + width - 1;
     rct.bottom  = rct.top  + height - 1;
-    srcBits.wid = width;
-    srcBits.ht  = height;
 
     // Set callback functions
     pfcnUpdate  = BW::GenericDlgUpdateFxns[wCtrlType];
-    if ( pfInteract )
-      pfcnInteract = pfInteract;
-    else
-      pfcnInteract = BW::GenericDlgInteractFxns[wCtrlType];
+    pfcnInteract = pfInteract ? pfInteract : BW::GenericDlgInteractFxns[wCtrlType];
 
     // Set control type-specific options
     switch ( ctrlType )
     {
     case ctrls::cDLG:
       lFlags          |= CTRL_DLG_NOREDRAW | CTRL_TRANSLUCENT;
-      this->applyDialogBackground();
+      //this->applyDialogBackground();
 
       // Allocate destination buffer
       u.dlg.dstBits.wid   = width;
@@ -594,7 +387,7 @@ namespace BW
       lFlags |= CTRL_EVENTS | CTRL_BTN_NO_SOUND;
       break;
     case ctrls::cIMAGE:
-      this->applyDialogBackground();
+      //this->applyDialogBackground();
       break;
     }
   }
@@ -797,7 +590,7 @@ namespace BW
     return 0;
   }
   // ------------------ SRC BUFFER -------------------
-  BW::bitmap *dialog::getSourceBuffer()
+  BW::Bitmap *dialog::getSourceBuffer()
   {
     if ( this )
       return &this->srcBits;
@@ -863,13 +656,13 @@ namespace BW
   u16 dialog::width()
   {
     if ( this )
-      return this->srcBits.wid;
+      return (u16)this->srcBits.width();
     return 0;
   }
   u16 dialog::height()
   {
     if ( this )
-      return this->srcBits.ht;
+      return (u16)this->srcBits.height();
     return 0;
   }
 // -------------------------------------------------- EVENTS -------------------------------------------------
@@ -925,13 +718,13 @@ namespace BW
       return this->u.dlg.pFirstChild;
     return NULL;
   }
-  // ------------------ DST BUFFER -------------------
-  BW::bitmap *dialog::getDestBuffer()
+ /* // ------------------ DST BUFFER -------------------
+  BW::Bitmap *dialog::getDestBuffer()
   {
     if ( this && this->isDialog() )
       return &this->u.dlg.dstBits;
     return NULL;
-  }
+  }*/
   // --------------------- ADD -----------------------
   bool dialog::addControl(dialog *ctrl)
   {
@@ -981,6 +774,7 @@ namespace BW
     }
     return false;
   }
+    /*
   // --------- APPLY DEFAULT BACKGROUND --------------
   bool dialog::applyDialogBackground()
   {
@@ -1031,6 +825,7 @@ namespace BW
     }
     return false;
   }
+
   // --------- APPLY WINDOW BACKGROUND ---------------
   bool dialog::applyWindowBackground()
   {
@@ -1040,7 +835,7 @@ namespace BW
       {
         // localize the variables
         BYTE *data  = this->srcBits.data;
-        WORD width  = this->srcBits.wid;
+        WORD width  = this->srcBits.width();
 
         // Create title bar
         memset(&data[width + 3], 0x2C, width - 6);
@@ -1058,24 +853,19 @@ namespace BW
     if ( this )
     {
       // localize the size
-      WORD width  = srcBits.wid;
-      WORD height = srcBits.ht;
+      WORD width  = srcBits.width();
+      WORD height = srcBits.height();
       
       // create the buffer if not already
-      if ( !this->srcBits.data )
-        srcBits.data    = (BYTE*)SMAlloc(width*height);
+      if ( !this->srcBits.isValid() )
+        this->srcBits.resize(width, height);
 
       // localize the buffer pointer
-      BYTE *data  = srcBits.data;
-      if ( data )
-      {
-        // set the data
-        memset(data, 0, width * height);
-        return true;
-      }
+      this->srcBits.clear();
+      return true;
     }
     return false;
-  }
+  }*/
 // -------------------------------------------------- CONTROL ------------------------------------------------
   // -------------------- PARENT ---------------------
   dialog *dialog::parent()

@@ -498,7 +498,7 @@ namespace BWAPI
     Position pos( this->selectedUnitSet.getPosition() );
 
     // Move the position to the center of the screen
-    pos -= Position(BW::BWDATA::GameScreenBuffer->wid / 2, BW::BWDATA::GameScreenBuffer->ht / 2 - 40);
+    pos -= Position(BW::BWDATA::GameScreenBuffer->width() / 2, BW::BWDATA::GameScreenBuffer->height() / 2 - 40);
 
     // Make this position a valid position
     pos.makeValid();

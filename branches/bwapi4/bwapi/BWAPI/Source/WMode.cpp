@@ -2,6 +2,7 @@
 #include "Resolution.h"
 #include "BW/Offsets.h"
 #include "BW/Dialog.h"
+#include "BW/Bitmap.h"
 
 #include "BWAPI/GameImpl.h"
 
@@ -104,10 +105,10 @@ LPARAM FixPoints(LPARAM lParam)
     RECT clientRct;
     GetClientRect(ghMainWnd, &clientRct);
 
-    if ( clientRct.right != BW::BWDATA::GameScreenBuffer->wid )
-      pt.x = (SHORT)((float)pt.x * ((float)BW::BWDATA::GameScreenBuffer->wid / (float)clientRct.right));
-    if ( clientRct.bottom != BW::BWDATA::GameScreenBuffer->ht )
-      pt.y = (SHORT)((float)pt.y * ((float)BW::BWDATA::GameScreenBuffer->ht  / (float)clientRct.bottom));
+    if ( clientRct.right != BW::BWDATA::GameScreenBuffer->width() )
+      pt.x = (SHORT)((float)pt.x * ((float)BW::BWDATA::GameScreenBuffer->width() / (float)clientRct.right));
+    if ( clientRct.bottom != BW::BWDATA::GameScreenBuffer->height() )
+      pt.y = (SHORT)((float)pt.y * ((float)BW::BWDATA::GameScreenBuffer->height()  / (float)clientRct.bottom));
   }
   return MAKELPARAM(pt.x, pt.y);
 }
@@ -256,16 +257,16 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
         if ( isCorrectVersion ) // must be correct version to reference BWDATA
         {
-          if ( ws.cx >= BW::BWDATA::GameScreenBuffer->wid - WMODE_SNAP_RANGE &&
-               ws.cx <= BW::BWDATA::GameScreenBuffer->wid + WMODE_SNAP_RANGE )
+          if ( ws.cx >= BW::BWDATA::GameScreenBuffer->width() - WMODE_SNAP_RANGE &&
+               ws.cx <= BW::BWDATA::GameScreenBuffer->width() + WMODE_SNAP_RANGE )
           {
-            ws.cx = BW::BWDATA::GameScreenBuffer->wid;
+            ws.cx = BW::BWDATA::GameScreenBuffer->width();
             CorrectWindowWidth( (wParam == WMSZ_TOP || wParam == WMSZ_BOTTOM) ? WMSZ_RIGHT : wParam, &ws, rct, &border);
           }
-          if ( ws.cy >= BW::BWDATA::GameScreenBuffer->ht - WMODE_SNAP_RANGE &&
-               ws.cy <= BW::BWDATA::GameScreenBuffer->ht + WMODE_SNAP_RANGE )
+          if ( ws.cy >= BW::BWDATA::GameScreenBuffer->height() - WMODE_SNAP_RANGE &&
+               ws.cy <= BW::BWDATA::GameScreenBuffer->height() + WMODE_SNAP_RANGE )
           {
-            ws.cy = BW::BWDATA::GameScreenBuffer->ht;
+            ws.cy = BW::BWDATA::GameScreenBuffer->height();
             CorrectWindowHeight( (wParam == WMSZ_RIGHT || wParam == WMSZ_LEFT) ? WMSZ_BOTTOM : wParam, &ws, rct, &border);
           }
         }
@@ -326,15 +327,15 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
           // Blit to the screen
           RECT cRect;
           GetClientRect(hWnd, &cRect);        
-          if ( cRect.right == BW::BWDATA::GameScreenBuffer->wid && cRect.bottom == BW::BWDATA::GameScreenBuffer->ht )
+          if ( cRect.right == BW::BWDATA::GameScreenBuffer->width() && cRect.bottom == BW::BWDATA::GameScreenBuffer->height() )
           {
-            BitBlt(hdc, 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, hdcMem, 0, 0, SRCCOPY);
+            BitBlt(hdc, 0, 0, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), hdcMem, 0, 0, SRCCOPY);
           }
           else
           {
             SetStretchBltMode(hdc, HALFTONE);
             //StretchBlt(hdc, 0, 0, cRect.right, cRect.bottom, hdcMem, 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, SRCCOPY);
-            StretchDIBits(hdc, 0, 0, cRect.right, cRect.bottom, 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, pBits, (BITMAPINFO*)&wmodebmp, DIB_RGB_COLORS, SRCCOPY);
+            StretchDIBits(hdc, 0, 0, cRect.right, cRect.bottom, 0, 0, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), pBits, (BITMAPINFO*)&wmodebmp, DIB_RGB_COLORS, SRCCOPY);
           }
         }
 
@@ -410,7 +411,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_SYSKEYDOWN:
       if ( wParam == VK_RETURN && (lParam & 0x20000000) && !(lParam & 0x40000000) )
       {
-        SetWMode(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, !wmode);
+        SetWMode(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), !wmode);
         return TRUE;
       }
       break;
@@ -442,7 +443,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_SYSCOMMAND:
       if ( wParam == SC_MAXIMIZE )
       {
-        SetWMode(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, false);
+        SetWMode(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), false);
         return TRUE;
       }
       break;
@@ -543,8 +544,8 @@ BOOL __stdcall _SDrawUnlockSurface(int surfacenumber, void *lpSurface, int a3, R
       memcpy(pVidBuffer, lpSurface, 640*480);
 
       // Notify that it is recording
-      BW::bitmap tmpBmp = { 640, 480, (u8*)lpSurface };
-      BW::BlitText("\x07" "Recording", &tmpBmp, 406, 346, 0);
+      BW::Bitmap tmpBmp(640, 480, lpSurface);
+      tmpBmp.blitString("\x07" "Recording", 406, 346, 0);
     }
   }
 
@@ -615,7 +616,7 @@ void SetWMode(int width, int height, bool state)
 
     // Call the DirectDraw destructor
     DDrawDestroy();
-    InitializeWModeBitmap(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht);
+    InitializeWModeBitmap(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height());
 
     // Hack to enable drawing in Broodwar
     *BW::BWDATA::PrimarySurface = (LPDIRECTDRAWSURFACE)1;

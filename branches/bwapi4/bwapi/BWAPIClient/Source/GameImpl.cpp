@@ -842,10 +842,6 @@ namespace BWAPI
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,ctype,x1,y1,x2,y2,0,0,color,false));
   }
-  void* GameImpl::getScreenBuffer()
-  {
-    return nullptr;
-  }
   int GameImpl::getLatencyFrames()
   {
     return data->latencyFrames;

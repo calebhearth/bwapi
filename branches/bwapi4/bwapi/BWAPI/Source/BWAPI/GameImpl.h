@@ -166,8 +166,6 @@ namespace BWAPI
       virtual void drawDot(int ctype, int x, int y, Color color);
       virtual void drawLine(int ctype, int x1, int y1, int x2, int y2, Color color);
 
-      virtual void *getScreenBuffer();
-
       virtual int getLatencyFrames();
       virtual int getLatencyTime();
       virtual int getRemainingLatencyFrames();

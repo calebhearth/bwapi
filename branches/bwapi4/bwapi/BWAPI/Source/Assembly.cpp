@@ -1,12 +1,10 @@
 #include "Assembly.h"
 
-#include <windows.h>
-
 #include "BWAPI/GameImpl.h"
 #include "BWAPI/PlayerImpl.h"
 #include "BW/Offsets.h"
 
-DWORD d_eaxSave, d_ebxSave, d_ecxSave, d_edxSave, d_esiSave, d_ediSave, d_espSave, d_ebpSave;
+unsigned d_eaxSave, d_ebxSave, d_ecxSave, d_edxSave, d_esiSave, d_ediSave, d_espSave, d_ebpSave;
 
 #define SAVE_REGISTERS() __asm {  __asm mov d_eaxSave, eax  \
                                   __asm mov d_ebxSave, ebx  \

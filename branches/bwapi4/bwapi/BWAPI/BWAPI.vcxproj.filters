@@ -199,9 +199,6 @@
     <ClInclude Include="Source\BW\BNETCommands.h">
       <Filter>BW\Enumerations</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Holiday.h">
-      <Filter>Hacks\Header FIles</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\BWAPI\Region.h">
       <Filter>Interface</Filter>
     </ClInclude>
@@ -242,6 +239,15 @@
       <Filter>Hacks\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="Source\BW\CThingy.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\Render.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\Bitmap.h">
+      <Filter>BW\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BW\Font.h">
       <Filter>BW\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -376,9 +382,6 @@
     <ClCompile Include="..\Shared\UnitShared.cpp">
       <Filter>BWAPI\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Holiday.cpp">
-      <Filter>Hacks\Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Thread.cpp">
       <Filter>Hacks\Source</Filter>
     </ClCompile>
@@ -398,6 +401,15 @@
       <Filter>BW\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BW\CSprite.cpp">
+      <Filter>BW\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\Render.cpp">
+      <Filter>BW\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\Bitmap.cpp">
+      <Filter>BW\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BW\Font.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

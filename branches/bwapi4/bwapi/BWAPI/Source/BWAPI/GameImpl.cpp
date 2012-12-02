@@ -4,7 +4,6 @@
 #include "GameImpl.h"
 
 #include <stdio.h>
-#include <windows.h>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -203,7 +202,7 @@ namespace BWAPI
     this->setLastError();
     if ( !data->hasGUI ) return;
 
-    Position scrSize(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht + 80);
+    Position scrSize(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height() + 80);
     Position mapSize( TilePosition(Map::getWidth(), Map::getHeight()) );
 
     // Sets the screen's position relative to the map

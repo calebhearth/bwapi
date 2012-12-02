@@ -8,10 +8,10 @@
 #include "WMode.h"
 #include "DLLMain.h"
 #include "Resolution.h"
-#include "Holiday.h"
 #include "Thread.h"
 
 #include "Detours.h"
+#include "GameDrawing.h"
 #include "BWAPI/GameImpl.h"
 #include "BWAPI/PlayerImpl.h"
 #include "BW/Offsets.h"
@@ -350,7 +350,7 @@ BOOL STORMAPI _SDrawCaptureScreen(const char *pszOutput)
       pal[i].peBlue   = wmodebmp.bmiColors[i].rgbBlue;
       pal[i].peFlags  = 0;
     }
-    return SBmpSaveImage(szNewScreenshotFilename, pal, pBits, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht);
+    return SBmpSaveImage(szNewScreenshotFilename, pal, pBits, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height());
   }
   // Call the old fxn
   if ( _SDrawCaptureScreenOld )
@@ -425,7 +425,7 @@ bool wantRefresh = false;
 DWORD dwLastAPMCount;
 double botAPM_noSelect;
 double botAPM_select;
-void __stdcall DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds)
+void __stdcall DrawHook(BW::Bitmap *pSurface, BW::bounds *pBounds)
 {
   if ( wantRefresh )
   {
@@ -433,14 +433,14 @@ void __stdcall DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds)
     memset(BW::BWDATA::RefreshRegions, 1, 1200);
   }
 
-  //GameUpdate(pSurface, pBounds);
-  if ( BW::pOldDrawGameProc )
-    BW::pOldDrawGameProc(pSurface, pBounds);
+  GameUpdate(pSurface, pBounds);
+  //if ( BW::pOldDrawGameProc )
+    //BW::pOldDrawGameProc(pSurface, pBounds);
 
-  if ( BW::BWDATA::GameScreenBuffer->data )
+  if ( BW::BWDATA::GameScreenBuffer->isValid() )
   {
-    if ( gdwHoliday )
-      DrawHoliday();
+    //if ( gdwHoliday )
+      //DrawHoliday();
 
     if ( !BWAPI::BroodwarImpl.isPaused() )
     {
@@ -462,7 +462,7 @@ void __stdcall DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds)
 }
 //------------------------------------------------- MENU HOOK ------------------------------------------------
 bool nosound = false;
-void __stdcall DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds)
+void __stdcall DrawDialogHook(BW::Bitmap *pSurface, BW::bounds *pBounds)
 {
   if ( BW::pOldDrawDialogProc && !hideHUD )
     BW::pOldDrawDialogProc(pSurface, pBounds);

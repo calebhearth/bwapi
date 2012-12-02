@@ -476,9 +476,6 @@ namespace BWAPI
     void drawLineMouse(Position a, Position b, Color color);
     void drawLineScreen(Position a, Position b, Color color);
 
-    /** Retrieves the screen buffer for the game (excluding the HUD) */
-    virtual void *getScreenBuffer() = 0;
-
     /** Retrieves latency values for the game. Includes latency, speed, and mode */
     virtual int getLatencyFrames() = 0;
     virtual int getLatencyTime() = 0;

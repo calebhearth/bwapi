@@ -1,6 +1,4 @@
 #pragma once
-#include <windows.h>
-
 #include "Offsets.h"
 
 #pragma pack(1)
@@ -10,15 +8,15 @@ namespace BW
 
   struct grpFrame
   {
-    s8  left;
-    s8  top;
-    s8  right;
-    s8  bottom;
+    s8  x;
+    s8  y;
+    s8  wid;
+    s8  hgt;
     u32 dataOffset;
   };
   struct grpHead
   {
-    WORD      wFrames;  // official
+    u16      wFrames;  // official
     s16       width;
     s16       height;
     grpFrame  frames[1];

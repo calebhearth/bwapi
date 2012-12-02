@@ -20,14 +20,14 @@ namespace BW
     grpFrame *pGrpFrame = this->getCurrentFrame();
     
     if ( !(this->flags & 2) ) // Sets the left boundary of the image
-      this->mapPosition.x = this->getPosition().x - pGrpHead->width/2 + pGrpFrame->left;
+      this->mapPosition.x = this->getPosition().x - pGrpHead->width/2 + pGrpFrame->x;
     else // Not sure
-      this->mapPosition.x = this->getPosition().x + pGrpHead->width/2 - (pGrpFrame->right + pGrpFrame->left);
+      this->mapPosition.x = this->getPosition().x + pGrpHead->width/2 - (pGrpFrame->wid + pGrpFrame->x);
 
     if ( !(this->flags & 4) ) // Sets the top boundary of the image
-      this->mapPosition.y = this->getPosition().y - pGrpHead->height/2 + pGrpFrame->top;
+      this->mapPosition.y = this->getPosition().y - pGrpHead->height/2 + pGrpFrame->y;
 
-    rect bounds = { 0, 0, pGrpFrame->right, pGrpFrame->bottom };
+    rect bounds = { 0, 0, pGrpFrame->wid, pGrpFrame->hgt };
     BW::Position screen(this->mapPosition);
     screen -= Position((short)*BW::BWDATA::MoveToX, (short)*BW::BWDATA::MoveToY);
     
@@ -43,8 +43,8 @@ namespace BW
       bounds.top    += -screen.y;  // -screenY is positive
       screen.y  = 0;
     }
-    bounds.right  = (s16)std::min<int>(bounds.right,  BW::BWDATA::GameScreenBuffer->wid - screen.x);
-    bounds.bottom = (s16)std::min<int>(bounds.bottom, BW::BWDATA::GameScreenBuffer->ht  - screen.y);
+    bounds.right  = (s16)std::min<int>(bounds.right,  BW::BWDATA::GameScreenBuffer->width() - screen.x);
+    bounds.bottom = (s16)std::min<int>(bounds.bottom, BW::BWDATA::GameScreenBuffer->height()  - screen.y);
 
     this->screenPosition = screen;
     this->grpBounds = bounds;
@@ -56,7 +56,7 @@ namespace BW
          this->grpBounds.bottom > 0 &&
          this->grpBounds.right  > 0 )
     {
-      if ( (this->flags & 1) /*|| this->needsRefresh()*/ )
+      //if ( (this->flags & 1) /*|| this->needsRefresh()*/ )
       {
         RECT rctDraw = { this->grpBounds.left, this->grpBounds.top, this->grpBounds.right, this->grpBounds.bottom };
         this->renderFunction(this->screenPosition.x, this->screenPosition.y, this->getCurrentFrame(), &rctDraw, (int)this->coloringData);

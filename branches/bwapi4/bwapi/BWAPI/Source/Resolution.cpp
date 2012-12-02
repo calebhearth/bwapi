@@ -18,7 +18,7 @@ void SetResolution(int width, int height)
     return;
 
   // Resize game screen data buffer
-  BW::BWDATA::GameScreenBuffer->reAlloc(width, height);
+  BW::BWDATA::GameScreenBuffer->resize(width, height);
 
   // Resize game terrain drawing buffer
   *BW::BWDATA::GameTerrainBuffer = (BYTE*)SMReAlloc(*BW::BWDATA::GameTerrainBuffer, (width+32)*(height-32) );
@@ -30,7 +30,7 @@ void SetResolution(int width, int height)
   SetRect(BW::BWDATA::ScrSize,  0, 0, width,     height);
 
   // Resize game screen console (HUD) buffer
-  BW::BWDATA::GameScreenConsole->reAlloc(width, height);
+  BW::BWDATA::GameScreenConsole->resize(width, height);
   
   // Recreate STrans thingy
   BW::BlizzVectorEntry<BW::TransVectorEntry> *transEntry = BW::BWDATA::TransMaskVector->begin;
@@ -38,7 +38,7 @@ void SetResolution(int width, int height)
   {
     HANDLE oldTrans = transEntry->container.hTrans;
     SetRect(&transEntry->container.info, 0, 0, width, height);
-    STransCreateE(BW::BWDATA::GameScreenConsole->data, width, height, 8, 0, 0, &transEntry->container.hTrans);
+    STransCreateE(BW::BWDATA::GameScreenConsole->getData(), width, height, 8, 0, 0, &transEntry->container.hTrans);
     if ( oldTrans )
       STransDelete(oldTrans);
 

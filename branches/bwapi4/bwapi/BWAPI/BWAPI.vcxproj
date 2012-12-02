@@ -50,7 +50,7 @@ popd</Command>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../Shared;Source/BWAPI;../Util/Source;Source;../include;../Storm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;_DEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -88,7 +88,7 @@ popd</Command>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>../Shared;Source/BWAPI;../Util/Source;Source;../include;../Storm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;NDEBUG;_WINDOWS;_USRDLL;CTRT_INJECT_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -159,6 +159,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BWAPI\Server.h" />
     <ClInclude Include="Source\BWAPI\UnitImpl.h" />
     <ClInclude Include="Source\BW\AIController.h" />
+    <ClInclude Include="Source\BW\Bitmap.h" />
     <ClInclude Include="Source\BW\BNETCommands.h" />
     <ClInclude Include="Source\BW\CBullet.h" />
     <ClInclude Include="Source\BW\CheatFlags.h" />
@@ -166,6 +167,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\CThingy.h" />
     <ClInclude Include="Source\BW\Dialog.h" />
     <ClInclude Include="Source\BW\FlingyID.h" />
+    <ClInclude Include="Source\BW\Font.h" />
     <ClInclude Include="Source\BW\GroupFlags.h" />
     <ClInclude Include="Source\BW\CImage.h" />
     <ClInclude Include="Source\BW\Latency.h" />
@@ -182,6 +184,7 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\BW\Position.h" />
     <ClInclude Include="Source\BW\PositionUnitTarget.h" />
     <ClInclude Include="Source\BW\CSprite.h" />
+    <ClInclude Include="Source\BW\Render.h" />
     <ClInclude Include="Source\BW\Target.h" />
     <ClInclude Include="Source\BW\TileSet.h" />
     <ClInclude Include="Source\BW\TileType.h" />
@@ -199,7 +202,6 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClInclude Include="Source\ExceptionFilter.h" />
     <ClInclude Include="Source\GameDrawing.h" />
     <ClInclude Include="Source\Graphics.h" />
-    <ClInclude Include="Source\Holiday.h" />
     <ClInclude Include="Source\NewHackUtil.h" />
     <ClInclude Include="Source\Recording.h" />
     <ClInclude Include="Source\Resolution.h" />
@@ -231,16 +233,19 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClCompile Include="Source\BWAPI\Server.cpp" />
     <ClCompile Include="Source\BWAPI\UnitImpl.cpp" />
     <ClCompile Include="Source\BWAPI\UnitUpdate.cpp" />
+    <ClCompile Include="Source\BW\Bitmap.cpp" />
     <ClCompile Include="Source\BW\CheatType.cpp" />
     <ClCompile Include="Source\BW\CSprite.cpp" />
     <ClCompile Include="Source\BW\CThingy.cpp" />
     <ClCompile Include="Source\BW\Dialog.cpp" />
     <ClCompile Include="Source\BW\CImage.cpp" />
+    <ClCompile Include="Source\BW\Font.cpp" />
     <ClCompile Include="Source\BW\Internal.cpp" />
     <ClCompile Include="Source\BW\OrderTypes.cpp" />
     <ClCompile Include="Source\BW\Path.cpp" />
     <ClCompile Include="Source\BW\Pathing.cpp" />
     <ClCompile Include="Source\BW\PositionUnitTarget.cpp" />
+    <ClCompile Include="Source\BW\Render.cpp" />
     <ClCompile Include="Source\BW\Target.cpp" />
     <ClCompile Include="Source\BW\TileSet.cpp" />
     <ClCompile Include="Source\BW\TriggerEngine.cpp" />
@@ -253,7 +258,6 @@ $(OutDir)CopyToTarget.exe $(OutDir)</Command>
     <ClCompile Include="Source\ExceptionFilter.cpp" />
     <ClCompile Include="Source\BWDrawing.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
-    <ClCompile Include="Source\Holiday.cpp" />
     <ClCompile Include="Source\NewHackUtil.cpp" />
     <ClCompile Include="Source\Recording.cpp" />
     <ClCompile Include="Source\Resolution.cpp" />

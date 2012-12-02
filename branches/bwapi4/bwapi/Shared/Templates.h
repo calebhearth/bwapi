@@ -65,18 +65,23 @@ namespace BWAPI
       finder *p_xend = finder_x + finderCount;
       finder *p_yend = finder_y + finderCount;
 
-      // Create finder elements for compatibility
-      finder leftFinder   = { 0, left };
-      finder topFinder    = { 0, top };
-      finder rightFinder  = { 0, r+1 };
-      finder bottomFinder = { 0, b+1 };
+      // Create finder elements for compatibility with stl functions
+      finder finderVal;
 
       // Search for the values using built-in binary search algorithm and comparator
       const auto cmp = [](const finder &a,const finder &b){ return a.searchValue < b.searchValue; };
-      finder *pLeft   = std::lower_bound<finder*>(finder_x, p_xend, leftFinder, cmp);
-      finder *pTop    = std::lower_bound<finder*>(finder_y, p_yend, topFinder, cmp);
-      finder *pRight  = std::upper_bound<finder*>(pLeft, p_xend, rightFinder, cmp);
-      finder *pBottom = std::upper_bound<finder*>(pTop, p_yend, bottomFinder, cmp);
+
+      finderVal.searchValue = left;
+      finder *pLeft   = std::lower_bound<finder*>(finder_x, p_xend, finderVal, cmp);
+
+      finderVal.searchValue = top;
+      finder *pTop    = std::lower_bound<finder*>(finder_y, p_yend, finderVal, cmp);
+
+      finderVal.searchValue = r+1;
+      finder *pRight  = std::upper_bound<finder*>(pLeft, p_xend, finderVal, cmp);
+
+      finderVal.searchValue = b+1;
+      finder *pBottom = std::upper_bound<finder*>(pTop, p_yend, finderVal, cmp);
 
       // Iterate the X entries of the finder
       for ( finder *px = pLeft; px < pRight; ++px )

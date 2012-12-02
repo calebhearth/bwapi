@@ -1,7 +1,7 @@
 #pragma once
-#include <windows.h>
-
 #include "Triggers.h"
+
+#include <util/types.h>
 
 #pragma pack(1)
 namespace BW

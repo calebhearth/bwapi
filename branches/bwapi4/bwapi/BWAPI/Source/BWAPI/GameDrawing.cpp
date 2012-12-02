@@ -1,7 +1,6 @@
 #define WIN32_LEAN_AND_MEAN   // Exclude rarely-used stuff from Windows headers
 #include "GameImpl.h"
 
-#include <windows.h>
 #include "../Graphics.h"
 #include <cassert>
 #include <Util/clamp.h>
@@ -32,8 +31,8 @@ namespace BWAPI
     }
     if (screen_x1 < 0 || 
         screen_y1 < 0 ||
-        screen_x1 > BW::BWDATA::GameScreenBuffer->wid || 
-        screen_y1 > BW::BWDATA::GameScreenBuffer->ht)
+        screen_x1 > BW::BWDATA::GameScreenBuffer->width() || 
+        screen_y1 > BW::BWDATA::GameScreenBuffer->height())
       return false;
     return true;
   }
@@ -71,7 +70,7 @@ namespace BWAPI
       screen_y2 += BW::BWDATA::Mouse->y;
       break;
     }
-    rect scrLimit = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
+    rect scrLimit = { 0, 0, (s16)BW::BWDATA::GameScreenBuffer->width(), (s16)BW::BWDATA::GameScreenBuffer->height() };
     if ((screen_x1 < 0 && screen_x2 < 0) ||
         (screen_y1 < 0 && screen_y2 < 0) ||
         (screen_x1 > scrLimit.right  && screen_x2 > scrLimit.right) ||
@@ -118,7 +117,7 @@ namespace BWAPI
       screen_y3 += BW::BWDATA::Mouse->y;
       break;
     }
-    rect scrLimit = { 0, 0, BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht };
+    rect scrLimit = { 0, 0, (s16)BW::BWDATA::GameScreenBuffer->width(), (s16)BW::BWDATA::GameScreenBuffer->height() };
     if ((screen_x1 < 0 && screen_x2 < 0 && screen_x3 < 0) ||
         (screen_y1 < 0 && screen_y2 < 0 && screen_y3 < 0) ||
         (screen_x1 > scrLimit.right && screen_x2 > scrLimit.right && screen_x3 > scrLimit.right) ||
@@ -224,11 +223,6 @@ namespace BWAPI
   {
     if (!inScreen(ctype,x1,y1,x2,y2)) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,ctype,x1,y1,x2,y2,0,0,color,false));
-  }
-  //------------------------------------------------ SCREEN BUFFER -------------------------------------------
-  void *GameImpl::getScreenBuffer()
-  {
-    return BW::BWDATA::GameScreenBuffer->data;
   }
   //--------------------------------------------------- HAS GUI ----------------------------------------------
   bool GameImpl::isGUIEnabled()

@@ -37,7 +37,7 @@ int main(int argc, const char* argv[])
 
   assert(BWAPIClient.isConnected() == false);
   reconnect();
-  assert(Broodwar != nullptr);
+  assert(BroodwarPtr != nullptr);
 
   while( true )
   {

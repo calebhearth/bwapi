@@ -24,7 +24,7 @@
 #include "../../Debug.h"
 
 //---------------------------------------------- QUEUE COMMAND -----------------------------------------------
-void __fastcall QueueGameCommand(void *pBuffer, DWORD dwLength)
+void __fastcall QueueGameCommand(void *pBuffer, size_t dwLength)
 {
   if ( !pBuffer || !dwLength || !isCorrectVersion )
     return;

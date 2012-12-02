@@ -259,7 +259,7 @@ namespace BWAPI
     }
     else if (parsed[0] == "/wmode")
     {
-      SetWMode(BW::BWDATA::GameScreenBuffer->wid, BW::BWDATA::GameScreenBuffer->ht, !wmode);
+      SetWMode(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), !wmode);
       printf("Toggled windowed mode.");
     }
     else if (parsed[0] == "/grid")

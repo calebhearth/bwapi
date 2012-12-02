@@ -114,7 +114,7 @@ namespace BWAPI
     if ( BWAPI::BroodwarPtr )
       delete (GameImpl*)BWAPI::BroodwarPtr;
     BWAPI::BroodwarPtr = new GameImpl(data);
-    assert( BWAPI::Broodwar != nullptr );
+    assert( BWAPI::BroodwarPtr != nullptr );
 
     if (BWAPI::BWAPI_getRevision() != BWAPI::Broodwar->getRevision())
     {
@@ -141,7 +141,7 @@ namespace BWAPI
     }
     
     std::cout << "Connection successful" << std::endl;
-    assert( BWAPI::Broodwar != nullptr);
+    assert( BWAPI::BroodwarPtr != nullptr);
 
     this->connected = true;
     return true;

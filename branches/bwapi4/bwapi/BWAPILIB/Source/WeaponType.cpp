@@ -458,8 +458,7 @@ namespace BWAPI
     }
   }
   WeaponType::WeaponType(int id) : Type( id )
-  {
-  }
+  {}
   TechType WeaponType::getTech() const
   {
     return weaponTypeData[this->getID()].techType;

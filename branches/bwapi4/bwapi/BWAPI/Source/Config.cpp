@@ -5,7 +5,6 @@
 
 #include "Config.h"
 
-#include "Holiday.h"
 #include "WMode.h"
 
 char szConfigPath[MAX_PATH];
@@ -86,7 +85,7 @@ void InitPrimaryConfig()
   // Check if shared memory should be enabled
   serverEnabled = LoadConfigString("config", "shared_memory", "ON") == "ON";
 
-  // Check if it's time for a holiday
+/*  // Check if it's time for a holiday
   gdwHoliday = 0;
   if ( LoadConfigString("config", "holiday", "ON") != "OFF" )
   {
@@ -96,7 +95,7 @@ void InitPrimaryConfig()
     if ( sysTime.wMonth == 12 && sysTime.wDay >= 18 && sysTime.wDay <= 28 )
       gdwHoliday = 1;
   }
-
+  */
   // Get process count
   gdwProcNum = getProcessCount("StarCraft_MultiInstance.exe");
 

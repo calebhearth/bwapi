@@ -7,33 +7,20 @@
 #include <BW/Offsets.h>
 #include <BW/TileType.h>
 
+#include <algorithm>
 
-/*
-void BlitToBitmap(DWORD dwOffset, int height, BYTE *pbBuffer, BYTE *pbData)
+
+#define TILE_SIZE (32)
+#define DRAW_WID (640 + TILE_SIZE)
+#define DRAW_HGT (480 - TILE_SIZE)
+
+u8 bDrawTerrainCache[DRAW_HGT][DRAW_WID];
+BW::Bitmap bmpTerrainCache(DRAW_WID, DRAW_HGT, (u8*)bDrawTerrainCache);
+
+void blitTileCache()
 {
-  for ( int i = height; i; --i )
-  {
-    DWORD _dwDrawW = gdwDrawWdth;
-    if ( gdwDrawWdth + dwOffset >= (480-32)*(640+32) )
-    {
-      if ( dwOffset < (480-32)*(640+32) )
-      {
-        _dwDrawW = gdwDrawWdth + dwOffset - (480-32)*(640+32);
-        DWORD dwFixDrawCopySize = (gdwDrawWdth - _dwDrawW) & 0xFFFFFFFC;
-        memcpy(pbBuffer, pbData, dwFixDrawCopySize);
-        pbData   += dwFixDrawCopySize;
-        pbBuffer += dwFixDrawCopySize;
-      }
-      pbData   -= (480-32)*(640+32);
-      dwOffset -= (480-32)*(640+32);
-    }
-    DWORD dwDrawCopySize = _dwDrawW & 0xFFFFFFFC;
-    memcpy(pbBuffer, pbData, dwDrawCopySize);
-    dwOffset += 640 + 32;
-    pbData   = &pbData  [dwDrawCopySize + 640 + 32] - gdwDrawWdth;
-    pbBuffer = &pbBuffer[dwDrawCopySize + 640] - gdwDrawWdth;
-  }
-}*/
+  BW::BWDATA::GameScreenBuffer->blitBitmap(&bmpTerrainCache);
+}
 
 void updateImageDrawingData()
 {
@@ -58,17 +45,17 @@ void blitGameText(int line, int x, int y)
       szString[0] = BW::BWDATA::Chat_ColorBytes[line];
       szString[1] = 0;
     }
-    strncat(szString, BW::BWDATA::Chat_GameText[line].txt, sizeof(BW::_gametext));
-    BW::BlitText(szString, BW::BWDATA::GameScreenBuffer, x, y, 1);
+    strcat(szString, BW::BWDATA::Chat_GameText[line].txt);
+    BW::BWDATA::GameScreenBuffer->blitString(szString, x, y);
   }
 }
 
-void drawGameText()
+void drawGameText()   // @TODO: Text Alignments
 {
   int l = *BW::BWDATA::Chat_NextLine;
 
   int y = 112;
-  for ( int i = 11; i > 0; i-- )
+  for ( int i = 0; i < 11; ++i )
   {
     blitGameText(l, 10, y);
     y += *BW::BWDATA::Chat_IncrementY;
@@ -117,7 +104,6 @@ WORD getTileRef(WORD tile)
   return (*BW::BWDATA::TileSet)[(tile >> 4) & 0x7FF].megaTileRef[tile & 0xF];
 }
 
-#define TILE_SIZE (32)
 
 BW::Position directions[] = { 
   BW::Position( 1, 1),
@@ -143,33 +129,67 @@ void IterateDirectionalCallback( bool (__stdcall *cb)(int,WORD*,int,int,int*), i
   }
 }
 
+void drawMinitileImageData(WORD wTileImageIdx, int targx, int targy)
+{
+  // in pixels
+  bool isFlipped = !!(wTileImageIdx & 1);
+  wTileImageIdx >>= 1;
+  const BW::vr4entry &imageData = (*BW::BWDATA::VR4Data)[wTileImageIdx];
+
+  for ( int y = 0; y < 8; ++y )
+  {
+    for ( int x = 0; x < 8; ++x )
+    {
+      if ( targx + x < DRAW_WID && targy + y < DRAW_HGT )
+        bDrawTerrainCache[targy + y][targx + x] = imageData.cdata[y][isFlipped ? 8 - x - 1 : x];
+    }
+  }
+}
+
+void drawMegatileImageData(WORD tile, int targTileX, int targTileY)
+{
+  // in pixels/8
+  bool isCreepTile = !!(tile & 0x8000);
+  
+  BW::Position scrPixelPos( BW::TilePosition((short)targTileX, (short)targTileY) - *BW::BWDATA::MoveToTile );
+
+  tile &= 0x7FFF;
+  BW::vx4entry &entry = (*BW::BWDATA::VX4Data)[tile];
+  for ( int y = 0; y < 4; ++y )
+    for ( int x = 0; x < 4; ++x )
+      drawMinitileImageData(entry.wImageRef[y][x], scrPixelPos.x + x*8, scrPixelPos.y + y*8);
+
+  // Render creep tiles
+  if ( isCreepTile )
+  {
+    // Get creep edge data
+    u8 creepID = (*BW::BWDATA::CreepEdgeData)[ targTileX + targTileY * BW::BWDATA::MapSize->x ];
+    if ( creepID != 0 )   // Render terrain GRP for creep edge (if exists) to terrain cache
+      bmpTerrainCache.BlitGraphic(*BW::BWDATA::TerrainGraphics, creepID-1, scrPixelPos.x, scrPixelPos.y);
+  }
+}
+
 void drawMapTiles()
 {
   BW::TilePosition moveTo = *BW::BWDATA::MoveToTile;
   BW::TilePosition mapMax = *BW::BWDATA::MapSize;
-  int win_wid = BW::BWDATA::GameScreenBuffer->wid + 32;
-  int win_hgt = BW::BWDATA::GameScreenBuffer->ht - 32;
+  int win_wid = BW::BWDATA::GameScreenBuffer->width() + 32;
+  int win_hgt = BW::BWDATA::GameScreenBuffer->height() - 32;
 
-  //unsigned tileOffs = moveTo.x + (moveTo.y * mapMax.x);
-
-  //WORD *pCellMap;
-  //WORD *pMIMap;
-  //BW::activeTile *pActiveTiles;
-
-  for ( int y = moveTo.y; y < min(moveTo.y + win_hgt/TILE_SIZE, mapMax.y); ++y )
+  for ( int y = moveTo.y; y < std::min( (short)(moveTo.y + win_hgt/TILE_SIZE), mapMax.y); ++y )
   {
-    for ( int x = moveTo.x; x < min(moveTo.x + win_wid/TILE_SIZE, mapMax.x); ++x )
+    for ( int x = moveTo.x; x < std::min( (short)(moveTo.x + win_wid/TILE_SIZE), mapMax.x); ++x )
     {
       WORD tileRef = getTileRef( *getMtxTile(x,y) );
       WORD *drawTile = getCellTile(x,y);
-      if ( tileRef != *drawTile )
+      //if ( tileRef != (*drawTile & 0x7FFF) )
       {
         *drawTile = tileRef;
         getActiveTile(x,y)->bTemporaryCreep = hasCreep(x,y);
 
         IterateDirectionalCallback(BW::BWFXN_CreepManagementCB, x, y);
 
-        //drawMegatileImageData(tileType, offset, __x, tileY);
+        drawMegatileImageData(*drawTile, x, y );
         *BW::BWDATA::HasMegatileUpdate = true;
       }
 
@@ -177,16 +197,18 @@ void drawMapTiles()
   }
 }
 
-void GameUpdate(BW::bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)
+void GameUpdate(BW::Bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)
 {
   // if gameLayer.bits & 1 )
   {
     // maskSomething0();
     // memcpy(sgpMaskMapCopy, sgpCurrMaskMap, 408);
-    updateImageDrawingData();   //BW::BWFXN_updateImageData();
+    updateImageDrawingData();   // BW::BWFXN_updateImageData();
     // maskSomething2();
-    BW::BWFXN_drawMapTiles();
-    BW::BWFXN_blitMapTiles();
+    
+    drawMapTiles();     // BW::BWFXN_drawMapTiles();
+
+    blitTileCache();    // BW::BWFXN_blitMapTiles();
   }
   // else
   //{
@@ -204,6 +226,5 @@ void GameUpdate(BW::bitmap* /*pSurface*/, BW::bounds* /*pBounds*/)
   drawGameText();
   BW::BWFXN_drawDragSelBox();
   
-  //BW::BWFXN_drawAllThingys(); // draw thingys
-  drawThingys();
+  drawThingys();      // BW::BWFXN_drawAllThingys();
 }

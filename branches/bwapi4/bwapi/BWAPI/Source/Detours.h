@@ -4,14 +4,14 @@
 
 #include "BW/Offsets.h"
 
-void __stdcall DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds);
+void __stdcall DrawHook(BW::Bitmap *pSurface, BW::bounds *pBounds);
 
 BOOL  STORMAPI   _SNetLeaveGame(int type);
 int   __cdecl    _nextFrameHook();
 int   STORMAPI   _SStrCopy(char *dest, const char *source, size_t size);
 BOOL  STORMAPI   _SNetReceiveMessage(int *senderplayerid, u8 **data, int *databytes);
-void  __stdcall  DrawHook(BW::bitmap *pSurface, BW::bounds *pBounds);
-void  __stdcall  DrawDialogHook(BW::bitmap *pSurface, BW::bounds *pBounds);
+void  __stdcall  DrawHook(BW::Bitmap *pSurface, BW::bounds *pBounds);
+void  __stdcall  DrawDialogHook(BW::Bitmap *pSurface, BW::bounds *pBounds);
 BOOL  STORMAPI   _SFileAuthenticateArchive(HANDLE hArchive, DWORD *dwReturnVal);
 BOOL  STORMAPI   _SFileOpenFileEx(HANDLE hMpq, const char *szFileName, DWORD dwSearchScope, HANDLE *phFile);
 BOOL  STORMAPI   _SFileOpenFile(const char *filename, HANDLE *phFile);

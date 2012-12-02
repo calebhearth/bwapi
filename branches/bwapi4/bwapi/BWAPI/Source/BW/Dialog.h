@@ -1,7 +1,6 @@
 #pragma once
-#include <windows.h>
-
 #include "offsets.h"
+#include "Bitmap.h"
 
 #pragma pack(1)
 
@@ -111,20 +110,6 @@ namespace BW
     WORD  y;
   };
 
-  struct bitmap
-  {
-    u16 wid;
-    u16 ht;
-    u8  *data;
-
-    void reAlloc(int wid, int hgt)
-    {
-      this->wid = (u16)wid;
-      this->ht  = (u16)hgt;
-      this->data = (u8*)SMReAlloc(this->data,wid*hgt);
-    };
-  };
-
   struct dlgEvent
   {
     DWORD dwUser;
@@ -135,19 +120,6 @@ namespace BW
     WORD  wNo;
     pt    cursor;
     WORD  wUnk_0x12;
-  };
-
-  struct fntChr
-  {
-    BYTE w, h, x, y;
-    BYTE data[1];
-  };
-
-  struct fntHead
-  {
-    DWORD   magic;
-    BYTE    low, high, Xmax, Ymax;
-    fntChr  *chrs[1];
   };
 
 #pragma pack(1)
@@ -169,7 +141,7 @@ namespace BW
     char    *getText();                 // Retrieves the text of a control, or name of a dialog
     int     getHotkey();                // Retrieves the hotkey for the button
 
-    BW::bitmap  *getSourceBuffer();   // Retrieves a pointer to a bitmap structure for reading or writing to the source buffer
+    BW::Bitmap  *getSourceBuffer();   // Retrieves a pointer to a bitmap structure for reading or writing to the source buffer
 
     bool        enable();     // Enables the dialog or control
     bool        disable();    // Disables the dialog or control
@@ -190,13 +162,13 @@ namespace BW
     // dialog-specific functions
     bool        isDialog();               // Returns true if the control type is a dialog
     dialog      *child();                 // Retrieves the child control from the parent dialog
-    BW::bitmap  *getDestBuffer();         // Retrieves a pointer to a bitmap structure for reading or writing to the dialog's destination buffer
+    //BW::Bitmap  *getDestBuffer();         // Retrieves a pointer to a bitmap structure for reading or writing to the dialog's destination buffer
     bool        addControl(dialog *ctrl); // Adds a control to this dialog
     bool        initialize();             // Performs the dialog's initialization and adds it to the list
     bool        isListed();               // Checks to see if this dialog is initialized/listed
-    bool        applyDialogBackground();  // Applies the standard transparent dialog background (like game menu)
-    bool        applyWindowBackground();  // Applies the custom window background for the window dialog
-    bool        applyBlankBackground();   // Applies a completely invisible background
+    //bool        applyDialogBackground();  // Applies the standard transparent dialog background (like game menu)
+    //bool        applyWindowBackground();  // Applies the custom window background for the window dialog
+    //bool        applyBlankBackground();   // Applies a completely invisible background
 
     // control-specific functions
     dialog  *parent();                      // Retrieves a control's parent dialog
@@ -228,7 +200,7 @@ namespace BW
     // Data //
     dialog  *pNext;         // 0x00
     rect    rct;            // 0x04   // official
-    bitmap  srcBits;        // 0x0C   // official
+    Bitmap  srcBits;        // 0x0C   // official
     char    *pszText;       // 0x14   // official
     LONG    lFlags;         // 0x18   // official
     WORD    wUnk_0x1C;
@@ -288,7 +260,10 @@ namespace BW
       struct _dlg            // official
       {
         DWORD   dwUnk_0x32;
-        bitmap  dstBits;          // 0x36  // official 
+        struct{
+          u16 wid, ht;
+          u8 *data;
+        } dstBits;                // 0x36  // official 
         dialog  *pActiveElement;  // 0x3E
         dialog  *pFirstChild;     // 0x42  // official
         dialog  *pMouseElement;
@@ -372,11 +347,8 @@ namespace BW
     } u;
   };
 #pragma pack()
-  dialog  *CreateDialogWindow(const char *pszText, WORD wLeft, WORD wTop, WORD wWidth, WORD wHeight); // Creates a custom window dialog
+  //dialog  *CreateDialogWindow(const char *pszText, WORD wLeft, WORD wTop, WORD wWidth, WORD wHeight); // Creates a custom window dialog
   dialog  *FindDialogGlobal(const char *pszName);   // Finds a dialog in Starcraft's global list of dialogs
-  int     GetTextWidth(const char *pszString, BYTE bSize);  // Retrieves the width of the text string
-  int     GetTextHeight(const char *pszString, BYTE bSize); // Retrieves the height of the text string
-  bool    BlitText(const char *pszString, bitmap *dst, int x, int y, BYTE bSize); // Draws a string of text to a destination bitmap buffer
 };
 
 /*
