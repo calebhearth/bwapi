@@ -307,7 +307,7 @@ namespace BWAPI
     else if (parsed[0] == "/resize")
     {
       printf("Done");
-      SetResolution(1024, 768);
+      SetResolution(1280, 720);
     }
     else if (parsed[0] == "/test")
     {

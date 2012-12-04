@@ -7,6 +7,7 @@
 
 #include "BW/Offsets.h"
 #include "BW/Dialog.h"
+#include "GameDrawing.h"
 
 #include "NewHackUtil.h"
 
@@ -20,15 +21,16 @@ void SetResolution(int width, int height)
   // Resize game screen data buffer
   BW::BWDATA::GameScreenBuffer->resize(width, height);
 
-  // Resize game terrain drawing buffer
-  *BW::BWDATA::GameTerrainBuffer = (BYTE*)SMReAlloc(*BW::BWDATA::GameTerrainBuffer, (width+32)*(height-32) );
+  // Resize game terrain cache buffer
+  bmpTerrainCache.resize(width+32, height-32);
+  //*BW::BWDATA::GameTerrainCache = (BYTE*)SMReAlloc(*BW::BWDATA::GameTerrainBuffer, (width+32)*(height-32) );
 
   // Set new screen limits
   BW::BWDATA::ScreenLayers[5].width  = (WORD)width;
   BW::BWDATA::ScreenLayers[5].height = (WORD)height;
   SetRect(BW::BWDATA::ScrLimit, 0, 0, width - 1, height - 1);
   SetRect(BW::BWDATA::ScrSize,  0, 0, width,     height);
-
+  
   // Resize game screen console (HUD) buffer
   BW::BWDATA::GameScreenConsole->resize(width, height);
   
@@ -47,7 +49,7 @@ void SetResolution(int width, int height)
   }
 
   STransSetDirtyArrayInfo(width, height, 16, 16);
-
+  
   // re-initialize w-mode or ddraw, this function can do both
   SetWMode(width, height, wmode);
 }

@@ -158,7 +158,7 @@ namespace BW
   BW_DATA(Font**, FontBase, 0x006CE0F4, 0);
   BW_DATA(Bitmap*, GameScreenBuffer, 0x006CEFF0, 0);
   BW_DATA(Bitmap*, GameScreenConsole, 0x00597240, 0);
-  BW_DATA(BYTE**, GameTerrainBuffer, 0x00628454,0);
+  //BW_DATA(BYTE**, GameTerrainCache, 0x00628454,0);
   
   BW_DATA(PALETTEENTRY*, GamePalette, 0x006CE320, 0);
   BW_DATA(LPDIRECTDRAWSURFACE*, PrimarySurface, 0x006D5E00, 0);

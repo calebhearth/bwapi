@@ -10,12 +10,7 @@
 #include <algorithm>
 
 
-#define TILE_SIZE (32)
-#define DRAW_WID (640 + TILE_SIZE)
-#define DRAW_HGT (480 - TILE_SIZE)
-
-u8 bDrawTerrainCache[DRAW_HGT][DRAW_WID];
-BW::Bitmap bmpTerrainCache(DRAW_WID, DRAW_HGT, (u8*)bDrawTerrainCache);
+BW::Bitmap bmpTerrainCache(640+32, 480-32);
 
 void blitTileCache()
 {
@@ -137,13 +132,8 @@ void drawMinitileImageData(WORD wTileImageIdx, int targx, int targy)
   const BW::vr4entry &imageData = (*BW::BWDATA::VR4Data)[wTileImageIdx];
 
   for ( int y = 0; y < 8; ++y )
-  {
     for ( int x = 0; x < 8; ++x )
-    {
-      if ( targx + x < DRAW_WID && targy + y < DRAW_HGT )
-        bDrawTerrainCache[targy + y][targx + x] = imageData.cdata[y][isFlipped ? 8 - x - 1 : x];
-    }
-  }
+      bmpTerrainCache.plot(targx+x, targy+y, imageData.cdata[y][isFlipped ? 8 - x - 1 : x]);
 }
 
 void drawMegatileImageData(WORD tile, int targTileX, int targTileY)
@@ -176,9 +166,9 @@ void drawMapTiles()
   int win_wid = BW::BWDATA::GameScreenBuffer->width() + 32;
   int win_hgt = BW::BWDATA::GameScreenBuffer->height() - 32;
 
-  for ( int y = moveTo.y; y < std::min( (short)(moveTo.y + win_hgt/TILE_SIZE), mapMax.y); ++y )
+  for ( int y = moveTo.y; y < std::min( (short)(moveTo.y + win_hgt/32), mapMax.y); ++y )
   {
-    for ( int x = moveTo.x; x < std::min( (short)(moveTo.x + win_wid/TILE_SIZE), mapMax.x); ++x )
+    for ( int x = moveTo.x; x < std::min( (short)(moveTo.x + win_wid/32), mapMax.x); ++x )
     {
       WORD tileRef = getTileRef( *getMtxTile(x,y) );
       WORD *drawTile = getCellTile(x,y);
