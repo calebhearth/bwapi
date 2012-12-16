@@ -793,6 +793,13 @@ namespace BWAPI
     // unitdebug
     if ( unitDebug && BWAPIPlayer )
     {
+      foreach ( auto u, this->BWAPIPlayer->units )
+      {
+        auto raw = ((UnitImpl*)u)->getOriginalRawData;
+        if ( u->getRemainingBuildTime() )
+          Broodwar << u->getRemainingBuildTime() << std::endl;
+      }
+      /*
       BWAPI::Color c = Colors::Red;
       int x = this->getMousePosition().x + this->getScreenPosition().x;
       int y = this->getMousePosition().y + this->getScreenPosition().y;
@@ -808,6 +815,7 @@ namespace BWAPI
                                   y - UnitTypes::Terran_Marine.dimensionUp(),
                                   x + UnitTypes::Terran_Marine.dimensionRight(),
                                   y + UnitTypes::Terran_Marine.dimensionDown(), c);
+      */
     } // unitdebug
 
     // pathdebug

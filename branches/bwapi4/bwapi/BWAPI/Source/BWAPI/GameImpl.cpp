@@ -433,15 +433,11 @@ namespace BWAPI
     vsnprintf(buffer, sizeof(buffer), format, arg);
 
     if ( !this->tournamentCheck(Tournament::Printf, buffer) )
-    {
-      free(buffer);
       return;
-    }
 
     // Dispatch message using existing Storm library function (lobby+game)
     S_EVT evt = { 4, -1, buffer, strlen(buffer) + 1 };
     SEvtDispatch('SNET', 1, 4, &evt);
-    free(buffer);
   }
   //--------------------------------------------- SEND TEXT --------------------------------------------------
   void GameImpl::vSendTextEx(bool toAllies, const char *format, va_list arg)
@@ -486,7 +482,7 @@ namespace BWAPI
       else  // Just print the message otherwise
       {
         Broodwar << this->BWAPIPlayer->getTextColor() << this->BWAPIPlayer->getName()
-                 << Text::Green << buffer << std::endl;
+                  << ": " << Text::Green << buffer << std::endl;
       }
     } // single
     else  // multiplayer or lobby
