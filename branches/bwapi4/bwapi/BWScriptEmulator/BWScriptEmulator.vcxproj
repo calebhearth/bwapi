@@ -86,7 +86,6 @@
     <ClCompile Include="ScriptEnum.cpp" />
     <ClCompile Include="ScriptOpcodes.cpp" />
     <ClCompile Include="ScriptThread.cpp" />
-    <ClCompile Include="UnitProc.cpp" />
     <ClCompile Include="UType.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +96,6 @@
     <ClInclude Include="ScriptEnum.h" />
     <ClInclude Include="ScriptThread.h" />
     <ClInclude Include="UnitID.h" />
-    <ClInclude Include="UnitProc.h" />
     <ClInclude Include="UType.h" />
   </ItemGroup>
   <ItemGroup>
