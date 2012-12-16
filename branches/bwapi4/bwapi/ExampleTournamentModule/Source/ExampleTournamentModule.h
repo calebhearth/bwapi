@@ -7,7 +7,7 @@
 
 class ExampleTournamentModule : public BWAPI::TournamentModule
 {
-  virtual bool onAction(int actionType, void *parameter = NULL);
+  virtual bool onAction(BWAPI::Tournament::ActionID actionType, void *parameter = NULL);
   virtual void onFirstAdvertisement();
 };
 

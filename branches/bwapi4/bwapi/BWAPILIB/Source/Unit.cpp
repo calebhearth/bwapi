@@ -8,6 +8,7 @@
 #include <BWAPI/WeaponType.h>
 #include <BWAPI/Player.h>
 #include <BWAPI/Filters.h>
+#include <BWAPI/Flag.h>
 
 namespace BWAPI
 {
@@ -160,6 +161,20 @@ namespace BWAPI
     return this->getOrder() == Orders::Upgrade;
   }
 
+  int Unit::getSpaceRemaining() const
+  {
+    // Get the space that the current Unit type provides
+    int space = this->getType().spaceProvided();
+
+    // Obtain the set of loaded units
+    Unitset loaded(this->getLoadedUnits());
+
+    // Decrease the space for each loaded unit
+    std::for_each(loaded.begin(), loaded.end(), [&](Unit *u){ space -= u->getType().spaceRequired(); });
+
+    // Return the space available
+    return std::max(space, 0);
+  }
   //--------------------------------------------- ATTACK MOVE ------------------------------------------------
   bool Unit::attack(PositionOrUnit target, bool shiftQueueCommand)
   {

@@ -77,41 +77,8 @@ void BWScriptEmulator::onFrame()
     if ( !u->exists() )
       continue;
 
-    UnitProc *proc = (UnitProc*)u->getClientInfo();
-    if ( proc != nullptr )
-      proc->execute();
+
   }
-/*
-  for ( std::vector<spell>::iterator i = spellsCast.begin(); i != spellsCast.end(); ++i )
-  {
-    if (  !i->pUnit || !i->pUnit->exists() || i->pUnit->isInvincible() ||
-          ( i->tech == TechTypes::Defensive_Matrix  && i->pUnit->getDefenseMatrixPoints() > 20 )       ||
-          ( i->tech == TechTypes::EMP_Shockwave     && i->pUnit->getShields() + i->pUnit->getEnergy() < 40 )  ||
-          ( i->tech == TechTypes::Ensnare           && i->pUnit->getEnsnareTimer() > 5 )               ||
-          ( i->tech == TechTypes::Feedback          && i->pUnit->getEnergy() < 30 )                    ||
-          ( i->tech == TechTypes::Irradiate         && i->pUnit->getIrradiateTimer() > 5 )             ||
-          ( i->tech == TechTypes::Lockdown          && i->pUnit->getLockdownTimer() > 5 )              ||
-          ( i->tech == TechTypes::Maelstrom         && i->pUnit->getMaelstromTimer() > 5 )             ||
-          ( i->tech == TechTypes::Mind_Control      && i->pUnit->getPlayer() == self )                 ||
-          ( i->tech == TechTypes::Optical_Flare     && i->pUnit->isBlind() )                           ||
-          ( i->tech == TechTypes::Parasite          && i->pUnit->isParasited() )                       ||
-          ( i->tech == TechTypes::Plague            && i->pUnit->getPlagueTimer() > 5 )                ||
-          ( i->tech == TechTypes::Psionic_Storm     && i->pUnit->isUnderStorm() )                      ||
-          ( i->tech == TechTypes::Restoration       && !i->pUnit->isParasited()
-                                                    && !i->pUnit->isBlind()
-                                                    && !i->pUnit->isEnsnared()
-                                                    && !i->pUnit->isIrradiated()
-                                                    && !i->pUnit->isMaelstrommed()
-                                                    && !i->pUnit->isPlagued()
-                                                    && !i->pUnit->getAcidSporeCount() )         ||
-          ( i->tech == TechTypes::Stasis_Field      && !i->pUnit->isStasised() )                ||
-          ( i->tech == TechTypes::Disruption_Web    && i->pUnit->isUnderDisruptionWeb() )       ||
-          ( i->tech == TechTypes::Dark_Swarm        && i->pUnit->isUnderDarkSwarm() )   )
-      i = spellsCast.erase(i);
-    if ( i == spellsCast.end() )
-      break;
-  }
-  */
 }
 
 void BWScriptEmulator::onSendText(std::string text)
@@ -119,12 +86,12 @@ void BWScriptEmulator::onSendText(std::string text)
   if ( text == "/t" || text == "/toggle" )
   {
     enabled = !enabled;
-    Broodwar->printf("AI %s", enabled ? "ENABLED" : "DISABLED");
+    Broodwar << "AI " << (enabled ? "ENABLED" : "DISABLED") << std::endl;
   }
   if ( text == "/fc" || text == "/farcast" )
   {
     farcasting = !farcasting;
-    Broodwar->printf("Farcasting %s", farcasting ? "ENABLED" : "DISABLED");
+    Broodwar << "Farcasting " << (farcasting ? "ENABLED" : "DISABLED") << std::endl;
   }
   else
   {
@@ -133,57 +100,47 @@ void BWScriptEmulator::onSendText(std::string text)
 }
 
 void BWScriptEmulator::onReceiveText(BWAPI::Player* player, std::string text)
-{
-}
+{}
 
 void BWScriptEmulator::onPlayerLeft(BWAPI::Player* player)
-{
-}
+{}
 
 void BWScriptEmulator::onNukeDetect(BWAPI::Position target)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitDiscover(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitEvade(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitShow(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitHide(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitCreate(BWAPI::Unit* unit)
 {
-  if ( unit && unit->exists() && unit->getPlayer() == self )
-    unit->setClientInfo(getUnitProc(unit));
+  if ( unit->getPlayer() == self )  // If we own it
+  {
+
+  }
 }
 
 void BWScriptEmulator::onUnitDestroy(BWAPI::Unit* unit)
 {
-  if ( unit->getPlayer() == self )
+  if ( unit->getPlayer() == self )  // If we own it
   {
-    UnitProc *p = (UnitProc*)unit->getClientInfo();
-    if ( p )
-      delete p;
+
   }
 }
 
 void BWScriptEmulator::onUnitMorph(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onUnitRenegade(BWAPI::Unit* unit)
-{
-}
+{}
 
 void BWScriptEmulator::onSaveGame(std::string gameName)
-{
-}
+{}

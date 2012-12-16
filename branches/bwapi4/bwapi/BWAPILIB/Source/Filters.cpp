@@ -75,6 +75,7 @@ namespace BWAPI
   U_CFILTER(SupplyProvided, u->getType().supplyProvided() );
 
   U_CFILTER(SpaceRequired, u->getType().spaceRequired() );
+  U_CFILTER(SpaceRemaining, u->getSpaceRemaining() );
   U_CFILTER(SpaceProvided, u->getType().spaceProvided() );
 
   U_CFILTER(BuildScore, u->getType().buildScore() );

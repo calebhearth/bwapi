@@ -6,6 +6,7 @@
 #include <BWAPI/Server.h>
 #include <BWAPI/Map.h>
 #include <BWAPI/Client/GameData.h>
+#include <BWAPI/TournamentAction.h>
 
 //#include <BW/Dialog.h>
 #include <BW/OrderTypes.h>
@@ -392,7 +393,7 @@ namespace BWAPI
 
       bool externalModuleConnected;
       bool calledMatchEnd;
-      bool tournamentCheck(int type, void *parameter = nullptr);
+      bool tournamentCheck(Tournament::ActionID type, void *parameter = nullptr);
       std::vector<UnitCommand> commandOptimizer[UnitCommandTypes::Enum::MAX];
 
       int lastEventTime;

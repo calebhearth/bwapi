@@ -87,7 +87,7 @@ void ExampleTournamentAI::onUnitRenegade(BWAPI::Unit* unit)
 void ExampleTournamentAI::onSaveGame(std::string gameName)
 {}
 
-bool ExampleTournamentModule::onAction(int actionType, void *parameter)
+bool ExampleTournamentModule::onAction(BWAPI::Tournament::ActionID actionType, void *parameter)
 {
   switch ( actionType )
   {

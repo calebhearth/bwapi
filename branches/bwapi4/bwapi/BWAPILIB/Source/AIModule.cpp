@@ -47,7 +47,7 @@ namespace BWAPI
   { }
   TournamentModule::~TournamentModule()
   { }
-  bool TournamentModule::onAction(int, void*)
+  bool TournamentModule::onAction(BWAPI::Tournament::ActionID, void*)
   {
     return true;
   }

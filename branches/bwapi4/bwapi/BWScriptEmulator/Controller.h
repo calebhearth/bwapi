@@ -47,7 +47,7 @@ public:
   DWORD defenseuse[4][10];
   BYTE  bDefineMax[228];
 
-  RECT  genCmdTarget;
+  RECT  genCmdTarget; // @TODO: Rectangle class
 };
 
 extern AIController *MainController;

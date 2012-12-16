@@ -223,7 +223,7 @@ void aithread::execute()
     case AISCRIPT::PLAYER_ALLY:   // COMPLETED
       {
         this->saveDebug(Text::Green, bOpcode);
-        // @TODO: BWAPI: Unitset::getPlayers for Playerset
+        // @TODO: BWAPI: Unitset::getPlayers for retrieving set of players owning the units, not important
         /* can become
         unitsInRect( bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
                                              GetPlayer != self) ).getPlayers().setAlliance(bOpcode == AISCRIPT::PLAYER_ALLY);
@@ -263,8 +263,8 @@ void aithread::execute()
     case AISCRIPT::DEBUG:   // COMPLETE
       {
         WORD wJump = this->read<WORD>();
-        Broodwar->sendText("%s", pbAIScriptBinary[this->dwScriptOffset]);
-        this->saveDebug(Text::Green, bOpcode, "p_%X %s", wJump, pbAIScriptBinary[this->dwScriptOffset]);
+        Broodwar->sendText("%s", &pbAIScriptBinary[this->dwScriptOffset]);
+        this->saveDebug(Text::Green, bOpcode, "p_%X %s", wJump, &pbAIScriptBinary[this->dwScriptOffset]);
         this->dwScriptOffset = wJump;
         continue;
       }
@@ -282,11 +282,14 @@ void aithread::execute()
         Unitset unitsForBunker( bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
                                                                 GetPlayer == self && IsCompleted && GetRace == Races::Terran && IsOrganic ) );
       
+        // Iterate the units that are to enter the bunkers
         for ( auto u = unitsForBunker.begin(); u != unitsForBunker.end(); ++u )
         {
-          // @TODO: BWAPI: Unit::spaceRemaining, bunker must have enough space
-          Unit *pBunker = u->getClosestUnit(GetType == UnitTypes::Terran_Bunker && GetPlayer == self);
-          if ( pBunker )
+          // Find a bunker closest to the current unit that has space available
+          Unit *pBunker = u->getClosestUnit(GetType == UnitTypes::Terran_Bunker &&
+                                            GetPlayer == self && 
+                                            SpaceRemaining >= u->getType().spaceRequired() );
+          if ( pBunker )  // If a bunker was found
             pBunker->load(*u);
         }
       }
@@ -506,6 +509,11 @@ void aithread::execute()
         this->saveDebug(Text::Yellow, bOpcode, "%3u p_%X", bRushCategory, wRushBlock);
         bool isRushed = false;
         
+        // Get closest enemy owner
+        Unit *pClosest = Broodwar->getClosestUnit(this->locationCenter, IsEnemy && (!IsBuilding || IsLifted) );
+        Player *closestEnemy = pClosest ? pClosest->getPlayer() : nullptr;
+
+        /*
         int bestDistance = 99999999;
         Player *closestEnemy = NULL;
         Unitset enemyUnits( Broodwar->enemies().getUnits() );
@@ -522,7 +530,8 @@ void aithread::execute()
             closestEnemy = u->getPlayer();
           }
         } // iterate units
-        
+        */
+
         if ( !closestEnemy )
           continue;
 
@@ -620,7 +629,7 @@ void aithread::execute()
           this->dwScriptOffset = wRushBlock;
         continue;
       }
-    case AISCRIPT::SCOUT_WITH:  // COMPLETE (this function does nothing in Starcraft)
+    case AISCRIPT::SCOUT_WITH:  // COMPLETE (this function does nothing in Starcraft, may become necessary in emulator)
       {
         UnitType wScout = UnitType(this->read<WORD>());
         this->saveDebug(Text::Green, bOpcode, "%s", AISCRIPT::getUnitName(wScout));
@@ -731,11 +740,15 @@ void aithread::execute()
         Unitset unitsForTransport( bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
                                                                 GetPlayer == self && IsCompleted && GetRace == Races::Terran && IsOrganic ) );
       
+        // Load units into closest transports
         for ( auto u = unitsForTransport.begin(); u != unitsForTransport.end(); ++u )
         {
-          // @TODO: BWAPI: Unit::spaceRemaining, transport must have enough space
-          Unit *pTrans = u->getClosestUnit(GetType != UnitTypes::Terran_Bunker && IsTransport && GetPlayer == self);
-          if ( pTrans )
+          // Obtain the closest valid transport
+          Unit *pTrans = u->getClosestUnit(GetType != UnitTypes::Terran_Bunker &&
+                                            IsTransport &&
+                                            GetPlayer == self &&
+                                            SpaceRemaining >= u->getType().spaceRequired() );
+          if ( pTrans ) // If transport was found
             u->rightClick(pTrans);
         }
       }

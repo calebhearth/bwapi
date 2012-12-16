@@ -78,6 +78,7 @@ namespace BWAPI
   extern const CompareFilter<Unit*> SupplyProvided;
 
   extern const CompareFilter<Unit*> SpaceRequired;
+  extern const CompareFilter<Unit*> SpaceRemaining;
   extern const CompareFilter<Unit*> SpaceProvided;
 
   extern const CompareFilter<Unit*> BuildScore;

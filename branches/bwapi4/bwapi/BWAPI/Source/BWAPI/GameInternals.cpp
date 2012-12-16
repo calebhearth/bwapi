@@ -339,7 +339,7 @@ namespace BWAPI
   {
     return *BW::BWDATA::g_LocalHumanID;
   }
-  bool GameImpl::tournamentCheck(int type, void *parameter)
+  bool GameImpl::tournamentCheck(Tournament::ActionID type, void *parameter)
   {
     if ( this->tournamentController && !isTournamentCall )
     {
