@@ -10,19 +10,19 @@ namespace BWAPI
 {
   const std::string PlayerType::typeNames[PlayerTypes::Enum::MAX] =
   {
-        "None",
-        "Computer",
-        "Player",
-        "RescuePassive",
-        "RescueActive",
-        "EitherPreferComputer",
-        "EitherPreferHuman",
-        "Neutral",
-        "Closed",
-        "Observer",
-        "PlayerLeft",
-        "ComputerLeft",
-        "Unknown"
+    "None",
+    "Computer",
+    "Player",
+    "RescuePassive",
+    "RescueActive",
+    "EitherPreferComputer",
+    "EitherPreferHuman",
+    "Neutral",
+    "Closed",
+    "Observer",
+    "PlayerLeft",
+    "ComputerLeft",
+    "Unknown"
   };
   namespace PlayerTypeSet
   {

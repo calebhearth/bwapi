@@ -67,6 +67,7 @@ namespace BWAPI
         Anabolic_Synthesis      = 53,
         Charon_Boosters         = 54,
     
+        Upgrade_60              = 60,
         None                    = 61,
         Unknown,
         MAX

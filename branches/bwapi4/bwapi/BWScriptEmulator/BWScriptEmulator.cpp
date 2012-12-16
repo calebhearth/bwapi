@@ -3,7 +3,6 @@
 
 #include "ScriptThread.h"
 #include "Controller.h"
-#include "UnitProc.h"
 
 using namespace BWAPI;
 

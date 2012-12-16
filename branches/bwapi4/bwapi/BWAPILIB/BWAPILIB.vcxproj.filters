@@ -10,9 +10,6 @@
     <ClCompile Include="Source\DamageType.cpp">
       <Filter>Types\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common.cpp">
-      <Filter>Types\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Error.cpp">
       <Filter>Types\Source Files</Filter>
     </ClCompile>

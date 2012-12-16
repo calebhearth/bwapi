@@ -149,65 +149,307 @@ namespace BWAPI
     "Unknown"
   };
 
-  class WeaponTypeInternal
+  const int wpnDamageAmt[WeaponTypes::Enum::MAX] =
   {
-    public:
-      WeaponTypeInternal() {valid = false;}
-      void set(const char* name, TechType techType, int damageAmount, int damageBonus, int damageCooldown, int damageFactor, UpgradeType upgradeType, DamageType damageType, ExplosionType explosionType, int minRange, int maxRange, int innerSplashRadius, int medianSplashRadius, int outerSplashRadius, bool targetsAir, bool targetsGround, bool targetsMechanical, bool targetsOrganic, bool targetsNonBuilding, bool targetsNonRobotic, bool targetsTerrain, bool targetsOrgOrMech, bool targetsOwn, UnitType whatUses)
-      {
-        this->name               = name;
-        this->techType           = techType;
-        this->damageAmount       = damageAmount;
-        this->damageBonus        = damageBonus;
-        this->damageCooldown     = damageCooldown;
-        this->damageFactor       = damageFactor;
-        this->upgradeType        = upgradeType;
-        this->damageType         = damageType;
-        this->explosionType      = explosionType;
-        this->minRange           = minRange;
-        this->maxRange           = maxRange;
-        this->innerSplashRadius  = innerSplashRadius;
-        this->medianSplashRadius = medianSplashRadius;
-        this->outerSplashRadius  = outerSplashRadius;
-        this->targetsAir         = targetsAir;
-        this->targetsGround      = targetsGround;
-        this->targetsMechanical  = targetsMechanical;
-        this->targetsOrganic     = targetsOrganic;
-        this->targetsNonBuilding = targetsNonBuilding;
-        this->targetsNonRobotic  = targetsNonRobotic;
-        this->targetsTerrain     = targetsTerrain;
-        this->targetsOrgOrMech   = targetsOrgOrMech;
-        this->targetsOwn         = targetsOwn;
-        this->whatUses           = whatUses;
-        this->valid              = true;
-      }
-      std::string name;
-      TechType techType;
-      UnitType whatUses;
-      int damageAmount;
-      int damageBonus;
-      int damageCooldown;
-      int damageFactor;
-      UpgradeType upgradeType;
-      DamageType damageType;
-      ExplosionType explosionType;
-      int minRange;
-      int maxRange;
-      int innerSplashRadius;
-      int medianSplashRadius;
-      int outerSplashRadius;
-      bool targetsAir;
-      bool targetsGround;
-      bool targetsMechanical;
-      bool targetsOrganic;
-      bool targetsNonBuilding;
-      bool targetsNonRobotic;
-      bool targetsTerrain;
-      bool targetsOrgOrMech;
-      bool targetsOwn;
-      bool valid;
+    6, 18, 10, 30, 20, 30, 125, 12, 10, 24, 20, 30, 70, 5, 0, 20, 8, 40, 16, 25, 25, 50, 50, 30, 30, 8, 16, 70,
+    150, 20, 260, 600, 0, 0, 250, 5, 10, 50, 10, 20, 20, 50, 4, 5, 0, 30, 20, 40, 9, 18, 5, 10, 15, 40, 500, 110,
+    0, 0, 0, 0, 300, 0, 5, 0, 8, 20, 20, 45, 5, 20, 30, 60, 4, 8, 14, 20, 28, 10, 20, 6, 20, 20, 100, 0, 14, 100,
+    45, 7, 7, 7, 7, 7, 7, 7, 4, 30, 10, 10, 8, 10, 5, 0, 20, 6, 25, 8, 8, 8, 0, 20, 6, 40, 25, 25, 20, 28, 30, 6,
+    6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0
   };
-  WeaponTypeInternal weaponTypeData[132];
+  const int wpnDamageBonus[WeaponTypes::Enum::MAX] =
+  {
+    1, 1, 1, 1, 2, 2, 0, 1, 2, 1, 1, 3, 3, 1, 0, 2, 1, 2, 1, 3, 3, 3, 3, 3, 3, 1, 1, 5, 5, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1, 1, 3, 3, 1, 0, 0, 1, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 1,
+    3, 3, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 2,
+    1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0
+  };
+  const int wpnDamageCooldowns[WeaponTypes::Enum::MAX] =
+  {
+    15, 15, 22, 22, 30, 22, 22, 22, 22, 22, 22, 37, 37, 15, 15, 22, 30, 22, 30, 30, 30, 30, 30, 22, 22, 22, 22,
+    75, 75, 15, 15, 1, 1, 1, 75, 8, 8, 15, 15, 15, 15, 15, 15, 22, 22, 22, 30, 30, 30, 30, 22, 22, 15, 32, 1, 1,
+    1, 1, 1, 1, 1, 1, 22, 22, 22, 22, 30, 22, 30, 22, 20, 20, 22, 30, 22, 30, 22, 45, 45, 1, 22, 22, 1, 1, 45, 22,
+    30, 22, 22, 22, 22, 22, 22, 22, 9, 22, 22, 22, 22, 22, 8, 22, 22, 64, 100, 22, 22, 22, 1, 37, 15, 30, 22, 22,
+    30, 22, 22, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0, 0
+  };
+  const int wpnDamageFactor[WeaponTypes::Enum::MAX] =
+  {
+    1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0
+  };
+
+  const int wpnMinRange[WeaponTypes::Enum::MAX] =
+  {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+  const int wpnMaxRange[WeaponTypes::Enum::MAX] =
+  {
+    128, 160, 224, 192, 160, 160, 10, 192, 160, 160, 160, 224, 224, 10, 10, 160, 160, 160, 160, 192, 192, 192, 192,
+    192, 192, 32, 32, 384, 384, 224, 320, 3, 256, 256, 288, 15, 15, 15, 128, 160, 25, 25, 2, 32, 128, 64, 256, 256,
+    96, 96, 128, 128, 224, 224, 3, 3, 384, 288, 288, 288, 288, 16, 32, 10, 15, 15, 128, 128, 96, 96, 64, 64, 32,
+    128, 128, 128, 128, 160, 160, 128, 224, 224, 128, 288, 288, 15, 15, 128, 128, 32, 128, 224, 224, 128, 160, 192,
+    160, 160, 64, 160, 160, 288, 192, 192, 192, 256, 320, 288, 320, 192, 128, 15, 192, 192, 128, 128, 192, 128, 128,
+    128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 0, 0
+  };
+  const int wpnSplashRangeInner[WeaponTypes::Enum::MAX] =
+  {
+    0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 10, 10, 0, 0, 128, 0, 64, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 
+    20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+  const int wpnSplashRangeMid[WeaponTypes::Enum::MAX] =
+  {
+    0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 25, 25, 0, 0, 192, 0, 64, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 50, 0, 0, 50, 0, 0, 0, 0, 0, 20, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+  const int wpnSplashRangeOuter[WeaponTypes::Enum::MAX] =
+  {
+    0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 25, 40, 40, 0, 0, 256, 0, 64, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 60, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 100, 0, 0, 100, 0, 0, 0, 0, 0, 20, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+#define TARG_AIR      0x01
+#define TARG_GROUND   0x02
+#define TARG_MECH     0x04
+#define TARG_ORGANIC  0x08
+#define TARG_NOBUILD  0x10
+#define TARG_NOROBOT  0x20
+#define TARG_TERRAIN  0x40
+#define TARG_ORGMECH  0x80
+#define TARG_OWN      0x100
+
+  const int wpnFlags[WeaponTypes::Enum::MAX] =
+  {
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND | TARG_NOBUILD,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND | TARG_MECH | TARG_NOBUILD,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR | TARG_GROUND | TARG_NOBUILD,
+    TARG_GROUND | TARG_NOBUILD | TARG_NOROBOT | TARG_ORGMECH,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR | TARG_GROUND | TARG_ORGANIC | TARG_NOBUILD | TARG_OWN,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR | TARG_GROUND | TARG_NOBUILD | TARG_TERRAIN,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR,
+    TARG_AIR,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND | TARG_TERRAIN,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_GROUND,
+    TARG_AIR,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    TARG_AIR | TARG_GROUND,
+    0, 0
+  };
+
+
+  namespace wpnInternalUpgrades
+  {
+    using namespace UpgradeTypes::Enum;
+    const UpgradeType upgrade[WeaponTypes::Enum::MAX] =
+    {
+      Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Vehicle_Weapons, 
+      Terran_Vehicle_Weapons, Upgrade_60, Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, 
+      Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, Upgrade_60, Upgrade_60, Terran_Ship_Weapons, Terran_Ship_Weapons, Terran_Ship_Weapons, 
+      Terran_Ship_Weapons, Terran_Ship_Weapons, Terran_Ship_Weapons, Terran_Ship_Weapons, Terran_Ship_Weapons, Terran_Ship_Weapons, 
+      Terran_Ship_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Zerg_Melee_Attacks, Zerg_Melee_Attacks, Zerg_Melee_Attacks, 
+      Zerg_Missile_Attacks, Zerg_Missile_Attacks, Zerg_Melee_Attacks, Zerg_Melee_Attacks, Zerg_Melee_Attacks, Upgrade_60, Upgrade_60, 
+      Zerg_Flyer_Attacks, Zerg_Flyer_Attacks, Zerg_Flyer_Attacks, Zerg_Flyer_Attacks, Zerg_Flyer_Attacks, Zerg_Missile_Attacks, 
+      Zerg_Missile_Attacks, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Protoss_Ground_Weapons, Protoss_Ground_Weapons, Protoss_Ground_Weapons, Protoss_Ground_Weapons, 
+      Protoss_Ground_Weapons, Protoss_Ground_Weapons, Protoss_Ground_Weapons, Protoss_Ground_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, 
+      Protoss_Air_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, Upgrade_60, 
+      Upgrade_60, Scarab_Damage, Upgrade_60, Upgrade_60, Protoss_Ground_Weapons, Protoss_Ground_Weapons, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Terran_Vehicle_Weapons, Terran_Vehicle_Weapons, 
+      Terran_Infantry_Weapons, Terran_Vehicle_Weapons, Protoss_Air_Weapons, Upgrade_60, Upgrade_60, Terran_Ship_Weapons, Zerg_Flyer_Attacks, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Zerg_Missile_Attacks, Terran_Infantry_Weapons, Protoss_Ground_Weapons, 
+      Terran_Infantry_Weapons, Terran_Infantry_Weapons, Protoss_Air_Weapons, Protoss_Air_Weapons, Terran_Infantry_Weapons, 
+      Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, 
+      Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, 
+      Terran_Infantry_Weapons, Terran_Infantry_Weapons, Terran_Infantry_Weapons, None, Unknown
+    };
+  }
+  namespace wpnInternalDamageType
+  {
+    using namespace DamageTypes::Enum;
+    const DamageType damageType[WeaponTypes::Enum::MAX] =
+    {
+      Normal, Normal, Concussive, Concussive, Concussive, Concussive, Explosive, Normal, Explosive, Normal, Explosive, Explosive,
+      Explosive, Normal, Normal, Explosive, Normal, Explosive, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Concussive,
+      Concussive, Explosive, Explosive, Explosive, Explosive, Explosive, Concussive, Concussive, Ignore_Armor, Normal, Normal, Normal, 
+      Explosive, Explosive, Normal, Normal, Normal, Normal, Normal, Explosive, Normal, Normal, Normal, Normal, Concussive, Concussive, 
+      Normal, Explosive, Explosive, Normal, Independent, Independent, Independent, Independent, Independent, Independent, Normal, Normal, 
+      Normal, Normal, Explosive, Explosive, Normal, Normal, Normal, Normal, Explosive, Normal, Explosive, Normal, Explosive, Explosive, 
+      Explosive, Normal, Normal, Normal, Normal, Independent, Ignore_Armor, Normal, Normal, Explosive, Normal, Explosive, Explosive,
+      Normal, Normal, Normal, Normal, Normal, Normal, Explosive, Concussive, Explosive, Explosive, Ignore_Armor, Ignore_Armor, Explosive, 
+      Explosive, Normal, Ignore_Armor, Independent, Independent, Normal, Normal, Normal, Concussive, Concussive, Normal, Explosive, 
+      Concussive, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, None, Unknown
+    };
+  }
+  namespace wpnInternalExplosionType
+  {
+    using namespace ExplosionTypes::Enum;
+    const ExplosionType explosionType[WeaponTypes::Enum::MAX] =
+    {
+      Normal, Normal, Normal, Normal, Normal, Normal, Radial_Splash, Normal, Normal, Normal, Normal, Normal, Normal, Normal, None, 
+      Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Enemy_Splash, Enemy_Splash, Radial_Splash, 
+      Radial_Splash, Normal, Yamato_Gun, Nuclear_Missile, Lockdown, EMP_Shockwave, Irradiate, Normal, Normal, Normal, Normal, Normal, 
+      Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Radial_Splash, Radial_Splash, Normal, Normal, 
+      Radial_Splash, Normal, Parasite, Broodlings, Ensnare, Dark_Swarm, Plague, Consume, Normal, None, Normal, Normal, Normal, Normal, 
+      Normal, Normal, Enemy_Splash, Enemy_Splash, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, 
+      Enemy_Splash, Stasis_Field, Radial_Splash, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, 
+      Normal, Normal, Normal, Enemy_Splash, Normal, Air_Splash, Disruption_Web, Restoration, Air_Splash, Corrosive_Acid, Mind_Control, 
+      Feedback, Optical_Flare, Maelstrom, Enemy_Splash, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, 
+      Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, None, Unknown
+    };
+  }
+  namespace wpnInternalWhatUses
+  {
+    using namespace UnitTypes::Enum;
+    const UnitType whatUses[WeaponTypes::Enum::MAX] =
+    {
+      Terran_Marine, Hero_Jim_Raynor_Marine, Terran_Ghost, Hero_Sarah_Kerrigan, Terran_Vulture, Hero_Jim_Raynor_Vulture,
+      Terran_Vulture_Spider_Mine, Terran_Goliath, Terran_Goliath, Hero_Alan_Schezar, Hero_Alan_Schezar, Terran_Siege_Tank_Tank_Mode,
+      Hero_Edmund_Duke_Tank_Mode, Terran_SCV, Terran_SCV, Terran_Wraith, Terran_Wraith, Hero_Tom_Kazansky, Hero_Tom_Kazansky, 
+      Terran_Battlecruiser, Terran_Battlecruiser, Hero_Norad_II, Hero_Norad_II, Hero_Hyperion, Hero_Hyperion, Terran_Firebat,
+      Hero_Gui_Montag, Terran_Siege_Tank_Siege_Mode, Hero_Edmund_Duke_Siege_Mode, Terran_Missile_Turret, Terran_Battlecruiser, 
+      Terran_Ghost, Terran_Ghost, Terran_Science_Vessel, Terran_Science_Vessel, Zerg_Zergling, Hero_Devouring_One, Hero_Infested_Kerrigan,
+      Zerg_Hydralisk, Hero_Hunter_Killer, Zerg_Ultralisk, Hero_Torrasque, Zerg_Broodling, Zerg_Drone, Zerg_Drone, None, Zerg_Guardian,
+      Hero_Kukulza_Guardian, Zerg_Mutalisk, Hero_Kukulza_Mutalisk, None, None, Zerg_Spore_Colony, Zerg_Sunken_Colony, Zerg_Infested_Terran,
+      Zerg_Scourge, Zerg_Queen, Zerg_Queen, Zerg_Queen, Zerg_Defiler, Zerg_Defiler, Zerg_Defiler, Protoss_Probe, Protoss_Probe,
+      Protoss_Zealot, Hero_Fenix_Zealot, Protoss_Dragoon, Hero_Fenix_Dragoon, None, Hero_Tassadar, Protoss_Archon, Hero_Tassadar_Zeratul_Archon,
+      None, Protoss_Scout, Protoss_Scout, Hero_Mojo, Hero_Mojo, Protoss_Arbiter, Hero_Danimoth, Protoss_Interceptor, Protoss_Photon_Cannon, 
+      Protoss_Photon_Cannon, Protoss_Scarab, Protoss_Arbiter, Protoss_High_Templar, Hero_Zeratul, Hero_Dark_Templar, None, None, None, None,
+      None, None, Special_Independant_Starport, None, None, Special_Floor_Gun_Trap, Special_Wall_Missile_Trap, Special_Wall_Flame_Trap,
+      Special_Floor_Missile_Trap, Protoss_Corsair, Protoss_Corsair, Terran_Medic, Terran_Valkyrie, Zerg_Devourer, Protoss_Dark_Archon, 
+      Protoss_Dark_Archon, Terran_Medic, Protoss_Dark_Archon, Zerg_Lurker, None, Protoss_Dark_Templar, Hero_Samir_Duran, Hero_Infested_Duran,
+      Hero_Artanis, Hero_Artanis, Hero_Alexei_Stukov, None, None, None, None, None, None, None, None, None, None, None, None, None,
+      None, Unknown
+    };
+  };
+
   namespace WeaponTypesSet
   {
     using namespace WeaponTypes::Enum;
@@ -243,6 +485,29 @@ namespace BWAPI
     static const WeaponType::set weaponTypeSet( specialWeaponTypeSet | normalWeaponTypeSet | WeaponTypes::None | WeaponTypes::Unknown );
 
   }
+
+  namespace wpnInternalTechs
+  {
+      using namespace TechTypes::Enum;
+      const TechType attachedTech[WeaponTypes::Enum::MAX] = 
+      {
+        // Terran
+        None, None, None, None, None, None, Spider_Mines, None, None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, None, None, None, None, None, None, None, Yamato_Gun, Nuclear_Strike, Lockdown, EMP_Shockwave, Irradiate,
+        // Zerg
+        None, None, None, None, None, None, None, None, None, None, None, None, None, None,  None, None, None, None, None, None,
+        None, Parasite, Spawn_Broodlings, Ensnare, Dark_Swarm, Plague, Consume,
+        // Protoss
+        None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
+        None, Stasis_Field, Psionic_Storm, None, None, 
+        // Other
+        None, None, None, None, None, None, None, None, None, None, None, None, None, 
+        // Expansion
+        None, Disruption_Web, Restoration, None, None, Mind_Control, Feedback, Optical_Flare, Maelstrom, None, None, None, None, 
+        None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
+      };
+  }
+
   namespace WeaponTypes
   {
     BWAPI_TYPEDEF(WeaponType,Gauss_Rifle);
@@ -349,207 +614,100 @@ namespace BWAPI
 
     BWAPI_TYPEDEF(WeaponType,None);
     BWAPI_TYPEDEF(WeaponType,Unknown);
-
-    void init()
-    {
-      weaponTypeData[Gauss_Rifle].set("Gauss Rifle", TechTypes::None, 6, 1, 15, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Marine);
-      weaponTypeData[Gauss_Rifle_Jim_Raynor].set("Gauss Rifle (Jim Raynor)", TechTypes::None, 18, 1, 15, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Jim_Raynor_Marine);
-      weaponTypeData[C_10_Canister_Rifle].set("C-10 Canister Rifle", TechTypes::None, 10, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Ghost);
-      weaponTypeData[C_10_Canister_Rifle_Sarah_Kerrigan].set("C-10 Canister Rifle (Sarah Kerrigan)", TechTypes::None, 30, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Sarah_Kerrigan);
-      weaponTypeData[C_10_Canister_Rifle_Samir_Duran].set("C-10 Canister Rifle (Samir Duran)", TechTypes::None, 25, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Samir_Duran);
-      weaponTypeData[C_10_Canister_Rifle_Infested_Duran].set("C-10 Canister Rifle (Infested Duran)", TechTypes::None, 25, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Infested_Duran);
-      weaponTypeData[C_10_Canister_Rifle_Alexei_Stukov].set("C-10 Canister Rifle (Alexei Stukov)", TechTypes::None, 30, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Alexei_Stukov);
-      weaponTypeData[Fragmentation_Grenade].set("Fragmentation Grenade", TechTypes::None, 20, 2, 30, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Vulture);
-      weaponTypeData[Fragmentation_Grenade_Jim_Raynor].set("Fragmentation Grenade (Jim Raynor)", TechTypes::None, 30, 2, 22, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Concussive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Jim_Raynor_Vulture);
-      weaponTypeData[Spider_Mines].set("Spider Mines", TechTypes::Spider_Mines, 125, 0, 22, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Radial_Splash, 0, 10, 50, 75, 100, 0, 1, 0, 0, 1, 0, 0, 0, 0, UnitTypes::Terran_Vulture_Spider_Mine);
-      weaponTypeData[Twin_Autocannons].set("Twin Autocannons", TechTypes::None, 12, 1, 22, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Goliath);
-      weaponTypeData[Twin_Autocannons_Alan_Schezar].set("Twin Autocannons (Alan Schezar)", TechTypes::None, 24, 1, 22, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Alan_Schezar);
-      weaponTypeData[Hellfire_Missile_Pack].set("Hellfire Missile Pack", TechTypes::None, 10, 2, 22, 2, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Goliath);
-      weaponTypeData[Hellfire_Missile_Pack_Alan_Schezar].set("Hellfire Missile Pack (Alan Schezar)", TechTypes::None, 20, 1, 22, 2, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Alan_Schezar);
-      weaponTypeData[Arclite_Cannon].set("Arclite Cannon", TechTypes::None, 30, 3, 37, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Siege_Tank_Tank_Mode);
-      weaponTypeData[Arclite_Cannon_Edmund_Duke].set("Arclite Cannon (Edmund Duke)", TechTypes::None, 70, 3, 37, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Edmund_Duke_Tank_Mode);
-      weaponTypeData[Fusion_Cutter].set("Fusion Cutter", TechTypes::None, 5, 1, 15, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_SCV);
-      weaponTypeData[Gemini_Missiles].set("Gemini Missiles", TechTypes::None, 20, 2, 22, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Wraith);
-      weaponTypeData[Gemini_Missiles_Tom_Kazansky].set("Gemini Missiles (Tom Kazansky)", TechTypes::None, 40, 2, 22, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Tom_Kazansky);
-      weaponTypeData[Burst_Lasers].set("Burst Lasers", TechTypes::None, 8, 1, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Wraith);
-      weaponTypeData[Burst_Lasers_Tom_Kazansky].set("Burst Lasers (Tom Kazansky)", TechTypes::None, 16, 1, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Tom_Kazansky);
-      weaponTypeData[ATS_Laser_Battery].set("ATS Laser Battery", TechTypes::None, 25, 3, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Battlecruiser);
-      weaponTypeData[ATS_Laser_Battery_Hero].set("ATS Laser Battery (Hero)", TechTypes::None, 50, 3, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Norad_II);
-      weaponTypeData[ATS_Laser_Battery_Hyperion].set("ATS Laser Battery (Hyperion)", TechTypes::None, 30, 3, 22, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Hyperion);
-      weaponTypeData[ATA_Laser_Battery].set("ATA Laser Battery", TechTypes::None, 25, 3, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Battlecruiser);
-      weaponTypeData[ATA_Laser_Battery_Hero].set("ATA Laser Battery (Hero)", TechTypes::None, 50, 3, 30, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Norad_II);
-      weaponTypeData[ATA_Laser_Battery_Hyperion].set("ATA Laser Battery (Hyperion)", TechTypes::None, 30, 3, 22, 1, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 192, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Hyperion);
-      weaponTypeData[Flame_Thrower].set("Flame Thrower", TechTypes::None, 8, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Enemy_Splash, 0, 32, 15, 20, 25, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Firebat);
-      weaponTypeData[Flame_Thrower_Gui_Montag].set("Flame Thrower (Gui Montag)", TechTypes::None, 16, 1, 22, 1, UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Enemy_Splash, 0, 32, 15, 20, 25, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Firebat);
-      weaponTypeData[Arclite_Shock_Cannon].set("Arclite Shock Cannon", TechTypes::None, 70, 5, 75, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Radial_Splash, 64, 384, 10, 25, 40, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Siege_Tank_Siege_Mode);
-      weaponTypeData[Arclite_Shock_Cannon_Edmund_Duke].set("Arclite Shock Cannon (Edmund Duke)", TechTypes::None, 150, 5, 75, 1, UpgradeTypes::Terran_Vehicle_Weapons, DamageTypes::Explosive, ExplosionTypes::Radial_Splash, 64, 384, 10, 25, 40, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Edmund_Duke_Siege_Mode);
-      weaponTypeData[Longbolt_Missile].set("Longbolt Missile", TechTypes::None, 20, 0, 15, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Missile_Turret);
-      weaponTypeData[Yamato_Gun].set("Yamato Gun", TechTypes::Yamato_Gun, 260, 0, 15, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Yamato_Gun, 0, 320, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Battlecruiser);
-      weaponTypeData[Nuclear_Strike].set("Nuclear Strike", TechTypes::Nuclear_Strike, 600, 0, 1, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Nuclear_Missile, 0, 3, 128, 192, 256, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Ghost);
-      weaponTypeData[Lockdown].set("Lockdown", TechTypes::Lockdown, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Concussive, ExplosionTypes::Lockdown, 0, 256, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, UnitTypes::Terran_Ghost);
-      weaponTypeData[EMP_Shockwave].set("EMP Shockwave", TechTypes::EMP_Shockwave, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Concussive, ExplosionTypes::EMP_Shockwave, 0, 256, 64, 64, 64, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Terran_Science_Vessel);
-      weaponTypeData[Irradiate].set("Irradiate", TechTypes::Irradiate, 250, 0, 75, 1, UpgradeTypes::None, DamageTypes::Ignore_Armor, ExplosionTypes::Irradiate, 0, 288, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Terran_Science_Vessel);
-      weaponTypeData[Claws].set("Claws", TechTypes::None, 5, 1, 8, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Zergling);
-      weaponTypeData[Claws_Devouring_One].set("Claws (Devouring One)", TechTypes::None, 10, 1, 8, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Devouring_One);
-      weaponTypeData[Claws_Infested_Kerrigan].set("Claws (Infested Kerrigan)", TechTypes::None, 50, 1, 15, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Infested_Kerrigan);
-      weaponTypeData[Needle_Spines].set("Needle Spines", TechTypes::None, 10, 1, 15, 1, UpgradeTypes::Zerg_Missile_Attacks, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Hydralisk);
-      weaponTypeData[Needle_Spines_Hunter_Killer].set("Needle Spines (Hunter Killer)", TechTypes::None, 20, 1, 15, 1, UpgradeTypes::Zerg_Missile_Attacks, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Hunter_Killer);
-      weaponTypeData[Kaiser_Blades].set("Kaiser Blades", TechTypes::None, 20, 3, 15, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 25, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Ultralisk);
-      weaponTypeData[Kaiser_Blades_Torrasque].set("Kaiser Blades (Torrasque)", TechTypes::None, 50, 3, 15, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 25, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Torrasque);
-      weaponTypeData[Toxic_Spores].set("Toxic Spores", TechTypes::None, 4, 1, 15, 1, UpgradeTypes::Zerg_Melee_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Broodling);
-      weaponTypeData[Spines].set("Spines", TechTypes::None, 5, 0, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Drone);
-      weaponTypeData[Acid_Spore].set("Acid Spore", TechTypes::None, 20, 2, 30, 1, UpgradeTypes::Zerg_Flyer_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 256, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Guardian);
-      weaponTypeData[Acid_Spore_Kukulza].set("Acid Spore (Kukulza)", TechTypes::None, 40, 2, 30, 1, UpgradeTypes::Zerg_Flyer_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 256, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Kukulza_Guardian);
-      weaponTypeData[Glave_Wurm].set("Glave Wurm", TechTypes::None, 9, 1, 30, 1, UpgradeTypes::Zerg_Flyer_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 96, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Mutalisk);
-      weaponTypeData[Glave_Wurm_Kukulza].set("Glave Wurm (Kukulza)", TechTypes::None, 18, 1, 30, 1, UpgradeTypes::Zerg_Flyer_Attacks, DamageTypes::Normal, ExplosionTypes::Normal, 0, 96, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Kukulza_Mutalisk);
-      weaponTypeData[Seeker_Spores].set("Seeker Spores", TechTypes::None, 15, 0, 15, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Spore_Colony);
-      weaponTypeData[Subterranean_Tentacle].set("Subterranean Tentacle", TechTypes::None, 40, 0, 32, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Sunken_Colony);
-      weaponTypeData[Suicide_Infested_Terran].set("Suicide Infested Terran", TechTypes::None, 500, 0, 1, 1, UpgradeTypes::None, DamageTypes::Explosive, ExplosionTypes::Radial_Splash, 0, 3, 20, 40, 60, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Infested_Terran);
-      weaponTypeData[Suicide_Scourge].set("Suicide Scourge", TechTypes::None, 110, 0, 1, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Scourge);
-      weaponTypeData[Parasite].set("Parasite", TechTypes::Parasite, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Parasite, 0, 384, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, UnitTypes::Zerg_Queen);
-      weaponTypeData[Spawn_Broodlings].set("Spawn Broodlings", TechTypes::Spawn_Broodlings, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Broodlings, 0, 288, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, UnitTypes::Zerg_Queen);
-      weaponTypeData[Ensnare].set("Ensnare", TechTypes::Ensnare, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Ensnare, 0, 288, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Zerg_Queen);
-      weaponTypeData[Dark_Swarm].set("Dark Swarm", TechTypes::Dark_Swarm, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Dark_Swarm, 0, 288, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Defiler);
-      weaponTypeData[Plague].set("Plague", TechTypes::Plague, 300, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Plague, 0, 288, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Zerg_Defiler);
-      weaponTypeData[Consume].set("Consume", TechTypes::Consume, 0, 0, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Consume, 0, 16, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, UnitTypes::Zerg_Defiler);
-      weaponTypeData[Particle_Beam].set("Particle Beam", TechTypes::None, 5, 0, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Probe);
-      weaponTypeData[Psi_Blades].set("Psi Blades", TechTypes::None, 8, 1, 22, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Zealot);
-      weaponTypeData[Psi_Blades_Fenix].set("Psi Blades (Fenix)", TechTypes::None, 20, 1, 22, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Fenix_Zealot);
-      weaponTypeData[Phase_Disruptor].set("Phase Disruptor", TechTypes::None, 20, 2, 30, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Dragoon);
-      weaponTypeData[Phase_Disruptor_Fenix].set("Phase Disruptor (Fenix)", TechTypes::None, 45, 2, 22, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Fenix_Dragoon);
-      weaponTypeData[Psi_Assault].set("Psi Assault", TechTypes::None, 20, 1, 22, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Tassadar);
-      weaponTypeData[Psionic_Shockwave].set("Psionic Shockwave", TechTypes::None, 30, 3, 20, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Enemy_Splash, 0, 64, 3, 15, 30, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Archon);
-      weaponTypeData[Psionic_Shockwave_TZ_Archon].set("Psionic Shockwave (Tassadar/Zeratul Archon)", TechTypes::None, 60, 3, 20, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Enemy_Splash, 0, 64, 3, 15, 30, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Tassadar_Zeratul_Archon);
-      weaponTypeData[Dual_Photon_Blasters].set("Dual Photon Blasters", TechTypes::None, 8, 1, 30, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Scout);
-      weaponTypeData[Dual_Photon_Blasters_Mojo].set("Dual Photon Blasters (Mojo)", TechTypes::None, 20, 1, 30, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Mojo);
-      weaponTypeData[Dual_Photon_Blasters_Artanis].set("Dual Photon Blasters (Artanis)", TechTypes::None, 20, 1, 30, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Artanis);
-      weaponTypeData[Anti_Matter_Missiles].set("Anti-Matter Missiles", TechTypes::None, 14, 1, 22, 2, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Scout);
-      weaponTypeData[Anti_Matter_Missiles_Mojo].set("Anti-Matter Missiles (Mojo)", TechTypes::None, 28, 1, 22, 2, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Mojo);
-      weaponTypeData[Anti_Matter_Missiles_Artanis].set("Anti-Matter Missiles (Artanis)", TechTypes::None, 28, 1, 22, 2, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Artanis);
-      weaponTypeData[Phase_Disruptor_Cannon].set("Phase Disruptor Cannon", TechTypes::None, 10, 1, 45, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Arbiter);
-      weaponTypeData[Phase_Disruptor_Cannon_Danimoth].set("Phase Disruptor Cannon (Danimoth)", TechTypes::None, 20, 1, 45, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Normal, 0, 160, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Danimoth);
-      weaponTypeData[Pulse_Cannon].set("Pulse Cannon", TechTypes::None, 6, 1, 1, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 128, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Interceptor);
-      weaponTypeData[STS_Photon_Cannon].set("STS Photon Cannon", TechTypes::None, 20, 0, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Photon_Cannon);
-      weaponTypeData[STA_Photon_Cannon].set("STA Photon Cannon", TechTypes::None, 20, 0, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 224, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Photon_Cannon);
-      weaponTypeData[Scarab].set("Scarab", TechTypes::None, 100, 25, 1, 1, UpgradeTypes::Scarab_Damage, DamageTypes::Normal, ExplosionTypes::Enemy_Splash, 0, 128, 20, 40, 60, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Scarab);
-      weaponTypeData[Stasis_Field].set("Stasis Field", TechTypes::Stasis_Field, 0, 1, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Stasis_Field, 0, 288, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Protoss_Arbiter);
-      weaponTypeData[Psionic_Storm].set("Psionic Storm", TechTypes::Psionic_Storm, 14, 1, 45, 1, UpgradeTypes::None, DamageTypes::Ignore_Armor, ExplosionTypes::Radial_Splash, 0, 288, 48, 48, 48, 1, 1, 0, 0, 1, 0, 1, 0, 0, UnitTypes::Protoss_High_Templar);
-      weaponTypeData[Neutron_Flare].set("Neutron Flare", TechTypes::None, 5, 1, 8, 1, UpgradeTypes::Protoss_Air_Weapons, DamageTypes::Explosive, ExplosionTypes::Air_Splash, 0, 160, 5, 50, 100, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Corsair);
-      weaponTypeData[Disruption_Web].set("Disruption Web", TechTypes::Disruption_Web, 0, 0, 22, 1, UpgradeTypes::None, DamageTypes::Ignore_Armor, ExplosionTypes::Disruption_Web, 0, 288, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Corsair);
-      weaponTypeData[Restoration].set("Restoration", TechTypes::Restoration, 20, 0, 22, 1, UpgradeTypes::None, DamageTypes::Ignore_Armor, ExplosionTypes::Restoration, 0, 192, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Terran_Medic);
-      weaponTypeData[Halo_Rockets].set("Halo Rockets", TechTypes::None, 6, 1, 64, 2, UpgradeTypes::Terran_Ship_Weapons, DamageTypes::Explosive, ExplosionTypes::Air_Splash, 0, 192, 5, 50, 100, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Valkyrie);
-      weaponTypeData[Corrosive_Acid].set("Corrosive Acid", TechTypes::None, 25, 2, 100, 1, UpgradeTypes::Zerg_Flyer_Attacks, DamageTypes::Explosive, ExplosionTypes::Corrosive_Acid, 0, 192, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Devourer);
-      weaponTypeData[Mind_Control].set("Mind Control", TechTypes::Mind_Control, 8, 1, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Mind_Control, 0, 256, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Protoss_Dark_Archon);
-      weaponTypeData[Feedback].set("Feedback", TechTypes::Feedback, 8, 1, 22, 1, UpgradeTypes::None, DamageTypes::Ignore_Armor, ExplosionTypes::Feedback, 0, 320, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Protoss_Dark_Archon);
-      weaponTypeData[Optical_Flare].set("Optical Flare", TechTypes::Optical_Flare, 8, 1, 22, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Optical_Flare, 0, 288, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Terran_Medic);
-      weaponTypeData[Maelstrom].set("Maelstrom", TechTypes::Maelstrom, 0, 1, 1, 1, UpgradeTypes::None, DamageTypes::Independent, ExplosionTypes::Maelstrom, 0, 320, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, UnitTypes::Protoss_Dark_Archon);
-      weaponTypeData[Subterranean_Spines].set("Subterranean Spines", TechTypes::None, 20, 2, 37, 1, UpgradeTypes::Zerg_Missile_Attacks, DamageTypes::Normal, ExplosionTypes::Enemy_Splash, 0, 192, 20, 20, 20, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Zerg_Lurker);
-      weaponTypeData[Warp_Blades].set("Warp Blades", TechTypes::None, 40, 3, 30, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Protoss_Dark_Templar);
-      weaponTypeData[Warp_Blades_Hero].set("Warp Blades (Hero)", TechTypes::None, 45, 1, 30, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Dark_Templar);
-      weaponTypeData[Warp_Blades_Zeratul].set("Warp Blades (Zeratul)", TechTypes::None, 100, 1, 22, 1, UpgradeTypes::Protoss_Ground_Weapons, DamageTypes::Normal, ExplosionTypes::Normal, 0, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Hero_Zeratul);
-      weaponTypeData[Independant_Laser_Battery].set("Independant Laser Battery", TechTypes::None, 7, 1, 22, 1, UpgradeTypes::None, DamageTypes::Normal, ExplosionTypes::Normal, 0, 8, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::Special_Independant_Starport);
-      weaponTypeData[Twin_Autocannons_Floor_Trap].set("Twin Autocannons (Floor Trap)"          , TechTypes::None  , 10              , 1              , 22                , 1               , UpgradeTypes::Terran_Vehicle_Weapons , DamageTypes::Normal    , ExplosionTypes::Normal      , 0           , 160         , 0                    , 0                     , 0                    , 0              , 1                 , 0                     , 0                  , 0                      , 0                     , 0                  , 0                    , 0              , UnitTypes::Special_Floor_Gun_Trap);
-      weaponTypeData[Hellfire_Missile_Pack_Wall_Trap].set("Hellfire Missile Pack (Wall Trap)"  , TechTypes::None  , 10              , 1              , 22                , 2               , UpgradeTypes::Terran_Vehicle_Weapons , DamageTypes::Explosive , ExplosionTypes::Normal      , 0           , 160         , 0                    , 0                     , 0                    , 0              , 1                 , 0                     , 0                  , 0                      , 0                     , 0                  , 0                    , 0              , UnitTypes::Special_Wall_Missile_Trap);
-      weaponTypeData[Hellfire_Missile_Pack_Floor_Trap].set("Hellfire Missile Pack (Floor Trap)", TechTypes::None  , 10              , 1              , 22                , 2               , UpgradeTypes::Terran_Vehicle_Weapons , DamageTypes::Explosive , ExplosionTypes::Normal      , 0           , 160         , 0                    , 0                     , 0                    , 0              , 1                 , 0                     , 0                  , 0                      , 0                     , 0                  , 0                    , 0              , UnitTypes::Special_Floor_Missile_Trap);
-      weaponTypeData[Flame_Thrower_Wall_Trap].set("Flame Thrower (Wall Trap)"                  , TechTypes::None  , 8               , 1              , 22                , 1               , UpgradeTypes::Terran_Infantry_Weapons, DamageTypes::Concussive, ExplosionTypes::Enemy_Splash, 0           , 64          , 15                   , 20                    , 25                   , 0              , 1                 , 0                     , 0                  , 0                      , 0                     , 0                  , 0                    , 0              , UnitTypes::Special_Wall_Flame_Trap);
-
-      weaponTypeData[None].set("None", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
-      weaponTypeData[Unknown].set("Unknown", TechTypes::None, 0, 0, 0, 0, UpgradeTypes::None, DamageTypes::None, ExplosionTypes::None, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UnitTypes::None);
-    }
   }
   WeaponType::WeaponType(int id) : Type( id )
   {}
   TechType WeaponType::getTech() const
   {
-    return weaponTypeData[this->getID()].techType;
+    return wpnInternalTechs::attachedTech[this->getID()];
   }
   UnitType WeaponType::whatUses() const
   {
-    return weaponTypeData[this->getID()].whatUses;
+    return wpnInternalWhatUses::whatUses[this->getID()];
   }
   int WeaponType::damageAmount() const
   {
-    return weaponTypeData[this->getID()].damageAmount;
+    return wpnDamageAmt[this->getID()];
   }
   int WeaponType::damageBonus() const
   {
-    return weaponTypeData[this->getID()].damageBonus;
+    return wpnDamageBonus[this->getID()];
   }
   int WeaponType::damageCooldown() const
   {
-    return weaponTypeData[this->getID()].damageCooldown;
+    return wpnDamageCooldowns[this->getID()];
   }
   int WeaponType::damageFactor() const
   {
-    return weaponTypeData[this->getID()].damageFactor;
+    return wpnDamageFactor[this->getID()];
   }
   UpgradeType WeaponType::upgradeType() const
   {
-    return weaponTypeData[this->getID()].upgradeType;
+    return wpnInternalUpgrades::upgrade[this->getID()];
   }
   DamageType WeaponType::damageType() const
   {
-    return weaponTypeData[this->getID()].damageType;
+    return wpnInternalDamageType::damageType[this->getID()];
   }
   ExplosionType WeaponType::explosionType() const
   {
-    return weaponTypeData[this->getID()].explosionType;
+    return wpnInternalExplosionType::explosionType[this->getID()];
   }
   int WeaponType::minRange() const
   {
-    return weaponTypeData[this->getID()].minRange;
+    return wpnMinRange[this->getID()];
   }
   int WeaponType::maxRange() const
   {
-    return weaponTypeData[this->getID()].maxRange;
+    return wpnMaxRange[this->getID()];
   }
   int WeaponType::innerSplashRadius() const
   {
-    return weaponTypeData[this->getID()].innerSplashRadius;
+    return wpnSplashRangeInner[this->getID()];
   }
   int WeaponType::medianSplashRadius() const
   {
-    return weaponTypeData[this->getID()].medianSplashRadius;
+    return wpnSplashRangeMid[this->getID()];
   }
   int WeaponType::outerSplashRadius() const
   {
-    return weaponTypeData[this->getID()].outerSplashRadius;
+    return wpnSplashRangeOuter[this->getID()];
   }
   bool WeaponType::targetsAir() const
   {
-    return weaponTypeData[this->getID()].targetsAir;
+    return !!(wpnFlags[this->getID()] & TARG_AIR);
   }
   bool WeaponType::targetsGround() const
   {
-    return weaponTypeData[this->getID()].targetsGround;
+    return !!(wpnFlags[this->getID()] & TARG_GROUND);
   }
   bool WeaponType::targetsMechanical() const
   {
-    return weaponTypeData[this->getID()].targetsMechanical;
+    return !!(wpnFlags[this->getID()] & TARG_MECH);
   }
   bool WeaponType::targetsOrganic() const
   {
-    return weaponTypeData[this->getID()].targetsOrganic;
+    return !!(wpnFlags[this->getID()] & TARG_ORGANIC);
   }
   bool WeaponType::targetsNonBuilding() const
   {
-    return weaponTypeData[this->getID()].targetsNonBuilding;
+    return !!(wpnFlags[this->getID()] & TARG_NOBUILD);
   }
   bool WeaponType::targetsNonRobotic() const
   {
-    return weaponTypeData[this->getID()].targetsNonRobotic;
+    return !!(wpnFlags[this->getID()] & TARG_NOROBOT);
   }
   bool WeaponType::targetsTerrain() const
   {
-    return weaponTypeData[this->getID()].targetsTerrain;
+    return !!(wpnFlags[this->getID()] & TARG_TERRAIN);
   }
   bool WeaponType::targetsOrgOrMech() const
   {
-    return weaponTypeData[this->getID()].targetsOrgOrMech;
+    return !!(wpnFlags[this->getID()] & TARG_ORGMECH);
   }
   bool WeaponType::targetsOwn() const
   {
-    return weaponTypeData[this->getID()].targetsOwn;
+    return !!(wpnFlags[this->getID()] & TARG_OWN);
   }
   const WeaponType::set& WeaponTypes::allWeaponTypes()
   {

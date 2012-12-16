@@ -42,8 +42,6 @@ namespace BWAPI
     ///
     /// @note Don't forget to use std::string::c_str() when passing this parameter to
     /// Game::sendText and other variadic functions.
-    ///
-    /// @Ex player.cpp getName
     virtual std::string getName() const = 0;
 
     /// Retrieves the set of all units that the player owns. This also includes incomplete units.
@@ -54,16 +52,12 @@ namespace BWAPI
     ///
     /// @note This does not include units that are loaded into transports, @Bunkers, @Refineries,
     /// @Assimilators, or @Extractors.
-    ///
-    /// @Ex player.cpp getUnits
     virtual const Unitset &getUnits() const = 0;
 
     /// Retrieves the race of the player. This allows you to change strategies against different
     /// races.
     ///
     /// @returns The Race that the player is using.
-    ///
-    /// @Ex player.cpp getRace
     virtual Race getRace() const = 0;
 
     /// Retrieves the player's controller type. This allows you to distinguish betweeen computer
@@ -73,8 +67,6 @@ namespace BWAPI
     ///
     /// @note Other players using BWAPI will be treated as a human player and return
     /// PlayerTypes::Player.
-    ///
-    /// @Ex player.cpp getType
     virtual PlayerType getType() const = 0;
 
     /// Retrieves the player's force. A force is the team that the player is playing on. This is

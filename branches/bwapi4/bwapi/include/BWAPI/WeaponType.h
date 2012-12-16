@@ -206,8 +206,6 @@ namespace BWAPI
     /** Returns the set of all special weapons in WeaponTypes. */
     const WeaponType::const_set& specialWeaponTypes();
 
-    void init();
-
     extern const WeaponType Gauss_Rifle;
     extern const WeaponType Gauss_Rifle_Jim_Raynor;
     extern const WeaponType C_10_Canister_Rifle;

@@ -5,7 +5,6 @@
 
 void BWAPI::BWAPI_init()  // @TODO: Remove this initialization dependency
 {
-  BWAPI::WeaponTypes::init();
   BWAPI::UnitTypes::init();
 }
 
