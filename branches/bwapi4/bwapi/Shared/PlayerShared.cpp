@@ -253,9 +253,9 @@ namespace BWAPI
   {
     return BWAPI::Color(self->color);
   }
-  int PlayerImpl::getTextColor() const
+  char PlayerImpl::getTextColor() const
   {
-    return self->colorByte;
+    return (char)self->colorByte;
   }
   //------------------------------------------------- OBSERVER -----------------------------------------------
   bool PlayerImpl::isObserver() const

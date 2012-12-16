@@ -583,25 +583,15 @@ namespace BWAPI
     return Templates::hasPower<Unit>(x, y, unitType, pylons);
   }
   //------------------------------------------------ PRINTF --------------------------------------------------
-  void GameImpl::printf(const char *format, ...)
+  void GameImpl::vPrintf(const char *format, va_list arg)
   {
-    char *buffer;
-    vstretchyprintf(buffer, format);
+    char buffer[256];
+    vsnprintf(buffer, sizeof(buffer), format, arg);
     addCommand(BWAPIC::Command(BWAPIC::CommandType::Printf,addString(buffer)));
-    free(buffer);
-    return;
-  }
-  //--------------------------------------------- SEND TEXT --------------------------------------------------
-  void GameImpl::sendText(const char *format, ...)
-  {
-    char *buffer;
-    vstretchyprintf(buffer, format);
-    addCommand(BWAPIC::Command(BWAPIC::CommandType::SendText,addString(buffer)));
-    free(buffer);
     return;
   }
   //--------------------------------------------- SEND TEXT EX -----------------------------------------------
-  void GameImpl::sendTextEx(bool toAllies, const char *format, ...)
+  void GameImpl::vSendTextEx(bool toAllies, const char *format, va_list arg)
   {
     return; //todo: implement
   }
@@ -770,41 +760,13 @@ namespace BWAPI
     textSize = size;
   }
   //-------------------------------------------------- DRAW TEXT ---------------------------------------------
-  void GameImpl::drawText(int ctype, int x, int y, const char *format, ...)
+  void GameImpl::vDrawText(int ctype, int x, int y, const char *format, va_list arg)
   {
     if ( !data->hasGUI ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
+    char buffer[512];
+    vsnprintf(buffer, sizeof(buffer), format, arg);
     BWAPIC::Shape s(BWAPIC::ShapeType::Text,ctype,x,y,0,0,0,textSize,0,false);
     addText(s,buffer);
-    free(buffer);
-  }
-  void GameImpl::drawTextMap(int x, int y, const char *format, ...)
-  {
-    if ( !data->hasGUI ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
-    BWAPIC::Shape s(BWAPIC::ShapeType::Text,(int)BWAPI::CoordinateType::Map,x,y,0,0,0,textSize,0,false);
-    addText(s,buffer);
-    free(buffer);
-  }
-  void GameImpl::drawTextMouse(int x, int y, const char *format, ...)
-  {
-    if ( !data->hasGUI ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
-    BWAPIC::Shape s(BWAPIC::ShapeType::Text,(int)BWAPI::CoordinateType::Mouse,x,y,0,0,0,textSize,0,false);
-    addText(s,buffer);
-    free(buffer);
-  }
-  void GameImpl::drawTextScreen(int x, int y, const char *format, ...)
-  {
-    if ( !data->hasGUI ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
-    BWAPIC::Shape s(BWAPIC::ShapeType::Text,(int)BWAPI::CoordinateType::Screen,x,y,0,0,0,textSize,0,false);
-    addText(s,buffer);
-    free(buffer);
   }
   //--------------------------------------------------- DRAW BOX ---------------------------------------------
   void GameImpl::drawBox(int ctype, int left, int top, int right, int bottom, Color color, bool isSolid)

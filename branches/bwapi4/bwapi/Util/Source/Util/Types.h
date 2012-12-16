@@ -35,14 +35,6 @@ typedef struct __rect
 #define ever (;;)
 
 #include <cstdio>
-#define vstretchyprintf(buff,fmt) {\
-  va_list ap;\
-  va_start(ap, fmt);\
-  int buffsize = _vscprintf(fmt, ap);\
-  buff = (char*)malloc(buffsize+1);\
-  vsprintf(buff, fmt, ap);\
-  va_end(ap);\
-}
 
 #define MB_ICONINFO MB_ICONASTERISK
 

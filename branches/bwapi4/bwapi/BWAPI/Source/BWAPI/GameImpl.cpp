@@ -422,12 +422,15 @@ namespace BWAPI
     return Templates::hasPower<UnitImpl>(x, y, unitType, pylons);
   }
   //------------------------------------------------- PRINTF -------------------------------------------------
-  void GameImpl::printf(const char *format, ...)
+  void GameImpl::vPrintf(const char *format, va_list arg)
   {
+    // nogui & safety
     if ( !data->hasGUI ) return;
     if ( !format ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
+    
+    // Expand format into buffer
+    char buffer[512];
+    vsnprintf(buffer, sizeof(buffer), format, arg);
 
     if ( !this->tournamentCheck(Tournament::Printf, buffer) )
     {
@@ -435,49 +438,42 @@ namespace BWAPI
       return;
     }
 
+    // Dispatch message using existing Storm library function (lobby+game)
     S_EVT evt = { 4, -1, buffer, strlen(buffer) + 1 };
     SEvtDispatch('SNET', 1, 4, &evt);
     free(buffer);
   }
   //--------------------------------------------- SEND TEXT --------------------------------------------------
-  void GameImpl::sendText(const char *format, ...)
+  void GameImpl::vSendTextEx(bool toAllies, const char *format, va_list arg)
   {
+    // safety
     if ( !format ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
-    sendTextEx(false, "%s", buffer);
-    free(buffer);
-  }
-  void GameImpl::sendTextEx(bool toAllies, const char *format, ...)
-  {
-    if ( !format ) return;
-    char *buffer;
-    vstretchyprintf(buffer, format);
+    
+    // Expand format and store in buffer
+    char buffer[80]; // Use maximum size of 80 since there is a hardcoded limit in Broodwar of 80 characters
+    vsnprintf(buffer, sizeof(buffer), format, arg);
 
+    // Check if tournament module allows sending text
     if ( !this->tournamentCheck(Tournament::SendText, buffer) )
-    {
-      free(buffer);
       return;
-    }
 
-    if ( buffer[0] == '/' )
+    if ( buffer[0] == '/' )    // If we expect a battle.net command
     {
       SNetSendServerChatCommand(buffer);
-      free(buffer);
       return;
     }
 
-    if (_isReplay())
+    if ( _isReplay() )  // Just print the text if in a replay
     {
-      printf("%s", buffer);
-      free(buffer);
+      Broodwar << buffer << std::endl;
       return;
     }
 
-    if (_isInGame() && _isSinglePlayer())
+    // If we're in single player
+    if ( _isInGame() && _isSinglePlayer() )
     {
       BW::CheatFlags::Enum cheatID = BW::getCheatFlag(buffer);
-      if ( cheatID != BW::CheatFlags::None )
+      if ( cheatID != BW::CheatFlags::None )  // Apply cheat code if it is one
       {
         this->cheatFlags ^= cheatID;
         QUEUE_COMMAND(BW::Orders::UseCheat, this->cheatFlags);
@@ -487,38 +483,39 @@ namespace BWAPI
             cheatID == BW::CheatFlags::SomethingForNothing)
           this->cheatFlags ^= cheatID;
       }
-      else
+      else  // Just print the message otherwise
       {
-        printf("%c%s: %c%s", this->BWAPIPlayer->getTextColor(), this->BWAPIPlayer->getName().c_str(), 0x07, buffer);
+        Broodwar << this->BWAPIPlayer->getTextColor() << this->BWAPIPlayer->getName()
+                 << Text::Green << buffer << std::endl;
       }
-      free(buffer);
-      return;
-    }
-
-    char szMessage[82];
-    szMessage[0] = 0;
-    szMessage[1] = 1;
-    int msgLen = SStrCopy(&szMessage[2], buffer, 80);
-
-    if (_isInGame())
+    } // single
+    else  // multiplayer or lobby
     {
-      if ( toAllies )
+      // Otherwise, send the message using Storm command
+      char szMessage[82];
+      szMessage[0] = 0;
+      szMessage[1] = 1;
+      int msgLen = SStrCopy(&szMessage[2], buffer, 80);
+
+      if ( _isInGame() )    // in game
       {
-        for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
-          if ( this->BWAPIPlayer->isAlly(players[i]) && BW::BWDATA::Players[i].dwStormId != -1 )
-            SNetSendMessage(BW::BWDATA::Players[i].dwStormId, szMessage, msgLen + 3);
+        if ( toAllies ) // Send to all allies
+        {
+          for ( int i = 0; i < PLAYABLE_PLAYER_COUNT; ++i )
+            if ( this->BWAPIPlayer->isAlly(players[i]) && BW::BWDATA::Players[i].dwStormId != -1 )
+              SNetSendMessage(BW::BWDATA::Players[i].dwStormId, szMessage, msgLen + 3);
+        }
+        else  // Otherwise send to all
+        {
+          SNetSendMessage(-1, szMessage, msgLen + 3);
+        } // toAllies
       }
-      else
+      else  // assume in lobby, then send lobby message
       {
-        SNetSendMessage(-1, szMessage, msgLen + 3);
-      } // toAllies
-    }
-    else
-    {
-      szMessage[1] = 0x4C;
-      SNetSendMessage(-1, &szMessage[1], msgLen + 2);
-    } // isInGame
-    free(buffer);
+        szMessage[1] = 0x4C;
+        SNetSendMessage(-1, &szMessage[1], msgLen + 2);
+      } // isInGame
+    } // multi
   }
   //---------------------------------------------- CHANGE RACE -----------------------------------------------
   void GameImpl::changeRace(BWAPI::Race race)

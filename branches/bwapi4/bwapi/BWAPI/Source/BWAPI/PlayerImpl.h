@@ -77,7 +77,7 @@ namespace BWAPI
       virtual bool isUpgrading(UpgradeType upgrade) const;
 
       virtual BWAPI::Color getColor() const;
-      virtual int getTextColor() const;
+      virtual char getTextColor() const;
 
       virtual int maxEnergy(UnitType unit) const;
       virtual double topSpeed(UnitType unit) const;

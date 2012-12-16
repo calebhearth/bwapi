@@ -167,5 +167,8 @@ namespace BWAPI
       /// A bright blue color.
       Turquoise    = 31
     };
+
+    std::ostream &operator << (std::ostream &out, const Text::Enum &t);
+
   }
 }

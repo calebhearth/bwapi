@@ -137,12 +137,7 @@ namespace BWAPI
       virtual bool isVisible(int x, int y) const;
       virtual bool isExplored(int x, int y) const;
       virtual bool hasCreep(int x, int y) const;
-      virtual bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
-      virtual bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
-      virtual bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-      virtual bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
       virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const;
-      virtual bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
 
       virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = nullptr, bool checkExplored = false);
       virtual bool canMake(UnitType type, const Unit* builder = nullptr);
@@ -150,9 +145,8 @@ namespace BWAPI
       virtual bool canUpgrade(UpgradeType type, const Unit* unit = nullptr);
       virtual const TilePosition::set& getStartLocations() const;
 
-      virtual void printf(const char* format, ...);
-      virtual void sendText(const char* format, ...);
-      virtual void sendTextEx(bool toAllies, const char *format, ...);
+      virtual void vPrintf(const char* format, va_list arg);
+      virtual void vSendTextEx(bool toAllies, const char *format, va_list arg);
 
       virtual void changeRace(BWAPI::Race race);
       virtual bool isInGame() const;
@@ -177,11 +171,7 @@ namespace BWAPI
       virtual Playerset& observers();
 
       virtual void setTextSize(int size = 1);
-      virtual void drawText(int ctype, int x, int y, const char *format, ...);
-      virtual void drawTextMap(int x, int y, const char *format, ...);
-      virtual void drawTextMouse(int x, int y, const char *format, ...);
-      virtual void drawTextScreen(int x, int y, const char *format, ...);
-
+      virtual void vDrawText(int ctype, int x, int y, const char *format, va_list arg);
       virtual void drawBox(int ctype, int left, int top, int right, int bottom, Color color, bool isSolid = false);
       virtual void drawTriangle(int ctype, int ax, int ay, int bx, int by, int cx, int cy, Color color, bool isSolid = false);
       virtual void drawCircle(int ctype, int x, int y, int radius, Color color, bool isSolid = false);

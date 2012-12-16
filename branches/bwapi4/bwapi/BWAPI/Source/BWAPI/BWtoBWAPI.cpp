@@ -1,4 +1,3 @@
-#pragma once
 #include "BWtoBWAPI.h"
 
 #include "../../../Debug.h"

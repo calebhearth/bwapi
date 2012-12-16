@@ -99,35 +99,48 @@ int getFileType(const char *szFileName)
   return rVal;
 }
 //------------------------------------------------ BWAPI ERROR -----------------------------------------------
-void BWAPIError(const char *format, ...)
+void vBWAPIError(const char *format, va_list arg)
 {
-  char *buffer;
-  vstretchyprintf(buffer, format);
+  // Expand format
+  char buffer[256];
+  vsnprintf(buffer, sizeof(buffer), format, arg);
 
-  BWAPI::BroodwarImpl.printf( "\x06" "ERROR: %s", buffer);
+  // Send error message to Broodwar
+  BWAPI::Broodwar << BWAPI::Text::Red << "ERROR: " << buffer << std::endl;
 
+  // Retrieve system time
   SYSTEMTIME time;
   GetSystemTime(&time);
-  char szLogFile[MAX_PATH];
-  sprintf_s(szLogFile, MAX_PATH, "%s\\bwapi-error.txt", szLogPath);
-  FILE* f = fopen(szLogFile, "a+");
-  if ( f )
+
+  FILE *log = fopen("Errors/bwapi-error.txt", "a+");
+  if ( log )
   {
-    fprintf(f, "[%u/%02u/%02u - %02u:%02u:%02u] %s\n", time.wYear, time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond, buffer);
-    fclose(f);
+    fprintf(log, "[%u/%02u/%02u - %02u:%02u:%02u] %s\n", time.wYear, time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond, buffer);
+    fclose(log);
   }
-  free(buffer);
+}
+void BWAPIError(const char *format, ...)
+{
+  va_list ap;
+  va_start(ap,format);
+  vBWAPIError(format, ap);
+  va_end(ap);
 }
 
 void BWAPIError(DWORD dwErrCode, const char *format, ...)
 {
-  char *buffer;
-  vstretchyprintf(buffer, format);
+  // Expand format
+  char buffer[256];
+  va_list ap;
+  va_start(ap,format);
+  vsnprintf(buffer, sizeof(buffer), format, ap);
+  va_end(ap);
 
+  // Obtain last STORM error
   char szErrString[256];
   SErrGetErrorStr(dwErrCode, szErrString, 256);
+
   BWAPIError("%s    %s", szErrString, buffer);
-  free(buffer);
 }
 
 void CheckVersion()

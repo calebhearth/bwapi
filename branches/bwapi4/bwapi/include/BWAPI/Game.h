@@ -297,17 +297,17 @@ namespace BWAPI
     bool hasCreep(TilePosition position) const;
 
     /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    virtual bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const = 0;
+    bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
     /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    virtual bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const = 0;
+    bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
     /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    virtual bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const = 0;
+    bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
     /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    virtual bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const = 0;
+    bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
     /** Returns true if the given pixel location is powered by a nearby friendly pylon. */
     virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const = 0;
     /** Returns true if the given pixel location is powered by a nearby friendly pylon. */
-    virtual bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const = 0;
+    bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
 
     /** Returns true if the given unit type can be built at the given build tile position. Note the tile
      * position specifies the top left tile of the building. If builder is not null, the unit will be
@@ -333,13 +333,16 @@ namespace BWAPI
     virtual const TilePosition::set& getStartLocations() const = 0;
 
     /** Prints text on the screen. Text is not sent to other players in multiplayer games. */
-    virtual void printf(const char *format, ...) = 0;
+    virtual void vPrintf(const char *format, va_list arg) = 0;
+    void printf(const char *format, ...);
 
     /** Sends text to other players - as if it were entered in chat. In single player games and replays,
      * this will just print the text on the screen. If the game is a single player match and not a replay,
      * then this function can be used to execute cheat codes, i.e. Broodwar->sendText("show me the money"). */
-    virtual void sendText(const char *format, ...) = 0;
-    virtual void sendTextEx(bool toAllies, const char *format, ...) = 0;
+    void sendText(const char *format, ...);
+    void vSendText(const char *format, va_list arg);
+    void sendTextEx(bool toAllies, const char *format, ...);
+    virtual void vSendTextEx(bool toAllies, const char *format, va_list arg) = 0;
 
     /** Used to change the race while in a lobby. Note that there is no onLobbyEnter callback yet, so this
      * function cannot be used at this time. */
@@ -416,10 +419,14 @@ namespace BWAPI
     virtual void setTextSize(int size = 1) = 0;
     /** Draws text on the screen at the given position. Text can be drawn in different colors by using the
      * following control characters: TODO: add image from wiki.*/
-    virtual void drawText(int ctype, int x, int y, const char *format, ...) = 0;
-    virtual void drawTextMap(int x, int y, const char *format, ...) = 0;
-    virtual void drawTextMouse(int x, int y, const char *format, ...) = 0;
-    virtual void drawTextScreen(int x, int y, const char *format, ...) = 0;
+    virtual void vDrawText(int ctype, int x, int y, const char *format, va_list arg) = 0;
+    void drawText(int ctype, int x, int y, const char *format, ...);
+    void drawTextMap(int x, int y, const char *format, ...);
+    void drawTextMouse(int x, int y, const char *format, ...);
+    void drawTextScreen(int x, int y, const char *format, ...);
+    void drawTextMap(Position p, const char *format, ...);
+    void drawTextMouse(Position p, const char *format, ...);
+    void drawTextScreen(Position p, const char *format, ...);
 
     /** Draws a box on the screen, with the given color. If isSolid is true, the entire box will be
      * rendered, otherwise just the outline will be drawn. */
@@ -573,7 +580,7 @@ namespace BWAPI
     };
 
     typedef std::ostream& (*ostream_manipulator)(std::ostream&);
-    GameWrapper &operator <<( ostream_manipulator fn )
+    GameWrapper &operator <<( const ostream_manipulator &fn )
     {
       // Pass manipulator into the stream
       ss << fn;

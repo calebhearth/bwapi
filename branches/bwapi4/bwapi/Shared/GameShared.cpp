@@ -87,29 +87,6 @@ namespace BWAPI
     lastError = e;
     return e == Errors::None;
   }
-  //--------------------------------------------- HAS POWER --------------------------------------------------
-  bool GameImpl::hasPower(int tileX, int tileY, UnitType unitType) const
-  {
-    if ( unitType >= 0 && unitType < UnitTypes::None )
-      return hasPowerPrecise( tileX*32 + unitType.tileWidth()*16, tileY*32 + unitType.tileHeight()*16, unitType);
-    return hasPowerPrecise( tileX*32, tileY*32, UnitTypes::None);
-  }
-  bool GameImpl::hasPower(TilePosition position, UnitType unitType) const
-  {
-    return hasPower(position.x, position.y, unitType);
-  }
-  bool GameImpl::hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType) const
-  {
-    return hasPowerPrecise( tileX*32 + tileWidth*16, tileY*32 + tileHeight*16, unitType);
-  }
-  bool GameImpl::hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType) const
-  {
-    return hasPower(position.x, position.y, tileWidth, tileHeight, unitType);
-  }
-  bool GameImpl::hasPowerPrecise(Position position, UnitType unitType) const
-  {
-    return hasPowerPrecise(position.x, position.y, unitType);
-  }
   //--------------------------------------------- CAN BUILD HERE ---------------------------------------------
   bool GameImpl::canBuildHere(TilePosition position, UnitType type, const Unit* builder, bool checkExplored)
   {

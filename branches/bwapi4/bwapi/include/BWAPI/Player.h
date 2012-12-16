@@ -221,7 +221,7 @@ namespace BWAPI
     virtual BWAPI::Color getColor() const = 0;
 
     /** Returns the color of the player for text messages */
-    virtual int getTextColor() const = 0;
+    virtual char getTextColor() const = 0;
 
     /** Returns the max energy of the given unit type, taking into account upgrades */
     virtual int maxEnergy(UnitType unit) const = 0;

@@ -6,6 +6,8 @@
 #include <BWAPI/Unit.h>
 #include <BWAPI/Filters.h>
 
+#include <cstdarg>
+
 namespace BWAPI
 {
   GameWrapper Broodwar;
@@ -20,7 +22,54 @@ namespace BWAPI
   {
     this->pingMinimap(p.x, p.y);
   }
-
+  void Game::vSendText(const char *format, va_list arg)
+  {
+    this->vSendTextEx(false, format, arg);
+  }
+  void Game::sendText(const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vSendTextEx(false, format, ap);
+    va_end(ap);
+  }
+  void Game::sendTextEx(bool toAllies, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vSendTextEx(toAllies, format, ap);
+    va_end(ap);
+  };
+  void Game::printf(const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vPrintf(format, ap);
+    va_end(ap);
+  };
+  //--------------------------------------------- HAS POWER --------------------------------------------------
+  bool Game::hasPower(int tileX, int tileY, UnitType unitType) const
+  {
+    if ( unitType.isValid() && unitType < UnitTypes::None )
+      return hasPowerPrecise( tileX*32 + unitType.tileWidth()*16, tileY*32 + unitType.tileHeight()*16, unitType);
+    return hasPowerPrecise( tileX*32, tileY*32, UnitTypes::None);
+  }
+  bool Game::hasPower(TilePosition position, UnitType unitType) const
+  {
+    return hasPower(position.x, position.y, unitType);
+  }
+  bool Game::hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType) const
+  {
+    return hasPowerPrecise( tileX*32 + tileWidth*16, tileY*32 + tileHeight*16, unitType);
+  }
+  bool Game::hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType) const
+  {
+    return hasPower(position.x, position.y, tileWidth, tileHeight, unitType);
+  }
+  bool Game::hasPowerPrecise(Position position, UnitType unitType) const
+  {
+    return hasPowerPrecise(position.x, position.y, unitType);
+  }
   //------------------------------------------ MAP DATA -----------------------------------------------
   bool Game::isWalkable(BWAPI::WalkPosition position) const
   {
@@ -84,7 +133,56 @@ namespace BWAPI
   {
     return this->getRegionAt(position.x, position.y);
   }
-
+  //------------------------------------------ DRAW TEXT ----------------------------------------------
+  void Game::drawText(int ctype, int x, int y, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(ctype, x, y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextMap(int x, int y, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Map, x, y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextMouse(int x, int y, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Mouse, x, y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextScreen(int x, int y, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Screen, x, y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextMap(Position p, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Map, p.x, p.y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextMouse(Position p, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Mouse, p.x, p.y, format, ap);
+    va_end(ap);
+  }
+  void Game::drawTextScreen(Position p, const char *format, ...)
+  {
+    va_list ap;
+    va_start(ap,format);
+    this->vDrawText(BWAPI::CoordinateType::Screen, p.x, p.y, format, ap);
+    va_end(ap);
+  }
   //------------------------------------------ DRAW BOX -----------------------------------------------
   void Game::drawBoxMap(int left, int top, int right, int bottom, Color color, bool isSolid)
   {

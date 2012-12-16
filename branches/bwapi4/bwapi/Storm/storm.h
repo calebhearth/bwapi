@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
-#include <WinUser.h>
-#include <Winsock.h>
+#include <winuser.h>
+#include <winsock.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <ddraw.h>
@@ -31,6 +31,22 @@
 
 #ifndef SSIZEMIN
 #define SSIZEMIN(x,y) (SMAX(sizeof(x),sizeof(y)))
+#endif
+
+#ifndef __in_opt
+#define __in_opt
+#endif
+#ifndef __in
+#define __in
+#endif
+#ifndef __out
+#define __out
+#endif
+#ifndef __inout
+#define __inout
+#endif
+#ifndef __out_opt
+#define __out_opt
 #endif
 
 #ifndef BLIZZ_STRUCTS

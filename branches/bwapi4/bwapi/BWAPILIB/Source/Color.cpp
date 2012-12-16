@@ -119,8 +119,7 @@ namespace BWAPI
     const Color Grey(74);
   }
   Color::Color(int id) : Type(id)
-  {
-  }
+  {}
   int getRGBIndex(int red, int green, int blue)
   {
     static BYTE closestColor[64][64][64];
@@ -148,5 +147,13 @@ namespace BWAPI
   int Color::blue() const
   {
     return this->isValid() ? defaultPalette[this->getID()].rgbBlue : 0;
+  }
+
+  namespace Text
+  {
+    std::ostream &operator << (std::ostream &out, const Text::Enum &t)
+    {
+      return out << (char)t;
+    };
   }
 }
