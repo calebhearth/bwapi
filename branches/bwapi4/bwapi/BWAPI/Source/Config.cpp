@@ -43,7 +43,7 @@ std::string LoadConfigString(const char *pszKey, const char *pszItem, const char
 {
   char buffer[MAX_PATH];
   GetPrivateProfileString(pszKey, pszItem, pszDefault ? pszDefault : "", buffer, MAX_PATH, configPath.c_str());
-  return std::string(_strupr(buffer));
+  return std::string(buffer);
 }
 int LoadConfigInt(const char *pszKey, const char *pszItem, const int iDefault)
 {
@@ -76,7 +76,7 @@ void InitPrimaryConfig()
   // Get screenshot format
   screenshotFmt = LoadConfigString("starcraft", "screenshots", "gif");
   if ( !screenshotFmt.empty() )
-    screenshotFmt.insert(screenshotFmt.begin(), '.');
+    screenshotFmt.insert(0, ".");
 
   // Check if warning dialogs should be shown
   showWarn = LoadConfigString("config", "show_warnings", "YES") == "YES";

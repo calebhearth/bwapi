@@ -1,6 +1,7 @@
 #include "GameImpl.h"
 #include <Util/Foreach.h>
-#include <math.h>
+#include <cmath>
+#include <ctime>
 
 #include "../Detours.h"
 #include "../DLLMain.h"
@@ -440,16 +441,20 @@ namespace BWAPI
           hTournamentModule = NULL;
 
           // Create our error string
-          char szMissingTournFunctions[64];
-          szMissingTournFunctions[0] = 0;
+          std::string missing;
           if ( !newTournamentAI )
-            strcpy(szMissingTournFunctions, "newTournamentAI");
+            missing += "newTournamentAI";
+          
           if ( !newTournamentModule )
-            strcat(szMissingTournFunctions, !szMissingTournFunctions[0] ? "newTournamentModule function" : " and newTournamentModule functions");
-          else
-            strcat(szMissingTournFunctions, " function");
+          {
+            if ( !missing.empty() )
+              missing += " and ";
+            missing += "newTournamentModule";
+          }
+          missing += " function";
+
           // print error message
-          printf("%cERROR: Failed to find the %s in tournament module.", 6, szMissingTournFunctions);
+          Broodwar << Text::Red << "ERROR: Failed to find the " << missing << " in tournament module." << std::endl;
         }
       }
       this->bTournamentMessageAppeared = false;
@@ -459,66 +464,61 @@ namespace BWAPI
 
       // Connect to external module if it exists
       externalModuleConnected = false;
-      char *pszModuleName = "<Nothing>";
+      std::string moduleName("<Nothing>");
       if ( server.isConnected() ) //check to see if the server is connected to the client
       {
         // assign a blank AI module to our variable
         this->client = new AIModule();
         // Hide success strings in tournament mode
         if ( !hTournamentModule )
-          printf("BWAPI: Connected to AI Client process");
+          Broodwar << "BWAPI: Connected to AI Client process" << std::endl;
         // Set the module string
-        pszModuleName = "<Client Connection>";
+        moduleName = "<Client Connection>";
         externalModuleConnected = true;
       }
       else // if not, load the AI module DLL
       {
         // declare/assign variables
-        char szDllPath[MAX_PATH];
-        hAIModule         = NULL;
+        hAIModule         = nullptr;
 
         std::string aicfg = LoadConfigString("ai", BUILD_DEBUG ? "ai_dbg" : "ai", "_NULL");
-        strncpy(szDllPath, aicfg.c_str(), MAX_PATH);
-        szDllPath[MAX_PATH-1] = '\0';
+        std::stringstream aiList(aicfg);
 
-        // Tokenize and retrieve correct path for the instance number
-        char *pszDll = strtok(szDllPath, ",");
-        for ( unsigned int i = 0; i < gdwProcNum-1; ++i )
-        {
-          char *pszNext = strtok(NULL, ",");
-          if ( !pszNext )
-            break;
-          pszDll = pszNext;
-        }
+        // Get DLL name
+        std::string dll = aicfg.substr(0, aicfg.find_first_of(','));
 
-        // Clean revision info
-        char *pszLoadRevCheck = strchr(pszDll, ':');
-        if ( pszLoadRevCheck )
-          pszLoadRevCheck[0] = 0;
+        // Skip to current intended instance
+        for ( int i = 0; i < (int)gdwProcNum && aiList; ++i )
+          std::getline(aiList, dll, ',');
 
-        // Remove spaces
-        while ( isspace(pszDll[0]) )
-          ++pszDll;
+        // ignore the deprecated revision extension
+        size_t tmp = dll.find_first_of(':');
+        if ( tmp != std::string::npos )
+          dll.erase(tmp);
+
+        // Trim leading and trailing spaces
+        while ( isspace(dll.front()) )
+          dll.erase(0);
+        while ( isspace(dll.back())  )
+          dll.pop_back();
 
         // Check if string was loaded
         if ( aicfg == "_NULL" )
-        {
           BWAPIError("Could not find %s under ai in \"%s\".", BUILD_DEBUG ? "ai_dbg" : "ai", configPath.c_str());
-        }
-        else
-        {
-          // Load DLL
-          hAIModule = LoadLibrary(pszDll);
-        }
+        else  // Load DLL
+          hAIModule = LoadLibrary(dll.c_str());
+
         if ( !hAIModule )
         {
           //if hAIModule is a NULL pointer, there there was a problem when trying to load the AI Module
           this->client = new AIModule();
+
           // enable flags to allow interaction
           Broodwar->enableFlag(Flag::CompleteMapInformation);
           Broodwar->enableFlag(Flag::UserInput);
+
           // print error string
-          printf("%cERROR: Failed to load the AI Module \"%s\".", 6, pszDll);
+          Broodwar << Text::Red << "ERROR: Failed to load the AI Module \"" << dll << "\"." << std::endl;
           externalModuleConnected = false;
         }
         else
@@ -534,28 +534,27 @@ namespace BWAPI
 
             // Hide success strings in tournament mode
             if ( !hTournamentModule )
-              printf("%cLoaded the AI Module: %s", 7, pszDll);
+              Broodwar << Text::Green << "Loaded the AI Module: " << dll << std::endl;
             externalModuleConnected = true;
 
-            // Strip the path from the module name
-            pszModuleName = pszDll;
-            char *pTmp = strchr(pszModuleName, '/');
-            if ( pTmp )
-              pszModuleName = &pTmp[1];
+            moduleName = dll;
 
-            pTmp = strchr(pszModuleName, '\\');
-            if ( pTmp )
-              pszModuleName = &pTmp[1];
+            // Strip the path from the module name
+            size_t tmp = moduleName.find_last_of("/\\");
+            if ( tmp != std::string::npos )
+              moduleName.erase(0, tmp+1);
           }
           else  // If the AIModule function is not found
           {
             // Create a dummy AI module
             this->client = new AIModule();
+
             // Enable flags to allow interaction
             Broodwar->enableFlag(Flag::CompleteMapInformation);
             Broodwar->enableFlag(Flag::UserInput);
+
             // Print an error message
-            printf("%cERROR: Failed to find the newAIModule function in %s", 6, pszDll);
+            Broodwar << Text::Red << "ERROR: Failed to find the newAIModule function in " << dll << std::endl;
             externalModuleConnected = false;
           }
         }
@@ -566,7 +565,7 @@ namespace BWAPI
       this->startedClient = true;
       // Don't send text in tournament mode
       if ( !hTournamentModule )
-        sendText("BWAPI r" SVN_REV_STR " " BUILD_STR " is now live using \"%s\".", pszModuleName );
+        sendText("BWAPI r" SVN_REV_STR " " BUILD_STR " is now live using \"%s\".", moduleName.c_str() );
     }
 
     if ( !this->bTournamentMessageAppeared && 
@@ -893,7 +892,7 @@ namespace BWAPI
             drawLineMap(r->getCenter(), neighbor->getCenter(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
         }
         if ( r == selectedRgn )
-          drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %p\nGroupID: %u", 4, r->tileCount, r->pathCount, r->properties, r->groupIndex);
+          drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %u\nGroupID: %u", 4, r->tileCount, r->pathCount, r->defencePriority, r->groupIndex);
       }
       for ( int i = 0; i < 4; ++i )
       {
@@ -1029,6 +1028,9 @@ namespace BWAPI
     out[n] = 0;
     return n;
   }
+
+  void ignore_invalid_parameter(const wchar_t*, const wchar_t*, const wchar_t*, unsigned int, uintptr_t)
+  {}
   //---------------------------------------------- ON GAME END -----------------------------------------------
   void GameImpl::onGameEnd()
   {
@@ -1042,24 +1044,6 @@ namespace BWAPI
       gszDesiredReplayName[0] = '\0';
 
       // Set replay envvars
-      SYSTEMTIME systemTime;
-      GetSystemTime(&systemTime);
-      char szBuf[64];
-      sprintf(szBuf, "%04u", systemTime.wYear);
-      SetEnvironmentVariable("YEAR", &szBuf[2]);
-      sprintf(szBuf, "%02u", systemTime.wMonth);
-      SetEnvironmentVariable("MONTH", szBuf);
-      sprintf(szBuf, "%02u", systemTime.wDay);
-      SetEnvironmentVariable("DAY", szBuf);
-      sprintf(szBuf, "%02u", systemTime.wHour);
-      SetEnvironmentVariable("HOUR", szBuf);
-      sprintf(szBuf, "%02u", systemTime.wMinute);
-      SetEnvironmentVariable("MINUTE", szBuf);
-      sprintf(szBuf, "%02u", systemTime.wSecond);
-      SetEnvironmentVariable("SECOND", szBuf);
-      sprintf(szBuf, "%03u", systemTime.wMilliseconds);
-      SetEnvironmentVariable("MILLISECOND", szBuf);
-
       SetEnvironmentVariable("BOTNAME",    rn_BWAPIName.c_str());
       SetEnvironmentVariable("BOTNAME6",   rn_BWAPIName.substr(0,6).c_str());
       SetEnvironmentVariable("BOTRACE",    rn_BWAPIRace.c_str());
@@ -1069,8 +1053,30 @@ namespace BWAPI
       SetEnvironmentVariable("ENEMYNAMES", rn_EnemiesNames.c_str());
       SetEnvironmentVariable("ENEMYRACES", rn_EnemiesRaces.c_str());
 
+      // Expand environment strings to szInterPath
       char szInterPath[MAX_PATH] = { 0 };
       ExpandEnvironmentStrings(autoMenuSaveReplay.c_str(), szInterPath, MAX_PATH);
+
+      std::string pathStr(szInterPath);
+
+      // Double any %'s remaining in the string so that strftime executes correctly
+      size_t tmp = std::string::npos;
+      while ( tmp = pathStr.find_last_of('%', tmp-1), tmp != std::string::npos )
+        pathStr.insert(tmp, "%");
+
+      // Replace the placeholder $'s with %'s for the strftime call
+      std::replace(pathStr.begin(), pathStr.end(), '$', '%');
+
+      // Get time
+      time_t tmpTime = time(nullptr);
+      tm *timeInfo = localtime(&tmpTime);
+      
+      // Expand time strings
+      _invalid_parameter_handler old = _set_invalid_parameter_handler(&ignore_invalid_parameter);
+      strftime(szInterPath, sizeof(szInterPath), pathStr.c_str(), timeInfo);
+      _set_invalid_parameter_handler(old);
+
+      // Stuff below needs to be replaced
       fixPathString(szInterPath, gszDesiredReplayName, MAX_PATH);
 
       char *last = strrchr(gszDesiredReplayName, '\\');

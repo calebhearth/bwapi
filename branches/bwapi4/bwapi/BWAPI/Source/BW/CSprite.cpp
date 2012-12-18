@@ -5,7 +5,7 @@ namespace BW
 {
   void CSprite::draw()
   {
-    u8 color = 0;
+    //u8 color = 0;
     //u8 color = getColourID(this->playerID);
     
     //imgDrawPalettteIndex[2] = tunit_image_palette[2*color];

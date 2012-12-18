@@ -264,13 +264,18 @@ void setReplayName(char *pOutFilename, const char *pInFileName)
     strcpy(pOutFilename, pInFileName);
   }
 }
+
+#ifdef _DEBUG
+#define DBG_HOOK(x) DebugHookLog(__FUNCTION__,x)
+#else
+#define DBG_HOOK(x)
+#endif
+
 void DebugHookLog(const char *pszFxn, const char *pszFile)
 {
-#ifdef _DEBUG
   static std::ofstream log(installPath + "\\Errors\\hookdebug.log", std::ios_base::out | std::ios_base::app);
   if ( log )
     log << pszFxn << '(' << pszFile << ')' << std::endl;
-#endif
 }
 BOOL WINAPI _DeleteFile(LPCSTR lpFileName)
 {
@@ -279,7 +284,7 @@ BOOL WINAPI _DeleteFile(LPCSTR lpFileName)
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog(__FUNCTION__, lpFileName);
+  DBG_HOOK(lpFileName);
 
   // call the original function
   if ( _DeleteFileOld )
@@ -293,7 +298,7 @@ DWORD WINAPI _GetFileAttributes(LPCSTR lpFileName)
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog(__FUNCTION__, lpFileName);
+  DBG_HOOK(lpFileName);
 
   // call the original function
   if ( _GetFileAttributesOld )
@@ -308,7 +313,7 @@ HANDLE WINAPI _CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShar
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog(__FUNCTION__, lpFileName);
+  DBG_HOOK(lpFileName);
 
   // call the original function
   if ( _CreateFileOld )

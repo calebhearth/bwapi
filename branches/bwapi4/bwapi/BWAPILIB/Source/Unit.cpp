@@ -170,7 +170,8 @@ namespace BWAPI
     Unitset loaded(this->getLoadedUnits());
 
     // Decrease the space for each loaded unit
-    std::for_each(loaded.begin(), loaded.end(), [&](Unit *u){ space -= u->getType().spaceRequired(); });
+    for ( auto u = loaded.begin(); u != loaded.end(); ++u )
+      space -= u->getType().spaceRequired();
 
     // Return the space available
     return std::max(space, 0);
