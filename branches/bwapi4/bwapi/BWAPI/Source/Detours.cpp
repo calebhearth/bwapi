@@ -26,26 +26,25 @@
 
 bool hideHUD;
 std::string gDesiredReplayName;
-//char gszDesiredReplayName[MAX_PATH];
 
 void *leakUIClassLoc;
 void *leakUIGrpLoc;
 
-BOOL   (STORMAPI *_SNetLeaveGameOld)(int type);
-int    (STORMAPI *_SStrCopyOld)(char *dest, const char *source, int size);
-BOOL   (STORMAPI *_SNetReceiveMessageOld)(int *senderplayerid, char **data, int *databytes);
-BOOL   (STORMAPI *_SFileOpenFileExOld)(HANDLE hMpq, const char *szFileName, DWORD dwSearchScope, HANDLE *phFile);
-BOOL   (STORMAPI *_SFileOpenFileOld)(const char *filename, HANDLE *phFile);
-void*  (STORMAPI *_SMemAllocOld)(size_t amount, char *logfilename, int logline, char defaultValue);
-BOOL   (STORMAPI *_SNetSendTurnOld)(char *data, unsigned int databytes);
-BOOL   (STORMAPI *_SDrawCaptureScreenOld)(const char *pszOutput);
-HANDLE (WINAPI   *_FindFirstFileOld)(LPCSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData);
-BOOL   (WINAPI   *_DeleteFileOld)(LPCTSTR lpFileName);
-DWORD  (WINAPI   *_GetFileAttributesOld)(LPCTSTR lpFileName);
-HANDLE (WINAPI   *_CreateFileOld)(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
-HWND   (WINAPI   *_CreateWindowExOld)(DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
-VOID   (WINAPI   *_SleepOld)(DWORD dwMilliseconds);
-HANDLE (WINAPI   *_CreateThreadOld)(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
+DECL_OLDFXN(SNetLeaveGame);
+DECL_OLDFXN(SStrCopy);
+DECL_OLDFXN(SNetReceiveMessage);
+DECL_OLDFXN(SFileOpenFileEx);
+DECL_OLDFXN(SFileOpenFile);
+DECL_OLDFXN(SMemAlloc);
+DECL_OLDFXN(SNetSendTurn);
+DECL_OLDFXN(SDrawCaptureScreen);
+DECL_OLDFXN(FindFirstFile);
+DECL_OLDFXN(DeleteFile);
+DECL_OLDFXN(GetFileAttributes);
+DECL_OLDFXN(CreateFile);
+DECL_OLDFXN(CreateWindowEx);
+DECL_OLDFXN(Sleep);
+DECL_OLDFXN(CreateThread);
 
 //------------------------------------------------ RANDOM RACE --------------------------------------------------
 u8 savedRace[PLAYABLE_PLAYER_COUNT];
@@ -121,17 +120,13 @@ bool __fastcall TriggerActionReplacement(BW::Triggers::Action *pAction)
 //--------------------------------------------- CREATE THREAD ------------------------------------------------
 HANDLE WINAPI _CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
 {
-  HANDLE rval = NULL;     // return value
+  auto CreateThreadProc = _CreateThreadOld ? _CreateThreadOld : &CreateThread;
+  
   DWORD dwThreadId = 0;   // Local thread ID for thread labelling
-
-  // Call the original function to obtain return val and thread ID
-  if ( _CreateThreadOld )
-    rval = _CreateThreadOld(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, &dwThreadId);
-  else
-    rval = CreateThread(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, &dwThreadId);
+  HANDLE rval = CreateThreadProc(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, &dwThreadId);
 
   // Register the created thread
-  if ( rval != NULL )
+  if ( rval != nullptr )
     RegisterThreadName("Starcraft Broodwar", dwThreadId );
 
   // Perform the expected behaviour if lpThreadId was provided
@@ -147,10 +142,8 @@ VOID WINAPI _Sleep(DWORD dwMilliseconds)
   if ( dwMilliseconds == 1500 ) // Main menu timer
     return;
 
-  if ( _SleepOld )
-    _SleepOld(dwMilliseconds);
-  else
-    Sleep(dwMilliseconds);
+  auto SleepProc = _SleepOld ? _SleepOld : &Sleep;
+  SleepProc(dwMilliseconds);
 }
 
 //------------------------------------------- DIRECT DRAW INIT -----------------------------------------------

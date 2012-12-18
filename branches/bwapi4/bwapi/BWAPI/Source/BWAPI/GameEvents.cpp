@@ -1084,7 +1084,6 @@ namespace BWAPI
         CreateDirectory(pathStr.substr(0,pos).c_str(), nullptr);
 
       // Copy to global desired replay name
-      //strcpy(::gszDesiredReplayName, pathStr.c_str());
       gDesiredReplayName = pathStr;
     }
 
