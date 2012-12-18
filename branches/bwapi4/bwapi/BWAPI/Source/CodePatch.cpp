@@ -87,7 +87,7 @@ void ApplyCodePatches()
   (FARPROC&)_SDrawRealizePaletteOld = HackUtil::PatchImport("storm.dll", 354, &_SDrawRealizePalette);
   (FARPROC&)_SDrawUnlockSurfaceOld  = HackUtil::PatchImport("storm.dll", 356, &_SDrawUnlockSurface);
   (FARPROC&)_SDrawUpdatePaletteOld  = HackUtil::PatchImport("storm.dll", 357, &_SDrawUpdatePalette);
-  (FARPROC&)_CreateWindowExAOld     = HackUtil::PatchImport("user32.dll", "CreateWindowExA", &_CreateWindowExA);
+  (FARPROC&)_CreateWindowExOld      = HackUtil::PatchImport("user32.dll", "CreateWindowExA", &_CreateWindowEx);
   
   // Other Detours
   (FARPROC&)_DeleteFileOld        = HackUtil::PatchImport("kernel32.dll", "DeleteFileA", &_DeleteFile);

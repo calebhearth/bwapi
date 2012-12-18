@@ -59,8 +59,6 @@ std::string LoadRegString(const char *pszKeyName, const char *pszValueName)
 bool isPrimaryConfigInitialized = false;
 void InitPrimaryConfig()
 {
-  size_t tmp;
-
   // Return if already initialized
   if ( isPrimaryConfigInitialized )
     return;

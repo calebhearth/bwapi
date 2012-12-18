@@ -795,7 +795,7 @@ namespace BWAPI
     {
       foreach ( auto u, this->BWAPIPlayer->units )
       {
-        auto raw = ((UnitImpl*)u)->getOriginalRawData;
+//        auto raw = ((UnitImpl*)u)->getOriginalRawData;
         if ( u->getRemainingBuildTime() )
           Broodwar << u->getRemainingBuildTime() << std::endl;
       }
@@ -1040,9 +1040,6 @@ namespace BWAPI
 
     if ( autoMenuSaveReplay != "" && !this->isReplay() )
     {
-      // Set desired replay name to null
-      gszDesiredReplayName[0] = '\0';
-
       // Set replay envvars
       SetEnvironmentVariable("BOTNAME",    rn_BWAPIName.c_str());
       SetEnvironmentVariable("BOTNAME6",   rn_BWAPIName.substr(0,6).c_str());
@@ -1054,10 +1051,10 @@ namespace BWAPI
       SetEnvironmentVariable("ENEMYRACES", rn_EnemiesRaces.c_str());
 
       // Expand environment strings to szInterPath
-      char szInterPath[MAX_PATH] = { 0 };
-      ExpandEnvironmentStrings(autoMenuSaveReplay.c_str(), szInterPath, MAX_PATH);
+      char szTmpPath[MAX_PATH] = { 0 };
+      ExpandEnvironmentStrings(autoMenuSaveReplay.c_str(), szTmpPath, MAX_PATH);
 
-      std::string pathStr(szInterPath);
+      std::string pathStr(szTmpPath);
 
       // Double any %'s remaining in the string so that strftime executes correctly
       size_t tmp = std::string::npos;
@@ -1073,27 +1070,22 @@ namespace BWAPI
       
       // Expand time strings
       _invalid_parameter_handler old = _set_invalid_parameter_handler(&ignore_invalid_parameter);
-      strftime(szInterPath, sizeof(szInterPath), pathStr.c_str(), timeInfo);
+        strftime(szTmpPath, sizeof(szTmpPath), pathStr.c_str(), timeInfo);
       _set_invalid_parameter_handler(old);
+      pathStr = szTmpPath;
 
-      // Stuff below needs to be replaced
-      fixPathString(szInterPath, gszDesiredReplayName, MAX_PATH);
+      // Remove illegal characters
+      pathStr.erase(std::remove_if(pathStr.begin(), pathStr.end(), [](char c){ return iscntrl(c) ||  c == '?' || c == '*' ||
+                                                                                c == '<' ||  c == '|' || c == '>' || c == '"' ||
+                                                                                c == ':';}), pathStr.end());
+      // Create the directory tree
+      size_t pos = 0;
+      while ( pos = pathStr.find_first_of("/\\", pos+1), pos != std::string::npos )
+        CreateDirectory(pathStr.substr(0,pos).c_str(), nullptr);
 
-      char *last = strrchr(gszDesiredReplayName, '\\');
-      char szDirectory[MAX_PATH] = { 0 };
-      strncpy(szDirectory, gszDesiredReplayName, last ? last - gszDesiredReplayName : 0);
-
-      char *current = strchr(szDirectory, '\\');
-      while ( current )
-      {
-        char lower[MAX_PATH] = { 0 };
-        strncpy(lower, szDirectory, current - szDirectory);
-        if ( GetFileAttributes(lower) == INVALID_FILE_ATTRIBUTES )
-          CreateDirectory(lower, NULL);
-        current = strchr(current+1, '\\');
-      }
-      if ( GetFileAttributes(szDirectory) == INVALID_FILE_ATTRIBUTES )
-        CreateDirectory(szDirectory, NULL);
+      // Copy to global desired replay name
+      //strcpy(::gszDesiredReplayName, pathStr.c_str());
+      gDesiredReplayName = pathStr;
     }
 
     if ( !this->calledMatchEnd )

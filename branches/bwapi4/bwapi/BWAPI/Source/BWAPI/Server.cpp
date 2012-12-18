@@ -27,14 +27,13 @@ namespace BWAPI
 
   const BWAPI::GameInstance GameInstance_None(0xFFFFFFFF, false, 0);
   Server::Server()
+    : connected(false)
+    , localOnly(false)
+    , data(nullptr)
+    , gameTable(nullptr)
+    , gameTableIndex(-1)
+    , mapFileHandle(nullptr)
   {
-    connected = false;
-    localOnly = false;
-    data      = nullptr;
-    gameTable = nullptr;
-    gameTableIndex  = -1;
-    mapFileHandle   = NULL;
-
     // Init primary config if not already done so
     InitPrimaryConfig();
 
@@ -103,11 +102,11 @@ namespace BWAPI
       } // if gameTableFileHandle
 
       // Create the share name
-      static char szShareName[MAX_PATH] = { 0 };
-      sprintf(szShareName, "Local\\bwapi_shared_memory_%u", processID);
+      std::stringstream ssShareName("Local\\bwapi_shared_memory_");
+      ssShareName << processID;
 
       // Create the file mapping and shared memory
-      mapFileHandle = CreateFileMapping( INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, size, szShareName );
+      mapFileHandle = CreateFileMapping( INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, size, ssShareName.str().c_str() );
       if ( mapFileHandle )
         data = (GameData*)MapViewOfFile(mapFileHandle, FILE_MAP_WRITE | FILE_MAP_READ, 0, 0, size);
     } // if serverEnabled

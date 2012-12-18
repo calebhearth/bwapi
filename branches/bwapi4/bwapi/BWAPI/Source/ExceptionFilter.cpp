@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstring>
 #include <ctime>
+#include <fstream>
 
 #include <Dbghelp.h>
 #include <tlhelp32.h>
@@ -54,7 +55,7 @@ void GetCurrentProductVersion(WORD &w1, WORD &w2, WORD &w3, WORD &w4)
 
   // Get path to Starcraft.exe
   char szExecutableName[MAX_PATH];
-  if ( GetModuleFileName(NULL, szExecutableName, MAX_PATH) )
+  if ( GetModuleFileName(nullptr, szExecutableName, MAX_PATH) )
   {
     // Get the File Version information
     DWORD dwUnused, dwVersionSize;
@@ -77,7 +78,6 @@ void GetCurrentProductVersion(WORD &w1, WORD &w2, WORD &w3, WORD &w4)
         w2 = LOWORD(pFileInfo->dwProductVersionMS);
         w3 = HIWORD(pFileInfo->dwProductVersionLS);
         w4 = LOWORD(pFileInfo->dwProductVersionLS);
-
       }
       free(pVersionData);
     } // ^if dwVerSize
@@ -93,11 +93,13 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
   DDrawDestroy();
   ShowCursor(TRUE);
 
+  // Create the log file path
+  char szLogFilename[MAX_PATH];
   time_t myTime = time(nullptr);
-  std::string logFilename(installPath + "Errors\\" + ctime(&myTime) + ".txt");
-
+  strftime(szLogFilename, sizeof(szLogFilename), "Errors\\%Y %b %d.txt", localtime(&myTime));
+  
   // Create the file
-  FILE *hFile = fopen( logFilename.c_str(), "a+");
+  FILE *hFile = fopen( (installPath + szLogFilename).c_str(), "a+");
   if ( hFile )
   {
     fprintf(hFile, "\n//////////////////////////////////////////////////\n");
@@ -229,7 +231,19 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
       }
       fclose(hBWSymbols);
     }
-
+    /*std::ifstream bwSymbols( installPath + "bwapi-data\\data\\Broodwar.map");
+    if ( bwSymbols )
+    {
+      DWORD dwAddr = 0, dwSize = 0;
+      std::string symName("");
+      while ( bwSymbols >> symName >> std::hex >> dwAddr >> dwSize )
+      {
+        _customSymbolStore sym = { symName, dwAddr, dwAddr + dwSize };
+        customSymbols.push_back(sym);
+      }
+      bwSymbols.close();
+    }*/
+    
     // Walk, don't run
     if ( _StackWalk && _SymFunctionTableAccess && _SymGetModuleBase )
     {
@@ -238,10 +252,10 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
                           hThread, 
                           &sf, 
                           &c, 
-                          NULL, 
+                          nullptr, 
                           _SymFunctionTableAccess,
                           _SymGetModuleBase,
-                          NULL) )
+                          nullptr) )
       {
         DWORD dwOffset = sf.AddrPC.Offset;
         fprintf(hFile, "  %-16s  0x%08X    ", getModuleNameFrom((LPCVOID)dwOffset).c_str(), dwOffset);
@@ -272,10 +286,8 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 
           if ( !foundSomething )
           {
-            for ( std::vector<_customSymbolStore>::const_iterator i = customSymbols.begin(),
-                  iend = customSymbols.end();
-                  i != iend;
-                  ++i )
+            // Iterate custom symbols, @TODO: make this a map?
+            for ( auto i = customSymbols.cbegin(); i != customSymbols.end(); ++i )
             {
               if ( dwOffset >= i->dwStartAddress && dwOffset < i->dwEndAddress )
               {

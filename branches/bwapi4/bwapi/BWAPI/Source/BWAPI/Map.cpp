@@ -246,13 +246,11 @@ namespace BWAPI
     std::string filename = Map::getPathName();
 
     // Open File
-    HANDLE hFile = NULL;
-    if ( !SFileOpenFileEx(NULL, filename.c_str(), SFILE_FROM_ABSOLUTE, &hFile) || !hFile)
+    HANDLE hFile = nullptr;
+    if ( !SFileOpenFileEx(nullptr, filename.c_str(), SFILE_FROM_ABSOLUTE, &hFile) || !hFile)
     {
-      char szPath[MAX_PATH];
-      SStrCopy(szPath, filename.c_str(), MAX_PATH);
-      SStrNCat(szPath, "\\staredit\\scenario.chk", MAX_PATH);
-      if ( !SFileOpenFileEx(NULL, szPath, SFILE_FROM_MPQ, &hFile) || !hFile)
+      filename += "\\staredit\\scenario.chk";
+      if ( !SFileOpenFileEx(nullptr, filename.c_str(), SFILE_FROM_MPQ, &hFile) || !hFile)
         return std::string("Error_map_cannot_be_opened");
     }
 

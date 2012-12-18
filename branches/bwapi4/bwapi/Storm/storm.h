@@ -430,7 +430,7 @@ SNetSendMessage(
 BOOL
 STORMAPI
 SNetSendTurn(
-      __in  void    *data,
+      __in  char    *data,
       __in  size_t  databytes);
 
 /*  SNetSetGameMode @ 130

@@ -27,61 +27,52 @@ namespace BWAPI
     this->autoMenuRestartGame = LoadConfigString("auto_menu", "auto_restart", "OFF");
     this->autoMenuGameName    = LoadConfigString("auto_menu", "game");
 
-    char buffer[MAX_PATH];
+    // Load map string
     std::string cfgMap = LoadConfigString("auto_menu", "map", "");
-    strncpy(buffer, cfgMap.c_str(), MAX_PATH);
-    buffer[MAX_PATH-1] = '\0';
+    std::replace(cfgMap.begin(), cfgMap.end(), '/', '\\');
 
-    for ( int i = strlen(buffer); i; --i )
+    // If the auto-menu map field was changed
+    if ( this->lastAutoMapString != cfgMap )
     {
-      if ( buffer[i] == '/' )
-        buffer[i] = '\\';
-    }
-    if ( lastAutoMapString != buffer )
-    {
-      lastAutoMapString = buffer;
+      this->lastAutoMapString = cfgMap;
 
-      char szMapPathTemp[MAX_PATH];
-      strcpy(szMapPathTemp, buffer);
-      char *pszPathEnd = strrchr(szMapPathTemp, '\\');
-      if ( pszPathEnd )
-        pszPathEnd[1] = 0;
-      autoMenuMapPath = std::string(szMapPathTemp);
-
-      autoMapPool.clear();
-      if ( !autoMenuMapPath.empty() )
+      // Get just the directory
+      this->autoMenuMapPath.clear();
+      size_t tmp = cfgMap.find_last_of("\\/\n");
+      if ( tmp != std::string::npos )
+        this->autoMenuMapPath = cfgMap.substr(0, tmp);
+      
+      // Iterate files in directory
+      WIN32_FIND_DATA finder = { 0 };
+      HANDLE hFind = FindFirstFile(cfgMap.c_str(), &finder);
+      if ( hFind != INVALID_HANDLE_VALUE )
       {
-        WIN32_FIND_DATA finder = { 0 };
-
-        HANDLE hFind = FindFirstFile(buffer, &finder);
-        if ( hFind != INVALID_HANDLE_VALUE )
+        do
         {
-          BOOL bResult = TRUE;
-          while ( bResult )
+          if ( !(finder.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) )  // Check if found is not a directory
           {
-            // Check if found is not a directory
-            if ( !(finder.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) )
-            {
-              std::string finderStr = std::string(finder.cFileName);
-              if ( getFileType((autoMenuMapPath + finderStr).c_str()) )
-                autoMapPool.push_back( finderStr );
-            }
-            bResult = FindNextFile(hFind, &finder);
-          } // ^ loop
-          FindClose(hFind);
-        } // handle exists
-      } // map path exists
-      lastAutoMapEntry = 0;
-    }
+            // Convert to string and add to autoMapPool if the type is valid
+            std::string finderStr = std::string(finder.cFileName);
+            if ( getFileType((this->autoMenuMapPath + finderStr).c_str()) )
+              this->autoMapPool.push_back( finderStr );
+          }
+        } while ( FindNextFile(hFind, &finder) );
+        FindClose(hFind);
+      } // handle exists
+      
+      this->lastAutoMapEntry = 0;
+    } // if map was changed^
+
+    // Get map iteration config
     std::string newMapIteration = LoadConfigString("auto_menu", "mapiteration", "RANDOM");
-    if ( autoMapIteration != newMapIteration )
+    if ( this->autoMapIteration != newMapIteration )
     {
-      autoMapIteration = newMapIteration;
-      lastAutoMapEntry = 0;
+      this->autoMapIteration = newMapIteration;
+      this->lastAutoMapEntry = 0;
     }
 
-    autoMenuLanMode      = LoadConfigString("auto_menu", "lan_mode", "Local Area Network (UDP)");
-    autoMenuRace      = LoadConfigString("auto_menu", "race", "RANDOM");
+    autoMenuLanMode       = LoadConfigString("auto_menu", "lan_mode", "Local Area Network (UDP)");
+    autoMenuRace          = LoadConfigString("auto_menu", "race", "RANDOM");
     autoMenuEnemyRace[0]  = LoadConfigString("auto_menu", "enemy_race", "RANDOM");
     for ( unsigned int i = 1; i < 8; ++i )
     {
@@ -92,7 +83,7 @@ namespace BWAPI
         autoMenuEnemyRace[i] = autoMenuEnemyRace[0];
     }
 
-    autoMenuEnemyCount = clamp<int>(LoadConfigInt("auto_menu", "enemy_count", 1), 0, 7);
+    autoMenuEnemyCount  = clamp<int>(LoadConfigInt("auto_menu", "enemy_count", 1), 0, 7);
     autoMenuGameType    = LoadConfigString("auto_menu", "game_type", "MELEE");
     autoMenuSaveReplay  = LoadConfigString("auto_menu", "save_replay");
 
@@ -121,7 +112,7 @@ namespace BWAPI
         chosenEntry = lastAutoMapEntry++;
       }
       std::string chosen = this->autoMapPool[chosenEntry];
-      lastMapGen         = this->autoMenuMapPath + chosen;
+      this->lastMapGen   = this->autoMenuMapPath + chosen;
     }
   }
   //--------------------------------------------- GET LOBBY STUFF --------------------------------------------

@@ -18,18 +18,16 @@ void reconnect()
 
 int main(int argc, const char* argv[])
 {
-  const char* szDllPath = "";
-  std::string buff;
+  std::string dllPath;
 
   if ( argc >= 2 )
   {
-    szDllPath = argv[1];
+    dllPath = argv[1];
   }
   else
   {
     std::cout << "Enter path name to AI DLL: " << std::endl;
-    std::getline(std::cin, buff);
-    szDllPath = buff.c_str();
+    std::getline(std::cin, dllPath);
   }
   
   BWAPI::BWAPI_init();
@@ -55,7 +53,7 @@ int main(int argc, const char* argv[])
     std::cout << "entered match" << std::endl;
 
     AIModule* client = NULL;
-    HMODULE hMod = LoadLibraryA(szDllPath);
+    HMODULE hMod = LoadLibraryA(dllPath.c_str());
     if (hMod == NULL)
     {
       std::cerr << "ERROR: Failed to load the AI Module" << std::endl;

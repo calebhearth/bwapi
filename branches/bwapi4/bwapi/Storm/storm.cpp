@@ -31,7 +31,7 @@ HANDLE STORMAPI SNetRegisterEventHandler(int type, void (STORMAPI *sEvent)(PS_EV
 int STORMAPI SNetSelectGame(int a1, int a2, int a3, int a4, int a5, int *playerid) rInt;
 
 BOOL STORMAPI SNetSendMessage(int playerID, void *data, size_t databytes) rBool;
-BOOL STORMAPI SNetSendTurn(void *data, size_t databytes) rBool;
+BOOL STORMAPI SNetSendTurn(char *data, size_t databytes) rBool;
 
 BOOL STORMAPI SNetSetGameMode(DWORD modeFlags, bool makePublic) rBool;
 
