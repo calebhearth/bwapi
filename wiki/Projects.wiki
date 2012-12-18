@@ -36,16 +36,18 @@ This page contains links to other projects that make use of BWAPI.
   * [http://code.google.com/p/bwsal/ BWSAL]
 
 = Wrappers =
-  * JNIBWAPI: http://code.google.com/p/jnibwapi/ (Java)
-  * PyBW: http://code.google.com/p/pybw/ (Python)
-  * JBridge: http://code.google.com/p/bwapi-jbridge/ (Java)
-  * BWAPI-Lua: http://code.google.com/p/bwapi-lua/ (Lua)
-  * bwapi-mono-bridge: http://code.google.com/p/bwapi-mono-bridge/ (C# or any other .NET 2.0 language)
+  * JNIBWAPI: http://code.google.com/p/jnibwapi/ (Java)  
   * bwapi-ironruby: https://github.com/d-snp/bwapi-ironruby (Ruby on .Net or Mono)
   * Prologic: http://sourceforge.net/projects/prologic/ (Prolog)
 
 = Proxy Bots =
-  * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
+
+= Not actively maintained =
+  * PyBW: http://code.google.com/p/pybw/ (Python)
   * BWAPI-HSProxy: http://code.google.com/p/bwapi-hsproxy/ (Haskell)
-  * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
+  * bwapi-mono-bridge: http://code.google.com/p/bwapi-mono-bridge/ (C# or any other .NET 2.0 language)
+  * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
+  * BWAPI-Lua: http://code.google.com/p/bwapi-lua/ (Lua)
+  * JBridge: http://code.google.com/p/bwapi-jbridge/ (Java)
   * RProxyBot: http://github.com/d-snp/RProxyBot/ (Ruby)
+  * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
