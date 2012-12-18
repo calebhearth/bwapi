@@ -37,7 +37,6 @@ This page contains links to other projects that make use of BWAPI.
 
 = Wrappers =
   * JNIBWAPI: http://code.google.com/p/jnibwapi/ (Java)  
-  * bwapi-ironruby: https://github.com/d-snp/bwapi-ironruby (Ruby on .Net or Mono)
   * Prologic: http://sourceforge.net/projects/prologic/ (Prolog)
 
 = Proxy Bots =
@@ -51,3 +50,4 @@ This page contains links to other projects that make use of BWAPI.
   * JBridge: http://code.google.com/p/bwapi-jbridge/ (Java)
   * RProxyBot: http://github.com/d-snp/RProxyBot/ (Ruby)
   * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
+  * bwapi-ironruby: https://github.com/d-snp/bwapi-ironruby (Ruby on .Net or Mono)
