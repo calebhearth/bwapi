@@ -10,6 +10,7 @@ This page contains links to other projects that make use of BWAPI.
   * [http://www.broodwarai.com/forums/index.php?showtopic=1025 krasi0]
   * [http://code.google.com/p/bthai/ BTHAI]
   * [http://nova.wolfwork.com/ Nova]
+  * [http://code.google.com/p/aiurproject/ AIUR]
   * [http://code.google.com/p/sqlitebot/ sqlitebot]
   * [http://code.google.com/p/manolobot/ Manolobot]
   * [http://github.com/SnippyHolloW/BroodwarBotQ BroodwarBotQ]
