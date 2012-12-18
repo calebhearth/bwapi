@@ -5,7 +5,11 @@ This page contains links to other projects that make use of BWAPI.
 <wiki:toc max_depth="1" />
 
 = AI Modules =
+  * [http://code.google.com/p/skynetbot/ Skynet]
+  * [http://code.google.com/p/ualbertabot/ UAlbertaBot]
+  * [http://www.broodwarai.com/forums/index.php?showtopic=1025 krasi0]
   * [http://code.google.com/p/bthai/ BTHAI]
+  * [http://nova.wolfwork.com/ Nova]
   * [http://code.google.com/p/sqlitebot/ sqlitebot]
   * [http://code.google.com/p/manolobot/ Manolobot]
   * [http://github.com/SnippyHolloW/BroodwarBotQ BroodwarBotQ]
@@ -22,10 +26,7 @@ This page contains links to other projects that make use of BWAPI.
   * [http://code.google.com/p/moarhard/ moarhard bot]
   * [http://code.google.com/p/voidbot/ voidbot]  
   * [http://eis.ucsc.edu/EISBot/ EISBot]
-  * [http://code.google.com/p/skynetbot/ Skynet]
   * [http://www.planiart.usherbrooke.ca/projects/spar/ SPAR]
-  * [http://nova.wolfwork.com/ Nova]
-  * [http://code.google.com/p/ualbertabot/ UAlbertaBot]
 
 = AI Source Packages =
   * [http://code.google.com/p/bwapi/downloads/detail?name=Bots-src.7z AIIDE 2011 bot source code]
@@ -34,16 +35,17 @@ This page contains links to other projects that make use of BWAPI.
   * [http://code.google.com/p/bwta/ BWTA]
   * [http://code.google.com/p/bwsal/ BWSAL]
 
-= Proxy Bots =
-  * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
-  * BWAPI-HSProxy: http://code.google.com/p/bwapi-hsproxy/ (Haskell)
-  * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
-  * RProxyBot: http://github.com/d-snp/RProxyBot/ (Ruby)
-
 = Wrappers =
+  * JNIBWAPI: http://code.google.com/p/jnibwapi/ (Java)
   * PyBW: http://code.google.com/p/pybw/ (Python)
   * JBridge: http://code.google.com/p/bwapi-jbridge/ (Java)
   * BWAPI-Lua: http://code.google.com/p/bwapi-lua/ (Lua)
   * bwapi-mono-bridge: http://code.google.com/p/bwapi-mono-bridge/ (C# or any other .NET 2.0 language)
   * bwapi-ironruby: https://github.com/d-snp/bwapi-ironruby (Ruby on .Net or Mono)
   * Prologic: http://sourceforge.net/projects/prologic/ (Prolog)
+
+= Proxy Bots =
+  * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
+  * BWAPI-HSProxy: http://code.google.com/p/bwapi-hsproxy/ (Haskell)
+  * PhpSCBot: http://drachlen.net/phpscbot/source/ (PHP)
+  * RProxyBot: http://github.com/d-snp/RProxyBot/ (Ruby)
