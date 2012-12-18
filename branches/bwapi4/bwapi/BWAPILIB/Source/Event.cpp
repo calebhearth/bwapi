@@ -7,11 +7,11 @@ namespace BWAPI
 {
   std::string emptyString;
   Event::Event()
-    :type(EventType::None)
-    ,position(Positions::None)
+    :position(Positions::None)
     ,text(nullptr)
     ,unit(nullptr)
     ,player(nullptr)
+    ,type(EventType::None)
     ,winner(false)
   {
   }
@@ -46,13 +46,18 @@ namespace BWAPI
   {
     type = other.type;
     position = other.position;
-    if (other.text != nullptr)
-      text = new std::string(*other.text);
-    else
+    if ( text != nullptr )
+    {
+      delete text;
       text = nullptr;
-    unit = other.unit;
-    player = other.player;
-    winner = other.winner;
+    }
+    
+    if ( other.text != nullptr )
+      text = new std::string(*other.text);
+      
+    unit    = other.unit;
+    player  = other.player;
+    winner  = other.winner;
     return *this;
   }
   Event& Event::operator=(Event &&other)

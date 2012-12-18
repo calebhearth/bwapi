@@ -79,7 +79,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BuildLocation.cpp" />
     <ClCompile Include="BWScriptEmulator.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Dll.cpp" />
@@ -89,7 +88,6 @@
     <ClCompile Include="UType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BuildLocation.h" />
     <ClInclude Include="BWScriptEmulator.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="OrderID.h" />

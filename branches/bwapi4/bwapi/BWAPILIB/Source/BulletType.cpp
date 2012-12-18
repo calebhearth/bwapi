@@ -1,6 +1,5 @@
 #include <string>
 #include <BWAPI/BulletType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

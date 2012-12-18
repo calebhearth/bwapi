@@ -30,6 +30,7 @@ namespace BWAPI
     char buffer[MAX_PATH];
     std::string cfgMap = LoadConfigString("auto_menu", "map", "");
     strncpy(buffer, cfgMap.c_str(), MAX_PATH);
+    buffer[MAX_PATH-1] = '\0';
 
     for ( int i = strlen(buffer); i; --i )
     {
@@ -48,7 +49,7 @@ namespace BWAPI
       autoMenuMapPath = std::string(szMapPathTemp);
 
       autoMapPool.clear();
-      if ( autoMenuMapPath.size() > 0 )
+      if ( !autoMenuMapPath.empty() )
       {
         WIN32_FIND_DATA finder = { 0 };
 
@@ -82,7 +83,7 @@ namespace BWAPI
     autoMenuLanMode      = LoadConfigString("auto_menu", "lan_mode", "Local Area Network (UDP)");
     autoMenuRace      = LoadConfigString("auto_menu", "race", "RANDOM");
     autoMenuEnemyRace[0]  = LoadConfigString("auto_menu", "enemy_race", "RANDOM");
-    for ( int i = 1; i < 8; ++i )
+    for ( unsigned int i = 1; i < 8; ++i )
     {
       char key[16];
       sprintf(key, "enemy_race_%u", i);
@@ -103,7 +104,7 @@ namespace BWAPI
   }
   void GameImpl::chooseNewRandomMap()
   {
-    if ( this->autoMapPool.size() > 0 )
+    if ( !this->autoMapPool.empty() )
     {
       // Obtain a random map file
       srand(GetTickCount());
@@ -214,7 +215,7 @@ namespace BWAPI
       createdTimer  = GetTickCount();
       tempDlg = BW::FindDialogGlobal("Create");
 
-      if ( this->lastMapGen.size() > 0 )
+      if ( !this->lastMapGen.empty() )
       {
         if ( getFileType(this->lastMapGen.c_str()) == 1 )
         {
@@ -268,21 +269,15 @@ namespace BWAPI
         } // if map is playable
 
         // get the full map path
-        char mapName[MAX_PATH] = { 0 };
-        sprintf_s(mapName, MAX_PATH, "%s%s", szInstallPath, lastMapGen.c_str());
+        std::string mapFilePath = installPath + lastMapGen;
+        
+        // Get substring containing only the file name
+        size_t tmp = mapFilePath.find_last_of("/\\");
+        std::string mapFileName(mapFilePath, tmp == std::string::npos ? 0 : tmp+1);
 
-        // get the filename
-        char *pszFile = mapName;
-        // Go to last backslash
-        char *pszTmp  = strrchr(pszFile, '\\');
-        if ( pszTmp )
-          pszFile = &pszTmp[1];
-
-        // go to last forward slash (after any backslashes)
-        pszTmp  = strrchr(pszFile, '/');
-        if ( pszTmp )
-          pszFile = &pszTmp[1];
-
+        // Get substring containing only the directory
+        std::string mapFileDir(mapFilePath, 0, mapFilePath.size() - mapFileName.size() - 1);
+        
         // Apply the altered name to all vector entries
         for ( BW::BlizzVectorEntry<BW::MapVectorEntry> *i = BW::BWDATA::MapListVector->begin; (u32)i != ~(u32)&BW::BWDATA::MapListVector->end && (u32)i != (u32)&BW::BWDATA::MapListVector->begin; i = i->next )
         {
@@ -290,28 +285,15 @@ namespace BWAPI
           i->container.bHumanSlots    = 8;
           for ( int p = 0; p < PLAYABLE_PLAYER_COUNT; ++p )
             i->container.bPlayerSlotEnabled[p] = 1;
-          SStrCopy(i->container.szEntryName, pszFile, 65);
-          SStrCopy(i->container.szFileName,  pszFile, MAX_PATH);
-          SStrCopy(i->container.szFullPath,  mapName, MAX_PATH);
+          i->container.bEntryFlags = 0x04;
+          SStrCopy(i->container.szEntryName, mapFileName.c_str(), sizeof(i->container.szEntryName));
+          SStrCopy(i->container.szFileName,  mapFileName.c_str(), sizeof(i->container.szFileName)); // @TODO verify
+          SStrCopy(i->container.szFullPath,  mapFilePath.c_str(), sizeof(i->container.szFullPath));
         }
 
         // update map folder location
-        SStrCopy(BW::BWDATA::CurrentMapFolder, mapName, MAX_PATH);
-        // Go to last backslash
-        char *pszPos = BW::BWDATA::CurrentMapFolder;
-        pszTmp = strrchr(pszPos, '\\');
-        if ( pszTmp )
-          pszPos = pszTmp;
-
-        // go to last forward slash (after any backslashes)
-        pszTmp  = strrchr(pszPos, '/');
-        if ( pszTmp )
-          pszPos = pszTmp;
+        SStrCopy(BW::BWDATA::CurrentMapFolder, mapFileDir.c_str(), MAX_PATH);
         
-        // Trim the "file"
-        if ( pszPos != BW::BWDATA::CurrentMapFolder )
-          pszPos[0] = 0;
-
         // if we encounter an unknown error when attempting to load the map
         if ( BW::FindDialogGlobal("gluPOk") )
         {

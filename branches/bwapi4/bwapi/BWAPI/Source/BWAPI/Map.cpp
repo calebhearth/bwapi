@@ -43,25 +43,30 @@ namespace BWAPI
   //---------------------------------------------- GET PATH NAME ---------------------------------------------
   std::string Map::getPathName()
   {
-    char *map = BW::BWDATA::CurrentMapFileName;
-    if ( szInstallPath[0] && !_strnicmp(map, szInstallPath, strlen(szInstallPath)) )
-      map = &map[strlen(szInstallPath)];
-    std::string mapPathName(map);
-    return mapPathName;
+    std::string mapPath( BW::BWDATA::CurrentMapFileName );
+    
+    // If the install path is included in the map path, remove it, creating a relative path
+    if ( !installPath.empty() && mapPath.compare(0, installPath.length(), installPath) == 0 )
+      mapPath.erase(0, installPath.length() );
+    
+    return mapPath;
   }
   //---------------------------------------------- GET FILE NAME ---------------------------------------------
   std::string Map::getFileName()
   {
-    char *pszMapName = strrchr(BW::BWDATA::CurrentMapFileName, '\\');
-    if ( !pszMapName )
-      pszMapName = strrchr(BW::BWDATA::CurrentMapFileName, '/');
-    std::string mapNameAbsolute(pszMapName ? &pszMapName[1] : BW::BWDATA::CurrentMapFileName);
-    return mapNameAbsolute;
+    std::string mapFileName( BW::BWDATA::CurrentMapFileName );
+    
+    // Remove the path
+    size_t tmp = mapFileName.find_last_of("/\\");
+    if ( tmp != std::string::npos )
+      mapFileName.erase(0, tmp+1);
+
+    return mapFileName;
   }
   //------------------------------------------------ GET NAME ------------------------------------------------
   std::string Map::getName()
   {
-    std::string mapName(BW::BWDATA::CurrentMapName);
+    std::string mapName( BW::BWDATA::CurrentMapName );
     return mapName;
   }
   void Map::copyToSharedMemory()

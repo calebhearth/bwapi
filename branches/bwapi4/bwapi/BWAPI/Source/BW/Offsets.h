@@ -357,6 +357,10 @@ namespace BW
     DWORD dwUnknown_260;          // 608
     DWORD dwUnknown_264;          // 612
     BYTE  bEntryFlags;            // 616
+              //  0x01: Game
+              //  0x04: Standard
+              //  0x08: Folder
+              //  0x80: Replay
     char  szFullPath[MAX_PATH];   // 617
     char  szFileName[MAX_PATH];   // 877
     BYTE  bUnknown_471;           // 1137

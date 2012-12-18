@@ -11,10 +11,9 @@ std::string LoadRegString(const char *pszKeyName, const char *pszValueName);
 void InitPrimaryConfig();
 
 // Data
-extern char szConfigPath[MAX_PATH];
-extern char szInstallPath[MAX_PATH];
-extern char szLogPath[MAX_PATH];
-extern char szScreenshotFormat[8];
+extern std::string configPath;
+extern std::string installPath;
+extern std::string screenshotFmt;
 
 extern bool isCorrectVersion;
 extern bool showWarn;

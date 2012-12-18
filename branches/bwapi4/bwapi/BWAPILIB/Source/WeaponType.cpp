@@ -5,7 +5,6 @@
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/DamageType.h>
 #include <BWAPI/ExplosionType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

@@ -19,7 +19,7 @@ namespace BWAPI
     /// Retrieves a pointer or value at an index that was stored for this interface using
     /// setClientInfo.
     ///
-    /// @param index
+    /// @param key
     ///   The key containing the value to retrieve. Default is 0.
     /// 
     /// @retval nullptr if index is out of bounds.
@@ -27,7 +27,7 @@ namespace BWAPI
     /// @returns A pointer to the client info at that index.
     
     /// @see setClientInfo
-    void *getClientInfo(int index = 0) const;
+    void *getClientInfo(int key = 0) const;
 
     
     /// Associates one or more pointers or values with any BWAPI interface.
@@ -40,15 +40,15 @@ namespace BWAPI
     ///
     /// @param clientinfo
     ///   The data to associate with this interface.
-    /// @param index
+    /// @param key
     ///   The key to use for this data. Default is 0.
     ///  
     
     /// @see getClientInfo
     template < typename V >
-    void setClientInfo(const V &clientInfo, int index = 0)
+    void setClientInfo(const V &clientInfo, int key = 0)
     {
-      this->clientInfo[index] = (void*)clientInfo;
+      this->clientInfo[key] = (void*)clientInfo;
     };
 
   };

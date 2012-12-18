@@ -132,26 +132,26 @@ namespace BW
     // global functions
     dialog  *findIndex(short wIndex); // Searches for a control that matches the specified index
     dialog  *findDialog(const char *pszName); // Searches for a dialog that matches the name specified
-    dialog  *next();                  // Retrieves the next dialog or control in the list
+    dialog  *next() const;                  // Retrieves the next dialog or control in the list
 
     bool    setFlags(DWORD dwFlags);    // Sets a flag or set of flags for the control or dialog
     bool    clearFlags(DWORD dwFlags);  // Clears a flag or set of flags for the control or dialog
-    bool    hasFlags(DWORD dwFlags);    // Returns true if the dialog or control has all of the specified flags enabled
+    bool    hasFlags(DWORD dwFlags) const;    // Returns true if the dialog or control has all of the specified flags enabled
     bool    setText(char *pszStr);      // Sets the text of a control, or name of a dialog
-    char    *getText();                 // Retrieves the text of a control, or name of a dialog
-    int     getHotkey();                // Retrieves the hotkey for the button
+    char    *getText() const;                 // Retrieves the text of a control, or name of a dialog
+    int     getHotkey() const;                // Retrieves the hotkey for the button
 
     BW::Bitmap  *getSourceBuffer();   // Retrieves a pointer to a bitmap structure for reading or writing to the source buffer
 
     bool        enable();     // Enables the dialog or control
     bool        disable();    // Disables the dialog or control
-    bool        isDisabled(); // Returns true if the dialog or control is disabled
+    bool        isDisabled() const; // Returns true if the dialog or control is disabled
     bool        show();       // Shows the dialog or control
     bool        hide();       // Hides the dialog or control
-    bool        isVisible();  // Returns true if the dialog or control is visible
+    bool        isVisible() const;  // Returns true if the dialog or control is visible
 
-    u16 width();
-    u16 height();
+    u16 width() const;
+    u16 height() const;
 
     // event-specific functions
     bool doEvent(WORD wEvtNum, DWORD dwUser = 0, WORD wSelect = 0, WORD wVirtKey = 0); // Calls a dialog or control's interact function by generating event info using these parameters
@@ -160,33 +160,29 @@ namespace BW
     bool update();          // Updates a control or dialog, refreshing it on the screen
 
     // dialog-specific functions
-    bool        isDialog();               // Returns true if the control type is a dialog
-    dialog      *child();                 // Retrieves the child control from the parent dialog
-    //BW::Bitmap  *getDestBuffer();         // Retrieves a pointer to a bitmap structure for reading or writing to the dialog's destination buffer
+    bool        isDialog() const;               // Returns true if the control type is a dialog
+    dialog      *child() const;                 // Retrieves the child control from the parent dialog
     bool        addControl(dialog *ctrl); // Adds a control to this dialog
     bool        initialize();             // Performs the dialog's initialization and adds it to the list
-    bool        isListed();               // Checks to see if this dialog is initialized/listed
-    //bool        applyDialogBackground();  // Applies the standard transparent dialog background (like game menu)
-    //bool        applyWindowBackground();  // Applies the custom window background for the window dialog
-    //bool        applyBlankBackground();   // Applies a completely invisible background
+    bool        isListed() const;               // Checks to see if this dialog is initialized/listed
 
     // control-specific functions
-    dialog  *parent();                      // Retrieves a control's parent dialog
-    short   getIndex();                     // Retrieves the index of a control
+    dialog  *parent() const;                      // Retrieves a control's parent dialog
+    short   getIndex() const;                     // Retrieves the index of a control
     bool    clearFontFlags();               // Clears all font formatting flags
 
     // button-specific
-    bool isButton();      // Returns true if the control type is a button
+    bool isButton() const;      // Returns true if the control type is a button
 
     // checkbox & option button
-    bool isOption();      // Returns true if the control type is a checkbox or radio button
-    bool isChecked();     // Returns true if the control (checkbox/radio) is selected
+    bool isOption() const;      // Returns true if the control type is a checkbox or radio button
+    bool isChecked() const;     // Returns true if the control (checkbox/radio) is selected
 
     // listbox & combobox
-    bool  isList();               // Returns true if the control type is a listbox or combobox
-    BYTE  getSelectedIndex();     // Returns the index of the selected element
-    DWORD getSelectedValue();     // Returns the value of the selected element
-    char  *getSelectedString();   // Returns the name of the selected element
+    bool  isList() const;               // Returns true if the control type is a listbox or combobox
+    BYTE  getSelectedIndex() const;     // Returns the index of the selected element
+    DWORD getSelectedValue() const;     // Returns the value of the selected element
+    char  *getSelectedString() const;   // Returns the name of the selected element
 
     bool  setSelectedIndex(BYTE bIndex);              // Sets the selected index
     bool  setSelectedByValue(DWORD dwValue);          // Sets the selected index based on the given value
@@ -195,7 +191,7 @@ namespace BW
     bool  addListEntry(char *pszString, DWORD dwValue = 0, BYTE bFlags = 0);  // Adds an entry to a listbox or combobox
     bool  removeListEntry(BYTE bIndex = 0);   // Removes an entry from a listbox or combobox
     bool  clearList();                        // Removes all entries from a listbox or combobox
-    BYTE  getListCount();                     // Retrieves the number of elements in a listbox or combobox
+    BYTE  getListCount() const;                     // Retrieves the number of elements in a listbox or combobox
 
     // Data //
     dialog  *pNext;         // 0x00

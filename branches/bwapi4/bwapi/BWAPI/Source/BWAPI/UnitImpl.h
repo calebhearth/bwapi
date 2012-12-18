@@ -155,8 +155,7 @@ namespace BWAPI
       virtual bool issueCommand(UnitCommand command);
 
       //Internal BWAPI commands:
-      UnitImpl(BW::CUnit* originalUnit,
-               u16 index);
+      UnitImpl(BW::CUnit* originalUnit, u16 index);
       ~UnitImpl();
       static UnitImpl* BWUnitToBWAPIUnit(BW::CUnit* unit);
       void die();
@@ -164,14 +163,6 @@ namespace BWAPI
       bool canAccess() const;
       bool canAccessDetected() const;
       bool canAccessInside() const;
-      Player* _getPlayer;
-      UnitType _getType;
-      Position _getPosition;
-      int _getResources;
-      int _getHitPoints;
-      bool _isCompleted;
-      bool wasCompleted;
-      Unit* _getTransport;
 
       /**
        * Gets index of the unit in the unit array. Note that the index is same
@@ -183,6 +174,19 @@ namespace BWAPI
       void setSelected(bool selectedState);
       void setLoaded(bool loadedState);
       UnitImpl* getNext() const;
+
+      void saveInitialState();
+      void updateInternalData();
+      void updateData();
+      
+    // data members
+      Player* _getPlayer;
+      UnitType _getType;
+      Position _getPosition;
+      int _getResources;
+      int _getHitPoints;
+      Unit* _getTransport;
+      
       /** Gets #bwOriginalUnit */
       BW::CUnit* getOriginalRawData;
       /** Gets #bwUnitLocal */
@@ -192,28 +196,27 @@ namespace BWAPI
       /** Returns if the unit has empty building queue */
       bool hasEmptyBuildQueue;
 
-      void saveInitialState();
-      void updateInternalData();
-      void updateData();
       UnitData data;
       UnitData *self;
 
       bool userSelected;
-      bool staticInformation;
       bool nukeDetected;
       Position nukePosition;
       int lastGroundWeaponCooldown;
       int lastAirWeaponCooldown;
       int lastFrameSet;
-      bool startingAttack;
       UnitType lastType;
       Player* lastPlayer;
       int id;
       bool isAlive;
       bool wasAlive;
+      bool _isCompleted;
+      bool wasCompleted;
       bool wasAccessible;
       bool wasVisible;
-
+      bool staticInformation;
+      bool startingAttack;
+      
       Unitset connectedUnits;
       Unitset loadedUnits;
 

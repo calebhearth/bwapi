@@ -2,7 +2,6 @@
 #include <BWAPI/UpgradeType.h>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

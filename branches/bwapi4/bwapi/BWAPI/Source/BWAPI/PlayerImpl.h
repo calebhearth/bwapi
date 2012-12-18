@@ -109,7 +109,6 @@ namespace BWAPI
       /** Gets 0-based index of the player. (11 for neutral) */
       char* getForceName() const;
       void setID(int newID);
-      ForceImpl* force;
 
       /** Gets the bw mapping of synchronised version of selected unit for current player */
       BW::CUnit** selectedUnit();
@@ -118,18 +117,21 @@ namespace BWAPI
        * performed
        */
       void updateData();
-      PlayerData data;
-      PlayerData* self;
       void onGameEnd();
-      Unitset units;
+
+      void setParticipating(bool isParticipating = true);
+      void resetResources();
+      
+    // data members
+      ForceImpl   *force;
+      PlayerData  data;
+      PlayerData  *self;
+      Unitset     units;
 
       s32 _repairedMinerals;
       s32 _repairedGas;
       s32 _refundedMinerals;
       s32 _refundedGas;
-
-      void setParticipating(bool isParticipating = true);
-      void resetResources();
 
       bool wasSeenByBWAPIPlayer;
     private :

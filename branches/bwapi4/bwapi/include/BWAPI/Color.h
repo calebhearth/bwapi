@@ -83,7 +83,7 @@ namespace BWAPI
   {
     /// This enumeration contains text formatting codes. Such codes are used in calls to
     /// Game::drawText and Game::printf.
-    enum Enum : char
+    enum Enum
     {
       /// Uses the previous color that was specified before the current one.
       Previous    = 1,

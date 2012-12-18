@@ -1,6 +1,5 @@
 #include <string>
 #include <BWAPI/GameType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

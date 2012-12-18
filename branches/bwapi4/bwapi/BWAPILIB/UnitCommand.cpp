@@ -8,12 +8,12 @@
 namespace BWAPI
 {
   UnitCommand::UnitCommand() 
-  : target(nullptr)
-  , extra(0)
-  , unit(nullptr)
+  : unit(nullptr)
+  , type(UnitCommandTypes::None)
+  , target(nullptr)
   , x(Positions::None.x)
   , y(Positions::None.y)
-  , type(UnitCommandTypes::None)
+  , extra(0)
   {}
   UnitCommand::UnitCommand(Unit* _unit, UnitCommandType _type, Unit* _target, int _x, int _y, int _extra)
   : unit(_unit)
@@ -487,39 +487,6 @@ namespace BWAPI
   }
   bool UnitCommand::operator!=(const UnitCommand& other) const
   {
-    if (type   != other.type) return true;
-    if (target != other.target) return true;
-    if (x      != other.x) return true;
-    if (y      != other.y) return true;
-    if (extra  != other.extra) return true;
-    return true;
-  }
-  bool UnitCommand::operator<(const UnitCommand& other) const
-  {
-    if (type   < other.type) return true;
-    if (type   > other.type) return false;
-    if (target < other.target) return true;
-    if (target > other.target) return false;
-    if (x < other.x) return true;
-    if (x > other.x) return false;
-    if (y < other.y) return true;
-    if (y > other.y) return false;
-    if (extra < other.extra) return true;
-    if (extra > other.extra) return false;
-    return false;
-  }
-  bool UnitCommand::operator>(const UnitCommand& other) const
-  {
-    if (type   < other.type) return false;
-    if (type   > other.type) return true;
-    if (target < other.target) return false;
-    if (target > other.target) return true;
-    if (x < other.x) return false;
-    if (x > other.x) return true;
-    if (y < other.y) return false;
-    if (y > other.y) return true;
-    if (extra < other.extra) return false;
-    if (extra > other.extra) return true;
-    return false;
+    return !(*this == other);
   }
 }

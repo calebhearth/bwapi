@@ -150,9 +150,9 @@ namespace BW
     //--------------------------------------------- MAKE BULDING ---------------------------------------------
     MakeBuilding::MakeBuilding(BW::TilePosition position, int type)
         : always0x0c(0x0c)
+        , raceDependant(0)
         , position(position)
         , type((u16)type)
-        , raceDependant(0)
     {
       switch( BWAPI::UnitType(type).getRace() )
       {
@@ -172,9 +172,9 @@ namespace BW
     }
     MakeBuilding::MakeBuilding(int tileX, int tileY, int type)
         : always0x0c(0x0c)
+        , raceDependant(0)
         , position((u16)tileX, (u16)tileY)
         , type((u16)type)
-        , raceDependant(0)
     {
       switch( BWAPI::UnitType(type).getRace() )
       {

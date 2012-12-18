@@ -1,7 +1,5 @@
 #include <vector>
 
-#include "util/foreach.h"
-
 #include "Pathing.h"
 #include "Offsets.h"
 
@@ -14,21 +12,21 @@
 
 namespace BW
 {
-  bool region::isConnectedTo(region *target)
+  bool region::isConnectedTo(region *target) const
   {
     if ( target )
       return this->groupIndex == target->groupIndex;
     return false;
   }
 
-  bool region::isConnectedTo(u16 index)
+  bool region::isConnectedTo(u16 index) const
   {
     if ( index < (*BW::BWDATA::SAIPathing)->regionCount )
       return this->groupIndex == getRegionFromId(index)->groupIndex;
     return false;
   }
 
-  std::vector<region*> &region::getAccessibleNeighbours()
+  std::vector<region*> &region::getAccessibleNeighbours() const
   {
     static std::vector<region*> neighbors;
     neighbors.clear();
@@ -41,24 +39,24 @@ namespace BW
     return neighbors;
   }
 
-  int region::getAirDistance(region *dst)
+  int region::getAirDistance(region *dst) const
   {
     return dst->getCenter().getApproxDistance(this->getCenter());
   }
 
-  region *region::getNeighbor(u8 index)
+  region *region::getNeighbor(u8 index) const
   {
     if ( index <= this->neighborCount )
       return getRegionFromId(this->neighbors[index]);
     return NULL;
   }
 
-  Position region::getCenter()
+  Position region::getCenter() const
   {
     return BW::Position((u16)(this->rgnCenterX >> 8), (u16)(this->rgnCenterY >> 8));
   }
 
-  u16 region::getIndex()
+  u16 region::getIndex() const
   {
     return (u16)( ((u32)this - (u32)((*BW::BWDATA::SAIPathing)->regions)) / sizeof(BW::region) );
   }

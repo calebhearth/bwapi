@@ -1,9 +1,15 @@
 #include <BWAPI/Color.h>
 #include <list>
-#include <Util/Foreach.h>
-#include <windows.h>
 
 #include "../../Debug.h"
+
+typedef unsigned char BYTE;
+typedef struct tagRGBQUAD {
+  BYTE rgbBlue;
+  BYTE rgbGreen;
+  BYTE rgbRed;
+  BYTE rgbReserved;
+} RGBQUAD;
 
 #define RGBRESERVE {0,0,0,0xFF}
 

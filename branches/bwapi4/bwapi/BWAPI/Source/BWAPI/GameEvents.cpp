@@ -479,6 +479,7 @@ namespace BWAPI
 
         std::string aicfg = LoadConfigString("ai", BUILD_DEBUG ? "ai_dbg" : "ai", "_NULL");
         strncpy(szDllPath, aicfg.c_str(), MAX_PATH);
+        szDllPath[MAX_PATH-1] = '\0';
 
         // Tokenize and retrieve correct path for the instance number
         char *pszDll = strtok(szDllPath, ",");
@@ -502,7 +503,7 @@ namespace BWAPI
         // Check if string was loaded
         if ( aicfg == "_NULL" )
         {
-          BWAPIError("Could not find %s under ai in \"%s\".", BUILD_DEBUG ? "ai_dbg" : "ai", szConfigPath);
+          BWAPIError("Could not find %s under ai in \"%s\".", BUILD_DEBUG ? "ai_dbg" : "ai", configPath.c_str());
         }
         else
         {

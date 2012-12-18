@@ -8,16 +8,20 @@
 namespace BW
 {
   // forwards
-  class Unit;
+  class CUnit;
+
+  class Captain;
+  class Town;
+  class CAIController;
 
   class Captain
   {
   public:
     /* 0x00 */ WORD  wRegionId;
-    /* 0x02 */ WORD  wUnk_02;
+    /* 0x02 */ WORD  wRegionId2_unk;
     /* 0x04 */ BYTE bPlayerId;
     /* 0x05 */ BYTE bCaptainType;
-      /*    0
+      /*  0  - none
           1  - military (attack group)
           2  - military (attack group)
           3
@@ -28,13 +32,31 @@ namespace BW
           8  - military (attack group, clear)
           9  - military (attack group)
       */
-    /* 0x06 */ WORD wUnk_06;
+    /* 0x06 */ BYTE bUnk_06;  // priority?
+    /* 0x07 */ BYTE bUnk_07;  // similar to 0x06?? Some counter down?
     /* 0x08 */ BYTE bCaptainFlags;
       /*  
           0x01 - want build something?
           0x02 - build bunkers
           0x10 - build turrets
+          0x40 - No Campaign
       */
+    /* 0x09 */ BYTE bUnk_0x09;
+    /* 0x0A */ WORD wUnk_0x0A;
+    /* 0x0C */ WORD wUnk_0x0C;    // default_min, default_min * 6, or 1500, compared with max_force
+    /* 0x0E */ WORD wUnk_0x0E;    // default_min, default_min * 6, or 1000, compared with max_force
+    /* 0x10 */ WORD wUnk_0x10;    // region ground strength
+    /* 0x12 */ WORD wUnk_0x12;    // region air strength
+    /* 0x14 */ WORD wUnk_0x14;    // full ground strength
+    /* 0x16 */ WORD wUnk_0x16;    // full air strength
+    /* 0x18 */ WORD  wUnk_0x18;
+    /* 0x1A */ WORD  wUnk_0x1A;
+    /* 0x1C */ CUnit *unk_unit_0x1C; // unknown unit, expected primary order attack target?
+    /* 0x20 */ CUnit *unk_unit_0x20; // unknown unit, related to 0x1C
+    /* 0x24 */ CUnit *slowestUnit;    // slowest unit
+    /* 0x28 */ CUnit *followTarget;    // target to follow
+    /* 0x2C */ DWORD dwUnk_0x2C;
+    /* 0x30 */ DWORD dwUnk_0x30;    // Town*
   };
 
   /* NOTES:  BYTE rgnData[2500];
@@ -72,10 +94,10 @@ namespace BW
         /* 0x09 */ BYTE counter;
         /* 0x0A */ BYTE unk_0A;
         /* 0x0B */ BYTE unk_0B;
-        /* 0x0C */ Unit *pUnit;
+        /* 0x0C */ CUnit *pUnit;
         /* 0x10 */ WORD unitType;
-        /* 0x12 */ Position desiredLocation;
-        /* 0x16 */ Position currentLocation;
+        /* 0x12 */ struct { short x,y; } desiredLocation;
+        /* 0x16 */ struct { short x,y; } currentLocation;
         /* 0x18 */ WORD unk_18;
         /* 0x1A */ DWORD dwCount;
       } tracker;
@@ -105,7 +127,7 @@ namespace BW
         /* 0x09 */ BYTE    unk_09;
         /* 0x0A */ BYTE    unk_0A;
         /* 0x0B */ BYTE    unk_0B;
-        /* 0x0C */ Unit    *pUnit;
+        /* 0x0C */ CUnit    *pUnit;
         /* 0x10 */ Captain *captain;
       } type4;
     } u;

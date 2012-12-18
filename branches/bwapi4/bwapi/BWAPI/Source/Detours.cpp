@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include <fstream>
 #include <cmath>
 #include <Util/Exceptions.h>
 #include "../Storm/storm.h"
@@ -265,16 +266,11 @@ void setReplayName(char *pOutFilename, const char *pInFileName)
 }
 void DebugHookLog(const char *pszFxn, const char *pszFile)
 {
-  // DEBUG
-  char szHookLog[MAX_PATH];
-  sprintf_s(szHookLog, MAX_PATH, "%s\\bwapi-data\\logs\\hookdebug.log", szInstallPath);
-  FILE *dbg = fopen( szHookLog, "a+");
-  if ( dbg )
-  {
-    fprintf(dbg, "%s(%s)\n", pszFxn, pszFile);
-    fclose(dbg);
-  }
-  ////
+#ifdef _DEBUG
+  static std::ofstream log(installPath + "\\Errors\\hookdebug.log", std::ios_base::out | std::ios_base::app);
+  if ( log )
+    log << pszFxn << '(' << pszFile << ')' << std::endl;
+#endif
 }
 BOOL WINAPI _DeleteFile(LPCSTR lpFileName)
 {
@@ -283,7 +279,7 @@ BOOL WINAPI _DeleteFile(LPCSTR lpFileName)
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog("DeleteFile", lpFileName);
+  DebugHookLog(__FUNCTION__, lpFileName);
 
   // call the original function
   if ( _DeleteFileOld )
@@ -297,7 +293,7 @@ DWORD WINAPI _GetFileAttributes(LPCSTR lpFileName)
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog("GetFileAttributes", lpFileName);
+  DebugHookLog(__FUNCTION__, lpFileName);
 
   // call the original function
   if ( _GetFileAttributesOld )
@@ -312,7 +308,7 @@ HANDLE WINAPI _CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShar
   setReplayName(szNewFileName, lpFileName);
 
   // DEBUG
-  DebugHookLog("CreateFile", lpFileName);
+  DebugHookLog(__FUNCTION__, lpFileName);
 
   // call the original function
   if ( _CreateFileOld )
@@ -325,19 +321,18 @@ BOOL STORMAPI _SDrawCaptureScreen(const char *pszOutput)
   if ( !pszOutput )
     return FALSE;
 
-  char szNewScreenshotFilename[MAX_PATH] = { 0 };
-  strncpy(szNewScreenshotFilename, pszOutput, MAX_PATH);
+  std::string newScreenFilename(pszOutput);
 
   // Change screenshot extension
-  if ( szScreenshotFormat[0] )
+  if ( !screenshotFmt.empty() ) // If an extension replacement was specified
   {
-    char *ext = strrchr(szNewScreenshotFilename, '.');
-    if ( ext )
-      *(++ext) = 0;
+    size_t tmp = newScreenFilename.find_last_of("./\\");
+    if ( tmp != std::string::npos && newScreenFilename[tmp] == '.' )  // If extension is found
+      newScreenFilename.replace(tmp, std::string::npos, screenshotFmt);
     else
-      SStrNCat(szNewScreenshotFilename, ".", MAX_PATH);
-    SStrNCat(szNewScreenshotFilename, szScreenshotFormat, MAX_PATH);
+      newScreenFilename.append(screenshotFmt);
   }
+
   // Save the screenshot in w-mode
   if ( wmode && pBits && isCorrectVersion )
   {
@@ -350,12 +345,12 @@ BOOL STORMAPI _SDrawCaptureScreen(const char *pszOutput)
       pal[i].peBlue   = wmodebmp.bmiColors[i].rgbBlue;
       pal[i].peFlags  = 0;
     }
-    return SBmpSaveImage(szNewScreenshotFilename, pal, pBits, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height());
+    return SBmpSaveImage(newScreenFilename.c_str(), pal, pBits, BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height());
   }
   // Call the old fxn
   if ( _SDrawCaptureScreenOld )
-    return _SDrawCaptureScreenOld(szNewScreenshotFilename);
-  return SDrawCaptureScreen(szNewScreenshotFilename);
+    return _SDrawCaptureScreenOld(newScreenFilename.c_str());
+  return SDrawCaptureScreen(newScreenFilename.c_str());
 }
 
 //----------------------------------------------- ON GAME END ------------------------------------------------

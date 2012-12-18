@@ -2,6 +2,7 @@
 #include <BW/CBullet.h>
 #include <BW/CSprite.h>
 #include <BW/Offsets.h>
+#include <BWAPI/Client/BulletData.h>
 
 #include "GameImpl.h"
 #include "PlayerImpl.h"
@@ -12,19 +13,18 @@
 namespace BWAPI
 {
   //---------------------------------------------- CONSTRUCTOR -----------------------------------------------
-  BulletImpl::BulletImpl(BW::CBullet* originalBullet, u16 index)
-      : bwOriginalBullet(originalBullet)
-      , index(index)
+  BulletImpl::BulletImpl(BW::CBullet* originalBullet, u16 _index)
+      : self( &data )
+      , bwOriginalBullet(originalBullet)
+      , index(_index)
+      , id(-1)
       , __exists(false)
       , lastExists(false)
-      , self(&data)
-      , id(-1)
   {
     MemZero(data);
   }
   BulletImpl::~BulletImpl()
-  {
-  }
+  { }
   //----------------------------------------------- SET EXISTS -----------------------------------------------
   void BulletImpl::setExists(bool exists)
   {

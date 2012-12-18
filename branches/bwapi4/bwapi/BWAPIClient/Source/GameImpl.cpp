@@ -17,9 +17,10 @@
 
 namespace BWAPI
 {
-  GameImpl::GameImpl(GameData* data)
+  GameImpl::GameImpl(GameData* _data)
+    : data(_data)
   {
-    this->data = data;
+    this->clearAll();
     for(int i = 0; i < 5; ++i)
       forceVector.push_back(ForceImpl(i));
     for(int i = 0; i < 12; ++i)
@@ -28,6 +29,7 @@ namespace BWAPI
       unitVector.push_back(UnitImpl(i));
     for(int i = 0; i < 100; ++i)
       bulletVector.push_back(BulletImpl(i));
+    
     inGame = false;
   }
   int GameImpl::addShape(const BWAPIC::Shape &s)
@@ -120,11 +122,11 @@ namespace BWAPI
     _observers.clear();
 
     //clear unit data
-    for(int i = 0; i < 10000; ++i)
+    for ( size_t i = 0; i < unitVector.size(); ++i )
       unitVector[i].clear();
 
     //clear player data
-    for(int i = 0; i < 12; ++i)
+    for(size_t i = 0; i < playerVector.size(); ++i)
       playerVector[i].units.clear();
 
     foreach( Region *r, regionsList )

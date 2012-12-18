@@ -24,13 +24,12 @@ void BWScriptEmulator::onStart()
   enabled    = true;
   farcasting = true;
 
-  // save player info
+  // Save some BW info locally for easier access
   self = bw->self();
-
-  // save map info
-  mapH = bw->mapHeight();
   mapW = bw->mapWidth();
+  mapH = bw->mapHeight();
 
+  // Access full map just like the normal AI
   if ( !bw->isMultiplayer() )
     bw->sendText("black sheep wall");
 
@@ -75,7 +74,6 @@ void BWScriptEmulator::onFrame()
   {
     if ( !u->exists() )
       continue;
-
 
   }
 }

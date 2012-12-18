@@ -258,6 +258,8 @@ namespace BWAPI
         Unknown,
         MAX
       };
+
+
     };
   }
   /** The UnitType class is used to get information about a particular type of unit, such as the build time

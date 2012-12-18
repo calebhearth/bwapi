@@ -2,7 +2,8 @@
 
 #include <string>
 #include <vector>
-#include <time.h>
+#include <cstring>
+#include <ctime>
 
 #include <Dbghelp.h>
 #include <tlhelp32.h>
@@ -88,24 +89,21 @@ void GetCurrentProductVersion(WORD &w1, WORD &w2, WORD &w3, WORD &w4)
 // The primary exception filter
 LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 {
+  // Destroy fullscreen mode and show the cursor (something the original doesn't do!)
   DDrawDestroy();
   ShowCursor(TRUE);
 
-  SYSTEMTIME st;
-  char szFilename[MAX_PATH];
+  time_t myTime = time(nullptr);
+  std::string logFilename(installPath + "Errors\\" + ctime(&myTime) + ".txt");
 
   // Create the file
-  GetSystemTime(&st);
-  sprintf_s(szFilename, MAX_PATH, "%sErrors\\%u_%02u_%02u.txt", szInstallPath, st.wYear, st.wMonth, st.wDay);
-
-  FILE *hFile = fopen( szFilename, "a+");
+  FILE *hFile = fopen( logFilename.c_str(), "a+");
   if ( hFile )
   {
     fprintf(hFile, "\n//////////////////////////////////////////////////\n");
 
     // Print the time
-    time_t _t = time(NULL);
-    fprintf(hFile, "TIME: %s\n", ctime(&_t));
+    fprintf(hFile, "TIME: %s\n", ctime(&myTime));
 
     // Print version data
     WORD w1,w2,w3,w4;
@@ -214,9 +212,8 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
 
     // Load custom symbols for Broodwar, etc
     std::vector<_customSymbolStore> customSymbols;
-    char szSymbolMap[MAX_PATH];
-    sprintf_s(szSymbolMap, MAX_PATH, "%sbwapi-data\\data\\Broodwar.map", szInstallPath);
-    FILE *hBWSymbols = fopen(szSymbolMap, "r");
+    std::string symbolMapPath = installPath + "bwapi-data\\data\\Broodwar.map";
+    FILE *hBWSymbols = fopen(symbolMapPath.c_str(), "r");
     if ( hBWSymbols )
     {
       char szSymbolName[512];
@@ -224,7 +221,7 @@ LONG WINAPI BWAPIExceptionFilter(EXCEPTION_POINTERS *ep)
       DWORD dwSize = 0;
       for (;;)
       {
-        int iResult = fscanf(hBWSymbols, "%512s %8x %8x", szSymbolName, &dwAddress, &dwSize);
+        int iResult = fscanf(hBWSymbols, "%511s %8x %8x", szSymbolName, &dwAddress, &dwSize);
         if ( iResult == EOF || iResult == 0 )
           break;
         _customSymbolStore sym = { szSymbolName, dwAddress, dwAddress + dwSize };

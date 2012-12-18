@@ -791,13 +791,13 @@ BOOL STORMAPI SEvtDispatch(DWORD dwMessageID, DWORD dwFlags, int type, PS_EVT pE
 
 BOOL STORMAPI SGdiDeleteObject(HANDLE handle);
 
-BOOL STORMAPI SGdiExtTextOut(int a1, int a2, int a3, int a4, unsigned int a8, signed int a6, signed int a7, const char *string, unsigned int arg20);
+BOOL STORMAPI SGdiExtTextOut(int a1, int a2, int a3, int a4, unsigned int a8, signed int a6, signed int a7, const char *pszString, unsigned int arg20);
 BOOL STORMAPI SGdiImportFont(HGDIOBJ handle, int windowsfont);
 
 BOOL STORMAPI SGdiSelectObject(int handle);
 BOOL STORMAPI SGdiSetPitch(int pitch);
 
-BOOL STORMAPI Ordinal393(char *string, int, int);
+BOOL STORMAPI Ordinal393(char *pszString, int, int);
 
 
 /*  SMemAlloc @ 401

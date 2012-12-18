@@ -7,8 +7,8 @@
 namespace BWAPI
 {
   PlayerImpl::PlayerImpl(int _id)
-    : self( &(BWAPI::BWAPIClient.data->players[id]) )
-    , id(_id)
+    : id(_id)
+    , self( &(BWAPI::BWAPIClient.data->players[id]) )
   {
     clear();
   }

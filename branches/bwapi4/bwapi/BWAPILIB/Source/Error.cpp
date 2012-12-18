@@ -1,6 +1,5 @@
 #include <string>
 #include <BWAPI/Error.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

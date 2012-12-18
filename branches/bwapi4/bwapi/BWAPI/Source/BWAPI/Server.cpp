@@ -25,7 +25,7 @@ namespace BWAPI
   #define PIPE_TIMEOUT 3000
   #define PIPE_SYSTEM_BUFFER_SIZE 4096
 
-  const BWAPI::GameInstance GameInstance_None = { 0xFFFFFFFF, false, 0 };
+  const BWAPI::GameInstance GameInstance_None(0xFFFFFFFF, false, 0);
   Server::Server()
   {
     connected = false;
@@ -358,7 +358,7 @@ namespace BWAPI
       PlayerData* p = &(data->players[id]);
       PlayerData* p2 = ((PlayerImpl*)i)->self;
 
-      strncpy(p->name, i->getName().c_str(), 32);
+      strncpy(p->name, i->getName().c_str(), 32); // cppcheck complaint, out of bounds
       p->race  = i->getRace();
       p->type  = i->getType();
       p->force = getForceID(i->getForce());

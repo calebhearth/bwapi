@@ -1,7 +1,6 @@
 #include <string>
 #include <BWAPI/Race.h>
 #include <BWAPI/UnitType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

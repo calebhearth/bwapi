@@ -8,6 +8,7 @@
 #include <BWAPI/Filters.h>
 #include <BWAPI/UnaryFilter.h>
 #include <BWAPI/Interface.h>
+#include <BWAPI/Input.h>
 
 #include <sstream>
 
@@ -30,9 +31,6 @@ namespace BWAPI
   class UnitCommand;
   class Unitset;
   class UpgradeType;
-
-  enum MouseButton;
-  enum Key;
 
   /** The abstract Game class is implemented by BWAPI and offers many methods for retrieving information
    * about the current Broodwar game, including the set of players, units, map information, as well as

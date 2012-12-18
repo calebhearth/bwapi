@@ -1,6 +1,5 @@
 #include <string>
 #include <BWAPI/UnitCommandType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

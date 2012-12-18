@@ -4,7 +4,6 @@
 #include <BWAPI/Order.h>
 #include <BWAPI/UnitType.h>
 #include <BWAPI/WeaponType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

@@ -29,6 +29,7 @@ namespace BWAPI
   UnitImpl::UnitImpl(BW::CUnit* originalUnit,
                      u16 index)
       : getOriginalRawData(originalUnit)
+      , self(&data)
       , index(index)
       , userSelected(false)
       , isAlive(false)
@@ -47,7 +48,6 @@ namespace BWAPI
       , lastCommand()
       , id(-1)
   {
-    self = &data;
     clear();
   }
   //--------------------------------------------- DESTRUCTOR -------------------------------------------------

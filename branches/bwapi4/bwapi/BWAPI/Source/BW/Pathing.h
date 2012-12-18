@@ -34,13 +34,13 @@ namespace BW
   class region
   {
   public:
-    bool                  isConnectedTo(region *target);
-    bool                  isConnectedTo(u16 index);
-    std::vector<region*>  &getAccessibleNeighbours();
-    int                   getAirDistance(region *dst);
-    region                *getNeighbor(u8 index);
-    Position              getCenter();
-    u16                   getIndex();
+    bool                  isConnectedTo(region *target) const;
+    bool                  isConnectedTo(u16 index) const;
+    std::vector<region*>  &getAccessibleNeighbours() const;
+    int                   getAirDistance(region *dst) const;
+    region                *getNeighbor(u8 index) const;
+    Position              getCenter() const;
+    u16                   getIndex() const;
 
     /*0x00*/u16       accessabilityFlags;
                 // 0x1FF9 = High ground    1001
@@ -55,12 +55,12 @@ namespace BW
     /*0x10*/u32       rgnCenterX; // must >> 8; in pixels
     /*0x14*/u32       rgnCenterY; // must >> 8; in pixels
     /*0x18*/pathRect  rgnBox; // in pixels
-    /*0x20*/u32       properties; // flags
-              /*
-                0x001 = Key Point
-                0x002 = Choke Point/Corridor
-                0x100 = Map Bottom
-              */
+    /*0x20*/u8        defencePriority;    /*
+                                            0x001 = Key Point
+                                            0x002 = Choke Point/Corridor
+                                          */
+    /*0x21*/u8        neighborProperty; // 0x01 for map bottom, subtracted from neighborCount in some place
+    /*0x22*/u16       unk_22;
     /*0x24*/u32       unk_24;
     /*0x28*/u32       unk_28;
     /*0x2C*/u16       localBuffer[10]; // local array of IDs for neighbors

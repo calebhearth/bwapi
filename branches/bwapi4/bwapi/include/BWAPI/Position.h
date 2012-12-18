@@ -64,43 +64,37 @@ namespace BWAPI
   class Point
   {
   public:
-    typedef PointIterator<_T,__Scale> iterator;
     typedef Vectorset< Point<_T,__Scale> > set;
 
     // Constructors
     Point(_T _x = 0, _T _y = 0) : x(_x), y(_y) {};
     template<typename _NT> Point(const Point<_NT, __Scale> &pt) : x( (_T)pt.x ), y( (_T)pt.y ) {};
-    template<typename _NT> Point(const PointIterator<_NT, __Scale> &pt) : x( (_T)pt.x ), y( (_T)pt.y ) {};
 
 #pragma warning( disable: 4723 )
     // Conversion constructor
     template<typename _NT, int __NScale> explicit Point(const Point<_NT, __NScale> &pt)
       : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
       , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
-    template<typename _NT, int __NScale> explicit Point(const PointIterator<_NT, __NScale> &pt)
-      : x( (_T)(__NScale > __Scale ? pt.x*(__NScale/__Scale) : pt.x/(__Scale/__NScale)) )
-      , y( (_T)(__NScale > __Scale ? pt.y*(__NScale/__Scale) : pt.y/(__Scale/__NScale)) ) { };
-
 #pragma warning( default: 4723 )
+
     // Conversion restriction constructor
     template<typename _NT> Point(const Point<_NT, 0> &pt) : x(0), y(0) {};
-    template<typename _NT> Point(const PointIterator<_NT, 0> &pt) : x(0), y(0) {};
 
     // Operators
     operator bool() const { return this->isValid(); };
     
-    bool operator == (const Point &pos) const
+    bool operator == (const Point<_T,__Scale> &pos) const
     { 
       return  this->x == pos.x &&
               this->y == pos.y;
     }; 
-    bool operator != (const Point &pos) const
+    bool operator != (const Point<_T,__Scale> &pos) const
     { 
       return  this->x != pos.x ||
           this->y != pos.y;
     }; 
 
-    bool operator  < (const Point &position) const
+    bool operator  < (const Point<_T,__Scale> &position) const
     {
       return  this->x < position.x ||
           (this->x == position.x && this->y < position.y);
@@ -160,7 +154,7 @@ namespace BWAPI
     ///
     /// @returns A double representing the distance between this point and \p position.
     /// @see getApproxDistance
-    double getDistance(const Point &position) const
+    double getDistance(const Point<_T,__Scale> &position) const
     {
       return ((*this) - position).getLength();
     };
@@ -189,7 +183,7 @@ namespace BWAPI
     ///
     /// @returns An integer representing the distance between this point and \p position.
     /// @see getDistance
-    int getApproxDistance(const Point &position) const
+    int getApproxDistance(const Point<_T,__Scale> &position) const
     {
       unsigned int min = abs((int)(this->x - position.x));
       unsigned int max = abs((int)(this->y - position.y));
@@ -222,7 +216,7 @@ namespace BWAPI
       return *this;
     };
     /// @copydoc setMax
-    Point &setMax(const Point &max)
+    Point &setMax(const Point<_T,__Scale> &max)
     {
       this->setMax(max.x, max.y);
       return *this;
@@ -247,7 +241,7 @@ namespace BWAPI
       return *this;
     };
     /// @copydoc setMin
-    Point &setMin(const Point &min)
+    Point &setMin(const Point<_T,__Scale> &min)
     {
       this->setMin(max.x, max.y);
       return *this;

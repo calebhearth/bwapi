@@ -1,6 +1,5 @@
 #include <string>
 #include <BWAPI/ExplosionType.h>
-#include <Util/Foreach.h>
 
 #include "Common.h"
 

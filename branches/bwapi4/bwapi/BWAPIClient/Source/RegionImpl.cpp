@@ -5,8 +5,9 @@ namespace BWAPI
 {
   RegionImpl::RegionImpl(int index)
     : self ( &BWAPI::BWAPIClient.data->regions[index] )
-  {
-  }
+    , closestAccessibleRgn(nullptr)
+    , closestInaccessibleRgn(nullptr)
+  { }
   void RegionImpl::setNeighbors()
   {
     int accessibleBestDist    = 99999;
