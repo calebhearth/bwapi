@@ -27,10 +27,29 @@ namespace HackUtil
   DWORD*                   _GetFunctionsList(char* sourceModule, char* importModule);
   /* These functions are not specifically made for public use */
 
-  FARPROC PatchImport(char* sourceModule, char* importModule, LPCSTR name, void* patchFunction);
-  FARPROC PatchImport(char* importModule, LPCSTR name, void* patchFunction);
-  FARPROC PatchImport(char* sourceModule, char* importModule, int ordinal, void* patchFunction);
-  FARPROC PatchImport(char* importModule, int ordinal, void* patchFunction);
+  FARPROC PatchImportOld(char* sourceModule, char* importModule, LPCSTR name, void* patchFunction);
+
+  template <typename T>
+  auto PatchImport(char* sourceModule, char* importModule, LPCSTR name, T patchFxn) -> T
+  {
+    return (T)PatchImportOld(sourceModule, importModule, name, patchFxn);
+  }
+  template <typename T>
+  auto PatchImport(char *importModule, LPCSTR name, T patchFxn) -> T
+  {
+    return (T)PatchImportOld(nullptr, importModule, name, patchFxn);
+  }
+  template <typename T>
+  auto PatchImport(char* sourceModule, char *importModule, int ordinal, T patchFxn) -> T
+  {
+    return (T)PatchImportOld(sourceModule, importModule, (LPCSTR)ordinal, patchFxn);
+  }
+  template <typename T>
+  auto PatchImport(char *importModule, int ordinal, T patchFxn) -> T
+  {
+    return (T)PatchImportOld(nullptr, importModule, (LPCSTR)ordinal, patchFxn);
+  }
+
   /* Creates a detour for the specified import function in any loaded module */
 
   FARPROC GetImport(char* importModule, LPCSTR name);

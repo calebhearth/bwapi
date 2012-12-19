@@ -67,7 +67,7 @@ namespace HackUtil
     return NULL;
   }
 
-  FARPROC PatchImport(char* sourceModule, char* importModule, LPCSTR name, void* patchFunction)
+  FARPROC PatchImportOld(char* sourceModule, char* importModule, LPCSTR name, void* patchFunction)
   {
     if ( !name )
       return NULL;
@@ -106,21 +106,6 @@ namespace HackUtil
       }
     }
     return NULL;
-  }
-
-  FARPROC PatchImport(char* importModule, LPCSTR name, void* patchFunction)
-  {
-    return PatchImport(NULL, importModule, name, patchFunction);
-  }
-
-  FARPROC PatchImport(char* sourceModule, char* importModule, int ordinal, void* patchFunction)
-  {
-    return PatchImport(sourceModule, importModule, (LPCSTR)ordinal, patchFunction);
-  }
-  
-  FARPROC PatchImport(char* importModule, int ordinal, void* patchFunction)
-  {
-    return PatchImport(NULL, importModule, (LPCSTR)ordinal, patchFunction);
   }
 
   FARPROC GetImport(char* importModule, LPCSTR name)

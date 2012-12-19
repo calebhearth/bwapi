@@ -34,8 +34,8 @@ void ApplyCodePatches()
     HackUtil::JmpPatch(BW::BWFXN_RefundMin4, &_refundMin4Hook);
     HackUtil::JmpPatch(BW::BWFXN_RefundGas4, &_refundGas4Hook);
     HackUtil::JmpPatch(BW::BWFXN_RefundMinAndGas5, &_refundMinAndGas5Hook);
-    HackUtil::JmpPatch(BW::BWFXN_QueueCommand,    &CommandFilter);
-    HackUtil::JmpPatch(BW::BWFXN_DDrawDestroy,    &DDrawDestroy);
+    HackUtil::JmpPatch(BW::BWFXN_QueueCommand, &CommandFilter);
+    HackUtil::JmpPatch(BW::BWFXN_DDrawDestroy, &DDrawDestroy);
     HackUtil::JmpPatch(BW::BWFXN_NetSelectReturnMenu, &_SelectReturnMenu);
     HackUtil::CallPatch(BW::BWDATA::RandomizeRacePatch, &_RandomizePlayerRaces);
     HackUtil::CallPatch(BW::BWDATA::InitPlayerConsolePatch, &_InitializePlayerConsole);
@@ -69,33 +69,33 @@ void ApplyCodePatches()
   // Write storm authentication patch (allow custom network modes)
   HackUtil::JmpPatch(HackUtil::GetImport("storm.dll", 251), &_SFileAuthenticateArchive);
 
-  // Create import detours
-  (FARPROC&)_SNetLeaveGameOld       = HackUtil::PatchImport("storm.dll", 119, &_SNetLeaveGame);
-  (FARPROC&)_SNetReceiveMessageOld  = HackUtil::PatchImport("storm.dll", 121, &_SNetReceiveMessage);
-  (FARPROC&)_SNetSendTurnOld        = HackUtil::PatchImport("storm.dll", 128, &_SNetSendTurn);
-  (FARPROC&)_SFileOpenFileOld       = HackUtil::PatchImport("storm.dll", 267, &_SFileOpenFile);
-  (FARPROC&)_SFileOpenFileExOld     = HackUtil::PatchImport("storm.dll", 268, &_SFileOpenFileEx);
-  (FARPROC&)_SDrawCaptureScreenOld  = HackUtil::PatchImport("storm.dll", 342, &_SDrawCaptureScreen);
-  (FARPROC&)_SMemAllocOld           = HackUtil::PatchImport("storm.dll", 401, &_SMemAlloc);
-  (FARPROC&)_SStrCopyOld            = HackUtil::PatchImport("storm.dll", 501, &_SStrCopy);
+  // Storm detours
+  _SNetLeaveGameOld       = HackUtil::PatchImport("storm.dll", 119, &_SNetLeaveGame);
+  _SNetReceiveMessageOld  = HackUtil::PatchImport("storm.dll", 121, &_SNetReceiveMessage);
+  _SNetSendTurnOld        = HackUtil::PatchImport("storm.dll", 128, &_SNetSendTurn);
+  _SFileOpenFileOld       = HackUtil::PatchImport("storm.dll", 267, &_SFileOpenFile);
+  _SFileOpenFileExOld     = HackUtil::PatchImport("storm.dll", 268, &_SFileOpenFileEx);
+  _SDrawCaptureScreenOld  = HackUtil::PatchImport("storm.dll", 342, &_SDrawCaptureScreen);
+  _SMemAllocOld           = HackUtil::PatchImport("storm.dll", 401, &_SMemAlloc);
+  _SStrCopyOld            = HackUtil::PatchImport("storm.dll", 501, &_SStrCopy);
 
   // wmode/drawing detours
-  (FARPROC&)_GetCursorPosOld        = HackUtil::PatchImport("user32.dll", "GetCursorPos", &_GetCursorPos);
-  (FARPROC&)_SetCursorPosOld        = HackUtil::PatchImport("user32.dll", "SetCursorPos", &_SetCursorPos);
-  (FARPROC&)_ClipCursorOld          = HackUtil::PatchImport("user32.dll", "ClipCursor", &_ClipCursor);
-  (FARPROC&)_SDrawLockSurfaceOld    = HackUtil::PatchImport("storm.dll", 350, &_SDrawLockSurface);
-  (FARPROC&)_SDrawRealizePaletteOld = HackUtil::PatchImport("storm.dll", 354, &_SDrawRealizePalette);
-  (FARPROC&)_SDrawUnlockSurfaceOld  = HackUtil::PatchImport("storm.dll", 356, &_SDrawUnlockSurface);
-  (FARPROC&)_SDrawUpdatePaletteOld  = HackUtil::PatchImport("storm.dll", 357, &_SDrawUpdatePalette);
-  (FARPROC&)_CreateWindowExOld      = HackUtil::PatchImport("user32.dll", "CreateWindowExA", &_CreateWindowEx);
+  _GetCursorPosOld        = HackUtil::PatchImport("user32.dll", "GetCursorPos", &_GetCursorPos);
+  _SetCursorPosOld        = HackUtil::PatchImport("user32.dll", "SetCursorPos", &_SetCursorPos);
+  _ClipCursorOld          = HackUtil::PatchImport("user32.dll", "ClipCursor", &_ClipCursor);
+  _SDrawLockSurfaceOld    = HackUtil::PatchImport("storm.dll", 350, &_SDrawLockSurface);
+  _SDrawRealizePaletteOld = HackUtil::PatchImport("storm.dll", 354, &_SDrawRealizePalette);
+  _SDrawUnlockSurfaceOld  = HackUtil::PatchImport("storm.dll", 356, &_SDrawUnlockSurface);
+  _SDrawUpdatePaletteOld  = HackUtil::PatchImport("storm.dll", 357, &_SDrawUpdatePalette);
+  _CreateWindowExOld      = HackUtil::PatchImport("user32.dll", "CreateWindowExA", &_CreateWindowEx);
   
   // Other Detours
-  (FARPROC&)_DeleteFileOld        = HackUtil::PatchImport("kernel32.dll", "DeleteFileA", &_DeleteFile);
-  (FARPROC&)_GetFileAttributesOld = HackUtil::PatchImport("kernel32.dll", "GetFileAttributesA", &_GetFileAttributes);
-  (FARPROC&)_CreateFileOld        = HackUtil::PatchImport("kernel32.dll", "CreateFileA", &_CreateFile);
-  (FARPROC&)_FindFirstFileOld     = HackUtil::PatchImport("kernel32.dll", "FindFirstFileA", &_FindFirstFile);
-  (FARPROC&)_SleepOld             = HackUtil::PatchImport("kernel32.dll", "Sleep", &_Sleep);
-  (FARPROC&)_CreateThreadOld      = HackUtil::PatchImport("kernel32.dll", "CreateThread", &_CreateThread);
+  _DeleteFileOld        = HackUtil::PatchImport("kernel32.dll", "DeleteFileA", &_DeleteFile);
+  _GetFileAttributesOld = HackUtil::PatchImport("kernel32.dll", "GetFileAttributesA", &_GetFileAttributes);
+  _CreateFileOld        = HackUtil::PatchImport("kernel32.dll", "CreateFileA", &_CreateFile);
+  _FindFirstFileOld     = HackUtil::PatchImport("kernel32.dll", "FindFirstFileA", &_FindFirstFile);
+  _SleepOld             = HackUtil::PatchImport("kernel32.dll", "Sleep", &_Sleep);
+  _CreateThreadOld      = HackUtil::PatchImport("kernel32.dll", "CreateThread", &_CreateThread);
 }
 
 //----------------------------------------- NET-MODE RETURN MENU ---------------------------------------------

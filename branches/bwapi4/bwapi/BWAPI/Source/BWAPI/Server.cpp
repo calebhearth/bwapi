@@ -184,6 +184,7 @@ namespace BWAPI
   int Server::addString(const char* text)
   {
     strncpy(data->eventStrings[data->eventStringCount],text,256);
+    data->eventStrings[data->eventStringCount][255] = '\0';
     return data->eventStringCount++;
   }
   int Server::addEvent(BWAPI::Event e)
@@ -243,7 +244,7 @@ namespace BWAPI
   {
     if (connected || localOnly || !pipeObjectHandle || pipeObjectHandle == INVALID_HANDLE_VALUE )
       return;
-    BOOL success = ConnectNamedPipe(pipeObjectHandle, NULL);
+    BOOL success = ConnectNamedPipe(pipeObjectHandle, nullptr);
     if (!success && GetLastError() != ERROR_PIPE_CONNECTED)
       return;
     if (GetLastError() == ERROR_PIPE_CONNECTED)

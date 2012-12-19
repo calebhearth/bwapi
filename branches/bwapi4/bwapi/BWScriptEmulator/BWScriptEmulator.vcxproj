@@ -79,17 +79,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIControl.cpp" />
     <ClCompile Include="BWScriptEmulator.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Dll.cpp" />
+    <ClCompile Include="Military.cpp" />
+    <ClCompile Include="Worker.cpp" />
     <ClCompile Include="ScriptEnum.cpp" />
     <ClCompile Include="ScriptOpcodes.cpp" />
     <ClCompile Include="ScriptThread.cpp" />
     <ClCompile Include="UType.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIControl.h" />
     <ClInclude Include="BWScriptEmulator.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Military.h" />
+    <ClInclude Include="Worker.h" />
     <ClInclude Include="OrderID.h" />
     <ClInclude Include="ScriptEnum.h" />
     <ClInclude Include="ScriptThread.h" />

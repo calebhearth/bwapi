@@ -100,7 +100,7 @@ namespace BW
         /* 0x16 */ struct { short x,y; } currentLocation;
         /* 0x18 */ WORD unk_18;
         /* 0x1A */ DWORD dwCount;
-      } tracker;
+      } tracker;  // 01
 
       // Used for workers
       struct
@@ -111,7 +111,7 @@ namespace BW
         /* 0x0C */ DWORD  dwLastUpdateTime;
         /* 0x10 */ DWORD  unk_10;
         /* 0x14 */ Town   *pTown; // ptr to town struct
-      } worker;
+      } worker; // 02
 
       struct 
       {
@@ -120,7 +120,7 @@ namespace BW
         /* 0x10 */ DWORD unk_10;
         /* 0x14 */ DWORD unkCurrentQueue;
         /* 0x18 */ DWORD unkQueue[5];
-      } task;
+      } task; // ID: 03
 
       struct
       {
