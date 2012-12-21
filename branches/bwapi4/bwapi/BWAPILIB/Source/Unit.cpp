@@ -196,6 +196,21 @@ namespace BWAPI
   //--------------------------------------------- TRAIN ------------------------------------------------------
   bool Unit::train(UnitType type)
   {
+    // Carrier/Reaver specialization
+    if ( type == UnitTypes::None )
+    {
+      switch ( this->getType() )
+      {
+      case UnitTypes::Enum::Protoss_Carrier:
+      case UnitTypes::Enum::Hero_Gantrithor:
+        type = UnitTypes::Protoss_Interceptor;
+        break;
+      case UnitTypes::Enum::Protoss_Reaver:
+      case UnitTypes::Enum::Hero_Warbringer:
+        type = UnitTypes::Protoss_Scarab;
+        break;
+      }
+    }
     return this->issueCommand(UnitCommand::train(this,type));
   }
   //--------------------------------------------- MORPH ------------------------------------------------------

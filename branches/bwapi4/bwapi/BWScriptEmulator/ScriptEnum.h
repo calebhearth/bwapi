@@ -1,9 +1,12 @@
+#pragma once
+#include <BWAPI.h>
+
 namespace AISCRIPT
 {
   const char *getOpcodeName(int iOpcode);
   const char *getUnitName(int iUnitType);
   int getUnitInternal(int iUnitType);
-  int getUnitIdleOrder(int iUnitType);
+  BWAPI::Orders::Enum::Enum getUnitIdleOrder(int iUnitType);
 
   enum Enum
   {

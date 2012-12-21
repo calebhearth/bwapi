@@ -31,6 +31,15 @@
     <ClCompile Include="Military.cpp">
       <Filter>UnitControl\Source FIles</Filter>
     </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>UnitControl\Source FIles</Filter>
+    </ClCompile>
+    <ClCompile Include="OrderEmulate.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="JunkYardDog.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -39,16 +48,10 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OrderID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ScriptEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ScriptThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UType.h">
@@ -62,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="Military.h">
       <Filter>UnitControl\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>UnitControl\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitInfo.h">
+      <Filter>UnitControl\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderEmulate.h">
+      <Filter>UnitControl\Orders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +91,9 @@
     </Filter>
     <Filter Include="UnitControl\Source FIles">
       <UniqueIdentifier>{0e09fa17-96d1-4c4c-a7a4-f702ad32ca90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitControl\Orders">
+      <UniqueIdentifier>{5004f7e5-c3f7-4def-b5b0-1ea037746349}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

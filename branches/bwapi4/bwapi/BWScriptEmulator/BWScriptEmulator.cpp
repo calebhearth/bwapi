@@ -3,10 +3,10 @@
 
 #include "ScriptThread.h"
 #include "Controller.h"
+#include "OrderEmulate.h"
 
 using namespace BWAPI;
 
-bool enabled;
 int mapH, mapW;
 Player *self;
 
@@ -21,7 +21,6 @@ void BWScriptEmulator::onStart()
   // enable stuff
   bw->enableFlag(Flag::UserInput);
   bw->enableFlag(Flag::CompleteMapInformation);
-  enabled    = true;
   farcasting = true;
 
   // Save some BW info locally for easier access
@@ -43,14 +42,14 @@ void BWScriptEmulator::onStart()
   Position  sLoc(self->getStartLocation());
 
   MainController = new AIController();
-
+  /*
   if      ( selfRace == Races::Zerg )
     AICreateThread("ZMCx", sLoc );
   else if ( selfRace == Races::Protoss )
     AICreateThread("PMCx", sLoc );
   else // ( selfRace == Races::Terran )
     AICreateThread("TMCx", sLoc );
-
+    */
   srand(GetTickCount());
 }
 
@@ -65,30 +64,35 @@ void BWScriptEmulator::onFrame()
   if ( bw->isReplay() )
     return;
 
-  if ( !enabled )
-    return;
-
   UpdateScripts();
+
   Unitset myUnits( self->getUnits() );
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
-    if ( !u->exists() )
-      continue;
+    if ( !u->exists() ) continue;
+    EmulateOrder(*u);
 
+    Broodwar->drawTextMap(u->getPosition(), "    %s", Order(GetUnitOrder(*u)).c_str() );
   }
 }
 
 void BWScriptEmulator::onSendText(std::string text)
 {
-  if ( text == "/t" || text == "/toggle" )
-  {
-    enabled = !enabled;
-    Broodwar << "AI " << (enabled ? "ENABLED" : "DISABLED") << std::endl;
-  }
-  if ( text == "/fc" || text == "/farcast" )
+  std::stringstream ss(text);
+  std::string cmd;
+  ss >> cmd;
+
+  if ( cmd == "/fc" || cmd == "/farcast" )
   {
     farcasting = !farcasting;
     Broodwar << "Farcasting " << (farcasting ? "ENABLED" : "DISABLED") << std::endl;
+  }
+  else if ( cmd == "/r" || cmd == "/run" || cmd == "/script" )
+  {
+    std::string script;
+    ss >> script;
+
+    AICreateThread(script.c_str(), Broodwar->getScreenPosition() + Broodwar->getMousePosition() );
   }
   else
   {

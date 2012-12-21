@@ -34,9 +34,6 @@ namespace BWAPI
     , gameTableIndex(-1)
     , mapFileHandle(nullptr)
   {
-    // Init primary config if not already done so
-    InitPrimaryConfig();
-
     // Local variables
     int size  = sizeof(GameData);
     DWORD processID = GetCurrentProcessId();

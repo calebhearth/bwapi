@@ -16,7 +16,7 @@ int GetZergAirRushScore(Player *player);
 int GetProtossAirRushScore(Player *player);
 
 void AICreateThread(WORD wStartBlock, Position location, void *pTown = NULL);
-void AICreateThread(char *pszScriptID, Position location);
+void AICreateThread(const char *pszScriptID, Position location);
 
 #define AI_THREAD_BROODWAR        0x01
 #define AI_THREAD_KILLABLE        0x02

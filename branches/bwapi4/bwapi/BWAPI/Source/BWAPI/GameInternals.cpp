@@ -386,7 +386,7 @@ namespace BWAPI
     if ( hTournamentModule )
     {
       FreeLibrary(hTournamentModule);
-      hTournamentModule = NULL;
+      hTournamentModule = nullptr;
     }
 
     this->bTournamentMessageAppeared = false;
@@ -466,6 +466,7 @@ namespace BWAPI
     {
       if ( !unitArray[i] )
         continue;
+      unitArray[i]->clear();
       unitArray[i]->userSelected      = false;
       unitArray[i]->isAlive           = false;
       unitArray[i]->wasAlive          = false;
@@ -476,9 +477,6 @@ namespace BWAPI
       unitArray[i]->nukeDetected      = false;
       unitArray[i]->lastType          = UnitTypes::Unknown;
       unitArray[i]->lastPlayer        = nullptr;
-      unitArray[i]->lastCommandFrame  = 0;
-      unitArray[i]->lastCommand       = UnitCommand();
-      this->clientInfo.clear();
 
       unitArray[i]->setID(-1);
     }
@@ -486,6 +484,8 @@ namespace BWAPI
     this->bulletCount = 0;
     //this->frameCount  = -1;
     this->frameCount = 0;
+
+    this->clientInfo.clear();
 
     //reload auto menu data (in case the AI set the location of the next map/replay)
     this->loadAutoMenuData();

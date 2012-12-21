@@ -2,6 +2,7 @@
 #include "ScriptEnum.h"
 #include "BWScriptEmulator.h"
 #include "Controller.h"
+#include "OrderEmulate.h"
 
 #include <BWAPI.h>
 
@@ -870,11 +871,9 @@ void aithread::execute()
       // AI_AttackManager(thisLocation, 1, 0);
       MainController->dwAttackTime = bw->elapsedTime() - 175;
       continue;
-    case AISCRIPT::JUNKYARD_DOG:  // not started
+    case AISCRIPT::JUNKYARD_DOG:  // COMPLETED
       for each ( Unit *u in bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, GetPlayer == self) )
-      {
-        // run junkyard dog
-      }
+        SetUnitOrder(u, Orders::Enum::JunkYardDog);
       this->saveDebug(Text::Red, bOpcode);
       continue;
     case AISCRIPT::FAKE_NUKE:   // COMPLETED

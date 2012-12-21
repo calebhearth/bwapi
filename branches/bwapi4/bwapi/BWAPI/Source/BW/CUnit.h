@@ -267,7 +267,7 @@ namespace BW
       /*0x118*/ u8        irradiateTimer;
       /*0x119*/ u8        stasisTimer;
       /*0x11A*/ u8        plagueTimer;
-      /*0x11B*/ bool      isUnderStorm;
+      /*0x11B*/ u8        stormTimer;
       /*0x11C*/ BW::CUnit *irradiatedBy;
       /*0x120*/ u8        irradiatePlayerID;
       /*0x121*/ u8        parasiteFlags;

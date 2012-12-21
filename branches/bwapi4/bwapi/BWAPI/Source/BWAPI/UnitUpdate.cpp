@@ -386,7 +386,7 @@ namespace BWAPI
                               o->type().isBuilding(); //isLifted
       self->isParasited     = o->status.parasiteFlags != 0; //isParasited
       self->isSelected      = BWAPI::BroodwarImpl.isFlagEnabled(BWAPI::Flag::UserInput) && userSelected; //isSelected
-      self->isUnderStorm    = o->status.isUnderStorm != 0; //isUnderStorm
+      self->isUnderStorm    = o->status.stormTimer != 0; //isUnderStorm
       self->isUnpowered     = _getType.getRace() == Races::Protoss && _getType.isBuilding() && o->statusFlag(BW::StatusFlags::DoodadStatesThing); //isUnpowered
       self->isStuck         = o->movementState == UM_MoveToLegal;
       self->isInterruptible = !o->statusFlag(BW::StatusFlags::CanNotReceiveOrders); //isInterruptible

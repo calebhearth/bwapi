@@ -370,15 +370,12 @@ void InitializeSymFunctions()
 TopLevelExceptionFilter::TopLevelExceptionFilter()
 : pOldExceptionFilter(NULL)
 {
-  InitPrimaryConfig();
   InitializeSymFunctions();
 }
 
 TopLevelExceptionFilter::TopLevelExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER lpNewExceptionFilter)
 : pOldExceptionFilter(NULL)
 {
-  InitPrimaryConfig();
-
   if ( lpNewExceptionFilter )
     pOldExceptionFilter = SetUnhandledExceptionFilter(lpNewExceptionFilter);
   InitializeSymFunctions();

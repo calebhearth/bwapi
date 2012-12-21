@@ -1,4 +1,6 @@
 #include "Worker.h"
+#include "UnitInfo.h"
+
 using namespace BWAPI;
 
 #define REFINERY_GOOD 3
@@ -19,10 +21,10 @@ bool AttendTown(BWAPI::Unit *pUnit) // @TODO
 void RunWorkerController(BWAPI::Unit *pUnit)
 {
   // Check timer
-  int timer = (int)pUnit->getClientInfo('TIME');
+  int timer = pUnit->getClientInfo<int>(UnitInfo::AI_Controller_Timer);
   if ( timer )
   {
-    pUnit->setClientInfo(--timer, 'TIME');
+    pUnit->setClientInfo(--timer, UnitInfo::AI_Controller_Timer);
     return;
   }
 

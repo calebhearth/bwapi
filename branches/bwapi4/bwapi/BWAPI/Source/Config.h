@@ -11,8 +11,8 @@ std::string LoadRegString(const char *pszKeyName, const char *pszValueName);
 void InitPrimaryConfig();
 
 // Data
-extern std::string configPath;
-extern std::string installPath;
+static const std::string installPath( LoadRegString("starcraft", "InstallPath")+"\\" );
+static const std::string configPath( (installPath + "bwapi-data\\bwapi.ini") );
 extern std::string screenshotFmt;
 
 extern bool isCorrectVersion;

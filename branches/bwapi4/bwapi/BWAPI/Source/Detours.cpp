@@ -214,80 +214,51 @@ HANDLE WINAPI _FindFirstFile(LPCSTR lpFileName, LPWIN32_FIND_DATA lpFindFileData
   auto FindFirstFileProc = _FindFirstFileOld ? _FindFirstFileOld : &FindFirstFile;
   return FindFirstFileProc(pszFile, lpFindFileData);
 }
-void setReplayName(char *pOutFilename, const char *pInFileName)
+std::string &getReplayName(std::string &sInFilename)
 {
-  if ( strstr(pInFileName, "LastReplay.rep") )
+  // If it's an automatic replay save
+  if ( sInFilename.find("LastReplay.rep") != std::string::npos )
   {
+    // If we're replacing the name
     if ( !gDesiredReplayName.empty() )
-      strcpy(pOutFilename, gDesiredReplayName.c_str());
-    else
-      strcpy(pOutFilename, pInFileName);
-
+      sInFilename = gDesiredReplayName;
+    
+    // If we have multiple instances, so no write conflicts
     if ( gdwProcNum )
     {
-      char tmp[16];
-      sprintf(tmp, "[%u].rep", gdwProcNum);
-      char *ext = strrchr(pOutFilename, '.');
-      strcpy_s(ext, MAX_PATH - (ext ? ext - pOutFilename : 0), tmp);
+      // Add the instance number before .rep
+      std::stringstream ss( sInFilename.substr(0,sInFilename.find(".rep")) );
+      ss << '[' << gdwProcNum << ']' << ".rep";
+      sInFilename = ss.str();
     }
   }
-  else
-  {
-    strcpy(pOutFilename, pInFileName);
-  }
+  return sInFilename;
 }
 
-#ifdef _DEBUG
-#define DBG_HOOK(x) DebugHookLog(__FUNCTION__,x)
-#else
-#define DBG_HOOK(x)
-#endif
-
-void DebugHookLog(const char *pszFxn, const char *pszFile)
-{
-  static std::ofstream log(installPath + "\\Errors\\hookdebug.log", std::ios_base::out | std::ios_base::app);
-  if ( log )
-    log << pszFxn << '(' << pszFile << ')' << std::endl;
-}
 BOOL WINAPI _DeleteFile(LPCSTR lpFileName)
 {
-  // Obtain the alternative replay name
-  char szNewFileName[MAX_PATH];
-  setReplayName(szNewFileName, lpFileName);
-
-  // DEBUG
-  DBG_HOOK(lpFileName);
+  std::string fileName(lpFileName);
 
   // call the original function
   auto DeleteFileProc = _DeleteFileOld ? _DeleteFileOld : &DeleteFile;
-  return DeleteFileProc(szNewFileName);
+  return DeleteFileProc( getReplayName(fileName).c_str() );
 }
 DWORD WINAPI _GetFileAttributes(LPCSTR lpFileName)
 {
-  // obtain the alternative replay name
-  char szNewFileName[MAX_PATH];
-  setReplayName(szNewFileName, lpFileName);
-
-  // DEBUG
-  DBG_HOOK(lpFileName);
+  std::string fileName(lpFileName);
 
   // call the original function
   auto GetFileAttributesProc = _GetFileAttributesOld ? _GetFileAttributesOld : GetFileAttributes;
-  return GetFileAttributesProc(szNewFileName);
+  return GetFileAttributesProc( getReplayName(fileName).c_str() );
 }
 HANDLE WINAPI _CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
-  // obtain the alternative replay name
+  std::string fileName(lpFileName);
   // @TODO: Check for read/write attributes
-  char szNewFileName[MAX_PATH];
-  setReplayName(szNewFileName, lpFileName);
-
-  // DEBUG
-  DBG_HOOK(lpFileName);
 
   // call the original function
   auto CreateFileProc = _CreateFileOld ? _CreateFileOld : &CreateFile;
-  return CreateFileProc(szNewFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+  return CreateFileProc( getReplayName(fileName).c_str(), dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
 }
 //--------------------------------------------- CAPTURE SCREEN -----------------------------------------------
 BOOL STORMAPI _SDrawCaptureScreen(const char *pszOutput)

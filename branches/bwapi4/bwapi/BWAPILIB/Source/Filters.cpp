@@ -54,15 +54,15 @@ namespace BWAPI
   
   U_CFILTER(HP, u->getHitPoints() );
   U_CFILTER(MaxHP, u->getType().maxHitPoints() );
-  U_CFILTER(HP_Percent, (u->getHitPoints()*100) / u->getType().maxHitPoints() );
+  U_CFILTER(HP_Percent, (u->getType().maxHitPoints() != 0) ? ((u->getHitPoints()*100) / u->getType().maxHitPoints()) : 0 );
   
   U_CFILTER(Shields, u->getShields() );
   U_CFILTER(MaxShields, u->getType().maxShields() );
-  U_CFILTER(Shields_Percent, (u->getShields()*100) / u->getType().maxShields() );
+  U_CFILTER(Shields_Percent, (u->getType().maxShields() != 0) ? ((u->getShields()*100) / u->getType().maxShields()) : 0 );
   
   U_CFILTER(Energy, u->getEnergy() );
   U_CFILTER(MaxEnergy, u->getPlayer()->maxEnergy(u->getType()) );
-  U_CFILTER(Energy_Percent, (u->getEnergy()*100) / u->getPlayer()->maxEnergy(u->getType()) );
+  U_CFILTER(Energy_Percent, (u->getPlayer()->maxEnergy(u->getType()) != 0) ? ((u->getEnergy()*100) / u->getPlayer()->maxEnergy(u->getType())) : 0 );
 
   U_CFILTER(Armor, u->getPlayer()->armor(u->getType()) );
   U_CFILTERX(ArmorUpgrade, u->getType().armorUpgrade(), UpgradeType );

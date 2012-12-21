@@ -83,11 +83,12 @@ void AICreateThread(WORD wStartBlock, Position location, void *pTown)
   ++threadCount;
 }
 
-void AICreateThread(char *pszScriptID, Position location)
+void AICreateThread(const char *pszScriptID, Position location)
 {
-  DWORD dwScriptID = *(DWORD*)pszScriptID;
-  if ( !pbAIScriptBinary )
+  if ( !pszScriptID || strlen(pszScriptID) < 4 || !pbAIScriptBinary )
     return;
+
+  DWORD dwScriptID = *(DWORD*)pszScriptID;
 
   ais_entry *entryList = (ais_entry*)(pbAIScriptBinary + *(DWORD*)pbAIScriptBinary);
   DWORD dwScriptOffset = 0;
@@ -139,10 +140,10 @@ aithread::aithread(WORD wStartBlock, BWAPI::Position location, void *town)
 ,dwBytesRead(0)
 ,retryBlock(false)
 {
-  this->locationBounds.left   = location.x - 128;
-  this->locationBounds.right  = location.x + 128;
-  this->locationBounds.top    = location.y - 128;
-  this->locationBounds.bottom = location.y + 128;
+  this->locationBounds.left   = location.x - 1024;
+  this->locationBounds.right  = location.x + 1024;
+  this->locationBounds.top    = location.y - 1024;
+  this->locationBounds.bottom = location.y + 1024;
   memset(this->bTotBuildCount, 0, sizeof(this->bTotBuildCount));
   this->debugQueue.clear();
 }

@@ -790,7 +790,7 @@ namespace BWAPI
     /// pass the command to one of its @Larvae.
     ///
     /// @see Game::getLastError, Unit::build, Unit::morph, Unit::cancelTrain, Unit::isTraining
-    bool train(UnitType type);
+    bool train(UnitType type = UnitTypes::None);
 
     /// Orders the unit(s) to morph into a different UnitType.
     ///

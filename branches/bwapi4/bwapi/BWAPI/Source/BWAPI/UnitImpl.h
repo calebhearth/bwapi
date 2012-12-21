@@ -223,10 +223,10 @@ namespace BWAPI
       int lastCommandFrame;
       UnitCommand lastCommand;
 
+      void clear();
     private:
       /** Orders to select this unit (previous selection will be lost. */
       void orderSelect();
-      void clear();
 
       u16 index; /**< Index of the unit in the array (can be computed, it's just optimisation) */
       UnitType initialType;

@@ -7,8 +7,6 @@
 
 #include "WMode.h"
 
-std::string configPath;
-std::string installPath;
 std::string screenshotFmt;
 
 bool isCorrectVersion = true;
@@ -65,12 +63,6 @@ void InitPrimaryConfig()
   isPrimaryConfigInitialized = true;
 
   // ------------------------- GENERAL/GLOBAL CONFIG OPTIONS ----------------------------------
-  // Get install, config, and log paths
-  installPath = LoadRegString("starcraft", "InstallPath");
-  installPath += "\\";
-
-  configPath = installPath + "bwapi-data\\bwapi.ini";
-
   // Get screenshot format
   screenshotFmt = LoadConfigString("starcraft", "screenshots", "gif");
   if ( !screenshotFmt.empty() )

@@ -83,7 +83,10 @@
     <ClCompile Include="BWScriptEmulator.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Dll.cpp" />
+    <ClCompile Include="JunkYardDog.cpp" />
     <ClCompile Include="Military.cpp" />
+    <ClCompile Include="OrderEmulate.cpp" />
+    <ClCompile Include="Task.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="ScriptEnum.cpp" />
     <ClCompile Include="ScriptOpcodes.cpp" />
@@ -95,11 +98,12 @@
     <ClInclude Include="BWScriptEmulator.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Military.h" />
+    <ClInclude Include="OrderEmulate.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="UnitInfo.h" />
     <ClInclude Include="Worker.h" />
-    <ClInclude Include="OrderID.h" />
     <ClInclude Include="ScriptEnum.h" />
     <ClInclude Include="ScriptThread.h" />
-    <ClInclude Include="UnitID.h" />
     <ClInclude Include="UType.h" />
   </ItemGroup>
   <ItemGroup>
