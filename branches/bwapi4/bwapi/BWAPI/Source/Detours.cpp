@@ -367,9 +367,9 @@ void __stdcall DrawHook(BW::Bitmap *pSurface, BW::bounds *pBounds)
     memset(BW::BWDATA::RefreshRegions, 1, 1200);
   }
 
-  GameUpdate(pSurface, pBounds);
-  //if ( BW::pOldDrawGameProc )
-    //BW::pOldDrawGameProc(pSurface, pBounds);
+  //GameUpdate(pSurface, pBounds);
+  if ( BW::pOldDrawGameProc )
+    BW::pOldDrawGameProc(pSurface, pBounds);
 
   if ( BW::BWDATA::GameScreenBuffer->isValid() )
   {

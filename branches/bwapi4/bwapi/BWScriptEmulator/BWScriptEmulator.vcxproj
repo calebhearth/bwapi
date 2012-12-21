@@ -87,6 +87,7 @@
     <ClCompile Include="Military.cpp" />
     <ClCompile Include="OrderEmulate.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="UnitInfo.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="ScriptEnum.cpp" />
     <ClCompile Include="ScriptOpcodes.cpp" />

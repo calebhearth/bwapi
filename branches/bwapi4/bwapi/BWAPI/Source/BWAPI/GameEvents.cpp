@@ -793,11 +793,11 @@ namespace BWAPI
     // unitdebug
     if ( unitDebug && BWAPIPlayer )
     {
-      foreach ( auto u, this->BWAPIPlayer->units )
+      foreach ( auto u, this->getAllUnits() )
       {
-//        auto raw = ((UnitImpl*)u)->getOriginalRawData;
-        if ( u->getRemainingBuildTime() )
-          Broodwar << u->getRemainingBuildTime() << std::endl;
+        auto raw = ((UnitImpl*)u)->getOriginalRawData;
+        if ( raw->autoTargetUnit )
+          this->drawLineMap(u->getPosition(), BWAPI::Position(raw->autoTargetUnit->position), Colors::Red);
       }
       /*
       BWAPI::Color c = Colors::Red;

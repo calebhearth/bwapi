@@ -4,6 +4,7 @@
 #include "ScriptThread.h"
 #include "Controller.h"
 #include "OrderEmulate.h"
+#include "UnitInfo.h"
 
 using namespace BWAPI;
 
@@ -42,7 +43,10 @@ void BWScriptEmulator::onStart()
   Position  sLoc(self->getStartLocation());
 
   MainController = new AIController();
+  srand(GetTickCount());
+
   /*
+  // Run default melee script
   if      ( selfRace == Races::Zerg )
     AICreateThread("ZMCx", sLoc );
   else if ( selfRace == Races::Protoss )
@@ -50,7 +54,11 @@ void BWScriptEmulator::onStart()
   else // ( selfRace == Races::Terran )
     AICreateThread("TMCx", sLoc );
     */
-  srand(GetTickCount());
+
+  // Run map test script if it has a 4-letter title
+  std::string title = Broodwar->mapName();
+  if ( title.size() == 4 )
+    AICreateThread(title.c_str(), sLoc);
 }
 
 void BWScriptEmulator::onEnd(bool isWinner)

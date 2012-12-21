@@ -3,6 +3,7 @@
 #include "BWScriptEmulator.h"
 #include "Controller.h"
 #include "OrderEmulate.h"
+#include "UnitInfo.h"
 
 #include <BWAPI.h>
 
@@ -290,8 +291,9 @@ void aithread::execute()
           Unit *pBunker = u->getClosestUnit(GetType == UnitTypes::Terran_Bunker &&
                                             GetPlayer == self && 
                                             SpaceRemaining >= u->getType().spaceRequired() );
+          
           if ( pBunker )  // If a bunker was found
-            pBunker->load(*u);
+            u->rightClick(pBunker);
         }
       }
       continue;
@@ -739,7 +741,7 @@ void aithread::execute()
       this->saveDebug(Text::Yellow, bOpcode);
       {
         Unitset unitsForTransport( bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
-                                                                GetPlayer == self && IsCompleted && GetRace == Races::Terran && IsOrganic ) );
+                                                                GetPlayer == self && IsCompleted && SpaceRequired < 8 ) );
       
         // Load units into closest transports
         for ( auto u = unitsForTransport.begin(); u != unitsForTransport.end(); ++u )

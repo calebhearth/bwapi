@@ -112,7 +112,7 @@ namespace BW
     /*0x074*/ BW::COrder   *orderQueueHead;
     /*0x078*/ BW::COrder   *orderQueueTail;
 
-    /*0x07C*/ BW::CUnit   *autoTargetUnit;      // The auto-acquired target
+    /*0x07C*/ BW::CUnit   *autoTargetUnit;      // The auto-acquired target (Note: This field is actually used for different targets internally, especially by the AI)
     /*0x080*/ BW::CUnit   *connectedUnit;       // Addon is connected to building (addon has conntected building, but not in other direction  (officially "pAttached")
     /*0x084*/ u8          orderQueueCount;      // @todo Verify   // officially "ubQueuedOrders"
     /*0x085*/ u8          orderQueueTimer;      // counts/cycles down from from 8 to 0 (inclusive). See also 0x122.

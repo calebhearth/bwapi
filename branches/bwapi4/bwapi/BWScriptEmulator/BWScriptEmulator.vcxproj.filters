@@ -40,6 +40,9 @@
     <ClCompile Include="JunkYardDog.cpp">
       <Filter>UnitControl\Orders</Filter>
     </ClCompile>
+    <ClCompile Include="UnitInfo.cpp">
+      <Filter>UnitControl\Source FIles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
