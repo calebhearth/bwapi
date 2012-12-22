@@ -63,13 +63,13 @@ This page is a guide that contains advanced information about Starcraft Broodwar
     Only the size of their resource depot impacts resource gathering time, with the exception of the Command Center, whose addon script possibly causes a pause for workers returning on the left and right sides. Buildings also seem to favor the top left more than the bottom right, but the difference is unnoticable.
 
   == What is the regeneration rate of Protoss Shields? ==
-    The regeneration rate of Protoss Shields is 7 points per frame. Visibly, this is 0.02734375 points per frame, or 0.651041666.. points per second on fastest speed.
+    The regeneration rate of Protoss Shields is 7 points per frame internally. Visibly, this is 0.02734375 points per frame, or 0.651041666.. points per second on fastest speed.
 
   == What is the regeneration rate of Energy? ==
-    The regeneration rate of Energy (used for abilities) is 8 points per frame. Like Shields, this is visibly 0.03125 points per frame, or 0.744047619.. points per second on fastest speed.
+    The regeneration rate of Energy (used for abilities) is 8 points per frame internally. Like Shields, this is visibly 0.03125 points per frame, or 0.744047619.. points per second on fastest speed.
 
   == What is the regeneration rate of Zerg Hit Points? ==
-    The regeneration rate of Zerg HP is 4 points per frame. Again, this is visibly 0.015625 points per frame, or 0.3720238095.. points per second on fastest speed.
+    The regeneration rate of Zerg HP is 4 points per frame internally. Again, this is visibly 0.015625 points per frame, or 0.3720238095.. points per second on fastest speed.
 
 = Engine Guide =
   == What is Starcraft's frame rate? ==
