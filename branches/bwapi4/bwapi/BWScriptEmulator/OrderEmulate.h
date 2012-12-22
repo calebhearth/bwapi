@@ -1,16 +1,6 @@
 #pragma once
 #include <BWAPI.h>
 
-void EmulateOrder(BWAPI::Unit *pUnit);
-
-
-void RunJunkYardDog(BWAPI::Unit *pUnit);
-
-
-BWAPI::Unit *FindNewAttackTarget(BWAPI::Unit *pUnit);
-
-
-
 #define POS BWAPI::Position
 
 const BWAPI::Position directionPositions[256] =

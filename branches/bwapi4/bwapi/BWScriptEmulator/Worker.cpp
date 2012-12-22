@@ -1,24 +1,21 @@
-#include "Worker.h"
 #include "UnitInfo.h"
-
-using namespace BWAPI;
 
 #define REFINERY_GOOD 3
 #define REFINERY_DEPLETED 2
 #define REFINERY_NEED 1
 #define REFINERY_BAD 0
 
-bool AttendRepair(BWAPI::Unit *pUnit) // @TODO
+bool UnitWrap::AttendRepair() // @TODO
 {
   return false;
 }
 
-bool AttendTown(BWAPI::Unit *pUnit) // @TODO
+bool UnitWrap::AttendTown() // @TODO
 {
   return false;
 }
 
-void RunWorkerController(BWAPI::Unit *pUnit)
+void UnitWrap::RunWorkerController()
 {
   // Check timer
   int timer = pUnit->getClientInfo<int>(UnitInfo::AI_Controller_Timer);
@@ -29,11 +26,11 @@ void RunWorkerController(BWAPI::Unit *pUnit)
   }
 
   // Check for things that need to be repaired
-  if ( pUnit->getType() == UnitTypes::Terran_SCV && AttendRepair(pUnit) )
+  if ( pUnit->getType() == UnitTypes::Terran_SCV && AttendRepair() )
     return;
 
   // Check if the town is requesting any construction work
-  if ( AttendTown(pUnit) )
+  if ( AttendTown() )
     return;
    
   // @TODO

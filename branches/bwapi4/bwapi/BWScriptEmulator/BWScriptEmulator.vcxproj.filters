@@ -43,6 +43,15 @@
     <ClCompile Include="UnitInfo.cpp">
       <Filter>UnitControl\Source FIles</Filter>
     </ClCompile>
+    <ClCompile Include="ComputerAI.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="Guard.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="Return.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -60,23 +69,11 @@
     <ClInclude Include="UType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIControl.h">
-      <Filter>UnitControl\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Worker.h">
-      <Filter>UnitControl\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Military.h">
-      <Filter>UnitControl\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>UnitControl\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UnitInfo.h">
       <Filter>UnitControl\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OrderEmulate.h">
-      <Filter>UnitControl\Orders</Filter>
+      <Filter>UnitControl\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

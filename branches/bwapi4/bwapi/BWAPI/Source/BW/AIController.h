@@ -81,7 +81,7 @@ namespace BW
     /* 0x04 */ CAIController *next;
     
     /* 0x08 */ BYTE bType;
-    /*    tracker (military/standard) = 1,
+    /*    guard = 1,
           worker = 2,
           task = 3,
 
@@ -100,7 +100,7 @@ namespace BW
         /* 0x16 */ struct { short x,y; } currentLocation;
         /* 0x18 */ WORD unk_18;
         /* 0x1A */ DWORD dwCount;
-      } tracker;  // 01
+      } guard;  // 01
 
       // Used for workers
       struct

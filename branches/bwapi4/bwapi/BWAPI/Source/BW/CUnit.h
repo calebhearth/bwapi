@@ -126,7 +126,7 @@ namespace BW
     /*0x08F*/ u8          killCount;            // Killcount
     /*0x090*/ u8          lastAttackingPlayer;  // the player that last attacked this unit
     /*0x091*/ u8          secondaryOrderTimer;
-    /*0x092*/ u8          _unknown_0x091;
+    /*0x092*/ u8          AIActionFlag;           // Internal use by AI only
     /*0x093*/ u8          userActionFlags;        // some flags that change when the user interacts with the unit
                                                   // 2 = issued an order, 3 = interrupted an order, 4 = self destructing
 
@@ -232,8 +232,8 @@ namespace BW
     /*0x0E3*/ u8        recentOrderTimer;     // Counts down from 15 to 0 when most orders are given,
                                               // or when the unit moves after reaching a patrol location
     /*0x0E4*/ s32       visibilityStatus;     // Flags specifying which players can detect this unit (cloaked/burrowed)
-    /*0x0E8*/ u16       _unknown_0x0E8;       // Secondary order related
-    /*0x0EA*/ u16       _unknown_0x0EA;       // Secondary order related
+    /*0x0E8*/ u16       _unknown_0x0E8;       // Secondary order related (x?)
+    /*0x0EA*/ u16       _unknown_0x0EA;       // Secondary order related (y?)
     /*0x0EC*/ BW::CUnit *currentBuildUnit;
     // CLink<CUnit> burrow_link;
     /*0x0F0*/ BW::CUnit *previousBurrowedUnit;

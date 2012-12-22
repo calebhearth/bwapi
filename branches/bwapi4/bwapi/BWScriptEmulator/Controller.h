@@ -23,6 +23,11 @@ public:
   AIController();
   ~AIController();
 
+  bool IsCampaign() const;
+  int GetCastingCooldown() const;
+  void SetCastingCooldown(int time);
+
+
   void AttackAdd(int count, BWAPI::UnitType type);
   void DefenseClear(int type);
   void DefenseBuild(int type, int count, BWAPI::UnitType uType);
@@ -37,6 +42,8 @@ public:
   WORD  wAttackGroup;
   WORD  wWaitForType;
   BYTE  bDefaultMin;
+
+  int castingCooldown;
   
   DWORD dwLastIndividualUnitUpdateTime;
   DWORD dwAttackTime;
@@ -50,4 +57,4 @@ public:
   RECT  genCmdTarget; // @TODO: Rectangle class
 };
 
-extern AIController *MainController;
+extern AIController MainController;

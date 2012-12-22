@@ -1,5 +1,10 @@
-#include "Task.h"
+#include "UnitInfo.h"
 
-using namespace BWAPI;
+
+bool UnitWrap::RunTaskController()
+{
+
+  return false;
+}
 
 

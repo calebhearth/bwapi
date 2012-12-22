@@ -1,17 +1,15 @@
 #include "OrderEmulate.h"
 #include "UnitInfo.h"
 
-using namespace BWAPI;
-
 // random number within [min,max]
 int randBetween(int min, int max)
 {
   return (rand()%((max-min)+1)) + min;
 }
 
-void RunJunkYardDog(BWAPI::Unit *pUnit)
+void UnitWrap::RunJunkYardDog()
 {
-  if ( GetOrderState(pUnit) == 0 )
+  if ( GetOrderState() == 0 )
   {
     // Retrieve a random target position
     BWAPI::Position targ = directionPositions[ randBetween(0,255) ];
@@ -28,44 +26,44 @@ void RunJunkYardDog(BWAPI::Unit *pUnit)
 
     // Issue move order and set the order state to 1
     pUnit->move(targ);
-    SetOrderState(pUnit, 1);
+    SetOrderState(1);
   }
   else
   {
-    BWAPI::Unit *pAutoTarget = GetAttackTarget(pUnit);
+    BWAPI::Unit *pAutoTarget = GetAttackTarget();
     if ( pAutoTarget == nullptr ||
       !Broodwar->self()->isEnemy(pAutoTarget->getPlayer())  ||
       !pAutoTarget->isVisible() ||
       pAutoTarget->isInvincible() ||
       !pAutoTarget->isDetected() )
     {
-      if ( GetOrderTimer(pUnit) == 0 )
+      if ( GetOrderTimer() == 0 )
       {
-        SetOrderTimer(pUnit, 15);
+        SetOrderTimer(15);
         if ( ( pUnit->getTargetPosition() != pUnit->getPosition() /* || !unmovable */ ) /*&&
                (pUnit->getSpellCooldown() != 0 || (pUnit->getType().isFlyer() || pUnit->isLifted()) )*/  )
         {
-          pAutoTarget = FindNewAttackTarget(pUnit); // Look for new closest target!
+          pAutoTarget = FindNewAttackTarget(); // Look for new closest target!
           if ( pAutoTarget != nullptr )
           {
             if ( pUnit->attack(pAutoTarget) )
-              SetUnitOrder(pUnit, Orders::Enum::Guard);
+              SetVirtualUnitOrder(Orders::Enum::Guard);
             // queue Junk Yard Dog
             //pUnit->holdPosition();
           }
         }
         else
         {
-          SetOrderState(pUnit, 0);
+          SetOrderState(0);
         }
       } // if order timer^
     }
     else
     {
       if ( pUnit->attack(pAutoTarget) )
-        SetUnitOrder(pUnit, Orders::Enum::Guard);
+        SetVirtualUnitOrder(Orders::Enum::Guard);
       // queue Junk Yard Dog
-      SetAttackTarget(pUnit, nullptr);
+      SetAttackTarget(nullptr);
       //pUnit->holdPosition();
     }
   }

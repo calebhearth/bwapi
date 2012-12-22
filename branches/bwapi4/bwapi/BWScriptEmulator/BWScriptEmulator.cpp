@@ -3,7 +3,6 @@
 
 #include "ScriptThread.h"
 #include "Controller.h"
-#include "OrderEmulate.h"
 #include "UnitInfo.h"
 
 using namespace BWAPI;
@@ -42,7 +41,6 @@ void BWScriptEmulator::onStart()
   Race      selfRace(self->getRace());
   Position  sLoc(self->getStartLocation());
 
-  MainController = new AIController();
   srand(GetTickCount());
 
   /*
@@ -63,8 +61,6 @@ void BWScriptEmulator::onStart()
 
 void BWScriptEmulator::onEnd(bool isWinner)
 {
-  if ( MainController )
-    delete MainController;
 }
 
 void BWScriptEmulator::onFrame()
@@ -78,10 +74,17 @@ void BWScriptEmulator::onFrame()
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
     if ( !u->exists() ) continue;
-    EmulateOrder(*u);
 
-    Broodwar->drawTextMap(u->getPosition(), "    %s", Order(GetUnitOrder(*u)).c_str() );
+    UnitWrap uw = *u;
+    uw.EmulateOrder();
+
+    Broodwar->drawTextMap(u->getPosition(), "    %s", Order(uw.GetUnitOrder()).c_str() );
   }
+  
+  Unitset allUnits( Broodwar->getAllUnits() );
+  for ( auto u = allUnits.begin(); u != allUnits.end(); ++u )
+    Broodwar->drawTextMap(u->getPosition(), "\n    %s", u->getOrder().c_str());
+  
 }
 
 void BWScriptEmulator::onSendText(std::string text)
@@ -133,7 +136,19 @@ void BWScriptEmulator::onUnitCreate(BWAPI::Unit* unit)
 {
   if ( unit->getPlayer() == self )  // If we own it
   {
+    UnitWrap u(unit);
 
+    // Run computer idle order
+    u.AssignComputerIdleOrder();
+
+    // Assign control types
+    if ( u->getType().isWorker() )
+      u.SetControlType(ControlTypes::Worker);
+    else
+    {
+      u.SetControlType(ControlTypes::Guard);
+      u.SetGuardReturnPosition(u->getPosition());
+    }
   }
 }
 

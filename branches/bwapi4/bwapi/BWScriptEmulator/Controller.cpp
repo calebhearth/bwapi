@@ -1,7 +1,7 @@
 #include "Controller.h"
 #include "BWScriptEmulator.h"
 
-AIController *MainController;
+AIController MainController;
 
 AIController::AIController()
 {
@@ -10,7 +10,20 @@ AIController::AIController()
 
 AIController::~AIController()
 {
+}
 
+bool AIController::IsCampaign() const
+{
+  return !!(this->wFlags & CONTROLLER_IS_CAMPAIGN);
+}
+
+int AIController::GetCastingCooldown() const
+{
+  return this->castingCooldown;
+}
+void AIController::SetCastingCooldown(int time)
+{
+  this->castingCooldown = time;
 }
 
 void AIController::AttackAdd(int count, BWAPI::UnitType type)
