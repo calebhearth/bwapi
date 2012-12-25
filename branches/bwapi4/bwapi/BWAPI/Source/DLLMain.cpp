@@ -242,9 +242,6 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
     // Apply all hacks and patches to the game
     ApplyCodePatches();
 
-    // Initialize BWAPI
-    BWAPI::BWAPI_init();
-
     // Create our thread that persistently applies hacks
     CreateThread(NULL, 0, &PersistentPatch, NULL, 0, NULL);
 

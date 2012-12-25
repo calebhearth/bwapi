@@ -34,24 +34,23 @@ void reconnect()
 }
 int main(int argc, const char* argv[])
 {
-  BWAPI::BWAPI_init();
-  printf("Connecting...");
+  std::cout << "Connecting..." << std::endl;;
   reconnect();
   while(true)
   {
-    printf("waiting to enter match\n");
-    while (!Broodwar->isInGame())
+    std::cout << "waiting to enter match" << std::endl;
+    while ( !Broodwar->isInGame() )
     {
       BWAPI::BWAPIClient.update();
       if (!BWAPI::BWAPIClient.isConnected())
       {
-        printf("Reconnecting...\n");
+        std::cout << "Reconnecting..." << std::endl;;
         reconnect();
       }
     }
-    printf("starting match!\n");
+    std::cout << "starting match!" << std::endl;
     Broodwar->sendText("Hello world!");
-    Broodwar->printf("The map is %s, a %d player map",Broodwar->mapName().c_str(),Broodwar->getStartLocations().size());
+    Broodwar << "The map is " << Broodwar->mapName() << ", a " << Broodwar->getStartLocations().size() << " player map" << std::endl;
     // Enable some cheat flags
     Broodwar->enableFlag(Flag::UserInput);
     // Uncomment to enable complete map information
@@ -67,19 +66,17 @@ int main(int argc, const char* argv[])
 
     if (Broodwar->isReplay())
     {
-      Broodwar->printf("The following players are in this replay:");
+      Broodwar << "The following players are in this replay:" << std::endl;;
       Playerset players = Broodwar->getPlayers();
       for(Playerset::iterator p = players.begin(); p != players.end(); ++p )
       {
-        if (!(*p)->getUnits().empty() && !(*p)->isNeutral())
-          Broodwar->printf("%s, playing as a %s",(*p)->getName().c_str(),(*p)->getRace().getName().c_str());
+        if ( !p->getUnits().empty() && !p->isNeutral() )
+          Broodwar << p->getName() << ", playing as " << p->getRace() << std::endl;
       }
     }
     else
     {
-      Broodwar->printf("The match up is %s v %s",
-        Broodwar->self()->getRace().getName().c_str(),
-        Broodwar->enemy()->getRace().getName().c_str());
+      Broodwar << "The match up is " << Broodwar->self()->getRace() << " vs " << Broodwar->enemy()->getRace() << std::endl;
 
       //send each worker to the mineral field that is closest to it
       Unitset units    = Broodwar->self()->getUnits();
@@ -113,9 +110,9 @@ int main(int argc, const char* argv[])
         {
           case EventType::MatchEnd:
             if (e->isWinner())
-              printf("I won the game\n");
+              Broodwar << "I won the game" << std::endl;
             else
-              printf("I didn't win the game\n");
+              Broodwar << "I lost the game" << std::endl;
             break;
           case EventType::SendText:
             if (e->getText()=="/show bullets")
@@ -139,27 +136,27 @@ int main(int argc, const char* argv[])
               }
             } */ else
             {
-              Broodwar->printf("You typed '%s'!",e->getText().c_str());
+              Broodwar << "You typed \"" << e->getText() << "\"!" << std::endl;
             }
             break;
           case EventType::ReceiveText:
-            Broodwar->printf("%s said '%s'", e->getPlayer()->getName().c_str(), e->getText().c_str());
+            Broodwar << e->getPlayer()->getName() << " said \"" << e->getText() << "\"" << std::endl;
             break;
           case EventType::PlayerLeft:
-            Broodwar->sendText("%s left the game.",e->getPlayer()->getName().c_str());
+            Broodwar << e->getPlayer()->getName() << " left the game." << std::endl;
             break;
           case EventType::NukeDetect:
             if (e->getPosition()!=Positions::Unknown)
             {
               Broodwar->drawCircleMap(e->getPosition(), 40, Colors::Red, true);
-              Broodwar->printf("Nuclear Launch Detected at (%d,%d)",e->getPosition().x,e->getPosition().y);
+              Broodwar << "Nuclear Launch Detected at " << e->getPosition() << std::endl;
             }
             else
-              Broodwar->printf("Nuclear Launch Detected");
+              Broodwar << "Nuclear Launch Detected" << std::endl;
             break;
           case EventType::UnitCreate:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] has been created at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
+              Broodwar << "A " << e->getUnit()->getType() << " [" << e->getUnit() << "] has been created at " << e->getUnit()->getPosition() << std::endl;
             else
             {
               /*if we are in a replay, then we will print out the build order
@@ -260,13 +257,14 @@ int main(int argc, const char* argv[])
       BWAPI::BWAPIClient.update();
       if (!BWAPI::BWAPIClient.isConnected())
       {
-        printf("Reconnecting...\n");
+        std::cout << "Reconnecting..." << std::endl;
         reconnect();
       }
     }
-    printf("Game ended\n");
+    std::cout << "Game ended" << std::endl;
   }
-  system("pause");
+  std::cout << "Press ENTER to continue..." << std::endl;
+  std::cin.ignore();
   return 0;
 }
 /*
@@ -313,7 +311,7 @@ void drawBullets()
     double velocityX = i->getVelocityX();
     double velocityY = i->getVelocityY();
     Broodwar->drawLineMap(p, p + Position((int)velocityX, (int)velocityY), i->getPlayer() == Broodwar->self() ? Colors::Green : Colors::Red);
-    Broodwar->drawTextMap(p.x, p.y, "%c%s", i->getPlayer() == Broodwar->self() ? Text::Green : Text::Red, i->getType().c_str());
+    Broodwar->drawTextMap(p, "%c%s", i->getPlayer() == Broodwar->self() ? Text::Green : Text::Red, i->getType().c_str());
   }
 }
 
@@ -388,7 +386,7 @@ void showPlayers()
 {
   Playerset players = Broodwar->getPlayers();
   for(Playerset::iterator i = players.begin(); i != players.end(); ++i)
-    Broodwar->printf("Player [%d]: %s is in force: %s", i->getID(), i->getName().c_str(), i->getForce()->getName().c_str());
+    Broodwar << "Player [" << i->getID() << "]: " << i->getName() << " is in force: " << i->getForce()->getName() << std::endl;
 }
 
 void showForces()
@@ -397,8 +395,8 @@ void showForces()
   for(Forceset::iterator i = forces.begin(); i != forces.end(); ++i)
   {
     Playerset players = i->getPlayers();
-    Broodwar->printf("Force %s has the following players:", i->getName().c_str());
+    Broodwar << "Force " << i->getName() << " has the following players:" << std::endl;
     for(Playerset::iterator j = players.begin(); j != players.end(); ++j)
-      Broodwar->printf("  - Player [%d]: %s", j->getID(), j->getName().c_str());
+      Broodwar << "  - Player [" << j->getID() << "]: " << j->getName() << std::endl;
   }
 }

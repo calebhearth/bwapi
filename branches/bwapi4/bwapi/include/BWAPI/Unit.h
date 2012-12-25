@@ -116,7 +116,7 @@ namespace BWAPI
     /// @returns TilePosition object representing the unit's current tile position.
     ///
     /// @see getPosition, getInitialTilePosition
-    virtual TilePosition getTilePosition() const = 0;
+    TilePosition getTilePosition() const;
 
     /// Retrieves the unit's facing direction in radians.
     ///
@@ -144,7 +144,7 @@ namespace BWAPI
     /// @retval nullptr If the unit is inaccessible.
     ///
     /// @returns A pointer to a Region object that contains this unit.
-    virtual BWAPI::Region *getRegion() const = 0;
+    BWAPI::Region *getRegion() const;
 
     /// Retrieves the X coordinate of the unit's left boundry, measured in pixels from the left
     /// side of the map.
@@ -152,7 +152,7 @@ namespace BWAPI
     /// @returns An integer representing the position of the left side of the unit.
     ///
     /// @see getTop, getRight, getBottom
-    virtual int getLeft() const = 0;
+    int getLeft() const;
 
     /// Retrieves the Y coordinate of the unit's top boundry, measured in pixels from the top of
     /// the map.
@@ -160,7 +160,7 @@ namespace BWAPI
     /// @returns An integer representing the position of the top side of the unit.
     ///
     /// @see getLeft, getRight, getBottom
-    virtual int getTop() const = 0;
+    int getTop() const;
 
     /// Retrieves the X coordinate of the unit's right boundry, measured in pixels from the left
     /// side of the map.
@@ -168,7 +168,7 @@ namespace BWAPI
     /// @returns An integer representing the position of the right side of the unit.
     ///
     /// @see getLeft, getTop, getBottom
-    virtual int getRight() const = 0;
+    int getRight() const;
 
     /// Retrieves the Y coordinate of the unit's bottom boundry, measured in pixels from the top
     /// of the map.
@@ -176,7 +176,7 @@ namespace BWAPI
     /// @returns An integer representing the position of the bottom side of the unit.
     ///
     /// @see getLeft, getTop, getRight
-    virtual int getBottom() const = 0;
+    int getBottom() const;
 
     /// Retrieves the unit's current Hit Points (HP) as seen in the game.
     ///
@@ -236,7 +236,7 @@ namespace BWAPI
     ///
     /// @returns An integer representation of the number of pixels between this unit and the
     /// \p target.
-    virtual int getDistance(PositionOrUnit target) const = 0;
+    int getDistance(PositionOrUnit target) const;
 
     /// Using data provided by Starcraft, checks if there is a path available from this unit to
     /// the given target.
@@ -253,7 +253,7 @@ namespace BWAPI
     /// @retval true If there is a path between this unit and the target.
     /// @retval false If the target is on a different piece of land than this one (such as an
     /// island).
-    virtual bool hasPath(PositionOrUnit target) const = 0;
+    bool hasPath(PositionOrUnit target) const;
 
     /** Returns the frame of the last successful command. Frame is comparable to Game::getFrameCount(). */
     virtual int getLastCommandFrame() const = 0;
@@ -599,7 +599,7 @@ namespace BWAPI
 
     /** Returns true if the unit is not doing anything.
      * \see Unit::stop. */
-    virtual bool isIdle() const = 0;
+    bool isIdle() const;
 
     /** Returns true if the unit can be interrupted. */
     virtual bool isInterruptible() const = 0;

@@ -2,11 +2,6 @@
 #include <BWAPI/Client/UnitData.h>
 #include <TemplatesImpl.h>
 
-#ifndef MAXINT
-#include <limits>
-#define MAXINT std::numeric_limits<int>::max()
-#endif
-
 namespace BWAPI
 {
   //--------------------------------------------- CLEAR ------------------------------------------------------
@@ -55,12 +50,6 @@ namespace BWAPI
   {
     return Position(self->positionX, self->positionY);
   }
-  //--------------------------------------------- GET TILE POSITION ------------------------------------------
-  TilePosition UnitImpl::getTilePosition() const
-  {
-    return TilePosition(Position(abs(self->positionX - getType().tileWidth()  * TILE_SIZE / 2),
-                                 abs(self->positionY - getType().tileHeight() * TILE_SIZE / 2)) );
-  }
   //--------------------------------------------- GET ANGLE --------------------------------------------------
   double UnitImpl::getAngle() const
   {
@@ -75,31 +64,6 @@ namespace BWAPI
   double UnitImpl::getVelocityY() const
   {
     return self->velocityY;
-  }
-  //--------------------------------------------- GET REGION -------------------------------------------------
-  BWAPI::Region *UnitImpl::getRegion() const
-  {
-    return Broodwar->getRegionAt(getPosition());
-  }
-  //--------------------------------------------- GET LEFT ---------------------------------------------------
-  int UnitImpl::getLeft() const
-  {
-    return self->positionX - UnitType(self->type).dimensionLeft();
-  }
-  //--------------------------------------------- GET TOP ----------------------------------------------------
-  int UnitImpl::getTop() const
-  {
-    return self->positionY - UnitType(self->type).dimensionUp();
-  }
-  //--------------------------------------------- GET RIGHT --------------------------------------------------
-  int UnitImpl::getRight() const
-  {
-    return self->positionX + UnitType(self->type).dimensionRight();
-  }
-  //--------------------------------------------- GET BOTTOM -------------------------------------------------
-  int UnitImpl::getBottom() const
-  {
-    return self->positionY + UnitType(self->type).dimensionDown();
   }
   //--------------------------------------------- GET HIT POINTS ---------------------------------------------
   int UnitImpl::getHitPoints() const
@@ -125,47 +89,6 @@ namespace BWAPI
   int UnitImpl::getResourceGroup() const
   {
     return self->resourceGroup;
-  }
-  //--------------------------------------------- GET DISTANCE -----------------------------------------------
-  int UnitImpl::getDistance(PositionOrUnit target) const
-  {
-    // If this unit does not exist
-    if ( !exists() )
-      return MAXINT;
-
-    // Must be something valid
-    if ( !target.getUnit() && !target.getPosition() )
-      return MAXINT;
-
-    // if target is a unit but doesn't exist
-    if ( target.getUnit() && !target.getUnit()->exists() )
-      return MAXINT;
-
-    // If target is the same as the source
-    if ( this == target.getUnit() )
-      return MAXINT;
-
-    // Compute distance
-    return computeDistance(this, target);
-  }
-  //--------------------------------------------- HAS PATH ---------------------------------------------------
-  bool UnitImpl::hasPath(PositionOrUnit target) const
-  {
-    Broodwar->setLastError();
-    // Return error if the position is invalid
-    if ( !target.getPosition() )
-      return Broodwar->setLastError(Errors::Invalid_Parameter);
-
-    // Return true if this unit is an air unit
-    if ( this->getType().isFlyer() || this->isLifted() )
-      return true;
-
-    // Return error if either this or the target does not "exist"
-    if ( (target.getUnit() && !target.getUnit()->exists()) || !exists() )
-      return Broodwar->setLastError(Errors::Unit_Not_Visible);
-
-    // return result of Game::hasPath
-    return Broodwar->hasPath(this->getPosition(), target.getPosition());
   }
   //--------------------------------------------- GET LAST COMMAND FRAME -------------------------------------
   int UnitImpl::getLastCommandFrame() const
@@ -636,11 +559,6 @@ namespace BWAPI
   {
     return self->isHallucination;
   }
-  //--------------------------------------------- IS IDLE ----------------------------------------------------
-  bool UnitImpl::isIdle() const
-  {
-    return self->isIdle;
-  }
   //--------------------------------------------- IS INTERRUPTIBLE -------------------------------------------
   bool UnitImpl::isInterruptible() const
   {
@@ -676,8 +594,8 @@ namespace BWAPI
     int maxRange = getPlayer()->weaponMaxRange(wpn);
 
     // Check if the distance to the unit is within the weapon range
-    int distance = computeDistance(this, target);
-    return (minRange ? minRange < distance : true) && maxRange >= distance;
+    int distance = this->getDistance(target);
+    return (minRange ? minRange < distance : true) && distance <= minRange;
   }
   //--------------------------------------------- IS LIFTED --------------------------------------------------
   bool UnitImpl::isLifted() const

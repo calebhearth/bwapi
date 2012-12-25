@@ -86,7 +86,6 @@ namespace BWAPI
     bool isDetected;
     bool isGathering;
     bool isHallucination;
-    bool isIdle;
     bool isInterruptible;
     bool isInvincible;
     bool isLifted;

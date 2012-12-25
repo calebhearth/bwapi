@@ -12,6 +12,7 @@
 
 namespace BWAPI
 {
+  // NAMES
   const std::string WeaponType::typeNames[WeaponTypes::Enum::MAX] = 
   {
     "Gauss_Rifle",
@@ -106,7 +107,7 @@ namespace BWAPI
     "",
     "",
     "",
-    "",
+    "Platform_Laser_Battery",
     "Independant_Laser_Battery",
     "",
     "",
@@ -148,7 +149,8 @@ namespace BWAPI
     "Unknown"
   };
 
-  const int wpnDamageAmt[WeaponTypes::Enum::MAX] =
+  // DEFAULTS
+  const int defaultWpnDamageAmt[WeaponTypes::Enum::MAX] =
   {
     6, 18, 10, 30, 20, 30, 125, 12, 10, 24, 20, 30, 70, 5, 0, 20, 8, 40, 16, 25, 25, 50, 50, 30, 30, 8, 16, 70,
     150, 20, 260, 600, 0, 0, 250, 5, 10, 50, 10, 20, 20, 50, 4, 5, 0, 30, 20, 40, 9, 18, 5, 10, 15, 40, 500, 110,
@@ -156,13 +158,17 @@ namespace BWAPI
     45, 7, 7, 7, 7, 7, 7, 7, 4, 30, 10, 10, 8, 10, 5, 0, 20, 6, 25, 8, 8, 8, 0, 20, 6, 40, 25, 25, 20, 28, 30, 6,
     6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0
   };
-  const int wpnDamageBonus[WeaponTypes::Enum::MAX] =
+  const int defaultWpnDamageBonus[WeaponTypes::Enum::MAX] =
   {
     1, 1, 1, 1, 2, 2, 0, 1, 2, 1, 1, 3, 3, 1, 0, 2, 1, 2, 1, 3, 3, 3, 3, 3, 3, 1, 1, 5, 5, 0, 0, 0, 0, 0, 0,
     1, 1, 1, 1, 1, 3, 3, 1, 0, 0, 1, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 1,
     3, 3, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 2,
     1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0
   };
+  // ACTUAL
+  int wpnDamageAmt[WeaponTypes::Enum::MAX], wpnDamageBonus[WeaponTypes::Enum::MAX];
+
+
   const int wpnDamageCooldowns[WeaponTypes::Enum::MAX] =
   {
     15, 15, 22, 22, 30, 22, 22, 22, 22, 22, 22, 37, 37, 15, 15, 22, 30, 22, 30, 30, 30, 30, 30, 22, 22, 22, 22,
@@ -626,11 +632,11 @@ namespace BWAPI
   }
   int WeaponType::damageAmount() const
   {
-    return wpnDamageAmt[this->getID()];
+    return defaultWpnDamageAmt[this->getID()];
   }
   int WeaponType::damageBonus() const
   {
-    return wpnDamageBonus[this->getID()];
+    return defaultWpnDamageBonus[this->getID()];
   }
   int WeaponType::damageCooldown() const
   {

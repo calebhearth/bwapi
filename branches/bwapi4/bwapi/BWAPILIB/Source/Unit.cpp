@@ -10,6 +10,8 @@
 #include <BWAPI/Filters.h>
 #include <BWAPI/Flag.h>
 
+#include <limits>
+
 namespace BWAPI
 {
   //------------------------------------------------ GET UNITS IN RADIUS -------------------------------------
@@ -77,6 +79,155 @@ namespace BWAPI
 
                                           return pred(u);
                                         });
+  }
+  //--------------------------------------------- GET TILE POSITION ------------------------------------------
+  TilePosition Unit::getTilePosition() const
+  {
+    return TilePosition( Position(abs(this->getPosition().x - this->getType().tileWidth()  * 32 / 2),
+                                  abs(this->getPosition().y - this->getType().tileHeight() * 32 / 2)) );
+  }
+  //--------------------------------------------- GET DISTANCE -----------------------------------------------
+  int Unit::getDistance(PositionOrUnit target) const
+  {
+    // If this unit does not exist
+    if ( !exists() )
+      return std::numeric_limits<int>::max();
+
+    // Must be something valid
+    if ( !target.getUnit() && !target.getPosition() )
+      return std::numeric_limits<int>::max();
+
+    // if target is a unit but doesn't exist
+    if ( target.getUnit() && !target.getUnit()->exists() )
+      return std::numeric_limits<int>::max();
+
+    // If target is the same as the source
+    if ( this == target.getUnit() )
+      return std::numeric_limits<int>::max();
+
+    /////// Compute distance
+
+    // retrieve left/top/right/bottom values for calculations
+    int left, right, top, bottom;
+
+    if ( target.isPosition() )
+    {
+      // Retrieve the target position if it is so
+      Position targPos = target.getPosition();
+      left    = targPos.x - 1;
+      top     = targPos.y - 1;
+      right   = targPos.x + 1;
+      bottom  = targPos.y + 1;
+    }
+    else
+    {
+      // Retrieve the target unit if it's not a position
+      Unit *pUnit = target.getUnit();
+
+      // return if target is invalid
+      if ( !pUnit || pUnit == this )
+        return 0;
+
+      left    = pUnit->getLeft() - 1;
+      top     = pUnit->getTop() - 1;
+      right   = pUnit->getRight() + 1;
+      bottom  = pUnit->getBottom() + 1;
+    }
+
+    // compute x distance
+    int xDist = this->getLeft() - right;
+    if ( xDist < 0 )
+    {
+      xDist = left - this->getRight();
+      if ( xDist < 0 )
+        xDist = 0;
+    }
+
+    // compute y distance
+    int yDist = this->getTop() - bottom;
+    if ( yDist < 0 )
+    {
+      yDist = top - this->getBottom();
+      if ( yDist < 0 )
+        yDist = 0;
+    }
+
+    // compute actual distance
+    return Positions::Origin.getApproxDistance(Position(xDist, yDist));
+  }
+  //--------------------------------------------- HAS PATH ---------------------------------------------------
+  bool Unit::hasPath(PositionOrUnit target) const
+  {
+    Broodwar->setLastError();
+    // Return error if the position is invalid
+    if ( !target.getPosition() )
+      return Broodwar->setLastError(Errors::Invalid_Parameter);
+
+    // Return true if this unit is an air unit
+    if ( this->getType().isFlyer() || this->isLifted() )
+      return true;
+
+    // Return error if either this or the target does not "exist"
+    if ( (target.getUnit() && !target.getUnit()->exists()) || !exists() )
+      return Broodwar->setLastError(Errors::Unit_Not_Visible);
+
+    // return result of Game::hasPath
+    return Broodwar->hasPath(this->getPosition(), target.getPosition());
+  }
+  //--------------------------------------------- GET REGION -------------------------------------------------
+  BWAPI::Region *Unit::getRegion() const
+  {
+    return Broodwar->getRegionAt(this->getPosition());
+  }
+  //--------------------------------------------- GET LEFT ---------------------------------------------------
+  int Unit::getLeft() const
+  {
+    return this->getPosition().x - this->getType().dimensionLeft();
+  }
+  //--------------------------------------------- GET TOP ----------------------------------------------------
+  int Unit::getTop() const
+  {
+    return this->getPosition().y - this->getType().dimensionUp();
+  }
+  //--------------------------------------------- GET RIGHT --------------------------------------------------
+  int Unit::getRight() const
+  {
+    return this->getPosition().x + this->getType().dimensionRight();
+  }
+  //--------------------------------------------- GET BOTTOM -------------------------------------------------
+  int Unit::getBottom() const
+  {
+    return this->getPosition().y + this->getType().dimensionDown();
+  }
+  //--------------------------------------------- IS IDLE ----------------------------------------------------
+  bool Unit::isIdle() const
+  {
+    if (  this->isTraining()      || 
+          this->isConstructing()  || 
+          this->isMorphing()      || 
+          this->isResearching()   || 
+          this->isUpgrading() )
+      return false;
+
+    switch ( this->getOrder() )
+    {
+    case Orders::Enum::PlayerGuard:
+    case Orders::Enum::Guard:
+    case Orders::Enum::Stop:
+    case Orders::Enum::PickupIdle:
+    case Orders::Enum::Nothing:
+    case Orders::Enum::Medic:
+    case Orders::Enum::Carrier:
+    case Orders::Enum::Reaver:
+    case Orders::Enum::Critter:
+    case Orders::Enum::Neutral:
+    case Orders::Enum::TowerGuard:
+    case Orders::Enum::Burrowed:
+    case Orders::Enum::NukeTrain:
+    case Orders::Enum::Larva:
+      return true;
+    }
+    return false;
   }
   // ------------------------------------------ STATUS ---------------------------------------------
   bool Unit::isDefenseMatrixed() const

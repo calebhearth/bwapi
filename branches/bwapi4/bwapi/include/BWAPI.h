@@ -43,24 +43,14 @@
 
 namespace BWAPI
 {
-  /** You have to call this from your AIModule Dllmain function.
-   *
-   * \code
-   * BOOL APIENTRY DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
-   * {
-   *   switch (ul_reason_for_call)
-   *   {
-   *     case DLL_PROCESS_ATTACH:
-   *       BWAPI::BWAPI_init();
-   *       break;
-   *     case DLL_PROCESS_DETACH:
-   *       break;
-   *   }
-   *
-   *   return TRUE;
-   * }
-   * \endcode */
-  void BWAPI_init();
+  /// Retrieves the revision of the BWAPILIB module currently being used.
+  ///
+  /// @returns integer representing the revision number.
   int BWAPI_getRevision();
+
+  /// Checks if the BWAPILIB module was compiled in DEBUG mode.
+  ///
+  /// @retval true if this is a DEBUG build
+  /// @retval false if this is a RELEASE build
   bool BWAPI_isDebug();
 }

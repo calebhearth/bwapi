@@ -100,6 +100,7 @@ namespace BWAPI
         Warp_Blades_Zeratul = 85,
         Warp_Blades_Hero = 86,
         
+        Platform_Laser_Battery = 92,
         Independant_Laser_Battery = 93,
         
         Twin_Autocannons_Floor_Trap = 96,

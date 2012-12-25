@@ -251,11 +251,10 @@ namespace BWAPI
         UnitImpl* j             = orderTargetUnit;
         i->self->buildUnit      = server.getUnitID((Unit*)j);
         i->self->isConstructing = true;
-        i->self->isIdle         = false;
         i->self->buildType      = j->self->type;
+
         j->self->buildUnit      = server.getUnitID((Unit*)i);
         j->self->isConstructing = true;
-        j->self->isIdle         = false;
         j->self->buildType      = j->self->type;
       }
       else if ( i->getAddon() && !i->getAddon()->isCompleted() )
@@ -263,11 +262,10 @@ namespace BWAPI
         UnitImpl* j             = (UnitImpl*)i->getAddon();
         i->self->buildUnit      = server.getUnitID((Unit*)j);
         i->self->isConstructing = true;
-        i->self->isIdle         = false;
         i->self->buildType      = j->self->type;
+
         j->self->buildUnit      = server.getUnitID((Unit*)i);
         j->self->isConstructing = true;
-        j->self->isIdle         = false;
         j->self->buildType      = j->self->type;
       }
       if ( i->getTransport() )

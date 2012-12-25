@@ -11,7 +11,6 @@ BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
   switch ( dwReason )
   {
   case DLL_PROCESS_ATTACH:
-    BWAPI::BWAPI_init();
     break;
   }
   return TRUE;

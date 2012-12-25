@@ -569,7 +569,6 @@ namespace BWAPI
 
     /** Returns the set of all the MacroTypes. */
     const UnitType::set& allMacroTypes();
-    void init();
 
     extern const UnitType Terran_Marine;
     extern const UnitType Terran_Ghost;

@@ -31,23 +31,15 @@ namespace BWAPI
       virtual Player*       getPlayer() const;
       virtual UnitType      getType() const;
       virtual Position      getPosition() const;
-      virtual TilePosition  getTilePosition() const;
       virtual double        getAngle() const;
       virtual double        getVelocityX() const;
       virtual double        getVelocityY() const;
-      virtual BWAPI::Region *getRegion() const;
-      virtual int           getLeft() const;
-      virtual int           getTop() const;
-      virtual int           getRight() const;
-      virtual int           getBottom() const;
       virtual int           getHitPoints() const;
       virtual int           getShields() const;
       virtual int           getEnergy() const;
       virtual int           getResources() const;
       virtual int           getResourceGroup() const;
 
-      virtual int           getDistance(PositionOrUnit target) const;
-      virtual bool          hasPath(PositionOrUnit target) const;
       virtual int           getLastCommandFrame() const;
       virtual UnitCommand   getLastCommand() const;
       virtual BWAPI::Player *getLastAttackingPlayer() const;
@@ -129,7 +121,6 @@ namespace BWAPI
       virtual bool isGatheringMinerals() const;
       virtual bool isHallucination() const;
       virtual bool isInWeaponRange(Unit *target) const;
-      virtual bool isIdle() const;
       virtual bool isInterruptible() const;
       virtual bool isInvincible() const;
       virtual bool isLifted() const;

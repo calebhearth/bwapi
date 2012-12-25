@@ -3,11 +3,6 @@
 
 #include "../../Debug.h"
 
-void BWAPI::BWAPI_init()  // @TODO: Remove this initialization dependency
-{
-  BWAPI::UnitTypes::init();
-}
-
 int BWAPI::BWAPI_getRevision()
 {
   return SVN_REV;

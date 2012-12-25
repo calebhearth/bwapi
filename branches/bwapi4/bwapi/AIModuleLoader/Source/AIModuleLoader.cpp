@@ -30,7 +30,6 @@ int main(int argc, const char* argv[])
     std::getline(std::cin, dllPath);
   }
   
-  BWAPI::BWAPI_init();
   std::cout << "Connecting..." << std::endl;
 
   assert(BWAPIClient.isConnected() == false);
@@ -156,7 +155,8 @@ int main(int argc, const char* argv[])
     FreeLibrary(hMod);
     std::cout << "Game ended" << std::endl;
   }
-  system("pause");
+  std::cout << "Press ENTER to continue..." << std::endl;
+  std::cin.ignore();
   return 0;
 }
 
