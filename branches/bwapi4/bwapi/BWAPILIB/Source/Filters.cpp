@@ -50,6 +50,7 @@ namespace BWAPI
   U_UFILTER(IsSpell, u->getType().isSpell() );
   U_UFILTER(ProducesLarva, u->getType().producesLarva() );
   U_UFILTER(IsMineralField, u->getType().isMineralField() );
+  U_UFILTER(IsCritter, u->getType().isCritter() );
   U_UFILTER(CanBuildAddon, u->getType().canBuildAddon() );
   
   U_CFILTER(HP, u->getHitPoints() );

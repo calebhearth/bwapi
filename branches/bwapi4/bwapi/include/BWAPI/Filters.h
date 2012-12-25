@@ -53,6 +53,7 @@ namespace BWAPI
   extern const UnitFilter IsSpell;
   extern const UnitFilter ProducesLarva;
   extern const UnitFilter IsMineralField;
+  extern const UnitFilter IsCritter;
   extern const UnitFilter CanBuildAddon;
   
   extern const CompareFilter<Unit*> HP;

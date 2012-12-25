@@ -376,6 +376,14 @@ namespace BWAPI
     /** Distance from the center of the unit to the bottom edge of the unit, measured in pixels. */
     int dimensionDown() const;
 
+    /// A macro for retrieving the width of the unit type, which is calculated using
+    /// dimensionLeft + dimensionRight + 1.
+    int width() const;
+
+    /// A macro for retrieving the height of the unit type, which is calculated using
+    /// dimensionUp + dimensionDown + 1.
+    int height() const;
+
     /** Returns the range at which the unit will start targeting enemy units, measured in pixels. */
     int seekRange() const;
 
@@ -522,18 +530,38 @@ namespace BWAPI
     /** Returns true if the unit is one of the three mineral field types. */
     bool isMineralField() const;
 
-    /** Returns true if the unit is capable of constructing an addon.
-        This consists of Command Center, Factory, Starport, and Science Facility. */
+    /// Returns true if this unit type is a neutral critter.
+    ///
+    /// @code
+    ///   BWAPI::Position myBasePosition( BWAPI::Broodwar->self()->getStartLocation() );
+    ///   BWAPI::UnitSet unitsAroundTheBase = BWAPI::Broodwar->getUnitsInRadius(myBasePosition, 1024, GetPlayer != BWAPI::Broodwar->self());
+    ///   for ( auto i = unitsAroundTheBase.begin(); i != unitsAroundTheBase.end(); ++i )
+    ///   {
+    ///     if ( i->getType().isCritter() && !i->isInvincible() )
+    ///     {
+    ///       BWAPI::Unit *myQueen = i->getClosestUnit(GetType == BWAPI::UnitTypes::Zerg_Queen && GetPlayer == BWAPI::Broodwar->self());
+    ///       if ( myQueen )
+    ///         myQueen->useTech(BWAPI::TechTypes::Spawn_Broodlings, *i);
+    ///     }
+    ///   }
+    /// @endcode
+    bool isCritter() const;
+
+    /// Returns true if the unit is capable of constructing an add-on. An add-on is an extension
+    /// or attachment for @Terran structures, specifically the @Command_Center, @Factory,
+    /// @Starport, and @Science_Facility.
+    ///
+    /// @see isAddon
     bool canBuildAddon() const;
   };
 
   /// Namespace containing unit types
   namespace UnitTypes
   {
-    /// max unit width
+    /// Retrieves the maximum unit width from the set of all units.
     int maxUnitWidth();
     
-    /// max unit height
+    /// Retrieves the maximum unit height from the set of all units.
     int maxUnitHeight();
 
     /** Returns the set of all the UnitTypes. */

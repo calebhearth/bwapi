@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <algorithm>
 
 #include <Util/Foreach.h>
 
@@ -496,6 +497,496 @@ namespace BWAPI
     "unknown"
   };
 
+  namespace unitRaces
+  {
+    using namespace Races::Enum;
+    static const Race unitRace[UnitTypes::Enum::MAX] = {
+      Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, 
+      Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, 
+      Terran, Terran, Terran, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, 
+      Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Terran, Zerg, Protoss, Protoss, Zerg, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, 
+      Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, 
+      Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, None, None, Zerg, Zerg, None, None, None, None, Zerg, Protoss, Terran,
+      Terran, None, Terran, Zerg, Zerg, None, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, 
+      Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, Terran, None, None, Zerg, Zerg, Zerg, Zerg, 
+      Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, Zerg, 
+      Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, 
+      Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, Protoss, None, None, None, None, None, None, None, None, None, 
+      None, None, None, None, Protoss, Terran, Zerg, Terran, Protoss, Zerg, Terran, Protoss, Zerg, Terran, Protoss, Terran, Zerg,
+      None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
+      None, None, None, None, None, None, None, None, None, None, None, Unknown
+    };
+  }
+
+  namespace unitArmorUpgrades
+  {
+    using namespace UpgradeTypes::Enum;
+    static const UpgradeType armorUpgrade[UnitTypes::Enum::MAX] = {
+      Terran_Infantry_Armor, Terran_Infantry_Armor, Terran_Vehicle_Plating, Terran_Vehicle_Plating, Terran_Vehicle_Plating, 
+      Terran_Vehicle_Plating, Terran_Vehicle_Plating, Terran_Infantry_Armor, Terran_Ship_Plating, Terran_Ship_Plating, 
+      Terran_Infantry_Armor, Terran_Ship_Plating, Terran_Ship_Plating, Upgrade_60, Upgrade_60, Terran_Infantry_Armor, 
+      Terran_Infantry_Armor, Terran_Vehicle_Plating, Terran_Vehicle_Plating, Terran_Vehicle_Plating, Terran_Infantry_Armor, 
+      Terran_Ship_Plating, Terran_Ship_Plating, Terran_Vehicle_Plating, Terran_Vehicle_Plating, Terran_Vehicle_Plating, 
+      Terran_Vehicle_Plating, Terran_Ship_Plating, Terran_Ship_Plating, Terran_Ship_Plating, Terran_Vehicle_Plating, 
+      Terran_Vehicle_Plating, Terran_Infantry_Armor, Upgrade_60, Terran_Infantry_Armor, Zerg_Carapace, Zerg_Carapace, 
+      Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Flyer_Carapace, Zerg_Flyer_Carapace, 
+      Zerg_Flyer_Carapace, Zerg_Flyer_Carapace, Zerg_Carapace, Zerg_Flyer_Carapace, Zerg_Carapace, Zerg_Flyer_Carapace, 
+      Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Carapace, Zerg_Flyer_Carapace, Zerg_Flyer_Carapace, 
+      Zerg_Flyer_Carapace, Terran_Ship_Plating, Zerg_Carapace, Protoss_Air_Armor, Protoss_Ground_Armor, Zerg_Flyer_Carapace, 
+      Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, 
+      Protoss_Ground_Armor, Protoss_Air_Armor, Protoss_Air_Armor, Protoss_Air_Armor, Protoss_Air_Armor, Protoss_Air_Armor, 
+      Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, Protoss_Ground_Armor, 
+      Protoss_Ground_Armor, Protoss_Air_Armor, Protoss_Ground_Armor, Protoss_Air_Armor, Protoss_Ground_Armor, Protoss_Air_Armor, 
+      Protoss_Ground_Armor, Protoss_Air_Armor, Protoss_Ground_Armor, Protoss_Air_Armor, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Zerg_Carapace, Protoss_Air_Armor, Terran_Infantry_Armor, 
+      Terran_Infantry_Armor, Upgrade_60, Terran_Ship_Plating, Zerg_Carapace, Zerg_Carapace, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, 
+      Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60, Upgrade_60,
+      None, None, None, None, None, Unknown
+    };
+  }
+
+  static const int maxHP[UnitTypes::Enum::MAX] = {
+    40, 45, 80, 125, 0, 150, 0, 60, 120, 200, 160, 150, 500, 20, 100, 40, 250, 300, 0, 300, 200, 500, 800, 400, 0, 400, 0, 1000, 
+    850, 700, 150, 0, 50, 0, 60, 25, 200, 35, 80, 400, 30, 40, 200, 120, 150, 120, 80, 25, 800, 300, 60, 400, 250, 160, 120, 300, 
+    400, 1000, 200, 200, 100, 80, 250, 25, 20, 100, 100, 40, 10, 80, 150, 200, 300, 40, 40, 60, 100, 240, 240, 80, 400, 200, 800, 
+    100, 40, 20, 600, 80, 250, 60, 60, 125, 125, 60, 60, 60, 60, 200, 100, 200, 250, 1, 700, 125, 300, 800, 1500, 500, 600, 500, 
+    750, 1000, 600, 1250, 1300, 500, 850, 750, 600, 0, 750, 0, 850, 750, 200, 350, 700, 2000, 10000, 10000, 1500, 1250, 1800, 2500, 
+    250, 850, 850, 1000, 850, 750, 600, 600, 750, 400, 400, 0, 300, 5000, 2500, 750, 250, 1500, 1500, 0, 750, 500, 300, 450, 300, 
+    250, 500, 0, 100, 450, 500, 500, 550, 600, 2000, 500, 500, 450, 200, 100000, 1500, 5000, 100000, 100000, 100000, 800, 800, 800, 
+    800, 800, 800, 800, 800, 800, 100000, 700, 2000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 800, 
+    2500, 800, 50, 100000, 100000, 100000, 100000, 100000, 50, 50, 50, 50, 50, 800, 100000, 800, 800, 800, 800, 800, 800, 800, 800, 
+    800, 800, 800, 800, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int maxSP[UnitTypes::Enum::MAX] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 40, 0, 200, 20, 60, 80, 40, 350, 60, 100, 150, 150, 40, 80, 400, 800, 240, 
+    240, 300, 400, 400, 500, 80, 20, 10, 500, 300, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 750, 500, 300, 
+    450, 300, 250, 500, 1, 100, 450, 500, 500, 550, 600, 0, 500, 500, 450, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  namespace UnitPrototypeFlags
+  {
+    enum Enum
+    {
+      Building                = 0x00000001,
+      Addon                   = 0x00000002,
+      Flyer                   = 0x00000004,
+      Worker                  = 0x00000008,
+      Subunit                 = 0x00000010,
+      FlyingBuilding          = 0x00000020,
+      Hero                    = 0x00000040,
+      RegeneratesHP           = 0x00000080,
+      AnimatedIdle            = 0x00000100,
+      Cloakable               = 0x00000200,
+      TwoUnitsIn1Egg          = 0x00000400,
+      NeutralAccessories      = 0x00000800,
+      ResourceDepot           = 0x00001000,
+      ResourceContainer       = 0x00002000,
+      RoboticUnit             = 0x00004000,
+      Detector                = 0x00008000,
+      OrganicUnit             = 0x00010000,
+      CreepBuilding           = 0x00020000,
+      Unused                  = 0x00040000,
+      RequiresPsi             = 0x00080000,
+      Burrowable              = 0x00100000,
+      Spellcaster             = 0x00200000,
+      PermanentCloak          = 0x00400000,
+      NPCOrAccessories        = 0x00800000,
+      MorphFromOtherUnit      = 0x01000000,
+      LargeUnit               = 0x02000000,
+      HugeUnit                = 0x04000000,
+      AutoAttackAndMove       = 0x08000000,
+      Attack                  = 0x10000000, /**< Can attack */
+      Invincible              = 0x20000000,
+      Mechanical              = 0x40000000,
+      ProducesUnits           = 0x80000000 /**< It can produce units directly (making buildings doesn't count) */
+    };
+
+    static const unsigned int unitFlags[UnitTypes::Enum::MAX] =
+    {
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      AutoAttackAndMove | Attack | Mechanical, 
+      AutoAttackAndMove | Attack | Mechanical, 
+      Subunit | Attack | Invincible, 
+      LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Subunit | Attack | Invincible, 
+      Worker | OrganicUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Cloakable | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | AnimatedIdle | Detector | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | OrganicUnit | AutoAttackAndMove | Attack, 
+      Flyer | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      AutoAttackAndMove | Attack, 
+      Flyer | AutoAttackAndMove | Attack | Invincible, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Hero | AutoAttackAndMove | Attack | Mechanical, 
+      Subunit | Attack | Invincible, 
+      Hero | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | OrganicUnit | AutoAttackAndMove | Attack, 
+      Flyer | Hero | Cloakable | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Hero | AnimatedIdle | Detector | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Subunit | Attack | Invincible, 
+      Hero | LargeUnit | Mechanical, 
+      Subunit | Attack | Invincible, 
+      Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      LargeUnit | Mechanical, 
+      Subunit | Attack | Invincible, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      Flyer | Detector | AutoAttackAndMove | Attack, 
+      OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | AutoAttackAndMove | Attack, 
+      OrganicUnit, 
+      RegeneratesHP | TwoUnitsIn1Egg | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | HugeUnit | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | AutoAttackAndMove | Attack, 
+      Worker | RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | Detector | OrganicUnit | LargeUnit | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | OrganicUnit | LargeUnit | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | OrganicUnit | MorphFromOtherUnit | HugeUnit | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | OrganicUnit | Spellcaster | LargeUnit | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | Burrowable | Spellcaster | LargeUnit | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | TwoUnitsIn1Egg | OrganicUnit | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | OrganicUnit | HugeUnit | AutoAttackAndMove | Attack, 
+      Flyer | Hero | RegeneratesHP | OrganicUnit | Spellcaster | LargeUnit | AutoAttackAndMove | Attack, 
+      RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | OrganicUnit | Burrowable | Spellcaster | LargeUnit | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | TwoUnitsIn1Egg | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      Flyer | Hero | RegeneratesHP | OrganicUnit | LargeUnit | AutoAttackAndMove | Attack, 
+      Flyer | Hero | RegeneratesHP | OrganicUnit | MorphFromOtherUnit | HugeUnit | AutoAttackAndMove | Attack, 
+      Flyer | Hero | RegeneratesHP | Detector | OrganicUnit | LargeUnit | AutoAttackAndMove | Attack, 
+      Flyer | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | OrganicUnit, 
+      Flyer | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      OrganicUnit | PermanentCloak | AutoAttackAndMove | Attack, 
+      Flyer | RegeneratesHP | OrganicUnit | MorphFromOtherUnit | HugeUnit | AutoAttackAndMove | Attack, 
+      AnimatedIdle | Spellcaster | HugeUnit | AutoAttackAndMove | Attack, 
+      Worker | RoboticUnit | AutoAttackAndMove | Attack | Mechanical, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      AnimatedIdle | HugeUnit | AutoAttackAndMove | Attack, 
+      Flyer | RoboticUnit | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | AutoAttackAndMove | Attack | Mechanical, 
+      OrganicUnit | PermanentCloak | AutoAttackAndMove | Attack, 
+      Hero | OrganicUnit | PermanentCloak | AutoAttackAndMove | Attack, 
+      Hero | AnimatedIdle | HugeUnit | AutoAttackAndMove | Attack, 
+      Hero | OrganicUnit | AutoAttackAndMove | Attack, 
+      Hero | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Flyer | Hero | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | RoboticUnit | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | Hero | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      RoboticUnit | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Flyer | RoboticUnit | Detector | PermanentCloak | AutoAttackAndMove | Attack | Mechanical, 
+      AutoAttackAndMove | Attack | Invincible | Mechanical, 
+      Flyer | Hero | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Flyer | Hero | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      0,
+      0,
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      Flyer | OrganicUnit | AutoAttackAndMove | Attack, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      OrganicUnit | AutoAttackAndMove | Attack, 
+      OrganicUnit, 
+      Flyer | Hero | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Flyer, 
+      Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
+      RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
+      Hero | RegeneratesHP | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
+      Invincible, 
+      Building | FlyingBuilding | ResourceDepot | HugeUnit | Mechanical | ProducesUnits, 
+      Building | Addon | Spellcaster | HugeUnit | Mechanical, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | ResourceContainer | HugeUnit | Mechanical, 
+      Building | FlyingBuilding | HugeUnit | Mechanical | ProducesUnits, 
+      Building | HugeUnit | Mechanical, 
+      Building | FlyingBuilding | HugeUnit | Mechanical | ProducesUnits, 
+      Building | FlyingBuilding | HugeUnit | Mechanical, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | FlyingBuilding | HugeUnit | Mechanical, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | HugeUnit, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | Addon | HugeUnit | Mechanical, 
+      Building | FlyingBuilding | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | AnimatedIdle | Detector | HugeUnit | Attack | Mechanical, 
+      Building | HugeUnit | Mechanical | ProducesUnits, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      NeutralAccessories | Invincible, 
+      NeutralAccessories | Invincible, 
+      Building | FlyingBuilding | RegeneratesHP | OrganicUnit | HugeUnit, 
+      Building | RegeneratesHP | ResourceDepot | OrganicUnit | MorphFromOtherUnit | HugeUnit | ProducesUnits, 
+      Building | RegeneratesHP | ResourceDepot | OrganicUnit | MorphFromOtherUnit | HugeUnit | ProducesUnits, 
+      Building | RegeneratesHP | ResourceDepot | OrganicUnit | MorphFromOtherUnit | HugeUnit | ProducesUnits, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit | Attack, 
+      Building | RegeneratesHP | ResourceContainer | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit | Attack, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | ResourceContainer | OrganicUnit | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Building | RegeneratesHP | MorphFromOtherUnit | HugeUnit, 
+      Building | ResourceDepot | HugeUnit | Mechanical | ProducesUnits, 
+      Building | RequiresPsi | HugeUnit | Mechanical | ProducesUnits, 
+      Building | HugeUnit | Mechanical, 
+      Building | ResourceContainer | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical | ProducesUnits, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | Detector | RequiresPsi | HugeUnit | Attack | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | HugeUnit | Mechanical, 
+      Building | RequiresPsi | Spellcaster | HugeUnit | Mechanical, 
+      Building | HugeUnit | Invincible, 
+      Building | HugeUnit, 
+      Building | HugeUnit, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit, 
+      Building | HugeUnit, 
+      Building | HugeUnit, 
+      Building | ResourceContainer | HugeUnit | Invincible, 
+      Building | HugeUnit | Mechanical, 
+      Building | HugeUnit | Mechanical, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | Invincible, 
+      Building | HugeUnit | Mechanical, 
+      Building | RegeneratesHP | Detector | OrganicUnit | CreepBuilding | MorphFromOtherUnit | HugeUnit, 
+      Invincible, 
+      Detector | HugeUnit | Attack | Mechanical, 
+      Invincible, 
+      Invincible, 
+      Invincible, 
+      Invincible, 
+      Invincible, 
+      Detector | HugeUnit | Attack | Mechanical, 
+      Detector | HugeUnit | Mechanical, 
+      Detector | HugeUnit | Mechanical, 
+      Detector | HugeUnit | Mechanical, 
+      Detector | HugeUnit | Mechanical, 
+      Building | ResourceDepot, 
+      NeutralAccessories | Invincible, 
+      NeutralAccessories | NPCOrAccessories | Invincible, 
+      NeutralAccessories | NPCOrAccessories | Invincible, 
+      NeutralAccessories | NPCOrAccessories | Invincible, 
+      NeutralAccessories | NPCOrAccessories | Invincible, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories, 
+      NeutralAccessories | NPCOrAccessories,
+      0,0,0,0,0,0
+    };
+  }
+
+  static const int armorAmount[UnitTypes::Enum::MAX] = {
+    0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 3, 1, 3, 0, 0, 0, 3, 3, 0, 3, 3, 4, 4, 3, 0, 3, 0, 4, 4, 4, 1, 0, 1, 0, 1, 10, 10, 0, 
+    0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 4, 3, 0, 2, 3, 2, 3, 3, 4, 4, 2, 0, 1, 1, 2, 1, 0, 1, 1, 0, 0, 1, 0, 1, 4, 0, 0, 0, 3, 
+    2, 3, 2, 3, 3, 4, 0, 0, 0, 3, 2, 3, 0, 0, 1, 1, 0, 0, 0, 0, 10, 0, 2, 3, 0, 4, 1, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 
+    1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int oreCost[UnitTypes::Enum::MAX] = {
+    50, 25, 75, 100, 1, 150, 1, 50, 150, 100, 100, 100, 400, 1, 200, 0, 50, 200, 1, 150, 50, 400, 50, 300, 1, 300, 1, 800, 
+    800, 800, 150, 1, 50, 0, 50, 1, 1, 50, 75, 200, 1, 50, 100, 100, 50, 100, 50, 25, 400, 200, 100, 200, 50, 150, 100, 200, 
+    100, 200, 250, 1, 150, 125, 150, 0, 50, 100, 125, 50, 0, 200, 275, 100, 350, 25, 150, 100, 0, 200, 300, 100, 600, 400, 
+    700, 200, 25, 15, 50, 100, 600, 1, 1, 100, 100, 1, 1, 1, 1, 1, 150, 200, 200, 0, 800, 50, 200, 250, 400, 50, 100, 100, 
+    100, 150, 150, 200, 150, 50, 100, 50, 50, 1, 50, 1, 125, 100, 75, 100, 800, 200, 1, 1, 1, 300, 150, 200, 150, 100, 100, 
+    100, 150, 75, 150, 200, 200, 75, 50, 1, 50, 1, 1, 50, 0, 0, 0, 1, 400, 200, 100, 100, 1, 50, 150, 1, 150, 150, 200, 150, 
+    150, 150, 150, 300, 200, 150, 100, 250, 250, 1500, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 600, 1000, 250, 50, 100, 250, 
+    50, 100, 250, 50, 100, 200, 1000, 250, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int gasCost[UnitTypes::Enum::MAX] = {
+    0, 75, 0, 50, 1, 100, 1, 0, 100, 225, 50, 100, 300, 0, 200, 0, 150, 100, 1, 0, 0, 200, 600, 200, 1, 200, 1, 600, 600, 600, 100, 
+    1, 25, 0, 25, 1, 1, 0, 25, 200, 1, 0, 0, 100, 100, 100, 150, 75, 400, 300, 50, 300, 200, 50, 0, 200, 200, 0, 125, 1, 100, 100, 
+    50, 0, 0, 0, 50, 150, 0, 0, 125, 350, 250, 0, 150, 300, 0, 0, 100, 300, 300, 200, 600, 100, 75, 0, 1000, 300, 300, 1, 1, 100, 
+    100, 1, 1, 1, 1, 1, 100, 75, 75, 0, 600, 100, 75, 250, 0, 50, 100, 0, 0, 0, 0, 100, 100, 50, 150, 50, 50, 1, 50, 1, 0, 50, 0, 0, 
+    600, 0, 1, 1, 1, 0, 100, 150, 0, 50, 100, 150, 100, 0, 200, 150, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 200, 0, 0, 1, 100, 0, 1, 
+    0, 100, 0, 200, 0, 150, 0, 200, 150, 100, 0, 0, 0, 500, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 200, 400, 0, 50, 100, 0, 50, 100, 
+    0, 50, 100, 50, 500, 200, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int timeCost[UnitTypes::Enum::MAX] = {
+    360, 750, 450, 600, 1, 750, 1, 300, 900, 1200, 720, 750, 2000, 1, 1500, 1, 1500, 1200, 1, 900, 1, 1800, 2400, 1500, 1, 1500, 1, 
+    4800, 2400, 4800, 750, 1, 360, 1, 450, 1, 1, 420, 420, 900, 1, 300, 600, 600, 600, 750, 750, 450, 1800, 1500, 600, 1500, 1500, 
+    780, 840, 1200, 1200, 1200, 750, 1, 600, 750, 600, 300, 300, 600, 750, 750, 300, 900, 1200, 2400, 2100, 300, 750, 1500, 600, 
+    1200, 1500, 1500, 2400, 1800, 4200, 1050, 600, 105, 4800, 1500, 2400, 1, 1, 600, 600, 1, 1, 1, 1, 1, 750, 1500, 1500, 1, 4800, 
+    600, 1500, 2400, 1800, 600, 1200, 600, 600, 1200, 1200, 1200, 1050, 600, 900, 600, 600, 1, 600, 1, 900, 1200, 450, 450, 4800, 
+    900, 1, 1, 1800, 1800, 1500, 1800, 600, 600, 900, 1800, 900, 600, 1200, 1800, 1200, 300, 300, 1, 300, 1, 1, 600, 0, 0, 0, 1, 
+    1800, 1200, 450, 600, 1, 450, 900, 1, 750, 900, 900, 900, 600, 1050, 1, 900, 900, 450, 450, 1, 1, 4800, 1, 1, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 1, 1, 2400, 4800, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2400, 2400, 2400, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 
+    1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitSupplyProvided[UnitTypes::Enum::MAX] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitSupplyRequired[UnitTypes::Enum::MAX] = {
+    2, 2, 4, 4, 0, 4, 0, 2, 4, 4, 0, 4, 12, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 2, 0, 0, 1, 2, 8, 0, 2, 
+    0, 4, 4, 4, 4, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 6, 0, 4, 4, 4, 8, 2, 4, 4, 4, 8, 4, 6, 8, 12, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 8, 2, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitSpaceRequired[UnitTypes::Enum::MAX] = {
+    1, 1, 2, 2, 255, 4, 255, 1, 255, 255, 1, 255, 255, 255, 255, 1, 1, 2, 255, 2, 1, 255, 255, 4, 255, 255, 255, 255, 255, 
+    255, 255, 255, 1, 255, 1, 255, 255, 1, 2, 4, 1, 1, 255, 255, 255, 255, 2, 255, 4, 255, 1, 1, 2, 2, 1, 255, 255, 255, 255, 
+    255, 255, 2, 255, 4, 1, 2, 4, 2, 4, 255, 255, 255, 255, 255, 2, 2, 4, 2, 4, 2, 255, 4, 255, 4, 255, 255, 255, 2, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 1, 255, 255, 4, 1, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitSpaceProvided[UnitTypes::Enum::MAX] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitBuildScore[UnitTypes::Enum::MAX] = {
+    50, 175, 75, 200, 0, 350, 0, 50, 400, 625, 0, 300, 1200, 0, 800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 125, 
+    0, 0, 25, 125, 650, 0, 50, 100, 300, 550, 400, 225, 100, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 400, 0, 350, 325, 550, 650, 50, 100, 250, 
+    350, 700, 200, 650, 1025, 950, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 225, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 250,
+    0, 0, 400, 75, 75, 50, 50, 75, 100, 200, 200, 100, 275, 75, 75, 0, 75, 0, 65, 100, 50, 50, 0, 0, 0, 0, 300, 300, 100, 100, 75, 100, 
+    150, 200, 175, 40, 275, 250, 75, 40, 25, 10, 40, 0, 0, 25, 0, 0, 0, 10, 400, 300, 50, 50, 10, 175, 75, 0, 100, 200, 100, 250, 100, 
+    300, 0, 350, 450, 125, 50, 0, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitDestroyScore[UnitTypes::Enum::MAX] = {
+    100, 350, 150, 400, 0, 700, 0, 100, 800, 1250, 400, 600, 2400, 25, 0, 10, 700, 800, 0, 300, 200, 1600, 2500, 1400, 0, 1400, 0, 4800, 
+    4800, 4800, 700, 0, 200, 0, 250, 10, 25, 50, 350, 1300, 25, 100, 200, 600, 1100, 800, 450, 200, 2600, 1600, 400, 4000, 900, 500, 100, 
+    1200, 2200, 400, 800, 1100, 700, 650, 1100, 1300, 100, 200, 500, 700, 1400, 400, 1300, 2050, 1900, 60, 400, 800, 2800, 400, 1000, 1400, 
+    2600, 1600, 3800, 800, 450, 0, 4100, 1400, 2400, 10, 10, 0, 0, 10, 10, 10, 10, 500, 1300, 700, 700, 0, 4800, 500, 700, 0, 1200, 225, 
+    225, 150, 150, 225, 300, 600, 600, 300, 825, 225, 225, 0, 225, 0, 195, 300, 150, 150, 5000, 5000, 0, 0, 900, 900, 1200, 1500, 225, 300, 
+    450, 1350, 525, 120, 825, 750, 225, 120, 195, 10, 240, 10000, 10000, 75, 5000, 2500, 2500, 10, 1200, 900, 150, 150, 10, 525, 225, 0, 
+    300, 600, 300, 750, 300, 900, 5000, 1050, 1350, 375, 150, 2500, 5000, 5000, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 2000, 
+    3600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 4000, 0, 100, 10, 10, 10, 10, 10, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0
+  };
+
+  static const struct { int left, up, right, down; }
+  unitDimensions[UnitTypes::Enum::MAX] = {
+    {8,9,8,10}, {7,10,7,11}, {16,16,15,15}, {16,16,15,15}, {1,1,1,1}, {16,16,15,15}, {1,1,1,1}, {11,11,11,11}, {19,15,18,14}, 
+    {32,33,32,16}, {11,13,11,14}, {24,16,24,20}, {37,29,37,29}, {7,7,7,7}, {7,14,7,14}, {8,9,8,10}, {7,10,7,11}, {16,16,15,15}, 
+    {1,1,1,1}, {16,16,15,15}, {8,9,8,10}, {19,15,18,14}, {32,33,32,16}, {16,16,15,15}, {1,1,1,1}, {16,16,15,15}, {1,1,1,1}, 
+    {37,29,37,29}, {37,29,37,29}, {37,29,37,29}, {16,16,15,15}, {1,1,1,1}, {11,7,11,14}, {13,13,13,17}, {8,9,8,10}, {8,8,7,7}, 
+    {16,16,15,15}, {8,4,7,11}, {10,10,10,12}, {19,16,18,15}, {9,9,9,9}, {11,11,11,11}, {25,25,24,24}, {22,22,21,21}, {22,22,21,21}, 
+    {24,24,23,23}, {13,12,13,12}, {12,12,11,11}, {19,16,18,15}, {24,24,23,23}, {8,9,8,10}, {7,10,7,11}, {14,14,14,14}, {10,10,10,12}, 
+    {8,4,7,11}, {22,22,21,21}, {22,22,21,21}, {25,25,24,24}, {24,16,24,20}, {16,16,15,15}, {18,16,17,15}, {12,6,11,19}, {22,22,21,21}, 
+    {16,16,15,15}, {11,11,11,11}, {11,5,11,13}, {15,15,16,16}, {12,10,11,13}, {16,16,15,15}, {20,16,19,15}, {18,16,17,15}, {22,22,21,21}, 
+    {32,32,31,31}, {8,8,7,7}, {12,6,11,19}, {12,6,11,19}, {16,16,15,15}, {11,5,11,13}, {15,15,16,16}, {12,10,11,13}, {18,16,17,15}, 
+    {16,16,15,15}, {32,32,31,31}, {16,16,15,15}, {16,16,15,15}, {2,2,2,2}, {22,22,21,21}, {12,14,11,13}, {18,16,17,15}, {16,16,15,15}, 
+    {16,16,15,15}, {15,15,16,16}, {15,15,16,16}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, 
+    {24,16,24,20}, {7,10,7,11}, {7,10,7,11}, {13,13,13,17}, {37,29,37,29}, {15,15,16,16}, {7,10,7,11}, {60,40,59,39}, {58,41,58,41}, 
+    {37,16,31,25}, {37,16,31,25}, {38,22,38,26}, {56,32,56,31}, {48,40,56,32}, {40,32,44,24}, {56,40,56,40}, {48,40,48,38}, 
+    {47,24,28,22}, {48,38,48,38}, {47,24,28,22}, {47,24,28,22}, {48,32,47,31}, {39,24,31,24}, {48,48,47,47}, {48,32,48,28}, 
+    {48,32,47,22}, {16,32,16,16}, {32,24,32,16}, {48,32,47,31}, {48,32,47,31}, {16,16,15,15}, {16,16,15,15}, {58,41,58,41}, 
+    {49,32,49,32}, {49,32,49,32}, {49,32,49,32}, {32,32,31,31}, {40,32,40,24}, {48,32,48,4}, {28,32,28,24}, {38,28,32,28}, 
+    {44,32,32,20}, {40,32,32,31}, {28,32,28,24}, {36,28,40,18}, {24,24,23,23}, {24,24,23,23}, {48,48,47,47}, {24,24,23,23}, 
+    {80,32,79,40}, {80,32,79,40}, {64,32,63,31}, {32,32,31,31}, {40,32,32,31}, {40,32,32,31}, {16,16,15,15}, {56,39,56,39}, 
+    {36,16,40,20}, {16,12,16,20}, {48,32,48,24}, {64,48,63,47}, {44,16,44,28}, {48,32,48,40}, {48,48,47,47}, {20,16,20,16}, 
+    {24,24,40,24}, {40,24,40,24}, {32,24,32,24}, {36,24,36,20}, {48,40,48,32}, {64,48,63,47}, {40,32,47,24}, {44,28,44,28}, 
+    {32,32,32,20}, {32,16,32,16}, {64,48,63,47}, {112,48,111,47}, {80,34,79,63}, {32,16,31,15}, {32,16,31,15}, {32,16,31,15}, 
+    {32,32,31,31}, {32,32,31,31}, {32,32,31,31}, {16,16,15,15}, {16,16,15,15}, {32,32,31,31}, {16,16,15,15}, {16,16,15,15}, 
+    {16,16,15,15}, {64,32,63,31}, {48,32,47,31}, {80,38,69,47}, {48,32,47,31}, {48,32,47,31}, {48,32,47,31}, {48,32,47,31}, 
+    {48,32,47,31}, {48,32,47,31}, {48,32,47,31}, {48,32,47,31}, {48,32,47,31}, {56,28,63,43}, {48,32,47,31}, {80,80,79,79}, 
+    {32,32,31,31}, {128,64,127,63}, {25,17,44,20}, {44,17,25,20}, {41,17,28,20}, {28,17,41,20}, {32,32,31,31}, {16,16,15,15}, 
+    {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {48,32,48,32}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, 
+    {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, {16,16,15,15}, 
+    {16,16,15,15}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}
+  };
+
+
+  /*
   class UnitTypeInternal
   {
     public:
@@ -687,7 +1178,7 @@ namespace BWAPI
   UnitType::set unitTypeSet;
   UnitType::set macroTypeSet;
   int maxWidth;
-  int maxHeight;
+  int maxHeight;*/
   namespace UnitTypes
   {
     BWAPI_TYPEDEF(UnitType,Terran_Marine);
@@ -925,7 +1416,7 @@ namespace BWAPI
     BWAPI_TYPEDEF(UnitType,Buildings);
     BWAPI_TYPEDEF(UnitType,Factories);
     BWAPI_TYPEDEF(UnitType,Unknown);
-
+    /*
     void init()
     {
       unitTypeData[Terran_Marine].set("Terran Marine", Races::Terran, 0, Terran_Barracks, 1, None, None, TechTypes::None, TechTypes::Stim_Packs, TechTypes::None, TechTypes::None, TechTypes::None, UpgradeTypes::Terran_Infantry_Armor, 40, 0, 0, 0, 50, 0, 360, 2, 0, 1, 0, 50, 100, UnitSizeTypes::Small, 1, 1, 8, 9, 8, 10, 128, 224, WeaponTypes::Gauss_Rifle, 1, WeaponTypes::Gauss_Rifle, 1, 4, 1, 1, 40, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -1377,29 +1868,45 @@ namespace BWAPI
         if ( hgt > maxHeight )
           maxHeight = hgt;
       }
-    }
+    }*/
   }
   UnitType::UnitType(int id) : Type( id )
   {}
   Race UnitType::getRace() const
   {
-    return unitTypeData[this->getID()].race;
+    return unitRaces::unitRace[this->getID()];
   }
-  const std::pair<  UnitType, int> UnitType::whatBuilds() const
+  const std::pair<UnitType, int> UnitType::whatBuilds() const
   {
     return unitTypeData[this->getID()].whatBuilds;
   }
-  const std::map<  UnitType, int >& UnitType::requiredUnits() const
+  const std::map<UnitType, int>& UnitType::requiredUnits() const
   {
     return unitTypeData[this->getID()].requiredUnits;
   }
   TechType UnitType::requiredTech() const
   {
-    return unitTypeData[this->getID()].requiredTech;
+    if ( *this == UnitTypes::Zerg_Lurker || *this == UnitTypes::Zerg_Lurker_Egg )
+      return TechTypes::Lurker_Aspect;
+    return TechTypes::None;
   }
   TechType UnitType::cloakingTech() const
   {
-    return unitTypeData[this->getID()].cloakingTech;
+    switch ( *this )
+    {
+    case UnitTypes::Enum::Terran_Ghost:
+    case UnitTypes::Enum::Hero_Alexei_Stukov:
+    case UnitTypes::Enum::Hero_Infested_Duran:
+    case UnitTypes::Enum::Hero_Infested_Kerrigan:
+    case UnitTypes::Enum::Hero_Sarah_Kerrigan:
+    case UnitTypes::Enum::Hero_Samir_Duran:
+      return TechTypes::Personnel_Cloaking;
+    case UnitTypes::Enum::Terran_Wraith:
+    case UnitTypes::Enum::Hero_Tom_Kazansky:
+      return TechTypes::Cloaking_Field;
+    default:
+      return TechTypes::None;
+    }
   }
   const TechType::set& UnitType::abilities() const
   {
@@ -1411,59 +1918,61 @@ namespace BWAPI
   }
   UpgradeType UnitType::armorUpgrade() const
   {
-    return unitTypeData[this->getID()].armorUpgrade;
+    return unitArmorUpgrades::armorUpgrade[this->getID()];
   }
   int UnitType::maxHitPoints() const
   {
-    return unitTypeData[this->getID()].maxHitPoints;
+    return maxHP[this->getID()];
   }
   int UnitType::maxShields() const
   {
-    return unitTypeData[this->getID()].maxShields;
+    return maxSP[this->getID()];
   }
   int UnitType::maxEnergy() const
   {
-    return unitTypeData[this->getID()].maxEnergy;
+    if ( this->isSpellcaster() )
+      return this->isHero() ? 250 : 200;
+    return 0;
   }
   int UnitType::armor() const
   {
-    return unitTypeData[this->getID()].armor;
+    return armorAmount[this->getID()];
   }
   int UnitType::mineralPrice() const
   {
-    return unitTypeData[this->getID()].mineralPrice;
+    return oreCost[this->getID()];
   }
   int UnitType::gasPrice() const
   {
-    return unitTypeData[this->getID()].gasPrice;
+    return gasCost[this->getID()];
   }
   int UnitType::buildTime() const
   {
-    return unitTypeData[this->getID()].buildTime;
+    return timeCost[this->getID()];
   }
   int UnitType::supplyRequired() const
   {
-    return unitTypeData[this->getID()].supplyRequired;
+    return unitSupplyRequired[this->getID()];
   }
   int UnitType::supplyProvided() const
   {
-    return unitTypeData[this->getID()].supplyProvided;
+    return unitSupplyProvided[this->getID()];
   }
   int UnitType::spaceRequired() const
   {
-    return unitTypeData[this->getID()].spaceRequired;
+    return unitSpaceRequired[this->getID()];
   }
   int UnitType::spaceProvided() const
   {
-    return unitTypeData[this->getID()].spaceProvided;
+    return unitSpaceProvided[this->getID()];
   }
   int UnitType::buildScore() const
   {
-    return unitTypeData[this->getID()].buildScore;
+    return unitBuildScore[this->getID()];
   }
   int UnitType::destroyScore() const
   {
-    return unitTypeData[this->getID()].destroyScore;
+    return unitDestroyScore[this->getID()];
   }
   UnitSizeType UnitType::size() const
   {
@@ -1471,11 +1980,11 @@ namespace BWAPI
   }
   int UnitType::tileWidth() const
   {
-    return unitTypeData[this->getID()].tileWidth;
+    return (this->width() + 31)/32;
   }
   int UnitType::tileHeight() const
   {
-    return unitTypeData[this->getID()].tileHeight;
+    return (this->height() + 31)/32;
   }
   TilePosition UnitType::tileSize() const
   {
@@ -1483,19 +1992,27 @@ namespace BWAPI
   }
   int UnitType::dimensionLeft() const
   {
-    return unitTypeData[this->getID()].dimensionLeft;
+    return unitDimensions[this->getID()].left;
   }
   int UnitType::dimensionUp() const
   {
-    return unitTypeData[this->getID()].dimensionUp;
+    return unitDimensions[this->getID()].up;
   }
   int UnitType::dimensionRight() const
   {
-    return unitTypeData[this->getID()].dimensionRight;
+    return unitDimensions[this->getID()].right;
   }
   int UnitType::dimensionDown() const
   {
-    return unitTypeData[this->getID()].dimensionDown;
+    return unitDimensions[this->getID()].down;
+  }
+  int UnitType::width() const
+  {
+    return this->dimensionLeft() + 1 + this->dimensionRight();
+  }
+  int UnitType::height() const
+  {
+    return this->dimensionUp() + 1 + this->dimensionDown();
   }
   int UnitType::seekRange() const
   {
@@ -1539,107 +2056,128 @@ namespace BWAPI
   }
   bool UnitType::canProduce() const
   {
-    return unitTypeData[this->getID()].canProduce;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::ProducesUnits);
   }
   bool UnitType::canAttack() const
   {
-    return unitTypeData[this->getID()].canAttack;
+    switch ( *this )
+    {
+    case UnitTypes::Enum::Protoss_Carrier:
+    case UnitTypes::Enum::Hero_Gantrithor:
+    case UnitTypes::Enum::Protoss_Reaver:
+    case UnitTypes::Enum::Hero_Warbringer:
+    case UnitTypes::Enum::Terran_Nuclear_Missile:
+      return true;
+    case UnitTypes::Enum::Special_Independant_Starport:
+      return false;
+    default:
+      return this->airWeapon() != WeaponTypes::None || this->groundWeapon() != WeaponTypes::None;
+    }
   }
   bool UnitType::canMove() const
   {
-    return unitTypeData[this->getID()].canMove;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::AutoAttackAndMove);
   }
   bool UnitType::isFlyer() const
   {
-    return unitTypeData[this->getID()].isFlyer;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Flyer);
   }
   bool UnitType::regeneratesHP() const
   {
-    return unitTypeData[this->getID()].regeneratesHP;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::RegeneratesHP);
   }
   bool UnitType::isSpellcaster() const
   {
-    return unitTypeData[this->getID()].isSpellcaster;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Spellcaster);
   }
   bool UnitType::hasPermanentCloak() const
   {
-    return unitTypeData[this->getID()].hasPermanentCloak;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::PermanentCloak);
   }
   bool UnitType::isInvincible() const
   {
-    return unitTypeData[this->getID()].isInvincible;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Invincible);
   }
   bool UnitType::isOrganic() const
   {
-    return unitTypeData[this->getID()].isOrganic;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::OrganicUnit);
   }
   bool UnitType::isMechanical() const
   {
-    return unitTypeData[this->getID()].isMechanical;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Mechanical);
   }
   bool UnitType::isRobotic() const
   {
-    return unitTypeData[this->getID()].isRobotic;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::RoboticUnit);
   }
   bool UnitType::isDetector() const
   {
-    return unitTypeData[this->getID()].isDetector;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Detector);
   }
   bool UnitType::isResourceContainer() const
   {
-    return unitTypeData[this->getID()].isResourceContainer;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::ResourceContainer);
   }
   bool UnitType::isResourceDepot() const
   {
-    return unitTypeData[this->getID()].isResourceDepot;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::ResourceDepot);
   }
   bool UnitType::isRefinery() const
   {
-    return unitTypeData[this->getID()].isRefinery;
+    switch ( *this )
+    {
+    case UnitTypes::Enum::Terran_Refinery:
+    case UnitTypes::Enum::Zerg_Extractor:
+    case UnitTypes::Enum::Protoss_Assimilator:
+      return true;
+    default:
+      return false;
+    }
   }
   bool UnitType::isWorker() const
   {
-    return unitTypeData[this->getID()].isWorker;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Worker);
   }
   bool UnitType::requiresPsi() const
   {
-    return unitTypeData[this->getID()].requiresPsi;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::RequiresPsi);
   }
   bool UnitType::requiresCreep() const
   {
-    return unitTypeData[this->getID()].requiresCreep;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::CreepBuilding);
   }
   bool UnitType::isTwoUnitsInOneEgg() const
   {
-    return unitTypeData[this->getID()].isTwoUnitsInOneEgg;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::TwoUnitsIn1Egg);
   }
   bool UnitType::isBurrowable() const
   {
-    return unitTypeData[this->getID()].isBurrowable;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Burrowable);
   }
   bool UnitType::isCloakable() const
   {
-    return unitTypeData[this->getID()].isCloakable;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Cloakable);
   }
   bool UnitType::isBuilding() const
   {
-    return unitTypeData[this->getID()].isBuilding;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Building);
   }
   bool UnitType::isAddon() const
   {
-    return unitTypeData[this->getID()].isAddon;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Addon);
   }
   bool UnitType::isFlyingBuilding() const
   {
-    return unitTypeData[this->getID()].isFlyingBuilding;
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::FlyingBuilding);
   }
   bool UnitType::isNeutral() const
   {
-    return unitTypeData[this->getID()].isNeutral;
+    return this->getRace() == Races::None &&
+          (this->isCritter() || this->isResourceContainer() || this->isSpell());
   }
   bool UnitType::isHero() const
   {
-    return unitTypeData[this->getID()].isHero ||
+    return !!(UnitPrototypeFlags::unitFlags[this->getID()] & UnitPrototypeFlags::Hero) ||
            this->getID() == UnitTypes::Hero_Dark_Templar ||
            this->getID() == UnitTypes::Terran_Civilian;
   }
@@ -1663,7 +2201,7 @@ namespace BWAPI
   }
   bool UnitType::isSpecialBuilding() const
   {
-    return unitTypeData[this->getID()].isSpecialBuilding && this->getID() != UnitTypes::Zerg_Infested_Command_Center;
+    return this->isBuilding() && this->whatBuilds().second == 0 && this->getID() != UnitTypes::Zerg_Infested_Command_Center;
   }
   bool UnitType::isSpell() const
   {
@@ -1683,6 +2221,21 @@ namespace BWAPI
            this->getID() == UnitTypes::Resource_Mineral_Field_Type_2 ||
            this->getID() == UnitTypes::Resource_Mineral_Field_Type_3;
   }
+  bool UnitType::isCritter() const
+  {
+    switch ( *this )
+    {
+    case UnitTypes::Enum::Critter_Bengalaas:
+    case UnitTypes::Enum::Critter_Kakaru:
+    case UnitTypes::Enum::Critter_Ragnasaur:
+    case UnitTypes::Enum::Critter_Rhynadon:
+    case UnitTypes::Enum::Critter_Scantid:
+    case UnitTypes::Enum::Critter_Ursadon:
+      return true;
+    default:
+      return false;
+    }
+  }
   bool UnitType::canBuildAddon() const
   {
     return this->getID() == UnitTypes::Terran_Command_Center  ||
@@ -1698,12 +2251,16 @@ namespace BWAPI
   {
     return macroTypeSet;
   }
+
   int UnitTypes::maxUnitWidth()
   {
+    static int maxWidth = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.width() < b.width(); } );
     return maxWidth;
   }
+
   int UnitTypes::maxUnitHeight()
   {
+    static int maxHeight = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.height() < b.height(); } );
     return maxHeight;
   }
 }

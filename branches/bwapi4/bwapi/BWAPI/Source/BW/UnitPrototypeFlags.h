@@ -4,7 +4,7 @@ namespace BW
   /** Flags specifying certain characteristics of unit prototype */
   namespace UnitPrototypeFlags
   {
-  enum Enum
+    enum Enum
     {
       Building                = 0x00000001,
       Addon                   = 0x00000002,
@@ -22,10 +22,10 @@ namespace BW
       ResourceContainer       = 0x00002000,
       RoboticUnit             = 0x00004000,
       Detector                = 0x00008000,
-      Organicunit             = 0x00010000,
+      OrganicUnit             = 0x00010000,
       CreepBuilding           = 0x00020000,
       Unused                  = 0x00040000,
-      RequiredPsi             = 0x00080000,
+      RequiresPsi             = 0x00080000,
       Burrowable              = 0x00100000,
       Spellcaster             = 0x00200000,
       PermanentCloak          = 0x00400000,
