@@ -297,10 +297,10 @@ namespace BWAPI
 
     /** Returns the set of tech types this unit can use, provided the tech types have been researched and
      * the unit has enough energy. */
-    const Typeset<TechType>& abilities() const;
+    const ConstVectorset<TechType>& abilities() const;
 
     /** Returns the set of upgrade types that can affect this unit. */
-    const Typeset<UpgradeType>& upgrades() const;
+    const ConstVectorset<UpgradeType>& upgrades() const;
 
     /** Returns the upgrade that increase's the unit's armor, or UpgradeTypes::None if no upgrade
      * increase's this unit's armor. For example UnitTypes::Terran_Marine.armorUpgrade() will return a
@@ -565,10 +565,10 @@ namespace BWAPI
     int maxUnitHeight();
 
     /** Returns the set of all the UnitTypes. */
-    const UnitType::set& allUnitTypes();
+    const UnitType::const_set& allUnitTypes();
 
     /** Returns the set of all the MacroTypes. */
-    const UnitType::set& allMacroTypes();
+    const UnitType::const_set& allMacroTypes();
 
     extern const UnitType Terran_Marine;
     extern const UnitType Terran_Ghost;

@@ -2,6 +2,7 @@
 #include <math.h>
 #include <algorithm>
 #include <iostream>
+#include <tuple>
 
 #include <BWAPI/Vectorset.h>
 
@@ -46,18 +47,12 @@ namespace BWAPI
   // Declaration
   template<typename _T, int __Scale = 1>
   class Point;
-  template<typename _T, int __Scale = 1>
-  class PointIterator;
 
   // Restrictions
   template<typename _T> class Point<_T, 0> {};
   template<int __Scale> class Point<char, __Scale> {};
   template<int __Scale> class Point<unsigned char, __Scale> {};
   template<int __Scale> class Point<bool, __Scale> {};
-  template<typename _T> class PointIterator<_T, 0> {};
-  template<int __Scale> class PointIterator<char, __Scale> {};
-  template<int __Scale> class PointIterator<unsigned char, __Scale> {};
-  template<int __Scale> class PointIterator<bool, __Scale> {};
   
   // ------------------------------------------------------ Point template ----------------
   template<typename _T, int __Scale>
@@ -85,19 +80,16 @@ namespace BWAPI
     
     bool operator == (const Point<_T,__Scale> &pos) const
     { 
-      return  this->x == pos.x &&
-              this->y == pos.y;
+      return std::tie(this->x, this->y) == std::tie(pos.x, pos.y);
     }; 
     bool operator != (const Point<_T,__Scale> &pos) const
     { 
-      return  this->x != pos.x ||
-          this->y != pos.y;
+      return !(*this == pos);
     }; 
 
     bool operator  < (const Point<_T,__Scale> &position) const
     {
-      return  this->x < position.x ||
-          (this->x == position.x && this->y < position.y);
+      return std::tie(this->x, this->y) < std::tie(position.x, position.y);
     };
 
     _OPERATOR_OP_PT(+)

@@ -595,7 +595,7 @@ namespace BWAPI
 
     // Check if the distance to the unit is within the weapon range
     int distance = this->getDistance(target);
-    return (minRange ? minRange < distance : true) && distance <= minRange;
+    return (minRange ? minRange < distance : true) && distance <= maxRange;
   }
   //--------------------------------------------- IS LIFTED --------------------------------------------------
   bool UnitImpl::isLifted() const

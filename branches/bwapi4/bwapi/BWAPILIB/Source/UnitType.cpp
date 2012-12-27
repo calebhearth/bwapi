@@ -1015,6 +1015,48 @@ namespace BWAPI
       None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
       None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Unknown
     };
+
+    static const int macroSetArr[] = { Men, Buildings, Factories, AllUnits };
+    static const UnitType::const_set macroTypeSet(macroSetArr, countof(macroSetArr));
+
+    static const int unitSetArr[] = {
+      Terran_Marine, Terran_Ghost, Terran_Vulture, Terran_Goliath, Terran_Siege_Tank_Tank_Mode, Terran_SCV, Terran_Wraith, 
+      Terran_Science_Vessel, Hero_Gui_Montag, Terran_Dropship, Terran_Battlecruiser, Terran_Vulture_Spider_Mine, Terran_Nuclear_Missile, 
+      Terran_Civilian, Hero_Sarah_Kerrigan, Hero_Alan_Schezar, Hero_Jim_Raynor_Vulture, Hero_Jim_Raynor_Marine, Hero_Tom_Kazansky, 
+      Hero_Magellan, Hero_Edmund_Duke_Tank_Mode, Hero_Edmund_Duke_Siege_Mode, Hero_Arcturus_Mengsk, Hero_Hyperion, Hero_Norad_II, 
+      Terran_Siege_Tank_Siege_Mode, Terran_Firebat, Spell_Scanner_Sweep, Terran_Medic, Zerg_Larva, Zerg_Egg, Zerg_Zergling, 
+      Zerg_Hydralisk, Zerg_Ultralisk, Zerg_Broodling, Zerg_Drone, Zerg_Overlord, Zerg_Mutalisk, Zerg_Guardian, Zerg_Queen, 
+      Zerg_Defiler, Zerg_Scourge, Hero_Torrasque, Hero_Matriarch, Zerg_Infested_Terran, Hero_Infested_Kerrigan, Hero_Unclean_One, 
+      Hero_Hunter_Killer, Hero_Devouring_One, Hero_Kukulza_Mutalisk, Hero_Kukulza_Guardian, Hero_Yggdrasill, Terran_Valkyrie, 
+      Zerg_Cocoon, Protoss_Corsair, Protoss_Dark_Templar, Zerg_Devourer, Protoss_Dark_Archon, Protoss_Probe, Protoss_Zealot, 
+      Protoss_Dragoon, Protoss_High_Templar, Protoss_Archon, Protoss_Shuttle, Protoss_Scout, Protoss_Arbiter, Protoss_Carrier, 
+      Protoss_Interceptor, Hero_Dark_Templar, Hero_Zeratul, Hero_Tassadar_Zeratul_Archon, Hero_Fenix_Zealot, Hero_Fenix_Dragoon, 
+      Hero_Tassadar, Hero_Mojo, Hero_Warbringer, Hero_Gantrithor, Protoss_Reaver, Protoss_Observer, Protoss_Scarab, Hero_Danimoth, 
+      Hero_Aldaris, Hero_Artanis, Critter_Rhynadon, Critter_Bengalaas, Special_Cargo_Ship, Special_Mercenary_Gunship, Critter_Scantid, 
+      Critter_Kakaru, Critter_Ragnasaur, Critter_Ursadon, Zerg_Lurker_Egg, Hero_Raszagal, Hero_Samir_Duran, Hero_Alexei_Stukov, 
+      Special_Map_Revealer, Hero_Gerard_DuGalle, Zerg_Lurker, Hero_Infested_Duran, Spell_Disruption_Web, Terran_Command_Center, 
+      Terran_Comsat_Station, Terran_Nuclear_Silo, Terran_Supply_Depot, Terran_Refinery, Terran_Barracks, Terran_Academy, 
+      Terran_Factory, Terran_Starport, Terran_Control_Tower, Terran_Science_Facility, Terran_Covert_Ops, Terran_Physics_Lab, 
+      Terran_Machine_Shop, Terran_Engineering_Bay, Terran_Armory, Terran_Missile_Turret, Terran_Bunker, Special_Crashed_Norad_II, 
+      Special_Ion_Cannon, Powerup_Uraj_Crystal, Powerup_Khalis_Crystal, Zerg_Infested_Command_Center, Zerg_Hatchery, Zerg_Lair, 
+      Zerg_Hive, Zerg_Nydus_Canal, Zerg_Hydralisk_Den, Zerg_Defiler_Mound, Zerg_Greater_Spire, Zerg_Queens_Nest, Zerg_Evolution_Chamber, 
+      Zerg_Ultralisk_Cavern, Zerg_Spire, Zerg_Spawning_Pool, Zerg_Creep_Colony, Zerg_Spore_Colony, Zerg_Sunken_Colony, 
+      Special_Overmind_With_Shell, Special_Overmind, Zerg_Extractor, Special_Mature_Chrysalis, Special_Cerebrate, 
+      Special_Cerebrate_Daggoth, Protoss_Nexus, Protoss_Robotics_Facility, Protoss_Pylon, Protoss_Assimilator, Protoss_Observatory, 
+      Protoss_Gateway, Protoss_Photon_Cannon, Protoss_Citadel_of_Adun, Protoss_Cybernetics_Core, Protoss_Templar_Archives, 
+      Protoss_Forge, Protoss_Stargate, Special_Stasis_Cell_Prison, Protoss_Fleet_Beacon, Protoss_Arbiter_Tribunal, 
+      Protoss_Robotics_Support_Bay, Protoss_Shield_Battery, Special_Khaydarin_Crystal_Form, Special_Protoss_Temple, 
+      Special_XelNaga_Temple, Resource_Mineral_Field, Resource_Mineral_Field_Type_2, Resource_Mineral_Field_Type_3,
+      Special_Independant_Starport, Resource_Vespene_Geyser, Special_Warp_Gate, Special_Psi_Disrupter, Special_Zerg_Beacon, 
+      Special_Terran_Beacon, Special_Protoss_Beacon, Special_Zerg_Flag_Beacon, Special_Terran_Flag_Beacon, Special_Protoss_Flag_Beacon, 
+      Special_Power_Generator, Special_Overmind_Cocoon, Spell_Dark_Swarm, Special_Floor_Missile_Trap, Special_Floor_Hatch,
+      Special_Upper_Level_Door, Special_Right_Upper_Level_Door, Special_Pit_Door, Special_Right_Pit_Door, Special_Floor_Gun_Trap, 
+      Special_Wall_Missile_Trap, Special_Wall_Flame_Trap, Special_Right_Wall_Missile_Trap, Special_Right_Wall_Flame_Trap, 
+      Special_Start_Location, Powerup_Flag, Powerup_Young_Chrysalis, Powerup_Psi_Emitter, Powerup_Data_Disk, Powerup_Khaydarin_Crystal,
+      Powerup_Mineral_Cluster_Type_1, Powerup_Mineral_Cluster_Type_2, Powerup_Protoss_Gas_Orb_Type_1, Powerup_Protoss_Gas_Orb_Type_2,
+      Powerup_Zerg_Gas_Sac_Type_1, Powerup_Zerg_Gas_Sac_Type_2, Powerup_Terran_Gas_Tank_Type_1, Powerup_Terran_Gas_Tank_Type_2, None, Unknown
+    };
+    static const UnitType::const_set unitTypeSet(unitSetArr, countof(unitSetArr));
   }
 
   static const int seekRangeTiles[UnitTypes::Enum::MAX] = {
@@ -1120,6 +1162,102 @@ namespace BWAPI
     };
   }
 
+  static const double unitTopSpeeds[UnitTypes::Enum::MAX] = {
+    4.0, 4.0, 6.4, 4.57, 0.0, 4.0, 0.0, 4.92, 6.67, 5.0, 4.0, 5.47, 2.5, 16.0, 33.33, 4.0, 4.0, 4.57, 0.0, 6.4, 4.0, 6.67, 
+    5.0, 4.0, 0.0, 0.0, 0.0, 2.5, 2.5, 2.5, 0.0, 0.0, 4.0, 0.0, 4.0, 0.0, 0.0, 5.49, 3.66, 5.12, 6.0, 4.92, 0.83, 6.67, 2.5, 
+    6.67, 4.0, 6.67, 5.12, 6.67, 5.82, 4.0, 4.0, 3.66, 5.49, 6.67, 2.5, 0.83, 6.6, 0.0, 6.67, 4.92, 5.0, 4.92, 4.92, 4.0, 5.0, 
+    3.2, 4.92, 4.43, 5.0, 5.0, 3.33, 13.33, 4.92, 4.92, 4.92, 4.0, 5.0, 3.2, 5.0, 1.78, 3.33, 1.78, 3.33, 16.0, 5.0, 3.2, 5.0, 
+    4.0, 4.0, 0.0, 0.0, 4.0, 5.0, 4.0, 4.0, 0.0, 6.67, 4.0, 4.0, 0.0, 2.5, 5.82, 4.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 
+    1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+  };
+
+  static const int unitAcceleration[UnitTypes::Enum::MAX] = {
+    1, 1, 100, 1, 0, 1, 0, 67, 67, 50, 1, 17, 27, 1, 33, 1, 1, 1, 0, 100, 1, 67, 50, 1, 0, 1, 0, 27, 27, 27, 1, 0, 1, 0, 1, 1, 0, 1, 
+    1, 1, 1, 67, 27, 67, 27, 67, 1, 107, 1, 67, 1, 1, 1, 1, 1, 67, 27, 27, 65, 0, 67, 27, 48, 160, 67, 1, 1, 27, 160, 17, 48, 33, 27,
+    427, 27, 27, 160, 1, 1, 27, 48, 1, 27, 1, 27, 1, 33, 27, 48, 1, 1, 0, 0, 1, 16, 1, 1, 0, 67, 1, 1, 0, 27, 1, 1, 0, 33, 0, 0, 0, 
+    33, 33, 0, 33, 33, 0, 33, 0, 0, 0, 0, 0, 33, 0, 0, 33, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitHaltDistance[UnitTypes::Enum::MAX] = {
+    1, 1, 14569, 1, 0, 1, 0, 12227, 21745, 5120, 1, 37756, 7585, 1, 1103213, 1, 1, 1, 0, 14569, 1, 21745, 5120, 1, 0, 1, 0, 
+    7585, 7585, 7585, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 12227, 840, 21745, 7585, 21745, 1, 13616, 1, 21745, 1, 1, 1, 1, 1, 21745,
+    7585, 840, 21901, 0, 17067, 13474, 17067, 5120, 12227, 1, 1, 13474, 5120, 37756, 17067, 24824, 13474, 13640, 13474, 13474, 
+    5120, 1, 1, 13474, 17067, 1, 13474, 1, 13474, 1, 24824, 13474, 17067, 1, 1, 0, 0, 1, 51200, 1, 1, 0, 17067, 1, 1, 0, 7585, 
+    1, 1, 0, 2763, 0, 0, 0, 2763, 2763, 0, 2763, 2763, 0, 2763, 0, 0, 0, 0, 0, 2763, 0, 0, 2763, 0, 0, 0, 0, 2763, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  static const int unitTurnRadius[UnitTypes::Enum::MAX] = {
+    40, 40, 40, 17, 0, 13, 0, 40, 40, 40, 40, 20, 20, 127, 127, 40, 40, 17, 0, 40, 40, 40, 40, 13, 0, 40, 0, 20, 20, 20, 40, 0, 40, 
+    0, 40, 20, 0, 27, 27, 40, 27, 40, 20, 40, 20, 40, 27, 40, 40, 40, 40, 40, 27, 27, 27, 40, 20, 20, 30, 0, 30, 40, 30, 40, 40, 40, 
+    40, 40, 40, 20, 30, 40, 20, 40, 40, 40, 40, 40, 40, 40, 30, 20, 20, 20, 20, 27, 40, 40, 30, 27, 27, 0, 0, 27, 14, 27, 27, 0, 30, 
+    40, 40, 0, 20, 40, 40, 0, 27, 0, 0, 0, 27, 27, 0, 27, 27, 0, 27, 0, 0, 0, 0, 0, 27, 0, 40, 27, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+
+  namespace unitAbilities
+  {
+    using namespace TechTypes::Enum;
+    
+    static const int stim[] = { Stim_Packs };
+    static const int ghost_full[] = { Lockdown, Personnel_Cloaking, Nuclear_Strike };
+    static const int vulture[] = { Spider_Mines };
+    static const int siege[] = { Tank_Siege_Mode };
+    static const int wraith[] = { Cloaking_Field };
+    static const int vessel[] = { EMP_Shockwave, Defensive_Matrix, Irradiate };
+    static const int cruiser[] = { Yamato_Gun };
+    static const int ghost_hero[] = { Lockdown, Personnel_Cloaking };
+    static const int medic[] = { Restoration, Optical_Flare, Healing };
+    static const int burrow[] = { Burrowing };
+    static const int queen[] = { Infestation, Spawn_Broodlings, Ensnare, Parasite };
+    static const int defiler[] = { Burrowing, Dark_Swarm, Plague, Consume };
+    static const int ikerrigan[] = { Personnel_Cloaking, Ensnare, Psionic_Storm, Consume };
+    static const int corsair[] = { Disruption_Web };
+    static const int dt[] = { Dark_Archon_Meld };
+    static const int darchon[] = { Mind_Control, Feedback, Maelstrom };
+    static const int templar_full[] = { Psionic_Storm, Hallucination, Archon_Warp };
+    static const int arbiter[] = { Recall, Stasis_Field };
+    static const int templar_hero[] = { Psionic_Storm, Hallucination };
+    static const int iduran[] = { Lockdown, Personnel_Cloaking, Consume };
+    static const int comsat[] = { Scanner_Sweep };
+
+#define TSET(x) TechType::const_set(x, countof(x))
+#define TSETEMPTY TechType::const_set(&TechTypes::None)
+
+    static const TechType::const_set unitTechs[UnitTypes::Enum::MAX] = {
+      TSET(stim), TSET(ghost_full), TSET(vulture), TSETEMPTY, TSETEMPTY, TSET(siege), TSETEMPTY, TSETEMPTY, TSET(wraith), TSET(vessel),
+      TSET(stim), TSETEMPTY, TSET(cruiser), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(ghost_hero), TSETEMPTY, TSETEMPTY, TSET(vulture),
+      TSET(stim), TSET(wraith), TSET(vessel), TSET(siege), TSETEMPTY, TSET(siege), TSETEMPTY, TSETEMPTY, TSET(cruiser), TSET(cruiser),
+      TSET(siege), TSETEMPTY, TSET(stim), TSETEMPTY, TSET(medic), TSETEMPTY, TSETEMPTY, TSET(burrow), TSET(burrow), TSETEMPTY, TSETEMPTY, 
+      TSET(burrow), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(queen), TSET(defiler), TSETEMPTY, TSETEMPTY, TSET(queen), TSET(burrow), 
+      TSET(ikerrigan), TSET(defiler), TSET(burrow), TSET(burrow), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(corsair),
+      TSET(dt), TSETEMPTY, TSET(darchon), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(templar_full), TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSET(arbiter), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(templar_hero), TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(arbiter), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSET(corsair), TSET(ghost_hero), TSET(ghost_hero), TSETEMPTY, TSET(cruiser),
+      TSET(burrow), TSET(iduran), TSETEMPTY, TSETEMPTY, TSET(comsat), TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY,
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, 
+      TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY, TSETEMPTY
+    };
+  }
   /*
   class UnitTypeInternal
   {
@@ -2025,6 +2163,7 @@ namespace BWAPI
     // Return the desired pair
     return std::make_pair(type, count);
   }
+  
   std::map<UnitType,int> nomap;
   const std::map<UnitType, int>& UnitType::requiredUnits() const
   {
@@ -2055,14 +2194,14 @@ namespace BWAPI
       return TechTypes::None;
     }
   }
-  TechType::set notechset;
-  const TechType::set& UnitType::abilities() const
+
+  const TechType::const_set& UnitType::abilities() const
   {
-    //return unitTypeData[this->getID()].abilities;
-    return notechset;
+    return unitAbilities::unitTechs[this->getID()];
   }
-  UpgradeType::set noupgset;
-  const UpgradeType::set& UnitType::upgrades() const
+  
+  const UpgradeType::const_set noupgset(&UpgradeTypes::None);
+  const UpgradeType::const_set& UnitType::upgrades() const
   {
     //return unitTypeData[this->getID()].upgrades;
     return noupgset;
@@ -2191,23 +2330,19 @@ namespace BWAPI
   }
   double UnitType::topSpeed() const
   {
-    //return unitTypeData[this->getID()].topSpeed;
-    return 0.0;
+    return unitTopSpeeds[this->getID()];
   }
   int UnitType::acceleration() const
   {
-    //return unitTypeData[this->getID()].acceleration;
-    return 0;
+    return unitAcceleration[this->getID()];
   }
   int UnitType::haltDistance() const
   {
-    //return unitTypeData[this->getID()].haltDistance;
-    return 0;
+    return unitHaltDistance[this->getID()];
   }
   int UnitType::turnRadius() const
   {
-    //return unitTypeData[this->getID()].turnRadius;
-    return 0;
+    return unitTurnRadius[this->getID()];
   }
   bool UnitType::canProduce() const
   {
@@ -2398,27 +2533,24 @@ namespace BWAPI
            this->getID() == UnitTypes::Terran_Starport        ||
            this->getID() == UnitTypes::Terran_Science_Facility;
   }
-  UnitType::set nounitset;
-  const UnitType::set& UnitTypes::allUnitTypes()
+  const UnitType::const_set& UnitTypes::allUnitTypes()
   {
-    //return unitTypeSet;
-    return nounitset;
+    return unitInternal::unitTypeSet;
   }
-  const UnitType::set& UnitTypes::allMacroTypes()
+  const UnitType::const_set& UnitTypes::allMacroTypes()
   {
-    //return macroTypeSet;
-    return nounitset;
+    return unitInternal::macroTypeSet;
   }
 
   int UnitTypes::maxUnitWidth()
   {
-    static int maxWidth = 0;//*std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.width() < b.width(); } );
+    static int maxWidth = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.width() < b.width(); } );
     return maxWidth;
   }
 
   int UnitTypes::maxUnitHeight()
   {
-    static int maxHeight = 0;//*std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.height() < b.height(); } );
+    static int maxHeight = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.height() < b.height(); } );
     return maxHeight;
   }
 }

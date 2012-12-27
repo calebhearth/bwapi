@@ -2,6 +2,7 @@
 #include <BWAPI/Unit.h>
 #include <BWAPI/TechType.h>
 #include <BWAPI/UpgradeType.h>
+#include <tuple>
 
 #include "../Debug.h"
 
@@ -478,12 +479,7 @@ namespace BWAPI
   }
   bool UnitCommand::operator==(const UnitCommand& other) const
   {
-    if (type   != other.type) return false;
-    if (target != other.target) return false;
-    if (x      != other.x) return false;
-    if (y      != other.y) return false;
-    if (extra  != other.extra) return false;
-    return true;
+    return std::tie(type, target, x, y, extra) == std::tie(other.type, other.target, other.x, other.y, other.extra);
   }
   bool UnitCommand::operator!=(const UnitCommand& other) const
   {

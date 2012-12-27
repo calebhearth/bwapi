@@ -36,7 +36,7 @@ namespace BWAPI
   public:
     /// The iterator is used to traverse the elements in the set. It is used the same way as in
     /// the stl containers.
-    typedef BWAPI::iterator<_T> iterator;
+    typedef BWAPI::VSetIterator<_T> iterator;
 
   // ----------------------------------------------------------------- Constructors
     /// This constructor uses an existing array of objects and copies them into the vector.

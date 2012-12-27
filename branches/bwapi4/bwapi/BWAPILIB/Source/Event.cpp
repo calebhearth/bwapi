@@ -1,5 +1,6 @@
 #include <BWAPI/Event.h>
 #include <BWAPI/EventType.h>
+#include <tuple>
 
 #include "../../Debug.h"
 
@@ -75,12 +76,8 @@ namespace BWAPI
   }
   bool Event::operator==(const Event& other) const
   {
-    return (type     == other.type &&
-            position == other.position &&
-            ((text==nullptr && other.text==nullptr) || (text!=nullptr && other.text!=nullptr && *text == *other.text)) &&
-            unit     == other.unit &&
-            player   == other.player &&
-            winner   == other.winner);
+    return std::tie(type, position, unit, player, winner) == std::tie(other.type, other.position, other.unit, other.player, other.winner)
+           && ((text==nullptr && other.text==nullptr) || (text!=nullptr && other.text!=nullptr && *text == *other.text));
   }
   Event Event::MatchStart()
   {
