@@ -1,12 +1,18 @@
 #labels Featured
-== Changes in BWAPI4 ==
+== Changes in BWAPI4 (since r4222) ==
  * All BWAPI projects have been upgraded to use Microsoft Visual C++ 2010 Express.
  * BWAPI no longer supports loading older revisions if the revision of the AI module is diffrent.
  * BWAPI will be using some C++11 features, such as: r-value references, std::function, lambdas, nullptr, auto, and range-based for loops.
  * The location of BWAPI.dll has been moved to the bwapi-data folder.
+ * The module now only allows one instance of itself to be injected into the Broodwar process.
+ * AI modules no longer initialize type data.
+ * AI modules no longer initialize the Broodwar pointer, and newAIModule now takes 0 arguments.
+ * Several performance improvements have been made for BWAPI.
+ * The holiday lights have been removed (holiday hacks will replace unit graphics instead).
+ * The save_replay configuration option has been altered for more flexibility on date/time stamps.
 
 === Sets and Vectors ===
- Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, and is used the same way (with Vectorset::iterator). Learning algorithms will get the most out of this.
+ Using a custom new class template known as a Vectorset, BWAPI and AI modules can perform significantly better (faster and less memory). This replaces the use of STL containers, but is used the same way (with Vectorset::iterator, stl algorithms, etc).
 
  It can be treated like a vector or a set, and the user has the option of treating it as a vector for some cases and a set for others.
  
@@ -19,34 +25,47 @@
  * The x and y members are now public, and the x() and y() member functions have been removed.
 
 === Interface ===
- Each interface class will have its own derived set with several enhancements,  and brings in some functionality similar to that of BWSAL. The new sets are as follows: Unitset, Playerset, Regionset, Bulletset, Forceset
-
- Interface overhead has been reduced by making some member functions with alternative parameters non-virtual. Keep in mind some function parameters have been re-arranged so that default parameters can be used.
+ * Each interface class will have its own derived set with several enhancements, and brings in some functionality similar to that of BWSAL. The new sets are as follows: Unitset, Playerset, Regionset, Bulletset, Forceset
+ * Interface overhead has been reduced by making some member functions with alternative parameters non-virtual. Keep in mind some function parameters have been re-arranged so that default parameters can be used.
+ * getClientInfo/setClientInfo are now available to all Interface classes, and also take an optional parameter that acts as a key.
 
 === Types ===
  * Types have also received their own set, the Type::set (Example: UnitType::set).
  * The behavior of type creation has been changed, and now all types with an id between 0 and Unknown will be considered valid, even if data for the type has not been defined in BWAPI. This drastically simplifies the type's constructors.
- * Most type data is now made constant and no longer requires an initialization to be made.
+ * Most type data is now made constant and no longer requires an initialization to be made. This gives users more flexibility for when they want to access type information.
  * Added a Type::isValid function.
  * All types' enumerations are now available (for switch case usage) and are accessed by Types::Enum (Example: {{{UnitTypes::Enum::Terran_Marine}}}).
  * TechType::energyUsed has been renamed to energyCost.
+ * All types now overload std::ostream operator<< (including Color).
+ * UnitTypes::getUnit, Races::getRace, etc. have now been replaced with static Type::getType. (Example: Races::getRace doesn't exist, use Race::getType)
+ * Added UnitType::width, UnitType::height, and UnitType::isCritter.
 
 === Game ===
  * Draw functions now take Position parameters as an alternative to individual x and y.
  * The parameters for canBuildHere, canMake, canResearch, and canUpgrade have been rearranged.
  * {{{getUnits_}}} functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
- * Added getClosestUnit, getBestUnit, getClosestUnitInRectangle
+ * Added getClosestUnit, getBestUnit, getClosestUnitInRectangle, vPrintf, vSendText, vSendTextEx, and vDrawText.
+ * Removed Game::getScreenBuffer.
+ * Instead of using Game::printf, you may use BWAPI::Broodwar like you would std::cout, using operator <<.
+
+=== Unit Filters ===
+ * UnitFilter is a new powerful function composition object and function predicate for use with getUnits__ functions throughout the interface. It can generally be combined with any other functional object (including lambdas) using operators && and ||, as well as ! for the inverse. (Example: {{{!(IsFlyer || IsLifted)}}} )
+ * CompareFilter is a sister function composition object that compares the values returned from the call to the object, and can be combined using operators ==, <, <=, >, >=, and !=. (Example: {{{GetType == UnitTypes::Terran_SCV && HP_Percent < 100}}})
 
 === Player ===
  * groundWeaponMaxRange and airWeaponMaxRange have been removed. Use weaponMaxRange instead.
+ * getTextColor now returns a char instead of an int so that it is printed correctly when used with ostream operator <<.
 
 === Unit ===
  * The parameters for build have been rearranged.
  * {{{getUnits_}}} functions now return a Unitset copy instead of a reference, and also now takes a function predicate.
- * Added getClosestUnit, getUnitsInRadius
+ * Added getClosestUnit, getUnitsInRadius, and getSpaceRemaining.
 
 === Region ===
  * Added a getUnits function.
+
+=== Bug Fixes ===
+ * Fixed a bug where Unit::getRemainingBuildTime failed to work correctly for some units (such as siege tanks).
 
 
 == Changes from BWAPI 3.7.3 (r4111) to BWAPI 3.7.4 (r4160) ==
