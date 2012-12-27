@@ -49,7 +49,7 @@
  * Instead of using Game::printf, you may use BWAPI::Broodwar like you would std::cout, using operator <<.
 
 === Unit Filters ===
- * UnitFilter is a new powerful function composition object and function predicate for use with getUnits__ functions throughout the interface. It can generally be combined with any other functional object (including lambdas) using operators && and ||, as well as ! for the inverse. (Example: {{{!(IsFlyer || IsLifted)}}} )
+ * UnitFilter is a new powerful function composition object and function predicate for use with getUnits__ functions throughout the interface. It can generally be combined with any other functional object (including lambdas) using operators && and {{{||}}}, as well as ! for the inverse. (Example: {{{!(IsFlyer || IsLifted)}}} )
  * CompareFilter is a sister function composition object that compares the values returned from the call to the object, and can be combined using operators ==, <, <=, >, >=, and !=. (Example: {{{GetType == UnitTypes::Terran_SCV && HP_Percent < 100}}})
 
 === Player ===
