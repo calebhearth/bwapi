@@ -68,8 +68,8 @@ namespace BWAPI
                                           // Weapon behavioural checks
                                           UnitType ut = u->getType();
                                           if ( (( weapon.targetsOwn()          && u->getPlayer() != this->getPlayer() ) ||
-                                                ( !weapon.targetsAir()         && (!u->isLifted() && !ut.isFlyer()) ) ||
-                                                ( !weapon.targetsGround()      && (u->isLifted() || ut.isFlyer())   ) ||
+                                                ( !weapon.targetsAir()         && !u->isFlying() ) ||
+                                                ( !weapon.targetsGround()      && u->isFlying()  ) ||
                                                 ( weapon.targetsMechanical()   && ut.isMechanical()                 ) ||
                                                 ( weapon.targetsOrganic()      && ut.isOrganic()                    ) ||
                                                 ( weapon.targetsNonBuilding()  && !ut.isBuilding()                  ) ||
@@ -164,7 +164,7 @@ namespace BWAPI
       return Broodwar->setLastError(Errors::Invalid_Parameter);
 
     // Return true if this unit is an air unit
-    if ( this->getType().isFlyer() || this->isLifted() )
+    if ( this->isFlying() )
       return true;
 
     // Return error if either this or the target does not "exist"
@@ -229,6 +229,37 @@ namespace BWAPI
     }
     return false;
   }
+  //--------------------------------------------- IS BEING CONSTRUCTED ---------------------------------------
+  bool Unit::isBeingConstructed() const
+  {
+    if ( this->isMorphing() )
+      return true;
+    if ( this->isCompleted() )
+      return false;
+    if ( this->getType().getRace() != Races::Terran )
+      return true;
+    return this->getBuildUnit() != nullptr;
+  }
+  //--------------------------------------------- IS CONSTRUCTING --------------------------------------------
+  bool Unit::isConstructing() const
+  {
+    Order ord = this->getOrder();
+    return this->isMorphing()                                 ||
+            ord == Orders::ConstructingBuilding               ||
+            ord == Orders::PlaceBuilding                      ||
+            ord == Orders::Enum::DroneBuild                   ||      // Some of these never compare because of BWtoBWAPI
+            ord == Orders::Enum::DroneStartBuild              ||
+            ord == Orders::Enum::DroneLand                    ||
+            ord == Orders::Enum::PlaceProtossBuilding         ||
+            ord == Orders::CreateProtossBuilding              ||
+            ord == Orders::IncompleteBuilding                 ||
+            ord == Orders::Enum::IncompleteWarping            ||
+            ord == Orders::Enum::IncompleteMorphing           ||
+            ord == Orders::BuildNydusExit                     ||
+            ord == Orders::BuildAddon                         ||
+            this->getSecondaryOrder() == Orders::BuildAddon   ||
+            (!this->isCompleted() && this->getBuildUnit() != nullptr);
+  }
   // ------------------------------------------ STATUS ---------------------------------------------
   bool Unit::isDefenseMatrixed() const
   {
@@ -244,10 +275,41 @@ namespace BWAPI
   {
     return this->getOrder() == Orders::Follow;
   }
+  bool Unit::isFlying() const
+  {
+    return this->getType().isFlyer() || this->isLifted();
+  }
 
   bool Unit::isHoldingPosition() const
   {
     return this->getOrder() == Orders::HoldPosition;
+  }
+
+  //--------------------------------------------- IS IN WEAPON RANGE -----------------------------------------
+  bool Unit::isInWeaponRange(Unit *target) const
+  {
+    // Preliminary checks
+    if ( !this->exists() || !target || !target->exists() || this == target )
+      return false;
+
+    // Store the types as locals
+    UnitType thisType = getType();
+    UnitType targType = target->getType();
+
+    // Obtain the weapon type
+    WeaponType wpn = target->isFlying() ? thisType.airWeapon() : thisType.groundWeapon();
+
+    // Return if there is no weapon type
+    if ( wpn == WeaponTypes::None || wpn == WeaponTypes::Unknown )
+      return false;
+
+    // Retrieve the min and max weapon ranges
+    int minRange = wpn.minRange();
+    int maxRange = getPlayer()->weaponMaxRange(wpn);
+
+    // Check if the distance to the unit is within the weapon range
+    int distance = this->getDistance(target);
+    return (minRange ? minRange < distance : true) && distance <= maxRange;
   }
 
   bool Unit::isIrradiated() const
@@ -270,6 +332,15 @@ namespace BWAPI
     return this->getMaelstromTimer() != 0;
   }
 
+  bool Unit::isMorphing() const
+  {
+    Order ord = this->getOrder();
+    return ord == Orders::ZergBirth         ||
+           ord == Orders::ZergBuildingMorph ||
+           ord == Orders::ZergUnitMorph     ||
+           ord == Orders::Enum::IncompleteMorphing || // <-- should be this, but order is converted using BWtoBWAPI, replaced with below
+           (this->getType().isBuilding() && this->getType().getRace() == Races::Zerg && ord == Orders::IncompleteBuilding);
+  }
   bool Unit::isPatrolling() const
   {
     return this->getOrder() == Orders::Patrol;

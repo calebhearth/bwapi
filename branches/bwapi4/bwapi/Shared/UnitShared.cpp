@@ -105,15 +105,6 @@ namespace BWAPI
   {
     return Broodwar->getPlayer(self->lastAttackerPlayer);
   }
-  //--------------------------------------------- GET UPGRADE LEVEL ------------------------------------------
-  int UnitImpl::getUpgradeLevel(UpgradeType upgrade) const
-  {
-    if ( !getPlayer() ||
-        getPlayer()->getUpgradeLevel(upgrade) == 0 ||
-        upgrade.whatUses().find(getType()) == upgrade.whatUses().end() )
-      return 0;
-    return getPlayer()->getUpgradeLevel(upgrade);
-  }
   //--------------------------------------------- GET INITIAL TYPE -------------------------------------------
   UnitType UnitImpl::getInitialType() const
   {
@@ -402,17 +393,6 @@ namespace BWAPI
   {
     return self->isAttackFrame;
   }
-  //--------------------------------------------- IS BEING CONSTRUCTED ---------------------------------------
-  bool UnitImpl::isBeingConstructed() const
-  {
-    if (self->isMorphing)
-      return true;
-    if (self->isCompleted)
-      return false;
-    if (getType().getRace() != Races::Terran)
-      return true;
-    return self->buildUnit != -1;
-  }
   //--------------------------------------------- IS BEING GATHERED ------------------------------------------
   bool UnitImpl::isBeingGathered() const
   {
@@ -459,11 +439,6 @@ namespace BWAPI
   bool UnitImpl::isCompleted() const
   {
     return self->isCompleted;
-  }
-  //--------------------------------------------- IS CONSTRUCTING --------------------------------------------
-  bool UnitImpl::isConstructing() const
-  {
-    return self->isConstructing;
   }
   //--------------------------------------------- IS DETECTED ------------------------------------------------
   bool UnitImpl::isDetected() const
@@ -569,43 +544,10 @@ namespace BWAPI
   {
     return self->isInvincible;
   }
-  //--------------------------------------------- IS IN WEAPON RANGE -----------------------------------------
-  bool UnitImpl::isInWeaponRange(Unit *target) const
-  {
-    // Preliminary checks
-    if ( !exists() || !target || !target->exists() || this == target )
-      return false;
-
-    // Store the types as locals
-    UnitType thisType = getType();
-    UnitType targType = target->getType();
-
-    // Obtain the weapon type
-    WeaponType wpn = thisType.groundWeapon();
-    if ( targType.isFlyer() || target->isLifted() )
-      wpn = thisType.airWeapon();
-
-    // Return if there is no weapon type
-    if ( wpn == WeaponTypes::None || wpn == WeaponTypes::Unknown )
-      return false;
-
-    // Retrieve the min and max weapon ranges
-    int minRange = wpn.minRange();
-    int maxRange = getPlayer()->weaponMaxRange(wpn);
-
-    // Check if the distance to the unit is within the weapon range
-    int distance = this->getDistance(target);
-    return (minRange ? minRange < distance : true) && distance <= maxRange;
-  }
   //--------------------------------------------- IS LIFTED --------------------------------------------------
   bool UnitImpl::isLifted() const
   {
     return self->isLifted;
-  }
-  //--------------------------------------------- IS MORPHING ------------------------------------------------
-  bool UnitImpl::isMorphing() const
-  {
-    return self->isMorphing;
   }
   //--------------------------------------------- IS MOVING --------------------------------------------------
   bool UnitImpl::isMoving() const

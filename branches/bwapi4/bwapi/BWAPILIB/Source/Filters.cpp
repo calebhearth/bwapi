@@ -23,6 +23,7 @@ namespace BWAPI
   U_UFILTER(CanAttack, u->getType().canAttack() );
   U_UFILTER(CanMove, u->getType().canMove() );
   U_UFILTER(IsFlyer, u->getType().isFlyer() );
+  U_UFILTER(IsFlying, u->isFlying() );
   U_UFILTER(RegeneratesHP, u->getType().regeneratesHP() );
   U_UFILTER(IsSpellcaster, u->getType().isSpellcaster() );
   U_UFILTER(HasPermanentCloak, u->getType().hasPermanentCloak() );

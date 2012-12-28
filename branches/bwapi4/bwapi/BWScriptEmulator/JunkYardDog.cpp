@@ -41,7 +41,7 @@ void UnitWrap::RunJunkYardDog()
       {
         SetOrderTimer(15);
         if ( ( pUnit->getTargetPosition() != pUnit->getPosition() /* || !unmovable */ ) /*&&
-               (pUnit->getSpellCooldown() != 0 || (pUnit->getType().isFlyer() || pUnit->isLifted()) )*/  )
+               (pUnit->getSpellCooldown() != 0 || pUnit->isFlying() )*/  )
         {
           pAutoTarget = FindNewAttackTarget(); // Look for new closest target!
           if ( pAutoTarget != nullptr )

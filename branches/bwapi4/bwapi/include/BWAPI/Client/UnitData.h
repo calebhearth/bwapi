@@ -82,14 +82,12 @@ namespace BWAPI
     int  carryResourceType;
     bool isCloaked;
     bool isCompleted;
-    bool isConstructing;
     bool isDetected;
     bool isGathering;
     bool isHallucination;
     bool isInterruptible;
     bool isInvincible;
     bool isLifted;
-    bool isMorphing;
     bool isMoving;
     bool isParasited;
     bool isSelected;

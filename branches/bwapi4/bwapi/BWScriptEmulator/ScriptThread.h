@@ -21,7 +21,6 @@ void AICreateThread(const char *pszScriptID, Position location);
 #define AI_THREAD_BROODWAR        0x01
 #define AI_THREAD_KILLABLE        0x02
 #define AI_THREAD_WANT_KILLED     0x04
-#define AI_THREAD_TARG_EXPANSION  0x08
 
 class aithread
 {
@@ -55,7 +54,7 @@ private:
   //POINT             locationCenter;   // the center of the location of which the script is executed in
   BWAPI::Position   locationCenter;
   void              *pTown;           // town information
-  DWORD             dwFlags;          // the flags for the thread behaviour
+  DWORD             dwFlags;          // the flags for the thread behaviour (contains baseID*8, flags are &7)
   BYTE              bTotBuildCount[228]; // not included
 
   int               threadId;

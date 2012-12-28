@@ -2,6 +2,58 @@
 #include <BWAPI.h>
 using namespace BWAPI;
 
+
+namespace ControlTypes
+{
+  enum Enum
+  {
+    None,
+    Guard,
+    Worker,
+    Task,
+    Captain
+  };
+}
+
+namespace CaptainTypes
+{
+  enum Enum
+  {
+    None
+  };
+}
+
+namespace UnitInfo
+{
+  enum Enum
+  {
+    Nothing,
+
+    AI_Controller_Type,
+    AI_Controller_Timer,
+
+    Worker_Harvest_Task,
+
+    Guard_Return_X,
+    Guard_Return_Y,
+
+    AI_Captain_Type,
+
+    Town,
+
+    Order,
+    OrderState,
+    OrderTarget_X,
+    OrderTarget_Y,
+    OrderTimer,
+    QueuedOrder,
+    AttackTarget,
+
+    TargetFlags
+  };
+
+}
+
 class UnitWrap
 {
 public:
@@ -19,8 +71,8 @@ public:
   BWAPI::Position GetOrderTargetPosition() const;
   Orders::Enum::Enum GetQueuedOrder() const;
   Unit *GetAttackTarget() const;
-  int GetControlType() const;
-  int GetCaptainType() const;
+  ControlTypes::Enum GetControlType() const;
+  CaptainTypes::Enum GetCaptainType() const;
   BWAPI::Position GetGuardReturnPosition() const;
   int GetTargetFlags() const;
 
@@ -76,52 +128,3 @@ public:
 private:
   BWAPI::Unit *pUnit;
 };
-
-namespace ControlTypes
-{
-  enum Enum
-  {
-    None,
-    Guard,
-    Worker,
-    Task,
-    Captain
-  };
-}
-
-namespace CaptainTypes
-{
-  enum Enum
-  {
-    None
-  };
-}
-
-namespace UnitInfo
-{
-  enum Enum
-  {
-    Nothing,
-
-    AI_Controller_Type,
-    AI_Controller_Timer,
-
-    Guard_Return_X,
-    Guard_Return_Y,
-
-    AI_Captain_Type,
-
-    Town,
-
-    Order,
-    OrderState,
-    OrderTarget_X,
-    OrderTarget_Y,
-    OrderTimer,
-    QueuedOrder,
-    AttackTarget,
-
-    TargetFlags
-  };
-
-}

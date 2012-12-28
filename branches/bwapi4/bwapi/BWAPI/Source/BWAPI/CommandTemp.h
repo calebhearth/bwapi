@@ -117,13 +117,11 @@ namespace BWAPI
     else if (command.type == UnitCommandTypes::Build)
     {
       unit->self->order = Orders::PlaceBuilding;
-      unit->self->isConstructing = true;
       unit->self->buildType      = command.extra;
     }
     else if (command.type == UnitCommandTypes::Build_Addon)
     {
       unit->self->secondaryOrder = Orders::BuildAddon;
-      unit->self->isConstructing = true;
       unit->self->buildType      = command.extra;
     }
     else if (command.type == UnitCommandTypes::Burrow)
@@ -141,7 +139,6 @@ namespace BWAPI
         player->self->gas      += (int)(unitType.gasPrice()     * 0.75);
       }
       unit->self->remainingBuildTime = 0;
-      unit->self->isConstructing     = false;
       unit->self->order              = Orders::Nothing;
       unit->self->buildType          = UnitTypes::None;
       unit->self->buildUnit          = -1;
@@ -163,7 +160,6 @@ namespace BWAPI
         {
           builder->self->buildUnit      = -1;
           builder->self->buildType      = UnitTypes::None;
-          builder->self->isConstructing = false;
           builder->self->order          = Orders::ResetCollision;
         }
       }
@@ -179,12 +175,10 @@ namespace BWAPI
         player->self->gas      += (int)(unitType.gasPrice()     * 0.75);
       }
       unit->self->remainingBuildTime = 0;
-      unit->self->isConstructing     = false;
       if (unitType.getRace() == Races::Zerg)
       {
         unit->self->type       = unitType.whatBuilds().first;
         unit->self->buildType  = UnitTypes::None;
-        unit->self->isMorphing = false;
 
         UnitType whatBuilds = unitType.whatBuilds().first;
         if (frame < Broodwar->getLatency())
@@ -234,8 +228,6 @@ namespace BWAPI
       }
       unit->self->buildType          = UnitTypes::None;
       unit->self->remainingBuildTime = 0;
-      unit->self->isMorphing         = false;
-      unit->self->isConstructing     = false;
       unit->self->isCompleted        = true;
       unit->self->type               = unitType.whatBuilds().first;
       if (unitType.whatBuilds().first.isBuilding())
@@ -388,7 +380,6 @@ namespace BWAPI
       unit->self->buildUnit      = -1;
       unit->self->buildType      = UnitTypes::None;
       unit->self->order          = Orders::ResetCollision;
-      unit->self->isConstructing = false;
     }
     else if (command.type == UnitCommandTypes::Hold_Position)
     {
@@ -425,8 +416,6 @@ namespace BWAPI
     {
       if (frame > Broodwar->getLatency()+1)
         return;
-      unit->self->isMorphing     = true;
-      unit->self->isConstructing = true;
       unit->self->isCompleted    = false;
       unit->self->buildType      = unitType;
       if (unit->self->remainingBuildTime < 50)
@@ -548,8 +537,6 @@ namespace BWAPI
         unit->self->order            = Orders::ConstructingBuilding;
         unit->self->buildUnit        = getUnitID(target);
         target->self->buildUnit      = getUnitID(unit);
-        unit->self->isConstructing   = true;
-        target->self->isConstructing = true;
       }
       else if ( unit->getType().canAttack() && target->getPlayer() != unit->getPlayer() && !target->getType().isNeutral() )
       {

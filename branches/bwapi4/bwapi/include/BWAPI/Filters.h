@@ -26,6 +26,7 @@ namespace BWAPI
   extern const UnitFilter CanAttack;
   extern const UnitFilter CanMove;
   extern const UnitFilter IsFlyer;
+  extern const UnitFilter IsFlying;
   extern const UnitFilter RegeneratesHP;
   extern const UnitFilter IsSpellcaster;
   extern const UnitFilter HasPermanentCloak;

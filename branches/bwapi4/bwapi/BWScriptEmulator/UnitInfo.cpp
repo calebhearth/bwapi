@@ -81,13 +81,13 @@ Unit *UnitWrap::GetAttackTarget() const
   return pUnit->getClientInfo<Unit*>(UnitInfo::AttackTarget); 
 }
 
-int UnitWrap::GetControlType() const
+ControlTypes::Enum UnitWrap::GetControlType() const
 {
-  return pUnit->getClientInfo<int>(UnitInfo::AI_Controller_Type);
+  return pUnit->getClientInfo<ControlTypes::Enum>(UnitInfo::AI_Controller_Type);
 }
-int UnitWrap::GetCaptainType() const
+CaptainTypes::Enum UnitWrap::GetCaptainType() const
 {
-  return pUnit->getClientInfo<int>(UnitInfo::AI_Captain_Type);
+  return pUnit->getClientInfo<CaptainTypes::Enum>(UnitInfo::AI_Captain_Type);
 }
 
 BWAPI::Position UnitWrap::GetGuardReturnPosition() const

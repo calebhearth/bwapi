@@ -105,7 +105,8 @@ bool UnitWrap::DoUnitBehaviour()
   case UnitTypes::Enum::Terran_Vulture:
     return false;//pUnit->useTech(TechTypes::Spider_Mines, GetSpiderMineLocation(pUnit));
   case UnitTypes::Enum::Terran_Siege_Tank_Tank_Mode:
-    // @TODO
+    if ( this->GetControlType() == ControlTypes::Guard && pUnit->isIdle() ) // && !AI_Guard_AttackTarget_Proc(unit, 0)
+      return pUnit->siege();
     return false;
   case UnitTypes::Enum::Protoss_Shield_Battery:
     if ( pUnit->getEnergy() >= 50 )
@@ -113,6 +114,7 @@ bool UnitWrap::DoUnitBehaviour()
       Unitset myUnits(Broodwar->self()->getUnits());
       for ( auto i = myUnits.begin(); i != myUnits.end(); ++i )
       {
+        
         // @TODO
         // if ( i can recharge, not attacking, shields > 40 )
         //  recharge the unit

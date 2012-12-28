@@ -579,8 +579,8 @@ namespace BWAPI
           (UnitCommandTypes::Right_Click_Unit == ct && !c.target->getPlayer()->isNeutral() && thisUnit->getPlayer()->isEnemy(c.target->getPlayer())))
       {
         WeaponType weapon = thisUnit->getType().groundWeapon();
-        bool targetInAir = (c.target->isLifted() || c.target->getType().isFlyer());
-        if (targetInAir)
+        bool targetInAir = c.target->isFlying();
+        if ( targetInAir )
           weapon = thisUnit->getType().airWeapon();
 
         bool canAttack = (weapon != WeaponTypes::None);

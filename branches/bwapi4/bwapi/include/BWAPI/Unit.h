@@ -18,7 +18,6 @@ namespace BWAPI
   class Unitset;
   class WeaponType;
 
-  
   /// The Unit class is used to get information about individual units as well as issue orders to units. Each
   /// unit in the game has a unique Unit object, and Unit objects are not deleted until the end of the match
   /// (so you don't need to worry about unit pointers becoming invalid).
@@ -42,7 +41,6 @@ namespace BWAPI
   /// If a Unit is not accessible, then only the getInitial__ functions will be available to the AI.
   /// However for units that were owned by the player, getPlayer and getType will continue to work for units
   /// that have been destroyed.
-  
   class Unit : public Interface
   {
   protected:
@@ -264,10 +262,6 @@ namespace BWAPI
     /** Returns the player that last attacked this unit. */
     virtual BWAPI::Player *getLastAttackingPlayer() const = 0;
 
-    /** Returns the player's current upgrade level for the given upgrade, if the unit is affected by this
-     * upgrade.*/
-    virtual int getUpgradeLevel(UpgradeType upgrade) const = 0;
-
     /** Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the
      * game. */
     virtual UnitType getInitialType() const = 0;
@@ -425,14 +419,27 @@ namespace BWAPI
     /** Returns the add-on of this unit, or NULL if the unit doesn't have an add-on. */
     virtual Unit* getAddon() const = 0;
 
-    /** Returns the corresponding connected nydus canal of this unit, or NULL if the unit does not have a
-     * connected nydus canal. */
+    /// Retrieves the @Nydus_Canal that is attached to this one. Every @Nydus_Canal can place a
+    /// "Nydus Exit" which, when connected, can be travelled through by @Zerg units.
+    ///
+    /// @returns Unit interface representing the @Nydus_Canal connected to this one.
+    /// @retval nullptr if the unit is not a @Nydus_Canal, is not owned, or has not placed a Nydus
+    /// Exit.
     virtual Unit* getNydusExit() const = 0;
 
-    /** Returns the power up the unit is holding, or NULL if the unit is not holding a power up */
+    /// Retrieves the power-up that the worker unit is holding. Power-ups are special units such
+    /// as the flag in the Capture the Flag game type, which can be picked up by worker units.
+    ///
+    /// @note If your bot is strictly melee/1v1, then this method is not necessary.
+    ///
+    /// @return The Unit interface that represents the power-up.
+    /// @retval nullptr If the unit is not carrying anything.
     virtual Unit* getPowerUp() const = 0;
 
-    /** Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded in to. */
+    /// Retrieves the @Transport or @Bunker unit that has this unit loaded inside of it.
+    ///
+    /// @returns @Transport containing this unit.
+    /// @retval nullptr if this unit is not in a @Transport.
     virtual Unit* getTransport() const = 0;
 
     /// Retrieves the set of units that are contained within this @Bunker or @Transport .
@@ -465,8 +472,6 @@ namespace BWAPI
      * GUI. */
     virtual Unitset getLarva() const = 0;
 
-    /* --------------------------------------------------------------------------------------------------- */
-
     /// Retrieves the set of all units in a given radius of the current unit.
     ///
     /// Takes into account this unit's dimensions. Can optionally specify a filter that is composed using
@@ -481,25 +486,25 @@ namespace BWAPI
     /// @returns A Unitset containing the set of units that match the given criteria.
     ///
     /// @code
-    /// // Get main building closest to start location.
-    /// Unit *pMain = Broodwar->getClosestUnit( Broodwar->self()->getStartLocation(), IsResourceDepot );
-    /// if ( pMain != nullptr ) // check if pMain is valid
-    /// {
-    ///   // Get sets of resources and workers
-    ///   Unitset myResources = pMain->getUnitsInRadius(1024, IsMineralField);
-    ///   if ( !myResources.empty() ) // check if we have resources nearby
+    ///   // Get main building closest to start location.
+    ///   Unit *pMain = Broodwar->getClosestUnit( Broodwar->self()->getStartLocation(), IsResourceDepot );
+    ///   if ( pMain != nullptr ) // check if pMain is valid
     ///   {
-    ///     Unitset myWorkers = pMain->getUnitsInRadius(512, IsWorker && IsIdle && IsOwned );
-    ///     while ( !myWorkers.empty() ) // make sure we command all nearby idle workers, if any
+    ///     // Get sets of resources and workers
+    ///     Unitset myResources = pMain->getUnitsInRadius(1024, IsMineralField);
+    ///     if ( !myResources.empty() ) // check if we have resources nearby
     ///     {
-    ///       for ( auto u = myResources.begin(); u != myResources.end(); ++u )
+    ///       Unitset myWorkers = pMain->getUnitsInRadius(512, IsWorker && IsIdle && IsOwned );
+    ///       while ( !myWorkers.empty() ) // make sure we command all nearby idle workers, if any
     ///       {
-    ///         myWorkers.back()->harvest(*u);
-    ///         myWorkers.pop_back();
+    ///         for ( auto u = myResources.begin(); u != myResources.end() && !myWorkers.empty(); ++u )
+    ///         {
+    ///           myWorkers.back()->gather(*u);
+    ///           myWorkers.pop_back();
+    ///         }
     ///       }
-    ///     }
-    ///   } // myResources not empty
-    /// } // pMain != nullptr
+    ///     } // myResources not empty
+    ///   } // pMain != nullptr
     /// @endcode
     ///
     /// @see getClosestUnit, getUnitsInWeaponRange, Game::getUnitsInRadius, Game::getUnitsInRectangle
@@ -517,17 +522,21 @@ namespace BWAPI
     /** Returns true if the unit is currently accelerating. */
     virtual bool isAccelerating() const = 0;
 
-    // TODO: add doc
+    // @TODO: add doc
     virtual bool isAttacking() const = 0;
 
+    // @TODO: add doc
     virtual bool isAttackFrame() const = 0;
 
-    /** Returns true if the unit is being constructed. Always true for incomplete Protoss and Zerg
-     * buildings, and true for incomplete Terran buildings that have an SCV constructing them. If the SCV
-     * halts construction, isBeingConstructed will return false.
-     *
-     * \see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isConstructing. */
-    virtual bool isBeingConstructed() const = 0;
+    /// Checks if the current unit is being constructed. This is mostly applicable to Terran
+    /// structures which require an SCV to be constructing a structure.
+    ///
+    /// @retval true if this is either a Protoss structure, Zerg structure, or Terran structure
+    /// being constructed by an attached SCV.
+    /// @retval false if this is either completed, not a structure, or has no SCV constructing it
+    ///
+    /// @see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isConstructing
+    bool isBeingConstructed() const;
 
     /** Returns true if the unit is a mineral patch or refinery that is being gathered. */
     virtual bool isBeingGathered() const = 0;
@@ -563,7 +572,7 @@ namespace BWAPI
     /** Returns true when a unit has been issued an order to build a structure and is moving to the build
      * location. Also returns true for Terran SCVs while they construct a building.
      * \see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isBeingConstructed. */
-    virtual bool isConstructing() const = 0;
+    bool isConstructing() const;
 
     /** Returns true if the unit has a defense matrix from a Terran Science Vessel. */
     bool isDefenseMatrixed() const;
@@ -571,8 +580,19 @@ namespace BWAPI
     /** Returns true if the unit is detected. */
     virtual bool isDetected() const = 0;
 
-    /** Returns true if the unit has been ensnared by a Zerg Queen. */
+    /// Checks if the @Queen ability @Ensnare has been used on this unit.
+    ///
+    /// @retval true if the unit is ensnared
+    /// @retval false if the unit is not ensnared
     bool isEnsnared() const;
+
+    /// This macro function checks if the units is in the air. That is, the unit is either a flyer
+    /// or a flying building.
+    ///
+    /// @retval true if it is in the air
+    /// @retval false if it is on the ground
+    /// @see UnitType::isFlyer, Unit::isLifted
+    bool isFlying() const;
 
     /** Returns true if the unit is following another unit.
      * \see Unit::follow, Unit::getTarget. */
@@ -599,6 +619,25 @@ namespace BWAPI
 
     /** Returns true if the unit is not doing anything.
      * \see Unit::stop. */
+    /// Checks if this unit is not doing anything. This function is particularly useful when
+    /// checking for units that aren't doing any tasks.
+    ///
+    /// @note This implies that the unit is completed, so if this returns true, then
+    /// Unit::isCompleted should also return true.
+    ///
+    /// @code
+    ///   BWAPI::Unitset myUnits = BWAPI::Broodwar->self()->getUnits();
+    ///   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
+    ///   {
+    ///     // Order idle worker to gather from closest mineral field
+    ///     if ( u->getType().isWorker() && u->isIdle() )
+    ///       u->gather( u->getClosestUnit( BWAPI::IsMineralField ) );
+    ///   }
+    /// @endcode
+    ///
+    /// @retval true if this unit is idle
+    /// @retval false if this unit is performing some action such as moving or attacking
+    /// @see Unit::stop
     bool isIdle() const;
 
     /** Returns true if the unit can be interrupted. */
@@ -608,7 +647,7 @@ namespace BWAPI
     virtual bool isInvincible() const = 0;
 
     /** Returns true if the unit can attack a specified target from its current position. */
-    virtual bool isInWeaponRange(Unit *target) const = 0;
+    bool isInWeaponRange(Unit *target) const;
 
     /** Returns true if the unit is being irradiated by a Terran Science Vessel.
      * \see Unit::getIrradiateTimer. */
@@ -631,9 +670,15 @@ namespace BWAPI
      * \see Unit::getMaelstromTimer. */
     bool isMaelstrommed() const;
 
-    /** Returns true if the unit is a zerg unit that is morphing.
-     * \see Unit::morph, Unit::cancelMorph, Unit::getBuildType, Unit::getRemainingBuildTime. */
-    virtual bool isMorphing() const = 0;
+    /// Finds out if the current unit is morphing or not. Zerg units and structures often have
+    /// the ability to morph into different types of units. This function allows you to identify
+    /// when this process is occurring.
+    ///
+    /// @retval true if the unit is currently morphing.
+    /// @retval false if the unit is not morphing
+    ///
+    /// @see Unit::morph, Unit::cancelMorph, Unit::getBuildType, Unit::getRemainingBuildTime
+    bool isMorphing() const;
 
     /** Returns true if the unit is moving.
      * \see Unit::attack, Unit::stop. */

@@ -26,12 +26,12 @@ BWAPI::UnitFilter WeaponCanHit(WeaponType wpn)
   {
     UnitType ut = u->getType();
     return !(( wpn.targetsOwn()         && u->getPlayer() != Broodwar->self() ) ||
-            ( !wpn.targetsAir()         && (!u->isLifted() && !ut.isFlyer()) ) ||
-            ( !wpn.targetsGround()      && (u->isLifted() || ut.isFlyer())   ) ||
-            ( wpn.targetsMechanical()   && ut.isMechanical()                 ) ||
-            ( wpn.targetsOrganic()      && ut.isOrganic()                    ) ||
-            ( wpn.targetsNonBuilding()  && !ut.isBuilding()                  ) ||
-            ( wpn.targetsNonRobotic()   && !ut.isRobotic()                   ) ||
+            ( !wpn.targetsAir()         && !u->isFlying()       ) ||
+            ( !wpn.targetsGround()      && u->isFlying()        ) ||
+            ( wpn.targetsMechanical()   && ut.isMechanical()    ) ||
+            ( wpn.targetsOrganic()      && ut.isOrganic()       ) ||
+            ( wpn.targetsNonBuilding()  && !ut.isBuilding()     ) ||
+            ( wpn.targetsNonRobotic()   && !ut.isRobotic()      ) ||
             ( wpn.targetsOrgOrMech()    && (ut.isOrganic() || ut.isMechanical()) ));
   };
 };

@@ -10,9 +10,6 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScriptEnum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,6 +49,10 @@
     <ClCompile Include="Return.cpp">
       <Filter>UnitControl\Orders</Filter>
     </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -74,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="OrderEmulate.h">
       <Filter>UnitControl\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

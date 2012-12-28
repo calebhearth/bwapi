@@ -105,7 +105,10 @@ namespace BW
       // Used for workers
       struct
       {
-        /* 0x09 */ BYTE   unk_09;
+        /* 0x09 */ BYTE   bWorkerTask;  //  1 = harvest minerals
+                                        //  2 = harvest gas#2
+                                        //  3 = harvest gas #3
+                                        //  default = harvest gas #1
         /* 0x0A */ BYTE   unk_0A;
         /* 0x0B */ BYTE   bWaitTimer;  // wait timer before using this unit
         /* 0x0C */ DWORD  dwLastUpdateTime;

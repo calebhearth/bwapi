@@ -282,34 +282,11 @@ namespace BWAPI
       else
         self->isTraining = !hasEmptyBuildQueue;
       //------------------------------------------------------------------------------------------------------
-      //isMorphing
-      self->isMorphing = self->order == Orders::ZergBirth ||
-                         self->order == Orders::ZergBuildingMorph ||
-                         self->order == Orders::ZergUnitMorph ||
-                         self->order == Orders::Enum::IncompleteMorphing;
-
-      if (self->isCompleted && self->isMorphing)
+      if (self->isCompleted && this->isMorphing() )
       {
         self->isCompleted = false;
         _isCompleted      = false;
       }
-      //------------------------------------------------------------------------------------------------------
-      //isConstructing
-      self->isConstructing =  self->isMorphing                                    ||
-                              self->order == Orders::ConstructingBuilding         ||
-                              self->order == Orders::PlaceBuilding                ||
-                              self->order == Orders::Enum::DroneBuild             ||
-                              self->order == Orders::Enum::DroneStartBuild        ||
-                              self->order == Orders::Enum::DroneLand              ||
-                              self->order == Orders::Enum::PlaceProtossBuilding   ||
-                              self->order == Orders::Enum::CreateProtossBuilding  ||
-                              self->order == Orders::Enum::IncompleteBuilding     ||
-                              self->order == Orders::Enum::IncompleteWarping      ||
-                              self->order == Orders::Enum::IncompleteMorphing     ||
-                              self->order == Orders::BuildNydusExit               ||
-                              self->order == Orders::BuildAddon                   ||
-                              self->secondaryOrder == Orders::BuildAddon          ||
-                              (!self->isCompleted && self->buildUnit != -1);
       //------------------------------------------------------------------------------------------------------
       self->target               = BroodwarImpl.server.getUnitID((Unit*)UnitImpl::BWUnitToBWAPIUnit(o->moveTarget.pUnit)); //getTarget
       self->targetPositionX      = o->moveTarget.pt.x;  //getTargetPosition
@@ -397,8 +374,6 @@ namespace BWAPI
       self->secondaryOrder      = Orders::Unknown;  //getSecondaryOrder
       self->buildUnit           = -1;     //getBuildUnit
       self->isTraining          = false;  //isTraining
-      self->isMorphing          = false;  //isMorphing
-      self->isConstructing      = false;  //isConstructing
       self->target              = -1;     //getTarget
       self->targetPositionX     = Positions::Unknown.x; //getTargetPosition
       self->targetPositionY     = Positions::Unknown.y; //getTargetPosition
@@ -552,7 +527,7 @@ namespace BWAPI
 
       //------------------------------------------------------------------------------------------------------
       //getRemainingBuildTime
-      if ( !self->isCompleted && (!self->isMorphing || self->buildType != UnitTypes::None) )
+      if ( !self->isCompleted && (!this->isMorphing() || self->buildType != UnitTypes::None) )
         self->remainingBuildTime = o->remainingBuildTime;
       //------------------------------------------------------------------------------------------------------
       //getRallyPosition

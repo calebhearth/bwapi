@@ -43,7 +43,6 @@ namespace BWAPI
       virtual int           getLastCommandFrame() const;
       virtual UnitCommand   getLastCommand() const;
       virtual BWAPI::Player *getLastAttackingPlayer() const;
-      virtual int           getUpgradeLevel(UpgradeType upgrade) const;
 
       virtual UnitType      getInitialType() const;
       virtual Position      getInitialPosition() const;
@@ -105,7 +104,6 @@ namespace BWAPI
       virtual bool isAccelerating() const;
       virtual bool isAttackFrame() const;
       virtual bool isAttacking() const;
-      virtual bool isBeingConstructed() const;
       virtual bool isBeingGathered() const;
       virtual bool isBeingHealed() const;
       virtual bool isBlind() const;
@@ -115,16 +113,13 @@ namespace BWAPI
       virtual bool isCarryingMinerals() const;
       virtual bool isCloaked() const;
       virtual bool isCompleted() const;
-      virtual bool isConstructing() const;
       virtual bool isDetected() const;
       virtual bool isGatheringGas() const;
       virtual bool isGatheringMinerals() const;
       virtual bool isHallucination() const;
-      virtual bool isInWeaponRange(Unit *target) const;
       virtual bool isInterruptible() const;
       virtual bool isInvincible() const;
       virtual bool isLifted() const;
-      virtual bool isMorphing() const;
       virtual bool isMoving() const;
       virtual bool isParasited() const;
       virtual bool isSelected() const;
