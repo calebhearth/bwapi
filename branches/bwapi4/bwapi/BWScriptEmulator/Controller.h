@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <BWAPI.h>
 
+#include "Location.h"
+
 #define CONTROLLER_SECURE_FINISHED    0x0001
 #define CONTROLLER_TOWN_STARTED       0x0002
 #define CONTROLLER_DEFAULT_BUILD_OFF  0x0004
@@ -56,7 +58,7 @@ public:
   DWORD defenseuse[4][10];
   BYTE  bDefineMax[228];
 
-  RECT  genCmdTarget; // @TODO: Rectangle class
+  Location genCmdTarget;
 };
 
 extern AIController MainController;

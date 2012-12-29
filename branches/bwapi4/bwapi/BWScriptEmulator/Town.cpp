@@ -7,3 +7,9 @@ Town::Town()
   , pTownCenter(nullptr)
 {}
 
+Town::Town( BWAPI::Position townLocation )
+  : desiredWorkerCount(0)
+  , currentWorkerCount(0)
+  , location(townLocation)
+  , pTownCenter(nullptr)
+{}

@@ -21,8 +21,6 @@ int Usage()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-  BWAPI::BWAPI_init();
-
   char *pOpts = strchr(lpCmdLine, '-');
   size_t cmdSize = strlen(lpCmdLine);
   if ( !pOpts || cmdSize < 4 )

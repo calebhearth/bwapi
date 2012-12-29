@@ -84,9 +84,12 @@
     <ClCompile Include="ComputerAI.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Dll.cpp" />
+    <ClCompile Include="Goto.cpp" />
     <ClCompile Include="Guard.cpp" />
     <ClCompile Include="JunkYardDog.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="Military.cpp" />
+    <ClCompile Include="Opcode.cpp" />
     <ClCompile Include="OrderEmulate.cpp" />
     <ClCompile Include="Return.cpp" />
     <ClCompile Include="Task.cpp" />
@@ -101,6 +104,9 @@
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="Opcode.h" />
+    <ClInclude Include="Goto.h" />
     <ClInclude Include="OrderEmulate.h" />
     <ClInclude Include="Town.h" />
     <ClInclude Include="UnitInfo.h" />

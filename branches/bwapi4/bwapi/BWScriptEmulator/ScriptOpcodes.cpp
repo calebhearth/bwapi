@@ -17,19 +17,14 @@ void aithread::execute()
   this->dwBytesRead = 0;
   if ( !pbAIScriptBinary )
   {
-    Broodwar->printf("%cNo binary loaded!", 6);
-    return this->killThread();
-  }
-  if ( this->locationCenter == BWAPI::Positions::None )
-  {
-    Broodwar->printf("%cInvalid location!", 6);
+    Broodwar << Text::Red << "No binary loaded!" << std::endl;
     return this->killThread();
   }
   for (;;)
   {
     if ( this->dwScriptOffset == 0 )
     {
-      Broodwar->printf("%cScript offset is 0 !", 6);
+      Broodwar << Text::Red << "Script offset is 0!" << std::endl;
       return this->killThread();
     }
 
@@ -118,7 +113,7 @@ void aithread::execute()
 /*
         if ( // AI_BuildSomething >= bCount )
         {
-          retryBlock = false;
+          this->noretry();
           continue;
         }
         */
@@ -148,7 +143,7 @@ void aithread::execute()
       this->saveDebug(Text::Red, bOpcode);
       // if ( AI_AttackManager(thisLocation, 1, 0) )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       // this->retry();
@@ -157,7 +152,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       if ( MainController.wFlags & CONTROLLER_SECURE_FINISHED )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       this->retry();
@@ -174,7 +169,7 @@ void aithread::execute()
       this->saveDebug(Text::Red, bOpcode);
       // if ( AIWaitBunkersFinished() )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       //this->retry();
@@ -226,10 +221,9 @@ void aithread::execute()
         this->saveDebug(Text::Green, bOpcode);
         // @TODO: BWAPI: Unitset::getPlayers for retrieving set of players owning the units, not important
         /* can become
-        unitsInRect( bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
-                                             GetPlayer != self) ).getPlayers().setAlliance(bOpcode == AISCRIPT::PLAYER_ALLY);
+        unitsInRect( bw->getUnitsInRectangle(location.topLeft, location.bottomRight, GetPlayer != self) ).getPlayers().setAlliance(bOpcode == AISCRIPT::PLAYER_ALLY);
                                              */
-        Unitset unitsInRect( bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, GetPlayer != self) );
+        Unitset unitsInRect( bw->getUnitsInRectangle(location.topLeft, location.bottomRight, GetPlayer != self) );
         for ( Unitset::iterator u = unitsInRect.begin(); u != unitsInRect.end(); ++u )
           bw->setAlliance(u->getPlayer(), bOpcode == AISCRIPT::PLAYER_ALLY);
         continue;
@@ -257,7 +251,7 @@ void aithread::execute()
       
         myUnits.erase_if( !((GetType == UnitTypes::Protoss_Dark_Templar || GetType == UnitTypes::Hero_Dark_Templar)
                             && Exists && IsCompleted) );
-        myUnits.move(this->locationCenter);
+        myUnits.move(this->location.center());
         // Note: Needs special reassignment (CAIControl, AICaptain)
         continue;
       }
@@ -280,7 +274,7 @@ void aithread::execute()
         if ( !self->completedUnitCount(UnitTypes::Terran_Bunker) )
           continue;
 
-        Unitset unitsForBunker( bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
+        Unitset unitsForBunker( bw->getUnitsInRectangle(location.topLeft, location.bottomRight, 
                                                                 GetPlayer == self && IsCompleted && GetRace == Races::Terran && IsOrganic ) );
       
         // Iterate the units that are to enter the bunkers
@@ -298,7 +292,7 @@ void aithread::execute()
       continue;
     case AISCRIPT::VALUE_AREA: // not started
       this->saveDebug(Text::Red, bOpcode);
-      // ValueArea(this->locationCenter);
+      // ValueArea(this->location.center());
       continue;
     case AISCRIPT::TRANSPORTS_OFF: // COMPLETE
       this->saveDebug(Text::Green, bOpcode);
@@ -318,7 +312,7 @@ void aithread::execute()
       continue;
     case AISCRIPT::CLEAR_COMBATDATA: // not started
       this->saveDebug(Text::Red, bOpcode);
-      // ClearCombatData(this->locationBounds);
+      // ClearCombatData(this->location);
       continue;
     case AISCRIPT::RANDOM_JUMP: // COMPLETED
       {
@@ -355,7 +349,7 @@ void aithread::execute()
       this->saveDebug(Text::Red, bOpcode);
       // if ( AIWaitTurretsFinished() )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       //this->retry();
@@ -423,7 +417,7 @@ void aithread::execute()
         enemyUnits.erase_if( !(Exists && IsBuilding && !IsLifted) );
         for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
         {
-          if ( u->hasPath(this->locationCenter) )
+          if ( u->hasPath(this->location.center()) )
           {
             this->dwScriptOffset = wJmpOffset;
             break;
@@ -460,7 +454,7 @@ void aithread::execute()
       {
         WORD wBlock = this->read<WORD>();
         this->saveDebug(Text::Red, bOpcode, "p_%X", wBlock);
-        //if ( !EvalHarass(this->locationCenter) )
+        //if ( !EvalHarass(this->location.center()) )
         //  this->dwScriptOffset = wBlock;
         continue;
       }
@@ -491,7 +485,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       if ( MainController.wFlags & CONTROLLER_UPGRADES_FINISHED )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       this->retry();
@@ -500,7 +494,7 @@ void aithread::execute()
       {
         WORD wMultirunBlock = this->read<WORD>();
         this->saveDebug(Text::Green, bOpcode, "p_%X", wMultirunBlock);
-        AICreateThread(wMultirunBlock, this->locationCenter, this->pTown);
+        AICreateThread(wMultirunBlock, this->location.center(), this->pTown);
         continue;
       }
     case AISCRIPT::RUSH:  // completed ?
@@ -512,27 +506,8 @@ void aithread::execute()
         bool isRushed = false;
         
         // Get closest enemy owner
-        Unit *pClosest = Broodwar->getClosestUnit(this->locationCenter, IsEnemy && (!IsBuilding || IsLifted) );
+        Unit *pClosest = Broodwar->getClosestUnit(this->location.center(), IsEnemy && (!IsBuilding || IsLifted) );
         Player *closestEnemy = pClosest ? pClosest->getPlayer() : nullptr;
-
-        /*
-        int bestDistance = 99999999;
-        Player *closestEnemy = NULL;
-        Unitset enemyUnits( Broodwar->enemies().getUnits() );
-        enemyUnits.erase_if( !(!IsBuilding || IsLifted) );
-        for ( auto u = enemyUnits.begin(); u != enemyUnits.end(); ++u )
-        {
-          int thisDistance = u->getPosition().getApproxDistance(this->locationCenter);
-          if ( thisDistance <= 320 && closestEnemy == u->getPlayer() )
-            break;
-
-          if ( thisDistance <= bestDistance )
-          {
-            bestDistance = thisDistance;
-            closestEnemy = u->getPlayer();
-          }
-        } // iterate units
-        */
 
         if ( !closestEnemy )
           continue;
@@ -663,7 +638,7 @@ void aithread::execute()
             return;
           }
         }
-        retryBlock = false;
+        this->noretry();
         continue;
       }
     case AISCRIPT::TARGET_EXPANSION: // COMPLETE
@@ -681,7 +656,7 @@ void aithread::execute()
           this->retry();
           return;
         }
-        retryBlock = false;
+        this->noretry();
         continue;
       }
     case AISCRIPT::SET_ATTACKS: // COMPLETE
@@ -690,13 +665,11 @@ void aithread::execute()
       continue;
     case AISCRIPT::SET_GENCMD: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
-      MainController.genCmdTarget = this->locationBounds;
+      MainController.genCmdTarget = this->location;
       continue;
     case AISCRIPT::MAKE_PATROL: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
-      bw->getUnitsInRectangle(this->locationBounds.left, this->locationBounds.top, this->locationBounds.right, this->locationBounds.bottom, 
-                              GetPlayer == self && IsCompleted).patrol( Position((MainController.genCmdTarget.left + MainController.genCmdTarget.right)/2,
-                                                                                 (MainController.genCmdTarget.top + MainController.genCmdTarget.bottom)/2) );
+      bw->getUnitsInRectangle(location.topLeft, location.bottomRight, GetPlayer == self && IsCompleted).patrol( MainController.genCmdTarget.center() );
       continue;
     case AISCRIPT::GIVE_MONEY:  // COMPLETE (workaround w/ cheats)
       this->saveDebug(Text::Green, bOpcode);
@@ -739,8 +712,7 @@ void aithread::execute()
     case AISCRIPT::ENTER_TRANSPORT: // completed for the most part
       this->saveDebug(Text::Yellow, bOpcode);
       {
-        Unitset unitsForTransport( bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, 
-                                                                GetPlayer == self && IsCompleted && SpaceRequired < 8 ) );
+        Unitset unitsForTransport( bw->getUnitsInRectangle(location.topLeft, location.bottomRight, GetPlayer == self && IsCompleted && SpaceRequired < 8 ) );
       
         // Load units into closest transports
         for ( auto u = unitsForTransport.begin(); u != unitsForTransport.end(); ++u )
@@ -757,8 +729,7 @@ void aithread::execute()
       continue;
     case AISCRIPT::EXIT_TRANSPORT: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
-      bw->getUnitsInRectangle(this->locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom,
-                              IsCompleted && GetPlayer == self && !IsHallucination && 
+      bw->getUnitsInRectangle(location.topLeft, location.bottomRight, IsCompleted && GetPlayer == self && !IsHallucination && 
                               (GetType != UnitTypes::Zerg_Overlord || [](Unit*){return self->getUpgradeLevel(UpgradeTypes::Ventral_Sacs);} ) && IsTransport ).unloadAll();
       continue;
     case AISCRIPT::SHAREDVISION_ON: // WORKAROUND (performs reverse vision)
@@ -845,15 +816,13 @@ void aithread::execute()
         continue;
       }
     case AISCRIPT::KILL_THREAD:  // COMPLETE
+      for ( std::list<aithread>::iterator i = aiThreadList.begin(); i != aiThreadList.end(); ++i )
       {
-        for ( std::list<aithread>::iterator i = aiThreadList.begin(); i != aiThreadList.end(); ++i )
-        {
-          if ( i->getFlags() & AI_THREAD_KILLABLE )
-            i->killThread();
-        }
-        this->saveDebug(Text::Green, bOpcode);
-        continue;
+        if ( i->getFlags() & AI_THREAD_KILLABLE )
+          i->killThread();
       }
+      this->saveDebug(Text::Green, bOpcode);
+      continue;
     case AISCRIPT::KILLABLE:  // COMPLETE
       this->saveDebug(Text::Green, bOpcode);
       this->setFlags(AI_THREAD_KILLABLE);
@@ -862,7 +831,7 @@ void aithread::execute()
       this->saveDebug(Text::Red, bOpcode);
       // if ( AIIsAttacking )
       {
-        retryBlock = false;
+        this->noretry();
         continue;
       }
       // this->retry();
@@ -873,9 +842,12 @@ void aithread::execute()
       MainController.dwAttackTime = bw->elapsedTime() - 175;
       continue;
     case AISCRIPT::JUNKYARD_DOG:  // COMPLETED
-      for each ( Unit *u in bw->getUnitsInRectangle(locationBounds.left, locationBounds.top, locationBounds.right, locationBounds.bottom, GetPlayer == self) )
-        UnitWrap(u).SetVirtualUnitOrder(Orders::Enum::JunkYardDog);
-      this->saveDebug(Text::Red, bOpcode);
+      {
+        Unitset junkyardUnits( bw->getUnitsInRectangle(location.topLeft, location.bottomRight, GetPlayer == self) );
+        for each ( Unit *u in junkyardUnits )
+          UnitWrap(u).SetVirtualUnitOrder(Orders::Enum::JunkYardDog);
+        this->saveDebug(Text::Red, bOpcode);
+      }
       continue;
     case AISCRIPT::FAKE_NUKE:   // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
@@ -884,23 +856,23 @@ void aithread::execute()
     case AISCRIPT::DISRUPTION_WEB:  // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       {
-        Unit *pCorsair = bw->getClosestUnit(this->locationCenter, GetType == UnitTypes::Protoss_Corsair &&
+        Unit *pCorsair = bw->getClosestUnit(this->location.center(), GetType == UnitTypes::Protoss_Corsair &&
                                                                   IsIdle &&
                                                                   GetPlayer == self &&
                                                                   Energy >= TechTypes::Disruption_Web.energyCost() );
         if ( pCorsair )
-          pCorsair->useTech(TechTypes::Disruption_Web, this->locationCenter);
+          pCorsair->useTech(TechTypes::Disruption_Web, this->location.center());
       }
       continue;
     case AISCRIPT::RECALL_LOCATION: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       {
-        Unit *pArbiter = bw->getClosestUnit(this->locationCenter, GetType == UnitTypes::Protoss_Arbiter &&
+        Unit *pArbiter = bw->getClosestUnit(this->location.center(), GetType == UnitTypes::Protoss_Arbiter &&
                                                                   IsIdle &&
                                                                   GetPlayer == self &&
                                                                   Energy >= TechTypes::Recall.energyCost() );
         if ( pArbiter )
-          pArbiter->useTech(TechTypes::Recall, this->locationCenter);
+          pArbiter->useTech(TechTypes::Recall, this->location.center());
       }
       continue;
     case AISCRIPT::SET_RANDOMSEED:  // COMPLETED

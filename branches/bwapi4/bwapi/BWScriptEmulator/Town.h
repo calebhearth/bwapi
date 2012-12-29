@@ -1,6 +1,7 @@
 #pragma once
 #include <BWAPI.h>
 #include <map>
+#include <vector>
 
 namespace TaskType
 {
@@ -17,6 +18,9 @@ class Town
 {
 public:
   Town();
+  Town( BWAPI::Position townLocation );
+
+  static std::vector<Town*> allTowns;
 
 private:
   BWAPI::Unitset townWorkers;

@@ -8,6 +8,8 @@
 
 using namespace BWAPI;
 
+#define LOCATION_SIZE 1024
+
 #define MACRO_BUILD   0
 #define MACRO_UPGRADE 1
 #define MACRO_TECH    2
@@ -114,17 +116,12 @@ aithread::aithread()
 :dwScriptOffset(0)
 ,dwSleepTime(0)
 ,dwPlayerID( (Broodwar->self()->getID()) )
-,locationCenter(BWAPI::Positions::None)
-,pTown(NULL)
+,pTown(nullptr)
 ,dwFlags(0)
 ,threadId(threadCount)
 ,dwBytesRead(0)
 ,retryBlock(false)
 {
-  this->locationBounds.left   = 0;
-  this->locationBounds.right  = 0;
-  this->locationBounds.top    = 0;
-  this->locationBounds.bottom = 0;
   memset(this->bTotBuildCount, 0, sizeof(this->bTotBuildCount));
   this->debugQueue.clear();
 }
@@ -133,17 +130,14 @@ aithread::aithread(WORD wStartBlock, BWAPI::Position location, void *town)
 :dwScriptOffset(wStartBlock)
 ,dwSleepTime(0)
 ,dwPlayerID(Broodwar->self()->getID())
-,locationCenter(location)
 ,pTown(town)
 ,dwFlags(0)
 ,threadId(threadCount)
 ,dwBytesRead(0)
 ,retryBlock(false)
 {
-  this->locationBounds.left   = location.x - 1024;
-  this->locationBounds.right  = location.x + 1024;
-  this->locationBounds.top    = location.y - 1024;
-  this->locationBounds.bottom = location.y + 1024;
+  BWAPI::Position size(LOCATION_SIZE,LOCATION_SIZE);
+  this->location = Location(location - size, location + size);
   memset(this->bTotBuildCount, 0, sizeof(this->bTotBuildCount));
   this->debugQueue.clear();
 }
@@ -298,5 +292,10 @@ void aithread::retry()
   this->dwScriptOffset -= this->dwBytesRead;
   this->dwSleepTime     = 30;
   this->dwBytesRead     = 0;
-  retryBlock            = true;
+  this->retryBlock      = true;
+}
+void aithread::noretry()
+{
+  this->dwBytesRead = 0;
+  this->retryBlock  = false;
 }

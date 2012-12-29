@@ -455,7 +455,7 @@ namespace BWAPI
         self->scarabCount = o->carrier.inHangerCount;
         break;
       case UnitTypes::Enum::Terran_Vulture:
-      case UnitTypes::Enum::Hero_Jim_Raynor_Marine:
+      case UnitTypes::Enum::Hero_Jim_Raynor_Vulture:
         self->spiderMineCount = o->vulture.spiderMineCount;
         break;
       case UnitTypes::Enum::Terran_Nuclear_Silo:

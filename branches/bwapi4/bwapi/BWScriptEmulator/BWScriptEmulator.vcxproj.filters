@@ -53,6 +53,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dll.cpp" />
+    <ClCompile Include="Location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Opcode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Goto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -77,6 +86,15 @@
       <Filter>UnitControl\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Town.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Opcode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Goto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
