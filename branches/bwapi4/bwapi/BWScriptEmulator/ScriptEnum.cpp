@@ -4,7 +4,7 @@ using namespace BWAPI;
 
 typedef struct __unitInfo
 {
-  const char          *pszScriptUnitName;
+  const char          * const pszScriptUnitName;
   Orders::Enum::Enum  computerIdleOrder;
   int                 iComputerInternal;
 } unitInfo;
@@ -243,7 +243,7 @@ unitInfo pszUnitInfo[] =
 
 };
   
-const char *pszOpcodeName[] =
+const char * const pszOpcodeName[] =
 { 
   "goto",
   "notowns_jump",
@@ -363,13 +363,13 @@ const char *pszOpcodeName[] =
 
 namespace AISCRIPT
 {
-  const char *getOpcodeName(int iOpcode)
+  const char * const getOpcodeName(int iOpcode)
   {
-    if ( iOpcode < 0 || iOpcode > LAST ) 
-      return pszOpcodeName[LAST];
+    if ( iOpcode < 0 || iOpcode > Enum::LAST ) 
+      return pszOpcodeName[Enum::LAST];
     return pszOpcodeName[iOpcode];
   }
-  const char *getUnitName(int iUnitType)
+  const char * const getUnitName(int iUnitType)
   {
     int t = iUnitType;
     if ( t < 0 || t > BWAPI::UnitTypes::None )

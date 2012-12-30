@@ -56,11 +56,71 @@
     <ClCompile Include="Location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Opcode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Goto.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Opcode.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Notowns_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Start_Town.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Expand.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Upgrade.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tech.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait_Build.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack_Clear.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack_Add.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack_Prepare.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack_Do.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Capt_Expand.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build_Defense.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait_Defense.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefenseBuild.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefenseUse.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefenseClear.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Send_Suicide.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Ally.cpp">
+      <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,11 +151,71 @@
     <ClInclude Include="Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Opcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Goto.h">
-      <Filter>Header Files</Filter>
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Opcode.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Notowns_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Start_Town.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Expand.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Build.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Upgrade.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Tech.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait_Build.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack_Clear.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack_Add.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack_Prepare.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack_Do.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Capt_Expand.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Build_Defense.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait_Defense.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="DefenseBuild.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="DefenseUse.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="DefenseClear.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Send_Suicide.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Ally.h">
+      <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +236,15 @@
     </Filter>
     <Filter Include="UnitControl\Orders">
       <UniqueIdentifier>{5004f7e5-c3f7-4def-b5b0-1ea037746349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opcodes">
+      <UniqueIdentifier>{bf9c3679-0bff-4244-b134-82cdf63a23a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opcodes\Header FIles">
+      <UniqueIdentifier>{3008bd9f-fecf-494f-bb60-f8e97c18ff96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opcodes\Source Files">
+      <UniqueIdentifier>{f512205a-625a-41ef-ab45-6951b825ce3a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

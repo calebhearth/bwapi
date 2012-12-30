@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Goto : public Opcode
+  class Player_Ally : public Opcode
   {
   public:
     // Ctor
-    Goto() : Opcode(Enum::GOTO) {};
+    Player_Ally(AISCRIPT::Enum::Enum n) : Opcode(n) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

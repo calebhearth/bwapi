@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Goto : public Opcode
+  class Upgrade : public Opcode
   {
   public:
     // Ctor
-    Goto() : Opcode(Enum::GOTO) {};
+    Upgrade() : Opcode(Enum::UPGRADE) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

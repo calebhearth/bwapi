@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Goto : public Opcode
+  class DefenseBuild : public Opcode
   {
   public:
     // Ctor
-    Goto() : Opcode(Enum::GOTO) {};
+    DefenseBuild(AISCRIPT::Enum::Enum n) : Opcode(n) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

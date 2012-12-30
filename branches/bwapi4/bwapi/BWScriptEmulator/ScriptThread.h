@@ -3,6 +3,7 @@
 
 #include <list>
 #include <deque>
+#include <tuple>
 #include "Location.h"
 
 using namespace BWAPI;
@@ -34,14 +35,43 @@ public:
   ~aithread();
   
   // Read data
-  template <class _T>
-  _T read()
+  template <class T>
+  T read()
   {
-    _T rval = (_T&)pbAIScriptBinary[this->dwScriptOffset];
-    this->dwScriptOffset += sizeof(_T);
-    this->dwBytesRead    += sizeof(_T);
+    T rval = (T&)pbAIScriptBinary[this->dwScriptOffset];
+    this->dwScriptOffset += sizeof(T);
+    this->dwBytesRead    += sizeof(T);
     return rval;
-  }
+  };
+
+  
+  // Helper for tuple reading
+  template <class T, size_t S> struct TupleHelper;
+
+  // Base case
+  template <class T>
+  struct TupleHelper<T,0>
+  { 
+    static void readTuple(T &tup, aithread &thread) {};
+  };
+
+  // Recursive
+  template <class T, size_t S>
+  struct TupleHelper
+  {
+    static void readTuple(T &tup, aithread &thread)
+    {
+      TupleHelper<T,S-1>::readTuple(tup,thread);
+      std::get<S-1>(tup) = thread.read<std::tuple_element<S-1,T>::type>();
+    };
+  };
+
+  // Read data as tuple
+  template <class T>
+  void readTuple(T &tup)
+  {
+    TupleHelper<T,std::tuple_size<T>::value>::readTuple(tup, *this);
+  };
 
   // Execute script
   void  execute();
@@ -51,13 +81,27 @@ public:
   void  setFlags(DWORD dwFlags);
   void  clearFlags(DWORD dwFlags);
 
-  // 
+  // Sleep
   DWORD sleep();
+  void setSleep(DWORD dwSleepAmt);
+
+  // Thread
   void  killThread();
+
+  // Debug
   void  showDebug(int x, int y);
   void  saveDebug(const char prefix, int iOpcode, const char *pszFormat = NULL, ...);
-  void  noretry();
-  void  retry();
+
+  // Retry
+  bool  noretry();
+  bool  retry();
+
+  // Execution Offset
+  void setScriptOffset(DWORD dwNewOffset);
+  DWORD getScriptOffset() const;
+
+  // Location
+  Location getLocation();
 
 private:
   DWORD             dwScriptOffset;   // the offset in the AIScript file

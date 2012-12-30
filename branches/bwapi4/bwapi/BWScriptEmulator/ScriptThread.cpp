@@ -220,10 +220,12 @@ void aithread::clearFlags(DWORD dwFlags)
 
 DWORD aithread::sleep()
 {
-  DWORD rval = this->dwSleepTime;
-  if ( rval )
-    this->dwSleepTime = rval - 1;
-  return rval;
+  return this->dwSleepTime ? this->dwSleepTime-- : 0;
+}
+
+void aithread::setSleep(DWORD dwSleepAmt)
+{
+  this->dwSleepTime += dwSleepAmt;
 }
 
 void aithread::killThread()
@@ -287,15 +289,32 @@ void aithread::saveDebug(const char prefix, int iOpcode, const char *pszFormat, 
   }
   this->debugQueue.push_back(tmp);
 }
-void aithread::retry()
+bool aithread::retry()
 {
   this->dwScriptOffset -= this->dwBytesRead;
-  this->dwSleepTime     = 30;
+  this->setSleep(30);
   this->dwBytesRead     = 0;
   this->retryBlock      = true;
+  return false;
 }
-void aithread::noretry()
+bool aithread::noretry()
 {
   this->dwBytesRead = 0;
   this->retryBlock  = false;
+  return true;
 }
+
+void aithread::setScriptOffset(DWORD dwNewOffset)
+{
+  this->dwScriptOffset = dwNewOffset;
+}
+DWORD aithread::getScriptOffset() const
+{
+  return this->dwScriptOffset;
+}
+
+Location aithread::getLocation()
+{
+  return this->location;
+}
+

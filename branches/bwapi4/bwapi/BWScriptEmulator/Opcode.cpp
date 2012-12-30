@@ -3,11 +3,22 @@
 using namespace BWAPI;
 using namespace AISCRIPT;
 
-std::array<Opcode*,AISCRIPT::LAST> Opcode::opcodeList = {};
+std::array<Opcode*,AISCRIPT::Enum::LAST> Opcode::opcodeList = {};
 
-Opcode::Opcode(AISCRIPT::Enum id)
+Opcode::Opcode(AISCRIPT::Enum::Enum id)
+  : opcode(id)
 {
   Opcode::opcodeList[id] = this;
+}
+
+const char * const Opcode::getName() const
+{
+  return AISCRIPT::getOpcodeName(this->opcode);
+}
+
+AISCRIPT::Enum::Enum Opcode::getOpcode() const
+{
+  return this->opcode;
 }
 
 bool Opcode::readOpcode(aithread &thread)
@@ -16,7 +27,7 @@ bool Opcode::readOpcode(aithread &thread)
   BYTE bOpcode = thread.read<BYTE>();
 
   // Check if opcode is valid
-  if ( bOpcode >= AISCRIPT::LAST || !Opcode::opcodeList[bOpcode] )
+  if ( bOpcode >= AISCRIPT::Enum::LAST || !Opcode::opcodeList[bOpcode] )
   {
     Broodwar << Text::Red << "Invalid Script Opcode: " << bOpcode << std::endl;
     return false;
