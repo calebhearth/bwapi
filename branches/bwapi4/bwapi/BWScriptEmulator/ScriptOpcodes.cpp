@@ -210,7 +210,7 @@ void aithread::execute()
         for ( Unitset::iterator u = unitsInRect.begin(); u != unitsInRect.end(); ++u )
           bw->setAlliance(u->getPlayer(), bOpcode == AISCRIPT::Enum::PLAYER_ALLY);
         continue;
-      }*/
+      }
     case AISCRIPT::Enum::DEFAULT_MIN:  // COMPLETED
       MainController.bDefaultMin = this->read<BYTE>();
       this->saveDebug(Text::Green, bOpcode, "%3u", MainController.bDefaultMin);
@@ -272,7 +272,7 @@ void aithread::execute()
             u->rightClick(pBunker);
         }
       }
-      continue;
+      continue;*/
     case AISCRIPT::Enum::VALUE_AREA: // not started
       this->saveDebug(Text::Red, bOpcode);
       // ValueArea(this->location.center());
@@ -324,6 +324,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       MainController.wFlags &= ~CONTROLLER_FARMS_TIMING_OFF;
       continue;
+      /*
     case AISCRIPT::Enum::BUILD_TURRETS: // not started
       this->saveDebug(Text::Red, bOpcode);
       // BuildTurrets();
@@ -340,7 +341,7 @@ void aithread::execute()
     case AISCRIPT::Enum::DEFAULT_BUILD: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       MainController.wFlags &= ~CONTROLLER_DEFAULT_BUILD_OFF;
-      continue;
+      continue;*/
     case AISCRIPT::Enum::HARASS_FACTOR: // not started
       {
         WORD wUnk = this->read<WORD>();
@@ -692,6 +693,7 @@ void aithread::execute()
         this->saveDebug(Text::Green, bOpcode, "%3u %3u p_%X", wOre, wGas, wJmp);
         continue;
       }
+      /*
     case AISCRIPT::Enum::ENTER_TRANSPORT: // completed for the most part
       this->saveDebug(Text::Yellow, bOpcode);
       {
@@ -714,7 +716,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       bw->getUnitsInRectangle(location.topLeft, location.bottomRight, IsCompleted && GetPlayer == self && !IsHallucination && 
                               (GetType != UnitTypes::Zerg_Overlord || [](Unit*){return self->getUpgradeLevel(UpgradeTypes::Ventral_Sacs);} ) && IsTransport ).unloadAll();
-      continue;
+      continue;*/
     case AISCRIPT::Enum::SHAREDVISION_ON: // WORKAROUND (performs reverse vision)
       {
         BYTE bPlayer = this->read<BYTE>();
@@ -913,7 +915,7 @@ void aithread::execute()
         continue;
       }
     default:
-      Broodwar->printf("%cBad script opcode %02X", 6, bOpcode);
+      Broodwar << Text::Red << "Bad script opcode: " << bOpcode << std::endl;
       
       return;
     } // switch

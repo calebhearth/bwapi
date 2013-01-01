@@ -37,6 +37,10 @@ public:
   void DefenseBuild(int type, int count, BWAPI::UnitType uType);
   void DefenseUse(int type, int count, BWAPI::UnitType uType);
 
+  WORD getFlags() const;
+  void  setFlags(WORD wFlags);
+  void  clearFlags(WORD wFlags);
+
   BYTE  bNukeRate;
   BYTE  bAttacks;
   DWORD dwLastNukeTime;

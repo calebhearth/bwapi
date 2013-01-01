@@ -69,3 +69,16 @@ void AIController::DefenseUse(int type, int count, BWAPI::UnitType uType)
   for ( int c = 0; c < count && u + c < countof(this->defenseuse[0]); ++c )
     this->defenseuse[type][u + c] = (int)uType + 1;
 }
+
+WORD AIController::getFlags() const
+{
+  return this->wFlags;
+}
+void AIController::setFlags(WORD wFlags)
+{
+  this->wFlags |= wFlags;
+}
+void AIController::clearFlags(WORD wFlags)
+{
+  this->wFlags &= ~wFlags;
+}

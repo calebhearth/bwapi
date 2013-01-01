@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Wait_Defense : public Opcode
+  class Default_Min : public Opcode
   {
   public:
     // Ctor
-    Wait_Defense(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Default_Min() : Opcode(Enum::DEFAULT_MIN) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

@@ -203,7 +203,7 @@ int GetStandardUnitCount(UnitType type, bool bCompleted, Player *player)
   return count;
 }
 
-DWORD aithread::getFlags()
+DWORD aithread::getFlags() const
 {
   return this->dwFlags;
 }

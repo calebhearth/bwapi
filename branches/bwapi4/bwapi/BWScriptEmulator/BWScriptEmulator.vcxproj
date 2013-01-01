@@ -85,21 +85,26 @@
     <ClCompile Include="Attack_Do.cpp" />
     <ClCompile Include="Attack_Prepare.cpp" />
     <ClCompile Include="Build.cpp" />
-    <ClCompile Include="Build_Defense.cpp" />
+    <ClCompile Include="Build_Bunkers.cpp" />
     <ClCompile Include="BWScriptEmulator.cpp" />
     <ClCompile Include="Capt_Expand.cpp" />
     <ClCompile Include="ComputerAI.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Default_Build.cpp" />
+    <ClCompile Include="Default_Min.cpp" />
     <ClCompile Include="DefenseBuild.cpp" />
     <ClCompile Include="DefenseClear.cpp" />
     <ClCompile Include="DefenseUse.cpp" />
     <ClCompile Include="Dll.cpp" />
+    <ClCompile Include="Enter_Transport.cpp" />
     <ClCompile Include="Expand.cpp" />
     <ClCompile Include="Goto.cpp" />
     <ClCompile Include="Guard.cpp" />
     <ClCompile Include="JunkYardDog.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Military.cpp" />
+    <ClCompile Include="Move_DT.cpp" />
     <ClCompile Include="Notowns_Jump.cpp" />
     <ClCompile Include="Opcode.cpp" />
     <ClCompile Include="OrderEmulate.cpp" />
@@ -107,6 +112,8 @@
     <ClCompile Include="Return.cpp" />
     <ClCompile Include="Send_Suicide.cpp" />
     <ClCompile Include="Start_Town.cpp" />
+    <ClCompile Include="Stop.cpp" />
+    <ClCompile Include="Switch_Rescue.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="Tech.cpp" />
     <ClCompile Include="Town.cpp" />
@@ -114,7 +121,7 @@
     <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Wait.cpp" />
     <ClCompile Include="Wait_Build.cpp" />
-    <ClCompile Include="Wait_Defense.cpp" />
+    <ClCompile Include="Wait_Bunkers.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="ScriptEnum.cpp" />
     <ClCompile Include="ScriptOpcodes.cpp" />
@@ -127,15 +134,20 @@
     <ClInclude Include="Attack_Do.h" />
     <ClInclude Include="Attack_Prepare.h" />
     <ClInclude Include="Build.h" />
-    <ClInclude Include="Build_Defense.h" />
+    <ClInclude Include="Build_Bunkers.h" />
     <ClInclude Include="BWScriptEmulator.h" />
     <ClInclude Include="Capt_Expand.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="Default_Build.h" />
+    <ClInclude Include="Default_Min.h" />
     <ClInclude Include="DefenseBuild.h" />
     <ClInclude Include="DefenseClear.h" />
     <ClInclude Include="DefenseUse.h" />
+    <ClInclude Include="Enter_Transport.h" />
     <ClInclude Include="Expand.h" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Move_DT.h" />
     <ClInclude Include="Notowns_Jump.h" />
     <ClInclude Include="Opcode.h" />
     <ClInclude Include="Goto.h" />
@@ -143,6 +155,8 @@
     <ClInclude Include="Player_Ally.h" />
     <ClInclude Include="Send_Suicide.h" />
     <ClInclude Include="Start_Town.h" />
+    <ClInclude Include="Stop.h" />
+    <ClInclude Include="Switch_Rescue.h" />
     <ClInclude Include="Tech.h" />
     <ClInclude Include="Town.h" />
     <ClInclude Include="UnitInfo.h" />
@@ -152,7 +166,7 @@
     <ClInclude Include="UType.h" />
     <ClInclude Include="Wait.h" />
     <ClInclude Include="Wait_Build.h" />
-    <ClInclude Include="Wait_Defense.h" />
+    <ClInclude Include="Wait_Bunkers.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BWAPILIB\BWAPILIB.vcxproj">

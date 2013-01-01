@@ -77,7 +77,7 @@ public:
   void  execute();
 
   // Flags
-  DWORD getFlags();
+  DWORD getFlags() const;
   void  setFlags(DWORD dwFlags);
   void  clearFlags(DWORD dwFlags);
 

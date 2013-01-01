@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Build_Defense : public Opcode
+  class Switch_Rescue : public Opcode
   {
   public:
     // Ctor
-    Build_Defense(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Switch_Rescue() : Opcode(Enum::SWITCH_RESCUE) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

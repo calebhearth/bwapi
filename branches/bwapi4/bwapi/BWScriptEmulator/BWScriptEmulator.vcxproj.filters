@@ -101,12 +101,6 @@
     <ClCompile Include="Capt_Expand.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Build_Defense.cpp">
-      <Filter>Opcodes\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Wait_Defense.cpp">
-      <Filter>Opcodes\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DefenseBuild.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
@@ -120,6 +114,33 @@
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player_Ally.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Default_Min.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Default_Build.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stop.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Switch_Rescue.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move_DT.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enter_Transport.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait_Bunkers.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build_Bunkers.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -196,12 +217,6 @@
     <ClInclude Include="Capt_Expand.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
-    <ClInclude Include="Build_Defense.h">
-      <Filter>Opcodes\Header FIles</Filter>
-    </ClInclude>
-    <ClInclude Include="Wait_Defense.h">
-      <Filter>Opcodes\Header FIles</Filter>
-    </ClInclude>
     <ClInclude Include="DefenseBuild.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
@@ -215,6 +230,33 @@
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="Player_Ally.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Default_Min.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Default_Build.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Stop.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Switch_Rescue.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Move_DT.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Enter_Transport.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait_Bunkers.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Build_Bunkers.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>
