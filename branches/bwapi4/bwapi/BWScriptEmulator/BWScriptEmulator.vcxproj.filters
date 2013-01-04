@@ -143,6 +143,30 @@
     <ClCompile Include="Build_Bunkers.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Value_Area.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Check_Transports.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nuke_Rate.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Max_Force.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Clear_Combatdata.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Farms_Timing.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -257,6 +281,30 @@
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="Build_Bunkers.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Value_Area.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Check_Transports.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Nuke_Rate.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Max_Force.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Clear_Combatdata.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Random_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Time_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Farms_Timing.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>

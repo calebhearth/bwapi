@@ -9,9 +9,9 @@ Default_Build defaultbuild_off_impl(AISCRIPT::Enum::DEFAULTBUILD_OFF);
 bool Default_Build::execute(aithread &thread) const
 {
   if ( this->getOpcode() == AISCRIPT::Enum::DEFAULTBUILD_OFF )  // off
-    MainController.wFlags |= CONTROLLER_DEFAULT_BUILD_OFF;
+    MainController.setFlags(CONTROLLER_DEFAULT_BUILD_OFF);
   else                                                          // on
-    MainController.wFlags &= ~CONTROLLER_DEFAULT_BUILD_OFF;
+    MainController.clearFlags(CONTROLLER_DEFAULT_BUILD_OFF);
   
   // Debug and return
   thread.saveDebug(Text::Green, this->getOpcode());

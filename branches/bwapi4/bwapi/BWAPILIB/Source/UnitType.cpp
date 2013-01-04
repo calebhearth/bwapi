@@ -1204,6 +1204,95 @@ namespace BWAPI
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
   };
+  namespace unitUpgrades
+  {
+    using namespace UpgradeTypes::Enum;
+
+    static const int infantry_no_wpn[]    = { Terran_Infantry_Armor };
+    static const int infantry[]           = { Terran_Infantry_Armor, Terran_Infantry_Weapons };
+    static const int marine[]             = { Terran_Infantry_Armor, Terran_Infantry_Weapons, U_238_Shells };
+    static const int ghost[]              = { Terran_Infantry_Armor, Terran_Infantry_Weapons, Ocular_Implants, Moebius_Reactor };
+    
+    static const int mech[]               = { Terran_Vehicle_Plating, Terran_Vehicle_Weapons };
+    static const int vulture[]            = { Terran_Vehicle_Plating, Terran_Vehicle_Weapons, Ion_Thrusters };
+    static const int goliath[]            = { Terran_Vehicle_Plating, Terran_Vehicle_Weapons, Charon_Boosters };
+
+    static const int terran_air_no_wpn[]  = { Terran_Ship_Plating };
+    static const int terran_air[]         = { Terran_Ship_Plating, Terran_Ship_Weapons };
+    static const int science_vessel[]     = { Terran_Ship_Plating, Titan_Reactor };
+    static const int wraith[]             = { Terran_Ship_Plating, Terran_Ship_Weapons, Apollo_Reactor };
+    static const int battlecruiser[]      = { Terran_Ship_Plating, Terran_Ship_Weapons, Colossus_Reactor };
+    static const int medic[]              = { Terran_Infantry_Armor, Caduceus_Reactor };
+
+    static const int carapace[]           = { Zerg_Carapace };
+    static const int zerg_melee[]         = { Zerg_Carapace, Zerg_Melee_Attacks };
+    static const int zerg_range[]         = { Zerg_Carapace, Zerg_Missile_Attacks };
+    static const int zergling[]           = { Zerg_Carapace, Zerg_Melee_Attacks, Metabolic_Boost, Adrenal_Glands };
+    static const int hydralisk[]          = { Zerg_Carapace, Zerg_Melee_Attacks, Muscular_Augments, Grooved_Spines };
+    static const int defiler[]            = { Zerg_Carapace, Metasynaptic_Node };
+    static const int ultralisk[]          = { Zerg_Carapace, Zerg_Melee_Attacks, Chitinous_Plating, Anabolic_Synthesis };
+
+    static const int zerg_air_no_wpn[]    = { Zerg_Flyer_Carapace };
+    static const int zerg_air[]           = { Zerg_Flyer_Carapace, Zerg_Flyer_Attacks };
+    static const int overlord[]           = { Zerg_Flyer_Carapace, Ventral_Sacs, Antennae, Pneumatized_Carapace };
+    static const int queen[]              = { Zerg_Flyer_Carapace, Gamete_Meiosis };
+
+    static const int shields[]            = { Protoss_Plasma_Shields };
+    static const int protoss_ground_no_wpn[]  = { Protoss_Plasma_Shields, Protoss_Ground_Armor };
+    static const int protoss_ground[]     = { Protoss_Plasma_Shields, Protoss_Ground_Armor, Protoss_Ground_Weapons };
+    static const int zealot[]             = { Protoss_Plasma_Shields, Protoss_Ground_Armor, Protoss_Ground_Weapons, Leg_Enhancements };
+    static const int dragoon[]            = { Protoss_Plasma_Shields, Protoss_Ground_Armor, Protoss_Ground_Weapons, Singularity_Charge };
+    static const int reaver[]             = { Protoss_Plasma_Shields, Protoss_Ground_Armor, Protoss_Ground_Weapons, Scarab_Damage, Reaver_Capacity };
+    static const int templar[]            = { Protoss_Plasma_Shields, Protoss_Ground_Armor, Khaydarin_Amulet };
+
+    static const int protoss_air_no_wpn[] = { Protoss_Plasma_Shields, Protoss_Air_Armor };
+    static const int protoss_air[]        = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons };
+    static const int shuttle[]            = { Protoss_Plasma_Shields, Protoss_Air_Armor, Gravitic_Drive };
+    static const int observer[]           = { Protoss_Plasma_Shields, Protoss_Air_Armor, Sensor_Array, Gravitic_Boosters };
+    static const int scout[]              = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons, Apial_Sensors, Gravitic_Thrusters };
+    static const int carrier[]            = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons, Carrier_Capacity };
+    static const int arbiter[]            = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons, Khaydarin_Core };
+    static const int corsair[]            = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons, Argus_Jewel };
+    static const int dark_archon[]        = { Protoss_Plasma_Shields, Protoss_Air_Armor, Protoss_Air_Weapons, Argus_Talisman };
+
+    static const int infested_duran[]     = { Zerg_Carapace, Terran_Infantry_Weapons };
+    static const int trap[]               = { Terran_Vehicle_Weapons };
+    static const int flame_trap[]         = { Terran_Infantry_Weapons };
+
+#define USET(x) UpgradeType::const_set(x, countof(x))
+#define USETEMPTY UpgradeType::const_set(&UpgradeTypes::None)
+
+    static const UpgradeType::const_set upgrades[UnitTypes::Enum::MAX] =
+    {
+      USET(marine), USET(ghost), USET(vulture), USET(goliath), USET(goliath), USET(mech), USET(mech), USET(infantry_no_wpn), 
+      USET(wraith), USET(science_vessel), USET(infantry), USET(terran_air_no_wpn), USET(battlecruiser), USETEMPTY, USETEMPTY,
+      USET(infantry_no_wpn), USET(infantry), USET(mech), USET(mech), USET(mech), USET(infantry), USET(terran_air), 
+      USET(terran_air_no_wpn), USET(mech), USET(mech), USET(mech), USET(mech), USET(terran_air), USET(terran_air), 
+      USET(terran_air), USET(mech), USET(mech), USET(infantry), USETEMPTY, USET(medic), USET(carapace), USET(carapace), 
+      USET(zergling), USET(hydralisk), USET(ultralisk), USET(zerg_melee), USET(carapace), USET(overlord), USET(zerg_air), 
+      USET(zerg_air), USET(queen), USET(defiler), USET(zerg_air_no_wpn), USET(zerg_melee), USET(zerg_air_no_wpn), USET(carapace),
+      USET(zerg_melee), USET(carapace), USET(zerg_range), USET(zerg_melee), USET(zerg_air), USET(zerg_air), USET(zerg_air_no_wpn), 
+      USET(terran_air), USET(carapace), USET(corsair), USET(protoss_ground), USET(zerg_air), USET(dark_archon), 
+      USET(protoss_ground_no_wpn), USET(zealot), USET(dragoon), USET(templar), USET(protoss_ground), USET(shuttle), USET(scout),
+      USET(arbiter), USET(carrier), USET(protoss_air), USET(protoss_ground), USET(protoss_ground), USET(protoss_ground), 
+      USET(protoss_ground), USET(protoss_ground), USET(protoss_ground), USET(protoss_air), USET(reaver), USET(protoss_air),
+      USET(reaver), USET(observer), USET(protoss_ground), USET(protoss_air), USET(protoss_ground), USET(protoss_air), USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USET(carapace), USET(protoss_air), USET(infantry),
+      USET(infantry), USETEMPTY, USET(terran_air), USET(zerg_range), USET(infested_duran), USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), 
+      USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), USET(shields), USETEMPTY, 
+      USET(shields), USET(shields), USET(shields), USET(shields), USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USET(trap), USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USET(trap), USET(trap), USET(flame_trap), 
+      USET(trap), USET(flame_trap), USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, 
+      USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY, USETEMPTY
+    };
+  }
 
   namespace unitAbilities
   {
@@ -2164,6 +2253,7 @@ namespace BWAPI
     return std::make_pair(type, count);
   }
   
+  // @@@@@@@@@@@@@@@@@TODO
   std::map<UnitType,int> nomap;
   const std::map<UnitType, int>& UnitType::requiredUnits() const
   {
@@ -2194,17 +2284,13 @@ namespace BWAPI
       return TechTypes::None;
     }
   }
-
   const TechType::const_set& UnitType::abilities() const
   {
     return unitAbilities::unitTechs[this->getID()];
   }
-  
-  const UpgradeType::const_set noupgset(&UpgradeTypes::None);
   const UpgradeType::const_set& UnitType::upgrades() const
   {
-    //return unitTypeData[this->getID()].upgrades;
-    return noupgset;
+    return unitUpgrades::upgrades[this->getID()];
   }
   UpgradeType UnitType::armorUpgrade() const
   {
@@ -2541,16 +2627,14 @@ namespace BWAPI
   {
     return unitInternal::macroTypeSet;
   }
-
   int UnitTypes::maxUnitWidth()
   {
-    static int maxWidth = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.width() < b.width(); } );
+    static int maxWidth = (*std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.width() < b.width(); } )).width();
     return maxWidth;
   }
-
   int UnitTypes::maxUnitHeight()
   {
-    static int maxHeight = *std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.height() < b.height(); } );
+    static int maxHeight = (*std::max_element( allUnitTypes().begin(), allUnitTypes().end(), [](const UnitType &a, const UnitType &b){ return a.height() < b.height(); } )).height();
     return maxHeight;
   }
 }

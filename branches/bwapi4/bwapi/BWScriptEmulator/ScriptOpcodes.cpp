@@ -272,7 +272,7 @@ void aithread::execute()
             u->rightClick(pBunker);
         }
       }
-      continue;*/
+      continue;
     case AISCRIPT::Enum::VALUE_AREA: // not started
       this->saveDebug(Text::Red, bOpcode);
       // ValueArea(this->location.center());
@@ -324,7 +324,6 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       MainController.wFlags &= ~CONTROLLER_FARMS_TIMING_OFF;
       continue;
-      /*
     case AISCRIPT::Enum::BUILD_TURRETS: // not started
       this->saveDebug(Text::Red, bOpcode);
       // BuildTurrets();
