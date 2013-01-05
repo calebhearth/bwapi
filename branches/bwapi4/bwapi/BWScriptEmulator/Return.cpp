@@ -1,37 +1,23 @@
-#include "UnitInfo.h"
+#include "Return.h"
+#include <tuple>
 
+using namespace AISCRIPT;
 
-void UnitWrap::RunComputerReturn()
+IMPLEMENT(Return);
+
+bool Return::execute(aithread &thread) const
 {
-  if ( TaskAggression() )
-    return;
-
-  if ( pUnit->getType() == UnitTypes::Terran_Medic /*&& MedicOrders()*/ )
-    return;
-
-  // order state is 0
-  if ( !GetOrderState() )
+  thread.saveDebug(Text::Green, this->getOpcode());
+  bool result = thread.ret();
+  
+  // Error handling, kill the script if the callstack is empty
+  if ( !result )
   {
-    pUnit->move( GetOrderTargetPosition() );  // temporary
-    
-    //if ( MoveToTarget() and not getting AI Transport Assist )
-      SetOrderState(1);
+    thread.killThread();
+    thread.noretry();
+    return false;
   }
 
-  if ( GetOrderState() )
-  {
-    if ( GetControlType() == ControlTypes::Guard )
-    {
-      if ( GetOrderTargetPosition() == pUnit->getPosition() ) // Reached destination
-      {
-        SetGuardReturnPosition(pUnit->getPosition());
-        SetVirtualUnitOrder(Orders::Enum::Guard);
-      }
-    }
-    else
-    {
-      SetVirtualUnitOrder(Orders::Enum::ComputerAI);
-    }
-  }
-
+  // Success
+  return true;
 }

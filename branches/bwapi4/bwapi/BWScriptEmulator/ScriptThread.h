@@ -2,6 +2,7 @@
 #include <BWAPI.h>
 
 #include <list>
+#include <stack>
 #include <deque>
 #include <tuple>
 #include "Location.h"
@@ -44,7 +45,6 @@ public:
     return rval;
   };
 
-  
   // Helper for tuple reading
   template <class T, size_t S> struct TupleHelper;
 
@@ -103,15 +103,16 @@ public:
   // Location
   Location getLocation();
 
+  // Callstack
+  void call(DWORD dwOffset);
+  bool ret();
+
 private:
   DWORD             dwScriptOffset;   // the offset in the AIScript file
   DWORD             dwSleepTime;      // the number of frames remaining before the thread continues execution
   DWORD             dwPlayerID;       // the player index that owns the thread
 
   Location          location;         // the location boundry that the script is being executed in
-  //RECT              locationBounds;   // the location boundry of which the script is executed in
-  //POINT             locationCenter;   // the center of the location of which the script is executed in
-  //BWAPI::Position   locationCenter;
   void              *pTown;           // town information
   DWORD             dwFlags;          // the flags for the thread behaviour (contains baseID*8, flags are &7)
   BYTE              bTotBuildCount[UnitTypes::Enum::MAX]; // not included
@@ -119,6 +120,7 @@ private:
   int               threadId;
   DWORD             dwBytesRead;
   std::deque<char*> debugQueue;
+  std::stack<DWORD> callstack;
 
   bool retryBlock;
 };

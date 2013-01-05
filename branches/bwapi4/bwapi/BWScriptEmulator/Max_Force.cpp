@@ -17,6 +17,6 @@ bool Max_Force::execute(aithread &thread) const
   MainController.wMaxForce = wMaxForce;
 
   // Save debug info and return
-  thread.saveDebug(Text::Green, this->getOpcode());
+  thread.saveDebug(Text::Green, this->getOpcode(), "%u", wMaxForce);
   return true;
 }

@@ -318,3 +318,18 @@ Location aithread::getLocation()
   return this->location;
 }
 
+void aithread::call(DWORD dwOffset)
+{
+  this->callstack.push( this->getScriptOffset() );
+  this->setScriptOffset(dwOffset);
+}
+bool aithread::ret()
+{
+  if ( this->callstack.empty() )
+    return false;
+
+  this->setScriptOffset( this->callstack.top() );
+  this->callstack.pop();
+  return true;
+}
+

@@ -46,9 +46,6 @@
     <ClCompile Include="Guard.cpp">
       <Filter>UnitControl\Orders</Filter>
     </ClCompile>
-    <ClCompile Include="Return.cpp">
-      <Filter>UnitControl\Orders</Filter>
-    </ClCompile>
     <ClCompile Include="Town.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -165,6 +162,39 @@
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Farms_Timing.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Harass_Factor.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Start_Campaign.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Race_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Region_Size.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Get_OldPeons.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Groundmap_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Place_Guard.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Call.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComputerReturn.cpp">
+      <Filter>UnitControl\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="Return.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Guard_Resources.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -305,6 +335,36 @@
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="Farms_Timing.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Harass_Factor.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Start_Campaign.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Race_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Region_Size.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Get_OldPeons.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Groundmap_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Place_Guard.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Call.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Return.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Guard_Resources.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>

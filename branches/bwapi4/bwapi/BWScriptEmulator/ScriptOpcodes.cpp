@@ -340,7 +340,7 @@ void aithread::execute()
     case AISCRIPT::Enum::DEFAULT_BUILD: // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       MainController.wFlags &= ~CONTROLLER_DEFAULT_BUILD_OFF;
-      continue;*/
+      continue;
     case AISCRIPT::Enum::HARASS_FACTOR: // not started
       {
         WORD wUnk = this->read<WORD>();
@@ -432,7 +432,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       this->dwScriptOffset = AISavedCall;
       AISavedCall = 0;
-      continue;
+      continue;*/
     case AISCRIPT::Enum::EVAL_HARASS: // not started
       {
         WORD wBlock = this->read<WORD>();
