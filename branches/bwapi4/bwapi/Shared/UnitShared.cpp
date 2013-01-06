@@ -440,6 +440,11 @@ namespace BWAPI
   {
     return self->isCompleted;
   }
+  //--------------------------------------------- IS CONSTRUCTING --------------------------------------------
+  bool UnitImpl::isConstructing() const
+  {
+    return self->isConstructing;
+  }
   //--------------------------------------------- IS DETECTED ------------------------------------------------
   bool UnitImpl::isDetected() const
   {
@@ -534,6 +539,11 @@ namespace BWAPI
   {
     return self->isHallucination;
   }
+  //--------------------------------------------- IS IDLE ----------------------------------------------------
+  bool UnitImpl::isIdle() const
+  {
+    return self->isIdle;
+  }
   //--------------------------------------------- IS INTERRUPTIBLE -------------------------------------------
   bool UnitImpl::isInterruptible() const
   {
@@ -548,6 +558,11 @@ namespace BWAPI
   bool UnitImpl::isLifted() const
   {
     return self->isLifted;
+  }
+  //--------------------------------------------- IS MORPHING ------------------------------------------------
+  bool UnitImpl::isMorphing() const
+  {
+    return self->isMorphing;
   }
   //--------------------------------------------- IS MOVING --------------------------------------------------
   bool UnitImpl::isMoving() const

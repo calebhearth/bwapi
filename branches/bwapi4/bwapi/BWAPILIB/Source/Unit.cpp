@@ -199,36 +199,6 @@ namespace BWAPI
   {
     return this->getPosition().y + this->getType().dimensionDown();
   }
-  //--------------------------------------------- IS IDLE ----------------------------------------------------
-  bool Unit::isIdle() const
-  {
-    if (  this->isTraining()      || 
-          this->isConstructing()  || 
-          this->isMorphing()      || 
-          this->isResearching()   || 
-          this->isUpgrading() )
-      return false;
-
-    switch ( this->getOrder() )
-    {
-    case Orders::Enum::PlayerGuard:
-    case Orders::Enum::Guard:
-    case Orders::Enum::Stop:
-    case Orders::Enum::PickupIdle:
-    case Orders::Enum::Nothing:
-    case Orders::Enum::Medic:
-    case Orders::Enum::Carrier:
-    case Orders::Enum::Reaver:
-    case Orders::Enum::Critter:
-    case Orders::Enum::Neutral:
-    case Orders::Enum::TowerGuard:
-    case Orders::Enum::Burrowed:
-    case Orders::Enum::NukeTrain:
-    case Orders::Enum::Larva:
-      return true;
-    }
-    return false;
-  }
   //--------------------------------------------- IS BEING CONSTRUCTED ---------------------------------------
   bool Unit::isBeingConstructed() const
   {
@@ -239,26 +209,6 @@ namespace BWAPI
     if ( this->getType().getRace() != Races::Terran )
       return true;
     return this->getBuildUnit() != nullptr;
-  }
-  //--------------------------------------------- IS CONSTRUCTING --------------------------------------------
-  bool Unit::isConstructing() const
-  {
-    Order ord = this->getOrder();
-    return this->isMorphing()                                 ||
-            ord == Orders::ConstructingBuilding               ||
-            ord == Orders::PlaceBuilding                      ||
-            ord == Orders::Enum::DroneBuild                   ||      // Some of these never compare because of BWtoBWAPI
-            ord == Orders::Enum::DroneStartBuild              ||
-            ord == Orders::Enum::DroneLand                    ||
-            ord == Orders::Enum::PlaceProtossBuilding         ||
-            ord == Orders::CreateProtossBuilding              ||
-            ord == Orders::IncompleteBuilding                 ||
-            ord == Orders::Enum::IncompleteWarping            ||
-            ord == Orders::Enum::IncompleteMorphing           ||
-            ord == Orders::BuildNydusExit                     ||
-            ord == Orders::BuildAddon                         ||
-            this->getSecondaryOrder() == Orders::BuildAddon   ||
-            (!this->isCompleted() && this->getBuildUnit() != nullptr);
   }
   // ------------------------------------------ STATUS ---------------------------------------------
   bool Unit::isDefenseMatrixed() const
@@ -332,15 +282,6 @@ namespace BWAPI
     return this->getMaelstromTimer() != 0;
   }
 
-  bool Unit::isMorphing() const
-  {
-    Order ord = this->getOrder();
-    return ord == Orders::ZergBirth         ||
-           ord == Orders::ZergBuildingMorph ||
-           ord == Orders::ZergUnitMorph     ||
-           ord == Orders::Enum::IncompleteMorphing || // <-- should be this, but order is converted using BWtoBWAPI, replaced with below
-           (this->getType().isBuilding() && this->getType().getRace() == Races::Zerg && ord == Orders::IncompleteBuilding);
-  }
   bool Unit::isPatrolling() const
   {
     return this->getOrder() == Orders::Patrol;

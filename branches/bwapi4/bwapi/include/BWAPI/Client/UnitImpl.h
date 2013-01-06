@@ -113,13 +113,16 @@ namespace BWAPI
       virtual bool isCarryingMinerals() const;
       virtual bool isCloaked() const;
       virtual bool isCompleted() const;
+      virtual bool isConstructing() const;
       virtual bool isDetected() const;
       virtual bool isGatheringGas() const;
       virtual bool isGatheringMinerals() const;
       virtual bool isHallucination() const;
+      virtual bool isIdle() const;
       virtual bool isInterruptible() const;
       virtual bool isInvincible() const;
       virtual bool isLifted() const;
+      virtual bool isMorphing() const;
       virtual bool isMoving() const;
       virtual bool isParasited() const;
       virtual bool isSelected() const;

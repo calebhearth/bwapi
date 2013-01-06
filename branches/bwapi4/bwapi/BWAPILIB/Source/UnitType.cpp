@@ -1012,9 +1012,9 @@ namespace BWAPI
       Zerg_Drone, Zerg_Drone, Zerg_Drone, Zerg_Drone, Zerg_Drone, Zerg_Drone, Zerg_Creep_Colony, None, Zerg_Creep_Colony, None, None, 
       Zerg_Drone, None, None, None, None, Protoss_Probe, Protoss_Probe, Protoss_Probe, Protoss_Probe, None, Protoss_Probe, Protoss_Probe, 
       None, Protoss_Probe, Protoss_Probe, Protoss_Probe, Protoss_Probe, Protoss_Probe, Protoss_Probe, None, Protoss_Probe, Protoss_Probe, 
-      Protoss_Probe, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None,
+      Protoss_Probe, Protoss_Probe, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
       None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
-      None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Unknown
+      None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Unknown
     };
 
     static const int macroSetArr[] = { Men, Buildings, Factories, AllUnits };

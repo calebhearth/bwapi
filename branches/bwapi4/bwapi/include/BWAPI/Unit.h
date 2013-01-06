@@ -572,7 +572,7 @@ namespace BWAPI
     /** Returns true when a unit has been issued an order to build a structure and is moving to the build
      * location. Also returns true for Terran SCVs while they construct a building.
      * \see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isBeingConstructed. */
-    bool isConstructing() const;
+    virtual bool isConstructing() const = 0;
 
     /** Returns true if the unit has a defense matrix from a Terran Science Vessel. */
     bool isDefenseMatrixed() const;
@@ -638,7 +638,7 @@ namespace BWAPI
     /// @retval true if this unit is idle
     /// @retval false if this unit is performing some action such as moving or attacking
     /// @see Unit::stop
-    bool isIdle() const;
+    virtual bool isIdle() const = 0;
 
     /** Returns true if the unit can be interrupted. */
     virtual bool isInterruptible() const = 0;
@@ -678,7 +678,7 @@ namespace BWAPI
     /// @retval false if the unit is not morphing
     ///
     /// @see Unit::morph, Unit::cancelMorph, Unit::getBuildType, Unit::getRemainingBuildTime
-    bool isMorphing() const;
+    virtual bool isMorphing() const = 0;
 
     /** Returns true if the unit is moving.
      * \see Unit::attack, Unit::stop. */

@@ -183,15 +183,7 @@ void BuildTest::update()
     building = builder->getAddon();
   }
 
-  Unitset buildingsOnTile;
-  Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y);
-  for each(Unit* u in unitsOnTile)
-  {
-    if (u->getType()==unitType)
-    {
-      buildingsOnTile.insert(u);
-    }
-  }
+  Unitset buildingsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y, GetType == unitType);
   if (building==NULL && buildingsOnTile.empty()==false)
   {
     building = *buildingsOnTile.begin();

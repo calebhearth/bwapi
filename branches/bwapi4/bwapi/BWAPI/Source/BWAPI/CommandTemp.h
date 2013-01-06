@@ -117,11 +117,15 @@ namespace BWAPI
     else if (command.type == UnitCommandTypes::Build)
     {
       unit->self->order = Orders::PlaceBuilding;
+      unit->self->isConstructing = true;
+      unit->self->isIdle         = false;
       unit->self->buildType      = command.extra;
     }
     else if (command.type == UnitCommandTypes::Build_Addon)
     {
       unit->self->secondaryOrder = Orders::BuildAddon;
+      unit->self->isConstructing = true;
+      unit->self->isIdle         = false;
       unit->self->buildType      = command.extra;
     }
     else if (command.type == UnitCommandTypes::Burrow)
@@ -139,8 +143,9 @@ namespace BWAPI
         player->self->gas      += (int)(unitType.gasPrice()     * 0.75);
       }
       unit->self->remainingBuildTime = 0;
+      unit->self->isConstructing     = false;
       unit->self->order              = Orders::Nothing;
-      unit->self->secondaryOrder     = Orders::Nothing;
+      unit->self->isIdle             = true;
       unit->self->buildType          = UnitTypes::None;
       unit->self->buildUnit          = -1;
     }
@@ -161,6 +166,7 @@ namespace BWAPI
         {
           builder->self->buildUnit      = -1;
           builder->self->buildType      = UnitTypes::None;
+          builder->self->isConstructing = false;
           builder->self->order          = Orders::ResetCollision;
         }
       }
@@ -176,10 +182,13 @@ namespace BWAPI
         player->self->gas      += (int)(unitType.gasPrice()     * 0.75);
       }
       unit->self->remainingBuildTime = 0;
+      unit->self->isConstructing     = false;
       if (unitType.getRace() == Races::Zerg)
       {
         unit->self->type       = unitType.whatBuilds().first;
         unit->self->buildType  = UnitTypes::None;
+        unit->self->isMorphing = false;
+        unit->self->isIdle     = true;
 
         UnitType whatBuilds = unitType.whatBuilds().first;
         if (frame < Broodwar->getLatency())
@@ -198,6 +207,7 @@ namespace BWAPI
       {
         unit->self->order       = Orders::Die;
         unit->self->isCompleted = false;
+        unit->self->isIdle      = false;
       }
     }
     else if (command.type == UnitCommandTypes::Cancel_Morph)
@@ -229,7 +239,10 @@ namespace BWAPI
       }
       unit->self->buildType          = UnitTypes::None;
       unit->self->remainingBuildTime = 0;
+      unit->self->isMorphing         = false;
+      unit->self->isConstructing     = false;
       unit->self->isCompleted        = true;
+      unit->self->isIdle             = true;
       unit->self->type               = unitType.whatBuilds().first;
       if (unitType.whatBuilds().first.isBuilding())
         unit->self->order = Orders::Nothing;
@@ -246,6 +259,7 @@ namespace BWAPI
         return;
       unit->self->order                 = Orders::Nothing;
       unit->self->tech                  = TechTypes::None;
+      unit->self->isIdle                = true;
       unit->self->remainingResearchTime = 0;
       if (frame < Broodwar->getLatency())
       {
@@ -273,6 +287,7 @@ namespace BWAPI
         unit->self->buildUnit          = -1;
         unit->self->isTraining         = false;
         unit->self->remainingTrainTime = 0;
+        unit->self->isIdle             = true;
         player->self->supplyUsed[unit->getType().getRace()] -= UnitType(savedExtra).supplyRequired();
       }
     }
@@ -305,6 +320,7 @@ namespace BWAPI
         if (unit->self->trainingQueueCount == 0)
         {
           unit->self->isTraining = false;
+          unit->self->isIdle     = true;
         }
         else
         {
@@ -330,6 +346,7 @@ namespace BWAPI
       unit->self->order                = Orders::Nothing;
       int level                        = unit->getPlayer()->getUpgradeLevel(upgradeType);
       unit->self->upgrade              = UpgradeTypes::None;
+      unit->self->isIdle               = true;
       unit->self->remainingUpgradeTime = 0;
 
       if (frame < Broodwar->getLatency())
@@ -352,6 +369,7 @@ namespace BWAPI
     {
       unit->self->order    = Orders::Follow;
       unit->self->target   = getUnitID(target);
+      unit->self->isIdle   = false;
       unit->self->isMoving = true;
     }
     else if (command.type == UnitCommandTypes::Gather)
@@ -360,6 +378,7 @@ namespace BWAPI
           (frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
       {
         unit->self->target      = getUnitID(target);
+        unit->self->isIdle      = false;
         unit->self->isMoving    = true;
         unit->self->isGathering = true;
         if ( target->getType().isMineralField() )
@@ -381,19 +400,23 @@ namespace BWAPI
       unit->self->buildUnit      = -1;
       unit->self->buildType      = UnitTypes::None;
       unit->self->order          = Orders::ResetCollision;
+      unit->self->isConstructing = false;
     }
     else if (command.type == UnitCommandTypes::Hold_Position)
     {
       unit->self->isMoving = false;
+      unit->self->isIdle   = false;
       unit->self->order    = Orders::HoldPosition;
     }
     else if (command.type == UnitCommandTypes::Land)
     {
       unit->self->order  = Orders::BuildingLand;
+      unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Lift)
     {
       unit->self->order  = Orders::BuildingLiftOff;
+      unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Load)
     {
@@ -412,12 +435,16 @@ namespace BWAPI
         unit->self->order  = Orders::EnterTransport;
         unit->self->target = getUnitID(target);
       }
+      unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Morph)
     {
       if (frame > Broodwar->getLatency()+1)
         return;
+      unit->self->isMorphing     = true;
+      unit->self->isConstructing = true;
       unit->self->isCompleted    = false;
+      unit->self->isIdle         = false;
       unit->self->buildType      = unitType;
       if (unit->self->remainingBuildTime < 50)
         unit->self->remainingBuildTime = unitType.buildTime();
@@ -460,10 +487,12 @@ namespace BWAPI
       unit->self->orderTargetPositionX  = position.x;
       unit->self->orderTargetPositionY  = position.y;
       unit->self->isMoving              = true;
+      unit->self->isIdle                = false;
     }
     else if (command.type == UnitCommandTypes::Patrol)
     {
       unit->self->order           = Orders::Patrol;
+      unit->self->isIdle          = false;
       unit->self->isMoving        = true;
       unit->self->targetPositionX = position.x;
       unit->self->targetPositionY = position.y;
@@ -476,11 +505,13 @@ namespace BWAPI
         return;
       unit->self->order  = Orders::Repair;
       unit->self->target = getUnitID(target);
+      unit->self->isIdle = false;
     }
     else if (command.type == UnitCommandTypes::Research)
     {
       unit->self->order                 = Orders::ResearchTech;
       unit->self->tech                  = techType;
+      unit->self->isIdle                = false;
       unit->self->remainingResearchTime = techType.researchTime();
       if (frame < Broodwar->getLatency())
       {
@@ -501,6 +532,7 @@ namespace BWAPI
         else
           unit->self->order = Orders::ReturnMinerals;
         unit->self->isGathering = true;
+        unit->self->isIdle      = false;
       }
     }
     else if (command.type == UnitCommandTypes::Right_Click_Position)
@@ -514,11 +546,13 @@ namespace BWAPI
         unit->self->orderTargetPositionX = position.x;
         unit->self->orderTargetPositionY = position.y;
         unit->self->isMoving        = true;
+        unit->self->isIdle          = false;
       }
     }
     else if (command.type == UnitCommandTypes::Right_Click_Unit)
     {
       unit->self->target   = getUnitID(target);
+      unit->self->isIdle   = false;
       unit->self->isMoving = true;
       if (unit->getType().isWorker() && target->getType().isMineralField() )
       {
@@ -538,6 +572,8 @@ namespace BWAPI
         unit->self->order            = Orders::ConstructingBuilding;
         unit->self->buildUnit        = getUnitID(target);
         target->self->buildUnit      = getUnitID(unit);
+        unit->self->isConstructing   = true;
+        target->self->isConstructing = true;
       }
       else if ( unit->getType().canAttack() && target->getPlayer() != unit->getPlayer() && !target->getType().isNeutral() )
       {
@@ -576,6 +612,7 @@ namespace BWAPI
           (frame<=Broodwar->getLatency()+1 && Broodwar->getLatency()>2))
       {
         unit->self->order  = Orders::Stop;
+        unit->self->isIdle = true;
       }
     }
     else if (command.type == UnitCommandTypes::Train)
@@ -601,6 +638,7 @@ namespace BWAPI
       if (frame <= Broodwar->getLatency())
       {
         unit->self->isTraining = true;
+        unit->self->isIdle     = false;
         if ( unitType == UnitTypes::Terran_Nuclear_Missile )
           unit->self->secondaryOrder = Orders::Train;
       }
@@ -652,6 +690,7 @@ namespace BWAPI
     {
       unit->self->order   = Orders::Upgrade;
       unit->self->upgrade = upgradeType;
+      unit->self->isIdle  = false;
       int level           = unit->getPlayer()->getUpgradeLevel(upgradeType);
       unit->self->remainingUpgradeTime = upgradeType.upgradeTime(level+1);
       if (frame < Broodwar->getLatency())
