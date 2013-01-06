@@ -98,20 +98,12 @@ void BuildTest::update()
   nextFrame++;
   if (unitType==UnitTypes::Zerg_Extractor && builder->exists()==false)
   {
-    Unitset buildingsOnTile;
-    Unitset unitsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y);
-    for each(Unit* u in unitsOnTile)
-    {
-      if (u->getType()==unitType)
-      {
-        buildingsOnTile.insert(u);
-      }
-    }
-    if (buildingsOnTile.empty()==false)
+    Unitset buildingsOnTile( Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y, BWAPI::GetType == unitType ) );
+    if ( !buildingsOnTile.empty() )
     {
       if (unitType==UnitTypes::Zerg_Extractor)
       {
-        builder=*buildingsOnTile.begin();
+        builder = buildingsOnTile.front();
       }
     }
     FAILTEST(builder!=NULL);
@@ -183,10 +175,10 @@ void BuildTest::update()
     building = builder->getAddon();
   }
 
-  Unitset buildingsOnTile = Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y, GetType == unitType);
-  if (building==NULL && buildingsOnTile.empty()==false)
+  Unitset buildingsOnTile( Broodwar->getUnitsOnTile(buildLocation.x,buildLocation.y, BWAPI::GetType == unitType) );
+  if (building==NULL && !buildingsOnTile.empty() )
   {
-    building = *buildingsOnTile.begin();
+    building = buildingsOnTile.front();
     if (unitType==UnitTypes::Zerg_Extractor)
     {
       builder=building;
