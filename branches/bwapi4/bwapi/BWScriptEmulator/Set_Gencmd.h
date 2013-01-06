@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Attack_Add : public Opcode
+  class Set_Gencmd : public Opcode
   {
   public:
     // Ctor
-    Attack_Add(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Set_Gencmd() : Opcode(Enum::SET_GENCMD) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

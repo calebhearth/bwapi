@@ -197,6 +197,66 @@
     <ClCompile Include="Guard_Resources.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Eval_Harass.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Creep.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Panic.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Need.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait_Upgrades.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Multirun.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rush.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scout_With.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Define_Max.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Train.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Target_Expansion.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wait_Train.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_Attacks.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_Gencmd.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Make_Patrol.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Give_Money.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prep_Down.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources_Jump.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sharedvision.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="If_Dif.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BWScriptEmulator.h">
@@ -365,6 +425,66 @@
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="Guard_Resources.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Eval_Harass.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Creep.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Panic.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Need.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait_Upgrades.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Multirun.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Rush.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Scout_With.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Define_Max.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Target_Expansion.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Wait_Train.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_Attacks.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_Gencmd.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Make_Patrol.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Give_Money.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Prep_Down.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources_Jump.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Sharedvision.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="If_Dif.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>

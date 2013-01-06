@@ -589,7 +589,7 @@ namespace BWAPI
           ((thisUnit->getType() == UnitTypes::Protoss_Carrier    || thisUnit->getType() == UnitTypes::Hero_Gantrithor) && thisUnit->getInterceptorCount() > 0) )
           canAttack = true;
 
-        if (!canAttack)
+        if ( !canAttack )
           return Broodwar->setLastError(Errors::Unable_To_Hit);
 
         if ( !thisUnit->getType().canMove() && !thisUnit->isInWeaponRange(c.target) )

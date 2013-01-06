@@ -432,7 +432,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       this->dwScriptOffset = AISavedCall;
       AISavedCall = 0;
-      continue;*/
+      continue;
     case AISCRIPT::Enum::EVAL_HARASS: // not started
       {
         WORD wBlock = this->read<WORD>();
@@ -692,7 +692,6 @@ void aithread::execute()
         this->saveDebug(Text::Green, bOpcode, "%3u %3u p_%X", wOre, wGas, wJmp);
         continue;
       }
-      /*
     case AISCRIPT::Enum::ENTER_TRANSPORT: // completed for the most part
       this->saveDebug(Text::Yellow, bOpcode);
       {
@@ -715,7 +714,7 @@ void aithread::execute()
       this->saveDebug(Text::Green, bOpcode);
       bw->getUnitsInRectangle(location.topLeft, location.bottomRight, IsCompleted && GetPlayer == self && !IsHallucination && 
                               (GetType != UnitTypes::Zerg_Overlord || [](Unit*){return self->getUpgradeLevel(UpgradeTypes::Ventral_Sacs);} ) && IsTransport ).unloadAll();
-      continue;*/
+      continue;
     case AISCRIPT::Enum::SHAREDVISION_ON: // WORKAROUND (performs reverse vision)
       {
         BYTE bPlayer = this->read<BYTE>();
@@ -731,7 +730,7 @@ void aithread::execute()
         Player *pl = bw->getPlayer(bPlayer);
         bw->setVision(pl, false); // players swapped for compatibility
         continue;
-      }
+      }*/
     case AISCRIPT::Enum::NUKE_LOCATION: // not started
       this->saveDebug(Text::Red, bOpcode);
       continue;
@@ -760,6 +759,7 @@ void aithread::execute()
           this->dwScriptOffset = wJump;
         continue;
       }
+      /*
     case AISCRIPT::Enum::ENEMYRESOURCES_JUMP:  // completed ?
       {
         WORD wOre = this->read<WORD>();
@@ -798,7 +798,7 @@ void aithread::execute()
           // AI_AttackAdd 
         }
         continue;
-      }
+      }*/
     case AISCRIPT::Enum::KILL_THREAD:  // COMPLETE
       for ( std::list<aithread>::iterator i = aiThreadList.begin(); i != aiThreadList.end(); ++i )
       {

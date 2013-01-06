@@ -188,7 +188,7 @@ void CancelConstructionTest::update()
     if (thisFrame>=startFrame+Broodwar->getLatency()+500)
     {
       FAILTEST(builder->getBuildType()==UnitTypes::None);
-      BWAssertF(builder->isConstructing()==false,{log("%d",thisFrame-(startFrame+Broodwar->getLatency()+500));});
+      BWAssertF(builder->isConstructing()==false,{log("%d, %s: %s,%s",thisFrame-(startFrame+Broodwar->getLatency()+500), builder->getType().c_str(), builder->getOrder().c_str(), builder->getSecondaryOrder().c_str());});
       BWAssertF(Broodwar->self()->minerals()==correctMineralCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+500),Broodwar->self()->minerals(),correctMineralCount);fail=true;return;});
       BWAssertF(Broodwar->self()->gas()==correctGasCount,{log("%d: %d != %d, diff = %d",thisFrame-(startFrame+Broodwar->getLatency()+500), Broodwar->self()->gas(),correctGasCount,Broodwar->self()->gas()-correctGasCount);fail=true;return;});
       BWAssertF(Broodwar->self()->supplyUsed()==correctSupplyUsedCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+500),Broodwar->self()->supplyUsed(),correctSupplyUsedCount);fail=true;return;});

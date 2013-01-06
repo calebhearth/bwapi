@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Attack_Add : public Opcode
+  class If_Dif : public Opcode
   {
   public:
     // Ctor
-    Attack_Add(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    If_Dif() : Opcode(Enum::IF_DIF) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

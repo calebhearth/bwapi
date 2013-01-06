@@ -140,6 +140,7 @@ namespace BWAPI
       }
       unit->self->remainingBuildTime = 0;
       unit->self->order              = Orders::Nothing;
+      unit->self->secondaryOrder     = Orders::Nothing;
       unit->self->buildType          = UnitTypes::None;
       unit->self->buildUnit          = -1;
     }

@@ -13,14 +13,6 @@ void UpdateScripts();
 bool LoadAIBinary(const char *pszFileName);
 int GetStandardUnitCount(BWAPI::UnitType type, bool bCompleted = true, Player *player = NULL);
 
-int GetTerranRushScore(Player *player);
-int GetZergGroundRushScore(Player *player);
-int GetZergAirRushScore(Player *player);
-int GetProtossAirRushScore(Player *player);
-
-void AICreateThread(WORD wStartBlock, Position location, void *pTown = NULL);
-void AICreateThread(const char *pszScriptID, Position location);
-
 #define AI_THREAD_BROODWAR        0x01
 #define AI_THREAD_KILLABLE        0x02
 #define AI_THREAD_WANT_KILLED     0x04
@@ -107,6 +99,9 @@ public:
   void call(DWORD dwOffset);
   bool ret();
 
+  // Town
+  void *town();
+
 private:
   DWORD             dwScriptOffset;   // the offset in the AIScript file
   DWORD             dwSleepTime;      // the number of frames remaining before the thread continues execution
@@ -124,6 +119,9 @@ private:
 
   bool retryBlock;
 };
+
+void AICreateThread(WORD wStartBlock, Position location, void *pTown = NULL);
+void AICreateThread(const char *pszScriptID, Position location);
 
 extern BYTE *pbAIScriptBinary;
 extern std::list<aithread> aiThreadList;

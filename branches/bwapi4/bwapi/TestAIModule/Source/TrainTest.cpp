@@ -34,7 +34,7 @@ void TrainTest::start()
   BWAssertF(producer->isConstructing()==false,{fail=true;return;});
   BWAssertF(producer->isIdle()==true,{fail=true;return;});
   BWAssertF(producer->isLifted()==false,{fail=true;return;});
-  BWAssertF(producer->getTrainingQueue().empty()==true,{fail=true;return;});
+  BWAssertF(producer->getTrainingQueue().empty()==true,{log("%s", producer->getTrainingQueue().front().c_str());fail=true;return;});
   BWAssertF(producer->getRemainingTrainTime() == 0,{fail=true;return;});
   correctMineralCount = Broodwar->self()->minerals() - unitType.mineralPrice();
   correctGasCount = Broodwar->self()->gas() - unitType.gasPrice();
@@ -89,7 +89,7 @@ void TrainTest::update()
     running = false;
     return;
   }
-  BWAssertF(producer->isTraining()==true,{Broodwar->printf("%d",thisFrame-startFrame);fail=true;return;});
+  BWAssertF(producer->isTraining()==true,{log("%s: %s, %s", producer->getType().c_str(), producer->getOrder().c_str(), producer->getSecondaryOrder().c_str());Broodwar->printf("%d",thisFrame-startFrame);fail=true;return;});
   BWAssertF(producer->isConstructing()==false,{fail=true;return;});
   BWAssertF(producer->isIdle()==false,{fail=true;return;});
   BWAssertF(producer->isLifted()==false,{fail=true;return;});

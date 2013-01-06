@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Attack_Add : public Opcode
+  class Define_Max : public Opcode
   {
   public:
     // Ctor
-    Attack_Add(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Define_Max() : Opcode(Enum::DEFINE_MAX) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

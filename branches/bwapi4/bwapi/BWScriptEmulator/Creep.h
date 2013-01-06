@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Attack_Add : public Opcode
+  class Creep : public Opcode
   {
   public:
     // Ctor
-    Attack_Add(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Creep() : Opcode(Enum::CREEP) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

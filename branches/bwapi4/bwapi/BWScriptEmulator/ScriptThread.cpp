@@ -149,35 +149,6 @@ aithread::~aithread()
   this->debugQueue.clear();
 }
 
-int GetTerranRushScore(Player *player)
-{
-  int bunkerScore = 4 * player->completedUnitCount(UnitTypes::Terran_Bunker);
-  int marineScore = player->completedUnitCount(UnitTypes::Terran_Marine);
-  if ( bunkerScore <= marineScore )
-    return marineScore + bunkerScore;
-  else
-    return 2 * marineScore;
-}
-
-int GetZergGroundRushScore(Player *player)
-{
-  return player->completedUnitCount(UnitTypes::Zerg_Hydralisk) + 
-     2 * player->completedUnitCount(UnitTypes::Zerg_Sunken_Colony);
-}
-
-int GetZergAirRushScore(Player *player)
-{
-  return player->completedUnitCount(UnitTypes::Zerg_Hydralisk) + 
-    player->completedUnitCount(UnitTypes::Zerg_Mutalisk) + 
-     2 * player->completedUnitCount(UnitTypes::Zerg_Spore_Colony);
-}
-
-int GetProtossAirRushScore(Player *player)
-{
-  return player->completedUnitCount(UnitTypes::Protoss_Dragoon) + 
-         player->completedUnitCount(UnitTypes::Protoss_Scout);
-}
-
 int GetStandardUnitCount(UnitType type, bool bCompleted, Player *player)
 {
   int count = 0;
@@ -331,5 +302,10 @@ bool aithread::ret()
   this->setScriptOffset( this->callstack.top() );
   this->callstack.pop();
   return true;
+}
+
+void *aithread::town()
+{
+  return this->pTown;
 }
 

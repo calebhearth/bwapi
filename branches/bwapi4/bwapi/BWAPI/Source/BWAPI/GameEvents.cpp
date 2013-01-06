@@ -553,8 +553,21 @@ namespace BWAPI
             Broodwar->enableFlag(Flag::CompleteMapInformation);
             Broodwar->enableFlag(Flag::UserInput);
 
+            // Create error string
+            std::string missing;
+            if ( !newGame )
+              missing += "gameInit";
+          
+            if ( !newAIModule )
+            {
+              if ( !missing.empty() )
+                missing += " and ";
+              missing += "newAIModule";
+            }
+            missing += " function";
+
             // Print an error message
-            Broodwar << Text::Red << "ERROR: Failed to find the newAIModule function in " << dll << std::endl;
+            Broodwar << Text::Red << "ERROR: Failed to find the " << missing << " in " << dll << std::endl;
             externalModuleConnected = false;
           }
         }
