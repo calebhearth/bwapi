@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Make_Patrol : public Opcode
+  class Order_Region : public Opcode
   {
   public:
     // Ctor
-    Make_Patrol() : Opcode(Enum::MAKE_PATROL) {};
+    Order_Region(AISCRIPT::Enum::Enum n) : Opcode(n) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

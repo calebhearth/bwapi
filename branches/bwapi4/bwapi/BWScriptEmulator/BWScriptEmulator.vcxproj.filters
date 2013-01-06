@@ -239,9 +239,6 @@
     <ClCompile Include="Set_Gencmd.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Make_Patrol.cpp">
-      <Filter>Opcodes\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Give_Money.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
@@ -255,6 +252,12 @@
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="If_Dif.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Use_Ability.cpp">
+      <Filter>Opcodes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Order_Region.cpp">
       <Filter>Opcodes\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -469,9 +472,6 @@
     <ClInclude Include="Set_Gencmd.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
-    <ClInclude Include="Make_Patrol.h">
-      <Filter>Opcodes\Header FIles</Filter>
-    </ClInclude>
     <ClInclude Include="Give_Money.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
@@ -485,6 +485,12 @@
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
     <ClInclude Include="If_Dif.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Use_Ability.h">
+      <Filter>Opcodes\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="Order_Region.h">
       <Filter>Opcodes\Header FIles</Filter>
     </ClInclude>
   </ItemGroup>

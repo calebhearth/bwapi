@@ -730,10 +730,10 @@ void aithread::execute()
         Player *pl = bw->getPlayer(bPlayer);
         bw->setVision(pl, false); // players swapped for compatibility
         continue;
-      }*/
+      }
     case AISCRIPT::Enum::NUKE_LOCATION: // not started
       this->saveDebug(Text::Red, bOpcode);
-      continue;
+      continue;*/
     case AISCRIPT::Enum::HARASS_LOCATION: // COMPLETED (no code for this)
       this->saveDebug(Text::Green, bOpcode);
       continue;
@@ -820,6 +820,7 @@ void aithread::execute()
       }
       // this->retry();
       // return;
+      /*
     case AISCRIPT::Enum::QUICK_ATTACK:  // not started
       this->saveDebug(Text::Red, bOpcode);
       // AI_AttackManager(thisLocation, 1, 0);
@@ -832,11 +833,12 @@ void aithread::execute()
           UnitWrap(u).SetVirtualUnitOrder(Orders::Enum::JunkYardDog);
         this->saveDebug(Text::Red, bOpcode);
       }
-      continue;
+      continue;*/
     case AISCRIPT::Enum::FAKE_NUKE:   // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       MainController.dwLastNukeTime = bw->elapsedTime() + 1;
       continue;
+      /*
     case AISCRIPT::Enum::DISRUPTION_WEB:  // COMPLETED
       this->saveDebug(Text::Green, bOpcode);
       {
@@ -858,7 +860,7 @@ void aithread::execute()
         if ( pArbiter )
           pArbiter->useTech(TechTypes::Recall, this->location.center());
       }
-      continue;
+      continue;*/
     case AISCRIPT::Enum::SET_RANDOMSEED:  // COMPLETED
       {
         DWORD dwRandomSeed = this->read<DWORD>();

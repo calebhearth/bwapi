@@ -116,7 +116,7 @@
     <ClCompile Include="If_Dif.cpp" />
     <ClCompile Include="JunkYardDog.cpp" />
     <ClCompile Include="Location.cpp" />
-    <ClCompile Include="Make_Patrol.cpp" />
+    <ClCompile Include="Order_Region.cpp" />
     <ClCompile Include="Max_Force.cpp" />
     <ClCompile Include="Military.cpp" />
     <ClCompile Include="Move_DT.cpp" />
@@ -154,6 +154,7 @@
     <ClCompile Include="Train.cpp" />
     <ClCompile Include="UnitInfo.cpp" />
     <ClCompile Include="Upgrade.cpp" />
+    <ClCompile Include="Use_Ability.cpp" />
     <ClCompile Include="Value_Area.cpp" />
     <ClCompile Include="Wait.cpp" />
     <ClCompile Include="Wait_Build.cpp" />
@@ -198,7 +199,7 @@
     <ClInclude Include="Harass_Factor.h" />
     <ClInclude Include="If_Dif.h" />
     <ClInclude Include="Location.h" />
-    <ClInclude Include="Make_Patrol.h" />
+    <ClInclude Include="Order_Region.h" />
     <ClInclude Include="Max_Force.h" />
     <ClInclude Include="Move_DT.h" />
     <ClInclude Include="Multirun.h" />
@@ -236,6 +237,7 @@
     <ClInclude Include="ScriptEnum.h" />
     <ClInclude Include="ScriptThread.h" />
     <ClInclude Include="Upgrade.h" />
+    <ClInclude Include="Use_Ability.h" />
     <ClInclude Include="UType.h" />
     <ClInclude Include="Value_Area.h" />
     <ClInclude Include="Wait.h" />

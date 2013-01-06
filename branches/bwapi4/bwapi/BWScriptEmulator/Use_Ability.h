@@ -3,11 +3,11 @@
 
 namespace AISCRIPT
 {
-  class Attack_Prepare : public Opcode
+  class Use_Ability : public Opcode
   {
   public:
     // Ctor
-    Attack_Prepare(AISCRIPT::Enum::Enum n) : Opcode(n) {};
+    Use_Ability(AISCRIPT::Enum::Enum n) : Opcode(n) {};
 
     // Execute
     virtual bool execute(aithread &thread) const;

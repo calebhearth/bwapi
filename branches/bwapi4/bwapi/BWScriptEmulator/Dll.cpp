@@ -6,6 +6,8 @@
 
 #include "BWScriptEmulator.h"
 
+extern "C" __declspec(dllexport) void gameInit(BWAPI::Game* game) { BWAPI::BroodwarPtr = game; }
+
 BOOL APIENTRY DllMain( HANDLE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
   switch ( dwReason )

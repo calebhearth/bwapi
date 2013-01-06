@@ -12,8 +12,3 @@ bool BWAPI::BWAPI_isDebug()
   return BUILD_DEBUG == 1;
 }
 
-extern "C" __declspec(dllexport) void gameInit(BWAPI::Game* game)
-{
-  BWAPI::BroodwarPtr = game;
-}
-

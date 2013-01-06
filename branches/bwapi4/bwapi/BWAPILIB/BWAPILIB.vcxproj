@@ -62,7 +62,6 @@ COPY /Y "$(SolutionDir)..\Release_Binary\COPYING" "$(SolutionDir)..\Release_Bina
     </PreLinkEvent>
     <Lib>
       <UseUnicodeResponseFiles>false</UseUnicodeResponseFiles>
-      <ExportNamedFunctions>gameInit</ExportNamedFunctions>
     </Lib>
     <PostBuildEvent>
       <Message>Copying BWAPI library to Developer folder</Message>
@@ -94,7 +93,6 @@ COPY /Y "$(SolutionDir)..\Release_Binary\COPYING" "$(SolutionDir)..\Release_Bina
     </PreLinkEvent>
     <Lib>
       <UseUnicodeResponseFiles>false</UseUnicodeResponseFiles>
-      <ExportNamedFunctions>gameInit</ExportNamedFunctions>
     </Lib>
     <PostBuildEvent>
       <Message>Copying BWAPI library to Developer folder</Message>
