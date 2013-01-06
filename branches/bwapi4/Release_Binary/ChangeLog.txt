@@ -1,3 +1,50 @@
+=======================================
+Changes from BWAPI 3.7.3 to BWAPI 3.7.4
+=======================================
+Changes/Additions:
+  * The Random race feature has been corrected and re-enabled. Players who chose Random will have their race displayed as Unknown until they are scouted.
+  * MPQDraft and Chaoslauncher with its plugins are now included in the release.
+  * The exception filter now writes to Starcraft/Errors/.
+  * An Install script is now included. Simply run Install.exe to automatically copy the folders to their desired locations.
+
+Bug Fixes:
+  * Fixed a regression that involved save_replay not working correctly.
+  * Fixed a bug where getUnitsIn_ functions were unable to properly retrieve unit data on the edge of the map.
+  * Fixed several minor buffer overflows.
+  * Fixed a bug that caused some replays to save with 0 frame time (causing a division by 0 exception on loading).
+  * Fixed a bug that prevented auto-menu "join game by name" from functioning.
+
+=======================================
+Changes from BWAPI 3.7.2 to BWAPI 3.7.3
+=======================================
+Bug Fixes:
+  * Fixed a bug where UnitTypes::maxUnitHeight was returning the max unit width instead.
+  * Fixed a regression where getUnitsIn functions did not function for non-client AI.
+  * Fixed the client's Game::getForces which included the null force.
+  * Fixed a client bug where Force::getName could return an invalid string.
+  * Fixed an auto_menu bug which prevented Zerg from being selected as a race.
+  * Fixed a bug where BWAPI's version checking was too strict.
+  * Fixed a bug that allowed bots to tell if an opponent had constructed a structure in the fog of war using Game::canBuildHere and Game::isBuildable.
+  * Fixed a bug where drawText with a string over 255 characters could cause an overflow.
+  * Fixed a bug involving some uninitialized game data causing an inconsistency during the first game.
+  * Fixed an issue where shared memory would require high level permissions such as administrator. The permission requirement should now be reduced.
+
+=======================================
+Changes from BWAPI 3.7.1 to BWAPI 3.7.2
+=======================================
+Changes:
+  * The exception filter now informs of NULL Broodwar pointers when the game crashes, making it more informative.
+  * The exception filter now destroys the direct draw window (if the game crashes in full screen) to make debugging easier.
+  * BWAPI will drop players from the game when the countdown timer reaches 0.
+  * The random race implementation was disabled because it was not working correctly.
+
+Additions:
+  * Added an onPlayerDropped event which is currently only called for the tournament module.
+
+Bug Fixes:
+  * Fixed a bug that caused a crash in a map where extended players were being used.
+  * Fixed an issue where BWAPI would allocate a huge amount of unused shared memory.
+
 =====================================
 Changes from BWAPI 3.7 to BWAPI 3.7.1
 =====================================
