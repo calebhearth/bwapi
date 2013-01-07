@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <list>
 
 //#include <BWAPI/AIModule.h>
 #include <BWAPI/Game.h>
@@ -394,7 +395,7 @@ namespace BWAPI
       bool externalModuleConnected;
       bool calledMatchEnd;
       bool tournamentCheck(Tournament::ActionID type, void *parameter = nullptr);
-      std::vector<UnitCommand> commandOptimizer[UnitCommandTypes::Enum::MAX];
+      std::list<UnitCommand> commandOptimizer[UnitCommandTypes::Enum::MAX];
 
       int lastEventTime;
       int addShape(const BWAPIC::Shape &s);

@@ -194,7 +194,7 @@ void TestMap1::onStart()
     BWAssert(neutral->isResearching(t)==false);
     BWAssert(Broodwar->enemy()->hasResearched(t)==false);
     BWAssert(neutral->hasResearched(t)==false);
-    if (t.whatResearches()==UnitTypes::None)
+    if (t.whatResearches()==UnitTypes::None && t != TechTypes::None )
     {
       BWAssertErr(Broodwar->self()->hasResearched(t)==true, t.c_str());
     }

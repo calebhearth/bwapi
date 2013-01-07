@@ -57,33 +57,15 @@ void DevAIModule::onFrame()
   if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
     return;
 
-  Unitset myUnits = self->getUnits();
-  for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
-  {
-    if ( u->isIdle() && u->isCompleted() )  // idle units
-    {
-      if ( u->getType().isWorker() ) // worker units
-      {
-        // test radius units
-        //Unitset uset = u->getUnitsInRadius(1024, IsMineralField);
-        //for ( auto i = uset.begin(); i != uset.end(); ++i )
-          //Broodwar->drawLineMap(u->getPosition(), i->getPosition(), Colors::Brown);
+  self->getUnits().move(bw->getMousePosition()+bw->getScreenPosition());
+  self->getUnits().burrow();
+  self->getUnits().siege();
+  self->getUnits().attack(bw->getMousePosition()+bw->getScreenPosition());
+  self->getUnits().holdPosition();
+  self->getUnits().rightClick(bw->getMousePosition()+bw->getScreenPosition());
+  self->getUnits().cloak();
+  self->getUnits().stop();
 
-        Unit *pMineral = u->getClosestUnit(IsMineralField, 1024);
-        if ( pMineral != nullptr )
-          Broodwar->drawLineMap(u->getPosition(), pMineral->getPosition(), Colors::Green);
-        //u->gather( u->getClosestUnit(IsMineralField, 1024) );
-
-      }
-
-      if ( u->getType().isResourceDepot() ) // center
-      {
-        u->train( u->getType().getRace().getWorker() );
-      }
-      
-    }
-
-  }
 }
 
 void DevAIModule::onSendText(std::string text)

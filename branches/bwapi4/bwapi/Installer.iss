@@ -29,7 +29,7 @@ Source: "..\Release_Binary\ExampleProjects.sln"; DestDir: "{app}"; Flags: ignore
 Source: "..\Release_Binary\Starcraft\bwapi-data\data\bspatch.exe"; DestDir: "{code:BroodwarPath}\bwapi-data\data\"; Flags: ignoreversion; Components: Binaries\BWAPI ; Check: GetBroodwarPath
 
 [Setup]
-AppName=Brood War Application Programming Interface (BWAPI)
+AppName=BWAPI
 AppId={{5025BB16-9672-4C23-979D-2DC1B276CC5E}
 LicenseFile=C:\Projects\BWAPI\branches\bwapi4\Release_Binary\COPYING
 InfoBeforeFile=C:\Projects\BWAPI\branches\bwapi4\Release_Binary\ChangeLog.txt

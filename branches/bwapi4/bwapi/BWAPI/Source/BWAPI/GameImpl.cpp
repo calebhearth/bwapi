@@ -680,25 +680,22 @@ namespace BWAPI
     // Iterate the set of units
     foreach(Unit* u, units)
     {
-      // If the unit exists and can issue the command
-      if ( u && u->exists() && u->canIssueCommand(command) )
+      // Skip on invalid units that can't issue commands
+      if ( !u || !u->exists() || !u->canIssueCommand(command) )
+        continue;
+      
+      // If the command optimizer has taken over the command, then don't add it to this group
+      if ( ((UnitImpl*)u)->prepareIssueCommand(command) )
+        continue;
+
+      // Insert the unit into the next group
+      nextGroup.push_back(u);
+
+      // Create a new group of 12
+      if ( nextGroup.size() >= 12 )
       {
-        // Get the first available larva if the unit is a Hatchery/Lair/Hive
-        if ( (command.type == UnitCommandTypes::Train ||
-              command.type == UnitCommandTypes::Morph) &&
-              u->getType().producesLarva() && 
-              command.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
-          u = *u->getLarva().begin();
-
-        // Insert the unit into the next group
-        nextGroup.push_back((UnitImpl*)u);
-
-        // Create a new group of 12
-        if ( nextGroup.size() >= 12 )
-        {
-          groupsOf12.push_back(nextGroup);
-          nextGroup.clear();
-        }
+        groupsOf12.push_back(nextGroup);
+        nextGroup.clear();
       }
     }
 
@@ -727,19 +724,6 @@ namespace BWAPI
 
       // Execute the command
       BroodwarImpl.executeCommand( command );
-
-      // Iterate each unit in the group
-      foreach(UnitImpl *j, *i)
-      {
-        // Set the last unit command info
-        j->lastCommandFrame = BroodwarImpl.frameCount;
-        j->lastCommand    = command;
-
-        // Add the unit command to the latency compensation buffer 
-        // for each unit individually
-        command.unit        = (Unit*)j;
-        BroodwarImpl.addToCommandBuffer(new Command(command));
-      }
     }
     return true;
   }

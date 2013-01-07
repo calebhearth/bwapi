@@ -5,6 +5,7 @@ bool lastIsAttackFrame;
 void MicroTest::onStart()
 {
   Broodwar->enableFlag(Flag::UserInput);
+  Broodwar->setCommandOptimizationLevel(4);
 }
 void MicroTest::onFrame()
 {
@@ -43,7 +44,7 @@ void MicroTest::onFrame()
   for each(Unit* s in Broodwar->self()->getUnits())
   {
     isAttackFrame = isAttackFrame || s->isAttackFrame();
-    if (s->getGroundWeaponCooldown()>maxCoolDown)
+    if (s->getGroundWeaponCooldown() > maxCoolDown)
       maxCoolDown = s->getGroundWeaponCooldown();
   }
   if (lastIsAttackFrame && !isAttackFrame)
@@ -63,7 +64,7 @@ void MicroTest::onFrame()
         Unit* e = p.first;
         for each(Unit* s in p.second)
         {
-          if (Broodwar->getFrameCount()-s->getLastCommandFrame()>4)
+          if (Broodwar->getFrameCount() - s->getLastCommandFrame() > 4)
           {
             if (e)
             {

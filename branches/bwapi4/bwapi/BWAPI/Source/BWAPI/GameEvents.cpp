@@ -661,15 +661,25 @@ namespace BWAPI
         UnitType  ut;
         bool      o = false;
 
-        // Iterate the vector
-        std::vector<UnitCommand>::iterator c = commandOptimizer[i].begin();
+        // Iterate the list
+        auto c = commandOptimizer[i].begin();
+
         // Re-Iterate all remaining commands
         while ( c != commandOptimizer[i].end() )
         {
           // Iterate all commands, and only process those that are equal
           while ( c != commandOptimizer[i].end() )
           {
-            if ( groupOf12.empty() ) // If we are starting a new command grouping
+            // Ignore anything but the command that the unit last processed
+            if ( //((UnitImpl*)c->unit)->lastImmediateCommandFrame == this->getFrameCount() &&
+                   ((UnitImpl*)c->unit)->lastImmediateCommand != *c )
+            {
+              c = commandOptimizer[i].erase(c);
+              continue;
+            }
+
+            // If we are starting a new command grouping
+            if ( groupOf12.empty() )
             {
               // Assign our comparison variables to determine which commands should be grouped
               // Note: Using individual variables instead of comparing UnitCommand operator== because
@@ -689,7 +699,6 @@ namespace BWAPI
               else
                 o = false;
               groupOf12.push_back((UnitImpl*)c->unit);
-              BroodwarImpl.addToCommandBuffer(new Command(*c));
               c = commandOptimizer[i].erase(c);
             } // otherwise if this command is the same as the first, the units can be grouped
             else if ( e == c->extra && t == c->target && x == c->x && y == c->y )
@@ -708,7 +717,6 @@ namespace BWAPI
               if ( o == oTmp )
               {
                 groupOf12.push_back((UnitImpl*)c->unit);
-                BroodwarImpl.addToCommandBuffer(new Command(*c));
                 c = commandOptimizer[i].erase(c);
               }
               else

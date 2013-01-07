@@ -45,7 +45,9 @@ namespace BWAPI
       , lastAirWeaponCooldown(0)
       , startingAttack(false)
       , lastCommandFrame(0)
+      , lastImmediateCommandFrame(0)
       , lastCommand()
+      , lastImmediateCommand()
       , id(-1)
   {
     clear();
@@ -60,31 +62,55 @@ namespace BWAPI
     id = newID;
   }
   //--------------------------------------------- ISSUE COMMAND ----------------------------------------------
-  bool UnitImpl::issueCommand(UnitCommand command)
+  void UnitImpl::setLastImmediateCommand(const UnitCommand &command)
   {
-    if ( !canIssueCommand(command) )
-      return false;
-
+    // Set last immediate command and immediate command frame
+    if ( command.type != UnitCommandTypes::Cloak && 
+         command.type != UnitCommandTypes::Decloak && 
+         command.type != UnitCommandTypes::Unload &&
+         !command.isQueued() )
+    {
+      ((UnitImpl*)command.unit)->lastImmediateCommand = command;
+      ((UnitImpl*)command.unit)->lastImmediateCommandFrame = BroodwarImpl.frameCount;
+    }
+  }
+  bool UnitImpl::prepareIssueCommand(UnitCommand &command)
+  {
     command.unit = this;
 
+    // If using train or morph on a hatchery, automatically switch selection to larva
+    // (assuming canIssueCommand ensures that there is a larva)
     if ( (command.type == UnitCommandTypes::Train ||
           command.type == UnitCommandTypes::Morph) &&
          getType().producesLarva() && command.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
       command.unit = *getLarva().begin();
 
+    // Set last command and command frames
     ((UnitImpl*)command.unit)->lastCommandFrame = BroodwarImpl.frameCount;
     ((UnitImpl*)command.unit)->lastCommand      = command;
+    ((UnitImpl*)command.unit)->setLastImmediateCommand(command);
     if (command.type == UnitCommandTypes::Use_Tech_Unit && command.target && 
        (command.extra == TechTypes::Archon_Warp || command.extra == TechTypes::Dark_Archon_Meld))
     {
       ((UnitImpl*)command.target)->lastCommandFrame = BroodwarImpl.frameCount;
       ((UnitImpl*)command.target)->lastCommand      = command;
+      ((UnitImpl*)command.target)->setLastImmediateCommand(command);
     }
 
+    // Add to command optimizer if possible, as well as the latency compensation buffer
     BroodwarImpl.addToCommandBuffer(new Command(command));
-    if ( BroodwarImpl.addToCommandOptimizer(command) )
+    return BroodwarImpl.addToCommandOptimizer(command);
+  }
+  bool UnitImpl::issueCommand(UnitCommand command)
+  {
+    if ( !canIssueCommand(command) )
+      return false;
+    
+    // If the command optimizer has decided to take over
+    if ( this->prepareIssueCommand(command) )
       return true;
 
+    // Select High templar for morphing
     if (command.type == UnitCommandTypes::Use_Tech_Unit && command.target &&
        (command.extra == TechTypes::Archon_Warp || command.extra == TechTypes::Dark_Archon_Meld))
     {
@@ -97,8 +123,9 @@ namespace BWAPI
       QueueGameCommand(&sel, sel.size);
     }
     else if ( command.type != UnitCommandTypes::Unload || BroodwarImpl.commandOptimizerLevel < 2 )
-      ((UnitImpl*)command.unit)->orderSelect();
+      ((UnitImpl*)command.unit)->orderSelect();   // Unload optimization (no select)
 
+    // Immediately execute the command
     BroodwarImpl.executeCommand( command );
     return true;
   }

@@ -212,6 +212,12 @@ namespace BWAPI
       int lastCommandFrame;
       UnitCommand lastCommand;
 
+      int lastImmediateCommandFrame;
+      UnitCommand lastImmediateCommand;
+
+      void setLastImmediateCommand(const UnitCommand &command);
+      bool prepareIssueCommand(UnitCommand &command);
+
       void clear();
     private:
       /** Orders to select this unit (previous selection will be lost. */

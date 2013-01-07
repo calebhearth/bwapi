@@ -20,6 +20,8 @@ using namespace std;
 using namespace BWAPI;
 void ProtossTest::onStart()
 {
+  //Broodwar->setCommandOptimizationLevel(2);
+
   BWAssert(Broodwar->isReplay()==false);
   Broodwar->enableFlag(Flag::CompleteMapInformation);
 
