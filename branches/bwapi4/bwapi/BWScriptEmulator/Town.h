@@ -22,9 +22,13 @@ public:
 
   static std::vector<Town*> allTowns;
 
+  void AddUnit(BWAPI::Unit *pUnit);
+
 private:
   BWAPI::Unitset townWorkers;
   BWAPI::Unitset townTaskers;
+
+ // bool townInitialized;
 
   int desiredWorkerCount;
   int currentWorkerCount;

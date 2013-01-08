@@ -32,7 +32,7 @@ namespace UnitInfo
     AI_Controller_Type,
     AI_Controller_Timer,
 
-    Worker_Harvest_Task,
+    Worker_Task,
 
     Guard_Return_X,
     Guard_Return_Y,
@@ -75,6 +75,7 @@ public:
   CaptainTypes::Enum GetCaptainType() const;
   BWAPI::Position GetGuardReturnPosition() const;
   int GetTargetFlags() const;
+  int GetWorkerTask() const;
 
   // SetInfo
   void SetOrderState(int state);
@@ -86,6 +87,7 @@ public:
   void SetCaptainType(int type);
   void SetGuardReturnPosition(BWAPI::Position pos);
   void SetTargetFlags(int flags);
+  void SetWorkerTask(int type);
 
   // Procedures
   void UpdateOrderTimers();

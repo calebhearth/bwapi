@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AIControl.cpp" />
+    <ClCompile Include="Allies_Watch.cpp" />
     <ClCompile Include="Attack_Add.cpp" />
     <ClCompile Include="Attack_Clear.cpp" />
     <ClCompile Include="Attack_Do.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Clear_Combatdata.cpp" />
     <ClCompile Include="ComputerAI.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Create_Unit.cpp" />
     <ClCompile Include="Creep.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Default_Build.cpp" />
@@ -105,17 +107,26 @@
     <ClCompile Include="Enter_Transport.cpp" />
     <ClCompile Include="Eval_Harass.cpp" />
     <ClCompile Include="Expand.cpp" />
+    <ClCompile Include="Fake_Nuke.cpp" />
     <ClCompile Include="Farms_Timing.cpp" />
     <ClCompile Include="Get_OldPeons.cpp" />
     <ClCompile Include="Give_Money.cpp" />
     <ClCompile Include="Goto.cpp" />
     <ClCompile Include="Groundmap_Jump.cpp" />
     <ClCompile Include="Guard.cpp" />
+    <ClCompile Include="Guard_All.cpp" />
     <ClCompile Include="Guard_Resources.cpp" />
     <ClCompile Include="Harass_Factor.cpp" />
+    <ClCompile Include="Harass_Location.cpp" />
+    <ClCompile Include="Help_IfTrouble.cpp" />
     <ClCompile Include="If_Dif.cpp" />
+    <ClCompile Include="If_Owned.cpp" />
+    <ClCompile Include="Implode.cpp" />
     <ClCompile Include="JunkYardDog.cpp" />
+    <ClCompile Include="Killable.cpp" />
+    <ClCompile Include="Kill_Thread.cpp" />
     <ClCompile Include="Location.cpp" />
+    <ClCompile Include="Nuke_Pos.cpp" />
     <ClCompile Include="Order_Region.cpp" />
     <ClCompile Include="Max_Force.cpp" />
     <ClCompile Include="Military.cpp" />
@@ -141,6 +152,7 @@
     <ClCompile Include="Send_Suicide.cpp" />
     <ClCompile Include="Set_Attacks.cpp" />
     <ClCompile Include="Set_Gencmd.cpp" />
+    <ClCompile Include="Set_RandomSeed.cpp" />
     <ClCompile Include="Sharedvision.cpp" />
     <ClCompile Include="Start_Campaign.cpp" />
     <ClCompile Include="Start_Town.cpp" />
@@ -152,6 +164,7 @@
     <ClCompile Include="Time_Jump.cpp" />
     <ClCompile Include="Town.cpp" />
     <ClCompile Include="Train.cpp" />
+    <ClCompile Include="Try_Townpoint.cpp" />
     <ClCompile Include="UnitInfo.cpp" />
     <ClCompile Include="Upgrade.cpp" />
     <ClCompile Include="Use_Ability.cpp" />
@@ -159,6 +172,7 @@
     <ClCompile Include="Wait.cpp" />
     <ClCompile Include="Wait_Build.cpp" />
     <ClCompile Include="Wait_Bunkers.cpp" />
+    <ClCompile Include="Wait_FinishAttack.cpp" />
     <ClCompile Include="Wait_Train.cpp" />
     <ClCompile Include="Wait_Upgrades.cpp" />
     <ClCompile Include="Worker.cpp" />
@@ -168,6 +182,7 @@
     <ClCompile Include="UType.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Allies_Watch.h" />
     <ClInclude Include="Attack_Add.h" />
     <ClInclude Include="Attack_Clear.h" />
     <ClInclude Include="Attack_Do.h" />
@@ -180,6 +195,7 @@
     <ClInclude Include="Check_Transports.h" />
     <ClInclude Include="Clear_Combatdata.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Create_Unit.h" />
     <ClInclude Include="Creep.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Default_Build.h" />
@@ -191,14 +207,23 @@
     <ClInclude Include="Enter_Transport.h" />
     <ClInclude Include="Eval_Harass.h" />
     <ClInclude Include="Expand.h" />
+    <ClInclude Include="Fake_Nuke.h" />
     <ClInclude Include="Farms_Timing.h" />
     <ClInclude Include="Get_OldPeons.h" />
     <ClInclude Include="Give_Money.h" />
     <ClInclude Include="Groundmap_Jump.h" />
+    <ClInclude Include="Guard_All.h" />
     <ClInclude Include="Guard_Resources.h" />
     <ClInclude Include="Harass_Factor.h" />
+    <ClInclude Include="Harass_Location.h" />
+    <ClInclude Include="Help_IfTrouble.h" />
     <ClInclude Include="If_Dif.h" />
+    <ClInclude Include="If_Owned.h" />
+    <ClInclude Include="Implode.h" />
+    <ClInclude Include="Killable.h" />
+    <ClInclude Include="Kill_Thread.h" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Nuke_Pos.h" />
     <ClInclude Include="Order_Region.h" />
     <ClInclude Include="Max_Force.h" />
     <ClInclude Include="Move_DT.h" />
@@ -223,6 +248,7 @@
     <ClInclude Include="Send_Suicide.h" />
     <ClInclude Include="Set_Attacks.h" />
     <ClInclude Include="Set_Gencmd.h" />
+    <ClInclude Include="Set_RandomSeed.h" />
     <ClInclude Include="Sharedvision.h" />
     <ClInclude Include="Start_Campaign.h" />
     <ClInclude Include="Start_Town.h" />
@@ -233,6 +259,7 @@
     <ClInclude Include="Time_Jump.h" />
     <ClInclude Include="Town.h" />
     <ClInclude Include="Train.h" />
+    <ClInclude Include="Try_Townpoint.h" />
     <ClInclude Include="UnitInfo.h" />
     <ClInclude Include="ScriptEnum.h" />
     <ClInclude Include="ScriptThread.h" />
@@ -243,6 +270,7 @@
     <ClInclude Include="Wait.h" />
     <ClInclude Include="Wait_Build.h" />
     <ClInclude Include="Wait_Bunkers.h" />
+    <ClInclude Include="Wait_FinishAttack.h" />
     <ClInclude Include="Wait_Train.h" />
     <ClInclude Include="Wait_Upgrades.h" />
   </ItemGroup>

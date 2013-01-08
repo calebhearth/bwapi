@@ -89,6 +89,10 @@ CaptainTypes::Enum UnitWrap::GetCaptainType() const
 {
   return pUnit->getClientInfo<CaptainTypes::Enum>(UnitInfo::AI_Captain_Type);
 }
+int UnitWrap::GetWorkerTask() const
+{
+  return pUnit->getClientInfo<int>(UnitInfo::Worker_Task);
+}
 
 BWAPI::Position UnitWrap::GetGuardReturnPosition() const
 {
@@ -141,6 +145,10 @@ void UnitWrap::SetControlType(int type)
 void UnitWrap::SetCaptainType(int type)
 {
   pUnit->setClientInfo(type, UnitInfo::AI_Captain_Type);
+}
+void UnitWrap::SetWorkerTask(int type)
+{
+  pUnit->setClientInfo(type, UnitInfo::Worker_Task);
 }
 
 void UnitWrap::SetGuardReturnPosition(Position pos)

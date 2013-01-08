@@ -12,10 +12,10 @@ bool Build::execute(aithread &thread) const
   WORD wUnitType;
   thread.readTuple( std::tie(bBuildCount, wUnitType, bPriority) );
 
-        //if ( bBuildCount <= 30 && wBuildType < UnitTypes::None )
-        //  this->pTown->MacroManagerSet(MACRO_BUILD, bBuildCount, wBuildType, bPriority, false);
+  //if ( bBuildCount <= 30 && wBuildType < UnitTypes::None )
+  //  this->pTown->MacroManagerSet(MACRO_BUILD, bBuildCount, wBuildType, bPriority, false);
 
   // Save debug info and return
-  thread.saveDebug(Text::Red, this->getOpcode(), "%3u %s %3u", bBuildCount, AISCRIPT::getUnitName(wUnitType), bPriority);
+  thread.saveDebug(Text::Red, this->getOpcode(), "%u %s %u", bBuildCount, AISCRIPT::getUnitName(wUnitType), bPriority);
   return true;
 }

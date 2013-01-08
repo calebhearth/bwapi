@@ -7,9 +7,15 @@ Enter_Transport enter_bunker_impl(AISCRIPT::Enum::ENTER_BUNKER);
 Enter_Transport enter_transport_impl(AISCRIPT::Enum::ENTER_TRANSPORT);
 Enter_Transport exit_transport_impl(AISCRIPT::Enum::EXIT_TRANSPORT);
 
-auto baseProc   = GetPlayer == Broodwar->self() && IsCompleted;
-auto bunkerProc = baseProc && GetRace == Races::Terran && IsOrganic;
-auto transProc  = baseProc && SpaceRequired < 8;
+auto baseProc   = [](Unit *u)->bool{ return u->getPlayer() == Broodwar->self() && u->isCompleted(); };
+bool bunkerProc(Unit *u)
+{
+  return (GetRace == Races::Terran && IsOrganic && baseProc)(u);
+}
+bool transProc(Unit *u)
+{
+  return (SpaceRequired < 8 && baseProc)(u);
+}
 
 bool Enter_Transport::execute(aithread &thread) const
 {
