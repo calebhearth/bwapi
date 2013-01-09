@@ -54,7 +54,7 @@ void FollowTest::update()
   if (unit->getDistance(target)>32*15 && started==false)
   {
     BWAssertF(unit->follow(target),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
-    BWAssertF(unit->getOrder()==Orders::Follow,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+    BWAssertF(unit->getOrder()==Orders::Follow,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     BWAssertF(unit->getTarget()==target,{fail=true;return;});
     started=true;
     startFrame=Broodwar->getFrameCount();
@@ -64,21 +64,21 @@ void FollowTest::update()
   {
     if (thisFrame<startFrame+50)
     {
-      BWAssertF(unit->getOrder()==Orders::Follow,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+      BWAssertF(unit->getOrder()==Orders::Follow,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
       BWAssertF(unit->getTarget()==target || unit->getOrderTarget()==target,{fail=true;return;});
     }
     else if (thisFrame==startFrame+50)
     {
-      BWAssertF(unit->stop(),{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
-      BWAssertF(unit->isIdle()==true,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+      BWAssertF(unit->stop(),{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
+      BWAssertF(unit->isIdle()==true,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     }
     else if (thisFrame<startFrame+100)
     {
     }
     else if (thisFrame<startFrame+200)
     {
-      BWAssertF(unit->isIdle()==true,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
-      BWAssertF(unit->isMoving()==false || unit->isBraking(),{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+      BWAssertF(unit->isIdle()==true,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
+      BWAssertF(unit->isMoving()==false || unit->isBraking(),{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
       running = false;
     }
     else if (thisFrame==startFrame+200)

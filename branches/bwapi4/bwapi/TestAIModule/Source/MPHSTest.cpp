@@ -89,7 +89,7 @@ void MPHSTest::update()
   }
   else if (thisFrame<startFrame+175)
   {
-    BWAssertF(unit->getOrder()==Orders::Patrol,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+    BWAssertF(unit->getOrder()==Orders::Patrol,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     BWAssertF(unit->isPatrolling()==true,{fail=true;return;});
     BWAssertF(unit->isMoving()==true,{fail=true;return;});
     BWAssertF(unit->isIdle()==false,{fail=true;return;});
@@ -101,13 +101,13 @@ void MPHSTest::update()
   }
   else if (thisFrame==startFrame+175)
   {
-    BWAssertF(unit->getOrder()==Orders::Patrol,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+    BWAssertF(unit->getOrder()==Orders::Patrol,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     BWAssertF(unit->isPatrolling()==true,{fail=true;return;});
     BWAssertF(unit->isMoving()==true,{fail=true;return;});
     BWAssertF(unit->isIdle()==false,{fail=true;return;});
     //sometimes fails
     //BWAssertF(unit->getTargetPosition()==targetPosition,{fail=true;return;});
-    BWAssertF(unit->holdPosition(),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(unit->holdPosition(),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
     BWAssertF(unit->isHoldingPosition()==true,{fail=true;return;});
     BWAssertF(unit->isMoving()==false,{fail=true;return;});
     BWAssertF(unit->isPatrolling()==false,{fail=true;return;});
@@ -115,7 +115,7 @@ void MPHSTest::update()
   }
   else if (thisFrame<startFrame+300)
   {
-    BWAssertF(unit->isHoldingPosition()==true,{Broodwar->printf("order: %s, order2: %s",unit->getOrder().getName().c_str(),unit->getSecondaryOrder().getName().c_str());fail=true;return;});
+    BWAssertF(unit->isHoldingPosition()==true,{Broodwar->printf("order: %s, order2: %s",unit->getOrder().c_str(),unit->getSecondaryOrder().c_str());fail=true;return;});
     if (thisFrame>startFrame+250)
     {
       BWAssertF(unit->isMoving()==false,{fail=true;return;});

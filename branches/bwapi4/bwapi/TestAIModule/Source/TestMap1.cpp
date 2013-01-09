@@ -167,11 +167,11 @@ void TestMap1::onStart()
   {
     if (t.isBuilding() && t.getRace() == Races::Terran && !t.isSpecialBuilding() )
     {
-      BWAssertF(Broodwar->self()->completedUnitCount(t)>0, { log("  No %s owned.", t.getName().c_str()); });
+      BWAssertF(Broodwar->self()->completedUnitCount(t)>0, { log("  No %s owned.", t.c_str()); });
     }
     else
     {
-      BWAssertF(Broodwar->self()->completedUnitCount(t)==0, { log("  Extra %s owned.", t.getName().c_str()); });
+      BWAssertF(Broodwar->self()->completedUnitCount(t)==0, { log("  Extra %s owned.", t.c_str()); });
     }
     BWAssert(Broodwar->self()->incompleteUnitCount(t)==0);
     BWAssert(Broodwar->self()->deadUnitCount(t)==0);

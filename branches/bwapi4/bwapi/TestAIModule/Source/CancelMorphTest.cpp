@@ -6,7 +6,7 @@ using namespace BWAPI;
 {\
   if (!(C))\
   {\
-    log("Assert failed @%s:%u %s[%s:%s] (%s)",__FILE__,__LINE__, producer ? producer->getType().getName().c_str() : "NULL", unitType.getName().c_str(), producer ? producer->getOrder().getName().c_str() : "null", Broodwar->getLastError().toString().c_str());\
+    log("Assert failed @%s:%u %s[%s:%s] (%s)",__FILE__,__LINE__, producer ? producer->getType().c_str() : "NULL", unitType.c_str(), producer ? producer->getOrder().c_str() : "null", Broodwar->getLastError().c_str());\
     assert_fail_count++;\
     fail = true;\
     return;\
@@ -51,7 +51,7 @@ void CancelMorphTest::start()
   producer->morph(unitType);
   BWAssertF(producer->getBuildType()==unitType,
   {
-    log("%s != %s",producer->getBuildType().getName().c_str(),unitType.getName().c_str());
+    log("%s != %s",producer->getBuildType().c_str(),unitType.c_str());
     fail=true;
     return;
   });
@@ -86,7 +86,7 @@ void CancelMorphTest::update()
   {
     BWAssertF(producer->getBuildType()==unitType,
     {
-      log("%s != %s, this frame = %d, start frame = %d",producer->getBuildType().getName().c_str(),unitType.getName().c_str(),thisFrame,startFrame);
+      log("%s != %s, this frame = %d, start frame = %d",producer->getBuildType().c_str(),unitType.c_str(),thisFrame,startFrame);
       fail=true;
       return;
     });
@@ -96,7 +96,7 @@ void CancelMorphTest::update()
     FAILTEST(producer->isIdle()==false);
     FAILTEST(producer->isResearching()==false);
     FAILTEST(producer->isUpgrading()==false);
-    BWAssertF(producer->getTech()==TechTypes::None,{log("%s",producer->getTech().getName().c_str());fail=true;return;});
+    BWAssertF(producer->getTech()==TechTypes::None,{log("%s",producer->getTech().c_str());fail=true;return;});
     FAILTEST(producer->getUpgrade()==UpgradeTypes::None);
   }
   if (thisFrame==startFrame+200)
@@ -108,7 +108,7 @@ void CancelMorphTest::update()
   {
     if (producer->exists() || producerType!=UnitTypes::Zerg_Larva)
     {
-      BWAssertF(producer->getBuildType()==UnitTypes::None,{log("%d: %s",thisFrame-startFrame,producer->getBuildType().getName().c_str());fail=true;return;});
+      BWAssertF(producer->getBuildType()==UnitTypes::None,{log("%d: %s",thisFrame-startFrame,producer->getBuildType().c_str());fail=true;return;});
       BWAssertF(producer->isMorphing()==false,{log("%d",thisFrame-startFrame);});
       BWAssertF(producer->isConstructing()==false,{log("%d",thisFrame-startFrame);});
       FAILTEST(producer->isTraining()==false);

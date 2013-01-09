@@ -2,7 +2,7 @@
 #include "BWAssert.h"
 using namespace std;
 using namespace BWAPI;
-#define LOGTYPE log("UpgradeType: %s", upgradeType.getName().c_str())
+#define LOGTYPE log("UpgradeType: %s", upgradeType.c_str())
 UpgradeTest::UpgradeTest(BWAPI::UpgradeType upgradeType) : upgradeType(upgradeType),
                                                            upgrader(NULL),
                                                            startUpgradeFrame(-1),

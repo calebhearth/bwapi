@@ -9,7 +9,7 @@ BuildingPlacer* placer=NULL;
 {\
   if (!(C))\
   {\
-    log("Assert failed @%s:%u %s[%s:%s]->%s[%s] (%s)",__FILE__,__LINE__, builder ? builder->getType().getName().c_str() : "NULL", unitType.getName().c_str(), builder ? builder->getOrder().getName().c_str() : "null", building ? building->getType().getName().c_str() : "NULL", building ? building->getOrder().getName().c_str() : "null", Broodwar->getLastError().toString().c_str());\
+    log("Assert failed @%s:%u %s[%s:%s]->%s[%s] (%s)",__FILE__,__LINE__, builder ? builder->getType().c_str() : "NULL", unitType.c_str(), builder ? builder->getOrder().c_str() : "null", building ? building->getType().c_str() : "NULL", building ? building->getOrder().c_str() : "null", Broodwar->getLastError().c_str());\
     assert_fail_count++;\
     fail = true;\
     return;\
@@ -75,7 +75,7 @@ void BuildTest::start()
   FAILTEST( builder->isConstructing() );
   BWAssertF(builder->getBuildType()==unitType,
   {
-    log("Error: %s != %s",builder->getBuildType().getName().c_str(),unitType.getName().c_str());
+    log("Error: %s != %s",builder->getBuildType().c_str(),unitType.c_str());
     fail=true;
     return;
   });

@@ -216,7 +216,7 @@ void ExampleAIModule::onUnitCreate(BWAPI::Unit* unit)
       int seconds = Broodwar->getFrameCount()/24;
       int minutes = seconds/60;
       seconds %= 60;
-      Broodwar->sendText("%.2d:%.2d: %s creates a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
+      Broodwar->sendText("%.2d:%.2d: %s creates a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().c_str());
     }
   }
 }
@@ -235,7 +235,7 @@ void ExampleAIModule::onUnitMorph(BWAPI::Unit* unit)
       int seconds = Broodwar->getFrameCount()/24;
       int minutes = seconds/60;
       seconds %= 60;
-      Broodwar->sendText("%.2d:%.2d: %s morphs a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().getName().c_str());
+      Broodwar->sendText("%.2d:%.2d: %s morphs a %s", minutes, seconds, unit->getPlayer()->getName().c_str(), unit->getType().c_str());
     }
   }
 }

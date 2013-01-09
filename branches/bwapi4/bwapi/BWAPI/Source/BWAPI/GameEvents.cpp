@@ -794,7 +794,7 @@ namespace BWAPI
         }
       }
       setTextSize(0);
-      drawTextScreen(64, 300, "\x04" "(%u, %u)", (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
+      drawTextScreen(64, 300, "%c(%u, %u)", Text::White, (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
       setTextSize();
     } // grid
 
@@ -913,7 +913,7 @@ namespace BWAPI
             drawLineMap(r->getCenter(), neighbor->getCenter(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
         }
         if ( r == selectedRgn )
-          drawTextMap(r->getCenter().x, r->getCenter().y, "%cTiles: %u\nPaths: %u\nFlags: %u\nGroupID: %u", 4, r->tileCount, r->pathCount, r->defencePriority, r->groupIndex);
+          drawTextMap(r->getCenter(), "%cTiles: %u\nPaths: %u\nFlags: %u\nGroupID: %u", Text::White, r->tileCount, r->pathCount, r->defencePriority, r->groupIndex);
       }
       for ( int i = 0; i < 4; ++i )
       {
@@ -946,25 +946,25 @@ namespace BWAPI
             drawLineMap(cont->v[0], cont->v[1], cont->v[0], cont->v[2], select ? Colors::Cyan : Colors::Green);
             break;
           default:
-            this->printf("Default case! %u", cont->type);
+            Broodwar << "Default case! " << cont->type << std::endl;
             break;
           }
           if ( select )
           {
             BYTE b = cont->unk_relation;
             unsigned int len = abs(cont->v[2] - cont->v[1]);
-            drawTextMouse(32, 0, "%cLength: %u\n%cUnknown: %u (0x%02X) (b%u%u%u%u%u%u%u%u)", 4, len, 4, b, b, b&0x80 ? 1:0, b&0x40 ? 1:0, b&0x20 ? 1:0, b&0x10 ? 1:0, b&8 ? 1:0, b&4 ? 1:0, b&2 ? 1:0, b&1 ? 1:0);
+            drawTextMouse(32, 0, "%cLength: %u\n%cUnknown: %u (0x%02X) (b%u%u%u%u%u%u%u%u)", Text::White, len, Text::White, b, b, b&0x80 ? 1:0, b&0x40 ? 1:0, b&0x20 ? 1:0, b&0x10 ? 1:0, b&8 ? 1:0, b&4 ? 1:0, b&2 ? 1:0, b&1 ? 1:0);
           }
         }
       }
       /*
       foreach (BWAPI::Region *r, this->regionsList )
       {
-        drawTextMap(r->getCenter().x, r->getCenter().y, "%u", r->getRegionGroupID());
+        drawTextMap(r->getCenter(), "%u", r->getRegionGroupID());
         
         std::vector<BWAPI::Position> poly = ((BWAPI::RegionImpl*)r)->getSimplePolygon();
         BWAPI::Position prev = Positions::None;
-        for ( std::vector<BWAPI::Position>::iterator j = poly.begin(), jend = poly.end(); j != jend; ++j )
+        for ( auto j = poly.begin(), jend = poly.end(); j != jend; ++j )
         {
           if ( prev != Positions::None )
             drawLineMap(prev, *j, Colors::Yellow);

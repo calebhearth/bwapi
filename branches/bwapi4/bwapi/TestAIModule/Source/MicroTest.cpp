@@ -82,7 +82,7 @@ void MicroTest::onFrame()
     }
     for each(Unit* s in Broodwar->self()->getUnits())
     {
-      Broodwar->drawTextMap(s->getPosition().x,s->getPosition().y,"CD: %d",s->getGroundWeaponCooldown());
+      Broodwar->drawTextMap(s->getPosition(),"CD: %d",s->getGroundWeaponCooldown());
     }
 
   }

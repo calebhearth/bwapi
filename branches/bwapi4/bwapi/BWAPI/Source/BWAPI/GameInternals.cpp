@@ -220,7 +220,7 @@ namespace BWAPI
         setLocalSpeed(atoi(parsed[1].c_str()));
       else
         setLocalSpeed();
-      printf("Changed game speed");
+      Broodwar << "Changed game speed" << std::endl;
     }
     else if (parsed[0] == "/fs")
     {
@@ -228,7 +228,7 @@ namespace BWAPI
         setFrameSkip(atoi(parsed[1].c_str()));
       else
         setFrameSkip();
-      printf("Altered frame skip");
+      Broodwar << "Altered frame skip" << std::endl;
     }
     else if (parsed[0] == "/cheats")
     {
@@ -255,17 +255,17 @@ namespace BWAPI
     else if (parsed[0] == "/nogui")
     {
       setGUI(!data->hasGUI);
-      printf("GUI: %s.", data->hasGUI ? "enabled" : "disabled");
+      Broodwar << "GUI: " << (data->hasGUI ? "enabled" : "disabled") << std::endl;
     }
     else if (parsed[0] == "/wmode")
     {
       SetWMode(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), !wmode);
-      printf("Toggled windowed mode.");
+      Broodwar << "Toggled windowed mode." << std::endl;
     }
     else if (parsed[0] == "/grid")
     {
       grid = !grid;
-      printf("Matrix grid %s.", grid ? "enabled" : "disabled");
+      Broodwar << "Matrix grid " << (grid ? "enabled" : "disabled") << std::endl;
     }
     else if (parsed[0] == "/record")
     {
@@ -279,34 +279,34 @@ namespace BWAPI
     else if ( parsed[0] == "/fps" )
     {
       this->showfps = !this->showfps;
-      printf("FPS display %s.", showfps ? "enabled" : "disabled");
+      Broodwar << "FPS display " << (showfps ? "enabled" : "disabled") << std::endl;
     }
 #ifdef _DEBUG
     else if (parsed[0] == "/latency")
     {
-      printf("latency: %d", getLatency());
-      printf("New latency: %u frames; %ums", getLatencyFrames(), getLatencyTime());
+      Broodwar << "Latency: " << getLatency() << std::endl;
+      Broodwar << "New latency: " << getLatencyFrames() << " frames (" << getLatencyTime() << "ms)" << std::endl;
     }
 // The following commands are knockoffs of Starcraft Beta's developer mode
     else if (parsed[0] == "/pathdebug")
     {
       pathDebug = !pathDebug;
-      printf("pathdebug %s", pathDebug ? "ENABLED" : "DISABLED");
+      Broodwar << "pathdebug " << (pathDebug ? "ENABLED" : "DISABLED") << std::endl;
     }
     else if (parsed[0] == "/unitdebug")
     {
       unitDebug = !unitDebug;
-      printf("unitdebug %s", unitDebug ? "ENABLED" : "DISABLED");
+      Broodwar << "unitdebug " << (unitDebug ? "ENABLED" : "DISABLED") << std::endl;
     }
 // end knockoffs
     else if (parsed[0] == "/hud")
     {
       hideHUD = !hideHUD;
-      printf("Now %s the HUD.", hideHUD ? "hiding" : "showing");
+      Broodwar << "Now " << (hideHUD ? "hiding" : "showing") << " the HUD." << std::endl;
     }
     else if (parsed[0] == "/resize")
     {
-      printf("Done");
+      Broodwar << "Done" << std::endl;
       SetResolution(1280, 720);
     }
     else if (parsed[0] == "/test")
@@ -314,7 +314,8 @@ namespace BWAPI
       //SetResolution(640, 480);
       Unitset sel = this->getSelectedUnits();
       for ( auto i = sel.begin(); i != sel.end(); ++i )
-        this->printf("Ground str: %d; Air str: %d", ((UnitImpl*)*i)->getOriginalRawData->groundStrength, ((UnitImpl*)*i)->getOriginalRawData->airStrength);
+        Broodwar << "Ground strength: " << ((UnitImpl*)*i)->getOriginalRawData->groundStrength
+                 << "; Air strength: " << ((UnitImpl*)*i)->getOriginalRawData->airStrength << std::endl;
     }
 #endif
     else

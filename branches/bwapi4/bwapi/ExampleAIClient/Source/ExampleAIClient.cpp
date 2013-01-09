@@ -166,17 +166,17 @@ int main(int argc, const char* argv[])
                 int seconds=Broodwar->getFrameCount()/24;
                 int minutes=seconds/60;
                 seconds%=60;
-                Broodwar->sendText("%.2d:%.2d: %s creates a %s",minutes,seconds,e->getUnit()->getPlayer()->getName().c_str(),e->getUnit()->getType().getName().c_str());
+                Broodwar->sendText("%.2d:%.2d: %s creates a %s",minutes,seconds,e->getUnit()->getPlayer()->getName().c_str(),e->getUnit()->getType().c_str());
               }
             }
             break;
           case EventType::UnitDestroy:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
+              Broodwar->sendText("A %s [%x] has been destroyed at (%d,%d)",e->getUnit()->getType().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
             break;
           case EventType::UnitMorph:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
+              Broodwar->sendText("A %s [%x] has been morphed at (%d,%d)",e->getUnit()->getType().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
             else
             {
               /*if we are in a replay, then we will print out the build order
@@ -186,21 +186,21 @@ int main(int argc, const char* argv[])
                 int seconds=Broodwar->getFrameCount()/24;
                 int minutes=seconds/60;
                 seconds%=60;
-                Broodwar->sendText("%.2d:%.2d: %s morphs a %s",minutes,seconds,e->getUnit()->getPlayer()->getName().c_str(),e->getUnit()->getType().getName().c_str());
+                Broodwar->sendText("%.2d:%.2d: %s morphs a %s",minutes,seconds,e->getUnit()->getPlayer()->getName().c_str(),e->getUnit()->getType().c_str());
               }
             }
             break;
           case EventType::UnitShow:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
+              Broodwar->sendText("A %s [%x] has been spotted at (%d,%d)",e->getUnit()->getType().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
             break;
           case EventType::UnitHide:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
+              Broodwar->sendText("A %s [%x] was last seen at (%d,%d)",e->getUnit()->getType().c_str(),e->getUnit(),e->getUnit()->getPosition().x,e->getUnit()->getPosition().y);
             break;
           case EventType::UnitRenegade:
             if (!Broodwar->isReplay())
-              Broodwar->sendText("A %s [%x] is now owned by %s",e->getUnit()->getType().getName().c_str(),e->getUnit(),e->getUnit()->getPlayer()->getName().c_str());
+              Broodwar->sendText("A %s [%x] is now owned by %s",e->getUnit()->getType().c_str(),e->getUnit(),e->getUnit()->getPlayer()->getName().c_str());
             break;
           case EventType::SaveGame:
             Broodwar->sendText("The game was saved to \"%s\".",e->getText().c_str());

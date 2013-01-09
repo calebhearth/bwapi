@@ -6,7 +6,7 @@ using namespace BWAPI;
 {\
   if (!(C))\
   {\
-    log("Assert failed @%s:%u %s[%s:%s] %s (%s)",__FILE__,__LINE__, producer ? producer->getType().getName().c_str() : "NULL", unitType.getName().c_str(), producer ? producer->getOrder().getName().c_str() : "null", producerType.getName().c_str(), Broodwar->getLastError().toString().c_str());\
+    log("Assert failed @%s:%u %s[%s:%s] %s (%s)",__FILE__,__LINE__, producer ? producer->getType().c_str() : "NULL", unitType.c_str(), producer ? producer->getOrder().c_str() : "null", producerType.c_str(), Broodwar->getLastError().c_str());\
     assert_fail_count++;\
     fail = true;\
     return;\
@@ -215,7 +215,7 @@ void MorphTest::update()
   FAILTEST(producer->isTraining()==false);
   BWAssertF(producer->getBuildType()==unitType,
   {
-    log("order: %s, build type: %s, correct type: %s",producer->getOrder().getName().c_str(),producer->getBuildType().getName().c_str(),unitType.getName().c_str());
+    log("order: %s, build type: %s, correct type: %s",producer->getOrder().c_str(),producer->getBuildType().c_str(),unitType.c_str());
     fail=true;
     return;
   });

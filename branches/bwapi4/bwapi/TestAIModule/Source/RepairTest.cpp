@@ -34,7 +34,7 @@ void RepairTest::start()
   BWAssertF(target->exists(),{fail=true;return;});
   BWAssertF(unit->isIdle()==true,{fail=true;return;});
   BWAssertF(unit->repair(target),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
-  BWAssertF(unit->getOrder()==Orders::Repair,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+  BWAssertF(unit->getOrder()==Orders::Repair,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
   BWAssertF(unit->getTarget()==target,{fail=true;return;});
   startFrame = Broodwar->getFrameCount();
   nextFrame = Broodwar->getFrameCount();
@@ -60,7 +60,7 @@ void RepairTest::update()
   }
   if (!stopped)
   {
-    BWAssertF(unit->getOrder()==Orders::Repair,{Broodwar->printf("%s",unit->getOrder().getName().c_str());fail=true;return;});
+    BWAssertF(unit->getOrder()==Orders::Repair,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     BWAssertF(unit->getTarget()==target || unit->getOrderTarget()==target,{fail=true;return;});
   }
   else

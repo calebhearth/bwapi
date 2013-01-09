@@ -21,7 +21,7 @@ AISCRIPT::Enum::Enum Opcode::getOpcode() const
   return this->opcode;
 }
 
-bool Opcode::readOpcode(aithread &thread)
+bool Opcode::readOpcode (aithread &thread)
 {
   // Read the opcode
   BYTE bOpcode = thread.read<BYTE>();

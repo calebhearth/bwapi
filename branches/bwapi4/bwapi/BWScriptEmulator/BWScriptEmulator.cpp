@@ -36,7 +36,7 @@ void BWScriptEmulator::onStart()
     return;
   
   if ( !LoadAIBinary("bwapi-data\\AISCRIPT.BIN") )
-    Broodwar->printf("%cFailed to load AISCRIPT binary!", 6);
+    Broodwar << Text::Red << "Failed to load AISCRIPT binary!" << std::endl;
 
   Race      selfRace(self->getRace());
   Position  sLoc(self->getStartLocation());

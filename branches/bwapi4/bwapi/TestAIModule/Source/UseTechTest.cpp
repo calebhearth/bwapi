@@ -28,13 +28,13 @@ void UseTechTest::start()
   running = true;
 
   int userCount = Broodwar->self()->completedUnitCount(userType);
-  BWAssertF(userCount>=1,{Broodwar->printf("Error: Cannot find any owned units of type %s for tech type %s!",userType.getName().c_str(),techType.getName().c_str());fail=true;return;});
+  BWAssertF(userCount>=1,{Broodwar->printf("Error: Cannot find any owned units of type %s for tech type %s!",userType.c_str(),techType.c_str());fail=true;return;});
   for each(Unit* u in Broodwar->self()->getUnits())
     if (u->getType()==userType)
       user = u;
 
   startPosition = user->getPosition();
-  Broodwar->printf("Testing %s...",techType.getName().c_str());
+  Broodwar->printf("Testing %s...",techType.c_str());
   BWAssertF(user->getEnergy()>=techType.energyCost(),{Broodwar->printf("Error: Not enough energy!");fail=true;return;});
 
   if (techType==TechTypes::Scanner_Sweep)
@@ -558,10 +558,10 @@ void UseTechTest::update()
   if (thisFrame == startFrame+900)
   {
     if (testSucceeded)
-      Broodwar->printf("Used tech %s",techType.getName().c_str());
+      Broodwar->printf("Used tech %s",techType.c_str());
     else
     {
-      log("Error: Unable to use tech %s",techType.getName().c_str());
+      log("Error: Unable to use tech %s",techType.c_str());
     }
   }
   int lastFrame = startFrame+1000;
