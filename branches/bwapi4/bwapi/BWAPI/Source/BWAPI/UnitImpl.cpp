@@ -83,7 +83,19 @@ namespace BWAPI
     if ( (command.type == UnitCommandTypes::Train ||
           command.type == UnitCommandTypes::Morph) &&
          getType().producesLarva() && command.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
-      command.unit = *getLarva().begin();
+    {
+      Unitset larvae( this->getLarva() );
+      foreach (Unit* larva, larvae)
+      {
+        if ( !larva->isConstructing() && larva->isCompleted() && larva->canCommand() )
+        {
+          command.unit = larva;
+          break;
+        }
+      }
+      if ( command.unit == this )
+        return false;
+    }
 
     // Set last command and command frames
     ((UnitImpl*)command.unit)->lastCommandFrame = BroodwarImpl.frameCount;

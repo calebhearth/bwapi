@@ -635,9 +635,340 @@ namespace BWAPI
     }
     return false;
   }
-  //--------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
-  bool UnitImpl::canIssueCommand(UnitCommand command) const
+  //--------------------------------------------- CAN COMMAND ------------------------------------------------
+  bool UnitImpl::canCommand() const
   {
-    return Templates::canIssueCommand(this,command);
+    return Templates::canCommand(this);
+  }
+  //--------------------------------------------- CAN TARGET UNIT --------------------------------------------
+  bool UnitImpl::canTargetUnit(const Unit* targetUnit, bool checkCommandibility) const
+  {
+    return Templates::canTargetUnit(this, targetUnit, checkCommandibility);
+  }
+  //--------------------------------------------- CAN ATTACK MOVE --------------------------------------------
+  bool UnitImpl::canAttackMove(bool checkCommandibility) const
+  {
+    return Templates::canAttackMove(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN ATTACK UNIT --------------------------------------------
+  bool UnitImpl::canAttackUnit(bool checkCommandibility) const
+  {
+    return Templates::canAttackUnit(this, checkCommandibility);
+  }
+  bool UnitImpl::canAttackUnit(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canAttackUnit(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN BUILD --------------------------------------------------
+  bool UnitImpl::canBuild(bool checkCommandibility) const
+  {
+    return Templates::canBuild(this, checkCommandibility);
+  }
+  bool UnitImpl::canBuild(UnitType uType, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canBuild(this, uType, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canBuild(UnitType uType, BWAPI::TilePosition tilePos, bool checkTargetUnitType, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canBuild(this, uType, tilePos, checkTargetUnitType, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN BUILD ADDON --------------------------------------------
+  bool UnitImpl::canBuildAddon(bool checkCommandibility) const
+  {
+    return Templates::canBuildAddon(this, checkCommandibility);
+  }
+  bool UnitImpl::canBuildAddon(UnitType uType, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canBuildAddon(this, uType, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN TRAIN --------------------------------------------------
+  bool UnitImpl::canTrain(bool checkCommandibility) const
+  {
+    return Templates::canTrain(this, checkCommandibility);
+  }
+  bool UnitImpl::canTrain(UnitType uType, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canTrain(this, uType, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN MORPH --------------------------------------------------
+  bool UnitImpl::canMorph(bool checkCommandibility) const
+  {
+    return Templates::canMorph(this, checkCommandibility);
+  }
+  bool UnitImpl::canMorph(UnitType uType, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canMorph(this, uType, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN RESEARCH -----------------------------------------------
+  bool UnitImpl::canResearch(bool checkCommandibility) const
+  {
+    return Templates::canResearch(this, checkCommandibility);
+  }
+  bool UnitImpl::canResearch(TechType type, bool checkCanIssueCommandType) const
+  {
+    return Templates::canResearch(this, type, checkCanIssueCommandType);
+  }
+  //--------------------------------------------- CAN UPGRADE ------------------------------------------------
+  bool UnitImpl::canUpgrade(bool checkCommandibility) const
+  {
+    return Templates::canUpgrade(this, checkCommandibility);
+  }
+  bool UnitImpl::canUpgrade(UpgradeType type, bool checkCanIssueCommandType) const
+  {
+    return Templates::canUpgrade(this, type, checkCanIssueCommandType);
+  }
+  //--------------------------------------------- CAN SET RALLY POSITION -------------------------------------
+  bool UnitImpl::canSetRallyPosition(bool checkCommandibility) const
+  {
+    return Templates::canSetRallyPosition(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN SET RALLY UNIT -----------------------------------------
+  bool UnitImpl::canSetRallyUnit(bool checkCommandibility) const
+  {
+    return Templates::canSetRallyUnit(this, checkCommandibility);
+  }
+  bool UnitImpl::canSetRallyUnit(const Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canSetRallyUnit(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN MOVE ---------------------------------------------------
+  bool UnitImpl::canMove(bool checkCommandibility) const
+  {
+    return Templates::canMove(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN PATROL -------------------------------------------------
+  bool UnitImpl::canPatrol(bool checkCommandibility) const
+  {
+    return Templates::canPatrol(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN FOLLOW -------------------------------------------------
+  bool UnitImpl::canFollow(bool checkCommandibility) const
+  {
+    return Templates::canFollow(this, checkCommandibility);
+  }
+  bool UnitImpl::canFollow(const Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canFollow(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN GATHER -------------------------------------------------
+  bool UnitImpl::canGather(bool checkCommandibility) const
+  {
+    return Templates::canGather(this, checkCommandibility);
+  }
+  bool UnitImpl::canGather(const Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canGather(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN RETURN CARGO -------------------------------------------
+  bool UnitImpl::canReturnCargo(bool checkCommandibility) const
+  {
+    return Templates::canReturnCargo(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN HOLD POSITION ------------------------------------------
+  bool UnitImpl::canHoldPosition(bool checkCommandibility) const
+  {
+    return Templates::canHoldPosition(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN STOP ---------------------------------------------------
+  bool UnitImpl::canStop(bool checkCommandibility) const
+  {
+    return Templates::canStop(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN REPAIR -------------------------------------------------
+  bool UnitImpl::canRepair(bool checkCommandibility) const
+  {
+    return Templates::canRepair(this, checkCommandibility);
+  }
+  bool UnitImpl::canRepair(const Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canRepair(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN BURROW -------------------------------------------------
+  bool UnitImpl::canBurrow(bool checkCommandibility) const
+  {
+    return Templates::canBurrow(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN UNBURROW -----------------------------------------------
+  bool UnitImpl::canUnburrow(bool checkCommandibility) const
+  {
+    return Templates::canUnburrow(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CLOAK --------------------------------------------------
+  bool UnitImpl::canCloak(bool checkCommandibility) const
+  {
+    return Templates::canCloak(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN DECLOAK ------------------------------------------------
+  bool UnitImpl::canDecloak(bool checkCommandibility) const
+  {
+    return Templates::canDecloak(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN SIEGE --------------------------------------------------
+  bool UnitImpl::canSiege(bool checkCommandibility) const
+  {
+    return Templates::canSiege(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN UNSIEGE ------------------------------------------------
+  bool UnitImpl::canUnsiege(bool checkCommandibility) const
+  {
+    return Templates::canUnsiege(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN LIFT ---------------------------------------------------
+  bool UnitImpl::canLift(bool checkCommandibility) const
+  {
+    return Templates::canLift(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN LAND ---------------------------------------------------
+  bool UnitImpl::canLand(bool checkCommandibility) const
+  {
+    return Templates::canLand(this, checkCommandibility);
+  }
+  bool UnitImpl::canLand(TilePosition target, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canLand(this, target, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN LOAD ---------------------------------------------------
+  bool UnitImpl::canLoad(bool checkCommandibility) const
+  {
+    return Templates::canLoad(this, checkCommandibility);
+  }
+  bool UnitImpl::canLoad(const Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canLoad(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN UNLOAD -------------------------------------------------
+  bool UnitImpl::canUnloadWithOrWithoutTarget(bool checkCommandibility) const
+  {
+    return Templates::canUnloadWithOrWithoutTarget(this, checkCommandibility);
+  }
+  bool UnitImpl::canUnloadAtPosition(Position targDropPos, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUnloadAtPosition(this, targDropPos, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canUnload(bool checkCommandibility) const
+  {
+    return Templates::canUnload(this, checkCommandibility);
+  }
+  bool UnitImpl::canUnload(const Unit* targetUnit, bool checkCanTargetUnit, bool checkPosition, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUnload(this, targetUnit, checkCanTargetUnit, checkPosition, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN UNLOAD ALL ---------------------------------------------
+  bool UnitImpl::canUnloadAll(bool checkCommandibility) const
+  {
+    return Templates::canUnloadAll(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN UNLOAD ALL POSITION ------------------------------------
+  bool UnitImpl::canUnloadAllPosition(bool checkCommandibility) const
+  {
+    return Templates::canUnloadAllPosition(this, checkCommandibility);
+  }
+  bool UnitImpl::canUnloadAllPosition(Position targDropPos, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUnloadAllPosition(this, targDropPos, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN RIGHT CLICK POSITION -----------------------------------
+  bool UnitImpl::canRightClickPosition(bool checkCommandibility) const
+  {
+    return Templates::canRightClickPosition(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN RIGHT CLICK UNIT ---------------------------------------
+  bool UnitImpl::canRightClickUnit(bool checkCommandibility) const
+  {
+    return Templates::canRightClickUnit(this, checkCommandibility);
+  }
+  bool UnitImpl::canRightClickUnit(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canRightClickUnit(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN HALT CONSTRUCTION --------------------------------------
+  bool UnitImpl::canHaltConstruction(bool checkCommandibility) const
+  {
+    return Templates::canHaltConstruction(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL CONSTRUCTION ------------------------------------
+  bool UnitImpl::canCancelConstruction(bool checkCommandibility) const
+  {
+    return Templates::canCancelConstruction(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL ADDON -------------------------------------------
+  bool UnitImpl::canCancelAddon(bool checkCommandibility) const
+  {
+    return Templates::canCancelAddon(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL TRAIN -------------------------------------------
+  bool UnitImpl::canCancelTrain(bool checkCommandibility) const
+  {
+    return Templates::canCancelTrain(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL TRAIN SLOT --------------------------------------
+  bool UnitImpl::canCancelTrainSlot(bool checkCommandibility) const
+  {
+    return Templates::canCancelTrainSlot(this, checkCommandibility);
+  }
+  bool UnitImpl::canCancelTrainSlot(int slot, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canCancelTrainSlot(this, slot, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL MORPH -------------------------------------------
+  bool UnitImpl::canCancelMorph(bool checkCommandibility) const
+  {
+    return Templates::canCancelMorph(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL RESEARCH ----------------------------------------
+  bool UnitImpl::canCancelResearch(bool checkCommandibility) const
+  {
+    return Templates::canCancelResearch(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN CANCEL UPGRADE -----------------------------------------
+  bool UnitImpl::canCancelUpgrade(bool checkCommandibility) const
+  {
+    return Templates::canCancelUpgrade(this, checkCommandibility);
+  }
+  //--------------------------------------------- CAN USE TECH -----------------------------------------------
+  bool UnitImpl::canUseTechWithOrWithoutTarget(bool checkCommandibility) const
+  {
+    return Templates::canUseTechWithOrWithoutTarget(this, checkCommandibility);
+  }
+  bool UnitImpl::canUseTechWithOrWithoutTarget(BWAPI::TechType tech, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUseTechWithOrWithoutTarget(this, tech, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canUseTechWithoutTarget(BWAPI::TechType tech, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUseTechWithoutTarget(this, tech, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN USE TECH UNIT ------------------------------------------
+  bool UnitImpl::canUseTechUnit(BWAPI::TechType tech, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUseTechUnit(this, tech, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canUseTechUnit(BWAPI::TechType tech, const Unit* targetUnit, bool checkCanTargetUnit, bool checkTargetsUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUseTechUnit(this, tech, targetUnit, checkCanTargetUnit, checkTargetsUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN USE TECH POSITION --------------------------------------
+  bool UnitImpl::canUseTechPosition(BWAPI::TechType tech, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canUseTechPosition(this, tech, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN PLACE COP ----------------------------------------------
+  bool UnitImpl::canPlaceCOP(bool checkCommandibility) const
+  {
+    return Templates::canPlaceCOP(this, checkCommandibility);
+  }
+  bool UnitImpl::canPlaceCOP(TilePosition target, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canPlaceCOP(this, target, checkCanIssueCommandType, checkCommandibility);
+  }
+  //--------------------------------------------- CAN ISSUE COMMAND TYPE -------------------------------------
+  bool UnitImpl::canIssueCommandType(BWAPI::UnitCommandType ct, bool checkCommandibility) const
+  {
+    return Templates::canIssueCommandType(this, ct, checkCommandibility);
+  }
+  //--------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
+  bool UnitImpl::canIssueCommand(UnitCommand command, bool checkCanUseTechUnitOnUnits, bool checkCanBuildUnitType, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
+  {
+    return Templates::canIssueCommand(this, command, checkCanUseTechUnitOnUnits, checkCanBuildUnitType, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
   }
 }

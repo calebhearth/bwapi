@@ -26,10 +26,24 @@ namespace BWAPI
 
     command.unit = this;
 
-    if (command.type == UnitCommandTypes::Train ||
-        command.type == UnitCommandTypes::Morph)
-      if (getType().producesLarva() && command.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
-        command.unit = *getLarva().begin();
+    // If using train or morph on a hatchery, automatically switch selection to larva
+    // (assuming canIssueCommand ensures that there is a larva)
+    if ( (command.type == UnitCommandTypes::Train ||
+          command.type == UnitCommandTypes::Morph) &&
+         getType().producesLarva() && command.getUnitType().whatBuilds().first == UnitTypes::Zerg_Larva )
+    {
+      Unitset larvae( this->getLarva() );
+      foreach (Unit* larva, larvae)
+      {
+        if ( !larva->isConstructing() && larva->isCompleted() && larva->canCommand() )
+        {
+          command.unit = larva;
+          break;
+        }
+      }
+      if ( command.unit == this )
+        return false;
+    }
 
     BWAPIC::UnitCommand c;
     c.type      = command.type;

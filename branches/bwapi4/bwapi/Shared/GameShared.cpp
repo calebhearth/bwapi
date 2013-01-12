@@ -98,14 +98,14 @@ namespace BWAPI
     return Templates::canMake(builder,type);
   }
   //--------------------------------------------- CAN RESEARCH -----------------------------------------------
-  bool GameImpl::canResearch(TechType type, const Unit* unit)
+  bool GameImpl::canResearch(TechType type, const Unit* unit, bool checkCanIssueCommandType)
   {
-    return Templates::canResearch(unit,type);
+    return Templates::canResearch(unit,type,checkCanIssueCommandType);
   }
   //--------------------------------------------- CAN UPGRADE ------------------------------------------------
-  bool GameImpl::canUpgrade(UpgradeType type, const Unit* unit)
+  bool GameImpl::canUpgrade(UpgradeType type, const Unit* unit, bool checkCanIssueCommandType)
   {
-    return Templates::canUpgrade(unit,type);
+    return Templates::canUpgrade(unit,type,checkCanIssueCommandType);
   }
   //--------------------------------------------- GET START LOCATIONS ----------------------------------------
   const TilePosition::set& GameImpl::getStartLocations() const

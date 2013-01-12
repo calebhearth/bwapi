@@ -141,8 +141,8 @@ namespace BWAPI
 
       virtual bool canBuildHere(TilePosition position, UnitType type, const Unit* builder = nullptr, bool checkExplored = false);
       virtual bool canMake(UnitType type, const Unit* builder = nullptr);
-      virtual bool canResearch(TechType type, const Unit* unit = nullptr);
-      virtual bool canUpgrade(UpgradeType type, const Unit* unit = nullptr);
+      virtual bool canResearch(TechType type, const Unit* unit = nullptr, bool checkCanIssueCommandType = true);
+      virtual bool canUpgrade(UpgradeType type, const Unit* unit = nullptr, bool checkCanIssueCommandType = true);
       virtual const TilePosition::set& getStartLocations() const;
 
       virtual void vPrintf(const char* format, va_list arg);

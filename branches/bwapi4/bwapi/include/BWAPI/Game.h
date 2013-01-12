@@ -319,12 +319,12 @@ namespace BWAPI
 
     /** Returns true if the AI player has enough resources required to research the given tech type. If unit
      * is not null, canResearch will return true only if the given unit can research the given tech type. */
-    virtual bool canResearch(TechType type, const Unit *unit = nullptr) = 0;
+    virtual bool canResearch(TechType type, const Unit *unit = nullptr, bool checkCanIssueCommandType = true) = 0;
 
     /** Returns true if the AI player has enough resources required to upgrade the given upgrade type. If
      * unit is not null, canUpgrade will return true only if the given unit can upgrade the given upgrade
      * type. */
-    virtual bool canUpgrade(UpgradeType type, const Unit *unit = nullptr) = 0;
+    virtual bool canUpgrade(UpgradeType type, const Unit *unit = nullptr, bool checkCanIssueCommandType = true) = 0;
 
     /** Returns the set of starting locations for the given map. To determine the starting location for the
      * players in the current match, see Player::getStartLocation. */
