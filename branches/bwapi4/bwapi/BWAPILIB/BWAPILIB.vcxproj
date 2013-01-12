@@ -38,6 +38,12 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Updating revision information</Message>
+      <Command>pushd "$(SolutionDir)"
+"$(SolutionDir)\revisionUpdate.bat"
+popd</Command>
+    </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -70,6 +76,12 @@ COPY /y "$(OutDir)$(TargetName)$(TargetExt)" "..\lib\BWAPI.lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Updating revision information</Message>
+      <Command>pushd "$(SolutionDir)"
+"$(SolutionDir)\revisionUpdate.bat"
+popd</Command>
+    </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>false</IntrinsicFunctions>

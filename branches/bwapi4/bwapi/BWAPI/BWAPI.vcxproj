@@ -41,12 +41,6 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PreBuildEvent>
-      <Message>Updating revision information</Message>
-      <Command>pushd "$(SolutionDir)"
-"$(SolutionDir)\revisionUpdate.bat"
-popd</Command>
-    </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../Shared;Source/BWAPI;../Util/Source;Source;../include;../Storm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -76,12 +70,6 @@ popd</Command>
     <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PreBuildEvent>
-      <Message>Updating revision information</Message>
-      <Command>pushd "$(SolutionDir)"
-"$(SolutionDir)\revisionUpdate.bat"
-popd</Command>
-    </PreBuildEvent>
     <ClCompile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
