@@ -49,8 +49,8 @@ namespace BWAPI
         this->regionsList.insert(new BWAPI::RegionImpl(i));
 
       // Iterate regions again and update neighbor lists
-      foreach ( BWAPI::Region *r, this->regionsList )
-        ((BWAPI::RegionImpl*)r)->UpdateRegionRelations();
+      foreach ( BWAPI::RegionImpl *r, this->regionsList )
+        r->UpdateRegionRelations();
     } // if SAI_Pathing
 
     // roughly identify which players can possibly participate in this game
@@ -671,8 +671,8 @@ namespace BWAPI
           while ( c != commandOptimizer[i].end() )
           {
             // Ignore anything but the command that the unit last processed
-            if ( //((UnitImpl*)c->unit)->lastImmediateCommandFrame == this->getFrameCount() &&
-                   ((UnitImpl*)c->unit)->lastImmediateCommand != *c )
+            if ( //static_cast<UnitImpl*>(c->unit)->lastImmediateCommandFrame == this->getFrameCount() &&
+                   static_cast<UnitImpl*>(c->unit)->lastImmediateCommand != *c )
             {
               c = commandOptimizer[i].erase(c);
               continue;
@@ -698,7 +698,7 @@ namespace BWAPI
                 o = c->unit->isSieged() || c->unit->isCloaked() || c->unit->isBurrowed();
               else
                 o = false;
-              groupOf12.push_back((UnitImpl*)c->unit);
+              groupOf12.push_back( c->unit );
               c = commandOptimizer[i].erase(c);
             } // otherwise if this command is the same as the first, the units can be grouped
             else if ( e == c->extra && t == c->target && x == c->x && y == c->y )
@@ -716,7 +716,7 @@ namespace BWAPI
 
               if ( o == oTmp )
               {
-                groupOf12.push_back((UnitImpl*)c->unit);
+                groupOf12.push_back( c->unit );
                 c = commandOptimizer[i].erase(c);
               }
               else
@@ -814,9 +814,9 @@ namespace BWAPI
     // unitdebug
     if ( unitDebug && BWAPIPlayer )
     {
-      foreach ( auto u, this->getAllUnits() )
+      foreach ( BWAPI::UnitImpl *u, this->getAllUnits() )
       {
-        auto raw = ((UnitImpl*)u)->getOriginalRawData;
+        auto raw = u->getOriginalRawData;
         if ( raw->autoTargetUnit )
           this->drawLineMap(u->getPosition(), BWAPI::Position(raw->autoTargetUnit->position), Colors::Red);
       }
@@ -958,11 +958,11 @@ namespace BWAPI
         }
       }
       /*
-      foreach (BWAPI::Region *r, this->regionsList )
+      foreach (BWAPI::RegionImpl *r, this->regionsList )
       {
         drawTextMap(r->getCenter(), "%u", r->getRegionGroupID());
         
-        std::vector<BWAPI::Position> poly = ((BWAPI::RegionImpl*)r)->getSimplePolygon();
+        std::vector<BWAPI::Position> poly = r->getSimplePolygon();
         BWAPI::Position prev = Positions::None;
         for ( auto j = poly.begin(), jend = poly.end(); j != jend; ++j )
         {

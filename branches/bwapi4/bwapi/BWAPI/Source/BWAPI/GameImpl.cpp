@@ -612,9 +612,9 @@ namespace BWAPI
     
     u8 newAlliance = allied ? (alliedVictory ? 2 : 1) : 0;
     if ( allied )
-      alliance |= newAlliance << ( ((PlayerImpl*)player)->getIndex()*2);
+      alliance |= newAlliance << ( static_cast<PlayerImpl*>(player)->getIndex()*2);
     else
-      alliance &= ~(3 << ( ((PlayerImpl*)player)->getIndex()*2) );
+      alliance &= ~(3 << ( static_cast<PlayerImpl*>(player)->getIndex()*2) );
     QUEUE_COMMAND(BW::Orders::SetAllies, alliance);
     return this->setLastError();
   }
@@ -627,9 +627,9 @@ namespace BWAPI
 
     u16 vision = (u16)BW::BWDATA::PlayerVision[BWAPIPlayer->getIndex()];    
     if ( enabled )
-      vision |= 1 << ((PlayerImpl*)player)->getIndex();
+      vision |= 1 << static_cast<PlayerImpl*>(player)->getIndex();
     else
-      vision &= ~(1 <<  ((PlayerImpl*)player)->getIndex() );
+      vision &= ~(1 <<  static_cast<PlayerImpl*>(player)->getIndex() );
     QUEUE_COMMAND(BW::Orders::SetVision, vision);
     return this->setLastError();
   }
@@ -678,14 +678,14 @@ namespace BWAPI
     BWAPI::Unitset nextGroup(12);
 
     // Iterate the set of units
-    foreach(Unit* u, units)
+    foreach(UnitImpl* u, units)
     {
       // Skip on invalid units that can't issue commands
       if ( !u || !u->exists() || !u->canIssueCommand(command) )
         continue;
       
       // If the command optimizer has taken over the command, then don't add it to this group
-      if ( ((UnitImpl*)u)->prepareIssueCommand(command) )
+      if ( u->prepareIssueCommand(command) )
         continue;
 
       // Insert the unit into the next group
@@ -906,9 +906,9 @@ namespace BWAPI
 
     u32 vision = *BW::BWDATA::ReplayVision;
     if ( enabled )
-      vision |= 1 << ((PlayerImpl*)player)->getIndex();
+      vision |= 1 << static_cast<PlayerImpl*>(player)->getIndex();
     else
-      vision &= ~(1 <<  ((PlayerImpl*)player)->getIndex() );
+      vision &= ~(1 <<  static_cast<PlayerImpl*>(player)->getIndex() );
     *BW::BWDATA::ReplayVision = vision;
     return this->setLastError();
   }

@@ -70,8 +70,8 @@ namespace BWAPI
          command.type != UnitCommandTypes::Unload &&
          !command.isQueued() )
     {
-      ((UnitImpl*)command.unit)->lastImmediateCommand = command;
-      ((UnitImpl*)command.unit)->lastImmediateCommandFrame = BroodwarImpl.frameCount;
+      static_cast<UnitImpl*>(command.unit)->lastImmediateCommand = command;
+      static_cast<UnitImpl*>(command.unit)->lastImmediateCommandFrame = BroodwarImpl.frameCount;
     }
   }
   bool UnitImpl::prepareIssueCommand(UnitCommand &command)
@@ -98,15 +98,15 @@ namespace BWAPI
     }
 
     // Set last command and command frames
-    ((UnitImpl*)command.unit)->lastCommandFrame = BroodwarImpl.frameCount;
-    ((UnitImpl*)command.unit)->lastCommand      = command;
-    ((UnitImpl*)command.unit)->setLastImmediateCommand(command);
+    static_cast<UnitImpl*>(command.unit)->lastCommandFrame = BroodwarImpl.frameCount;
+    static_cast<UnitImpl*>(command.unit)->lastCommand      = command;
+    static_cast<UnitImpl*>(command.unit)->setLastImmediateCommand(command);
     if (command.type == UnitCommandTypes::Use_Tech_Unit && command.target && 
        (command.extra == TechTypes::Archon_Warp || command.extra == TechTypes::Dark_Archon_Meld))
     {
-      ((UnitImpl*)command.target)->lastCommandFrame = BroodwarImpl.frameCount;
-      ((UnitImpl*)command.target)->lastCommand      = command;
-      ((UnitImpl*)command.target)->setLastImmediateCommand(command);
+      static_cast<UnitImpl*>(command.target)->lastCommandFrame = BroodwarImpl.frameCount;
+      static_cast<UnitImpl*>(command.target)->lastCommand      = command;
+      static_cast<UnitImpl*>(command.target)->setLastImmediateCommand(command);
     }
 
     // Add to command optimizer if possible, as well as the latency compensation buffer
@@ -128,14 +128,14 @@ namespace BWAPI
     {
       //select both units for archon warp or dark archon meld
       UnitImpl *sel2[2];
-      sel2[0] = (UnitImpl*)command.unit;
-      sel2[1] = (UnitImpl*)command.target;
+      sel2[0] = static_cast<UnitImpl*>(command.unit);
+      sel2[1] = static_cast<UnitImpl*>(command.target);
       BW::Orders::Select sel(2, sel2);
       botAPM_select++;
       QueueGameCommand(&sel, sel.size);
     }
     else if ( command.type != UnitCommandTypes::Unload || BroodwarImpl.commandOptimizerLevel < 2 )
-      ((UnitImpl*)command.unit)->orderSelect();   // Unload optimization (no select)
+      static_cast<UnitImpl*>(command.unit)->orderSelect();   // Unload optimization (no select)
 
     // Immediately execute the command
     BroodwarImpl.executeCommand( command );

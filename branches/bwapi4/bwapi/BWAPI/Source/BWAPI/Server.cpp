@@ -166,8 +166,8 @@ namespace BWAPI
       // Update BWAPI DLL
       BroodwarImpl.processEvents();
 
-      ((GameImpl*)BroodwarPtr)->events.clear();
-      if (!((GameImpl*)BroodwarPtr)->startedClient)
+      static_cast<GameImpl*>(BroodwarPtr)->events.clear();
+      if (!static_cast<GameImpl*>(BroodwarPtr)->startedClient)
         checkForConnections();
     }
     // Reset data going out to client
@@ -349,11 +349,11 @@ namespace BWAPI
       strncpy(data->forces[id].name, i->getName().c_str(), 32);
     }
     //static player data
-    foreach(Player *i, Broodwar->getPlayers())
+    foreach(PlayerImpl *i, Broodwar->getPlayers())
     {
       int id = getPlayerID(i);
       PlayerData* p = &(data->players[id]);
-      PlayerData* p2 = ((PlayerImpl*)i)->self;
+      PlayerData* p2 = i->self;
 
       strncpy(p->name, i->getName().c_str(), 32); // cppcheck complaint, out of bounds
       p->race  = i->getRace();
@@ -483,27 +483,27 @@ namespace BWAPI
     foreach(UnitImpl* u, BroodwarImpl.lastEvadedUnits)
       data->units[u->getID()] = u->data;
 
-    ((GameImpl*)BroodwarPtr)->events.clear();
+    static_cast<GameImpl*>(BroodwarPtr)->events.clear();
 
-    data->frameCount        = Broodwar->getFrameCount();
-    data->replayFrameCount      = Broodwar->getReplayFrameCount();
-    data->fps            = Broodwar->getFPS();
-    data->botAPM_noselects      = Broodwar->getAPM();
-    data->botAPM_selects      = Broodwar->getAPM(true);
-    data->latencyFrames        = Broodwar->getLatencyFrames();
-    data->latencyTime        = Broodwar->getLatencyTime();
+    data->frameCount              = Broodwar->getFrameCount();
+    data->replayFrameCount        = Broodwar->getReplayFrameCount();
+    data->fps                     = Broodwar->getFPS();
+    data->botAPM_noselects        = Broodwar->getAPM();
+    data->botAPM_selects          = Broodwar->getAPM(true);
+    data->latencyFrames           = Broodwar->getLatencyFrames();
+    data->latencyTime             = Broodwar->getLatencyTime();
     data->remainingLatencyFrames  = Broodwar->getRemainingLatencyFrames();
     data->remainingLatencyTime    = Broodwar->getRemainingLatencyTime();
-    data->elapsedTime        = Broodwar->elapsedTime();
-    data->countdownTimer      = Broodwar->countdownTimer();
-    data->averageFPS        = Broodwar->getAverageFPS();
-    data->mouseX          = Broodwar->getMousePosition().x;
-    data->mouseY          = Broodwar->getMousePosition().y;
-    data->isInGame          = Broodwar->isInGame();
+    data->elapsedTime             = Broodwar->elapsedTime();
+    data->countdownTimer          = Broodwar->countdownTimer();
+    data->averageFPS              = Broodwar->getAverageFPS();
+    data->mouseX                  = Broodwar->getMousePosition().x;
+    data->mouseY                  = Broodwar->getMousePosition().y;
+    data->isInGame                = Broodwar->isInGame();
     if (Broodwar->isInGame())
     {
-      data->gameType        = Broodwar->getGameType();
-      data->latency        = Broodwar->getLatency();
+      data->gameType  = Broodwar->getGameType();
+      data->latency   = Broodwar->getLatency();
       
       // Copy the mouse states
       for(int i = 0; i < M_MAX; ++i)
@@ -530,24 +530,24 @@ namespace BWAPI
       //(no dynamic force data)
 
       //dynamic player data
-      foreach(Player *i, Broodwar->getPlayers())
+      foreach(PlayerImpl *i, Broodwar->getPlayers())
       {
         int id         = getPlayerID(i);
         if ( id >= 12 )
           continue;
         PlayerData* p  = &(data->players[id]);
-        PlayerData* p2 = ((PlayerImpl*)i)->self;
+        PlayerData* p2 = i->self;
 
-        p->isVictorious      = i->isVictorious();
-        p->isDefeated      = i->isDefeated();
-        p->leftGame        = i->leftGame();
-        p->minerals        = p2->minerals;
-        p->gas          = p2->gas;
-        p->gatheredMinerals    = p2->gatheredMinerals;
+        p->isVictorious     = i->isVictorious();
+        p->isDefeated       = i->isDefeated();
+        p->leftGame         = i->leftGame();
+        p->minerals         = p2->minerals;
+        p->gas              = p2->gas;
+        p->gatheredMinerals = p2->gatheredMinerals;
         p->gatheredGas      = p2->gatheredGas;
-        p->repairedMinerals    = p2->repairedMinerals;
+        p->repairedMinerals = p2->repairedMinerals;
         p->repairedGas      = p2->repairedGas;
-        p->refundedMinerals    = p2->refundedMinerals;
+        p->refundedMinerals = p2->refundedMinerals;
         p->refundedGas      = p2->refundedGas;
         for(int j = 0; j < 3; ++j)
         {
@@ -556,17 +556,17 @@ namespace BWAPI
         }
         for(int j = 0; j < UnitTypes::Enum::MAX; ++j)
         {
-          p->allUnitCount[j]      = p2->allUnitCount[j];
+          p->allUnitCount[j]        = p2->allUnitCount[j];
           p->visibleUnitCount[j]    = p2->visibleUnitCount[j];
           p->completedUnitCount[j]  = p2->completedUnitCount[j];
-          p->deadUnitCount[j]      = p2->deadUnitCount[j];
-          p->killedUnitCount[j]    = p2->killedUnitCount[j];
+          p->deadUnitCount[j]       = p2->deadUnitCount[j];
+          p->killedUnitCount[j]     = p2->killedUnitCount[j];
         }
-        p->totalUnitScore    = p2->totalUnitScore;
-        p->totalKillScore    = p2->totalKillScore;
-        p->totalBuildingScore  = p2->totalBuildingScore;
-        p->totalRazingScore    = p2->totalRazingScore;
-        p->customScore      = p2->customScore;
+        p->totalUnitScore     = p2->totalUnitScore;
+        p->totalKillScore     = p2->totalKillScore;
+        p->totalBuildingScore = p2->totalBuildingScore;
+        p->totalRazingScore   = p2->totalRazingScore;
+        p->customScore        = p2->customScore;
 
         for(int j = 0; j < 63; ++j)
         {

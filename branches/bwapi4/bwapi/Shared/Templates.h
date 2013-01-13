@@ -93,7 +93,7 @@ namespace BWAPI
         {
           if ( isWidthExtended )  // If width is small, check unit bounds
           {
-            Unit *u = ((GameImpl*)BroodwarPtr)->_unitFromIndex(iUnitIndex);
+            Unit *u = static_cast<GameImpl*>(BroodwarPtr)->_unitFromIndex(iUnitIndex);
             if ( u && u->getLeft() <= right )
               dwFinderFlags[iUnitIndex] = 1;
           }
@@ -109,7 +109,7 @@ namespace BWAPI
         {
           if ( isHeightExtended ) // If height is small, check unit bounds
           {
-            Unit *u = ((GameImpl*)BroodwarPtr)->_unitFromIndex(iUnitIndex);
+            Unit *u = static_cast<GameImpl*>(BroodwarPtr)->_unitFromIndex(iUnitIndex);
             if ( u && u->getTop() <= bottom )
               dwFinderFlags[iUnitIndex] = 2;
           }
@@ -123,7 +123,7 @@ namespace BWAPI
         int iUnitIndex = px->unitIndex;
         if ( dwFinderFlags[iUnitIndex] == 2 )
         {
-          Unit *u = ((GameImpl*)BroodwarPtr)->_unitFromIndex(iUnitIndex);
+          Unit *u = static_cast<GameImpl*>(BroodwarPtr)->_unitFromIndex(iUnitIndex);
           if ( u && u->exists() )
             callback(u);
         }

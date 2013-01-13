@@ -43,8 +43,8 @@ namespace BWAPI
   {
     // Immediately return if latency compensation is disabled or if the command was queued
     if ( !Broodwar->isLatComEnabled() || command.isQueued() ) return;
-    UnitImpl* unit   = (UnitImpl*)command.unit;
-    UnitImpl* target = (UnitImpl*)command.target;
+    UnitImpl* unit   = static_cast<UnitImpl*>(command.unit);
+    UnitImpl* target = static_cast<UnitImpl*>(command.target);
 
     Position     position(command.x,command.y);
     TilePosition tileposition(command.x,command.y);
@@ -54,7 +54,7 @@ namespace BWAPI
 
     // Get the player (usually the unit's owner)
     if ( !player )
-      player = (PlayerImpl*)(unit ? unit->getPlayer() : Broodwar->self());
+      player = static_cast<PlayerImpl*>(unit ? unit->getPlayer() : Broodwar->self());
 
     // Latency test
     if (frame > Broodwar->getLatency() &&
@@ -161,7 +161,7 @@ namespace BWAPI
         return;
       if (unitType.getRace() == Races::Terran)
       {
-        UnitImpl* builder = (UnitImpl*)Broodwar->getUnit(savedExtra2);
+        UnitImpl* builder = static_cast<UnitImpl*>( Broodwar->getUnit(savedExtra2) );
         if ( builder && builder->exists())
         {
           builder->self->buildUnit      = -1;
@@ -393,7 +393,7 @@ namespace BWAPI
         savedExtra = unit->self->buildUnit;
       if (frame > Broodwar->getLatency())
         return;
-      UnitImpl* buildUnit = (UnitImpl*)Broodwar->getUnit(savedExtra);
+      UnitImpl* buildUnit = static_cast<UnitImpl*>( Broodwar->getUnit(savedExtra) );
       if ( buildUnit )
         buildUnit->self->buildUnit = -1;
 

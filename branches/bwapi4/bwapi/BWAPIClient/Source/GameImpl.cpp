@@ -129,8 +129,8 @@ namespace BWAPI
     for(size_t i = 0; i < playerVector.size(); ++i)
       playerVector[i].units.clear();
 
-    foreach( Region *r, regionsList )
-      delete ((RegionImpl*)r);
+    foreach( RegionImpl *r, regionsList )
+      delete r;
     regionsList.clear();
     memset(this->regionArray, 0, sizeof(this->regionArray));
   }
@@ -223,7 +223,7 @@ namespace BWAPI
       {
         Unit* u = &unitVector[id];
         accessibleUnits.insert(u);
-        ((PlayerImpl*)u->getPlayer())->units.insert(u);
+        static_cast<PlayerImpl*>(u->getPlayer())->units.insert(u);
         if (u->getPlayer()->isNeutral())
         {
           neutralUnits.insert(u);
@@ -242,7 +242,7 @@ namespace BWAPI
       {
         Unit* u = &unitVector[id];
         accessibleUnits.erase(u);
-        ((PlayerImpl*)u->getPlayer())->units.erase(u);
+        static_cast<PlayerImpl*>(u->getPlayer())->units.erase(u);
         if (u->getPlayer()->isNeutral())
         {
           neutralUnits.erase(u);
@@ -261,8 +261,8 @@ namespace BWAPI
       {
         Unit* u = &unitVector[id];
         for (auto p = playerSet.begin(); p != playerSet.end(); ++p )
-          ((PlayerImpl*)*p)->units.erase(u);
-        ((PlayerImpl*)u->getPlayer())->units.insert(u);
+          static_cast<PlayerImpl*>(*p)->units.erase(u);
+        static_cast<PlayerImpl*>(u->getPlayer())->units.insert(u);
       }
       else if (data->events[e].type == EventType::UnitMorph)
       {
@@ -288,11 +288,11 @@ namespace BWAPI
     foreach(Unit* u, accessibleUnits)
     {
       if ( u->getType() == UnitTypes::Zerg_Larva && u->getHatchery() )
-        ((UnitImpl*)u->getHatchery())->connectedUnits.insert(u);
+        static_cast<UnitImpl*>(u->getHatchery())->connectedUnits.insert(u);
       if ( u->getType() == UnitTypes::Protoss_Interceptor && u->getCarrier() )
-        ((UnitImpl*)u->getCarrier())->connectedUnits.insert(u);
+        static_cast<UnitImpl*>(u->getCarrier())->connectedUnits.insert(u);
       if ( u->getTransport() )
-        ((UnitImpl*)u->getTransport())->loadedUnits.insert(u);
+        static_cast<UnitImpl*>(u->getTransport())->loadedUnits.insert(u);
     }
     selectedUnits.clear();
     for ( int i = 0; i < data->selectedUnitCount; ++i )

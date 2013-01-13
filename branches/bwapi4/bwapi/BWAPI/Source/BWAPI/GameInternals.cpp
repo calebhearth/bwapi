@@ -391,7 +391,7 @@ namespace BWAPI
 
     // Delete forces
     for ( Forceset::iterator f = this->forces.begin(); f != this->forces.end(); ++f)
-      delete ((ForceImpl*)(*f));
+      delete (static_cast<ForceImpl*>(*f));
     this->forces.clear();
 
     // Remove player references
@@ -444,12 +444,12 @@ namespace BWAPI
 
     // Delete all dead units
     for ( Unitset::iterator d = this->deadUnits.begin(); d != this->deadUnits.end(); ++d )
-      delete (UnitImpl*)(*d);
+      delete static_cast<UnitImpl*>(*d);
     this->deadUnits.clear();
 
     // Delete all regions
     for ( Regionset::iterator r = this->regionsList.begin(); r != this->regionsList.end(); ++r )
-      delete (RegionImpl*)(*r);
+      delete static_cast<RegionImpl*>(*r);
     this->regionsList.clear();
 
     // Reset game speeds and text size

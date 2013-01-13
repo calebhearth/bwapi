@@ -130,14 +130,14 @@ namespace BWAPI
   {
     if ( !player || this->isNeutral() || player->isNeutral() || this->isObserver() || player->isObserver() )
       return false;
-    return BW::BWDATA::Alliance[index].player[ ((PlayerImpl*)player)->getIndex() ] != 0;
+    return BW::BWDATA::Alliance[index].player[ static_cast<PlayerImpl*>(player)->getIndex() ] != 0;
   }
   //--------------------------------------------- IS ALLIES WITH ---------------------------------------------
   bool PlayerImpl::isEnemy(Player* player) const
   {
     if ( !player || this->isNeutral() || player->isNeutral() || this->isObserver() || player->isObserver() )
       return false;
-    return BW::BWDATA::Alliance[index].player[ ((PlayerImpl*)player)->getIndex() ] == 0;
+    return BW::BWDATA::Alliance[index].player[ static_cast<PlayerImpl*>(player)->getIndex() ] == 0;
   }
   //--------------------------------------------- IS NEUTRAL -------------------------------------------------
   bool PlayerImpl::isNeutral() const

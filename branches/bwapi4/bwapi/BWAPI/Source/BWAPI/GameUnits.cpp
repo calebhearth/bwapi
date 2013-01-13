@@ -81,16 +81,17 @@ namespace BWAPI
     //fill dyingUnits set with all aliveUnits and then clear the aliveUnits set.
     dyingUnits = aliveUnits;
     aliveUnits.clear();
-    //Now we will add alive units to the aliveUnits set and remove them from the dyingUnits set based on the Broodwar unit lists:
 
-    //compute alive and dying units
+    // (We assume isAlive is false for all dyingUnits currently)
+    // Now we will add alive units to the aliveUnits set and set their isAlive flag to true
+
+    //compute alive units
     for ( UnitImpl* u = UnitImpl::BWUnitToBWAPIUnit(*BW::BWDATA::UnitNodeList_VisibleUnit_First); u; u = u->getNext() )
     {
       if ( isUnitAlive(u) )
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
@@ -100,7 +101,6 @@ namespace BWAPI
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
@@ -110,13 +110,28 @@ namespace BWAPI
       {
         u->isAlive = true;
         aliveUnits.push_back(u);
-        dyingUnits.erase(u);
         u->updateInternalData();
       }
     }
-    //set the exists field to false for all dying units (though we don't update/clear their data yet)
-    foreach(UnitImpl* u, dyingUnits)
-      u->self->exists = false;
+    
+    // Since we know isAlive is false for the dying units, but true for the alive units,
+    // then we can remove the alive ones from the dyingUnits set in linear fashion
+    auto it = dyingUnits.begin();
+    while ( it != dyingUnits.end() )
+    {
+      if ( static_cast<UnitImpl*>(*it)->isAlive )
+      {
+        // Remove from the set if it's not dead
+        dyingUnits.erase(it);
+      }
+      else
+      {
+        // We can also set exists to false for units that will remain dying
+        static_cast<UnitImpl*>(*it)->self->exists = false;
+        it++;
+      }
+    }
+    
   }
   //------------------------------------------ Compute Client Sets -------------------------------------------
   void GameImpl::computePrimaryUnitSets()
@@ -260,28 +275,28 @@ namespace BWAPI
       }
       else if ( i->getAddon() && !i->getAddon()->isCompleted() )
       {
-        UnitImpl* j             = (UnitImpl*)i->getAddon();
+        UnitImpl* j             = static_cast<UnitImpl*>(i->getAddon());
         i->self->buildUnit      = server.getUnitID((Unit*)j);
         i->self->isConstructing = true;
         i->self->isIdle         = false;
         i->self->buildType      = j->self->type;
-        j->self->buildUnit      = server.getUnitID((Unit*)i);
+        j->self->buildUnit      = server.getUnitID(i);
         j->self->isConstructing = true;
         j->self->isIdle         = false;
         j->self->buildType      = j->self->type;
       }
       if ( i->getTransport() )
-        ((UnitImpl*)i->getTransport())->loadedUnits.push_back(i);
+        static_cast<UnitImpl*>(i->getTransport())->loadedUnits.push_back(i);
 
       if ( i->getHatchery() )
       {
-        UnitImpl* hatchery = (UnitImpl*)i->getHatchery();
-        hatchery->connectedUnits.insert((Unit*)i);
+        UnitImpl* hatchery = static_cast<UnitImpl*>(i->getHatchery());
+        hatchery->connectedUnits.insert(i);
         if (hatchery->connectedUnits.size() >= 3)
           hatchery->self->remainingTrainTime = 0;
       }
       if ( i->getCarrier() )
-        ((UnitImpl*)i->getCarrier())->connectedUnits.insert(i);
+        static_cast<UnitImpl*>(i->getCarrier())->connectedUnits.insert(i);
 
     }
   }
@@ -300,7 +315,7 @@ namespace BWAPI
 
     foreach(UnitImpl* u, discoverUnits)
     {
-      PlayerImpl *unitPlayer = ((PlayerImpl*)u->getPlayer());
+      PlayerImpl *unitPlayer = static_cast<PlayerImpl*>(u->getPlayer());
       if ( !unitPlayer )
         continue;
     
@@ -328,7 +343,7 @@ namespace BWAPI
     }
     foreach(UnitImpl* u, evadeUnits)
     {
-      PlayerImpl *unitPlayer = ((PlayerImpl*)u->getPlayer());
+      PlayerImpl *unitPlayer = static_cast<PlayerImpl*>(u->getPlayer());
       if ( !unitPlayer )
         continue;
 
@@ -370,8 +385,8 @@ namespace BWAPI
       if (i->lastPlayer != i->_getPlayer && i->lastPlayer && i->_getPlayer )
       {
         events.push_back(Event::UnitRenegade(i));
-        ((PlayerImpl*)i->lastPlayer)->units.erase(i);
-        ((PlayerImpl*)i->_getPlayer)->units.push_back(i);
+        static_cast<PlayerImpl*>(i->lastPlayer)->units.erase(i);
+        static_cast<PlayerImpl*>(i->_getPlayer)->units.push_back(i);
       }
       int allUnits  = UnitTypes::AllUnits;
       int men      = UnitTypes::Men;
@@ -380,7 +395,7 @@ namespace BWAPI
       int thisUnit  = i->_getType;
       
       // Increment specific unit count
-      BWAPI::PlayerData *pSelf = ((PlayerImpl*)i->_getPlayer)->self;
+      BWAPI::PlayerData *pSelf = static_cast<PlayerImpl*>(i->_getPlayer)->self;
       pSelf->allUnitCount[thisUnit]++;
       if (i->isVisible())
         pSelf->visibleUnitCount[thisUnit]++;

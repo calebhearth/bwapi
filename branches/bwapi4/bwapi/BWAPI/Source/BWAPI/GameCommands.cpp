@@ -184,7 +184,7 @@ namespace BWAPI
     }
 
     // Set last immediate command again in case it was altered when inserting it into the optimizer
-    ((UnitImpl*)command.unit)->setLastImmediateCommand(command);
+    static_cast<UnitImpl*>(command.unit)->setLastImmediateCommand(command);
 
     // Add command to the command optimizer buffer and unload it later (newest commands first)
     commandOptimizer[command.getType().getID()].push_front(command);

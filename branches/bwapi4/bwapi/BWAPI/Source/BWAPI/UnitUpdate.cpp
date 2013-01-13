@@ -37,19 +37,19 @@ namespace BWAPI
     self->replayID   = BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation) ? BW::UnitTarget(o).getTarget() : 0;
     if (isAlive)
     {
-      _getPlayer = (Player*)BroodwarImpl._getPlayer(getOriginalRawData->playerID); //_getPlayer
+      _getPlayer = BroodwarImpl._getPlayer(getOriginalRawData->playerID); //_getPlayer
       //------------------------------------------------------------------------------------------------------
       //isVisible
       for ( int i = 0; i < 9; ++i )
       {
         if ( i == selfPlayerID )
           continue;
-        PlayerImpl* player = (PlayerImpl*)Broodwar->getPlayer(i);
+        PlayerImpl* player = static_cast<PlayerImpl*>(Broodwar->getPlayer(i));
         if ( !o->sprite || !player )
           self->isVisible[i] = false;
         else if (!BroodwarImpl._isReplay() && !BWAPI::BroodwarImpl.isFlagEnabled(Flag::CompleteMapInformation))
           self->isVisible[i] = false;
-        else if ( _getPlayer == (Player*)player )
+        else if ( _getPlayer == player )
           self->isVisible[i] = true;
         else if ( player->isNeutral() )
           self->isVisible[i] = o->sprite->visibilityFlags > 0;
@@ -141,7 +141,7 @@ namespace BWAPI
 
       //------------------------------------------------------------------------------------------------------
       //_getPosition
-      _getPosition = BWAPI::Position(_getTransport ? ((UnitImpl*)_getTransport)->getOriginalRawData->position : o->position);
+      _getPosition = BWAPI::Position(_getTransport ? static_cast<UnitImpl*>(_getTransport)->getOriginalRawData->position : o->position);
 
       _getHitPoints = (int)ceil(o->hitPoints / 256.0); //_getHitPoints
       //------------------------------------------------------------------------------------------------------
@@ -542,7 +542,7 @@ namespace BWAPI
           break;
         case Orders::Enum::ConstructingBuilding:
           if ( self->buildUnit != -1 )
-            self->buildType = ((UnitImpl*)getBuildUnit())->getOriginalRawData->unitType;
+            self->buildType = static_cast<UnitImpl*>(getBuildUnit())->getOriginalRawData->unitType;
           break;
         case Orders::Enum::IncompleteMorphing:
           {
