@@ -156,30 +156,6 @@ namespace BWAPI
       return ((size_t)this->pEndAlloc - (size_t)this->pStartArr)/sizeof(_T);
     };
   // ----------------------------------------------------------------- erase
-    /// This function erases an element from a Vectorset. Unlike erase, it assumes there exists
-    /// only one element. If the element is found, it is removed and the function immediately
-    /// returns.
-    ///
-    /// @param val
-    ///   The value to erase from the Vectorset.
-    ///
-    /// @note This function does not preserve order. If you wish to preserve order, see
-    /// remove_once.
-    ///
-    /// @see erase
-    void erase_once(const _T &val)
-    {
-      // iterate all elements
-      iterator i = this->begin();
-      for ( ; i != this->end(); ++i )
-      {
-        if ( val == *i )  // break if values are equal
-          break;
-      }
-      // erase the value (also does nothing if end() has been reached)
-      this->erase(i);
-    };
-    
     /// Erases all values found in the Vectorset. When a value is found, it is erased and the
     /// function continues searching for the same value until it reaches the end of the
     /// Vectorset.
@@ -188,8 +164,6 @@ namespace BWAPI
     ///   The value to search for and erase.
     /// 
     /// @note This function does not preserve order. If you wish to preserve order, see remove.
-    ///
-    /// @see erase_once
     void erase(const _T &val)
     {
       // iterate all elements
@@ -197,7 +171,7 @@ namespace BWAPI
       while ( i != this->end() )
       {
         if ( val == *i )  // erase if values are equal
-          this->erase_direct(i);
+          i = this->erase(i);
         else
           ++i;
       }
@@ -207,24 +181,44 @@ namespace BWAPI
     /// searching for the value is not necessary.
     ///
     /// @param iter
-    ///   The iterator for the position to erase.
+    ///   A valid iterator for the position to erase. This iterator must be within the scope of
+    ///   the Vectorset or the result will be undefined.
+    ///
+    /// @returns
+    ///   iterator to next element.
     ///
     /// @note This function does not preserve order. If you wish to preserve order, see remove.
-    ///
-    /// @see erase_once
-    void erase(const iterator &iter)
-    {
-      // Check if the iterator is in bounds (most common hit first)
-      if ( iter < this->end() && iter >= this->begin() )
-        this->erase_direct(iter);
-    };
-    /// @copydoc erase(const iterator&)
-    /// @note This function may be unsafe, but is provided for performance and used internally.
-    void erase_direct(const iterator &iter)
+    iterator erase(iterator iter)
     {
       // Remove the element by replacing it with the last one
       --this->pEndArr;
       *(&iter) = *this->pEndArr;
+
+      // Return the same iterator since it is already pointing to the next expected element
+      return iter;
+    };
+    /// Erases the values within a range of iterators for this Vectorset.
+    ///
+    /// @param first
+    ///   A valid iterator for the starting position to erase. This iterator must be within the
+    ///   scope of the Vectorset or the result will be undefined.
+    /// @param last
+    ///   A valid iterator for the ending position to erase. This iterator must come after first
+    ///   and be within the scope of the Vectorset or the result will be undefined.
+    ///
+    /// @note This function does not preserve order. If you wish to preserve order, see remove.
+    iterator erase(iterator first, iterator last)
+    {
+      // Erase all elements until last, unless last == end()
+      while ( last != this->end() && first != last )
+        first = this->erase(first);
+      
+      // Optimization so that only one operation is necessary
+      if ( first != last && last == this->end() )
+        this->pEndArr -= (last - first);
+      
+      // Return the iterator to the same position
+      return first;
     };
     
     /// Works similar to the STL algorithm remove_if. Iterates and calls a function predicate for
@@ -243,34 +237,12 @@ namespace BWAPI
       while ( i != this->end() )
       {
         if ( pred(*i) )  // erase if predicate returns true
-          this->erase_direct(i);
+          this->erase(i);
         else
           ++i;
       }
     };
-  // ----------------------------------------------------------------- remove
-    /// This function removes an element from a Vectorset. Unlike remove, it assumes there exists
-    /// only one element. If the element is found, it is removed and the function immediately
-    /// returns.
-    ///
-    /// @param val
-    ///   The value to remove from the Vectorset.
-    ///
-    /// @note This function preserves order. It is recommended to use erase_once for performance
-    /// if order is not important.
-    ///
-    /// @see remove, erase_once
-    void remove_once(const _T &val)
-    {
-      // iterate all elements
-      for ( auto i = this->begin(); i != this->end(); ++i )
-      {
-        if ( val == *i )  // break if values are equal
-          break;
-      }
-      this->remove(i); // remove the value (does check for end())
-    };
-    
+  // ----------------------------------------------------------------- remove    
     /// Removes all values found in the Vectorset. When a value is found, it is removed and the
     /// function continues searching for the same value until it reaches the end of the Vectorset.
     ///
@@ -280,7 +252,7 @@ namespace BWAPI
     /// @note This function preserves order. It is recommended to use erase for performance if
     /// order is not important.
     ///
-    /// @see remove_once, erase
+    /// @see erase
     void remove(const _T &val)
     {
       // Find the first instance
@@ -311,22 +283,14 @@ namespace BWAPI
     /// is that searching for the value is not necessary.
     ///
     /// @param iter
-    ///   The iterator for the position to erase.
+    ///   A valid iterator for the position to erase. This iterator must be within the scope of
+    ///   the Vectorset or the result will be undefined.
     ///
     /// @note This function preserves order. It is recommended to use erase for performance if
     /// order is not important.
     ///
-    /// @see remove_once, erase
+    /// @see erase
     void remove(const iterator &iter)
-    {
-      // Check if the iterator is in bounds (most common hit first)
-      if ( iter < this->end() && iter >= this->begin() )
-        this->remove_direct(iter);
-    };
-    /// @copydoc remove(const iterator&)
-    /// @note This function may be unsafe, but is
-    /// provided for performance.
-    void remove_direct(const iterator &iter)
     {
       // Remove the element by shifting positions
       iterator t = iter;
