@@ -52,7 +52,7 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <DisableSpecificWarnings>4238;4480</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4238;4480;4481</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Vfw32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -84,7 +84,7 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <DisableSpecificWarnings>4238;4480</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4238;4480;4481</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Command>

@@ -201,36 +201,33 @@ namespace BWAPI
   //----------------------------------------------- PARSE TEXT -----------------------------------------------
   bool GameImpl::parseText(const char* text)
   {
-    /* analyze the string */
-    std::string message = text;
-    std::vector<std::string> parsed = Util::Strings::splitString(message, " ");
+    // analyze the string
+    std::stringstream ss(text);
+    std::string cmd;
+    int n;
 
-    /* fix for bad referencing */
-    while (parsed.size() < 5)
-      parsed.push_back("");
+    ss >> cmd;
 
     /* commands list */
-    if (parsed[0] == "/leave")
+    if (cmd == "/leave")
     {
       this->leaveGame();
     }
-    else if (parsed[0] == "/speed")
+    else if (cmd == "/speed")
     {
-      if (parsed[1] != "")
-        setLocalSpeed(atoi(parsed[1].c_str()));
-      else
-        setLocalSpeed();
+      n = -1;
+      ss >> n;
+      setLocalSpeed(n);
       Broodwar << "Changed game speed" << std::endl;
     }
-    else if (parsed[0] == "/fs")
+    else if (cmd == "/fs")
     {
-      if (parsed[1] != "")
-        setFrameSkip(atoi(parsed[1].c_str()));
-      else
-        setFrameSkip();
+      n = 1;
+      ss >> n;
+      setFrameSkip(n);
       Broodwar << "Altered frame skip" << std::endl;
     }
-    else if (parsed[0] == "/cheats")
+    else if (cmd == "/cheats")
     {
       sendText("power overwhelming");
       sendText("operation cwal");
@@ -248,68 +245,68 @@ namespace BWAPI
       sendText("show me the money");
       sendText("show me the money");
     }
-    else if (parsed[0] == "/restart")
+    else if (cmd == "/restart")
     {
       restartGame();
     }
-    else if (parsed[0] == "/nogui")
+    else if (cmd == "/nogui")
     {
       setGUI(!data->hasGUI);
       Broodwar << "GUI: " << (data->hasGUI ? "enabled" : "disabled") << std::endl;
     }
-    else if (parsed[0] == "/wmode")
+    else if (cmd == "/wmode")
     {
       SetWMode(BW::BWDATA::GameScreenBuffer->width(), BW::BWDATA::GameScreenBuffer->height(), !wmode);
       Broodwar << "Toggled windowed mode." << std::endl;
     }
-    else if (parsed[0] == "/grid")
+    else if (cmd == "/grid")
     {
       grid = !grid;
       Broodwar << "Matrix grid " << (grid ? "enabled" : "disabled") << std::endl;
     }
-    else if (parsed[0] == "/record")
+    else if (cmd == "/record")
     {
       if ( !StartVideoRecording(640, 480) )
-        MessageBox(NULL, "Recording failed to start.", "Recording failed!", MB_OK | MB_ICONHAND);
+        MessageBox(nullptr, "Recording failed to start.", "Recording failed!", MB_OK | MB_ICONHAND);
     }
-    else if (parsed[0] == "/stoprecord")
+    else if (cmd == "/stoprecord")
     {
       StopVideoRecording();
     }
-    else if ( parsed[0] == "/fps" )
+    else if ( cmd == "/fps" )
     {
       this->showfps = !this->showfps;
       Broodwar << "FPS display " << (showfps ? "enabled" : "disabled") << std::endl;
     }
 #ifdef _DEBUG
-    else if (parsed[0] == "/latency")
+    else if (cmd == "/latency")
     {
       Broodwar << "Latency: " << getLatency() << std::endl;
       Broodwar << "New latency: " << getLatencyFrames() << " frames (" << getLatencyTime() << "ms)" << std::endl;
     }
 // The following commands are knockoffs of Starcraft Beta's developer mode
-    else if (parsed[0] == "/pathdebug")
+    else if (cmd == "/pathdebug")
     {
       pathDebug = !pathDebug;
       Broodwar << "pathdebug " << (pathDebug ? "ENABLED" : "DISABLED") << std::endl;
     }
-    else if (parsed[0] == "/unitdebug")
+    else if (cmd == "/unitdebug")
     {
       unitDebug = !unitDebug;
       Broodwar << "unitdebug " << (unitDebug ? "ENABLED" : "DISABLED") << std::endl;
     }
 // end knockoffs
-    else if (parsed[0] == "/hud")
+    else if (cmd == "/hud")
     {
       hideHUD = !hideHUD;
       Broodwar << "Now " << (hideHUD ? "hiding" : "showing") << " the HUD." << std::endl;
     }
-    else if (parsed[0] == "/resize")
+    else if (cmd == "/resize")
     {
       Broodwar << "Done" << std::endl;
       SetResolution(1280, 720);
     }
-    else if (parsed[0] == "/test")
+    else if (cmd == "/test")
     {
       //SetResolution(640, 480);
       Unitset sel = this->getSelectedUnits();
@@ -456,11 +453,11 @@ namespace BWAPI
     this->regionsList.clear();
 
     // Reset game speeds and text size
-    this->setLocalSpeed();
-    this->setFrameSkip();
+    this->setLocalSpeed(-1);
+    this->setFrameSkip(1);
     this->setTextSize();
-    this->setGUI();
-    this->setCommandOptimizationLevel();
+    this->setGUI(true);
+    this->setCommandOptimizationLevel(0);
 
     // Reset all Unit objects in the unit array
     for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)

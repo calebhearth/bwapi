@@ -741,47 +741,35 @@ namespace BWAPI
   //----------------------------------------------------- SELF -----------------------------------------------
   Player*  GameImpl::self()
   {
-    // Retrieves the object for the current player 
-    this->setLastError();
     return (Player*)this->BWAPIPlayer;
   }
   //----------------------------------------------------- ENEMY ----------------------------------------------
   Player *GameImpl::enemy()
   {
-    // Retrieves the object for the first opponent player 
-    this->setLastError();
     return (Player*)this->enemyPlayer;
   }
   //----------------------------------------------------- NEUTRAL --------------------------------------------
   Player *GameImpl::neutral()
   {
-    // Retrieves the object for the neutral player 
-    this->setLastError();
     return (Player*)players[11];
   }
   //----------------------------------------------------- ALLIES ---------------------------------------------
   Playerset& GameImpl::allies()
   {
-    // Returns a set of all the ally players that have not left or been defeated. Does not include self. 
-    this->setLastError();
     return _allies;
   }
   //----------------------------------------------------- ENEMIES --------------------------------------------
   Playerset& GameImpl::enemies()
   {
-    // Returns a set of all the enemy players that have not left or been defeated. */
-    this->setLastError();
     return _enemies;
   }
   //---------------------------------------------------- OBSERVERS -------------------------------------------
   Playerset& GameImpl::observers()
   {
-    // Returns a set of all the enemy players that have not left or been defeated. 
-    this->setLastError();
     return _observers;
   }
   //--------------------------------------------------- LATENCY ----------------------------------------------
-  int GameImpl::getLatencyFrames()
+  int GameImpl::getLatencyFrames() const
   {
     DWORD dwCallDelay = 1;
     if ( *BW::BWDATA::NetMode )
@@ -794,29 +782,29 @@ namespace BWAPI
     }
     return (BW::BWDATA::LatencyFrames[*BW::BWDATA::GameSpeed]) * (*BW::BWDATA::Latency + dwCallDelay + 1);
   }
-  int GameImpl::getLatencyTime()
+  int GameImpl::getLatencyTime() const
   {
     return getLatencyFrames() * BW::BWDATA::GameSpeedModifiers[*BW::BWDATA::GameSpeed];
   }
-  int GameImpl::getRemainingLatencyFrames()
+  int GameImpl::getRemainingLatencyFrames() const
   {
     return getLatencyFrames() - (this->getFrameCount() - lastTurnFrame);
   }
-  int GameImpl::getRemainingLatencyTime()
+  int GameImpl::getRemainingLatencyTime() const
   {
     return (getLatencyFrames() * BW::BWDATA::GameSpeedModifiers[*BW::BWDATA::GameSpeed]) - (GetTickCount() - lastTurnTime);
   }
   //--------------------------------------------------- VERSION ----------------------------------------------
-  int GameImpl::getRevision()
+  int GameImpl::getRevision() const
   {
     return SVN_REV;
   }
-  bool GameImpl::isDebug()
+  bool GameImpl::isDebug() const
   {
     return BUILD_DEBUG == 1;
   }
   //----------------------------------------------- LAT COMPENSATION -----------------------------------------
-  bool GameImpl::isLatComEnabled()
+  bool GameImpl::isLatComEnabled() const
   {
     return data->hasLatCom;
   }
@@ -827,12 +815,12 @@ namespace BWAPI
     data->hasLatCom = isEnabled;
   }
   //----------------------------------------------- GET INSTANCE ID ------------------------------------------
-  int GameImpl::getInstanceNumber()
+  int GameImpl::getInstanceNumber() const
   {
     return (int)gdwProcNum;
   }
   //---------------------------------------------------- GET APM ---------------------------------------------
-  int GameImpl::getAPM(bool includeSelects)
+  int GameImpl::getAPM(bool includeSelects) const
   {
     if ( includeSelects )
       return botAPM_selects;

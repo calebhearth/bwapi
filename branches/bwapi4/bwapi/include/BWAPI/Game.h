@@ -385,7 +385,7 @@ namespace BWAPI
     /** Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed
      * StarCraft can handle (which is about as fast as the fastest speed you can view a replay at). Any
      * negative value will reset the speed to the StarCraft default. */
-    virtual void setLocalSpeed(int speed = -1) = 0;
+    virtual void setLocalSpeed(int speed) = 0;
 
     /** Issues a command to a group of units */
     virtual bool issueCommand(const Unitset& units, UnitCommand command) = 0;
@@ -482,37 +482,67 @@ namespace BWAPI
     void drawLineScreen(Position a, Position b, Color color);
 
     /** Retrieves latency values for the game. Includes latency, speed, and mode */
-    virtual int getLatencyFrames() = 0;
-    virtual int getLatencyTime() = 0;
-    virtual int getRemainingLatencyFrames() = 0;
-    virtual int getRemainingLatencyTime() = 0;
+    virtual int getLatencyFrames() const = 0;
+    virtual int getLatencyTime() const = 0;
+    virtual int getRemainingLatencyFrames() const = 0;
+    virtual int getRemainingLatencyTime() const = 0;
 
     /** Retrieves the current revision of BWAPI. */
-    virtual int getRevision() = 0;
+    virtual int getRevision() const = 0;
 
     /** Retrieves the debug state of the BWAPI build. */
-    virtual bool isDebug() = 0;
+    virtual bool isDebug() const = 0;
 
     /** Returns true if latency compensation is enabled */
-    virtual bool isLatComEnabled() = 0;
+    virtual bool isLatComEnabled() const = 0;
 
     /** Use to enable or disable latency compensation. Default: Enabled */
     virtual void setLatCom(bool isEnabled) = 0;
 
-    /** Sets the rendering state of the Starcraft GUI */
-    virtual void setGUI(bool enabled = true) = 0;
+    /// Checks if the GUI is enabled. The GUI includes all drawing functions of BWAPI, as well
+    /// as screen updates from Broodwar.
+    ///
+    /// @retval true If the GUI is enabled, and everything is visible
+    /// @retval false If the GUI is disabled and drawing functions are rejected
+    ///
+    /// @see setGUI
+    virtual bool isGUIEnabled() const = 0;
 
-    /** Retrieves the instance number recorded by BWAPI to identify which instance an AI module belongs to */
-    virtual int  getInstanceNumber() = 0;
+    /// Sets the rendering state of the Starcraft GUI. This typically gives Starcraft a very
+    /// low graphical frame rate and disables all drawing functionality in BWAPI.
+    ///
+    /// @param enabled
+    ///   A boolean value that determines the state of the GUI. Passing false to this function
+    ///   will disable the GUI, and true will enable it.
+    ///
+    /// Example Usage:
+    /// @code
+    ///   void ExampleAIModule::onStart()
+    ///   {   // Make our bot run thousands of games as fast as possible!
+    ///     Broodwar->setLocalSpeed(0);
+    ///     Broodwar->setGUI(false);
+    ///   }
+    /// @endcode
+    ///
+    /// @see isGUIEnabled
+    virtual void setGUI(bool enabled) = 0;
+
+    /// Retrieves the Starcraft instance number recorded by BWAPI to identify which Starcraft
+    /// instance an AI module belongs to. This only applies to users running multiple instances
+    /// of Starcraft.
+    ///
+    /// @returns
+    ///   An integer value representing the instance number.
+    virtual int getInstanceNumber() const = 0;
 
     /** Retrieves the bot's APM. Can include or exclude select commands. */
-    virtual int getAPM(bool includeSelects = false) = 0;
+    virtual int getAPM(bool includeSelects = false) const = 0;
 
     /** Changes the map to the one specified. Changes do not take effect unless the game is restarted. */
     virtual bool setMap(const char *mapFileName) = 0;
 
     /** Sets the frame skip value. 1 = normal */
-    virtual void setFrameSkip(int frameSkip = 1) = 0;
+    virtual void setFrameSkip(int frameSkip) = 0;
 
     /** Returns true if Starcraft can find a path from the source to the destination. */
     virtual bool hasPath(Position source, Position destination) const = 0;
@@ -526,12 +556,89 @@ namespace BWAPI
     /** Returns the elapsed game time in seconds. */
     virtual int  elapsedTime() const = 0;
 
-    /** Sets the level of command optimizations.
-        0 = No optimization.
-        1 = Some optimization    (Stop, Hold Position, Siege, Burrow, etc.).
-        2 = More optimization    (Train, Set Rally, Lift, [multi-select buildings]).
-        3 = Maximum optimization (Attack/Move to position, use ability at position, etc.).*/
-    virtual void setCommandOptimizationLevel(int level = 0) = 0;
+    /// Sets the command optimization level. Command optimization is a feature in BWAPI that tries
+    /// to reduce the APM of the bot by grouping or eliminating unnecessary game actions. For
+    /// example, suppose the bot told 24 @Zerglings to @Burrow. At command optimization level 0,
+    /// BWAPI is designed to select each Zergling to burrow individually, which costs 48 actions.
+    /// With command optimization level 1, it can perform the same behaviour using only 4 actions.
+    /// The command optimizer also reduces the amount of bytes used for each action if it can
+    /// express the same action using a different command. For example, Right_Click uses less
+    /// bytes than Move.
+    ///
+    /// @param level
+    ///   An integer representation of the aggressiveness for which commands are optimized. A
+    ///   lower level means less optimization, and a higher level means more optimization. The
+    ///   values for level are as follows:
+    ///     + 0: No optimization.
+    ///     + 1: Some optimization.
+    ///       + Is not detected as a hack.
+    ///       + Does not alter behaviour.
+    ///       + Units performing the following actions are grouped and ordered 12 at a time:
+    ///         + Attack_Unit
+    ///         + Morph (@Larva only)
+    ///         + Hold_Position
+    ///         + Stop
+    ///         + Follow
+    ///         + Gather
+    ///         + Return_Cargo
+    ///         + Repair
+    ///         + Burrow
+    ///         + Unburrow
+    ///         + Cloak
+    ///         + Decloak
+    ///         + Siege
+    ///         + Unsiege
+    ///         + Right_Click_Unit
+    ///         + Halt_Construction
+    ///         + Cancel_Train (@Carrier and @Reaver only)
+    ///         + Cancel_Train_Slot (@Carrier and @Reaver only)
+    ///         + Cancel_Morph (for non-buildings only)
+    ///         + Use_Tech
+    ///         + Use_Tech_Unit
+    ///       + The following order transformations are applied to allow better grouping:
+    ///         + Attack_Unit becomes Right_Click_Unit if the target is an enemy
+    ///         + Move becomes Right_Click_Position
+    ///         + Gather becomes Right_Click_Unit if the target contains resources
+    ///         + Set_Rally_Position becomes Right_Click_Position for buildings
+    ///         + Set_Rally_Unit becomes Right_Click_Unit for buildings
+    ///         + Use_Tech_Unit with Infestation becomes Right_Click_Unit if the target is valid
+    ///     + 2: More optimization by grouping structures.
+    ///       + Includes the optimizations made by all previous levels.
+    ///       + May be detected as a hack by some replay utilities.
+    ///       + Does not alter behaviour.
+    ///       + Units performing the following actions are grouped and ordered 12 at a time:
+    ///         + Attack_Unit (@Turrets, @Photon_Cannons, @Sunkens, @Spores)
+    ///         + Train
+    ///         + Morph
+    ///         + Set_Rally_Unit
+    ///         + Lift
+    ///         + Unload_All (@Bunkers only)
+    ///         + Cancel_Construction
+    ///         + Cancel_Addon
+    ///         + Cancel_Train
+    ///         + Cancel_Train_Slot
+    ///         + Cancel_Morph
+    ///         + Cancel_Research
+    ///         + Cancel_Upgrade
+    ///     + 3: Extensive optimization 
+    ///       + Includes the optimizations made by all previous levels.
+    ///       + Units may behave or move differently than expected.
+    ///       + Units performing the following actions are grouped and ordered 12 at a time:
+    ///         + Attack_Move
+    ///         + Set_Rally_Position
+    ///         + Move
+    ///         + Patrol
+    ///         + Unload_All
+    ///         + Unload_All_Position
+    ///         + Right_Click_Position
+    ///         + Use_Tech_Position
+    ///     + 4: Aggressive optimization
+    ///       + Includes the optimizations made by all previous levels.
+    ///       + Positions used in commands will be rounded to multiples of 32.
+    ///       + @High_Templar and @Dark_Templar that merge into @Archons will be grouped and may
+    ///         choose a different target to merge with. It will not merge with a target that
+    ///         wasn't included.
+    virtual void setCommandOptimizationLevel(int level) = 0;
 
     /** Returns the remaining countdown time in seconds. */
     virtual int  countdownTimer() const = 0;

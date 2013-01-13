@@ -197,7 +197,7 @@ namespace BWAPI
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,ctype,x1,y1,x2,y2,0,0,color,false));
   }
   //--------------------------------------------------- HAS GUI ----------------------------------------------
-  bool GameImpl::isGUIEnabled()
+  bool GameImpl::isGUIEnabled() const
   {
     return data->hasGUI;
   }
@@ -207,10 +207,7 @@ namespace BWAPI
     if ( !this->tournamentCheck(Tournament::SetGUI, &enabled) )
       return;
     data->hasGUI = enabled;
-    if ( enabled )
-      setFrameSkip();
-    else
-      setFrameSkip(999999); // IT'S OVER NINE THOUSAND!!11one11one111eleven21
+    setFrameSkip(enabled ? -1 : 9999999);
   }
   // Fixed precision conversions
   // Uses * and / for compatibility with negative numbers

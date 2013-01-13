@@ -715,40 +715,31 @@ namespace BWAPI
   //--------------------------------------------- SELF -------------------------------------------------------
   Player* GameImpl::self()
   {
-    lastError = Errors::None;
     return thePlayer;
   }
   //--------------------------------------------- ENEMY ------------------------------------------------------
   Player* GameImpl::enemy()
   {
-    lastError = Errors::None;
     return theEnemy;
   }
   //--------------------------------------------- ENEMY ------------------------------------------------------
   Player* GameImpl::neutral()
   {
-    lastError = Errors::None;
     return theNeutral;
   }
   //--------------------------------------------- ALLIES -----------------------------------------------------
   Playerset& GameImpl::allies()
   {
-    /* Returns a set of all the ally players that have not left or been defeated. Does not include self. */
-    lastError = Errors::None;
     return _allies;
   }
   //--------------------------------------------- ENEMIES ----------------------------------------------------
   Playerset& GameImpl::enemies()
   {
-    /* Returns a set of all the enemy players that have not left or been defeated. */
-    lastError = Errors::None;
     return _enemies;
   }
   //-------------------------------------------- OBSERVERS ---------------------------------------------------
   Playerset& GameImpl::observers()
   {
-    /* Returns a set of all the enemy players that have not left or been defeated. */
-    lastError = Errors::None;
     return _observers;
   }
 
@@ -806,31 +797,31 @@ namespace BWAPI
     if ( !data->hasGUI ) return;
     addShape(BWAPIC::Shape(BWAPIC::ShapeType::Line,ctype,x1,y1,x2,y2,0,0,color,false));
   }
-  int GameImpl::getLatencyFrames()
+  int GameImpl::getLatencyFrames() const
   {
     return data->latencyFrames;
   }
-  int GameImpl::getLatencyTime()
+  int GameImpl::getLatencyTime() const
   {
     return data->latencyTime;
   }
-  int GameImpl::getRemainingLatencyFrames()
+  int GameImpl::getRemainingLatencyFrames() const
   {
     return data->remainingLatencyFrames;
   }
-  int GameImpl::getRemainingLatencyTime()
+  int GameImpl::getRemainingLatencyTime() const
   {
     return data->remainingLatencyTime;
   }
-  int GameImpl::getRevision()
+  int GameImpl::getRevision() const
   {
     return data->revision;
   }
-  bool GameImpl::isDebug()
+  bool GameImpl::isDebug() const
   {
     return data->isDebug;
   }
-  bool GameImpl::isLatComEnabled()
+  bool GameImpl::isLatComEnabled() const
   {
     return data->hasLatCom;
   }
@@ -843,7 +834,7 @@ namespace BWAPI
     //queue up command for server so it also applies the change
     addCommand(BWAPIC::Command(BWAPIC::CommandType::SetLatCom, e));
   }
-  bool GameImpl::isGUIEnabled()
+  bool GameImpl::isGUIEnabled() const
   {
     return data->hasGUI;
   }
@@ -855,11 +846,11 @@ namespace BWAPI
     //queue up command for server so it also applies the change
     addCommand(BWAPIC::Command(BWAPIC::CommandType::SetGui, e));
   }
-  int GameImpl::getInstanceNumber()
+  int GameImpl::getInstanceNumber() const
   {
     return data->instanceID;
   }
-  int GameImpl::getAPM(bool includeSelects)
+  int GameImpl::getAPM(bool includeSelects) const
   {
     if ( includeSelects )
       return data->botAPM_selects;
