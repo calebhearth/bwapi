@@ -435,8 +435,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
@@ -450,8 +448,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType().groundWeapon() == WeaponTypes::None && thisUnit->getType().airWeapon() == WeaponTypes::None &&
@@ -508,6 +504,8 @@ namespace BWAPI
            (thisUnit->getType().isFlyingBuilding() && thisUnit->isLifted()) ||
            (thisUnit->getType().isBuilding() && !thisUnit->isIdle()) )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -624,6 +622,8 @@ namespace BWAPI
            thisUnit->getType() != UnitTypes::Enum::Zerg_Spire &&
            thisUnit->getType() != UnitTypes::Enum::Zerg_Larva )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -704,6 +704,8 @@ namespace BWAPI
            thisUnit->getType() != UnitTypes::Enum::Zerg_Hive &&
            thisUnit->getType() != UnitTypes::Enum::Zerg_Larva )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -758,6 +760,8 @@ namespace BWAPI
 
       if ( thisUnit->isLifted() || !thisUnit->isIdle() || !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -805,6 +809,8 @@ namespace BWAPI
 
       if ( thisUnit->isLifted() || !thisUnit->isIdle() || !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -894,6 +900,8 @@ namespace BWAPI
 
       if ( !thisUnit->getType().canProduce() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -906,6 +914,8 @@ namespace BWAPI
         return false;
 
       if ( !thisUnit->getType().canProduce() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
@@ -933,8 +943,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
@@ -950,8 +958,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
@@ -967,8 +973,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
@@ -1005,6 +1009,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( thisUnit->getPowerUp() )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1055,9 +1061,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
-
       return true;
     }
     //------------------------------------------- CAN STOP ---------------------------------------------------
@@ -1067,9 +1070,6 @@ namespace BWAPI
         Broodwar->setLastError();
       else if ( !canCommand(thisUnit) )
         return false;
-
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1084,6 +1084,8 @@ namespace BWAPI
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType() != BWAPI::UnitTypes::Terran_SCV )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
@@ -1188,6 +1190,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::Sieging || thisUnit->getOrder() == Orders::Unsieging )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1244,8 +1248,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( !thisUnit->isCompleted() )
@@ -1289,6 +1291,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       const BWAPI::Unit* unitThatLoads = ( thisUnitSpaceProvided > 0 ? thisUnit : targetUnit );
+      if ( unitThatLoads->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       int freeSpace = ( thisUnitSpaceProvided > 0 ? thisUnitSpaceProvided : targetSpaceProvided );
       int requiredSpace;
       Unitset loadedUnits = unitThatLoads->getLoadedUnits();
@@ -1388,8 +1392,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
@@ -1403,8 +1405,6 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
@@ -1514,6 +1514,8 @@ namespace BWAPI
 
       if ( !thisUnit->isMorphing() || (!thisUnit->isCompleted() && thisUnit->getType() == UnitTypes::Zerg_Nydus_Canal && thisUnit->getNydusExit()) )
         return false;
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1553,6 +1555,8 @@ namespace BWAPI
 
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->isHallucination() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
