@@ -62,15 +62,15 @@ namespace BWAPI
     BWtoBWAPI_init();
     try
     {
-      /* iterate through players and create PlayerImpl for each */
+      // iterate through players and create PlayerImpl for each
       for (int i = 0; i < PLAYER_COUNT; ++i)
         players[i] = new PlayerImpl((u8)i);
 
-      /* iterate through units and create UnitImpl for each */
+      // iterate through units and create UnitImpl for each
       for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)
         unitArray[i] = new UnitImpl(&BW::BWDATA::UnitNodeTable[i], (u16)i);
 
-      /* iterate through bullets and create BulletImpl for each */
+      // iterate through bullets and create BulletImpl for each
       for (int i = 0; i < BULLET_ARRAY_MAX_LENGTH; ++i)
         bulletArray[i] = new BulletImpl(&BW::BWDATA::BulletNodeTable[i], (u16)i);
     }
@@ -83,7 +83,7 @@ namespace BWAPI
   //----------------------------------------------- DESTRUCTOR -----------------------------------------------
   GameImpl::~GameImpl()
   {
-    /* destroy all UnitImpl */
+    // destroy all UnitImpl
     for (int i = 0; i < UNIT_ARRAY_MAX_LENGTH; ++i)
     {
       if ( unitArray[i] != nullptr )
@@ -93,7 +93,7 @@ namespace BWAPI
       }
     }
 
-    /* destroy all PlayerImpl */
+    // destroy all PlayerImpl
     for (int i = 0; i < PLAYER_COUNT; ++i)
     {
       if ( players[i] != nullptr )
@@ -103,7 +103,7 @@ namespace BWAPI
       }
     }
 
-    /* destroy all bullets */
+    // destroy all bullets
     for(int i = 0; i < BULLET_ARRAY_MAX_LENGTH; ++i)
     {
       if ( bulletArray[i] != nullptr )
@@ -140,7 +140,7 @@ namespace BWAPI
         if ( iplr != -1 && iplr != (int)*BW::BWDATA::g_LocalHumanID )
         {
           this->droppedPlayers.push_back(this->players[iplr]);
-          SNetDropPlayer(i, 0x40000006);
+          SNetDropPlayer(i, 0x40000006);  // The value used when dropping
         }
       }
     }
@@ -208,7 +208,7 @@ namespace BWAPI
 
     ss >> cmd;
 
-    /* commands list */
+    // commands list
     if (cmd == "/leave")
     {
       this->leaveGame();
@@ -311,8 +311,8 @@ namespace BWAPI
       //SetResolution(640, 480);
       Unitset sel = this->getSelectedUnits();
       for ( auto i = sel.begin(); i != sel.end(); ++i )
-        Broodwar << "Ground strength: " << ((UnitImpl*)*i)->getOriginalRawData->groundStrength
-                 << "; Air strength: " << ((UnitImpl*)*i)->getOriginalRawData->airStrength << std::endl;
+        Broodwar << "Ground strength: " << static_cast<UnitImpl*>(*i)->getOriginalRawData->groundStrength
+                 << "; Air strength: " << static_cast<UnitImpl*>(*i)->getOriginalRawData->airStrength << std::endl;
     }
 #endif
     else
@@ -361,7 +361,7 @@ namespace BWAPI
     if ( hAIModule )
     {
       FreeLibrary(hAIModule);
-      hAIModule = NULL;
+      hAIModule = nullptr;
     }
     
     this->startedClient = false;
