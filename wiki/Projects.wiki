@@ -44,6 +44,7 @@ This page contains links to other projects that make use of BWAPI.
 
 = Not actively maintained =
   * PyBW: http://code.google.com/p/pybw/ (Python)
+  * Again PyBW (reloaded) https://github.com/crass/PyBW (Python)
   * BWAPI-HSProxy: http://code.google.com/p/bwapi-hsproxy/ (Haskell)
   * bwapi-mono-bridge: http://code.google.com/p/bwapi-mono-bridge/ (C# or any other .NET 2.0 language)
   * BWAPI-Proxy: http://code.google.com/p/bwapi-proxy/ (Java)
