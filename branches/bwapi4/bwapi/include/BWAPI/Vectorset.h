@@ -433,6 +433,7 @@ namespace BWAPI
     {
       if ( this->expand() )
       {
+        // @TODO: make front available to reduce cost
         memmove(this->pStartArr+1, this->pStartArr, this->size()*sizeof(_T));
         ++this->pEndArr;
         *this->pStartArr = val;
@@ -470,6 +471,7 @@ namespace BWAPI
         *this->pStartArr = *this->pEndArr;
         break;
       default: // otherwise move all elements up
+        // @TODO: make front available to reduce cost
         memmove(this->pStartArr, this->pStartArr+1, size*sizeof(_T));
         break;
       }

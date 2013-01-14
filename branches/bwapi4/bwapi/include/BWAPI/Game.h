@@ -658,6 +658,23 @@ namespace BWAPI
 
     /** Enables or disables the Fog of War in a replay. */
     virtual bool setRevealAll(bool reveal = true) = 0;
+
+    /// Retrieves a basic build position just as the default Computer AI would. This allows users
+    /// to find simple build locations without relying on external libraries.
+    ///
+    /// @param type
+    ///   A valid UnitType representing the unit type to accomodate space for.
+    /// @param desiredPosition
+    ///   A valid TilePosition containing the desired placement position.
+    /// @param maxRange (optional)
+    ///   The maximum distance (in tiles) to build from \p desiredPosition.
+    /// @param creep (optional)
+    ///   A special boolean value that changes the behaviour of @Creep_Colony placement.
+    ///
+    /// @retval TilePositions::Invalid If a build location could not be found within \p maxRange.
+    /// @returns
+    ///   A TilePosition containing the location that the structure should be constructed at.
+    TilePosition getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange = 64, bool creep = false);
   };
 
   extern Game *BroodwarPtr;

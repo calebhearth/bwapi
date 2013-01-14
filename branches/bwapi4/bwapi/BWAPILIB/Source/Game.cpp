@@ -5,6 +5,7 @@
 #include <BWAPI/Unitset.h>
 #include <BWAPI/Unit.h>
 #include <BWAPI/Filters.h>
+#include <BWAPI/Player.h>
 
 #include <cstdarg>
 
@@ -12,7 +13,374 @@ namespace BWAPI
 {
   GameWrapper Broodwar;
   Game *BroodwarPtr;
+  //-------------------------------------- BUILD LOCATION --------------------------------------------
+#define MAX_RANGE 64
+  class PlacementReserve
+  {
+  public:
+    void reset()
+    {
+      memset(data,0,sizeof(data));
+    };
 
+    // Checks if the given x/y value is valid for the Placement position
+    static bool isValidPos(int x, int y)
+    {
+      return x >= 0 && x < MAX_RANGE && y >= 0 && y < MAX_RANGE;
+    };
+    static bool isValidPos(TilePosition p)
+    {
+      return isValidPos(p.x, p.y);
+    };
+
+    // Sets the value in the placement reserve array
+    void setValue(int x, int y, unsigned char value)
+    {
+      if ( isValidPos(x,y) )
+        data[y][x] = value;
+    };
+    void setValue(TilePosition p, unsigned char value)
+    {
+      this->setValue(p.x,p.y,value);
+    };
+
+    // Gets the value from the placement reserve array, 0 if position is invalid
+    unsigned char getValue(int x, int y) const
+    { 
+      if ( isValidPos(x,y) )
+        return data[y][x];
+      return 0;
+    };
+    unsigned char getValue(TilePosition p) const
+    { 
+      return this->getValue(p.x,p.y);
+    };
+
+    template <typename T>
+    bool iterate(const T& proc, int startX = 0, int startY = 0, int endX = MAX_RANGE, int endY = MAX_RANGE)
+    {
+      for ( int y = startX; y < endX; ++y )
+        for ( int x = startY; x < endY; ++x )
+        {
+          if ( !proc(this, x, y) )
+            return false;
+        }
+      return true;
+    };
+
+    bool hasValidSpace()
+    {
+      return !iterate( [](PlacementReserve *pr, int x, int y)->bool{ return pr->getValue(x,y) == 0; } );
+    };
+
+    void backup()
+    {
+      memcpy(save, data, sizeof(data));
+    };
+    void restore()
+    {
+      memcpy(data, save, sizeof(data));
+    };
+    void restoreIfInvalid()
+    {
+      if ( !hasValidSpace() )
+        restore();
+    };
+  private:
+    unsigned char data[MAX_RANGE][MAX_RANGE];
+    unsigned char save[MAX_RANGE][MAX_RANGE];
+  };
+
+  void AssignBuildableLocations(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    // Get min/max distances
+    int min = MAX_RANGE/2 - maxRange/2;
+    int max = min + maxRange;
+
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+    
+    // Reserve space for the addon as well
+    bool hasAddon = type.canBuildAddon();
+    
+    // Assign 1 to all buildable locations
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        if ( (!hasAddon || Broodwar->canBuildHere(start+TilePosition(x+4,y+1), UnitTypes::Terran_Missile_Turret) ) &&
+                          Broodwar->canBuildHere(start+TilePosition(x,y), type) )
+                        {
+                          pr->setValue(x, y, 1);
+                        }
+                        return true;
+                      }, min, min, max, max );
+  }
+
+  void RemoveDisconnected(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    // Get min/max distances
+    int min = MAX_RANGE/2 - maxRange/2;
+    int max = min + maxRange;
+
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+
+    // Assign 0 to all locations that aren't connected
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        if ( !Broodwar->hasPath(Position(desiredPosition), Position(start + TilePosition(x,y)) ) )
+                          pr->setValue(x, y, 0);
+                        return true;
+                      }, min, min, max, max );
+  }
+
+  void ReserveGroundHeight(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    // Get min/max distances
+    int min = MAX_RANGE/2 - maxRange/2;
+    int max = min + maxRange;
+
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+
+    // Exclude locations with a different ground height, but restore a backup in case there are no more build locations
+    reserve.backup();
+    int targetHeight = Broodwar->getGroundHeight(desiredPosition);
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        if ( Broodwar->getGroundHeight( start + TilePosition(x,y) ) != targetHeight )
+                          pr->setValue(x, y, 0);
+                        return true;
+                      }, min, min, max, max );
+
+    // Restore original if there is nothing left
+    reserve.restoreIfInvalid();
+  }
+
+  void ReserveExistingAddonPlacement(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+
+    //Exclude addon placement locations
+    reserve.backup();
+    Unitset myUnits = Broodwar->self()->getUnits();
+    myUnits.erase_if( !(Exists && CanBuildAddon) );
+    for ( auto it = myUnits.begin(); it != myUnits.end(); ++it )
+    {
+      TilePosition addonPos = (it->getTilePosition() + TilePosition(4,1)) - start;
+      reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                        { 
+                          pr->setValue(x, y, 0);
+                          return true;
+                        }, addonPos.x, addonPos.y, addonPos.x+2, addonPos.y+2 );
+    }
+
+    // Restore if this gave us no build locations
+    reserve.restoreIfInvalid();
+  }
+
+  void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    TilePosition paddingSize = sizeExtra + TilePosition(padding,padding)*2;
+  
+    TilePosition topLeft = currentPosition - type.tileSize() - paddingSize/2 + TilePosition(1,1);
+    TilePosition topLeftRelative = topLeft - desiredPosition + TilePosition(MAX_RANGE,MAX_RANGE)/2;
+    TilePosition maxSize = type.tileSize() + paddingSize - TilePosition(1,1);
+
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        pr->setValue(x, y, 0);
+                        return true;
+                      }, topLeftRelative.x, topLeftRelative.y, maxSize.x, maxSize.y );
+  }
+
+  void ReserveStructure(PlacementReserve &reserve, Unit *pUnit, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    ReserveStructureWithPadding(reserve, TilePosition(pUnit->getPosition()), pUnit->getType().tileSize(), padding, type, desiredPosition, maxRange);
+  }
+
+  void ReserveAllStructures(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    if ( type.isAddon() )
+      return;
+    reserve.backup();
+
+    // Reserve space around owned resource depots and resource containers
+    Unitset myUnits = Broodwar->self()->getUnits();
+    myUnits.erase_if( !(Exists && (IsCompleted || (ProducesLarva && IsMorphing)) && IsBuilding && (IsResourceDepot || IsRefinery)) );
+    for ( auto it = myUnits.begin(); it != myUnits.end(); ++it )
+      ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+    
+    // Reserve space around neutral resources
+    if ( type != UnitTypes::Terran_Bunker )
+    {
+      Unitset resources = Broodwar->getNeutralUnits();
+      resources.erase_if( !(Exists && IsResourceContainer) );
+      for ( auto it = resources.begin(); it != resources.end(); ++it )
+        ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+    }
+    reserve.restoreIfInvalid();
+  }
+
+  TilePosition gDirections[] = { 
+    TilePosition( 1, 1),
+    TilePosition( 0, 1),
+    TilePosition(-1, 1),
+    TilePosition( 1, 0),
+    TilePosition(-1, 0),
+    TilePosition( 1,-1),
+    TilePosition( 0,-1),
+    TilePosition(-1,-1)
+  };
+  void ReserveDefault(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    reserve.backup();
+    auto original = reserve;
+
+    // Reserve some space around some specific units
+    Unitset myUnits = Broodwar->self()->getUnits();
+    for ( auto it = myUnits.begin(); it != myUnits.end(); ++it )
+    {
+      if ( !it->exists() )
+        continue;
+
+      switch ( it->getType() )
+      {
+      case UnitTypes::Enum::Terran_Factory:
+      case UnitTypes::Enum::Terran_Missile_Turret:
+      case UnitTypes::Enum::Protoss_Robotics_Facility:
+      case UnitTypes::Enum::Protoss_Gateway:
+      case UnitTypes::Enum::Protoss_Photon_Cannon:
+        ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+        break;
+      case UnitTypes::Enum::Terran_Barracks:
+      case UnitTypes::Enum::Terran_Bunker:
+      case UnitTypes::Enum::Zerg_Creep_Colony:
+        ReserveStructure(reserve, *it, 1, type, desiredPosition, maxRange);
+        break;
+      }
+    }
+    
+    switch ( type )
+    {
+      case UnitTypes::Enum::Terran_Barracks:
+      case UnitTypes::Enum::Terran_Factory:
+      case UnitTypes::Enum::Terran_Missile_Turret:
+      case UnitTypes::Enum::Terran_Bunker:
+      case UnitTypes::Enum::Protoss_Robotics_Facility:
+      case UnitTypes::Enum::Protoss_Gateway:
+      case UnitTypes::Enum::Protoss_Photon_Cannon:
+        for ( int y = 0; y < 64; ++y )
+        {
+          for ( int x = 0; x < 64; ++x )
+          {
+            for ( int dir = 0; dir < 8; ++dir )
+            {
+              TilePosition p = TilePosition(x,y) + gDirections[dir];
+              if ( !PlacementReserve::isValidPos(p) || original.getValue(p) == 0 )
+                reserve.setValue(p, 0);
+            }
+
+          }
+        }
+        break;
+    }
+    reserve.restoreIfInvalid();
+  }
+
+  void ReservePlacement(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange, bool creep)
+  {
+    // Reset the array
+    reserve.reset();
+
+    AssignBuildableLocations(reserve, type, desiredPosition, maxRange);
+    RemoveDisconnected(reserve, type, desiredPosition, maxRange);
+    
+    // @TODO: Assign 0 to all locations that have a ground distance > maxRange
+
+    if ( !reserve.hasValidSpace() )
+      return;
+
+    ReserveGroundHeight(reserve, type, desiredPosition, maxRange);
+    // @TODO: reserveBuildingOnPlacemap   // this one just checks if the space is buildable?? (in that case it's covered already)
+
+    bool ignoreStandardPlacement = type.isResourceDepot();
+    if ( !type.isResourceDepot() )
+      ReserveAllStructures(reserve, type, desiredPosition, maxRange);
+    
+    ReserveExistingAddonPlacement(reserve, type, desiredPosition, maxRange);
+
+    // Unit-specific reservations
+    switch ( type )
+    {
+    case UnitTypes::Enum::Protoss_Pylon:  // @TODO
+      //reservePylonPlacement();
+      break;
+    case UnitTypes::Enum::Terran_Bunker:  // @TODO
+      //if ( !GetBunkerPlacement() )
+      {
+        //reserveTurretPlacement();
+      }
+      break;
+    case UnitTypes::Enum::Terran_Missile_Turret:  // @TODO
+    case UnitTypes::Enum::Protoss_Photon_Cannon:
+      //reserveTurretPlacement();
+      break;
+    case UnitTypes::Enum::Zerg_Creep_Colony:  // @TODO
+      //if ( creep || !GetBunkerPlacement() )
+      {
+        //reserveTurretPlacement();
+      }
+      break;
+    default:
+      if ( !ignoreStandardPlacement )
+        ReserveDefault(reserve, type, desiredPosition, maxRange);
+      break;
+    }
+  }
+
+  // ----- GET BUILD LOCATION
+  // @TODO: If self() is nullptr, this will crash
+  TilePosition Game::getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange, bool creep)
+  {
+    this->setLastError(); // Reset last error
+    if ( maxRange < 0 ) maxRange = 0;
+    if ( maxRange > MAX_RANGE ) maxRange = MAX_RANGE;
+
+    // Make sure the type is compatible
+    if ( !type.isBuilding() || !type.whatBuilds().first.isWorker() )
+    {
+      this->setLastError(Errors::Incompatible_UnitType);
+      return TilePositions::Invalid;
+    }
+
+    // Do type-specific checks
+    bool trimPlacement = true;
+    Unit *pSpecialUnitTarget = nullptr;
+    switch ( type )
+    {
+    case UnitTypes::Enum::Protoss_Pylon:
+      pSpecialUnitTarget = this->getClosestUnit((Position)desiredPosition, IsOwned && IsUnpowered);
+      if ( pSpecialUnitTarget )
+      {
+        desiredPosition = (TilePosition)pSpecialUnitTarget->getPosition();
+        trimPlacement = false;
+      }
+      break;
+    case UnitTypes::Enum::Terran_Command_Center:
+    case UnitTypes::Enum::Protoss_Nexus:
+    case UnitTypes::Enum::Zerg_Hatchery:
+      trimPlacement = false;
+      break;
+    case UnitTypes::Enum::Zerg_Creep_Colony:
+    case UnitTypes::Enum::Terran_Bunker:
+      //if ( Get bunker placement region )
+      //  trimPlacement = false;
+      break;
+    }
+    
+    PlacementReserve reserve;
+    //if ( trimPlacement )
+    //  trimPlacement();   // using some defs
+
+    return TilePositions::None;
+  }
   //------------------------------------------ ACTIONS -----------------------------------------------
   void Game::setScreenPosition(BWAPI::Position p)
   {
