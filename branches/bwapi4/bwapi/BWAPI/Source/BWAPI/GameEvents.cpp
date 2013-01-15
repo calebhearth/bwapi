@@ -794,7 +794,7 @@ namespace BWAPI
         }
       }
       setTextSize(0);
-      drawTextScreen(64, 300, "%c(%u, %u)", Text::White, (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
+      drawTextScreen(64, 288, "%c(%u, %u)", Text::White, (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
       setTextSize();
     } // grid
 

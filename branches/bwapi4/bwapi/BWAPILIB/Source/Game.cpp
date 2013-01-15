@@ -4,6 +4,7 @@
 #include <BWAPI/Color.h>
 #include <BWAPI/Unitset.h>
 #include <BWAPI/Unit.h>
+#include <BWAPI/Region.h>
 #include <BWAPI/Filters.h>
 #include <BWAPI/Player.h>
 
@@ -294,10 +295,21 @@ namespace BWAPI
     
     // @TODO: Assign 0 to all locations that have a ground distance > maxRange
 
+    // exclude positions off the map
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        if ( !(start+TilePosition(x,y)).isValid() )
+                          pr->setValue(x, y, 0);
+                        return true;
+                      } );
+
+    // Return if can't find a valid space
     if ( !reserve.hasValidSpace() )
       return;
 
     ReserveGroundHeight(reserve, type, desiredPosition, maxRange);
+
     // @TODO: reserveBuildingOnPlacemap   // this one just checks if the space is buildable?? (in that case it's covered already)
 
     bool ignoreStandardPlacement = type.isResourceDepot();
@@ -352,6 +364,7 @@ namespace BWAPI
 
     // Do type-specific checks
     bool trimPlacement = true;
+    Region *pTargRegion = nullptr;
     Unit *pSpecialUnitTarget = nullptr;
     switch ( type )
     {
@@ -376,10 +389,63 @@ namespace BWAPI
     }
     
     PlacementReserve reserve;
+    ReservePlacement(reserve, type, desiredPosition, maxRange, creep);
+
     //if ( trimPlacement )
     //  trimPlacement();   // using some defs
 
-    return TilePositions::None;
+    TilePosition centerPosition = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+    if ( pTargRegion != nullptr )
+      desiredPosition = TilePosition(pTargRegion->getCenter());
+    
+    // Find the best position
+    int bestDistance, fallbackDistance;
+    TilePosition bestPosition, fallbackPosition;
+
+    bestDistance = fallbackDistance = 999999;
+    bestPosition = fallbackPosition = TilePositions::None;
+    for ( int passCount = 0; passCount < (pTargRegion ? 2 : 1); ++passCount )
+    {
+      for ( int y = 0; y < MAX_RANGE; ++y )
+        for ( int x = 0; x < MAX_RANGE; ++x )
+        {
+          // Ignore if space is reserved
+          if ( reserve.getValue(x,y) == 0 )
+            continue;
+
+          TilePosition currentPosition(TilePosition(x,y) + centerPosition);
+          int currentDistance = desiredPosition.getApproxDistance(currentPosition);//Broodwar->getGroundDistance( desiredPosition, currentPosition );
+          if ( currentDistance < bestDistance )
+          {
+            if ( currentDistance <= maxRange )
+            {
+              bestDistance = currentDistance;
+              bestPosition = currentPosition;
+            }
+            else if ( currentDistance < fallbackDistance )
+            {
+              fallbackDistance = currentDistance;
+              fallbackPosition = currentPosition;
+            }
+          }
+        }
+      // Break pass if position is found
+      if ( bestPosition != TilePositions::None )
+        break;
+
+      // Break if an alternative position was found
+      if ( fallbackPosition != TilePositions::None )
+      {
+        bestPosition = fallbackPosition;
+        break;
+      }
+
+      // If we were really targetting a region, and couldn't find a position above
+      if ( pTargRegion != nullptr ) // Then fallback to the default build position
+        desiredPosition = centerPosition;
+    }
+
+    return bestPosition;
   }
   //------------------------------------------ ACTIONS -----------------------------------------------
   void Game::setScreenPosition(BWAPI::Position p)

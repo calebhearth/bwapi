@@ -57,15 +57,44 @@ void DevAIModule::onFrame()
   if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
     return;
 
-  self->getUnits().move(bw->getMousePosition()+bw->getScreenPosition());
-  self->getUnits().burrow();
-  self->getUnits().siege();
-  self->getUnits().attack(bw->getMousePosition()+bw->getScreenPosition());
-  self->getUnits().holdPosition();
-  self->getUnits().rightClick(bw->getMousePosition()+bw->getScreenPosition());
-  self->getUnits().cloak();
-  self->getUnits().stop();
+  Unitset myUnits = self->getUnits();
+  for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
+  {
+    if ( !u->exists() || !u->isCompleted() )
+      continue;
 
+    UnitType t = u->getType();
+    if ( t.isWorker() )
+    {
+      if ( u->isIdle() )
+        u->gather( u->getClosestUnit(IsMineralField) );
+    }
+    else if ( t.isResourceDepot() )
+    {
+      if ( !u->train( t.getRace().getWorker() ) )
+      {
+        if ( Broodwar->getLastError() == Errors::Insufficient_Supply )
+        {
+          UnitType providerType = t.getRace().getSupplyProvider();
+          Unit *pSupplyBuilder = Broodwar->getClosestUnit(u->getPosition(), IsOwned && IsCompleted && GetType == providerType.whatBuilds().first );
+          if ( pSupplyBuilder )
+          {
+            if ( providerType.isBuilding() )
+            {
+              BWAPI::TilePosition tp = Broodwar->getBuildLocation(providerType, TilePosition(u->getPosition()));
+              Broodwar << providerType << "@" << tp << std::endl;
+              if ( !pSupplyBuilder->build(providerType, tp ) )
+                Broodwar << Broodwar->getLastError() << std::endl;
+            }
+            else
+            {
+              pSupplyBuilder->train(providerType);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 void DevAIModule::onSendText(std::string text)

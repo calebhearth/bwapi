@@ -501,8 +501,8 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
-        return Broodwar->setLastError(Errors::Unit_Busy);
+      //if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
+        //return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->isConstructing() ||
            !thisUnit->isCompleted()   ||
            (thisUnit->getType().isFlyingBuilding() && thisUnit->isLifted()) ||
