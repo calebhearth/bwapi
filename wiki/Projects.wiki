@@ -10,6 +10,7 @@ This page contains links to other projects that make use of BWAPI.
   * [http://bwapi.krasi0.com/viewtopic.php?f=5&t=6 krasi0]
   * [http://code.google.com/p/bthai/ BTHAI]
   * [http://nova.wolfwork.com/ Nova]
+  * [https://bitbucket.org/0x7CFE/swarm/ A Skynet zerg clone]
   * [http://code.google.com/p/aiurproject/ AIUR]
   * [http://code.google.com/p/sqlitebot/ sqlitebot]
   * [http://code.google.com/p/manolobot/ Manolobot]
