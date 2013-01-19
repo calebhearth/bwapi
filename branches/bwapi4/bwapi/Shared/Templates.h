@@ -472,7 +472,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       WeaponType weapon = thisUnit->getType().groundWeapon();
       bool targetInAir = targetUnit->isFlying();
@@ -931,7 +931,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       return true;
     }
@@ -997,7 +997,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       return true;
     }
@@ -1031,7 +1031,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       UnitType uType = targetUnit->getType();
       if ( !uType.isResourceContainer() || uType == UnitTypes::Resource_Vespene_Geyser )
@@ -1112,7 +1112,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       UnitType targType = targetUnit->getType();
       if ( targType.getRace()  != BWAPI::Races::Terran || !targType.isMechanical() )
@@ -1279,7 +1279,7 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       //target must also be owned by self
       if (targetUnit->getPlayer() != Broodwar->self())
@@ -1406,7 +1406,7 @@ namespace BWAPI
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( !canMove(thisUnit, false) && !canSetRallyPosition(thisUnit, false) )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1420,6 +1420,11 @@ namespace BWAPI
 
       if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( !canFollow(thisUnit, false) &&
+           !canAttackUnit(thisUnit, false) &&
+           !canLoad(thisUnit, false) &&
+           !canSetRallyUnit(thisUnit, false) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1434,10 +1439,16 @@ namespace BWAPI
         return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       if ( !targetUnit->getPlayer()->isNeutral() && thisUnit->getPlayer()->isEnemy(targetUnit->getPlayer()) &&
            !canAttackUnit(thisUnit, targetUnit, false, false, false) )
+        return false;
+
+      if ( !canFollow(thisUnit, targetUnit, false, true, false) &&
+           !canAttackUnit(thisUnit, targetUnit, false, true, false) &&
+           !canLoad(thisUnit, targetUnit, false, true, false) &&
+           !canSetRallyUnit(thisUnit, targetUnit, false, true, false) )
         return false;
 
       return true;
@@ -1682,10 +1693,10 @@ namespace BWAPI
         return false;
 
       if ( checkTargetsUnit && !canUseTechUnit(thisUnit, tech, false, false) )
-        return Broodwar->setLastError(Errors::Incompatible_TechType);
+        return false;
 
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
-        return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+        return false;
 
       return true;
     }
