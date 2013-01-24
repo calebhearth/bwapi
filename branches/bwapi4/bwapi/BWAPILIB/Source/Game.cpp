@@ -82,10 +82,13 @@ namespace BWAPI
     {
       memcpy(data, save, sizeof(data));
     };
-    void restoreIfInvalid()
+    void restoreIfInvalid(const char * const pszDebug)
     {
       if ( !hasValidSpace() )
+      {
+        Broodwar << pszDebug << std::endl;
         restore();
+      }
     };
   private:
     unsigned char data[MAX_RANGE][MAX_RANGE];
@@ -151,7 +154,7 @@ namespace BWAPI
                       }, min, min, max, max );
 
     // Restore original if there is nothing left
-    reserve.restoreIfInvalid();
+    reserve.restoreIfInvalid(__FUNCTION__);
   }
 
   void ReserveExistingAddonPlacement(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
@@ -173,7 +176,7 @@ namespace BWAPI
     }
 
     // Restore if this gave us no build locations
-    reserve.restoreIfInvalid();
+    reserve.restoreIfInvalid(__FUNCTION__);
   }
 
   void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
@@ -216,7 +219,7 @@ namespace BWAPI
       for ( auto it = resources.begin(); it != resources.end(); ++it )
         ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
     }
-    reserve.restoreIfInvalid();
+    reserve.restoreIfInvalid(__FUNCTION__);
   }
 
   TilePosition gDirections[] = { 
@@ -248,6 +251,7 @@ namespace BWAPI
       case UnitTypes::Enum::Protoss_Robotics_Facility:
       case UnitTypes::Enum::Protoss_Gateway:
       case UnitTypes::Enum::Protoss_Photon_Cannon:
+      default:
         ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
         break;
       case UnitTypes::Enum::Terran_Barracks:
@@ -282,7 +286,7 @@ namespace BWAPI
         }
         break;
     }
-    reserve.restoreIfInvalid();
+    reserve.restoreIfInvalid(__FUNCTION__);
   }
 
   void ReservePlacement(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange, bool creep)
@@ -313,7 +317,7 @@ namespace BWAPI
     // @TODO: reserveBuildingOnPlacemap   // this one just checks if the space is buildable?? (in that case it's covered already)
 
     bool ignoreStandardPlacement = type.isResourceDepot();
-    if ( !type.isResourceDepot() )
+    if ( !ignoreStandardPlacement )
       ReserveAllStructures(reserve, type, desiredPosition, maxRange);
     
     ReserveExistingAddonPlacement(reserve, type, desiredPosition, maxRange);
@@ -347,6 +351,44 @@ namespace BWAPI
     }
   }
 
+  struct buildTemplate
+  {
+    int startX, startY, stepX, stepY;
+  } buildTemplates[] = // [13 + 1]
+  {
+    { 32, 0, 0, 1 },
+    { 0, 32, 1, 0 },
+    { 31, 0, 0, 1 },
+    { 0, 31, 1, 0 },
+    { 33, 0, 0, 1 },
+    { 0, 33, 1, 0 },
+    { 30, 0, 0, 1 },
+    { 29, 0, 0, 1 },
+    { 0, 30, 1, 0 },
+    { 28, 0, 0, 1 },
+    { 0, 29, 1, 0 },
+    { 27, 0, 0, 1 },
+    { 0, 28, 1, 0 },
+    { -1, 0, 0, 0 } // last
+  };
+  void reserveTemplateSpacing(PlacementReserve &reserve)
+  {
+    reserve.backup();
+
+    for ( buildTemplate *t = buildTemplates; t->startX != -1; ++t )
+    {
+      int x = t->startX, y = t->startY;
+      for ( int i = 0; i < 64; ++i )
+      {
+        reserve.setValue(x, y, 0);
+        x += t->stepX;
+        y += t->stepY;
+      }
+    }
+    
+    reserve.restoreIfInvalid(__FUNCTION__);
+  }
+
   // ----- GET BUILD LOCATION
   // @TODO: If self() is nullptr, this will crash
   TilePosition Game::getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange, bool creep)
@@ -361,6 +403,7 @@ namespace BWAPI
       this->setLastError(Errors::Incompatible_UnitType);
       return TilePositions::Invalid;
     }
+    // @TODO: Addon
 
     // Do type-specific checks
     bool trimPlacement = true;
@@ -391,8 +434,8 @@ namespace BWAPI
     PlacementReserve reserve;
     ReservePlacement(reserve, type, desiredPosition, maxRange, creep);
 
-    //if ( trimPlacement )
-    //  trimPlacement();   // using some defs
+    if ( trimPlacement )
+      reserveTemplateSpacing(reserve);
 
     TilePosition centerPosition = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
     if ( pTargRegion != nullptr )
