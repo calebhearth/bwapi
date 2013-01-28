@@ -1,6 +1,7 @@
 #include "DevAIModule.h"
 
 #include <BWAPI/Filters.h>
+#include <algorithm>
 
 using namespace BWAPI;
 
@@ -58,6 +59,7 @@ void DevAIModule::onFrame()
     return;
 
   Unitset myUnits = self->getUnits();
+  bool hasConstructor = std::find_if(myUnits.begin(), myUnits.end(), IsConstructing) != myUnits.end();
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
     if ( !u->exists() || !u->isCompleted() )
@@ -76,15 +78,17 @@ void DevAIModule::onFrame()
         if ( Broodwar->getLastError() == Errors::Insufficient_Supply )
         {
           UnitType providerType = t.getRace().getSupplyProvider();
-          Unit *pSupplyBuilder = Broodwar->getClosestUnit(u->getPosition(), IsOwned && IsCompleted && GetType == providerType.whatBuilds().first );
+          Unit *pSupplyBuilder = u->getClosestUnit(IsOwned && IsCompleted && GetType == providerType.whatBuilds().first );
           if ( pSupplyBuilder )
           {
             if ( providerType.isBuilding() )
             {
-              BWAPI::TilePosition tp = Broodwar->getBuildLocation(providerType, TilePosition(u->getPosition()));
-              Broodwar << providerType << "@" << tp << std::endl;
-              if ( !pSupplyBuilder->build(providerType, tp ) )
-                Broodwar << Broodwar->getLastError() << std::endl;
+              if ( !hasConstructor )
+              {
+                BWAPI::TilePosition tp = Broodwar->getBuildLocation(UnitTypes::Terran_Barracks, TilePosition(u->getPosition()));
+                if ( !pSupplyBuilder->build(UnitTypes::Terran_Barracks, tp ) )
+                  Broodwar << Broodwar->getLastError() << std::endl;
+              }
             }
             else
             {
@@ -139,42 +143,34 @@ void DevAIModule::onNukeDetect(BWAPI::Position target)
 
 void DevAIModule::onUnitDiscover(BWAPI::Unit* unit)
 {
-  //bw->printf("%s discovered", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitEvade(BWAPI::Unit* unit)
 {
-  //bw->printf("%s evaded", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitShow(BWAPI::Unit* unit)
 {
-  //bw->printf("%s shown", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitHide(BWAPI::Unit* unit)
 {
-  //bw->printf("%s hidden", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitCreate(BWAPI::Unit* unit)
 {
-  bw->printf("%s created", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitDestroy(BWAPI::Unit* unit)
 {
-  bw->printf("%s destroyed", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitMorph(BWAPI::Unit* unit)
 {
-  //bw->printf("%s morphed", unit->getType().c_str());
 }
 
 void DevAIModule::onUnitRenegade(BWAPI::Unit* unit)
 {
-  //bw->printf("%s renegaded", unit->getType().c_str());
 }
 
 void DevAIModule::onSaveGame(std::string gameName)
@@ -183,5 +179,4 @@ void DevAIModule::onSaveGame(std::string gameName)
 
 void DevAIModule::onUnitComplete(BWAPI::Unit *unit)
 {
-  bw->printf("%s completed", unit->getType().c_str());
 }

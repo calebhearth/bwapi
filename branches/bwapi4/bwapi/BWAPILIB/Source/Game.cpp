@@ -135,6 +135,44 @@ namespace BWAPI
                       }, min, min, max, max );
   }
 
+  // @TODO: This interpretation might be incorrect
+  void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    TilePosition paddingSize = sizeExtra + TilePosition(padding,padding)*2;
+  
+    TilePosition topLeft = currentPosition - type.tileSize() - paddingSize/2 - TilePosition(1,1);
+    TilePosition topLeftRelative = topLeft - desiredPosition + TilePosition(MAX_RANGE,MAX_RANGE)/2;
+    TilePosition maxSize = topLeftRelative + type.tileSize() + paddingSize + TilePosition(1,1);
+
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        pr->setValue(x, y, 0);
+                        return true;
+                      }, topLeftRelative.x, topLeftRelative.y, maxSize.x, maxSize.y );
+  }
+
+
+  void ReserveUnbuildable(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  {
+    // Get min/max distances
+    int min = MAX_RANGE/2 - maxRange/2;
+    int max = min + maxRange;
+
+    TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
+
+    // Exclude locations with a different ground height, but restore a backup in case there are no more build locations
+    reserve.backup();
+    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+                      { 
+                        if ( !Broodwar->isBuildable( start + TilePosition(x,y), true ) )
+                          ReserveStructureWithPadding(reserve, start + TilePosition(x,y), TilePosition(1,1), 1, type, desiredPosition, maxRange);
+                        return true;
+                      }, min, min, max, max );
+
+    // Restore original if there is nothing left
+    reserve.restoreIfInvalid(__FUNCTION__);
+  }
+
   void ReserveGroundHeight(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
   {
     // Get min/max distances
@@ -177,21 +215,6 @@ namespace BWAPI
 
     // Restore if this gave us no build locations
     reserve.restoreIfInvalid(__FUNCTION__);
-  }
-
-  void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
-  {
-    TilePosition paddingSize = sizeExtra + TilePosition(padding,padding)*2;
-  
-    TilePosition topLeft = currentPosition - type.tileSize() - paddingSize/2 + TilePosition(1,1);
-    TilePosition topLeftRelative = topLeft - desiredPosition + TilePosition(MAX_RANGE,MAX_RANGE)/2;
-    TilePosition maxSize = type.tileSize() + paddingSize - TilePosition(1,1);
-
-    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
-                      { 
-                        pr->setValue(x, y, 0);
-                        return true;
-                      }, topLeftRelative.x, topLeftRelative.y, maxSize.x, maxSize.y );
   }
 
   void ReserveStructure(PlacementReserve &reserve, Unit *pUnit, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
@@ -313,8 +336,7 @@ namespace BWAPI
       return;
 
     ReserveGroundHeight(reserve, type, desiredPosition, maxRange);
-
-    // @TODO: reserveBuildingOnPlacemap   // this one just checks if the space is buildable?? (in that case it's covered already)
+    ReserveUnbuildable(reserve, type, desiredPosition, maxRange);
 
     bool ignoreStandardPlacement = type.isResourceDepot();
     if ( !ignoreStandardPlacement )
