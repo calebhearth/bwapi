@@ -234,7 +234,7 @@ namespace BWAPI
         }
         else
         {
-          if (u->getPlayer() == Broodwar->self() && u->getType() == UnitTypes::Protoss_Pylon)
+          if (u->getPlayer() == this->self() && u->getType() == UnitTypes::Protoss_Pylon)
             pylons.insert(u);
         }
       }
@@ -253,7 +253,7 @@ namespace BWAPI
         }
         else
         {
-          if (u->getPlayer() == Broodwar->self() && u->getType() == UnitTypes::Protoss_Pylon)
+          if (u->getPlayer() == this->self() && u->getType() == UnitTypes::Protoss_Pylon)
             pylons.erase(u);
         }
       }
@@ -707,7 +707,7 @@ namespace BWAPI
     return success;
   }
   //------------------------------------------ GET SELECTED UNITS --------------------------------------------
-  const Unitset& GameImpl::getSelectedUnits()
+  const Unitset& GameImpl::getSelectedUnits() const
   {
     lastError = Errors::None;
     return selectedUnits;
@@ -869,9 +869,9 @@ namespace BWAPI
   }
   bool GameImpl::hasPath(Position source, Position destination) const
   {
-    Broodwar->setLastError();
+    this->setLastError();
     if ( !source.isValid() || !destination.isValid() )
-      return Broodwar->setLastError(Errors::Unreachable_Location);
+      return this->setLastError(Errors::Unreachable_Location);
 
     if ( data )
     {
@@ -921,7 +921,7 @@ namespace BWAPI
       if ( srcGroup == dstGroup )
         return true;
     }
-    return Broodwar->setLastError(Errors::Unreachable_Location);
+    return this->setLastError(Errors::Unreachable_Location);
   }
   int GameImpl::elapsedTime() const
   {
@@ -941,7 +941,7 @@ namespace BWAPI
   {
     if ( !Position(x,y) )
     {
-      Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
+      this->setLastError(BWAPI::Errors::Invalid_Parameter);
       return nullptr;
     }
     unsigned short idx = data->mapTileRegionId[x/32][y/32];
@@ -954,11 +954,11 @@ namespace BWAPI
       unsigned short rgn1         = data->mapSplitTilesRegion1[idx&0x1FFF];
       unsigned short rgn2         = data->mapSplitTilesRegion2[idx&0x1FFF];
       if ( (miniTileMask >> minitileShift) & 1 )
-        return Broodwar->getRegion(rgn2);
+        return this->getRegion(rgn2);
       else
-        return Broodwar->getRegion(rgn1);
+        return this->getRegion(rgn1);
     }
-    return Broodwar->getRegion(idx);
+    return this->getRegion(idx);
   }
   int GameImpl::getLastEventTime() const
   {

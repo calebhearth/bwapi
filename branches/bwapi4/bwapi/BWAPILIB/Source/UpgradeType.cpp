@@ -323,7 +323,7 @@ namespace BWAPI
   int UpgradeType::mineralPrice(int level) const
   {
     return defaultOreCostBase[this->getID()] + 
-           (level > 0 ? level - 1 : 0) * this->mineralPriceFactor();
+           std::max(0, level-1) * this->mineralPriceFactor();
   }
   int UpgradeType::mineralPriceFactor() const
   {
@@ -332,7 +332,7 @@ namespace BWAPI
   int UpgradeType::gasPrice(int level) const
   {
     return defaultOreCostBase[this->getID()] + 
-           (level > 0 ? level - 1 : 0) * this->gasPriceFactor();
+           std::max(0, level-1) * this->gasPriceFactor();
   }
   int UpgradeType::gasPriceFactor() const
   {
@@ -341,7 +341,7 @@ namespace BWAPI
   int UpgradeType::upgradeTime(int level) const
   {
     return defaultTimeCostBase[this->getID()] + 
-            (level > 0 ? level - 1 : 0) * this->upgradeTimeFactor();
+            std::max(0, level-1) * this->upgradeTimeFactor();
   }
   int UpgradeType::upgradeTimeFactor() const
   {

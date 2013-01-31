@@ -33,7 +33,7 @@ void RepairTest::start()
   BWAssertF(target!=NULL,{fail=true;return;});
   BWAssertF(target->exists(),{fail=true;return;});
   BWAssertF(unit->isIdle()==true,{fail=true;return;});
-  BWAssertF(unit->repair(target),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+  BWAssertF(unit->repair(target),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
   BWAssertF(unit->getOrder()==Orders::Repair,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
   BWAssertF(unit->getTarget()==target,{fail=true;return;});
   startFrame = Broodwar->getFrameCount();

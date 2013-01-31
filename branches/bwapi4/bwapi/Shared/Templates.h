@@ -394,18 +394,15 @@ namespace BWAPI
            thisUnit->isLoaded() )
       {
         if ( !thisUnit->getType().producesLarva() )
+        {
           return Broodwar->setLastError(Errors::Unit_Busy);
+        }
         else
         {
           Unitset larvae( thisUnit->getLarva() );
           foreach (Unit* larva, larvae)
           {
-            if ( !larva->isLockedDown() &&
-                 !larva->isMaelstrommed() &&
-                 !larva->isStasised()  &&
-                 !larva->isUnpowered() &&
-                 larva->getOrder() != Orders::ZergBirth &&
-                 !larva->isLoaded() )
+            if ( canCommand(larva) )
               return Broodwar->setLastError();
           }
           return Broodwar->setLastError(Errors::Unit_Busy);

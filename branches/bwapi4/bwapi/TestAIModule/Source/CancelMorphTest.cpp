@@ -82,7 +82,7 @@ void CancelMorphTest::update()
   if (producer->exists())
     Broodwar->setScreenPosition(producer->getPosition() - Position(320,240));
 
-  if (thisFrame<=startFrame+200)
+  if (thisFrame<=startFrame+20)
   {
     BWAssertF(producer->getBuildType()==unitType,
     {
@@ -99,12 +99,12 @@ void CancelMorphTest::update()
     BWAssertF(producer->getTech()==TechTypes::None,{log("%s",producer->getTech().c_str());fail=true;return;});
     FAILTEST(producer->getUpgrade()==UpgradeTypes::None);
   }
-  if (thisFrame==startFrame+200)
+  if (thisFrame==startFrame+20)
   {
     FAILTEST(producer->cancelMorph());
   }
 
-  if (thisFrame>=startFrame+200)
+  if (thisFrame>=startFrame+20)
   {
     if (producer->exists() || producerType!=UnitTypes::Zerg_Larva)
     {
@@ -124,7 +124,7 @@ void CancelMorphTest::update()
       BWAssertF(Broodwar->self()->minerals()==correctMineralCount,{log("%d: %d!=%d",thisFrame-startFrame,Broodwar->self()->minerals(),correctMineralCount);});
       FAILTEST(Broodwar->self()->gas()==correctGasCount);
       BWAssertF(Broodwar->self()->supplyUsed()==correctSupplyUsedCount,{log("%d!=%d",Broodwar->self()->supplyUsed(),correctSupplyUsedCount);fail=true;return;});
-      if (thisFrame>=startFrame+250)
+      if (thisFrame>=startFrame+25)
       {
         FAILTEST(Broodwar->self()->completedUnitCount(unitType)==correctCompletedUnitCount);
         FAILTEST(Broodwar->self()->incompleteUnitCount(unitType)==correctIncompleteUnitCount);
@@ -132,7 +132,7 @@ void CancelMorphTest::update()
       }
     }
   }
-  if (thisFrame>=startFrame+400)
+  if (thisFrame>=startFrame+40)
   {
     running = false;
   }

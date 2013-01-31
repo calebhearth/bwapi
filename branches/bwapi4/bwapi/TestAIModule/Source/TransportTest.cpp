@@ -116,7 +116,7 @@ void TransportTest::update()
       BWAssertF(loadedUnits.size()==1,{fail=true;return;});
       currentUnit = *unloadedUnits.begin();
       if (!transport->load(currentUnit))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitForSecondUnit;
     }
   }
@@ -131,7 +131,7 @@ void TransportTest::update()
       BWAssertF(loadedUnits.size()==2,{fail=true;return;});
       currentUnit = *unloadedUnits.begin();
       if (!transport->load(currentUnit))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitForThirdUnit;
     }
   }
@@ -146,7 +146,7 @@ void TransportTest::update()
       BWAssertF(loadedUnits.size()==3,{fail=true;return;});
       currentUnit = *unloadedUnits.begin();
       if (!transport->load(currentUnit))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitForFourthUnit;
     }
   }
@@ -170,7 +170,7 @@ void TransportTest::update()
     {
       currentUnit = *loadedUnits.begin();
       if (!transport->unload(currentUnit))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitUnloadUnit;
     }
   }
@@ -184,7 +184,7 @@ void TransportTest::update()
       BWAssertF(unloadedUnits.size()==1,{fail=true;return;});
       BWAssertF(loadedUnits.size()==3,{fail=true;return;});
       if (!transport->load(currentUnit))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitReloadUnit;
     }
   }
@@ -198,7 +198,7 @@ void TransportTest::update()
       BWAssertF(unloadedUnits.size()==0,{fail=true;return;});
       BWAssertF(loadedUnits.size()==4,{fail=true;return;});
       if (!transport->unloadAll())
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitUnloadAll;
     }
   }
@@ -214,7 +214,7 @@ void TransportTest::update()
       for each(Unit* u in unloadedUnits)
       {
         if (!u->load(transport))
-          Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+          Broodwar->printf("%s",Broodwar->getLastError().c_str());
       }
       state=WaitReloadAll;
     }
@@ -229,7 +229,7 @@ void TransportTest::update()
       BWAssertF(unloadedUnits.size()==0,{fail=true;return;});
       BWAssertF(loadedUnits.size()==4,{fail=true;return;});
       if (!transport->unloadAll(Position(transport->getPosition().x-32*10,transport->getPosition().y)))
-        Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());
+        Broodwar->printf("%s",Broodwar->getLastError().c_str());
       state=WaitUnloadAllPosition;
     }
   }

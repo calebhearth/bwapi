@@ -33,7 +33,7 @@ void FollowTest::start()
   BWAssertF(target!=NULL,{fail=true;return;});
   BWAssertF(target->exists(),{fail=true;return;});
   BWAssertF(unit->isIdle()==true,{fail=true;return;});
-  BWAssertF(unit->rightClick(Position(target->getPosition().x-32*20,target->getPosition().y)),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+  BWAssertF(unit->rightClick(Position(target->getPosition().x-32*20,target->getPosition().y)),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
   startFrame = Broodwar->getFrameCount();
   nextFrame = Broodwar->getFrameCount();
   started=false;
@@ -53,7 +53,7 @@ void FollowTest::update()
 
   if (unit->getDistance(target)>32*15 && started==false)
   {
-    BWAssertF(unit->follow(target),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(unit->follow(target),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
     BWAssertF(unit->getOrder()==Orders::Follow,{Broodwar->printf("%s",unit->getOrder().c_str());fail=true;return;});
     BWAssertF(unit->getTarget()==target,{fail=true;return;});
     started=true;

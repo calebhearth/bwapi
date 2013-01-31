@@ -50,7 +50,7 @@ void CancelUpgradeTest::update()
   nextFrame++;
   Broodwar->setScreenPosition(upgrader->getPosition() - Position(320,240));
   BWAssertF(upgrader!=NULL,{fail=true;return;});
-  if (thisFrame<startFrame+200)
+  if (thisFrame<startFrame+20)
   {
     BWAssertF(upgrader->getBuildType()==UnitTypes::None,{fail=true;return;});
     BWAssertF(upgrader->isMorphing()==false,{fail=true;return;});
@@ -62,11 +62,11 @@ void CancelUpgradeTest::update()
     BWAssertF(upgrader->getUpgrade()==upgradeType,{fail=true;return;});
     BWAssertF(upgrader->isIdle()==false,{fail=true;return;});
   }
-  if (thisFrame==startFrame+200)
+  if (thisFrame==startFrame+20)
   {
     upgrader->cancelUpgrade();
   }
-  if (thisFrame>=startFrame+200)
+  if (thisFrame>=startFrame+20)
   {
     BWAssertF(upgrader->getBuildType()==UnitTypes::None,{fail=true;return;});
     BWAssertF(upgrader->isMorphing()==false,{fail=true;return;});
@@ -85,7 +85,7 @@ void CancelUpgradeTest::update()
     BWAssertF(Broodwar->self()->gas()==correctGasCount,{fail=true;return;});
     BWAssertF(Broodwar->self()->supplyUsed()==correctSupplyUsedCount,{fail=true;return;});
   }
-  if (thisFrame>=startFrame+400)
+  if (thisFrame>=startFrame+40)
   {
     running = false;
   }

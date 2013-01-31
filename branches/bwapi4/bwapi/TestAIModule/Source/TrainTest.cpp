@@ -48,7 +48,7 @@ void TrainTest::start()
   BWAssertF(producer->isLifted()==false,{fail=true;return;});
   BWAssertF(producer->getTrainingQueue().size()==1,{fail=true;return;});
   BWAssertF(*producer->getTrainingQueue().begin()==unitType,{fail=true;return;});
-  BWAssertF(producer->getRemainingTrainTime() == unitType.buildTime(),{fail=true;return;});
+  BWAssertF(producer->getRemainingTrainTime() == unitType.buildTime(),{fail=true; log("%d == %d (%s)", producer->getRemainingTrainTime(), unitType.buildTime()/10, unitType.c_str()); return;});
   BWAssertF(Broodwar->self()->minerals() == correctMineralCount,{fail=true;return;});
   BWAssertF(Broodwar->self()->gas() == correctGasCount,{fail=true;return;});
   BWAssertF(Broodwar->self()->supplyUsed() == correctSupplyUsedCount,{fail=true;return;});
@@ -71,15 +71,25 @@ void TrainTest::update()
   BWAssertF(producer!=NULL,{fail=true;return;});
   nextFrame++;
   Broodwar->setScreenPosition(producer->getPosition() - Position(320,240));
-  int correctRemainingTrainTime = startFrame+Broodwar->getLatency()+unitType.buildTime()-thisFrame+1;
+  int correctRemainingTrainTime = startFrame + Broodwar->getLatency() + unitType.buildTime()/10 - thisFrame + 1;
   if (Broodwar->getLatency()==5)
     correctRemainingTrainTime += 1;
-  if (correctRemainingTrainTime > unitType.buildTime())
-    correctRemainingTrainTime = unitType.buildTime();
+  if (correctRemainingTrainTime > unitType.buildTime()/10)
+    correctRemainingTrainTime = unitType.buildTime()/10;
   if (correctRemainingTrainTime < 0)
     correctRemainingTrainTime = 0;
-  BWAssertF(producer->getRemainingTrainTime() == correctRemainingTrainTime,{log("%d Error %d != %d",thisFrame-startFrame,producer->getRemainingTrainTime(), correctRemainingTrainTime);});
-  int lastFrame = startFrame + Broodwar->getLatency() + unitType.buildTime();
+
+  // @TODO: Workaround
+  if ( thisFrame <= startFrame + Broodwar->getLatency() )
+  {
+    BWAssertF(producer->getRemainingTrainTime()/10 == correctRemainingTrainTime,{log("%d Error %d != %d",thisFrame-startFrame,producer->getRemainingTrainTime()/10, correctRemainingTrainTime);});
+  }
+  else
+  {
+    BWAssertF(producer->getRemainingTrainTime() == correctRemainingTrainTime,{log("%d Error %d != %d %s",thisFrame-startFrame,producer->getRemainingTrainTime(), correctRemainingTrainTime, producer->getType().c_str());});
+  }
+
+  int lastFrame = startFrame + Broodwar->getLatency() + unitType.buildTime()/10;
   if (Broodwar->getLatency()==5)
     lastFrame++;
   if (unitType==UnitTypes::Terran_Nuclear_Missile)

@@ -88,7 +88,7 @@ namespace BWAPI
       virtual Unit    *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const override;
 
       virtual Error   getLastError() const override;
-      virtual bool    setLastError(BWAPI::Error e = Errors::None) override;
+      virtual bool    setLastError(BWAPI::Error e = Errors::None) const override;
 
       virtual int         mapWidth() const override;
       virtual int         mapHeight() const override;
@@ -129,7 +129,7 @@ namespace BWAPI
       virtual void restartGame() override;
       virtual void setLocalSpeed(int speed) override;
       virtual bool issueCommand(const Unitset& units, UnitCommand command) override;
-      virtual const Unitset& getSelectedUnits() override;
+      virtual const Unitset& getSelectedUnits() const override;
       virtual Player *self() override;
       virtual Player *enemy() override;
       virtual Player *neutral() override;
@@ -331,7 +331,7 @@ namespace BWAPI
       bool flags[BWAPI::Flag::Max];
       TournamentModule  *tournamentController;
       bool              bTournamentMessageAppeared;
-      BWAPI::Error lastError;
+      mutable BWAPI::Error lastError;
       Unitset deadUnits;
       u32 cheatFlags;
       std::string autoMenuLanMode;

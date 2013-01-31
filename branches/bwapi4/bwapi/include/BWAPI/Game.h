@@ -238,7 +238,7 @@ namespace BWAPI
     /// @retval false If any other error type was passed.
     
     /// @see getLastError, Errors
-    virtual bool setLastError(BWAPI::Error e = Errors::None) = 0;
+    virtual bool setLastError(BWAPI::Error e = Errors::None) const = 0;
 
     /** Returns the width of the current map, in build tile units. To get the width of the current map in
      * walk tile units, multiply by 4. To get the width of the current map in Position units, multiply by
@@ -392,7 +392,7 @@ namespace BWAPI
 
     /** Returns the set of units currently selected by the user in the GUI. If Flag?::UserInput? was not
      * enabled during the AIModule::onStart callback, this function will always return an empty set. */
-    virtual const Unitset& getSelectedUnits() = 0;
+    virtual const Unitset& getSelectedUnits() const = 0;
 
     /** Returns a pointer to the player that BWAPI controls. In replays this will return null. */
     virtual Player* self() = 0;
@@ -674,7 +674,7 @@ namespace BWAPI
     /// @retval TilePositions::Invalid If a build location could not be found within \p maxRange.
     /// @returns
     ///   A TilePosition containing the location that the structure should be constructed at.
-    TilePosition getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange = 64, bool creep = false);
+    TilePosition getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange = 64, bool creep = false) const;
   };
 
   extern Game *BroodwarPtr;

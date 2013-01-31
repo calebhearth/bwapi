@@ -118,7 +118,7 @@ namespace BWAPI
                       }, min, min, max, max );
   }
 
-  void RemoveDisconnected(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  void RemoveDisconnected(PlacementReserve &reserve, TilePosition desiredPosition, int maxRange)
   {
     // Get min/max distances
     int min = MAX_RANGE/2 - maxRange/2;
@@ -136,7 +136,7 @@ namespace BWAPI
   }
 
   // @TODO: This interpretation might be incorrect
-  void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveStructureWithPadding(PlacementReserve &reserve, TilePosition currentPosition, TilePosition sizeExtra, int padding, UnitType type, TilePosition desiredPosition)
   {
     TilePosition paddingSize = sizeExtra + TilePosition(padding,padding)*2;
   
@@ -162,10 +162,10 @@ namespace BWAPI
 
     // Exclude locations with a different ground height, but restore a backup in case there are no more build locations
     reserve.backup();
-    reserve.iterate( [&](PlacementReserve *pr, int x, int y)->bool
+    reserve.iterate( [&](PlacementReserve *, int x, int y)->bool
                       { 
                         if ( !Broodwar->isBuildable( start + TilePosition(x,y), true ) )
-                          ReserveStructureWithPadding(reserve, start + TilePosition(x,y), TilePosition(1,1), 1, type, desiredPosition, maxRange);
+                          ReserveStructureWithPadding(reserve, start + TilePosition(x,y), TilePosition(1,1), 1, type, desiredPosition);
                         return true;
                       }, min, min, max, max );
 
@@ -173,7 +173,7 @@ namespace BWAPI
     reserve.restoreIfInvalid(__FUNCTION__);
   }
 
-  void ReserveGroundHeight(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveGroundHeight(PlacementReserve &reserve, TilePosition desiredPosition, int maxRange)
   {
     // Get min/max distances
     int min = MAX_RANGE/2 - maxRange/2;
@@ -195,7 +195,7 @@ namespace BWAPI
     reserve.restoreIfInvalid(__FUNCTION__);
   }
 
-  void ReserveExistingAddonPlacement(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveExistingAddonPlacement(PlacementReserve &reserve, TilePosition desiredPosition)
   {
     TilePosition start = desiredPosition - TilePosition(MAX_RANGE,MAX_RANGE)/2;
 
@@ -217,12 +217,12 @@ namespace BWAPI
     reserve.restoreIfInvalid(__FUNCTION__);
   }
 
-  void ReserveStructure(PlacementReserve &reserve, Unit *pUnit, int padding, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveStructure(PlacementReserve &reserve, Unit *pUnit, int padding, UnitType type, TilePosition desiredPosition)
   {
-    ReserveStructureWithPadding(reserve, TilePosition(pUnit->getPosition()), pUnit->getType().tileSize(), padding, type, desiredPosition, maxRange);
+    ReserveStructureWithPadding(reserve, TilePosition(pUnit->getPosition()), pUnit->getType().tileSize(), padding, type, desiredPosition);
   }
 
-  void ReserveAllStructures(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveAllStructures(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition)
   {
     if ( type.isAddon() )
       return;
@@ -232,7 +232,7 @@ namespace BWAPI
     Unitset myUnits = Broodwar->self()->getUnits();
     myUnits.erase_if( !(Exists && (IsCompleted || (ProducesLarva && IsMorphing)) && IsBuilding && (IsResourceDepot || IsRefinery)) );
     for ( auto it = myUnits.begin(); it != myUnits.end(); ++it )
-      ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+      ReserveStructure(reserve, *it, 2, type, desiredPosition);
     
     // Reserve space around neutral resources
     if ( type != UnitTypes::Terran_Bunker )
@@ -240,7 +240,7 @@ namespace BWAPI
       Unitset resources = Broodwar->getNeutralUnits();
       resources.erase_if( !(Exists && IsResourceContainer) );
       for ( auto it = resources.begin(); it != resources.end(); ++it )
-        ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+        ReserveStructure(reserve, *it, 2, type, desiredPosition);
     }
     reserve.restoreIfInvalid(__FUNCTION__);
   }
@@ -255,7 +255,7 @@ namespace BWAPI
     TilePosition( 0,-1),
     TilePosition(-1,-1)
   };
-  void ReserveDefault(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition, int maxRange)
+  void ReserveDefault(PlacementReserve &reserve, UnitType type, TilePosition desiredPosition)
   {
     reserve.backup();
     auto original = reserve;
@@ -275,12 +275,12 @@ namespace BWAPI
       case UnitTypes::Enum::Protoss_Gateway:
       case UnitTypes::Enum::Protoss_Photon_Cannon:
       default:
-        ReserveStructure(reserve, *it, 2, type, desiredPosition, maxRange);
+        ReserveStructure(reserve, *it, 2, type, desiredPosition);
         break;
       case UnitTypes::Enum::Terran_Barracks:
       case UnitTypes::Enum::Terran_Bunker:
       case UnitTypes::Enum::Zerg_Creep_Colony:
-        ReserveStructure(reserve, *it, 1, type, desiredPosition, maxRange);
+        ReserveStructure(reserve, *it, 1, type, desiredPosition);
         break;
       }
     }
@@ -318,7 +318,7 @@ namespace BWAPI
     reserve.reset();
 
     AssignBuildableLocations(reserve, type, desiredPosition, maxRange);
-    RemoveDisconnected(reserve, type, desiredPosition, maxRange);
+    RemoveDisconnected(reserve, desiredPosition, maxRange);
     
     // @TODO: Assign 0 to all locations that have a ground distance > maxRange
 
@@ -335,14 +335,14 @@ namespace BWAPI
     if ( !reserve.hasValidSpace() )
       return;
 
-    ReserveGroundHeight(reserve, type, desiredPosition, maxRange);
+    ReserveGroundHeight(reserve, desiredPosition, maxRange);
     ReserveUnbuildable(reserve, type, desiredPosition, maxRange);
 
     bool ignoreStandardPlacement = type.isResourceDepot();
     if ( !ignoreStandardPlacement )
-      ReserveAllStructures(reserve, type, desiredPosition, maxRange);
+      ReserveAllStructures(reserve, type, desiredPosition);
     
-    ReserveExistingAddonPlacement(reserve, type, desiredPosition, maxRange);
+    ReserveExistingAddonPlacement(reserve, desiredPosition);
 
     // Unit-specific reservations
     switch ( type )
@@ -368,7 +368,7 @@ namespace BWAPI
       break;
     default:
       if ( !ignoreStandardPlacement )
-        ReserveDefault(reserve, type, desiredPosition, maxRange);
+        ReserveDefault(reserve, type, desiredPosition);
       break;
     }
   }
@@ -413,7 +413,7 @@ namespace BWAPI
 
   // ----- GET BUILD LOCATION
   // @TODO: If self() is nullptr, this will crash
-  TilePosition Game::getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange, bool creep)
+  TilePosition Game::getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange, bool creep) const
   {
     this->setLastError(); // Reset last error
     if ( maxRange < 0 ) maxRange = 0;

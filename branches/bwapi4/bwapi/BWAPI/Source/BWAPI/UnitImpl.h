@@ -7,12 +7,6 @@
 #include <BWAPI/UnitCommand.h>
 #include <BWAPI/Client/UnitData.h>
 
-#define checkOwnership()\
-{\
-  if (_getPlayer != Broodwar->self())\
-    return BroodwarImpl.setLastError(Errors::Unit_Not_Owned);\
-}
-
 namespace BW
 { 
   class CUnit;

@@ -201,7 +201,7 @@ void BuildTest::update()
   int correctRemainingBuildTime = 0;
   if (building!=NULL)
   {
-    correctRemainingBuildTime = startFrame+unitType.buildTime()-thisFrame+1;
+    correctRemainingBuildTime = startFrame + unitType.buildTime()/10 - thisFrame + 1;
     if (builder->getType().getRace() == Races::Protoss)
       correctRemainingBuildTime--;
     if (builder->getType().getRace() == Races::Zerg)
@@ -209,7 +209,7 @@ void BuildTest::update()
     if (builder->getType() == UnitTypes::Zerg_Extractor)
       correctRemainingBuildTime--;
     if (correctRemainingBuildTime < 0) correctRemainingBuildTime = 0;
-    if (correctRemainingBuildTime > unitType.buildTime()) correctRemainingBuildTime = unitType.buildTime();
+    if (correctRemainingBuildTime > unitType.buildTime()/10) correctRemainingBuildTime = unitType.buildTime()/10;
   }
   bool correctIsConstructing = false;
       
@@ -247,7 +247,7 @@ void BuildTest::update()
     FAILTEST(building->isBeingConstructed() == true);
     if (building->getType().getRace() == Races::Protoss)
     {
-      if (thisFrame>startFrame + Broodwar->getLatency() + unitType.buildTime() + 67)
+      if (thisFrame>startFrame + Broodwar->getLatency() + unitType.buildTime()/10 + 67)
       {
         finishingBuilding = true;
         finishFrame = thisFrame;

@@ -81,7 +81,7 @@ namespace BWAPI
     return lastError;
   }
   //--------------------------------------------- SET LAST ERROR ---------------------------------------------
-  bool GameImpl::setLastError(BWAPI::Error e)
+  bool GameImpl::setLastError(BWAPI::Error e) const
   {
     /* implies that an error has occured */
     lastError = e;

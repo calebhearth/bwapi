@@ -23,7 +23,7 @@ void MPHSTest::start()
 
   BWAssertF(unit!=NULL,{fail=true;return;});
   BWAssertF(unit->exists(),{fail=true;return;});
-  BWAssertF(unit->stop(),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+  BWAssertF(unit->stop(),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
   startFrame = Broodwar->getFrameCount()+100;
   nextFrame = Broodwar->getFrameCount();
 
@@ -54,7 +54,7 @@ void MPHSTest::update()
     targetPosition=unit->getPosition();
     targetPosition.y+=32*30;
     targetPosition.makeValid();
-    BWAssertF(unit->move(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(unit->move(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
     BWAssertF(unit->getOrder()==Orders::Move,{fail=true;return;});
     BWAssertF(unit->isMoving()==true,{fail=true;return;});
     BWAssertF(unit->isPatrolling()==false,{fail=true;return;});
@@ -80,7 +80,7 @@ void MPHSTest::update()
     targetPosition=unit->getPosition();
     targetPosition.y-=32*30;
     targetPosition.makeValid();
-    BWAssertF(unit->patrol(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(unit->patrol(targetPosition),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
     BWAssertF(unit->getOrder()==Orders::Patrol,{fail=true;return;});
     BWAssertF(unit->isMoving()==true,{fail=true;return;});
     BWAssertF(unit->isPatrolling()==true,{fail=true;return;});
@@ -129,7 +129,7 @@ void MPHSTest::update()
     BWAssertF(unit->isMoving()==false,{fail=true;return;});
     BWAssertF(unit->isPatrolling()==false,{fail=true;return;});
     BWAssertF(unit->isIdle()==false,{fail=true;return;});
-    BWAssertF(unit->stop(),{Broodwar->printf("%s",Broodwar->getLastError().toString().c_str());fail=true;return;});
+    BWAssertF(unit->stop(),{Broodwar->printf("%s",Broodwar->getLastError().c_str());fail=true;return;});
     BWAssertF(unit->getOrder()==Orders::Stop,{fail=true;return;});
     BWAssertF(unit->isHoldingPosition()==false,{fail=true;return;});
     BWAssertF(unit->isMoving()==false,{fail=true;return;});

@@ -335,7 +335,7 @@ void UseTechTest::useTech()
     used=user->useTech(techType);
   if (used==false)
   {
-    log("Error: %s",Broodwar->getLastError().toString().c_str());
+    log("Error: %s",Broodwar->getLastError().c_str());
   }
 
   usedTech = true;

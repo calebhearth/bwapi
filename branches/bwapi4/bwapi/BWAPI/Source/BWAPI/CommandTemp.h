@@ -324,7 +324,7 @@ namespace BWAPI
         }
         else
         {
-          unit->self->remainingTrainTime = UnitType(unit->self->trainingQueue[0]).buildTime();
+          unit->self->remainingTrainTime = UnitType(unit->self->trainingQueue[0]).buildTime();  // @TODO: fix to real build time
           player->self->supplyUsed[unit->getType().getRace()] += UnitType(unit->self->trainingQueue[0]).supplyRequired();
           if ((frame == Broodwar->getLatency() && Broodwar->getLatency() == 2) ||
               (frame == Broodwar->getLatency()+1 && Broodwar->getLatency() > 2) )
@@ -447,7 +447,7 @@ namespace BWAPI
       unit->self->isIdle         = false;
       unit->self->buildType      = unitType;
       if (unit->self->remainingBuildTime < 50)
-        unit->self->remainingBuildTime = unitType.buildTime();
+        unit->self->remainingBuildTime = unitType.buildTime();  // @TODO: Fix to real build time
       if (frame > Broodwar->getLatency())
         return;
       if (unitType.isBuilding())
@@ -512,7 +512,7 @@ namespace BWAPI
       unit->self->order                 = Orders::ResearchTech;
       unit->self->tech                  = techType;
       unit->self->isIdle                = false;
-      unit->self->remainingResearchTime = techType.researchTime();
+      unit->self->remainingResearchTime = techType.researchTime();  // @TODO: Fix to real time
       if (frame < Broodwar->getLatency())
       {
         player->self->minerals -= techType.mineralPrice();
@@ -631,7 +631,7 @@ namespace BWAPI
       {
         if (savedExtra == 0)
         {
-          unit->self->remainingTrainTime = unitType.buildTime();
+          unit->self->remainingTrainTime = unitType.buildTime();  // @TODO: fix to real build time
           player->self->supplyUsed[unitType.getRace()] += unitType.supplyRequired();
         }
       }
@@ -692,7 +692,7 @@ namespace BWAPI
       unit->self->upgrade = upgradeType;
       unit->self->isIdle  = false;
       int level           = unit->getPlayer()->getUpgradeLevel(upgradeType);
-      unit->self->remainingUpgradeTime = upgradeType.upgradeTime(level+1);
+      unit->self->remainingUpgradeTime = upgradeType.upgradeTime(level+1);  // @TODO: Fix to real time
       if (frame < Broodwar->getLatency())
       {
         player->self->minerals -= upgradeType.mineralPrice(level+1);

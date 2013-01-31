@@ -164,36 +164,36 @@ void CancelConstructionTest::update()
   {
     if (builderType.getRace()==Races::Terran && terranHalt)
     {
-      if (thisFrame==startFrame+Broodwar->getLatency()+200)
+      if (thisFrame==startFrame+Broodwar->getLatency()+20)
       {
         builder->haltConstruction();
         FAILTEST(builder->getBuildType()==UnitTypes::None);
         FAILTEST(builder->isConstructing()==false);
         FAILTEST(building->isBeingConstructed()==false);
       }
-      if (thisFrame>=startFrame+Broodwar->getLatency()+200 && thisFrame<startFrame+Broodwar->getLatency()+300)
+      if (thisFrame>=startFrame+Broodwar->getLatency()+20 && thisFrame<startFrame+Broodwar->getLatency()+30)
       {
         FAILTEST(builder->getBuildType()==UnitTypes::None);
         FAILTEST(builder->isConstructing()==false);
         FAILTEST(building->isBeingConstructed()==false);
       }
     }
-    if (thisFrame==startFrame+Broodwar->getLatency()+500)
+    if (thisFrame==startFrame+Broodwar->getLatency()+50)
     {
       if (unitType.isAddon())
         builder->cancelAddon();
       else
         building->cancelConstruction();
     }
-    if (thisFrame>=startFrame+Broodwar->getLatency()+500)
+    if (thisFrame>=startFrame+Broodwar->getLatency()+50)
     {
       FAILTEST(builder->getBuildType()==UnitTypes::None);
-      BWAssertF(builder->isConstructing()==false,{log("%d, %s: %s,%s",thisFrame-(startFrame+Broodwar->getLatency()+500), builder->getType().c_str(), builder->getOrder().c_str(), builder->getSecondaryOrder().c_str());});
-      BWAssertF(Broodwar->self()->minerals()==correctMineralCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+500),Broodwar->self()->minerals(),correctMineralCount);fail=true;return;});
-      BWAssertF(Broodwar->self()->gas()==correctGasCount,{log("%d: %d != %d, diff = %d",thisFrame-(startFrame+Broodwar->getLatency()+500), Broodwar->self()->gas(),correctGasCount,Broodwar->self()->gas()-correctGasCount);fail=true;return;});
-      BWAssertF(Broodwar->self()->supplyUsed()==correctSupplyUsedCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+500),Broodwar->self()->supplyUsed(),correctSupplyUsedCount);fail=true;return;});
+      BWAssertF(builder->isConstructing()==false,{log("%d, %s: %s,%s",thisFrame-(startFrame+Broodwar->getLatency()+50), builder->getType().c_str(), builder->getOrder().c_str(), builder->getSecondaryOrder().c_str());});
+      BWAssertF(Broodwar->self()->minerals()==correctMineralCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+50),Broodwar->self()->minerals(),correctMineralCount);fail=true;return;});
+      BWAssertF(Broodwar->self()->gas()==correctGasCount,{log("%d: %d != %d, diff = %d",thisFrame-(startFrame+Broodwar->getLatency()+50), Broodwar->self()->gas(),correctGasCount,Broodwar->self()->gas()-correctGasCount);fail=true;return;});
+      BWAssertF(Broodwar->self()->supplyUsed()==correctSupplyUsedCount,{log("%d: %d != %d",thisFrame-(startFrame+Broodwar->getLatency()+50),Broodwar->self()->supplyUsed(),correctSupplyUsedCount);fail=true;return;});
     }
-    if (thisFrame>startFrame+Broodwar->getLatency()+550)
+    if (thisFrame>startFrame+Broodwar->getLatency()+55)
     {
       if (unitType.getRace()!=Races::Zerg)
       {
@@ -204,7 +204,7 @@ void CancelConstructionTest::update()
         FAILTEST(building->getType()==UnitTypes::Zerg_Drone);
       }
     } 
-    if (thisFrame>startFrame+Broodwar->getLatency()+700)
+    if (thisFrame>startFrame+Broodwar->getLatency()+70)
     {
       running = false;
     }

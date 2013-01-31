@@ -728,7 +728,7 @@ namespace BWAPI
     return true;
   }
   //------------------------------------------ GET SELECTED UNITS --------------------------------------------
-  const Unitset& GameImpl::getSelectedUnits()
+  const Unitset& GameImpl::getSelectedUnits() const
   {
     this->setLastError();
     if ( !this->isFlagEnabled(BWAPI::Flag::UserInput) )
@@ -844,9 +844,9 @@ namespace BWAPI
   //--------------------------------------------------- HAS PATH ---------------------------------------------
   bool GameImpl::hasPath(Position source, Position destination) const
   {
-    Broodwar->setLastError(Errors::None);
+    this->setLastError(Errors::None);
     if ( !source.isValid() || !destination.isValid() )
-      return Broodwar->setLastError(Errors::Unreachable_Location);
+      return this->setLastError(Errors::Unreachable_Location);
 
     if ( *BW::BWDATA::SAIPathing )
     {
@@ -857,7 +857,7 @@ namespace BWAPI
       if ( srcRgn && dstRgn && srcRgn->groupIndex == dstRgn->groupIndex )
         return true;
     }
-    return Broodwar->setLastError(Errors::Unreachable_Location);
+    return this->setLastError(Errors::Unreachable_Location);
   } // hasPath end
   //------------------------------------------------- ELAPSED TIME -------------------------------------------
   int GameImpl::elapsedTime() const
@@ -880,16 +880,16 @@ namespace BWAPI
   //------------------------------------------------- GET REGION AT ------------------------------------------
   BWAPI::Region *GameImpl::getRegionAt(int x, int y) const
   {
-    Broodwar->setLastError();
+    this->setLastError();
     if ( !Position(x, y) )
     {
-      Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
+      this->setLastError(BWAPI::Errors::Invalid_Parameter);
       return nullptr;
     }
     BW::region *rgn = BW::getRegionAt(x,y);
     if ( !rgn )
     {
-      Broodwar->setLastError(BWAPI::Errors::Invalid_Parameter);
+      this->setLastError(BWAPI::Errors::Invalid_Parameter);
       return nullptr;
     }
     return (Region*)rgn->unk_28;

@@ -66,7 +66,7 @@ namespace BWAPI
       Playerset _allies;
       Playerset _enemies;
       Playerset _observers;
-      Error lastError;
+      mutable Error lastError;
       int textSize;
 
     public :
@@ -122,7 +122,7 @@ namespace BWAPI
       virtual Unit      *getClosestUnitInRectangle(Position center, const UnitFilter &pred = nullptr, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const override;
       virtual Unit      *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const override;
       virtual Error     getLastError() const override;
-      virtual bool      setLastError(BWAPI::Error e = Errors::None) override;
+      virtual bool      setLastError(BWAPI::Error e = Errors::None) const override;
 
       virtual int         mapWidth() const override;
       virtual int         mapHeight() const override;
@@ -162,7 +162,7 @@ namespace BWAPI
       virtual void restartGame() override;
       virtual void setLocalSpeed(int speed = -1) override;
       virtual bool issueCommand(const Unitset& units, UnitCommand command) override;
-      virtual const Unitset& getSelectedUnits() override;
+      virtual const Unitset& getSelectedUnits() const override;
       virtual Player* self() override;
       virtual Player* enemy() override;
       virtual Player* neutral() override;
