@@ -58,6 +58,10 @@ void DevAIModule::onFrame()
   if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
     return;
 
+  UnitType::set allTypes(UnitTypes::allUnitTypes());
+  for ( auto it = allTypes.begin(); it != allTypes.end(); ++it )
+    Broodwar << *it << std::endl;
+
   Unitset myUnits = self->getUnits();
   bool hasConstructor = std::find_if(myUnits.begin(), myUnits.end(), IsConstructing) != myUnits.end();
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )

@@ -48,13 +48,13 @@ namespace BWAPI
     { 
       memcpy(this->pStartArr, (void*)other, other.size()*sizeof(_T));
     };
-    /*
+    
     Vectorset(const ConstVectorset<_T> &other)
       : ConstVectorset<_T>( (_T*)malloc( other.size()*sizeof(_T)), other.size() )
       , pEndAlloc( pEndArr )
     { 
       memcpy(this->pStartArr, (void*)other, other.size()*sizeof(_T));
-    };*/
+    };
     
     /// This is the move constructor. The Vectorset will steal the data pointer from the other
     /// Vectorset.
