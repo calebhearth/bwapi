@@ -229,6 +229,8 @@ namespace BWAPI
       void chooseNewRandomMap();
       static void SendClientEvent(BWAPI::AIModule *module, Event &e);
 
+      void processInterfaceEvents();
+
       UnitImpl   *getUnitFromIndex(int index);
       BulletImpl *getBulletFromIndex(int index);
       PlayerImpl *BWAPIPlayer;

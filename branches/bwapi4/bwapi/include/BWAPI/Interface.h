@@ -1,17 +1,45 @@
 #pragma once
 #include <map>
+#include <list>
+
+#include <BWAPI/InterfaceEvent.h>
 
 namespace BWAPI
 {
   /// This generalized class allows the application of features that are common to all interface
   /// classes.
+  template < typename T >
   class Interface
   {
   protected:
+    // default ctor
     Interface() {};
-    virtual ~Interface() {};
+    // dtor
+    virtual ~Interface()
+    {};
 
     std::map<int,void*> clientInfo;
+    std::list< InterfaceEvent<T> > events;
+
+    friend class GameImpl;
+
+    // Function manages events and updates it for the given frame
+    void updateEvents(int currentFrame)
+    {
+      auto e = events.begin();
+      while ( e != events.end() )
+      {
+        if ( e->isFinished() )
+        {
+          e = events.erase(e);
+        }
+        else
+        {
+          e->execute(static_cast<T*>(this), currentFrame);
+          ++e;
+        }
+      }
+    };
   public:
     /// Retrieves a pointer or value at an index that was stored for this interface using
     /// setClientInfo.
@@ -24,12 +52,23 @@ namespace BWAPI
     /// @returns A pointer to the client info at that index.
     ///
     /// @see setClientInfo
-    void *getClientInfo(int key = 0) const;
-
-    template <typename T>
-    T getClientInfo(int key = 0) const
+    void *getClientInfo(int key = 0) const
     {
-      return (T)(int)this->getClientInfo(key);
+      // Retrieve iterator to element at index
+      auto result = this->clientInfo.find(key);
+
+      // Return a default value if not found
+      if ( result == this->clientInfo.end() )
+        return nullptr;
+
+      // return the desired value
+      return result->second;
+    };
+
+    template <typename CT>
+    CT getClientInfo(int key = 0) const
+    {
+      return (CT)(int)this->getClientInfo(key);
     };
 
     /// Associates one or more pointers or values with any BWAPI interface.
@@ -50,6 +89,41 @@ namespace BWAPI
     void setClientInfo(const V &clientInfo, int key = 0)
     {
       this->clientInfo[key] = (void*)clientInfo;
+    };
+
+    /// Registers an event and associates it with the current Interface object. Events can be used
+    /// to automate tasks (like train X @Marines until Y of them have been created by the given
+    /// @Barracks) or to create user-defined callbacks.
+    ///
+    /// @param action
+    ///   The action callback to be executed when the event conditions are true. It is of type
+    ///   void fn(T *inst) where fn is the function name and inst is a pointer to the instance of
+    ///   the object performing the action.
+    /// @param condition (optional)
+    ///   The condition callback which will return true if the action is intended to be executed.
+    ///   It is of type bool fn(T *inst) where fn is the function name and inst is a pointer to the
+    ///   instance of the object performing the check. The condition will always be true if omitted.
+    /// @param timesToRun (optional)
+    ///   The number of times to execute the action before the event is removed. If the value is
+    ///   negative, then the event will never be removed. The value will be -1 if omitted, causing
+    ///   the event to execute regularly.
+    /// @param framesToCheck (optional)
+    ///   The number of frames to skip between checks. If this value is 0, then a condition check is
+    ///   made once per frame. If this value is 1, then the condition for this event is only checked
+    ///   every other frame. This value is 0 by default, meaning the event's condition is checked
+    ///   every frame.
+    void registerEvent(const std::function<void(T*)> &action, const std::function<bool(T*)> &condition = nullptr, int timesToRun = -1, int framesToCheck = 0)
+    {
+      events.push_back( InterfaceEvent<T>(action,condition,timesToRun,framesToCheck) );
+    };
+
+    void registerEvent(const InterfaceEvent<T> &evt)
+    {
+      events.push_back( evt );
+    };
+    void registerEvent(InterfaceEvent<T> &&evt)
+    {
+      events.push_back( std::move(evt) );
     };
 
   };

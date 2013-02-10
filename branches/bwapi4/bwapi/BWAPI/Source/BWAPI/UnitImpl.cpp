@@ -185,6 +185,7 @@ namespace BWAPI
     lastType           = UnitTypes::Unknown;
     lastPlayer         = nullptr;
     this->clientInfo.clear();
+    this->events.clear();
 
     updateData();
   }

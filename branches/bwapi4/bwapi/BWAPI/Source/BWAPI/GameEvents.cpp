@@ -593,6 +593,8 @@ namespace BWAPI
       this->isTournamentCall = false;
     }
 
+    this->processInterfaceEvents();
+
     //each frame we add a MatchFrame event to the queue
     events.push_back(Event::MatchFrame());
 

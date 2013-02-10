@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <Util/Strings.h>
+#include <Util/Foreach.h>
 
 #include "../WMode.h"
 #include "../Detours.h"
@@ -326,6 +327,39 @@ namespace BWAPI
   {
     map.copyToSharedMemory();
   }
+
+  //------------------------------------------- INTERFACE EVENT UPDATE ---------------------------------------
+  void GameImpl::processInterfaceEvents()
+  {
+    int currentFrame = this->getFrameCount();
+    
+    // GameImpl events
+    this->updateEvents(currentFrame);
+    
+    // UnitImpl events
+    foreach(UnitImpl* u, this->accessibleUnits)
+    {
+      u->exists() ? u->updateEvents(currentFrame) : u->events.clear();
+    }
+    
+    // ForceImpl events
+    foreach(ForceImpl* f,this->forces)
+      f->updateEvents(currentFrame);
+
+    // BulletImpl events
+    foreach(BulletImpl* b, this->bullets)
+    {
+      b->exists() ? b->updateEvents(currentFrame) : b->events.clear();
+    }
+
+    // RegionImpl events
+    foreach(RegionImpl *r,this->regionsList)
+      r->updateEvents(currentFrame);
+
+    // PlayerImpl events
+    foreach(PlayerImpl *p, this->playerSet)
+      p->updateEvents(currentFrame);
+  }
   //------------------------------------------- GET PLAYER INTERNAL ------------------------------------------
   PlayerImpl *GameImpl::_getPlayer(int id)
   {
@@ -350,45 +384,6 @@ namespace BWAPI
   }
   void GameImpl::initializeData()
   {
-    // Destroy the AI Module client
-    if ( this->client )
-    {
-      delete this->client;
-      this->client = nullptr;
-    }
-
-    // Unload the AI Module library
-    if ( hAIModule )
-    {
-      FreeLibrary(hAIModule);
-      hAIModule = nullptr;
-    }
-    
-    this->startedClient = false;
-
-    // Destroy the Tournament Module controller
-    if ( this->tournamentController )
-    {
-      delete this->tournamentController;
-      this->tournamentController = nullptr;
-    }
-
-    // Destroy the Tournament Module AI
-    if ( this->tournamentAI )
-    {
-      delete this->tournamentAI;
-      this->tournamentAI = nullptr;
-    }
-    
-    // Destroy the Tournament Module Library
-    if ( hTournamentModule )
-    {
-      FreeLibrary(hTournamentModule);
-      hTournamentModule = nullptr;
-    }
-
-    this->bTournamentMessageAppeared = false;
-
     // Delete forces
     for ( Forceset::iterator f = this->forces.begin(); f != this->forces.end(); ++f)
       delete (static_cast<ForceImpl*>(*f));
@@ -484,6 +479,7 @@ namespace BWAPI
     this->frameCount = 0;
 
     this->clientInfo.clear();
+    this->events.clear();
 
     //reload auto menu data (in case the AI set the location of the next map/replay)
     this->loadAutoMenuData();
@@ -507,5 +503,46 @@ namespace BWAPI
     this->fps = 0;
     this->averageFPS = 0;
     this->accumulatedFrames = 0;
+
+    // @NOTE: Freeing libraries comes after because of some destructors for functionals in Interface Events
+
+    // Destroy the AI Module client
+    if ( this->client )
+    {
+      delete this->client;
+      this->client = nullptr;
+    }
+
+    // Unload the AI Module library
+    if ( hAIModule )
+    {
+      FreeLibrary(hAIModule);
+      hAIModule = nullptr;
+    }
+    
+    this->startedClient = false;
+
+    // Destroy the Tournament Module controller
+    if ( this->tournamentController )
+    {
+      delete this->tournamentController;
+      this->tournamentController = nullptr;
+    }
+
+    // Destroy the Tournament Module AI
+    if ( this->tournamentAI )
+    {
+      delete this->tournamentAI;
+      this->tournamentAI = nullptr;
+    }
+    
+    // Destroy the Tournament Module Library
+    if ( hTournamentModule )
+    {
+      FreeLibrary(hTournamentModule);
+      hTournamentModule = nullptr;
+    }
+
+    this->bTournamentMessageAppeared = false;
   }
 };

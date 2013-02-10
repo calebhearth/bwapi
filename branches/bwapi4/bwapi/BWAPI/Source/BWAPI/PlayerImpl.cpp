@@ -415,6 +415,7 @@ namespace BWAPI
   {
     this->units.clear();
     this->clientInfo.clear();
+    this->events.clear();
 
     self->leftGame = false;
     this->wasSeenByBWAPIPlayer = false;

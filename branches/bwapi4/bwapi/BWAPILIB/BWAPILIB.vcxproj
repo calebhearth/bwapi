@@ -126,7 +126,6 @@ COPY /y "$(OutDir)$(TargetName)$(TargetExt)" "..\lib\BWAPId.lib"</Command>
     <ClCompile Include="Source\Forceset.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GameType.cpp" />
-    <ClCompile Include="Source\Interface.cpp" />
     <ClCompile Include="Source\Order.cpp" />
     <ClCompile Include="Source\Playerset.cpp" />
     <ClCompile Include="Source\PlayerType.cpp" />
@@ -158,6 +157,7 @@ COPY /y "$(OutDir)$(TargetName)$(TargetExt)" "..\lib\BWAPId.lib"</Command>
     <ClInclude Include="..\include\BWAPI\CoordinateType.h" />
     <ClInclude Include="..\include\BWAPI\Filters.h" />
     <ClInclude Include="..\include\BWAPI\Forceset.h" />
+    <ClInclude Include="..\include\BWAPI\InterfaceEvent.h" />
     <ClInclude Include="..\include\BWAPI\Latency.h" />
     <ClInclude Include="..\include\BWAPI\Playerset.h" />
     <ClInclude Include="..\include\BWAPI\PositionUnit.h" />

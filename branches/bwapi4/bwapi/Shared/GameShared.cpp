@@ -77,13 +77,13 @@ namespace BWAPI
   //----------------------------------------------- GET LAST ERROR -------------------------------------------
   Error GameImpl::getLastError() const
   {
-    /* returns the last error encountered in BWAPI */
+    // returns the last error encountered in BWAPI
     return lastError;
   }
   //--------------------------------------------- SET LAST ERROR ---------------------------------------------
   bool GameImpl::setLastError(BWAPI::Error e) const
   {
-    /* implies that an error has occured */
+    // implies that an error has occured
     lastError = e;
     return e == Errors::None;
   }
@@ -117,7 +117,7 @@ namespace BWAPI
   {
     return this->regionsList;
   }
-
+  //------------------------------------------------- GAME DATA ----------------------------------------------
   const GameData* GameImpl::getGameData() const
   {
     return data;

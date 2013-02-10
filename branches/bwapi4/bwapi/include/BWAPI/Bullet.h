@@ -28,7 +28,7 @@ namespace BWAPI
   /// it is visible. Otherwise if Flag::CompleteMapInformation is enabled, then all Bullets
   /// in the game are accessible.
   /// @see Game::getBullets, Bullet::exists
-  class Bullet : public Interface
+  class Bullet : public Interface<Bullet>
   {
   protected:
     virtual ~Bullet() {};

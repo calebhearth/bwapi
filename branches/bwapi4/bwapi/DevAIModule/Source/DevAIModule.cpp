@@ -12,6 +12,45 @@ DWORD dwCount = 0;
 int bestFPS;
 
 Player *self;
+void onResearchComplete(Player *player, TechType tech);
+void onUpgradeComplete(Player *player, UpgradeType upgrade, int level);
+
+
+std::map<UpgradeType,int> lastUpgradeLevel;
+
+std::function<bool(Player*)> HasNextUpgrade(UpgradeType upgrade)
+{
+  return [=](Player *p){ return p->getUpgradeLevel(upgrade) >= lastUpgradeLevel[upgrade]+1; };
+}
+
+std::function<bool(Player*)> HasTechnology(TechType tech)
+{
+  return [=](Player *p){ return p->hasResearched(tech); };
+}
+
+std::function<void(Player*)> OnResearchAct(TechType tech)
+{
+  return [=](Player *p){ onResearchComplete(p, tech); };
+}
+
+std::function<void(Player*)> OnUpgradeAct(UpgradeType upg)
+{
+  return [=](Player *p){ lastUpgradeLevel[upg] = p->getUpgradeLevel(upg);
+                          onUpgradeComplete(p, upg, p->getUpgradeLevel(upg)); };
+}
+
+////////////////////////////
+// User callbacks
+void onResearchComplete(Player *player, TechType tech)
+{
+  Broodwar << player->getName() << " has researched " << tech << std::endl;
+}
+
+void onUpgradeComplete(Player *player, UpgradeType upgrade, int level)
+{
+  Broodwar << player->getName() << " has upgraded " << upgrade << " to level " << level << std::endl;
+}
+////////////////////////////////
 
 void DevAIModule::onStart()
 {
@@ -20,6 +59,17 @@ void DevAIModule::onStart()
 
   // save player info
   self = bw->self();
+
+  // Register tech/upgrade callbacks
+  for( auto it = UpgradeTypes::allUpgradeTypes().begin(); it != UpgradeTypes::allUpgradeTypes().end(); ++it )
+  {
+    lastUpgradeLevel[*it] = self->getUpgradeLevel(*it);
+    self->registerEvent(OnUpgradeAct(*it), HasNextUpgrade(*it));
+  }
+  for( auto it = TechTypes::allTechTypes().begin(); it != TechTypes::allTechTypes().end(); ++it )
+  {
+    self->registerEvent(OnResearchAct(*it), HasTechnology(*it), 1);
+  }
 
   // save map info
   mapH = bw->mapHeight();
@@ -57,11 +107,7 @@ void DevAIModule::onFrame()
   // Limit logical frames processed to prevent stacking commands
   if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
     return;
-
-  UnitType::set allTypes(UnitTypes::allUnitTypes());
-  for ( auto it = allTypes.begin(); it != allTypes.end(); ++it )
-    Broodwar << *it << std::endl;
-
+  /*
   Unitset myUnits = self->getUnits();
   bool hasConstructor = std::find_if(myUnits.begin(), myUnits.end(), IsConstructing) != myUnits.end();
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
@@ -102,7 +148,7 @@ void DevAIModule::onFrame()
         }
       }
     }
-  }
+  }*/
 }
 
 void DevAIModule::onSendText(std::string text)
@@ -161,8 +207,12 @@ void DevAIModule::onUnitHide(BWAPI::Unit* unit)
 {
 }
 
+void newOnUnitComplete(BWAPI::Unit *unit);
+
 void DevAIModule::onUnitCreate(BWAPI::Unit* unit)
 {
+  unit->registerEvent(newOnUnitComplete, IsCompleted, 1);
+  Broodwar << __FUNCTION__ " -- " << unit->getPlayer()->getName() << ": " << unit->getType() << std::endl;
 }
 
 void DevAIModule::onUnitDestroy(BWAPI::Unit* unit)
@@ -183,4 +233,10 @@ void DevAIModule::onSaveGame(std::string gameName)
 
 void DevAIModule::onUnitComplete(BWAPI::Unit *unit)
 {
+  Broodwar << __FUNCTION__ << " -- " << unit->getType() << std::endl;
+}
+
+void newOnUnitComplete(BWAPI::Unit *unit)
+{
+  Broodwar << __FUNCTION__ " -- " << unit->getType() << std::endl;
 }

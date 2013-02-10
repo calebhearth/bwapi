@@ -32,6 +32,7 @@ namespace BWAPI
       int addString(const char* text);
       int addText(BWAPIC::Shape &s, const char* text);
       int addCommand(const BWAPIC::Command &c);
+      void processInterfaceEvents();
       void clearAll();
 
       GameData* data;

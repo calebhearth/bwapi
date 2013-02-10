@@ -11,7 +11,7 @@ namespace BWAPI
   class Unit;
 
   /// @TODO documentation of class
-  class Region : public Interface
+  class Region : public Interface<Region>
   {
   protected:
     virtual ~Region() {};

@@ -89,9 +89,6 @@
     <ClCompile Include="Source\Filters.cpp">
       <Filter>Filters</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Interface.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\Event.h" />
@@ -206,6 +203,7 @@
     <ClInclude Include="..\include\BWAPI\ConstVectorset.h">
       <Filter>Containers\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\BWAPI\InterfaceEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Types">

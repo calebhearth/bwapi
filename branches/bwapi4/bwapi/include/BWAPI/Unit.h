@@ -42,7 +42,7 @@ namespace BWAPI
   /// If a Unit is not accessible, then only the getInitial__ functions will be available to the AI.
   /// However for units that were owned by the player, getPlayer and getType will continue to work for units
   /// that have been destroyed.
-  class Unit : public Interface
+  class Unit : public Interface<Unit>
   {
   protected:
     virtual ~Unit() {};

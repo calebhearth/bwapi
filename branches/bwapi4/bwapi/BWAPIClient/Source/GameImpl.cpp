@@ -134,6 +134,39 @@ namespace BWAPI
     regionsList.clear();
     memset(this->regionArray, 0, sizeof(this->regionArray));
   }
+
+  //------------------------------------------- INTERFACE EVENT UPDATE ---------------------------------------
+  void GameImpl::processInterfaceEvents()
+  {
+    int currentFrame = this->getFrameCount();
+    
+    // GameImpl events
+    this->updateEvents(currentFrame);
+    
+    // UnitImpl events
+    foreach(UnitImpl* u, this->accessibleUnits)
+    {
+      u->exists() ? u->updateEvents(currentFrame) : u->events.clear();
+    }
+    
+    // ForceImpl events
+    foreach(ForceImpl* f,this->forces)
+      f->updateEvents(currentFrame);
+
+    // BulletImpl events
+    foreach(BulletImpl* b, this->bullets)
+    {
+      b->exists() ? b->updateEvents(currentFrame) : b->events.clear();
+    }
+
+    // RegionImpl events
+    foreach(RegionImpl *r,this->regionsList)
+      r->updateEvents(currentFrame);
+
+    // PlayerImpl events
+    foreach(PlayerImpl *p, this->playerSet)
+      p->updateEvents(currentFrame);
+  }
   //------------------------------------------------- ON MATCH START -----------------------------------------
   void GameImpl::onMatchStart()
   {
@@ -279,9 +312,8 @@ namespace BWAPI
         }
       }
     }
-    foreach(Unit* u_, accessibleUnits)
+    foreach(UnitImpl* u, accessibleUnits)
     {
-      UnitImpl* u = static_cast<UnitImpl*>(u_);
       u->connectedUnits.clear();
       u->loadedUnits.clear();
     }
@@ -324,6 +356,7 @@ namespace BWAPI
           _observers.insert(p);
       }
     }
+    this->processInterfaceEvents(); // Note sure if this should go here?
   }
   //----------------------------------------------- GET FORCE ------------------------------------------------
   Force* GameImpl::getForce(int forceId) const

@@ -26,7 +26,7 @@ namespace BWAPI
   /// (such as mineral patches and vespene geysers).
   ///
   /// @see Playerset, PlayerType, Race
-  class Player : public Interface
+  class Player : public Interface<Player>
   {
   protected:
     virtual ~Player() {};

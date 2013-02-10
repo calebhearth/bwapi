@@ -12,7 +12,7 @@ namespace BWAPI
   ///
   /// @note It is not called a team because players on the same force do not necessarily need
   /// to be allied at the beginning of a match.
-  class Force : public Interface
+  class Force : public Interface<Force>
   {
   protected:
     virtual ~Force() {};
