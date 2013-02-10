@@ -132,7 +132,7 @@ namespace BWAPI
     {
       // Level 1
       { None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 
-        None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, None, Zerg_Hive, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None,
         None, None, None, None, None, None, None, None, Terran_Armory, None, None, None, None, None, None, None, None },
       // Level 2
       { Terran_Science_Facility, Terran_Science_Facility, Terran_Science_Facility, Zerg_Lair, Zerg_Lair, Protoss_Templar_Archives, Protoss_Fleet_Beacon,
