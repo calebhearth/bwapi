@@ -722,7 +722,7 @@ namespace BWAPI
       Flyer | Hero | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
       Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
       Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
-      Flyer, 
+      Flyer | Invincible, 
       Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
       RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
       Hero | RegeneratesHP | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
@@ -1677,6 +1677,7 @@ namespace BWAPI
     req[Zerg_Evolution_Chamber][Zerg_Hatchery] = 1;
     req[Zerg_Ultralisk_Cavern][Zerg_Hive] = 1;
     req[Zerg_Spire][Zerg_Lair] = 1;
+    req[Zerg_Greater_Spire][Zerg_Hive] = 1;
     req[Zerg_Spawning_Pool][Zerg_Hatchery] = 1;
     req[Zerg_Spore_Colony][Zerg_Evolution_Chamber] = 1;
     req[Zerg_Sunken_Colony][Zerg_Spawning_Pool] = 1;
