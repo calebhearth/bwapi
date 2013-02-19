@@ -593,14 +593,15 @@ namespace BWAPI
       this->isTournamentCall = false;
     }
 
-    this->processInterfaceEvents();
-
     //each frame we add a MatchFrame event to the queue
     events.push_back(Event::MatchFrame());
 
     //if the AI is a client process, this will signal the client to process the next frame
     //if the AI is a DLL, this will translate the events into AIModule callbacks.
     server.update();
+
+    // Process events that were created for interface objects
+    this->processInterfaceEvents();
 
     //Before returning control to starcraft, we clear the unit data for units that are no longer accessible
     foreach(UnitImpl* u, evadeUnits)
@@ -778,203 +779,236 @@ namespace BWAPI
       } // iterate command types
     } // execute all stored commands
 
-    // grid
-    if ( grid )
+    if ( data->hasGUI ) // if GUI is enabled, draw debug stuff
     {
-      BWAPI::Position scrPos = getScreenPosition();
-
-      // draw mtx grid
-      for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA::GameScreenBuffer->height())/32 + 1; ++y )
+      if ( Broodwar->getFrameCount() % 8 == 0 )
       {
-        for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA::GameScreenBuffer->width())/32 + 1; ++x )
+        for ( int i = 1; i < 250; ++i )
         {
-          for ( int i = 0; i < 32; i += 4 )
+          auto &b = BW::BWDATA::Bases[i];
+          auto p = b.position;
+          if ( b.isStartLocation )
+            continue;
+        
+          if ( p.x == 0 && p.y == 0 )
+            break;
+
+          auto lt = p - BW::Position(64,48);
+          auto rb = p + BW::Position(64,48);
+          this->drawBoxMap(lt.x, lt.y, rb.x, rb.y, Colors::White);
+
+          auto r = this->getBuildLocation(UnitTypes::Special_Start_Location, TilePosition(p));
+          if ( r.isValid() )
           {
-            drawLineMap(x*32 + 32, y*32 + i, x*32 + 32, y*32 + i + 2, BWAPI::Colors::Grey);
-            drawLineMap(x*32 + i, y*32 + 32, x*32 + i + 2, y*32 + 32, BWAPI::Colors::Grey);
+            this->registerEvent([r](Game *g){ g->drawBoxMap(r.x*32,r.y*32,r.x*32+128,r.y*32+96,Colors::Red);}, nullptr, 8);
+          }
+        }
+        foreach(UnitImpl* u,this->aliveUnits)
+        {
+          if ( u->getType().isResourceContainer() )
+          {
+            u->registerEvent([](Unit *p){ Broodwar->drawLineMap(BW::BWDATA::Bases[p->getResourceGroup()].position, p->getPosition(), Colors::Blue); }, nullptr, 8);
           }
         }
       }
-      setTextSize(0);
-      drawTextScreen(64, 288, "%c(%u, %u)", Text::White, (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
-      setTextSize();
-    } // grid
 
-    if ( showfps )
-    {
-      setTextSize(0);
-      drawTextScreen(1,1, "%cFrame Rate (Logical Frames)\nLFPS: %d\nAvg LFPS:%.3lf", BWAPI::Text::Yellow, this->getFPS(), this->getAverageFPS());
-      setTextSize();
-    } // fps
+      // grid
+      if ( grid )
+      {
+        BWAPI::Position scrPos = getScreenPosition();
+
+        // draw mtx grid
+        for ( int y = scrPos.y/32; y < (scrPos.y + BW::BWDATA::GameScreenBuffer->height())/32 + 1; ++y )
+        {
+          for ( int x = scrPos.x/32; x < (scrPos.x + BW::BWDATA::GameScreenBuffer->width())/32 + 1; ++x )
+          {
+            for ( int i = 0; i < 32; i += 4 )
+            {
+              drawLineMap(x*32 + 32, y*32 + i, x*32 + 32, y*32 + i + 2, BWAPI::Colors::Grey);
+              drawLineMap(x*32 + i, y*32 + 32, x*32 + i + 2, y*32 + 32, BWAPI::Colors::Grey);
+            }
+          }
+        }
+        setTextSize(0);
+        drawTextScreen(64, 288, "%c(%u, %u)", Text::White, (scrPos.x+this->getMousePosition().x)/32, (scrPos.y+this->getMousePosition().y)/32);
+        setTextSize();
+      } // grid
+
+      if ( showfps )
+      {
+        setTextSize(0);
+        drawTextScreen(1,1, "%cFrame Rate (Logical Frames)\nLFPS: %d\nAvg LFPS:%.3lf", BWAPI::Text::Yellow, this->getFPS(), this->getAverageFPS());
+        setTextSize();
+      } // fps
+
+
 
 #ifdef _DEBUG
-    ////////////////////////////////////////////// Ignore rest if GUI disabled
-    if ( !data->hasGUI )
-      return;
-
-    setTextSize(0);
-    // unitdebug
-    if ( unitDebug && BWAPIPlayer )
-    {
-      foreach ( BWAPI::UnitImpl *u, this->getAllUnits() )
+      setTextSize(0);
+      // unitdebug
+      if ( unitDebug && BWAPIPlayer )
       {
-        auto raw = u->getOriginalRawData;
-        if ( raw->autoTargetUnit )
-          this->drawLineMap(u->getPosition(), BWAPI::Position(raw->autoTargetUnit->position), Colors::Red);
-      }
-      /*
-      BWAPI::Color c = Colors::Red;
-      int x = this->getMousePosition().x + this->getScreenPosition().x;
-      int y = this->getMousePosition().y + this->getScreenPosition().y;
-      if ( BW::isCollidingWithContour((*BW::BWDATA::SAIPathing)->contours, 
-                                  x,
-                                  y,
-                                  UnitTypes::Terran_Marine.dimensionLeft(),
-                                  UnitTypes::Terran_Marine.dimensionUp(),
-                                  UnitTypes::Terran_Marine.dimensionRight(),
-                                  UnitTypes::Terran_Marine.dimensionDown()) )
-         c = Colors::Green;
-      drawBoxMap(x - UnitTypes::Terran_Marine.dimensionLeft(),
-                                  y - UnitTypes::Terran_Marine.dimensionUp(),
-                                  x + UnitTypes::Terran_Marine.dimensionRight(),
-                                  y + UnitTypes::Terran_Marine.dimensionDown(), c);
-      */
-    } // unitdebug
-
-    // pathdebug
-    if ( pathDebug && *BW::BWDATA::SAIPathing )
-    {
-      BWAPI::Position mouse   = getMousePosition() + getScreenPosition();
-      BW::region *selectedRgn = BW::getRegionAt(mouse);
-      int scrx = (getScreenPosition().x/32 - 1)*32;
-      int scry = (getScreenPosition().y/32 - 1)*32;
-      for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
-      {
-        for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
+        foreach ( BWAPI::UnitImpl *u, this->getAllUnits() )
         {
-          BW::TilePosition tp((u16)x/32, (u16)y/32);
+          auto raw = u->getOriginalRawData;
+          if ( raw->autoTargetUnit )
+            this->drawLineMap(u->getPosition(), BWAPI::Position(raw->autoTargetUnit->position), Colors::Red);
+        }
+        /*
+        BWAPI::Color c = Colors::Red;
+        int x = this->getMousePosition().x + this->getScreenPosition().x;
+        int y = this->getMousePosition().y + this->getScreenPosition().y;
+        if ( BW::isCollidingWithContour((*BW::BWDATA::SAIPathing)->contours, 
+                                    x,
+                                    y,
+                                    UnitTypes::Terran_Marine.dimensionLeft(),
+                                    UnitTypes::Terran_Marine.dimensionUp(),
+                                    UnitTypes::Terran_Marine.dimensionRight(),
+                                    UnitTypes::Terran_Marine.dimensionDown()) )
+           c = Colors::Green;
+        drawBoxMap(x - UnitTypes::Terran_Marine.dimensionLeft(),
+                                    y - UnitTypes::Terran_Marine.dimensionUp(),
+                                    x + UnitTypes::Terran_Marine.dimensionRight(),
+                                    y + UnitTypes::Terran_Marine.dimensionDown(), c);
+        */
+      } // unitdebug
 
-          u16 idx = (*BW::BWDATA::SAIPathing)->mapTileRegionId[tp.y][tp.x];
-          if ( idx & 0x2000 )
+      // pathdebug
+      if ( pathDebug && *BW::BWDATA::SAIPathing )
+      {
+        BWAPI::Position mouse   = getMousePosition() + getScreenPosition();
+        BW::region *selectedRgn = BW::getRegionAt(mouse);
+        int scrx = (getScreenPosition().x/32 - 1)*32;
+        int scry = (getScreenPosition().y/32 - 1)*32;
+        for ( int x = (scrx > 0 ? scrx : 0); x < getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width && x/32 < this->mapWidth(); x += 32 )
+        {
+          for ( int y = (scry > 0 ? scry : 0); y < getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height && y/32 < this->mapHeight(); y += 32 )
           {
-            BW::split *t = &(*BW::BWDATA::SAIPathing)->splitTiles[idx & 0x1FFF];
-            for ( int mTileY = 0; mTileY < 4; ++mTileY )
+            BW::TilePosition tp((u16)x/32, (u16)y/32);
+
+            u16 idx = (*BW::BWDATA::SAIPathing)->mapTileRegionId[tp.y][tp.x];
+            if ( idx & 0x2000 )
             {
-              for ( int mTileX = 0; mTileX < 4; ++mTileX )
+              BW::split *t = &(*BW::BWDATA::SAIPathing)->splitTiles[idx & 0x1FFF];
+              for ( int mTileY = 0; mTileY < 4; ++mTileY )
               {
-                BW::region *rgn1 = getRegionFromId(t->rgn1);
-                BWAPI::Color c = selectedRgn == rgn1 ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
-                if ( rgn1->accessabilityFlags == 0x1FFD )
-                  c = selectedRgn == rgn1 ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
-                if ( ((t->minitileMask >> ( mTileX + mTileY * 4 )) & 1) )
+                for ( int mTileX = 0; mTileX < 4; ++mTileX )
                 {
-                  BW::region *rgn2 = getRegionFromId(t->rgn2);
-                  c = selectedRgn == rgn2 ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
-                  if ( rgn2->accessabilityFlags == 0x1FFD )
-                    c = selectedRgn == rgn2 ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
-                }
-                drawLineMap(x + mTileX * 8,     y + mTileY * 8, x + mTileX * 8 + 8, y + mTileY * 8 + 8, c);
-                drawLineMap(x + mTileX * 8 + 8, y + mTileY * 8, x + mTileX * 8,     y + mTileY * 8 + 8, c);
-              } // minitile X
-            }// minitile Y
-          } // index & 0x2000
-          else
-          {
-            BW::region *r = getRegionFromId(idx);
-            BWAPI::Color c = selectedRgn == r ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
-            if ( r->accessabilityFlags == 0x1FFD )
-              c = selectedRgn == r ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
-            drawLineMap(x,    y,    x + 32,      y + 32,      c);
-            drawLineMap(x+8,  y,    x + 32,      y + 32 - 8,  c);
-            drawLineMap(x+16, y,    x + 32,      y + 32 - 16, c);
-            drawLineMap(x+24, y,    x + 32,      y + 32 - 24, c);
-            drawLineMap(x,    y+16, x + 32 - 16, y + 32,      c);
-            drawLineMap(x,    y+8,  x + 32 - 8,  y + 32,      c);
-            drawLineMap(x,    y+24, x + 32 - 24, y + 32,      c);
+                  BW::region *rgn1 = getRegionFromId(t->rgn1);
+                  BWAPI::Color c = selectedRgn == rgn1 ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
+                  if ( rgn1->accessabilityFlags == 0x1FFD )
+                    c = selectedRgn == rgn1 ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
+                  if ( ((t->minitileMask >> ( mTileX + mTileY * 4 )) & 1) )
+                  {
+                    BW::region *rgn2 = getRegionFromId(t->rgn2);
+                    c = selectedRgn == rgn2 ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
+                    if ( rgn2->accessabilityFlags == 0x1FFD )
+                      c = selectedRgn == rgn2 ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
+                  }
+                  drawLineMap(x + mTileX * 8,     y + mTileY * 8, x + mTileX * 8 + 8, y + mTileY * 8 + 8, c);
+                  drawLineMap(x + mTileX * 8 + 8, y + mTileY * 8, x + mTileX * 8,     y + mTileY * 8 + 8, c);
+                } // minitile X
+              }// minitile Y
+            } // index & 0x2000
+            else
+            {
+              BW::region *r = getRegionFromId(idx);
+              BWAPI::Color c = selectedRgn == r ? BWAPI::Colors::Brown : BWAPI::Colors::Grey;
+              if ( r->accessabilityFlags == 0x1FFD )
+                c = selectedRgn == r ? BWAPI::Colors::Yellow : BWAPI::Colors::Red;
+              drawLineMap(x,    y,    x + 32,      y + 32,      c);
+              drawLineMap(x+8,  y,    x + 32,      y + 32 - 8,  c);
+              drawLineMap(x+16, y,    x + 32,      y + 32 - 16, c);
+              drawLineMap(x+24, y,    x + 32,      y + 32 - 24, c);
+              drawLineMap(x,    y+16, x + 32 - 16, y + 32,      c);
+              drawLineMap(x,    y+8,  x + 32 - 8,  y + 32,      c);
+              drawLineMap(x,    y+24, x + 32 - 24, y + 32,      c);
             
-            drawLineMap(x,    y+32, x + 32,      y,           c);
-            drawLineMap(x,    y+16, x + 32 - 16, y,           c);
-            drawLineMap(x,    y+8,  x + 32 - 24, y,           c);
-            drawLineMap(x,    y+24, x + 32 - 8,  y,           c);
-            drawLineMap(x+16, y+32, x + 32,      y + 32 - 16, c);
-            drawLineMap(x+8,  y+32, x + 32,      y + 32 - 24, c);
-            drawLineMap(x+24, y+32, x + 32,      y + 32 - 8,  c);
-          }
-        } // iterate y
-      } // iterate x
-      for ( unsigned int i = 0; i < (*BW::BWDATA::SAIPathing)->regionCount; ++i )
-      {
-        BW::region *r = &(*BW::BWDATA::SAIPathing)->regions[i];
-        if ( r->accessabilityFlags != 0x1FFD )
-          drawBoxMap(r->rgnBox.left, r->rgnBox.top, r->rgnBox.right, r->rgnBox.bottom, r == selectedRgn ? Colors::Cyan : Colors::Purple);
-
-        for ( u8 n = 0; n < r->neighborCount; ++n )
+              drawLineMap(x,    y+32, x + 32,      y,           c);
+              drawLineMap(x,    y+16, x + 32 - 16, y,           c);
+              drawLineMap(x,    y+8,  x + 32 - 24, y,           c);
+              drawLineMap(x,    y+24, x + 32 - 8,  y,           c);
+              drawLineMap(x+16, y+32, x + 32,      y + 32 - 16, c);
+              drawLineMap(x+8,  y+32, x + 32,      y + 32 - 24, c);
+              drawLineMap(x+24, y+32, x + 32,      y + 32 - 8,  c);
+            }
+          } // iterate y
+        } // iterate x
+        for ( unsigned int i = 0; i < (*BW::BWDATA::SAIPathing)->regionCount; ++i )
         {
-          BW::region *neighbor = r->getNeighbor(n);
-          if ( r->accessabilityFlags != 0x1FFD && neighbor->accessabilityFlags != 0x1FFD )
-            drawLineMap(r->getCenter(), neighbor->getCenter(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
-        }
-        if ( r == selectedRgn )
-          drawTextMap(r->getCenter(), "%cTiles: %u\nPaths: %u\nFlags: %u\nGroupID: %u", Text::White, r->tileCount, r->pathCount, r->defencePriority, r->groupIndex);
-      }
-      for ( int i = 0; i < 4; ++i )
-      {
-        BW::contourHub *hub = (*BW::BWDATA::SAIPathing)->contours;
-        for ( int c = 0; c < hub->contourCount[i]; ++c )
-        {
-          BW::contour *cont = &hub->contours[i][c];
-          bool select = false;
-          int l = getScreenPosition().x;
-          int r = getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width;
-          int t = getScreenPosition().y;
-          int b = getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height;
+          BW::region *r = &(*BW::BWDATA::SAIPathing)->regions[i];
+          if ( r->accessabilityFlags != 0x1FFD )
+            drawBoxMap(r->rgnBox.left, r->rgnBox.top, r->rgnBox.right, r->rgnBox.bottom, r == selectedRgn ? Colors::Cyan : Colors::Purple);
 
-          switch ( cont->type )
+          for ( u8 n = 0; n < r->neighborCount; ++n )
           {
-          case 0:
-          case 2:
-            if ( !((cont->v[1] > l || cont->v[2] > l) && (cont->v[1] < r || cont->v[2] < r) && cont->v[0] > t && cont->v[0] < b) )
-              continue;
-            if ( mouse.x < cont->v[2] && mouse.x > cont->v[1] && mouse.y > cont->v[0] - 4 && mouse.y < cont->v[0] + 4 )
-              select = true;
-            drawLineMap(cont->v[1], cont->v[0], cont->v[2], cont->v[0], select ? Colors::Cyan : Colors::Green);
-            break;
-          case 1:
-          case 3:
-            if ( !((cont->v[1] > t || cont->v[2] > t) && (cont->v[1] < b || cont->v[2] < b) && cont->v[0] > l && cont->v[0] < r) )
-              continue;
-            if ( mouse.x < cont->v[0] + 4 && mouse.x > cont->v[0] - 4 && mouse.y > cont->v[1] && mouse.y < cont->v[2] )
-              select = true;
-            drawLineMap(cont->v[0], cont->v[1], cont->v[0], cont->v[2], select ? Colors::Cyan : Colors::Green);
-            break;
-          default:
-            Broodwar << "Default case! " << cont->type << std::endl;
-            break;
+            BW::region *neighbor = r->getNeighbor(n);
+            if ( r->accessabilityFlags != 0x1FFD && neighbor->accessabilityFlags != 0x1FFD )
+              drawLineMap(r->getCenter(), neighbor->getCenter(), neighbor->groupIndex == r->groupIndex ? Colors::Green : Colors::Red);
           }
-          if ( select )
+          if ( r == selectedRgn )
+            drawTextMap(r->getCenter(), "%cTiles: %u\nPaths: %u\nFlags: %u\nGroupID: %u", Text::White, r->tileCount, r->pathCount, r->defencePriority, r->groupIndex);
+        }
+        for ( int i = 0; i < 4; ++i )
+        {
+          BW::contourHub *hub = (*BW::BWDATA::SAIPathing)->contours;
+          for ( int c = 0; c < hub->contourCount[i]; ++c )
           {
-            BYTE b = cont->unk_relation;
-            unsigned int len = abs(cont->v[2] - cont->v[1]);
-            drawTextMouse(32, 0, "%cLength: %u\n%cUnknown: %u (0x%02X) (b%u%u%u%u%u%u%u%u)", Text::White, len, Text::White, b, b, b&0x80 ? 1:0, b&0x40 ? 1:0, b&0x20 ? 1:0, b&0x10 ? 1:0, b&8 ? 1:0, b&4 ? 1:0, b&2 ? 1:0, b&1 ? 1:0);
+            BW::contour *cont = &hub->contours[i][c];
+            bool select = false;
+            int l = getScreenPosition().x;
+            int r = getScreenPosition().x + BW::BWDATA::ScreenLayers[5].width;
+            int t = getScreenPosition().y;
+            int b = getScreenPosition().y + BW::BWDATA::ScreenLayers[5].height;
+
+            switch ( cont->type )
+            {
+            case 0:
+            case 2:
+              if ( !((cont->v[1] > l || cont->v[2] > l) && (cont->v[1] < r || cont->v[2] < r) && cont->v[0] > t && cont->v[0] < b) )
+                continue;
+              if ( mouse.x < cont->v[2] && mouse.x > cont->v[1] && mouse.y > cont->v[0] - 4 && mouse.y < cont->v[0] + 4 )
+                select = true;
+              drawLineMap(cont->v[1], cont->v[0], cont->v[2], cont->v[0], select ? Colors::Cyan : Colors::Green);
+              break;
+            case 1:
+            case 3:
+              if ( !((cont->v[1] > t || cont->v[2] > t) && (cont->v[1] < b || cont->v[2] < b) && cont->v[0] > l && cont->v[0] < r) )
+                continue;
+              if ( mouse.x < cont->v[0] + 4 && mouse.x > cont->v[0] - 4 && mouse.y > cont->v[1] && mouse.y < cont->v[2] )
+                select = true;
+              drawLineMap(cont->v[0], cont->v[1], cont->v[0], cont->v[2], select ? Colors::Cyan : Colors::Green);
+              break;
+            default:
+              Broodwar << "Default case! " << cont->type << std::endl;
+              break;
+            }
+            if ( select )
+            {
+              BYTE b = cont->unk_relation;
+              unsigned int len = abs(cont->v[2] - cont->v[1]);
+              drawTextMouse(32, 0, "%cLength: %u\n%cUnknown: %u (0x%02X) (b%u%u%u%u%u%u%u%u)", Text::White, len, Text::White, b, b, b&0x80 ? 1:0, b&0x40 ? 1:0, b&0x20 ? 1:0, b&0x10 ? 1:0, b&8 ? 1:0, b&4 ? 1:0, b&2 ? 1:0, b&1 ? 1:0);
+            }
           }
         }
-      }
-      /*
-      foreach (BWAPI::RegionImpl *r, this->regionsList )
-      {
-        drawTextMap(r->getCenter(), "%u", r->getRegionGroupID());
+        /*
+        foreach (BWAPI::RegionImpl *r, this->regionsList )
+        {
+          drawTextMap(r->getCenter(), "%u", r->getRegionGroupID());
         
-        std::vector<BWAPI::Position> poly = r->getSimplePolygon();
-        BWAPI::Position prev = Positions::None;
-        for ( auto j = poly.begin(), jend = poly.end(); j != jend; ++j )
-        {
-          if ( prev != Positions::None )
-            drawLineMap(prev, *j, Colors::Yellow);
-          prev = *j;
-        }
-      }*/
-    } // pathdebug
+          std::vector<BWAPI::Position> poly = r->getSimplePolygon();
+          BWAPI::Position prev = Positions::None;
+          for ( auto j = poly.begin(), jend = poly.end(); j != jend; ++j )
+          {
+            if ( prev != Positions::None )
+              drawLineMap(prev, *j, Colors::Yellow);
+            prev = *j;
+          }
+        }*/
+      } // pathdebug
 #endif
+    } // graphics stuff
+
     if ( !this->isPaused()  && 
           recordingStarted  && 
           pVidBuffer        && 
@@ -990,7 +1024,7 @@ namespace BWAPI
   //--------------------------------------------------- ON SAVE ------------------------------------------------
   void GameImpl::onSaveGame(char *name)
   {
-    /* called when the game is being saved */
+    // called when the game is being saved
     events.push_back(Event::SaveGame(name));
   }
   //---------------------------------------------- ON SEND TEXT ----------------------------------------------
@@ -1016,7 +1050,7 @@ namespace BWAPI
     if ( !this->bTournamentMessageAppeared && hTournamentModule && text == TOURNAMENT_STR )
       this->bTournamentMessageAppeared = true;
 
-    /* Do onReceiveText */
+    // Do onReceiveText
     int realId = stormIdToPlayerId(playerId);
     if ( realId != -1 && 
          (!this->BWAPIPlayer ||

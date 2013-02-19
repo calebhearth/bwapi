@@ -19,19 +19,19 @@ namespace BWAPI
     {};
 
     std::map<int,void*> clientInfo;
-    std::list< InterfaceEvent<T> > events;
+    std::list< InterfaceEvent<T> > interfaceEvents;
 
     friend class GameImpl;
 
     // Function manages events and updates it for the given frame
     void updateEvents(int currentFrame)
     {
-      auto e = events.begin();
-      while ( e != events.end() )
+      auto e = interfaceEvents.begin();
+      while ( e != interfaceEvents.end() )
       {
         if ( e->isFinished() )
         {
-          e = events.erase(e);
+          e = interfaceEvents.erase(e);
         }
         else
         {
@@ -114,16 +114,16 @@ namespace BWAPI
     ///   every frame.
     void registerEvent(const std::function<void(T*)> &action, const std::function<bool(T*)> &condition = nullptr, int timesToRun = -1, int framesToCheck = 0)
     {
-      events.push_back( InterfaceEvent<T>(action,condition,timesToRun,framesToCheck) );
+      interfaceEvents.push_back( InterfaceEvent<T>(action,condition,timesToRun,framesToCheck) );
     };
 
     void registerEvent(const InterfaceEvent<T> &evt)
     {
-      events.push_back( evt );
+      interfaceEvents.push_back( evt );
     };
     void registerEvent(InterfaceEvent<T> &&evt)
     {
-      events.push_back( std::move(evt) );
+      interfaceEvents.push_back( std::move(evt) );
     };
 
   };

@@ -173,7 +173,7 @@ namespace BW
   BW_DATA(u8*, RefreshRegions, 0x006CEFF8, 0);
   BW_DATA(u8*, PlayerColors, 0x00581DD6, 0);
 
-  static bool (__stdcall *BWFXN_CreepManagementCB)(int,WORD*,int,int,int*) = (bool (__stdcall*)(int,WORD*,int,int,int*))0x00414440;
+  static bool (__stdcall * const BWFXN_CreepManagementCB)(int,WORD*,int,int,int*) = (bool (__stdcall*)(int,WORD*,int,int,int*))0x00414440;
 
   struct bounds
   {
@@ -462,7 +462,7 @@ namespace BW
   static void (__stdcall * const BWFXN_ExecuteGameTriggers)(DWORD dwMillisecondsPerFrame) = (void(__stdcall*)(DWORD))0x0048A460;
   BW_DATA(u32, ExecuteGameTrigsCallPatch, 0x004D9798, 0);
 
-  const char            *GetStatString(int index);
+  const char *GetStatString(int index);
   BW_DATA(char**, StringTableOff, 0x006D1238, 0);
 
   //------------------------------------------------ SUPPLIES ------------------------------------------------
@@ -712,6 +712,6 @@ namespace BW
   };
 
   // 250 entries max
-  //static baseLocation *BW_DATA_Bases = (baseLocation*)0x00692688;
+  BW_DATA(baseLocation*, Bases, 0x00692688, 0);
 };
 #pragma pack()

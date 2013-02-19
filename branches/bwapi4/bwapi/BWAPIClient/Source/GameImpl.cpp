@@ -146,7 +146,7 @@ namespace BWAPI
     // UnitImpl events
     foreach(UnitImpl* u, this->accessibleUnits)
     {
-      u->exists() ? u->updateEvents(currentFrame) : u->events.clear();
+      u->exists() ? u->updateEvents(currentFrame) : u->interfaceEvents.clear();
     }
     
     // ForceImpl events
@@ -156,7 +156,7 @@ namespace BWAPI
     // BulletImpl events
     foreach(BulletImpl* b, this->bullets)
     {
-      b->exists() ? b->updateEvents(currentFrame) : b->events.clear();
+      b->exists() ? b->updateEvents(currentFrame) : b->interfaceEvents.clear();
     }
 
     // RegionImpl events

@@ -94,7 +94,6 @@ void DevAIModule::onFrame()
   if ( bw->isReplay() ) // ignore everything if in a replay
     return;
 
-
   // Get the best logical FPS
   int tFPS = bw->getFPS();
   if ( tFPS > bestFPS )
@@ -103,52 +102,18 @@ void DevAIModule::onFrame()
   // Display it
   bw->drawTextScreen(4, 4, "Best: %d GFPS\nCurrent: %d GFPS", bestFPS, tFPS);
   
-
   // Limit logical frames processed to prevent stacking commands
   if ( bw->getFrameCount() % bw->getLatencyFrames() != 0 )
     return;
-  /*
-  Unitset myUnits = self->getUnits();
-  bool hasConstructor = std::find_if(myUnits.begin(), myUnits.end(), IsConstructing) != myUnits.end();
+
+  Unitset myUnits = Broodwar->self()->getUnits();
   for ( auto u = myUnits.begin(); u != myUnits.end(); ++u )
   {
-    if ( !u->exists() || !u->isCompleted() )
-      continue;
-
-    UnitType t = u->getType();
-    if ( t.isWorker() )
+    if ( u->getType().isWorker() && u->isIdle() )
     {
-      if ( u->isIdle() )
-        u->gather( u->getClosestUnit(IsMineralField) );
+      u->gather( u->getClosestUnit(IsMineralField) );
     }
-    else if ( t.isResourceDepot() )
-    {
-      if ( !u->train( t.getRace().getWorker() ) )
-      {
-        if ( Broodwar->getLastError() == Errors::Insufficient_Supply )
-        {
-          UnitType providerType = t.getRace().getSupplyProvider();
-          Unit *pSupplyBuilder = u->getClosestUnit(IsOwned && IsCompleted && GetType == providerType.whatBuilds().first );
-          if ( pSupplyBuilder )
-          {
-            if ( providerType.isBuilding() )
-            {
-              if ( !hasConstructor )
-              {
-                BWAPI::TilePosition tp = Broodwar->getBuildLocation(UnitTypes::Terran_Barracks, TilePosition(u->getPosition()));
-                if ( !pSupplyBuilder->build(UnitTypes::Terran_Barracks, tp ) )
-                  Broodwar << Broodwar->getLastError() << std::endl;
-              }
-            }
-            else
-            {
-              pSupplyBuilder->train(providerType);
-            }
-          }
-        }
-      }
-    }
-  }*/
+  }
 }
 
 void DevAIModule::onSendText(std::string text)
@@ -158,20 +123,6 @@ void DevAIModule::onSendText(std::string text)
     writeUnitWiki();
     writeWeaponWiki();
     Broodwar->printf("Generated wiki pages!");
-  }
-  else if ( text == "/best" )
-  {
-    bw->printf("Best: %d FPS", bestFPS);
-  }
-  else if ( text == "/races" )
-  {
-    for ( auto p = bw->getPlayers().begin(),
-          pend = bw->getPlayers().end();
-          p != pend;
-          ++p )
-    {
-      bw->printf("%s is %s", (*p)->getName().c_str(), (*p)->getRace().c_str());
-    }
   }
   else
   {

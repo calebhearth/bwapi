@@ -339,7 +339,7 @@ namespace BWAPI
     // UnitImpl events
     foreach(UnitImpl* u, this->accessibleUnits)
     {
-      u->exists() ? u->updateEvents(currentFrame) : u->events.clear();
+      u->exists() ? u->updateEvents(currentFrame) : u->interfaceEvents.clear();
     }
     
     // ForceImpl events
@@ -349,7 +349,7 @@ namespace BWAPI
     // BulletImpl events
     foreach(BulletImpl* b, this->bullets)
     {
-      b->exists() ? b->updateEvents(currentFrame) : b->events.clear();
+      b->exists() ? b->updateEvents(currentFrame) : b->interfaceEvents.clear();
     }
 
     // RegionImpl events
@@ -479,7 +479,7 @@ namespace BWAPI
     this->frameCount = 0;
 
     this->clientInfo.clear();
-    this->events.clear();
+    this->interfaceEvents.clear();
 
     //reload auto menu data (in case the AI set the location of the next map/replay)
     this->loadAutoMenuData();

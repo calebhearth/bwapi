@@ -1,6 +1,5 @@
 #pragma once
 #include <functional>
-//#include <BWAPI/Game.h>
 
 namespace BWAPI
 {
