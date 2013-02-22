@@ -3,9 +3,9 @@
 #include <cstdio>
 #include "Thread.h"
 
-#include <Util/Gnu.h>
 #include <Util/Foreach.h>
 #include <Util/clamp.h>
+#include <Util/Convenience.h>
 
 #include <BWAPI.h>
 
@@ -103,7 +103,7 @@ void vBWAPIError(const char *format, va_list arg)
 {
   // Expand format
   char buffer[256];
-  vsnprintf(buffer, sizeof(buffer), format, arg);
+  VSNPrintf(buffer, format, arg);
 
   // Send error message to Broodwar
   BWAPI::Broodwar << BWAPI::Text::Red << "ERROR: " << buffer << std::endl;
@@ -133,7 +133,7 @@ void BWAPIError(DWORD dwErrCode, const char *format, ...)
   char buffer[256];
   va_list ap;
   va_start(ap,format);
-  vsnprintf(buffer, sizeof(buffer), format, ap);
+  VSNPrintf(buffer, format, ap);
   va_end(ap);
 
   // Obtain last STORM error
@@ -159,7 +159,7 @@ void CheckVersion()
 DWORD WINAPI PersistentPatch(LPVOID)
 {
   RegisterThreadName("BWAPI Persistent Patch");
-  for ever
+  for (;;)
   {
     Sleep(300);
 

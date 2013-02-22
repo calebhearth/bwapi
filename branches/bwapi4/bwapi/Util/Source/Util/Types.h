@@ -10,8 +10,6 @@ typedef unsigned long long u64;
 typedef   signed long long s64;
 typedef unsigned int       uint;
 
-typedef u8              _UNKNOWN;
-
 typedef unsigned char   BYTE;
 typedef unsigned short  WORD;
 typedef unsigned long   DWORD;
@@ -26,17 +24,3 @@ typedef struct __rect
   s16 right;
   s16 bottom;
 } rect;
-
-#ifdef NULL
-#undef NULL
-#endif
-#define NULL 0
-
-#define ever (;;)
-
-#include <cstdio>
-
-#define MB_ICONINFO MB_ICONASTERISK
-
-#define MemZero(x) memset(&x, 0, sizeof(x))
-#define StrTerminate(x) (x[sizeof(x)-1] = '\0')

@@ -2,6 +2,7 @@
 #include <util/types.h>
 
 #include "Position.h"
+#include "CUnit.h"
 
 #pragma pack(1)
 
@@ -68,11 +69,64 @@ namespace BW
           // 1 = contains visible enemy unit
 
   */
-  class Town
-  {
-  public:
 
+  template <class T>
+  struct Pool
+  {
+    T *first;
+    T *last;
   };
+
+#define MAX_BUILD_LIST 100
+
+  struct townQueueEntry
+  {
+    unsigned char flags;
+    unsigned char priority;
+    unsigned short type;
+  };
+
+  struct Town
+  {
+    Town *next;
+    Town *prev;
+    Pool<void*> workerPool;
+    Pool<void*> taskPool;
+    u8  player;
+    u8  isInitialized;
+    u8  desiredWorkers;
+    u8  peons;
+    u8  baseId;
+    u8  isFunctional;
+    u8  _unk1;
+    u8  _unk2;
+    Position position;
+    CUnit *town_center;
+    CUnit *unk;
+    CUnit *resource;
+    CUnit *gas[3];
+    townQueueEntry townQueue[MAX_BUILD_LIST];
+  };
+
+#define AI_NONE     0
+#define AI_GUARD    1
+#define AI_PEON     2
+#define AI_BLDG     3
+#define AI_SOLDIER  4
+
+/*
+TYPE_CAPTAIN  1
+TYPE_GUARD    2
+TYPE_BLDG     3
+TYPE_PEON     4
+TYPE_ADDON    7
+TYPE_SPECIAL  8
+*/
+
+/*
+DO_TECH   2
+
+*/
 
   class CAIController
   {

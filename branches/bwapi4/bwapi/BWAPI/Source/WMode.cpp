@@ -10,6 +10,7 @@
 #include "Recording.h"
 #include "Thread.h"
 
+#include <Util/Convenience.h>
 #include "../../Debug.h"
 
 WNDPROC wOriginalProc;

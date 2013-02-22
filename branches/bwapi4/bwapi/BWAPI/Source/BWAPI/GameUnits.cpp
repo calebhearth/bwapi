@@ -1,5 +1,6 @@
 #include "GameImpl.h"
 #include <Util/Foreach.h>
+#include <Util/Convenience.h>
 
 #include <BW/CUnit.h>
 #include <BW/Dialog.h>

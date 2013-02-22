@@ -2,13 +2,9 @@
 #include <windows.h>
 #include <winuser.h>
 #include <winsock.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <ddraw.h>
 
-/* Note to self: If you get a linker error then you were retarded
- *               and forgot to return a value in the cpp.
- */
+// Note to self: Linker error => forgot a return value in cpp
 
 #ifndef STORMAPI
 #define STORMAPI __stdcall

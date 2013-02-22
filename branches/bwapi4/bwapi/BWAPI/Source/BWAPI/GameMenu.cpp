@@ -9,6 +9,7 @@
 
 #include <BW/MenuPosition.h>
 #include <BW/Dialog.h>
+#include <BW/OrderTypes.h>
 #include <Util/clamp.h>
 
 #include "../../../Debug.h"
@@ -432,12 +433,6 @@ namespace BWAPI
       this->pressKey( BW::FindDialogGlobal(menu == BW::GLUE_READY_Z ? "ReadyZ" : "TerranRR")->findIndex(13)->getHotkey() );
       break;
     } // menu switch
-  }
-  //---------------------------------------------- CHANGE SLOT -----------------------------------------------
-  void GameImpl::changeSlot(BW::Orders::ChangeSlot::SlotType slotType, u8 slotID)
-  {
-    // Send the Change Slot command for multi-player
-    QUEUE_COMMAND(BW::Orders::ChangeSlot, slotID, slotType);
   }
   //---------------------------------------------- CHANGE RACE -----------------------------------------------
   void GameImpl::_changeRace(int slot, BWAPI::Race race)

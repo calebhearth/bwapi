@@ -245,6 +245,7 @@
     <ClCompile Include="Source\DLLMain.cpp" />
     <ClCompile Include="Source\ExceptionFilter.cpp" />
     <ClCompile Include="Source\BWDrawing.cpp" />
+    <ClCompile Include="Source\GameUpdate.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\NewHackUtil.cpp" />
     <ClCompile Include="Source\Recording.cpp" />

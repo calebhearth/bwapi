@@ -412,5 +412,8 @@
     <ClCompile Include="Source\BW\Font.cpp">
       <Filter>BW\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameUpdate.cpp">
+      <Filter>BWAPI\Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

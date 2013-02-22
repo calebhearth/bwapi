@@ -1,5 +1,5 @@
 #include <Windows.h>
-#include <stdio.h>
+#include <cstdio>
 
 #include "chaoslauncher.h"
 #include "common.h"

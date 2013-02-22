@@ -1,11 +1,10 @@
 #include "Strings.h"
 
-#include <math.h>
-#include <stdarg.h>
+#include <cmath>
+#include <cstdarg>
 #include <cstdlib>
 
 #include "Exceptions.h"
-#include "Gnu.h"
 
 namespace Util
 {

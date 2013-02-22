@@ -4,6 +4,7 @@
 #include "../Graphics.h"
 #include <cassert>
 #include <Util/clamp.h>
+#include <Util/Convenience.h>
 
 #include <BW/Dialog.h>
 
@@ -134,8 +135,7 @@ namespace BWAPI
   int GameImpl::addString(const char* text)
   {
     assert(data->stringCount < GameData::MAX_STRINGS);
-    strncpy(data->strings[data->stringCount], text, 255);
-    data->strings[data->stringCount][sizeof(data->strings[0])-1] = 0; // Null-terminate the string
+    StrCopy(data->strings[data->stringCount], text);
     return data->stringCount++;
   }
   int GameImpl::addText(BWAPIC::Shape &s, const char* text)
@@ -155,7 +155,7 @@ namespace BWAPI
   {
     if ( !data->hasGUI ) return;
     char buffer[512];
-    vsnprintf(buffer, sizeof(buffer), format, arg);
+    VSNPrintf(buffer, format, arg);
     BWAPIC::Shape s(BWAPIC::ShapeType::Text,ctype,x,y,0,0,0,textSize,0,false);
     addText(s,buffer);
   }

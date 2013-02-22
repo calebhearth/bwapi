@@ -1,11 +1,11 @@
 #include "UnitImpl.h"
 
-#include <math.h>
+#include <cmath>
 #include <limits>
 #include <sstream>
 
 #include <Util/Foreach.h>
-#include <Util/Gnu.h>
+#include <Util/Convenience.h>
 
 #include <BWAPI/Player.h>
 #include <BWAPI/Order.h>

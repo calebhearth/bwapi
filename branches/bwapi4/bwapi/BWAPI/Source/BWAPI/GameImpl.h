@@ -2,15 +2,13 @@
 #include <string>
 #include <list>
 
-//#include <BWAPI/AIModule.h>
+#include <BW/Offsets.h>
+
 #include <BWAPI/Game.h>
 #include <BWAPI/Server.h>
 #include <BWAPI/Map.h>
 #include <BWAPI/Client/GameData.h>
 #include <BWAPI/TournamentAction.h>
-
-//#include <BW/Dialog.h>
-#include <BW/OrderTypes.h>
 
 namespace BW
 {
@@ -187,7 +185,13 @@ namespace BWAPI
       ~GameImpl();
 
       void initializeData();
-      void update(); /**< Updates unitArrayCopy according to bw memory */
+      void update(); // Updates unitArrayCopy according to bw memory
+      void updateStatistics();
+      void updateOverlays();
+      void updateCommandOptimizer();
+      void initializeTournamentModule();
+      void initializeAIModule();
+
       void loadAutoMenuData();
       void onMenuFrame();
       PlayerImpl *_getPlayer(int id);
@@ -196,12 +200,6 @@ namespace BWAPI
       void mouseDown(int x, int y);
       void mouseUp(int x, int y);
 
-      /**
-       * Changes slot state in the pre-game lobby.
-       * @param slot Desired state of the slot (Open/Closed/Computer)
-       * @param slotID Order of the slot (0 based)
-       */
-      void changeSlot(BW::Orders::ChangeSlot::SlotType slot, u8 slotID);
       void addToCommandBuffer(Command* command);
       void onGameStart();
       void onGameEnd();

@@ -1,6 +1,7 @@
 #pragma once
+
 #include <functional>
-#include <limits.h>
+#include <limits>
 
 #include "UnaryFilter.h"
 
@@ -53,7 +54,7 @@ namespace BWAPI
     CompareFilter<_Param,_Cmp> operator /(const _T &other) const
     {   
       return [&](_Param u)->int{ int rval = other(u);
-                                 return rval == 0 ? INT_MAX : (*this)(u) / rval;
+                                 return rval == 0 ? std::numeric_limits<int>::max() : (*this)(u) / rval;
                                };
     };
     template <typename _T>

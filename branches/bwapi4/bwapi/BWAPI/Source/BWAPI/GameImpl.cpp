@@ -3,17 +3,17 @@
 #include "../../../svnrev.h"
 #include "GameImpl.h"
 
-#include <stdio.h>
+#include <cstdio>
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <math.h>
+#include <cmath>
 
 #include <Util/Exceptions.h>
 #include <Util/Strings.h>
 #include <Util/Foreach.h>
-#include <Util/Gnu.h>
 #include <Util/clamp.h>
+#include <Util/Convenience.h>
 
 #include <BWAPI/ForceImpl.h>
 #include <BWAPI/PlayerImpl.h>
@@ -24,7 +24,6 @@
 #include <BWAPI/Map.h>
 #include <BWAPI/Flag.h>
 #include <BWAPI/UnaryFilter.h>
-//#include <BWAPI.h>
 
 #include <BWAPI/Unitset.h>
 
@@ -430,7 +429,7 @@ namespace BWAPI
     
     // Expand format into buffer
     char buffer[512];
-    vsnprintf(buffer, sizeof(buffer), format, arg);
+    VSNPrintf(buffer, format, arg);
 
     if ( !this->tournamentCheck(Tournament::Printf, buffer) )
       return;
@@ -447,7 +446,7 @@ namespace BWAPI
     
     // Expand format and store in buffer
     char buffer[80]; // Use maximum size of 80 since there is a hardcoded limit in Broodwar of 80 characters
-    vsnprintf(buffer, sizeof(buffer), format, arg);
+    VSNPrintf(buffer, format, arg);
 
     // Check if tournament module allows sending text
     if ( !this->tournamentCheck(Tournament::SendText, buffer) )
@@ -837,6 +836,7 @@ namespace BWAPI
 
     if ( !this->tournamentCheck(Tournament::SetMap, (void*)mapFileName) )
       return setLastError(Errors::None);
+
 
     strcpy(BW::BWDATA::CurrentMapFileName, mapFileName);
     return setLastError(Errors::None);

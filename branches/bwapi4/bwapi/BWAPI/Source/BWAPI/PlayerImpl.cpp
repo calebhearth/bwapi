@@ -4,6 +4,7 @@
 
 #include <string>
 #include <Util/Foreach.h>
+#include <Util/Convenience.h>
 
 #include <BW/Offsets.h>
 

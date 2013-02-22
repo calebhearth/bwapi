@@ -3,6 +3,7 @@
 #include <BW/Offsets.h>
 #include <BW/Pathing.h>
 #include <Util/Foreach.h>
+#include <Util/Convenience.h>
 
 #include "../../../Debug.h"
 

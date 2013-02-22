@@ -3,7 +3,7 @@
 #include "FileReader.h"
 #include "ReplayReader.h"
 
-#include <stdio.h>
+#include <cstdio>
 #include <BWAPI.h>
 #include <fstream>
 /*

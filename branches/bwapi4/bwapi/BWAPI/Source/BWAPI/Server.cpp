@@ -1,8 +1,9 @@
 #include "Server.h"
-#include <stdio.h>
-#include <time.h>
+#include <cstdio>
+#include <ctime>
 #include <Util/Foreach.h>
-#include <assert.h>
+#include <Util/Convenience.h>
+#include <cassert>
 #include <sstream>
 
 #include "GameImpl.h"
@@ -180,8 +181,7 @@ namespace BWAPI
   }
   int Server::addString(const char* text)
   {
-    strncpy(data->eventStrings[data->eventStringCount],text,256);
-    data->eventStrings[data->eventStringCount][255] = '\0';
+    StrCopy(data->eventStrings[data->eventStringCount], text);
     return data->eventStringCount++;
   }
   int Server::addEvent(BWAPI::Event e)
@@ -324,14 +324,10 @@ namespace BWAPI
     data->mapHeight = mapSize.y;
 
     // Retrieve map strings
-    strncpy(data->mapFileName, Broodwar->mapFileName().c_str(), MAX_PATH);
-    strncpy(data->mapPathName, Broodwar->mapPathName().c_str(), MAX_PATH);
-    strncpy(data->mapName, Broodwar->mapName().c_str(), 32);
-    strncpy(data->mapHash, Broodwar->mapHash().c_str(), 40);
-    StrTerminate(data->mapFileName);
-    StrTerminate(data->mapPathName);
-    StrTerminate(data->mapName);
-    StrTerminate(data->mapHash);
+    StrCopy(data->mapFileName, Broodwar->mapFileName());
+    StrCopy(data->mapPathName, Broodwar->mapPathName());
+    StrCopy(data->mapName, Broodwar->mapName());
+    StrCopy(data->mapHash, Broodwar->mapHash());
 
     data->startLocationCount = Broodwar->getStartLocations().size();
     int i = 0;
@@ -341,13 +337,15 @@ namespace BWAPI
       data->startLocations[i].y = t.y;
       i++;
     }
+
     //static force data
-    data->forces[0].name[0] = 0;
+    data->forces[0].name[0] = '\0';
     foreach(Force *i, Broodwar->getForces())
     {
       int id = getForceID(i);
-      strncpy(data->forces[id].name, i->getName().c_str(), 32);
+      StrCopy(data->forces[id].name, i->getName());
     }
+
     //static player data
     foreach(PlayerImpl *i, Broodwar->getPlayers())
     {
@@ -355,7 +353,7 @@ namespace BWAPI
       PlayerData* p = &(data->players[id]);
       PlayerData* p2 = i->self;
 
-      strncpy(p->name, i->getName().c_str(), 32); // cppcheck complaint, out of bounds
+      StrCopy(p->name, i->getName());
       p->race  = i->getRace();
       p->type  = i->getType();
       p->force = getForceID(i->getForce());

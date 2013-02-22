@@ -5,6 +5,7 @@
 #include <string>
 #include <Util/Strings.h>
 #include <Util/Foreach.h>
+#include <Util/Convenience.h>
 
 #include "../WMode.h"
 #include "../Detours.h"

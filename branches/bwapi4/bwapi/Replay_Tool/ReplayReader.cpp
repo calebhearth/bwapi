@@ -1,5 +1,5 @@
 #include "ReplayReader.h"
-#include <stdio.h>
+#include <cstdio>
 
 ReplayReader::ReplayReader(DWORD dwSize, const char *pszDebugOutput)
   : pActionsBegin( (BYTE*)malloc(dwSize) )

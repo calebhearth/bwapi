@@ -1,6 +1,6 @@
 #pragma once
 #include <Windows.h>
-#include <stdio.h>
+#include <cstdio>
 #include <BWAPI.h>
 
 using namespace BWAPI;

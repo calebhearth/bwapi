@@ -44,7 +44,7 @@
     </PreBuildEvent>
     <ClCompile>
       <AdditionalIncludeDirectories>Source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>
@@ -57,7 +57,7 @@
       <AdditionalIncludeDirectories>Source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -71,9 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\clamp.h" />
+    <ClInclude Include="Source\Util\Convenience.h" />
     <ClInclude Include="Source\Util\Exceptions.h" />
     <ClInclude Include="Source\Util\Foreach.h" />
-    <ClInclude Include="Source\Util\Gnu.h" />
     <ClInclude Include="Source\Util\MemoryFrame.h" />
     <ClInclude Include="Source\Util\Mutex.h" />
     <ClInclude Include="Source\Util\RectangleArray.h" />

@@ -1,12 +1,11 @@
 #include "UnitImpl.h"
 #include "GameImpl.h"
 
-#include <math.h>
+#include <cmath>
 #include <limits>
 #include <sstream>
 
 #include <Util/Foreach.h>
-#include <Util/Gnu.h>
 
 #include <BWAPI/Player.h>
 #include <BWAPI/Order.h>
@@ -20,6 +19,7 @@
 #include <BW/CUnit.h>
 #include <BW/COrder.h>
 #include <BW/Offsets.h>
+#include <BW/OrderTypes.h>
 
 #include "../../../Debug.h"
 

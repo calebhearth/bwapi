@@ -5,6 +5,8 @@
 #include <BWAPI/TechType.h>
 #include <BWAPI/UnitType.h>
 
+#include <BW/OrderTypes.h>
+
 #include "../../../Debug.h"
 
 namespace BWAPI

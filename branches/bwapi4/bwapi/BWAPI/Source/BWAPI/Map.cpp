@@ -8,7 +8,6 @@
 #include "GameImpl.h"
 #include "PlayerImpl.h"
 #include <fstream>
-#include <sys/stat.h>
 #include <Util/sha1.h>
 
 #include "../../../Debug.h"
