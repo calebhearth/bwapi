@@ -202,6 +202,9 @@ void GameImpl::update()
     bLastIconic = !bLastIconic;
   }
 
+  // Execute commands that have been buffered by the command optimizer
+  updateCommandOptimizer();
+
   // Update any graphical/debug overlays
   updateOverlays();
 
