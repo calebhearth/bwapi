@@ -669,18 +669,11 @@ namespace BWAPI
     }
     else if (command.type == UnitCommandTypes::Unload_All_Position)
     {
-      if (unit->getType() == UnitTypes::Terran_Bunker)
-      {
-        unit->self->order = Orders::Unload;
-      }
-      else
-      {
-        unit->self->order                 = Orders::MoveUnload;
-        unit->self->targetPositionX       = position.x;
-        unit->self->targetPositionY       = position.y;
-        unit->self->orderTargetPositionX  = position.x;
-        unit->self->orderTargetPositionY  = position.y;
-      }
+      unit->self->order                 = Orders::MoveUnload;
+      unit->self->targetPositionX       = position.x;
+      unit->self->targetPositionY       = position.y;
+      unit->self->orderTargetPositionX  = position.x;
+      unit->self->orderTargetPositionY  = position.y;
     }
     else if (command.type == UnitCommandTypes::Unsiege)
     {

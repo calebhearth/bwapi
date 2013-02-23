@@ -1601,11 +1601,33 @@ namespace BWAPI
     //------------------------------------------- CAN UNLOAD ALL POSITION ------------------------------------
     static inline bool canUnloadAllPosition(const Unit* thisUnit, bool checkCommandibility = true)
     {
-      return canUnloadWithOrWithoutTarget(thisUnit, checkCommandibility);
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( !canUnloadWithOrWithoutTarget(thisUnit, false) )
+        return false;
+
+      if ( thisUnit->getType() == UnitTypes::Terran_Bunker )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
     }
     static inline bool canUnloadAllPosition(const Unit* thisUnit, Position targDropPos, bool checkCanIssueCommandType = true, bool checkCommandibility = true)
     {
-      return canUnloadAtPosition(thisUnit, targDropPos, checkCanIssueCommandType, checkCommandibility);
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCanIssueCommandType && !canUnloadAllPosition(thisUnit, false) )
+        return false;
+
+      if ( !canUnloadAtPosition(thisUnit, targDropPos, false, false) )
+        return false;
+
+      return true;
     }
     //------------------------------------------- CAN RIGHT CLICK POSITION -----------------------------------
     static inline bool canRightClickPosition(const Unit* thisUnit, bool checkCommandibility = true)

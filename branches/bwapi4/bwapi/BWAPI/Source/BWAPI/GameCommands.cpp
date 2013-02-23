@@ -115,12 +115,6 @@ namespace BWAPI
            thisType == UnitTypes::Hero_Warbringer)
         command = UnitCommand::train(uthis, UnitTypes::Protoss_Interceptor);
     }
-    else if ( uct == UnitCommandTypes::Unload_All_Position )
-    {
-      // Bunkers should only use Unload_All
-      if ( thisType == UnitTypes::Terran_Bunker )
-        command = UnitCommand::unloadAll(uthis);
-    }
     else if ( uct == UnitCommandTypes::Use_Tech )
     {
       // Simplify siege/cloak/burrow tech to their specific commands to allow grouping them
@@ -353,10 +347,7 @@ namespace BWAPI
     }
     else if (ct == UnitCommandTypes::Unload_All_Position)
     {
-      if ( command.unit && command.unit->getType() == UnitTypes::Terran_Bunker)
-        QUEUE_COMMAND(BW::Orders::UnloadAll);
-      else
-        QUEUE_COMMAND(BW::Orders::Attack, command.x, command.y, Orders::Enum::MoveUnload, queued);
+      QUEUE_COMMAND(BW::Orders::Attack, command.x, command.y, Orders::Enum::MoveUnload, queued);
     }
     else if (ct == UnitCommandTypes::Right_Click_Position)
       QUEUE_COMMAND(BW::Orders::RightClick, command.x, command.y, queued);

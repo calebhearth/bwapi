@@ -941,19 +941,20 @@ namespace BWAPI
      * \see Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded. */
     bool load(Unit* target, bool shiftQueueCommand = false);
 
-    /** Orders the unit to unload the target unit.
+    /** Orders the unit to unload the target unit. Unit should be a Terran Dropship, Protoss Shuttle,
+     *  Zerg Overlord, or a Terran Bunker.
      * \see Unit::load, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded, Unit::canUnload,
      * Unit::canUnloadAtPosition. */
     bool unload(Unit* target);
 
-    /** Orders the unit to unload all loaded units at the unit's current position.
+    /** Orders the unit to unload all loaded units at the unit's current position. Unit should be a
+     * Terran Dropship, Protoss Shuttle, or Zerg Overlord, or a Terran Bunker.
      * \see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded,
      * Unit::canUnloadAll, Unit::canUnloadAtPosition. */
     bool unloadAll(bool shiftQueueCommand = false);
 
     /** Orders the unit to unload all loaded units at the specified location. Unit should be a Terran
-     * Dropship, Protoss Shuttle, or Zerg Overlord. If the unit is a Terran Bunker, the units will be
-     * unloaded right outside the bunker, like in the first version of unloadAll.
+     * Dropship, Protoss Shuttle, or Zerg Overlord (but not a Terran Bunker).
      * \see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded,
      * Unit:canUnloadAllPosition, Unit::canUnloadAtPosition. */
     bool unloadAll(Position target, bool shiftQueueCommand = false);

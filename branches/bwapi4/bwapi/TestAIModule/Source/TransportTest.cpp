@@ -228,8 +228,16 @@ void TransportTest::update()
       if (verifyLoadedUnits()==false) return;
       BWAssertF(unloadedUnits.size()==0,{fail=true;return;});
       BWAssertF(loadedUnits.size()==4,{fail=true;return;});
-      if (!transport->unloadAll(Position(transport->getPosition().x-32*10,transport->getPosition().y)))
-        Broodwar->printf("%s",Broodwar->getLastError().c_str());
+      if (transport->getType() == UnitTypes::Terran_Bunker)
+      {
+        if (!transport->unloadAll())
+          Broodwar->printf("%s",Broodwar->getLastError().c_str());
+      }
+      else
+      {
+        if (!transport->unloadAll(Position(transport->getPosition().x-32*10,transport->getPosition().y)))
+          Broodwar->printf("%s",Broodwar->getLastError().c_str());
+      }
       state=WaitUnloadAllPosition;
     }
   }

@@ -710,7 +710,6 @@ namespace BWAPI
     ///         - Morph
     ///         - Set_Rally_Unit
     ///         - Lift
-    ///         - Unload_All (@Bunkers only)
     ///         - Cancel_Construction
     ///         - Cancel_Addon
     ///         - Cancel_Train
