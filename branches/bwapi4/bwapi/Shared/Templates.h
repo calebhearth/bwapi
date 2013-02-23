@@ -504,12 +504,19 @@ namespace BWAPI
 
       if ( !targetUnit || !targetUnit->exists() )
         return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
+      if ( targetUnit->isStasised() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !targetUnit->isCompleted() &&
            !targetUnit->getType().isBuilding() &&
            !targetUnit->isMorphing() &&
            targetUnit->getType() != UnitTypes::Protoss_Archon &&
            targetUnit->getType() != UnitTypes::Protoss_Dark_Archon )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( targetUnit->getType() == UnitTypes::Spell_Scanner_Sweep ||
+           targetUnit->getType() == UnitTypes::Spell_Dark_Swarm ||
+           targetUnit->getType() == UnitTypes::Spell_Disruption_Web ||
+           targetUnit->getType() == UnitTypes::Special_Map_Revealer )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
