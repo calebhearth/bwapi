@@ -1490,22 +1490,9 @@ namespace BWAPI
       if ( unitThatLoads->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
-      UnitType unitToBeLoadedType = unitToBeLoaded->getType();
-
       if ( unitThatLoads->getType() == UnitTypes::Terran_Bunker &&
-           unitToBeLoadedType != UnitTypes::Terran_Marine &&
-           unitToBeLoadedType != UnitTypes::Terran_Firebat &&
-           unitToBeLoadedType != UnitTypes::Terran_SCV &&
-           unitToBeLoadedType != UnitTypes::Terran_Ghost &&
-           unitToBeLoadedType != UnitTypes::Terran_Medic &&
-           unitToBeLoadedType != UnitTypes::Hero_Sarah_Kerrigan &&
-           unitToBeLoadedType != UnitTypes::Hero_Jim_Raynor_Marine &&
-           unitToBeLoadedType != UnitTypes::Terran_Civilian &&
-           unitToBeLoadedType != UnitTypes::Hero_Samir_Duran &&
-           unitToBeLoadedType != UnitTypes::Hero_Arcturus_Mengsk &&
-           unitToBeLoadedType != UnitTypes::Hero_Alexei_Stukov &&
-           unitToBeLoadedType != UnitTypes::Hero_Gerard_DuGalle &&
-           unitToBeLoadedType != UnitTypes::Hero_Gui_Montag )
+           ( !unitToBeLoaded->getType().isOrganic() ||
+             unitToBeLoaded->getType().getRace() != Races::Terran ) )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       int freeSpace = ( thisUnitSpaceProvided > 0 ? thisUnitSpaceProvided : targetSpaceProvided );
@@ -1517,7 +1504,7 @@ namespace BWAPI
         if ( requiredSpace > 0 && requiredSpace < 8 )
           freeSpace -= requiredSpace;
       }
-      if ( unitToBeLoadedType.spaceRequired() > freeSpace )
+      if ( unitToBeLoaded->getType().spaceRequired() > freeSpace )
         return Broodwar->setLastError(Errors::Insufficient_Space);
 
       return true;
