@@ -908,6 +908,8 @@ namespace BWAPI
 
       if ( !thisUnit->getType().canProduce() || !thisUnit->getType().isBuilding() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isLifted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -921,6 +923,8 @@ namespace BWAPI
 
       if ( !thisUnit->getType().canProduce() || !thisUnit->getType().isBuilding() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isLifted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
