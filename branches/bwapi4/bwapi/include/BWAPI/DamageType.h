@@ -5,6 +5,7 @@ namespace BWAPI
 {
   namespace DamageTypes
   {
+    /// Enumeration of damage types
     namespace Enum
     {
       enum Enum
@@ -25,17 +26,23 @@ namespace BWAPI
     public:
       DamageType(int id = DamageTypes::Enum::None);
   };
+  /// Namespace containing damage types
   namespace DamageTypes
   {
     /** Returns the set of all the DamageTypes. */
     const DamageType::const_set& allDamageTypes();
 
-    extern const DamageType Independent;
-    extern const DamageType Explosive;
-    extern const DamageType Concussive;
-    extern const DamageType Normal;
-    extern const DamageType Ignore_Armor;
-    extern const DamageType None;
-    extern const DamageType Unknown;
+#ifdef BWAPI_DECL
+#undef BWAPI_DECL
+#endif
+#define BWAPI_DECL(x) /** x */ extern const DamageType x
+    BWAPI_DECL(Independent);
+    BWAPI_DECL(Explosive);
+    BWAPI_DECL(Concussive);
+    BWAPI_DECL(Normal);
+    BWAPI_DECL(Ignore_Armor);
+    BWAPI_DECL(None);
+    BWAPI_DECL(Unknown);
+#undef BWAPI_DECL
   }
 }

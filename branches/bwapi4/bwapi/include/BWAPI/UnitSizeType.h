@@ -7,6 +7,7 @@ namespace BWAPI
 {
   namespace UnitSizeTypes
   {
+    /// Enumeration of unit size types
     namespace Enum
     {
       enum Enum
@@ -26,16 +27,22 @@ namespace BWAPI
   public:
     UnitSizeType(int id = UnitSizeTypes::Enum::None);
   };
+  /// Namespace containing unit size types
   namespace UnitSizeTypes
   {
     /** Returns the set of all the sizes, which are listed below: */
     const UnitSizeType::const_set& allUnitSizeTypes();
     
-    extern const UnitSizeType Independent;
-    extern const UnitSizeType Small;
-    extern const UnitSizeType Medium;
-    extern const UnitSizeType Large;
-    extern const UnitSizeType None;
-    extern const UnitSizeType Unknown;
+#ifdef BWAPI_DECL
+#undef BWAPI_DECL
+#endif
+#define BWAPI_DECL(x) /** x */ extern const UnitSizeType x
+    BWAPI_DECL(Independent);
+    BWAPI_DECL(Small);
+    BWAPI_DECL(Medium);
+    BWAPI_DECL(Large);
+    BWAPI_DECL(None);
+    BWAPI_DECL(Unknown);
+#undef BWAPI_DECL
   }
 }

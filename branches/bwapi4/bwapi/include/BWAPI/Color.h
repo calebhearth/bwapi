@@ -41,7 +41,7 @@ namespace BWAPI
       int blue() const;
   };
 
-  /// This namespace contains known colors.
+  /// Namespace containing known colors.
   namespace Colors
   {
     /// The default color for Player 1.
@@ -74,15 +74,17 @@ namespace BWAPI
     /// The default color for Neutral (Player 12).
     extern const Color Cyan;
     
+    /// The color black
     extern const Color Black;
+
+    /// The color grey
     extern const Color Grey;
   }
   
-  /// This namespace contains text formatting codes.
+  /// Namespace containing text formatting codes. Such codes are used in calls to Game::drawText,
+  /// Game::printf, and Broodwar::operator<<
   namespace Text
   {
-    /// This enumeration contains text formatting codes. Such codes are used in calls to
-    /// Game::drawText and Game::printf.
     enum Enum
     {
       /// Uses the previous color that was specified before the current one.

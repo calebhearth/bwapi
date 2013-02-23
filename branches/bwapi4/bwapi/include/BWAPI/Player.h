@@ -53,14 +53,9 @@ namespace BWAPI
     /// @endcode
     virtual std::string getName() const = 0;
 
-    /// @TODO: This function should be altered to include a UnitFilter (function predicate) and
-    /// return a copy. The current documentation needs to be fixed after this task is completed.
-    ///
     /// Retrieves the set of all units that the player owns. This also includes incomplete units.
     ///
-    /// @param pred An optional predicate that can filter the units to be more specific.
-    ///
-    /// @returns Unitset containing the units.
+    /// @returns Reference to a Unitset containing the units.
     ///
     /// @note This does not include units that are loaded into transports, @Bunkers, @Refineries,
     /// @Assimilators, or @Extractors.

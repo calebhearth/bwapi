@@ -181,85 +181,125 @@ namespace BWAPI
     /** Returns the set of accessible units within or overlapping a circle at the given point with the given radius. */
     Unitset getUnitsInRadius(BWAPI::Position center, int radius, const UnitFilter &pred = nullptr) const;
 
-    
-    /// Retrieves the closest unit to center that
-    /// matches the criteria of pred within a radius.
+    /// Retrieves the closest unit to center that matches the criteria of the callback pred within
+    /// an optional radius.
     ///
-    /// @param center The position to start searching
-    /// for the closest unit.
-    /// @param pred The predicate to use to determine
-    /// which unit is acceptable.
-    /// @param radius The radius to search in.
+    /// @param center
+    ///   The position to start searching for the closest unit.
+    /// @param pred (optional)
+    ///   The UnitFilter predicate to determine which units should be included. This includes
+    ///   all units by default.
+    /// @param radius (optional)
+    ///   The radius to search in. If omitted, the entire map will be searched.
     ///
-    /// @returns The desired unit that is closest
-    /// to center.
+    /// @returns The desired unit that is closest to center.
     /// @retval nullptr If a suitable unit was not found.
-    
-    /// @see getBestUnit
+    ///
+    /// @see getBestUnit, UnitFilter
     Unit *getClosestUnit(Position center, const UnitFilter &pred = nullptr, int radius = 999999) const;
+
+    /// Retrieves the closest unit to center that matches the criteria of the callback pred within
+    /// an optional rectangle.
+    ///
+    /// @param center
+    ///   The position to start searching for the closest unit.
+    /// @param pred (optional)
+    ///   The UnitFilter predicate to determine which units should be included. This includes
+    ///   all units by default.
+    /// @param left (optional)
+    ///   The left position of the rectangle. This value is 0 by default.
+    /// @param top (optional)
+    ///   The top position of the rectangle. This value is 0 by default.
+    /// @param right (optional)
+    ///   The right position of the rectangle. This value includes the entire map width by default.
+    /// @param bottom (optional)
+    ///   The bottom position of the rectangle. This value includes the entire map height by default.
+    ///
+    /// @see UnitFilter
     virtual Unit *getClosestUnitInRectangle(Position center, const UnitFilter &pred = nullptr, int left = 0, int top = 0, int right = 999999, int bottom = 999999) const = 0;
 
-    
-    /// Compares all units with pred to determine
-    /// which of them is the best. All units are
-    /// checked. If center and radius are specified,
-    /// then it will check all units that are within
-    /// the radius of the position.
+    /// Compares all units with pred to determine which of them is the best. All units are checked.
+    /// If center and radius are specified, then it will check all units that are within the radius
+    /// of the position.
     ///
-    /// @param pred @TODO cannot be UnitFilter to determine "best"
-    /// @param center The position to use in the search.
-    /// @param radius The distance from \p center to search
-    /// for units.
+    /// @param best
+    ///   A BestUnitFilter that determines which parameters should be considered when calculating
+    ///   which units are better than others.
+    /// @param pred
+    ///   A UnitFilter that determines which units to include in calculations.
+    /// @param center (optional)
+    ///   The position to use in the search. If omitted, then the entire map is searched.
+    /// @param radius (optional)
+    ///   The distance from \p center to search for units. If omitted, then the entire map is
+    ///   searched.
     /// 
-    /// @returns The desired unit that best matches
-    /// the given criteria.
+    /// @returns The desired unit that best matches the given criteria.
     /// @retval nullptr if a suitable unit was not found.
-    
-    /// @see getClosestUnit
-    virtual Unit *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::None, int radius = 999999) const = 0;
+    ///
+    /// @see getClosestUnit, BestUnitFilter, UnitFilter
+    virtual Unit *getBestUnit(const BestUnitFilter &best, const UnitFilter &pred, Position center = Positions::Origin, int radius = 999999) const = 0;
 
-    
-    /// Returns the last error that was set using setLastError.
-    /// If a function call in BWAPI has failed, you can use
-    /// this function to retrieve the reason it failed.
+    /// Returns the last error that was set using setLastError. If a function call in BWAPI has
+    /// failed, you can use this function to retrieve the reason it failed.
     ///
     /// @returns Error type containing the reason for failure.
-    
+    ///
     /// @see setLastError, Errors
     virtual Error getLastError() const = 0;
 
-    
-    /// Sets the last error so that future calls to 
-    /// getLastError will return the value that was set.
+    /// Sets the last error so that future calls to getLastError will return the value that was
+    /// set.
     ///
-    /// @param e The error code to set.
+    /// @param e (optional)
+    ///   The error code to set. If omitted, then the last error will be cleared.
     ///
-    /// @retval true If the type passed was Errors::None.
+    /// @retval true If the type passed was Errors::None, clearing the last error.
     /// @retval false If any other error type was passed.
-    
     /// @see getLastError, Errors
     virtual bool setLastError(BWAPI::Error e = Errors::None) const = 0;
 
-    /** Returns the width of the current map, in build tile units. To get the width of the current map in
-     * walk tile units, multiply by 4. To get the width of the current map in Position units, multiply by
-     * TILE_SIZE (which is 32). */
+    /// Retrieves the width of the map in build tile units.
+    ///
+    /// @returns Width of the map in tiles.
+    /// @see mapHeight
     virtual int mapWidth() const = 0;
 
-    /** Returns the height of the current map, in build tile units. To get the height of the current map in
-     * walk tile units, multiply by 4. To get the height of the current map in Position units, multiply by
-     * TILE_SIZE (which is 32). */
+    /// Retrieves the height of the map in build tile units.
+    ///
+    /// @returns Height of the map in tiles.
+    /// @see mapHeight
     virtual int mapHeight() const = 0;
 
-    /** Returns the file name of the current map. */
+    /// Retrieves the file name of the currently loaded map.
+    /// @TODO: Note on campaign files.
+    ///
+    /// @returns Map file name as std::string object.
+    ///
+    /// @see mapPathName, mapName
     virtual std::string mapFileName() const = 0;
 
-    /** Returns the full path name of the current map. */
+    /// Retrieves the full path name of the currently loaded map.
+    /// @TODO: Note on campaign files.
+    ///
+    /// @returns Map file name as std::string object.
+    ///
+    /// @see mapFileName, mapName
     virtual std::string mapPathName() const = 0;
 
-    /** Returns the name/title of the current map. */
+    /// Retrieves the title of the currently loaded map.
+    ///
+    /// @returns Map title as std::string object.
+    ///
+    /// @see mapFileName, mapPathName
     virtual std::string mapName() const = 0;
 
-    /** Returns the SHA-1 hash of the map file. */
+    /// Calculates the SHA-1 hash of the currently loaded map file.
+    ///
+    /// @returns std::string object containing SHA-1 hash.
+    ///
+    /// @note Campaign maps will return a hash of their internal map chunk components(.chk), while
+    /// standard maps will return a hash of their entire map archive (.scm,.scx).
+    /// @TODO: Note on replays.
     virtual std::string mapHash() const = 0;
 
     /** Returns true if the specified walk tile is walkable. The values of x and y are in walk tile
@@ -267,45 +307,95 @@ namespace BWAPI
      * You will also need to make sure no ground units are on the coresponding build tile to see if its
      * currently walkable. To do this, see unitsOnTile. */
     virtual bool isWalkable(int walkX, int walkY) const = 0;
+    /// @overload
     bool isWalkable(BWAPI::WalkPosition position) const;
 
     /** Returns the ground height of the given build tile. 0 = normal, 1 = high ground.  2 = very high ground. */
     virtual int  getGroundHeight(int tileX, int tileY) const = 0;
+    /// @overload
     int  getGroundHeight(TilePosition position) const;
 
     /** Returns true if the specified build tile is buildable. Note that this just uses the static map data.
      * You will also need to make sure no ground units on the tile to see if its currently buildable. To do
      * this, see unitsOnTile. */
     virtual bool isBuildable(int tileX, int tileY, bool includeBuildings = false) const = 0;
+    /// @overload
     bool isBuildable(TilePosition position, bool includeBuildings = false) const;
 
     /** Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the
      * function will return false. */
     virtual bool isVisible(int tileX, int tileY) const = 0;
+    /// @overload
     bool isVisible(TilePosition position) const;
 
-    /** Returns true if the specified build tile has been explored (i.e. was visible at some point in the
-     * match). */
+    /// Checks if a given tile position has been explored by the player. An explored tile position
+    /// indicates that the player has seen the location at some point in the match, partially
+    /// revealing the fog of war for the remainder of the match.
+    ///
+    /// @param tileX
+    ///   The x tile coordinate to check.
+    /// @param tileY
+    ///   The y tile coordinate to check.
+    /// 
+    /// @retval true If the player has explored the given tile position (partially revealed fog).
+    /// @retval false If the tile position was never explored (completely black fog).
+    ///
+    /// @see isVisible
     virtual bool isExplored(int tileX, int tileY) const = 0;
+    /// @overload
     bool isExplored(TilePosition position) const;
 
-    /** Returns true if the specified build tile has zerg creep on it. If the tile is concealed by fog of
-     * war, the function will return false. */
+    /// Checks if the given tile position has @Zerg creep on it.
+    ///
+    /// @param tileX
+    ///   The x tile coordinate to check.
+    /// @param tileY
+    ///   The y tile coordinate to check.
+    ///
+    /// @retval true If the given tile has creep on it.
+    /// @retval false If the given tile does not have creep, or if it is concealed by the fog of war.
     virtual bool hasCreep(int tileX, int tileY) const = 0;
+    /// @overload
     bool hasCreep(TilePosition position) const;
 
-    /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
-    /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
-    /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-    /** Returns true if the given build location is powered by a nearby friendly pylon. */
-    bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
-    /** Returns true if the given pixel location is powered by a nearby friendly pylon. */
+    /// Checks if the given pixel position is powered by an owned @Protoss_Pylon for an optional
+    /// unit type.
+    ///
+    /// @param x
+    ///   The x pixel coordinate to check.
+    /// @param y
+    ///   The y pixel coordinate to check.
+    /// @param unitType (optional)
+    ///   Checks if the given UnitType requires power or not. If ommitted, then it will assume
+    ///   that the position requires power for any unit type.
+    ///
+    /// @retval true if the type at the given position will have power.
+    /// @retval false if the type at the given position will be unpowered.
     virtual bool hasPowerPrecise(int x, int y, UnitType unitType = UnitTypes::None ) const = 0;
-    /** Returns true if the given pixel location is powered by a nearby friendly pylon. */
+    /// @overload
     bool hasPowerPrecise(Position position, UnitType unitType = UnitTypes::None) const;
+
+    /// Checks if the given tile position if powered by an owned @Protoss_Pylon for an optional
+    /// unit type.
+    ///
+    /// @param tileX
+    ///   The x tile coordinate to check.
+    /// @param tileY
+    ///   The y tile coordinate to check.
+    /// @param unitType (optional)
+    ///   Checks if the given UnitType will be powered if placed at the given tile position. If
+    ///   omitted, then only the immediate tile position is checked for power, and the function
+    ///   will assume that the location requires power for any unit type.
+    ///   
+    /// @retval true if the type at the given tile position will receive power.
+    /// @retval false if the type will be unpowered at the given tile position.
+    bool hasPower(int tileX, int tileY, UnitType unitType = UnitTypes::None) const;
+    /// @overload
+    bool hasPower(TilePosition position, UnitType unitType = UnitTypes::None) const;
+    /// @overload
+    bool hasPower(int tileX, int tileY, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
+    /// @overload
+    bool hasPower(TilePosition position, int tileWidth, int tileHeight, UnitType unitType = UnitTypes::None) const;
 
     /** Returns true if the given unit type can be built at the given build tile position. Note the tile
      * position specifies the top left tile of the building. If builder is not null, the unit will be
@@ -390,8 +480,13 @@ namespace BWAPI
     /** Issues a command to a group of units */
     virtual bool issueCommand(const Unitset& units, UnitCommand command) = 0;
 
-    /** Returns the set of units currently selected by the user in the GUI. If Flag?::UserInput? was not
-     * enabled during the AIModule::onStart callback, this function will always return an empty set. */
+    /// Retrieves the set of units that are currently selected by the user outside of BWAPI. This
+    /// function requires that Flag::UserInput be enabled.
+    ///
+    /// @returns A Unitset containing the user's selected units. If Flag::UserInput is disabled, 
+    /// then this set is always empty.
+    ///
+    /// @see enableFlag
     virtual const Unitset& getSelectedUnits() const = 0;
 
     /** Returns a pointer to the player that BWAPI controls. In replays this will return null. */
@@ -569,79 +664,104 @@ namespace BWAPI
     ///   An integer representation of the aggressiveness for which commands are optimized. A
     ///   lower level means less optimization, and a higher level means more optimization. The
     ///   values for level are as follows:
-    ///     + 0: No optimization.
-    ///     + 1: Some optimization.
-    ///       + Is not detected as a hack.
-    ///       + Does not alter behaviour.
-    ///       + Units performing the following actions are grouped and ordered 12 at a time:
-    ///         + Attack_Unit
-    ///         + Morph (@Larva only)
-    ///         + Hold_Position
-    ///         + Stop
-    ///         + Follow
-    ///         + Gather
-    ///         + Return_Cargo
-    ///         + Repair
-    ///         + Burrow
-    ///         + Unburrow
-    ///         + Cloak
-    ///         + Decloak
-    ///         + Siege
-    ///         + Unsiege
-    ///         + Right_Click_Unit
-    ///         + Halt_Construction
-    ///         + Cancel_Train (@Carrier and @Reaver only)
-    ///         + Cancel_Train_Slot (@Carrier and @Reaver only)
-    ///         + Cancel_Morph (for non-buildings only)
-    ///         + Use_Tech
-    ///         + Use_Tech_Unit
-    ///       + The following order transformations are applied to allow better grouping:
-    ///         + Attack_Unit becomes Right_Click_Unit if the target is an enemy
-    ///         + Move becomes Right_Click_Position
-    ///         + Gather becomes Right_Click_Unit if the target contains resources
-    ///         + Set_Rally_Position becomes Right_Click_Position for buildings
-    ///         + Set_Rally_Unit becomes Right_Click_Unit for buildings
-    ///         + Use_Tech_Unit with Infestation becomes Right_Click_Unit if the target is valid
-    ///     + 2: More optimization by grouping structures.
-    ///       + Includes the optimizations made by all previous levels.
-    ///       + May be detected as a hack by some replay utilities.
-    ///       + Does not alter behaviour.
-    ///       + Units performing the following actions are grouped and ordered 12 at a time:
-    ///         + Attack_Unit (@Turrets, @Photon_Cannons, @Sunkens, @Spores)
-    ///         + Train
-    ///         + Morph
-    ///         + Set_Rally_Unit
-    ///         + Lift
-    ///         + Unload_All (@Bunkers only)
-    ///         + Cancel_Construction
-    ///         + Cancel_Addon
-    ///         + Cancel_Train
-    ///         + Cancel_Train_Slot
-    ///         + Cancel_Morph
-    ///         + Cancel_Research
-    ///         + Cancel_Upgrade
-    ///     + 3: Extensive optimization 
-    ///       + Includes the optimizations made by all previous levels.
-    ///       + Units may behave or move differently than expected.
-    ///       + Units performing the following actions are grouped and ordered 12 at a time:
-    ///         + Attack_Move
-    ///         + Set_Rally_Position
-    ///         + Move
-    ///         + Patrol
-    ///         + Unload_All
-    ///         + Unload_All_Position
-    ///         + Right_Click_Position
-    ///         + Use_Tech_Position
-    ///     + 4: Aggressive optimization
-    ///       + Includes the optimizations made by all previous levels.
-    ///       + Positions used in commands will be rounded to multiples of 32.
-    ///       + @High_Templar and @Dark_Templar that merge into @Archons will be grouped and may
+    ///     - 0: No optimization.
+    ///     - 1: Some optimization.
+    ///       - Is not detected as a hack.
+    ///       - Does not alter behaviour.
+    ///       - Units performing the following actions are grouped and ordered 12 at a time:
+    ///         - Attack_Unit
+    ///         - Morph (@Larva only)
+    ///         - Hold_Position
+    ///         - Stop
+    ///         - Follow
+    ///         - Gather
+    ///         - Return_Cargo
+    ///         - Repair
+    ///         - Burrow
+    ///         - Unburrow
+    ///         - Cloak
+    ///         - Decloak
+    ///         - Siege
+    ///         - Unsiege
+    ///         - Right_Click_Unit
+    ///         - Halt_Construction
+    ///         - Cancel_Train (@Carrier and @Reaver only)
+    ///         - Cancel_Train_Slot (@Carrier and @Reaver only)
+    ///         - Cancel_Morph (for non-buildings only)
+    ///         - Use_Tech
+    ///         - Use_Tech_Unit
+    ///         .
+    ///       - The following order transformations are applied to allow better grouping:
+    ///         - Attack_Unit becomes Right_Click_Unit if the target is an enemy
+    ///         - Move becomes Right_Click_Position
+    ///         - Gather becomes Right_Click_Unit if the target contains resources
+    ///         - Set_Rally_Position becomes Right_Click_Position for buildings
+    ///         - Set_Rally_Unit becomes Right_Click_Unit for buildings
+    ///         - Use_Tech_Unit with Infestation becomes Right_Click_Unit if the target is valid
+    ///         .
+    ///       .
+    ///     - 2: More optimization by grouping structures.
+    ///       - Includes the optimizations made by all previous levels.
+    ///       - May be detected as a hack by some replay utilities.
+    ///       - Does not alter behaviour.
+    ///       - Units performing the following actions are grouped and ordered 12 at a time:
+    ///         - Attack_Unit (@Turrets, @Photon_Cannons, @Sunkens, @Spores)
+    ///         - Train
+    ///         - Morph
+    ///         - Set_Rally_Unit
+    ///         - Lift
+    ///         - Unload_All (@Bunkers only)
+    ///         - Cancel_Construction
+    ///         - Cancel_Addon
+    ///         - Cancel_Train
+    ///         - Cancel_Train_Slot
+    ///         - Cancel_Morph
+    ///         - Cancel_Research
+    ///         - Cancel_Upgrade
+    ///         .
+    ///       .
+    ///     - 3: Extensive optimization 
+    ///       - Includes the optimizations made by all previous levels.
+    ///       - Units may behave or move differently than expected.
+    ///       - Units performing the following actions are grouped and ordered 12 at a time:
+    ///         - Attack_Move
+    ///         - Set_Rally_Position
+    ///         - Move
+    ///         - Patrol
+    ///         - Unload_All
+    ///         - Unload_All_Position
+    ///         - Right_Click_Position
+    ///         - Use_Tech_Position
+    ///         .
+    ///       .
+    ///     - 4: Aggressive optimization
+    ///       - Includes the optimizations made by all previous levels.
+    ///       - Positions used in commands will be rounded to multiples of 32.
+    ///       - @High_Templar and @Dark_Templar that merge into @Archons will be grouped and may
     ///         choose a different target to merge with. It will not merge with a target that
     ///         wasn't included.
+    ///       .
+    ///     .
+    ///
     virtual void setCommandOptimizationLevel(int level) = 0;
 
-    /** Returns the remaining countdown time in seconds. */
-    virtual int  countdownTimer() const = 0;
+    /// Returns the remaining countdown time. The countdown timer is used in @CTF and @UMS game
+    /// types.
+    ///
+    /// @code
+    ///   void ExampleAIModule::onStart()
+    ///   {
+    ///     if ( Broodwar->getGameType() == GameTypes::Capture_The_Flag || Broodwar->getGameType() == GameTypes::Team_Capture_The_Flag )
+    ///     {
+    ///       Broodwar->registerEvent([](Game*){ Broodwar->sendText("Try to find my flag!"); },   // action
+    ///                               [](Game*){ return Broodwar->countdownTimer() == 0; },       // condition
+    ///                               1);                                                         // times to run (once)
+    ///     }
+    ///   }
+    /// @endcode
+    ///
+    /// @returns Integer containing the time (in game seconds) on the countdown timer.
+    virtual int countdownTimer() const = 0;
 
     /** Returns the set of all map regions. */
     virtual const Regionset &getAllRegions() const = 0;

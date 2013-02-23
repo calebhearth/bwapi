@@ -79,7 +79,7 @@ namespace BWAPI
     ///
     /// If client info at the given index has already been set, then it will be overwritten.
     ///
-    /// @param clientinfo
+    /// @param clientInfo
     ///   The data to associate with this interface.
     /// @param key
     ///   The key to use for this data. Default is 0.

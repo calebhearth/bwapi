@@ -194,7 +194,7 @@ SEPARATE_MEMBER_PAGES  = NO
 # The TAB_SIZE tag can be used to set the number of spaces in a tab. 
 # Doxygen uses this value to replace tabs by spaces in code fragments.
 
-TAB_SIZE               = 4
+TAB_SIZE               = 2
 
 # This tag can be used to specify a number of aliases that acts 
 # as commands in the documentation. An alias has the form "name=value". 
@@ -220,7 +220,50 @@ ALIASES                = "Dropships=@ref UnitTypes::Terran_Dropship \"Dropships\
                          "Medic=@ref UnitTypes::Terran_Medic \"Medic\"" \
                          "Hatchery=@ref UnitTypes::Zerg_Hatchery \"Hatchery\"" \
                          "Lair=@ref UnitTypes::Zerg_Lair \"Lair\"" \
-                         "Hive=@ref UnitTypes::Zerg_Hive \"Hive\""
+                         "Hive=@ref UnitTypes::Zerg_Hive \"Hive\"" \
+                         "Scarabs=@ref UnitTypes::Protoss_Scarab \"Scarabs\"" \
+                         "Terran=@ref Races::Terran \"Terran\"" \
+                         "Command_Center=@ref UnitTypes::Terran_Command_Center \"Command Center\"" \
+                         "Factory=@ref UnitTypes::Terran_Factory \"Factory\"" \
+                         "Starport=@ref UnitTypes::Terran_Starport \"Starport\"" \
+                         "Starport=@ref UnitTypes::Terran_Starport \"Starport\"" \
+                         "Science_Facility=@ref UnitTypes::Terran_Science_Facility \"Science Facility\"" \
+                         "Zerg=@ref Races::Zerg \"Zerg\"" \
+                         "Bunker=@ref UnitTypes::Terran_Bunker \"Bunker\"" \
+                         "Nydus_Canal=@ref UnitTypes::Zerg_Nydus_Canal \"Nydus Canal\"" \
+                         "Queen=@ref UnitTypes::Zerg_Queen \"Queen\"" \
+                         "Ensnare=@ref TechTypes::Ensnare \"Ensnare\"" \
+                         "Geyser=@ref UnitTypes::Resource_Vespene_Geyser \"Vespene Geyser\"" \
+                         "Geysers=@ref UnitTypes::Resource_Vespene_Geyser \"Vespene Geysers\"" \
+                         "Protoss=@ref Races::Protoss \"Protoss\"" \
+                         "Marines=@ref UnitTypes::Terran_Marine \"Marines\"" \
+                         "Barracks=@ref UnitTypes::Terran_Barracks \"Barracks\"" \
+                         "Creep_Colony=@ref UnitTypes::Zerg_Creep_Colony \"Creep Colony\"" \
+                         "Archons=@ref UnitTypes::Protoss_Archon \"Archons\"" \
+                         "Dark_Templar=@ref UnitTypes::Protoss_Dark_Templar \"Dark Templar\"" \
+                         "High_Templar=@ref UnitTypes::Protoss_High_Templar \"High Templar\"" \
+                         "Sunkens=@ref UnitTypes::Zerg_Sunken_Colony \"Sunkens\"" \
+                         "Spores=@ref UnitTypes::Zerg_Spore_Colony \"Spores\"" \
+                         "Photon_Cannons=@ref UnitTypes::Protoss_Photon_Cannon \"Photon Cannons\"" \
+                         "Turrets=@ref UnitTypes::Terran_Missile_Turret \"Turrets\"" \
+                         "Reaver=@ref UnitTypes::Protoss_Reaver \"Reaver\"" \
+                         "Carrier=@ref UnitTypes::Protoss_Carrier \"Carrier\"" \
+                         "Larva=@ref UnitTypes::Zerg_Larva \"Larva\"" \
+                         "Zerglings=@ref UnitTypes::Zerg_Zergling \"Zerglings\"" \
+                         "Burrow=@ref TechTypes::Burrowing \"Burrow\"" \
+                         "UseMapSettings=@ref GameTypes::Use_Map_Settings \"Use Map Settings\"" \
+                         "MindControl=@ref TechTypes::Mind_Control \"Mind Control\"" \
+                         "Refinery=@ref UnitTypes::Terran_Refinery \"Refinery\"" \
+                         "SiegeMode=@ref TechTypes::Tank_Siege_Mode \"Siege Mode\"" \
+                         "SiegeTank=@ref UnitTypes::Terran_Siege_Tank_Tank_Mode \"Siege Tank\"" \
+                         "Drone=@ref UnitTypes::Zerg_Drone \"Drone\"" \
+                         "Extractor=@ref UnitTypes::Zerg_Extractor \"Extractor\"" \
+                         "Nuke=@ref UnitTypes::Terran_Nuclear_Missile \"Nuke\"" \
+                         "Protoss_Pylon=@ref UnitTypes::Protoss_Pylon \"Protoss Pylon\"" \
+                         "UMS=@ref GameTypes::Use_Map_Settings \"Use Map Settings\"" \
+                         "CTF=@ref GameTypes::Capture_The_Flag \"Capture The Flag\"" \
+                         "Transport=Transport(@ref UnitTypes::Terran_Dropship \"Dropship\", @ref UnitTypes::Protoss_Shuttle \"Shuttle\", @ref UnitTypes::Zerg_Overlord \"Overlord\" )" \
+                         TODO=@todo
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only). 
 # A mapping has the form "name=value". For example adding 

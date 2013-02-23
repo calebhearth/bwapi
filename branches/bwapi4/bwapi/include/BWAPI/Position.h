@@ -127,9 +127,7 @@ namespace BWAPI
     bool isValid() const;
 
     /// Checks if this point is within the game's map bounds, if not, then it will set the x and y
-    /// values to be within map bounds.
-    ///
-    /// @example If x is less than 0, then x is set to 0.
+    /// values to be within map bounds. (Example: If x is less than 0, then x is set to 0)
     ///
     /// @note If the Broodwar pointer is not initialized, this function will check validity
     /// against the largest (256x256) map size.
@@ -207,7 +205,7 @@ namespace BWAPI
         y = max_y;
       return *this;
     };
-    /// @copydoc setMax
+    /// @overload
     Point &setMax(const Point<_T,__Scale> &max)
     {
       this->setMax(max.x, max.y);
@@ -224,15 +222,15 @@ namespace BWAPI
     ///
     /// @returns A reference to itself.
     /// @see setMax
-    Point &setMin(_T _x, _T _y)
+    Point &setMin(_T min_x, _T min_y)
     {
-      if ( x < _x )
-        x = _x;
-      if ( y < _y )
-        y = _y;
+      if ( x < min_x )
+        x = min_x;
+      if ( y < min_y )
+        y = min_y;
       return *this;
     };
-    /// @copydoc setMin
+    /// @overload
     Point &setMin(const Point<_T,__Scale> &min)
     {
       this->setMin(max.x, max.y);
