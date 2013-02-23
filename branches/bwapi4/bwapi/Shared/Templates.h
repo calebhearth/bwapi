@@ -583,7 +583,7 @@ namespace BWAPI
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
         return false;
 
-      if ( targetUnit->getType().isInvincible() )
+      if ( targetUnit->isInvincible() )
         return Broodwar->setLastError(Errors::Unable_To_Hit);
 
       WeaponType weapon = thisUnit->getType().groundWeapon();
