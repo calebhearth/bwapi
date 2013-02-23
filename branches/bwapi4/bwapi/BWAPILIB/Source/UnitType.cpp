@@ -722,7 +722,7 @@ namespace BWAPI
       Flyer | Hero | Spellcaster | LargeUnit | AutoAttackAndMove | Attack | Mechanical, 
       Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
       Hero | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
-      Flyer | Invincible, 
+      Flyer, 
       Flyer | Hero | Spellcaster | HugeUnit | AutoAttackAndMove | Attack | Mechanical, 
       RegeneratesHP | OrganicUnit | Burrowable | AutoAttackAndMove | Attack, 
       Hero | RegeneratesHP | Cloakable | OrganicUnit | Spellcaster | AutoAttackAndMove | Attack, 
