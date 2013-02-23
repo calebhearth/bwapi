@@ -28,7 +28,7 @@ namespace BWAPI
       if ( unitType >= 0 && unitType < UnitTypes::None && (!unitType.requiresPsi() || !unitType.isBuilding()) )
         return true;
 
-      /* Loop through all pylons for the current player */
+      // Loop through all pylons for the current player
       foreach (UnitImpl* i, pylons)
       {
         if ( !i->exists() || !i->isCompleted() )
@@ -163,26 +163,43 @@ namespace BWAPI
       }
 
       // Tile buildability check
+      bool checkUnoccupied;
+      if ( type == UnitTypes::Special_Start_Location )
+        checkUnoccupied = false;
+      else
+        checkUnoccupied = !builder || !builder->getType().isBuilding() || ( !type.isAddon() && !type.isFlagBeacon() );
       for ( int x = lt.x; x < rb.x; ++x )
+      {
         for ( int y = lt.y; y < rb.y; ++y )
         {
-          // Check if tile is buildable and explored
-          if ( !Broodwar->isBuildable(x, y, type != UnitTypes::Special_Start_Location) || ( checkExplored && !Broodwar->isExplored(x,y)) )
+          // Check if tile is buildable/unoccupied and explored.
+          if ( !Broodwar->isBuildable(x, y, checkUnoccupied) || ( checkExplored && !Broodwar->isExplored(x,y)) )
             return false; // @TODO: Error code for !isExplored ??
         }
+      }
 
       // Check if builder is capable of reaching the building site
-      if ( builder && !builder->getType().isFlagBeacon() && !builder->hasPath( Position(lt + TilePosition(width/2, height/2)) ) )
-        return false;
+      if ( builder )
+      {
+        if ( !builder->getType().isBuilding() )
+        {
+          if ( !builder->hasPath( Position(lt + TilePosition(width/2, height/2)) ) )
+            return false;
+        }
+        else
+        {
+          if ( !type.isAddon() && type != UnitTypes::Zerg_Nydus_Canal && !type.isFlagBeacon() )
+            return false;
+        }
+      }
 
       // Ground unit dimension check
       if ( type != UnitTypes::Special_Start_Location )
       {
         Position targPos = lt + Position(TilePosition(width,height))/2;
-        Unitset unitsInRect( Broodwar->getUnitsInRectangle((Position)lt, (Position)rb, !IsBuilding &&
-                                                                                        !IsFlyer    &&
+        Unitset unitsInRect( Broodwar->getUnitsInRectangle((Position)lt, (Position)rb, !IsFlyer    &&
                                                                                         !IsLoaded   &&
-                                                                                        [&builder](Unit *u){ return u != builder;} &&
+                                                                                        [&builder, &type](Unit *u){ return u != builder || type == UnitTypes::Zerg_Nydus_Canal;} &&
                                                                                         GetLeft   <= targPos.x + type.dimensionRight()  &&
                                                                                         GetTop    <= targPos.y + type.dimensionDown()   &&
                                                                                         GetRight  >= targPos.x - type.dimensionLeft()   &&
@@ -249,6 +266,49 @@ namespace BWAPI
             return false;
         }
       }
+
+      // A building can build an addon at a different location (i.e. automatically lifts (if not already lifted)
+      // then lands at the new location before building the addon), so we need to do similar checks for the
+      // location that the building will be when it builds the addon.
+      if ( builder && type.isAddon() )
+      {
+        // lt = left top, rb = right bottom
+        TilePosition ltBuilder = TilePosition(lt.x - 4, lt.y - 1);
+        TilePosition rbBuilder = TilePosition(lt.x, lt.y + 2);
+
+        // Map limit check
+        if ( !ltBuilder.isValid() || !rbBuilder.isValid() )
+          return false;
+
+        // Tile buildability check and creep check
+        for ( int x = ltBuilder.x; x < rbBuilder.x; ++x )
+        {
+          for ( int y = ltBuilder.y; y < rbBuilder.y; ++y )
+          {
+            // Check if tile is buildable and explored
+            if ( !Broodwar->isBuildable(x, y, false) || ( checkExplored && !Broodwar->isExplored(x,y)) )
+              return false; // @TODO: Error code for !isExplored ??
+            // Can't build on the creep
+            if ( Broodwar->hasCreep(x,y) )
+              return false;
+          }
+        }
+
+        UnitType typeBuilder = builder->getType();
+
+        // Ground unit dimension check
+        Position targPosBuilder = ltBuilder + Position(TilePosition(4, 3))/2;
+        Unitset unitsInRectBuilder( Broodwar->getUnitsInRectangle((Position)ltBuilder, (Position)rbBuilder, !IsFlyer    &&
+                                                                                                            !IsLoaded   &&
+                                                                                                            [&builder](Unit *u){ return u != builder;} &&
+                                                                                                            GetLeft   <= targPosBuilder.x + typeBuilder.dimensionRight()  &&
+                                                                                                            GetTop    <= targPosBuilder.y + typeBuilder.dimensionDown()   &&
+                                                                                                            GetRight  >= targPosBuilder.x - typeBuilder.dimensionLeft()   &&
+                                                                                                            GetBottom >= targPosBuilder.y - typeBuilder.dimensionUp() )    );
+        if ( !unitsInRectBuilder.empty() )
+          return false;
+      }
+
       //if the build site passes all these tests, return true.
       return Broodwar->setLastError();
     }
@@ -579,7 +639,7 @@ namespace BWAPI
       if ( tilePos.isValid() == false )
         return Broodwar->setLastError(Errors::Invalid_Tile_Position);
 
-      if ( !uType.isAddon() && !Broodwar->canBuildHere(tilePos, uType, thisUnit, true) )
+      if ( !Broodwar->canBuildHere(tilePos, uType, thisUnit, true) )
         return false;
 
       return true;
@@ -594,7 +654,7 @@ namespace BWAPI
 
       if ( thisUnit->isConstructing() ||
            !thisUnit->isCompleted()   ||
-           (thisUnit->getType().isFlyingBuilding() && thisUnit->isLifted()) ||
+           thisUnit->isLifted() ||
            (thisUnit->getType().isBuilding() && !thisUnit->isIdle()) )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getAddon() )
@@ -648,7 +708,7 @@ namespace BWAPI
 
       if ( thisUnit->isConstructing() ||
            !thisUnit->isCompleted()   ||
-           (thisUnit->getType().isFlyingBuilding() && thisUnit->isLifted()) )
+           thisUnit->isLifted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( !thisUnit->getType().canProduce() &&
            thisUnit->getType() != UnitTypes::Enum::Terran_Nuclear_Silo &&
@@ -803,7 +863,7 @@ namespace BWAPI
     }
     static inline bool canResearch(const Unit* thisUnit, TechType type, bool checkCanIssueCommandType = true)
     {
-      /* Error checking */
+      // Error checking
       if ( !Broodwar->self() )
         return Broodwar->setLastError(Errors::Unit_Not_Owned);
 
