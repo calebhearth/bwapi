@@ -1086,6 +1086,13 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
+      if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() &&
+           thisUnit->getType() != UnitTypes::Protoss_Photon_Cannon &&
+           thisUnit->getType() != UnitTypes::Zerg_Sunken_Colony &&
+           thisUnit->getType() != UnitTypes::Zerg_Spore_Colony &&
+           thisUnit->getType() != UnitTypes::Terran_Missile_Turret )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
       return true;
     }
     //------------------------------------------- CAN REPAIR -------------------------------------------------
