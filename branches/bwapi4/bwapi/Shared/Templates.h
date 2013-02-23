@@ -1538,8 +1538,13 @@ namespace BWAPI
       if ( checkCanIssueCommandType && !canUnloadWithOrWithoutTarget(thisUnit, false) )
         return false;
 
-      if ( thisUnit->getType() != UnitTypes::Terran_Bunker && !Broodwar->isWalkable(targDropPos.x/8, targDropPos.y/8) )
-        return Broodwar->setLastError(Errors::Unreachable_Location);
+      if ( thisUnit->getType() != UnitTypes::Terran_Bunker )
+      {
+        if ( WalkPosition(targDropPos.x/8, targDropPos.y/8).isValid() == false )
+          return Broodwar->setLastError(Errors::Invalid_Tile_Position);
+        else if ( !Broodwar->isWalkable(targDropPos.x/8, targDropPos.y/8) )
+          return Broodwar->setLastError(Errors::Unreachable_Location);
+      }
 
       return true;
     }
