@@ -48,7 +48,7 @@ namespace BWAPI
   template<typename _T, int __Scale = 1>
   class Point;
 
-  // Restrictions
+  // Restrictions (no division by 0 or types too small to contain map positions)
   template<typename _T> class Point<_T, 0> {};
   template<int __Scale> class Point<char, __Scale> {};
   template<int __Scale> class Point<unsigned char, __Scale> {};
@@ -140,7 +140,8 @@ namespace BWAPI
     ///
     /// @note This function impedes performance. In most cases you should use getApproxDistance.
     ///
-    /// @param position The target position to get the distance to.
+    /// @param position
+    ///   The target position to get the distance to.
     ///
     /// @returns A double representing the distance between this point and \p position.
     /// @see getApproxDistance

@@ -128,9 +128,9 @@ namespace BWAPI
       virtual void setLocalSpeed(int speed) override;
       virtual bool issueCommand(const Unitset& units, UnitCommand command) override;
       virtual const Unitset& getSelectedUnits() const override;
-      virtual Player *self() override;
-      virtual Player *enemy() override;
-      virtual Player *neutral() override;
+      virtual Player *self() const override;
+      virtual Player *enemy() const override;
+      virtual Player *neutral() const override;
       virtual Playerset& allies() override;
       virtual Playerset& enemies() override;
       virtual Playerset& observers() override;

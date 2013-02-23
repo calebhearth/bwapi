@@ -80,6 +80,7 @@ namespace BWAPI
       virtual int sightRange(UnitType unit) const override;
       virtual int groundWeaponDamageCooldown(UnitType unit) const override;
       virtual int armor(UnitType unit) const override;
+      virtual int damage(WeaponType wpn) const override;
 
       virtual int getUnitScore() const override;
       virtual int getKillScore() const override;

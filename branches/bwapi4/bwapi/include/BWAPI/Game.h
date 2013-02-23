@@ -490,15 +490,15 @@ namespace BWAPI
     virtual const Unitset& getSelectedUnits() const = 0;
 
     /** Returns a pointer to the player that BWAPI controls. In replays this will return null. */
-    virtual Player* self() = 0;
+    virtual Player* self() const = 0;
 
     /** Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to
      * just one enemy (see enemies to get all enemies still in game). In replays this will
      * return nullptr. */
-    virtual Player* enemy() = 0;
+    virtual Player* enemy() const = 0;
 
     /** Returns a pointer to the neutral player. */
-    virtual Player* neutral() = 0;
+    virtual Player* neutral() const = 0;
 
     /** Returns a set of all the ally players that have not left or been defeated. Does not include self. */
     virtual Playerset& allies() = 0;
@@ -794,6 +794,47 @@ namespace BWAPI
     /// @returns
     ///   A TilePosition containing the location that the structure should be constructed at.
     TilePosition getBuildLocation(UnitType type, TilePosition desiredPosition, int maxRange = 64, bool creep = false) const;
+
+    /// Calculates the damage received for a given player. It can be understood as the damage from
+    /// \p fromType to \p toType. Does not include shields in calculation. Includes upgrades if
+    /// players are provided.
+    ///
+    /// @param fromType
+    ///   The unit type that will be dealing the damage.
+    /// @param toType
+    ///   The unit type that will be receiving the damage.
+    /// @param fromPlayer (optional)
+    ///   The player owner of the given type that will be dealing the damage. If omitted, then
+    ///   no player will be used to calculate the upgrades for \p fromType.
+    /// @param toPlayer (optional)
+    ///   The player owner of the type that will be receiving the damage. If omitted, then this
+    ///   parameter will default to Broodwar->self().
+    ///
+    /// @returns The amount of damage that fromType would deal to toType.
+    /// @see getDamageTo
+    int getDamageFrom(UnitType fromType, UnitType toType, Player *fromPlayer = nullptr, Player *toPlayer = nullptr) const;
+
+    /// Calculates the damage dealt for a given player. It can be understood as the damage to
+    /// \p toType from \p fromType. Does not include shields in calculation. Includes upgrades if
+    /// players are provided.
+    ///
+    /// @note This function is nearly the same as #getDamageFrom. The only difference is that
+    /// the last parameter is intended to default to Broodwar->self().
+    ///
+    /// @param toType
+    ///   The unit type that will be receiving the damage.
+    /// @param fromType
+    ///   The unit type that will be dealing the damage.
+    /// @param toPlayer (optional)
+    ///   The player owner of the type that will be receiving the damage. If omitted, then
+    ///   no player will be used to calculate the upgrades for \p toType.
+    /// @param fromPlayer (optional)
+    ///   The player owner of the given type that will be dealing the damage. If omitted, then
+    ///   this parameter will default to Broodwar->self().
+    ///
+    /// @returns The amount of damage that fromType would deal to toType.
+    /// @see getDamageFrom
+    int getDamageTo(UnitType toType, UnitType fromType, Player *toPlayer = nullptr, Player *fromPlayer = nullptr) const;
   };
 
   extern Game *BroodwarPtr;

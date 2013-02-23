@@ -259,8 +259,21 @@ namespace BWAPI
     /** Returns the ground weapon cooldown of the given unit type, includes upgrades */
     virtual int groundWeaponDamageCooldown(UnitType unit) const = 0;
 
-    /** Returns the armor of the given unit type, includes upgrades */
+    /// Calculates the armor that a given unit type will have, including upgrades.
+    ///
+    /// @param unit
+    ///   The unit type to calculate armor for, using the current player's upgrades.
+    ///
+    /// @returns The amount of armor that the unit will have with the player's upgrades.
     virtual int armor(UnitType unit) const = 0;
+
+    /// Calculates the damage that a given weapon type can deal, including upgrades.
+    ///
+    /// @param wpn
+    ///   The weapon type to calculate for.
+    ///
+    /// @returns The amount of damage that the weapon deals with this player's upgrades.
+    virtual int damage(WeaponType wpn) const = 0;
 
     /** Returns the Player's Total Unit Score */
     virtual int getUnitScore() const = 0;

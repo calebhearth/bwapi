@@ -746,17 +746,17 @@ namespace BWAPI
     return selectedUnits;
   }
   //--------------------------------------------- SELF -------------------------------------------------------
-  Player* GameImpl::self()
+  Player* GameImpl::self() const
   {
     return thePlayer;
   }
   //--------------------------------------------- ENEMY ------------------------------------------------------
-  Player* GameImpl::enemy()
+  Player* GameImpl::enemy() const
   {
     return theEnemy;
   }
   //--------------------------------------------- ENEMY ------------------------------------------------------
-  Player* GameImpl::neutral()
+  Player* GameImpl::neutral() const
   {
     return theNeutral;
   }

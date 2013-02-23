@@ -248,6 +248,14 @@ namespace BWAPI
       armor += 2;
     return armor;
   }
+  //-------------------------------------------- DAMAGE ------------------------------------------------------
+  int PlayerImpl::damage(WeaponType wpn) const
+  {
+    int dmg = wpn.damageAmount();
+    dmg += getUpgradeLevel(wpn.upgradeType()) * wpn.damageBonus();
+    dmg *= wpn.damageFactor();
+    return dmg;
+  }
   //-------------------------------------------------- COLOUR ------------------------------------------------
   BWAPI::Color PlayerImpl::getColor() const
   {
