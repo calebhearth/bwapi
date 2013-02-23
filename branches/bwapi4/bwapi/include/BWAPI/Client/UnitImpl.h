@@ -135,6 +135,7 @@ namespace BWAPI
       virtual bool isUnderStorm() const override;
       virtual bool isUnpowered() const override;
       virtual bool isVisible(Player* player = nullptr) const override;
+      virtual bool isTargetable() const override;
 
       virtual bool canCommand() const override;
       virtual bool canTargetUnit(const Unit* targetUnit, bool checkCommandibility = true) const override;

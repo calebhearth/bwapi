@@ -495,13 +495,8 @@ namespace BWAPI
       return Broodwar->setLastError();
     }
     //------------------------------------------- CAN TARGET -------------------------------------------------
-    static inline bool canTargetUnit(const Unit* thisUnit, const Unit* targetUnit, bool checkCommandibility = true)
+    static inline bool canTargetUnit(const Unit* targetUnit)
     {
-      if ( !checkCommandibility )
-        Broodwar->setLastError();
-      else if ( !canCommand(thisUnit) )
-        return false;
-
       if ( !targetUnit || !targetUnit->exists() )
         return Broodwar->setLastError(Errors::Unit_Does_Not_Exist);
       if ( targetUnit->isStasised() )
@@ -517,6 +512,18 @@ namespace BWAPI
            targetUnit->getType() == UnitTypes::Spell_Disruption_Web ||
            targetUnit->getType() == UnitTypes::Special_Map_Revealer )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
+    }
+    static inline bool canTargetUnit(const Unit* thisUnit, const Unit* targetUnit, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( !canTargetUnit(targetUnit) )
+        return false;
 
       return true;
     }

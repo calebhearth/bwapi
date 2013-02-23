@@ -633,6 +633,11 @@ namespace BWAPI
     }
     return false;
   }
+  //--------------------------------------------- IS TARGETABLE ----------------------------------------------
+  bool UnitImpl::isTargetable() const
+  {
+    return Templates::canTargetUnit(this);
+  }
   //--------------------------------------------- CAN COMMAND ------------------------------------------------
   bool UnitImpl::canCommand() const
   {

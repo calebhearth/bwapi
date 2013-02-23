@@ -757,6 +757,15 @@ namespace BWAPI
      * \see Unit::exists. */
     virtual bool isVisible(Player* player = nullptr) const = 0;
 
+    /// Performs some cheap checks to attempt to quickly detect whether the unit is unable to
+    /// be targetted as the target unit of an unspecified command.
+    ///
+    /// @retval true if BWAPI was unable to determine whether the unit can be a target.
+    /// @retval false if an error occurred and the unit can not be a target.
+    ///
+    /// @see Game::getLastError, Unit::canTargetUnit
+    virtual bool isTargetable() const = 0;
+
     /// This function issues a command to the unit(s), however it is used for interfacing only,
     /// and is recommended to use one of the more specific command functions when writing an AI.
     ///
@@ -1066,7 +1075,7 @@ namespace BWAPI
     /// @retval true if BWAPI was unable to determine whether the unit can target the given unit.
     /// @retval false if an error occurred and the unit can not target the given unit.
     ///
-    /// @see Game::getLastError, Unit::canIssueCommand
+    /// @see Game::getLastError, Unit::canIssueCommand, Unit::isTargetable
     virtual bool canTargetUnit(const Unit* targetUnit, bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute an attack command to attack-move.
