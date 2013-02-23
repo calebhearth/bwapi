@@ -1208,10 +1208,12 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->getType().canMove() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
-      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
-        return Broodwar->setLastError(Errors::Unit_Busy);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1435,6 +1437,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
