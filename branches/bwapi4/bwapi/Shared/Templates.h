@@ -553,6 +553,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unable_To_Hit);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
@@ -1057,6 +1059,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
@@ -1130,6 +1134,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
@@ -1172,6 +1178,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->isCarryingGas() && !thisUnit->isCarryingMinerals() )
         return Broodwar->setLastError(Errors::Insufficient_Ammo);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
@@ -1187,6 +1195,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->getType().canMove() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
@@ -1227,6 +1237,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
@@ -1404,6 +1416,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType() == UnitTypes::Zerg_Overlord && Broodwar->self()->getUpgradeLevel(UpgradeTypes::Ventral_Sacs) == 0 )
         return Broodwar->setLastError(Errors::Insufficient_Tech);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
