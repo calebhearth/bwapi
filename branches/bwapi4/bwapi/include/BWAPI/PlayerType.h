@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of player types (player controllers)
     namespace Enum
     {
+      /// Enumeration of player types (player controllers)
       enum Enum
       {
         None = 0,
@@ -30,6 +31,7 @@ namespace BWAPI
   class PlayerType : public Type<PlayerType, PlayerTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       PlayerType(int id = PlayerTypes::Enum::None);
 
       bool isLobbyType() const;

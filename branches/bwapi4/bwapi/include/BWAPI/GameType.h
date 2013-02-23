@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of game types
     namespace Enum
     {
+      /// Enumeration of game types
       enum Enum
       {
         None = 0,
@@ -37,6 +38,7 @@ namespace BWAPI
   class GameType : public Type<GameType, GameTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       GameType(int id = GameTypes::Enum::None);
   };
   /// Namespace containing game types

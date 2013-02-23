@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of unit orders
     namespace Enum
     {
+      /// Enumeration of unit orders
       enum Enum
       {
         Die,
@@ -213,6 +214,7 @@ namespace BWAPI
   class Order : public Type<Order, Orders::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       Order(int id = Orders::Enum::None);
   };
   /// Namespace containing unit orders

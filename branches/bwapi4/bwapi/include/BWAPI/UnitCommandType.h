@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of unit command types
     namespace Enum
     {
+      /// Enumeration of unit command types
       enum Enum
       {
         Attack_Move = 0,
@@ -63,6 +64,7 @@ namespace BWAPI
   class UnitCommandType : public Type<UnitCommandType, UnitCommandTypes::Enum::Unknown>
   {
   public:
+    /// @copydoc Type::Type(int)
     UnitCommandType(int id = UnitCommandTypes::Enum::None);
   };
   /// Namespace containing unit command types

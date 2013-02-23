@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of damage types
     namespace Enum
     {
+      /// Enumeration of damage types
       enum Enum
       {
         Independent,
@@ -24,6 +25,7 @@ namespace BWAPI
   class DamageType : public Type<DamageType, DamageTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       DamageType(int id = DamageTypes::Enum::None);
   };
   /// Namespace containing damage types

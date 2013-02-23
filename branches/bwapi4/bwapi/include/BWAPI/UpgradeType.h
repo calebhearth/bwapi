@@ -11,6 +11,7 @@ namespace BWAPI
     /// Enumeration of upgrade types
     namespace Enum
     {
+      /// Enumeration of upgrade types
       enum Enum
       {
         Terran_Infantry_Armor   = 0,
@@ -78,6 +79,7 @@ namespace BWAPI
   class UpgradeType : public Type<UpgradeType, UpgradeTypes::Enum::Unknown>
   {
   public:
+    /// @copydoc Type::Type(int)
     UpgradeType(int id = UpgradeTypes::Enum::None);
 
     /** Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace()

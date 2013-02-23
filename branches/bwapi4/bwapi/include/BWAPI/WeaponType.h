@@ -13,6 +13,7 @@ namespace BWAPI
     /// Enumeration of weapon types
     namespace Enum
     {
+      /// Enumeration of weapon types
       enum Enum
       {
         Gauss_Rifle = 0,
@@ -136,6 +137,7 @@ namespace BWAPI
   class WeaponType : public Type<WeaponType, WeaponTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       WeaponType(int id = WeaponTypes::Enum::None);
 
       /** Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if
@@ -200,13 +202,22 @@ namespace BWAPI
   /// namespace containing weapon types
   namespace WeaponTypes
   {
-    /** Returns the set of all the WeaponTypes. */
+    /// Retrieves the set of all weapon types. This is a union between the normalWeaponTypes and
+    /// specialWeaponTypes.
+    ///
+    /// @returns set consisting of all weapon types.
     const WeaponType::set& allWeaponTypes();
 
-    /** Returns the set of all normal weapons in WeaponTypes. */
+    /// Retrieves the set of all normal weapon types. This set contains all weapons that are
+    /// not used for abilities.
+    ///
+    /// @returns constant set consisting of all normal weapon types.
     const WeaponType::const_set& normalWeaponTypes();
 
-    /** Returns the set of all special weapons in WeaponTypes. */
+    /// Retrieves the set of all special weapon types. This set contains all weapons that are
+    /// used exclusively for special unit abilities.
+    ///
+    /// @returns constant set consisting of all special weapon types.
     const WeaponType::const_set& specialWeaponTypes();
 
 #ifdef BWAPI_DECL

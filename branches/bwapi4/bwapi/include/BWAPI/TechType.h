@@ -13,6 +13,7 @@ namespace BWAPI
     /// Enumeration of Tech Types
     namespace Enum
     {
+      /// Enumeration of Tech Types
       enum Enum
       {
         Stim_Packs = 0,
@@ -61,6 +62,7 @@ namespace BWAPI
   class TechType : public Type<TechType, TechTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       TechType(int id = TechTypes::Enum::None);
 
       /** Returns the race that uses the TechType. For example, TechTypes::Scanner_Sweep?.getRace() will

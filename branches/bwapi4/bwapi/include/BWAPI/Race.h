@@ -10,6 +10,7 @@ namespace BWAPI
     /// Enumeration of races
     namespace Enum
     {
+      /// Enumeration of races
       enum Enum
       {
         Zerg = 0,
@@ -34,6 +35,7 @@ namespace BWAPI
   class Race : public Type<Race, Races::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       Race(int id = Races::Enum::None);
 
       /// Retrieves the default worker type for this Race.

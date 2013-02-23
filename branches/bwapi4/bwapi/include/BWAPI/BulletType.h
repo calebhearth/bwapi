@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of bullet types
     namespace Enum
     {
+      /// Enumeration of bullet types
       enum Enum
       {
         Melee = 0,
@@ -61,6 +62,7 @@ namespace BWAPI
   class BulletType : public Type<BulletType, BulletTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       BulletType(int id = BulletTypes::Enum::None);
   };
 

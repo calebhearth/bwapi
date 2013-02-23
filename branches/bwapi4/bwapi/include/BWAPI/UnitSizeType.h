@@ -10,6 +10,7 @@ namespace BWAPI
     /// Enumeration of unit size types
     namespace Enum
     {
+      /// Enumeration of unit size types
       enum Enum
       {
         Independent = 0,
@@ -25,6 +26,7 @@ namespace BWAPI
   class UnitSizeType : public Type<UnitSizeType, UnitSizeTypes::Enum::Unknown>
   {
   public:
+    /// @copydoc Type::Type(int)
     UnitSizeType(int id = UnitSizeTypes::Enum::None);
   };
   /// Namespace containing unit size types

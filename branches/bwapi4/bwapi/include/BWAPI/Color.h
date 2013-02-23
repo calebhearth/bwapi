@@ -12,7 +12,8 @@ namespace BWAPI
     public:
       /// A constructor that uses the color at the specified palette index.
       ///
-      /// @param id The index of the color in the palette.
+      /// @param id 
+      ///   The index of the color in the 256-color palette.
       Color(int id = 0);
 
       /// A constructor that uses the color index in the palette that is closest to the given rgb
@@ -85,6 +86,7 @@ namespace BWAPI
   /// Game::printf, and Broodwar::operator<<
   namespace Text
   {
+    // Enumeration of text formatting codes
     enum Enum
     {
       /// Uses the previous color that was specified before the current one.
@@ -170,7 +172,15 @@ namespace BWAPI
       Turquoise    = 31
     };
 
+    /// Standard output stream operator for text formatting codes. This is used to correctly
+    /// format the codes for output.
+    ///
+    /// @param out
+    ///   Reference to destination output stream.
+    /// @param t
+    ///   Reference to the Text formatting code to insert into the output stream.
+    ///
+    /// @returns Reference to the \p out parameter that was passed in.
     std::ostream &operator << (std::ostream &out, const Text::Enum &t);
-
   }
 }

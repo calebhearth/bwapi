@@ -8,6 +8,7 @@ namespace BWAPI
     /// Enumeration of explosion types
     namespace Enum
     {
+      /// Enumeration of explosion types
       enum Enum
       {
         None = 0,
@@ -43,6 +44,7 @@ namespace BWAPI
   class ExplosionType : public Type<ExplosionType, ExplosionTypes::Enum::Unknown>
   {
     public:
+      /// @copydoc Type::Type(int)
       ExplosionType(int id = ExplosionTypes::Enum::None);
   };
   /// Namespace containing explosion types

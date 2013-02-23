@@ -45,36 +45,40 @@ namespace BWAPI
     };
   };
 
-
+  /// Base class for all BWAPI Types.
   template<class _T, int __unk>
   class Type
   {
   protected:
-    int id;
+    /// Primitive storage unit for the type identifier
+    int tid;
 
+    /// Array of strings containing the type names.
     static const std::string typeNames[__unk+1];
     
   public:
-    // Constructor
-    explicit Type(int _id) : id( _id < 0 || _id > __unk ? __unk : _id ) {};
+    /// Expected type constructor. If the type is an invalid type, then it becomes Types::Unknown.
+    /// A type is invalid if its value is less than 0 or greater than Types::Unknown.
+    ///
+    /// @param id (optional)
+    ///   The id that corresponds to this type. It is typically an integer value that corresponds
+    ///   to an internal Broodwar type. If the given id is invalid, then it becomes Types::Unknown.
+    ///   If it is omitted, then it becomes Types::None.
+    explicit Type(int id) : tid( id < 0 || id > __unk ? __unk : id ) {};
     
-    // Types
+    /// The set that contains the current type.
     typedef Typeset<_T> set;
+
+    /// The constant set that contains the current type.
     typedef ConstVectorset<_T> const_set;
 
-    // Operators
-    operator int() const { return this->id; };
-    set operator |(const _T &other) const
-    {
-      set rset(this->id);
-      rset.insert(other);
-      return rset;
-    };
+    /// Conversion/convenience operator to convert this type to its primitive type.
+    inline operator int() const { return this->tid; };
 
     /// Retrieves this type's identifier.
     ///
     /// @returns An integer representation of this type.
-    int getID() const { return this->id; };
+    inline int getID() const { return this->tid; };
 
     /// Checks if the current type has a valid identifier. The purpose of this function is to
     /// prevent buffer overflows if a type has been handled improperly.
@@ -83,34 +87,34 @@ namespace BWAPI
     ///
     /// @retval true If this type is valid.
     /// @retval false if this type is invalid.
-    bool isValid() const { return this->id >= 0 && this->id <= __unk; };
+    inline bool isValid() const { return this->tid >= 0 && this->tid <= __unk; };
 
     /// Retrieves the variable name of the type.
     ///
     /// @returns Reference to std::string object containing the name.
-    const std::string &getName() const
+    inline const std::string &getName() const
     {
-      return typeNames[this->isValid() ? this->id : __unk];
+      return typeNames[this->isValid() ? this->tid : __unk];
     };
 
     /// @copydoc Type::getName
-    const std::string &toString() const
+    inline const std::string &toString() const
     {
       return this->getName();
     };
 
-    /// Retrieves the variable name of the type as a c-style string.
-    /// Meant to be a convenience member.
+    /// Retrieves the variable name of the type as a c-style string. Meant to be a convenience
+    /// member.
     ///
     /// @returns Pointer to constant c-style string containing the name.
-    const char *c_str() const
+    inline const char *c_str() const
     {
       return this->getName().c_str();
     };
 
     /// Output stream operator overload. Allows printing of the type without calling
     /// Type::getName.
-    friend std::ostream &operator << (std::ostream &out, const Type<_T,__unk> &t)
+    friend inline std::ostream &operator << (std::ostream &out, const Type<_T,__unk> &t)
     {
       return out << t.getName();
     };
@@ -121,6 +125,7 @@ namespace BWAPI
     ///     A string containing the name of the type.
     ///
     /// @returns The type that resolves to the given name.
+    /// @TODO: Test. This may be incorrect.
     static _T getType(const std::string &name)
     {
       for ( int i = 0; i < __unk; ++i )

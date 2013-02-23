@@ -5,13 +5,13 @@
 namespace BWAPI
 {
   class UnitType;
- // class Error;
 
   namespace Errors
   {
     /// Enumeration of Error types
     namespace Enum
     {
+      /// Enumeration of Error types
       enum Enum
       {
         Unit_Does_Not_Exist,
@@ -54,6 +54,7 @@ namespace BWAPI
   class Error : public Type<Error, Errors::Enum::Unknown>
   {
   public:
+    /// @copydoc Type::Type(int)
     Error(int id = Errors::Enum::None);
   };
 

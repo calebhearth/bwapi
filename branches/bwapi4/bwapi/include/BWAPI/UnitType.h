@@ -18,6 +18,7 @@ namespace BWAPI
     /// Enumeration of unit types
     namespace Enum
     {
+      /// Enumeration of unit types
       enum Enum
       {
         Terran_Marine = 0,
@@ -266,6 +267,7 @@ namespace BWAPI
   class UnitType : public Type<UnitType, UnitTypes::Enum::Unknown>
   {
   public:
+    /// @copydoc Type::Type(int)
     UnitType(int id = UnitTypes::Enum::None);
 
     /** Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return
@@ -558,15 +560,25 @@ namespace BWAPI
   namespace UnitTypes
   {
     /// Retrieves the maximum unit width from the set of all units.
+    ///
+    /// @returns The maximum width of any unit, in pixels.
     int maxUnitWidth();
     
     /// Retrieves the maximum unit height from the set of all units.
+    ///
+    /// @returns The maximum height of any unit, in pixels.
     int maxUnitHeight();
 
-    /** Returns the set of all the UnitTypes. */
+    /// Retrieves the set of all unit types.
+    ///
+    /// @returns A constant set of all available unit types.
     const UnitType::const_set& allUnitTypes();
 
-    /** Returns the set of all the MacroTypes. */
+    /// Retrieves the set of all macro unit types. A macro type is a fake unit type, used by some
+    /// functions. These include #AllUnits, #Men, #Buildings, and #Factories. The purpose of these
+    /// types are to match the same ones used in Broodwar, also seen in the StarEdit map editor.
+    ///
+    /// @returns A constant set of all macro unit types.
     const UnitType::const_set& allMacroTypes();
 
 #ifdef BWAPI_DECL
