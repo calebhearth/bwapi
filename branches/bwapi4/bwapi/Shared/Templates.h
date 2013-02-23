@@ -492,6 +492,9 @@ namespace BWAPI
       if ( !thisUnit->getType().canMove() && !thisUnit->isInWeaponRange(targetUnit) )
         return Broodwar->setLastError(Errors::Out_Of_Range);
 
+      if ( targetUnit == thisUnit )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
+
       return true;
     }
     //------------------------------------------- CAN BUILD --------------------------------------------------
@@ -1007,6 +1010,9 @@ namespace BWAPI
       if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
         return false;
 
+      if ( targetUnit == thisUnit )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
+
       return true;
     }
     //------------------------------------------- CAN GATHER -------------------------------------------------
@@ -1141,6 +1147,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !targetUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( targetUnit == thisUnit )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
 
       return true;
     }
