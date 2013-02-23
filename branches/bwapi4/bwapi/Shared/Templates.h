@@ -1048,6 +1048,9 @@ namespace BWAPI
       if ( !targetUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
+      if ( uType.isRefinery() && targetUnit->getPlayer() != Broodwar->self() )
+        return Broodwar->setLastError(Errors::Unit_Not_Owned);
+
       return true;
     }
     //------------------------------------------- CAN RETURN CARGO -------------------------------------------
