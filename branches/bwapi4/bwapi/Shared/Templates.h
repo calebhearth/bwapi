@@ -1126,8 +1126,12 @@ namespace BWAPI
         return false;
 
       UnitType targType = targetUnit->getType();
-      if ( targType.getRace()  != BWAPI::Races::Terran || !targType.isMechanical() )
+      if ( targType.getRace() != BWAPI::Races::Terran || !targType.isMechanical() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( targetUnit->getHitPoints() == targType.maxHitPoints() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( !targetUnit->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
