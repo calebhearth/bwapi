@@ -24,57 +24,7 @@ namespace BWAPI
   {
     MemZero(data);
     resetResources();
-    if ( index < 12 )
-    {
-      self->color = BW::BWDATA::PlayerColors[index];
-      switch ( BW::BWDATA::PlayerColors[index] )
-      {
-      case 111: // red
-        self->colorByte = 0x08;
-        break;
-      case 165: // blue
-        self->colorByte = 0x0E;
-        break;
-      case 159: // teal
-        self->colorByte = 0x0F;
-        break;
-      case 164: // purp
-        self->colorByte = 0x10;
-        break;
-      case 179: // oj
-        self->colorByte = 0x11;
-        break;
-      case 19:  // brown
-        self->colorByte = 0x15;
-        break;
-      case 84:  // white
-        self->colorByte = 0x16;
-        break;
-      case 135: // yellow
-        self->colorByte = 0x17;
-        break;
-      case 185: // green p9
-        self->colorByte = 0x18;
-        break;
-      case 136: // p10
-        self->colorByte = 0x19;
-        break;
-      case 134: // p11
-        self->colorByte = 0x1B;
-        break;
-      case 51:  // p12
-        self->colorByte = 0x1C;
-        break;
-      default:
-        self->colorByte = 2;
-        break;
-      }
-    }
-    else
-    {
-      self->color     = 0;
-      self->colorByte = 0x02;
-    }
+    self->color = index < 12 ? BW::BWDATA::PlayerColors[index] : Colors::Black;
   }
   //--------------------------------------------- DESTRUCTOR -------------------------------------------------
   PlayerImpl::~PlayerImpl()
@@ -187,58 +137,8 @@ namespace BWAPI
   //--------------------------------------------- UPDATE -----------------------------------------------------
   void PlayerImpl::updateData()
   { 
-    if ( index < 12 )
-    {
-      self->color = BW::BWDATA::PlayerColors[index];
-      switch ( BW::BWDATA::PlayerColors[index] )
-      {
-      case 111: // red
-        self->colorByte = 0x08;
-        break;
-      case 165: // blue
-        self->colorByte = 0x0E;
-        break;
-      case 159: // teal
-        self->colorByte = 0x0F;
-        break;
-      case 164: // purp
-        self->colorByte = 0x10;
-        break;
-      case 156: // oj
-        self->colorByte = 0x11;
-        break;
-      case 19:  // brown
-        self->colorByte = 0x15;
-        break;
-      case 84:  // white
-        self->colorByte = 0x16;
-        break;
-      case 135: // yellow
-        self->colorByte = 0x17;
-        break;
-      case 185: // green p9
-        self->colorByte = 0x18;
-        break;
-      case 136: // p10
-        self->colorByte = 0x19;
-        break;
-      case 134: // p11
-        self->colorByte = 0x1B;
-        break;
-      case 51:  // p12
-        self->colorByte = 0x1C;
-        break;
-      default:
-        self->colorByte = 2;
-        break;
-      }
-    }
-    else
-    {
-      self->color     = 0;
-      self->colorByte = 0x02;
-    }
-
+    self->color = index < 12 ? BW::BWDATA::PlayerColors[index] : Colors::Black;
+  
     // Get upgrades, tech, resources
     if ( this->isNeutral() || 
          (!BroodwarImpl._isReplay() && 

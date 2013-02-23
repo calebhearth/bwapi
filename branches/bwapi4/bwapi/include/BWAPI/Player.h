@@ -214,7 +214,7 @@ namespace BWAPI
     virtual int completedUnitCount(UnitType unit) const = 0;
 
     /** Returns the number of incomplete units of the given type. */
-    virtual int incompleteUnitCount(UnitType unit) const = 0;
+    int incompleteUnitCount(UnitType unit) const;
 
     /** Returns the number of dead units of the given type. */
     virtual int deadUnitCount(UnitType unit) const = 0;
@@ -242,22 +242,22 @@ namespace BWAPI
     virtual BWAPI::Color getColor() const = 0;
 
     /** Returns the color of the player for text messages */
-    virtual char getTextColor() const = 0;
+    char getTextColor() const;
 
     /** Returns the max energy of the given unit type, taking into account upgrades */
-    virtual int maxEnergy(UnitType unit) const = 0;
+    int maxEnergy(UnitType unit) const;
 
     /** Returns the top speed of the given unit type, includes upgrades */
-    virtual double topSpeed(UnitType unit) const = 0;
+    double topSpeed(UnitType unit) const;
 
     /** Returns the max range of the given weapon with upgrades */
-    virtual int weaponMaxRange(WeaponType weapon) const = 0;
+    int weaponMaxRange(WeaponType weapon) const;
 
     /** Returns the sight range of the given unit type, includes upgrades */
-    virtual int sightRange(UnitType unit) const = 0 ;
+    int sightRange(UnitType unit) const;
 
     /** Returns the ground weapon cooldown of the given unit type, includes upgrades */
-    virtual int groundWeaponDamageCooldown(UnitType unit) const = 0;
+    int groundWeaponDamageCooldown(UnitType unit) const;
 
     /// Calculates the armor that a given unit type will have, including upgrades.
     ///
@@ -265,7 +265,7 @@ namespace BWAPI
     ///   The unit type to calculate armor for, using the current player's upgrades.
     ///
     /// @returns The amount of armor that the unit will have with the player's upgrades.
-    virtual int armor(UnitType unit) const = 0;
+    int armor(UnitType unit) const;
 
     /// Calculates the damage that a given weapon type can deal, including upgrades.
     ///
@@ -273,7 +273,7 @@ namespace BWAPI
     ///   The weapon type to calculate for.
     ///
     /// @returns The amount of damage that the weapon deals with this player's upgrades.
-    virtual int damage(WeaponType wpn) const = 0;
+    int damage(WeaponType wpn) const;
 
     /** Returns the Player's Total Unit Score */
     virtual int getUnitScore() const = 0;
@@ -294,7 +294,7 @@ namespace BWAPI
     virtual bool isObserver() const = 0;
 
     /** Returns the maximum upgrades available specific to the player (Use Map Settings). */
-    virtual int  getMaxUpgradeLevel(UpgradeType upgrade) const = 0;
+    virtual int getMaxUpgradeLevel(UpgradeType upgrade) const = 0;
 
     /** Returns true if the research is available for the player to research (Use Map Settings). */
     virtual bool isResearchAvailable(TechType tech) const = 0;

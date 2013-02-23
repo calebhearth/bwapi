@@ -89,6 +89,9 @@
     <ClCompile Include="Source\Filters.cpp">
       <Filter>Filters</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\BWAPI\Event.h" />

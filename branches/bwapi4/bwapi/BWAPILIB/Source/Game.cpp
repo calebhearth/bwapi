@@ -31,16 +31,12 @@ namespace BWAPI
     {  0,   0,   0,   0,   0,   0 }, // None
     {  0,   0,   0,   0,   0,   0 }  // Unknown
   };
-  int Game::getDamageFrom(UnitType fromType, UnitType toType, Player *fromPlayer, Player *toPlayer) const
+  int getDamageFromImpl(UnitType fromType, UnitType toType, Player *fromPlayer, Player *toPlayer)
   {
     // Retrieve appropriate weapon
     WeaponType wpn = toType.isFlyer() ? fromType.airWeapon() : fromType.groundWeapon();
     if ( wpn == WeaponTypes::None || wpn == WeaponTypes::Unknown )
       return 0;
-
-    // Get self if fromPlayer not provided
-    if ( toPlayer == nullptr )
-      toPlayer = this->self();
 
     // Get initial weapon damage
     int dmg = fromPlayer ? fromPlayer->damage(wpn) : wpn.damageAmount() * wpn.damageFactor();
@@ -51,25 +47,21 @@ namespace BWAPI
     
     return dmg * damageRatio[wpn.damageType()][toType.size()] / 256;
   }
+  int Game::getDamageFrom(UnitType fromType, UnitType toType, Player *fromPlayer, Player *toPlayer) const
+  {
+    // Get self if toPlayer not provided
+    if ( toPlayer == nullptr )
+      toPlayer = this->self();
+
+    return getDamageFromImpl(fromType, toType, fromPlayer, toPlayer);
+  }
   int Game::getDamageTo(UnitType toType, UnitType fromType, Player *toPlayer, Player *fromPlayer) const
   {
-    // Retrieve appropriate weapon
-    WeaponType wpn = toType.isFlyer() ? fromType.airWeapon() : fromType.groundWeapon();
-    if ( wpn == WeaponTypes::None || wpn == WeaponTypes::Unknown )
-      return 0;
-
     // Get self if fromPlayer not provided
     if ( fromPlayer == nullptr )
       fromPlayer = this->self();
 
-    // Get initial weapon damage
-    int dmg = fromPlayer ? fromPlayer->damage(wpn) : wpn.damageAmount() * wpn.damageFactor();
-
-    // If we need to calculate using armor
-    if ( wpn.damageType() != DamageTypes::Ignore_Armor && toPlayer != nullptr )
-      dmg -= std::min(dmg, toPlayer->armor(toType));
-    
-    return dmg * damageRatio[wpn.damageType()][toType.size()] / 256;
+    return getDamageFromImpl(fromType, toType, fromPlayer, toPlayer);
   }
   //-------------------------------------- BUILD LOCATION --------------------------------------------
 #define MAX_RANGE 64

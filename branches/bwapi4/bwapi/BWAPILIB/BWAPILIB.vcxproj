@@ -123,6 +123,7 @@ COPY /y "$(OutDir)$(TargetName)$(TargetExt)" "..\lib\BWAPId.lib"</Command>
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GameType.cpp" />
     <ClCompile Include="Source\Order.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Playerset.cpp" />
     <ClCompile Include="Source\PlayerType.cpp" />
     <ClCompile Include="Source\Position.cpp" />

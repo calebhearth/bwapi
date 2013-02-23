@@ -358,7 +358,6 @@ namespace BWAPI
       p->type  = i->getType();
       p->force = getForceID(i->getForce());
       p->color = p2->color;
-      p->colorByte = p2->colorByte;
 
       for(int j = 0; j < 12; ++j)
       {

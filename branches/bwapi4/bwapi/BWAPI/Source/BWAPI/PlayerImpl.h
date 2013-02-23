@@ -62,7 +62,6 @@ namespace BWAPI
       virtual int  allUnitCount(UnitType unit) const override;
       virtual int  visibleUnitCount(UnitType unit) const override;
       virtual int  completedUnitCount(UnitType unit) const override;
-      virtual int  incompleteUnitCount(UnitType unit) const override;
       virtual int  deadUnitCount(UnitType unit) const override;
       virtual int  killedUnitCount(UnitType unit) const override;
 
@@ -72,15 +71,6 @@ namespace BWAPI
       virtual bool isUpgrading(UpgradeType upgrade) const override;
 
       virtual BWAPI::Color getColor() const override;
-      virtual char getTextColor() const override;
-
-      virtual int maxEnergy(UnitType unit) const override;
-      virtual double topSpeed(UnitType unit) const override;
-      virtual int weaponMaxRange(WeaponType weapon) const override;
-      virtual int sightRange(UnitType unit) const override;
-      virtual int groundWeaponDamageCooldown(UnitType unit) const override;
-      virtual int armor(UnitType unit) const override;
-      virtual int damage(WeaponType wpn) const override;
 
       virtual int getUnitScore() const override;
       virtual int getKillScore() const override;
