@@ -114,7 +114,7 @@ void BuildTest::update()
   if (finishingBuilding==true)
   {
     FAILTEST(builder!=NULL);
-    if (builder->isIdle()==false && unitType.isRefinery())
+    if (builder->isIdle()==false && unitType.isRefinery() && builder->getType().getRace()!=Races::Zerg)
     {
       FAILTEST(builder->isIdle()==false);
       builder->stop();
@@ -130,14 +130,7 @@ void BuildTest::update()
       {
         if (thisFrame<finishFrame+8 && builder->getType().getRace()==Races::Zerg)
         {
-          if (unitType == UnitTypes::Zerg_Extractor)
-          {
-            FAILTEST(builder->isIdle()==true);
-          }
-          else
-          {
-            FAILTEST(builder->isIdle()==false);
-          }
+          FAILTEST(builder->isIdle()==false);
         }
         else
         {
