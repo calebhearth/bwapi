@@ -536,7 +536,6 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->isConstructing() ||
            !thisUnit->isCompleted()   ||
-           (thisUnit->getType().isFlyingBuilding() && thisUnit->isLifted()) ||
            (thisUnit->getType().isBuilding() && !thisUnit->isIdle()) )
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->isHallucination() )
