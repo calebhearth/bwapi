@@ -413,6 +413,21 @@ namespace BWAPI
         }
       }
 
+      UnitType uType = thisUnit->getType();
+      if ( uType == UnitTypes::Protoss_Interceptor ||
+           uType == UnitTypes::Terran_Vulture_Spider_Mine ||
+           uType == UnitTypes::Spell_Scanner_Sweep )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isCompleted() &&
+           ( uType == UnitTypes::Protoss_Pylon ||
+             uType == UnitTypes::Terran_Supply_Depot ||
+             uType.isResourceContainer() ||
+             uType == UnitTypes::Protoss_Shield_Battery ||
+             uType == UnitTypes::Terran_Nuclear_Missile ||
+             uType.isPowerup() ||
+             ( uType.isSpecialBuilding() && !uType.isFlagBeacon() ) ) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
       return Broodwar->setLastError();
     }
     //------------------------------------------- CAN TARGET -------------------------------------------------
