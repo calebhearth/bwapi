@@ -1145,6 +1145,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
@@ -1191,6 +1193,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !thisUnit->isCarryingGas() && !thisUnit->isCarryingMinerals() )
         return Broodwar->setLastError(Errors::Insufficient_Ammo);
+      if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
@@ -1224,6 +1228,8 @@ namespace BWAPI
         return false;
 
       if ( !thisUnit->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->isBurrowed() && thisUnit->getType() != UnitTypes::Zerg_Lurker )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() &&
            thisUnit->getType() != UnitTypes::Protoss_Photon_Cannon &&
@@ -1429,6 +1435,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unit_Busy);
       if ( thisUnit->getType() == UnitTypes::Zerg_Overlord && Broodwar->self()->getUpgradeLevel(UpgradeTypes::Ventral_Sacs) == 0 )
         return Broodwar->setLastError(Errors::Insufficient_Tech);
+      if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
         return Broodwar->setLastError(Errors::Unit_Busy);
 
@@ -1467,6 +1475,8 @@ namespace BWAPI
       if ( unitToBeLoaded->getType().canMove() == false || unitToBeLoaded->getType().isFlyer() || unitToBeLoaded->getType().spaceRequired() > 8 )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( !unitToBeLoaded->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( unitToBeLoaded->isBurrowed() )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
       const BWAPI::Unit* unitThatLoads = ( thisUnitSpaceProvided > 0 ? thisUnit : targetUnit );
