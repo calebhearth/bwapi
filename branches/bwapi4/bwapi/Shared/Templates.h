@@ -1422,6 +1422,9 @@ namespace BWAPI
       if ( !targetUnit->isLoaded() )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
+      if ( targetUnit->getTransport() != thisUnit )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
+
       return true;
     }
     //------------------------------------------- CAN UNLOAD ALL ---------------------------------------------
