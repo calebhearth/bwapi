@@ -427,6 +427,10 @@ namespace BWAPI
              uType.isPowerup() ||
              ( uType.isSpecialBuilding() && !uType.isFlagBeacon() ) ) )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( !thisUnit->isCompleted() &&
+           !uType.isBuilding() &&
+           !thisUnit->isMorphing() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return Broodwar->setLastError();
     }
