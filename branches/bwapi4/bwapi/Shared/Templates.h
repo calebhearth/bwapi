@@ -878,8 +878,6 @@ namespace BWAPI
 
       if ( thisUnit->isLifted() || !thisUnit->isIdle() || !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -930,8 +928,6 @@ namespace BWAPI
 
       if ( thisUnit->isLifted() || !thisUnit->isIdle() || !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->isHallucination() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
@@ -1654,7 +1650,7 @@ namespace BWAPI
            !canAttackUnit(thisUnit, targetUnit, false, true, false) &&
            !canLoad(thisUnit, targetUnit, false, true, false) &&
            !canSetRallyUnit(thisUnit, targetUnit, false, true, false) )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1667,7 +1663,7 @@ namespace BWAPI
         return false;
 
       if ( thisUnit->getOrder() != Orders::ConstructingBuilding )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1682,8 +1678,8 @@ namespace BWAPI
       if ( !thisUnit->getType().isBuilding() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
-      if ( thisUnit->isCompleted() || (!thisUnit->isCompleted() && thisUnit->getType() == UnitTypes::Zerg_Nydus_Canal && thisUnit->getNydusExit()) )
-        return false;
+      if ( thisUnit->isCompleted() || (thisUnit->getType() == UnitTypes::Zerg_Nydus_Canal && thisUnit->getNydusExit()) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1709,7 +1705,7 @@ namespace BWAPI
         return false;
 
       if ( !thisUnit->isTraining() )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1729,7 +1725,7 @@ namespace BWAPI
         return false;
 
       if ( !thisUnit->isTraining() || (thisUnit->getTrainingQueue().size() <= (unsigned int)slot && slot >= 0) )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1742,7 +1738,7 @@ namespace BWAPI
         return false;
 
       if ( !thisUnit->isMorphing() || (!thisUnit->isCompleted() && thisUnit->getType() == UnitTypes::Zerg_Nydus_Canal && thisUnit->getNydusExit()) )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->isHallucination() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
@@ -1757,7 +1753,7 @@ namespace BWAPI
         return false;
 
       if ( thisUnit->getOrder() != Orders::ResearchTech )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1770,7 +1766,7 @@ namespace BWAPI
         return false;
 
       if ( thisUnit->getOrder() != Orders::Upgrade )
-        return false;
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
