@@ -675,17 +675,29 @@ namespace BWAPI
   {
     std::vector< BWAPI::Unitset > groupsOf12;
     BWAPI::Unitset nextGroup(12);
+    bool canIssueIndividually = false;
 
     // Iterate the set of units
     foreach(UnitImpl* u, units)
     {
       // Skip on invalid units that can't issue commands
-      if ( !u || !u->exists() || !u->canIssueCommand(command) )
+      if ( !u || !u->exists() )
         continue;
-      
+
+      // If unit can't issue the command while grouped (e.g. if it is a building) then try to issue
+      // it individually instead.
+      if ( !u->canIssueCommandGrouped(command) )
+      {
+        u->issueCommand(command);
+        continue;
+      }
+
       // If the command optimizer has taken over the command, then don't add it to this group
       if ( u->prepareIssueCommand(command) )
         continue;
+
+      if ( !canIssueIndividually && u->canIssueCommand(command) )
+        canIssueIndividually = true;
 
       // Insert the unit into the next group
       nextGroup.push_back(u);
@@ -693,14 +705,31 @@ namespace BWAPI
       // Create a new group of 12
       if ( nextGroup.size() >= 12 )
       {
-        groupsOf12.push_back(nextGroup);
+        if ( canIssueIndividually )
+          groupsOf12.push_back(nextGroup);
+        else
+        {
+          // None of the units can issue the command individually, so force all units to try to issue it individually.
+          foreach(UnitImpl* unitGrouped, nextGroup)
+            unitGrouped->issueCommand(command);
+        }
         nextGroup.clear();
+        canIssueIndividually = false;
       }
     }
 
     // Insert the last group into the groups of 12, if it is an incomplete group
     if ( !nextGroup.empty() )
-      groupsOf12.push_back(nextGroup);
+    {
+      if ( canIssueIndividually )
+        groupsOf12.push_back(nextGroup);
+      else
+      {
+        // None of the units can issue the command individually, so force all units to issue it individually.
+        foreach(UnitImpl* unitGrouped, nextGroup)
+          unitGrouped->issueCommand(command);
+      }
+    }
 
     // Return if no units to command
     if ( groupsOf12.empty() )

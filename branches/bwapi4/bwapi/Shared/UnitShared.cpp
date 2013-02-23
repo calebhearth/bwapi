@@ -643,6 +643,10 @@ namespace BWAPI
   {
     return Templates::canCommand(this);
   }
+  bool UnitImpl::canCommandGrouped(bool checkCommandibility) const
+  {
+    return Templates::canCommandGrouped(this, checkCommandibility);
+  }
   //--------------------------------------------- CAN TARGET UNIT --------------------------------------------
   bool UnitImpl::canTargetUnit(const Unit* targetUnit, bool checkCommandibility) const
   {
@@ -653,6 +657,10 @@ namespace BWAPI
   {
     return Templates::canAttackMove(this, checkCommandibility);
   }
+  bool UnitImpl::canAttackMoveGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canAttackMoveGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
   //--------------------------------------------- CAN ATTACK UNIT --------------------------------------------
   bool UnitImpl::canAttackUnit(bool checkCommandibility) const
   {
@@ -661,6 +669,14 @@ namespace BWAPI
   bool UnitImpl::canAttackUnit(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
   {
     return Templates::canAttackUnit(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canAttackUnitGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canAttackUnitGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
+  bool UnitImpl::canAttackUnitGrouped(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canAttackUnitGrouped(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibilityGrouped, checkCommandibility);
   }
   //--------------------------------------------- CAN BUILD --------------------------------------------------
   bool UnitImpl::canBuild(bool checkCommandibility) const
@@ -739,10 +755,18 @@ namespace BWAPI
   {
     return Templates::canMove(this, checkCommandibility);
   }
+  bool UnitImpl::canMoveGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canMoveGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
   //--------------------------------------------- CAN PATROL -------------------------------------------------
   bool UnitImpl::canPatrol(bool checkCommandibility) const
   {
     return Templates::canPatrol(this, checkCommandibility);
+  }
+  bool UnitImpl::canPatrolGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canPatrolGrouped(this, checkCommandibilityGrouped, checkCommandibility);
   }
   //--------------------------------------------- CAN FOLLOW -------------------------------------------------
   bool UnitImpl::canFollow(bool checkCommandibility) const
@@ -772,10 +796,18 @@ namespace BWAPI
   {
     return Templates::canHoldPosition(this, checkCommandibility);
   }
+  bool UnitImpl::canHoldPositionGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canHoldPositionGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
   //--------------------------------------------- CAN STOP ---------------------------------------------------
   bool UnitImpl::canStop(bool checkCommandibility) const
   {
     return Templates::canStop(this, checkCommandibility);
+  }
+  bool UnitImpl::canStopGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canStopGrouped(this, checkCommandibilityGrouped, checkCommandibility);
   }
   //--------------------------------------------- CAN REPAIR -------------------------------------------------
   bool UnitImpl::canRepair(bool checkCommandibility) const
@@ -875,6 +907,10 @@ namespace BWAPI
   {
     return Templates::canRightClickPosition(this, checkCommandibility);
   }
+  bool UnitImpl::canRightClickPositionGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canRightClickPositionGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
   //--------------------------------------------- CAN RIGHT CLICK UNIT ---------------------------------------
   bool UnitImpl::canRightClickUnit(bool checkCommandibility) const
   {
@@ -883,6 +919,14 @@ namespace BWAPI
   bool UnitImpl::canRightClickUnit(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
   {
     return Templates::canRightClickUnit(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canRightClickUnitGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canRightClickUnitGrouped(this, checkCommandibilityGrouped, checkCommandibility);
+  }
+  bool UnitImpl::canRightClickUnitGrouped(Unit* targetUnit, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canRightClickUnitGrouped(this, targetUnit, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibilityGrouped, checkCommandibility);
   }
   //--------------------------------------------- CAN HALT CONSTRUCTION --------------------------------------
   bool UnitImpl::canHaltConstruction(bool checkCommandibility) const
@@ -969,9 +1013,17 @@ namespace BWAPI
   {
     return Templates::canIssueCommandType(this, ct, checkCommandibility);
   }
+  bool UnitImpl::canIssueCommandTypeGrouped(BWAPI::UnitCommandType ct, bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canIssueCommandTypeGrouped(this, ct, checkCommandibilityGrouped, checkCommandibility);
+  }
   //--------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
   bool UnitImpl::canIssueCommand(UnitCommand command, bool checkCanUseTechUnitOnUnits, bool checkCanBuildUnitType, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibility) const
   {
     return Templates::canIssueCommand(this, command, checkCanUseTechUnitOnUnits, checkCanBuildUnitType, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibility);
+  }
+  bool UnitImpl::canIssueCommandGrouped(UnitCommand command, bool checkCanUseTechUnitOnUnits, bool checkCanTargetUnit, bool checkCanIssueCommandType, bool checkCommandibilityGrouped, bool checkCommandibility) const
+  {
+    return Templates::canIssueCommandGrouped(this, command, checkCanUseTechUnitOnUnits, checkCanTargetUnit, checkCanIssueCommandType, checkCommandibilityGrouped, checkCommandibility);
   }
 }

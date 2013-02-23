@@ -9,6 +9,8 @@ namespace BWAPI
   {
     //--------------------------------------------- FORWARD DECLARATIONS -------------------------------------
     static inline bool canUseTechWithoutTarget(const Unit* thisUnit, BWAPI::TechType tech, bool checkCanIssueCommandType = true, bool checkCommandibility = true);
+    static inline bool canAttackUnit(const Unit* thisUnit, bool checkCommandibility = true);
+    static inline bool canMove(const Unit* thisUnit, bool checkCommandibility = true);
     //--------------------------------------------- HAS POWER ------------------------------------------------
     const bool bPsiFieldMask[10][16] = {
       { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
@@ -494,6 +496,18 @@ namespace BWAPI
 
       return Broodwar->setLastError();
     }
+    static inline bool canCommandGrouped(const Unit* thisUnit, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( thisUnit->getType().isBuilding() || thisUnit->getType().isCritter() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
+    }
     //------------------------------------------- CAN TARGET -------------------------------------------------
     static inline bool canTargetUnit(const Unit* targetUnit)
     {
@@ -533,17 +547,31 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
-        return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( !thisUnit->getType().canMove() )
+      if ( ( !canAttackUnit(thisUnit, false) && thisUnit->getType() != UnitTypes::Terran_Medic ) || !canMove(thisUnit, false) )
+        return false;
+
+      return true;
+    }
+    static inline bool canAttackMoveGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->getType().canMove() &&
+           thisUnit->getType() != UnitTypes::Terran_Siege_Tank_Siege_Mode &&
+           thisUnit->getType() != UnitTypes::Zerg_Cocoon &&
+           thisUnit->getType() != UnitTypes::Zerg_Lurker_Egg )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
 
       return true;
     }
     //------------------------------------------- CAN ATTACK UNIT --------------------------------------------
-    static inline bool canAttackUnit(const Unit* thisUnit, bool checkCommandibility = true)
+    static inline bool canAttackUnit(const Unit* thisUnit, bool checkCommandibility)
     {
       if ( !checkCommandibility )
         Broodwar->setLastError();
@@ -605,6 +633,71 @@ namespace BWAPI
 
       if ( thisUnit->getType() == UnitTypes::Zerg_Lurker && !thisUnit->isInWeaponRange(targetUnit) )
         return Broodwar->setLastError(Errors::Out_Of_Range);
+
+      if ( targetUnit == thisUnit )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
+
+      return true;
+    }
+    static inline bool canAttackUnitGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->isInterruptible() )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+
+      if ( !thisUnit->getType().canMove() &&
+           thisUnit->getType() != UnitTypes::Terran_Siege_Tank_Siege_Mode )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      if ( !thisUnit->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
+      if ( thisUnit->getType() == UnitTypes::Zerg_Lurker )
+      {
+        if ( !thisUnit->isBurrowed() )
+          return Broodwar->setLastError(Errors::Unable_To_Hit);
+      }
+      else if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Unable_To_Hit);
+
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+
+      return true;
+    }
+    static inline bool canAttackUnitGrouped(const Unit* thisUnit, Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandTypeGrouped = true, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( checkCanIssueCommandTypeGrouped && !canAttackUnitGrouped(thisUnit, false, false) )
+        return false;
+
+      if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
+        return false;
+
+      if ( targetUnit->isInvincible() )
+        return Broodwar->setLastError(Errors::Unable_To_Hit);
+
+      if ( thisUnit->getType() == UnitTypes::Zerg_Lurker && !thisUnit->isInWeaponRange(targetUnit) )
+        return Broodwar->setLastError(Errors::Out_Of_Range);
+
+      if ( thisUnit->getType() == UnitTypes::Zerg_Queen &&
+           ( targetUnit->getType() != UnitTypes::Terran_Command_Center ||
+             targetUnit->getHitPoints() >= 750 || targetUnit->getHitPoints() == 0 ) )
+        return Broodwar->setLastError(Errors::Invalid_Parameter);
 
       if ( targetUnit == thisUnit )
         return Broodwar->setLastError(Errors::Invalid_Parameter);
@@ -1058,7 +1151,7 @@ namespace BWAPI
       return true;
     }
     //------------------------------------------- CAN MOVE ---------------------------------------------------
-    static inline bool canMove(const Unit* thisUnit, bool checkCommandibility = true)
+    static inline bool canMove(const Unit* thisUnit, bool checkCommandibility)
     {
       if ( !checkCommandibility )
         Broodwar->setLastError();
@@ -1071,10 +1164,31 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->getType().canMove() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
         return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
+    }
+    static inline bool canMoveGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->getType().canMove() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( !thisUnit->isCompleted() && !thisUnit->isMorphing() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
@@ -1086,12 +1200,23 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
-        return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( !thisUnit->getType().canMove() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( !canMove(thisUnit, false) )
+        return false;
+
+      return true;
+    }
+    static inline bool canPatrolGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !canMoveGrouped(thisUnit, false, false) )
+        return false;
 
       return true;
     }
@@ -1103,12 +1228,8 @@ namespace BWAPI
       else if ( !canCommand(thisUnit) )
         return false;
 
-      if ( !thisUnit->getType().isBuilding() && !thisUnit->isInterruptible() )
-        return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->getType().isBuilding() && !thisUnit->isLifted() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( !thisUnit->getType().canMove() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( !canMove(thisUnit, false) )
+        return false;
 
       return true;
     }
@@ -1213,6 +1334,31 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->getType().canMove() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( !thisUnit->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
+    }
+    static inline bool canHoldPositionGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->getType().canMove() )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->isBurrowed() && thisUnit->getType() != UnitTypes::Zerg_Lurker )
+        return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
@@ -1239,6 +1385,25 @@ namespace BWAPI
            thisUnit->getType() != UnitTypes::Zerg_Sunken_Colony &&
            thisUnit->getType() != UnitTypes::Zerg_Spore_Colony &&
            thisUnit->getType() != UnitTypes::Terran_Missile_Turret )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
+        return Broodwar->setLastError(Errors::Incompatible_UnitType);
+
+      return true;
+    }
+    static inline bool canStopGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->isCompleted() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( thisUnit->isBurrowed() && thisUnit->getType() != UnitTypes::Zerg_Lurker )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
@@ -1629,6 +1794,23 @@ namespace BWAPI
 
       return true;
     }
+    static inline bool canRightClickPositionGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->isInterruptible() )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( !canMoveGrouped(thisUnit, false, false) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
+      return true;
+    }
     //------------------------------------------- CAN RIGHT CLICK UNIT ---------------------------------------
     static inline bool canRightClickUnit(const Unit* thisUnit, bool checkCommandibility = true)
     {
@@ -1668,6 +1850,52 @@ namespace BWAPI
            !canAttackUnit(thisUnit, targetUnit, false, true, false) &&
            !canLoad(thisUnit, targetUnit, false, true, false) &&
            !canSetRallyUnit(thisUnit, targetUnit, false, true, false) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
+      return true;
+    }
+    static inline bool canRightClickUnitGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( !thisUnit->isInterruptible() )
+        return Broodwar->setLastError(Errors::Unit_Busy);
+      if ( !canFollow(thisUnit, false) &&
+           !canAttackUnitGrouped(thisUnit, false, false) &&
+           !canLoad(thisUnit, false) )
+        return Broodwar->setLastError(Errors::Incompatible_State);
+
+      return true;
+    }
+    static inline bool canRightClickUnitGrouped(const Unit* thisUnit, Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      if ( checkCanIssueCommandType && !canRightClickUnitGrouped(thisUnit, false, false) )
+        return false;
+
+      if ( checkCanTargetUnit && !canTargetUnit(thisUnit, targetUnit, false) )
+        return false;
+
+      if ( !targetUnit->getPlayer()->isNeutral() && thisUnit->getPlayer()->isEnemy(targetUnit->getPlayer()) &&
+           !canAttackUnitGrouped(thisUnit, targetUnit, false, false, false, false) )
+        return false;
+
+      if ( !canFollow(thisUnit, targetUnit, false, true, false) &&
+           !canAttackUnitGrouped(thisUnit, targetUnit, false, true, false, false) &&
+           !canLoad(thisUnit, targetUnit, false, true, false) )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
@@ -2111,6 +2339,149 @@ namespace BWAPI
 
       return true;
     }
+    static inline bool canIssueCommandTypeGrouped(const Unit* thisUnit, BWAPI::UnitCommandType ct, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      switch (ct)
+      {
+        case UnitCommandTypes::Enum::Attack_Move:
+          return canAttackMoveGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Attack_Unit:
+          return canAttackUnitGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Build:
+          return false;
+
+        case UnitCommandTypes::Enum::Build_Addon:
+          return false;
+
+        case UnitCommandTypes::Enum::Train:
+          return canTrain(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Morph:
+          return canMorph(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Research:
+          return false;
+
+        case UnitCommandTypes::Enum::Upgrade:
+          return false;
+
+        case UnitCommandTypes::Enum::Set_Rally_Position:
+          return false;
+
+        case UnitCommandTypes::Enum::Set_Rally_Unit:
+          return false;
+
+        case UnitCommandTypes::Enum::Move:
+          return canMoveGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Patrol:
+          return canPatrolGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Hold_Position:
+          return canHoldPositionGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Stop:
+          return canStopGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Follow:
+          return canFollow(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Gather:
+          return canGather(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Return_Cargo:
+          return canReturnCargo(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Repair:
+          return canRepair(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Burrow:
+          return canBurrow(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Unburrow:
+          return canUnburrow(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Cloak:
+          return canCloak(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Decloak:
+          return canDecloak(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Siege:
+          return canSiege(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Unsiege:
+          return canUnsiege(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Lift:
+          return false;
+
+        case UnitCommandTypes::Enum::Land:
+          return false;
+
+        case UnitCommandTypes::Enum::Load:
+          return canLoad(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Unload:
+          return false;
+
+        case UnitCommandTypes::Enum::Unload_All:
+          return false;
+
+        case UnitCommandTypes::Enum::Unload_All_Position:
+          return canUnloadAllPosition(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Right_Click_Position:
+          return canRightClickPositionGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Right_Click_Unit:
+          return canRightClickUnitGrouped(thisUnit, false, false);
+
+        case UnitCommandTypes::Enum::Halt_Construction:
+          return canHaltConstruction(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Cancel_Construction:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Addon:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Train:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Train_Slot:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Morph:
+          return canCancelMorph(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Cancel_Research:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Upgrade:
+          return false;
+
+        case UnitCommandTypes::Enum::Use_Tech:
+        case UnitCommandTypes::Enum::Use_Tech_Unit:
+        case UnitCommandTypes::Enum::Use_Tech_Position:
+          return canUseTechWithOrWithoutTarget(thisUnit, false);
+
+        case UnitCommandTypes::Enum::Place_COP:
+          return false;
+      }
+
+      return true;
+    }
     //------------------------------------------- CAN ISSUE COMMAND ------------------------------------------
     static inline bool canIssueCommand(const Unit *thisUnit, UnitCommand c, bool checkCanUseTechUnitOnUnits = true, bool checkCanBuildUnitType = true, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true)
     {
@@ -2256,6 +2627,157 @@ namespace BWAPI
 
         case UnitCommandTypes::Enum::Place_COP:
           return canPlaceCOP(thisUnit, BWAPI::TilePosition(c.x, c.y), false, false);
+      }
+
+      return true;
+    }
+    static inline bool canIssueCommandGrouped(const Unit *thisUnit, UnitCommand c, bool checkCanUseTechUnitOnUnits = true, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
+    {
+      if ( !checkCommandibility )
+        Broodwar->setLastError();
+      else if ( !canCommand(thisUnit) )
+        return false;
+
+      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
+        return false;
+
+      BWAPI::UnitCommandType ct = c.type;
+      if ( checkCanIssueCommandType && !canIssueCommandTypeGrouped(thisUnit, ct, false, false) )
+        return false;
+
+      switch (ct)
+      {
+        case UnitCommandTypes::Enum::Attack_Move:
+          return true;
+
+        case UnitCommandTypes::Enum::Attack_Unit:
+          return canAttackUnitGrouped(thisUnit, c.target, checkCanTargetUnit, false, false, false);
+
+        case UnitCommandTypes::Enum::Build:
+          return false;
+
+        case UnitCommandTypes::Enum::Build_Addon:
+          return false;
+
+        case UnitCommandTypes::Enum::Train:
+          return canTrain(thisUnit, c.getUnitType(), false, false);
+
+        case UnitCommandTypes::Enum::Morph:
+          return canMorph(thisUnit, c.getUnitType(), false, false);
+
+        case UnitCommandTypes::Enum::Research:
+          return false;
+
+        case UnitCommandTypes::Enum::Upgrade:
+          return false;
+
+        case UnitCommandTypes::Enum::Set_Rally_Position:
+          return false;
+
+        case UnitCommandTypes::Enum::Set_Rally_Unit:
+          return false;
+
+        case UnitCommandTypes::Enum::Move:
+          return true;
+
+        case UnitCommandTypes::Enum::Patrol:
+          return true;
+
+        case UnitCommandTypes::Enum::Hold_Position:
+          return true;
+
+        case UnitCommandTypes::Enum::Stop:
+          return true;
+
+        case UnitCommandTypes::Enum::Follow:
+          return canFollow(thisUnit, c.target, checkCanTargetUnit, false, false);
+
+        case UnitCommandTypes::Enum::Gather:
+          return canGather(thisUnit, c.target, checkCanTargetUnit, false, false);
+
+        case UnitCommandTypes::Enum::Return_Cargo:
+          return true;
+
+        case UnitCommandTypes::Enum::Repair:
+          return canRepair(thisUnit, c.target, checkCanTargetUnit, false, false);
+
+        case UnitCommandTypes::Enum::Burrow:
+          return true;
+
+        case UnitCommandTypes::Enum::Unburrow:
+          return true;
+
+        case UnitCommandTypes::Enum::Cloak:
+          return true;
+
+        case UnitCommandTypes::Enum::Decloak:
+          return true;
+
+        case UnitCommandTypes::Enum::Siege:
+          return true;
+
+        case UnitCommandTypes::Enum::Unsiege:
+          return true;
+
+        case UnitCommandTypes::Enum::Lift:
+          return false;
+
+        case UnitCommandTypes::Enum::Land:
+          return false;
+
+        case UnitCommandTypes::Enum::Load:
+          return canLoad(thisUnit, c.target, checkCanTargetUnit, false, false);
+
+        case UnitCommandTypes::Enum::Unload:
+          return false;
+
+        case UnitCommandTypes::Enum::Unload_All:
+          return false;
+
+        case UnitCommandTypes::Enum::Unload_All_Position:
+          return canUnloadAllPosition(thisUnit, c.getTargetPosition(), false, false);
+
+        case UnitCommandTypes::Enum::Right_Click_Position:
+          return true;
+
+        case UnitCommandTypes::Enum::Right_Click_Unit:
+          return canRightClickUnitGrouped(thisUnit, c.target, checkCanTargetUnit, false, false, false);
+
+        case UnitCommandTypes::Enum::Halt_Construction:
+          return true;
+
+        case UnitCommandTypes::Enum::Cancel_Construction:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Addon:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Train:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Train_Slot:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Morph:
+          return true;
+
+        case UnitCommandTypes::Enum::Cancel_Research:
+          return false;
+
+        case UnitCommandTypes::Enum::Cancel_Upgrade:
+          return false;
+
+        case UnitCommandTypes::Enum::Use_Tech:
+          return canUseTechWithoutTarget(thisUnit, c.extra, false, false);
+
+        case UnitCommandTypes::Enum::Use_Tech_Unit:
+          return canUseTechUnit(thisUnit, c.extra, c.target, checkCanTargetUnit, checkCanUseTechUnitOnUnits, false, false);
+
+        case UnitCommandTypes::Enum::Use_Tech_Position:
+          return canUseTechPosition(thisUnit, c.extra, false, false);
+
+        case UnitCommandTypes::Enum::Place_COP:
+          return false;
       }
 
       return true;
