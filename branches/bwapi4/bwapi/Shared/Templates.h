@@ -551,6 +551,13 @@ namespace BWAPI
            thisUnit->getType() != UnitTypes::Protoss_Reaver && thisUnit->getType() != UnitTypes::Hero_Warbringer &&
            thisUnit->getType() != UnitTypes::Protoss_Carrier && thisUnit->getType() != UnitTypes::Hero_Gantrithor )
         return Broodwar->setLastError(Errors::Unable_To_Hit);
+      if ( thisUnit->getType() == UnitTypes::Zerg_Lurker )
+      {
+        if ( !thisUnit->isBurrowed() )
+          return Broodwar->setLastError(Errors::Unable_To_Hit);
+      }
+      else if ( thisUnit->isBurrowed() )
+        return Broodwar->setLastError(Errors::Unable_To_Hit);
       if ( !thisUnit->isCompleted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
@@ -586,6 +593,9 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Unable_To_Hit);
 
       if ( !thisUnit->getType().canMove() && !thisUnit->isInWeaponRange(targetUnit) )
+        return Broodwar->setLastError(Errors::Out_Of_Range);
+
+      if ( thisUnit->getType() == UnitTypes::Zerg_Lurker && !thisUnit->isInWeaponRange(targetUnit) )
         return Broodwar->setLastError(Errors::Out_Of_Range);
 
       if ( targetUnit == thisUnit )
