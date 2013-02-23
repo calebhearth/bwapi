@@ -1240,6 +1240,8 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( thisUnit->isLifted() )
         return Broodwar->setLastError(Errors::Incompatible_State);
+      if ( !thisUnit->isIdle() )
+        return Broodwar->setLastError(Errors::Unit_Busy);
 
       return true;
     }
