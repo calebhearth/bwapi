@@ -559,6 +559,8 @@ namespace BWAPI
 
       if ( !uType.isBuilding() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
+      if ( thisUnit->getAddon() )
+        return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
     }
