@@ -1334,29 +1334,6 @@ namespace BWAPI
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->getType().canMove() )
         return Broodwar->setLastError(Errors::Incompatible_UnitType);
-      if ( thisUnit->isBurrowed() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( !thisUnit->isCompleted() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( thisUnit->getOrder() == Orders::ConstructingBuilding )
-        return Broodwar->setLastError(Errors::Unit_Busy);
-      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
-
-      return true;
-    }
-    static inline bool canHoldPositionGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
-    {
-      if ( !checkCommandibility )
-        Broodwar->setLastError();
-      else if ( !canCommand(thisUnit) )
-        return false;
-
-      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
-        return false;
-
-      if ( !thisUnit->getType().canMove() )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
       if ( thisUnit->isBurrowed() && thisUnit->getType() != UnitTypes::Zerg_Lurker )
         return Broodwar->setLastError(Errors::Incompatible_State);
       if ( !thisUnit->isCompleted() )
@@ -1385,25 +1362,6 @@ namespace BWAPI
            thisUnit->getType() != UnitTypes::Zerg_Sunken_Colony &&
            thisUnit->getType() != UnitTypes::Zerg_Spore_Colony &&
            thisUnit->getType() != UnitTypes::Terran_Missile_Turret )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( thisUnit->getType() == UnitTypes::Zerg_Larva )
-        return Broodwar->setLastError(Errors::Incompatible_UnitType);
-
-      return true;
-    }
-    static inline bool canStopGrouped(const Unit* thisUnit, bool checkCommandibilityGrouped = true, bool checkCommandibility = true)
-    {
-      if ( !checkCommandibility )
-        Broodwar->setLastError();
-      else if ( !canCommand(thisUnit) )
-        return false;
-
-      if ( checkCommandibilityGrouped && !canCommandGrouped(thisUnit, false) )
-        return false;
-
-      if ( !thisUnit->isCompleted() )
-        return Broodwar->setLastError(Errors::Incompatible_State);
-      if ( thisUnit->isBurrowed() && thisUnit->getType() != UnitTypes::Zerg_Lurker )
         return Broodwar->setLastError(Errors::Incompatible_State);
 
       return true;
@@ -2388,10 +2346,10 @@ namespace BWAPI
           return canPatrolGrouped(thisUnit, false, false);
 
         case UnitCommandTypes::Enum::Hold_Position:
-          return canHoldPositionGrouped(thisUnit, false, false);
+          return canHoldPosition(thisUnit, false);
 
         case UnitCommandTypes::Enum::Stop:
-          return canStopGrouped(thisUnit, false, false);
+          return canStop(thisUnit, false);
 
         case UnitCommandTypes::Enum::Follow:
           return canFollow(thisUnit, false);

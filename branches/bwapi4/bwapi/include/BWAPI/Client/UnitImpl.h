@@ -173,9 +173,7 @@ namespace BWAPI
       virtual bool canGather(const Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const override;
       virtual bool canReturnCargo(bool checkCommandibility = true) const override;
       virtual bool canHoldPosition(bool checkCommandibility = true) const override;
-      virtual bool canHoldPositionGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const override;
       virtual bool canStop(bool checkCommandibility = true) const override;
-      virtual bool canStopGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const override;
       virtual bool canRepair(bool checkCommandibility = true) const override;
       virtual bool canRepair(const Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const override;
       virtual bool canBurrow(bool checkCommandibility = true) const override;

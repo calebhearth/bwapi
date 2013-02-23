@@ -796,18 +796,10 @@ namespace BWAPI
   {
     return Templates::canHoldPosition(this, checkCommandibility);
   }
-  bool UnitImpl::canHoldPositionGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
-  {
-    return Templates::canHoldPositionGrouped(this, checkCommandibilityGrouped, checkCommandibility);
-  }
   //--------------------------------------------- CAN STOP ---------------------------------------------------
   bool UnitImpl::canStop(bool checkCommandibility) const
   {
     return Templates::canStop(this, checkCommandibility);
-  }
-  bool UnitImpl::canStopGrouped(bool checkCommandibilityGrouped, bool checkCommandibility) const
-  {
-    return Templates::canStopGrouped(this, checkCommandibilityGrouped, checkCommandibility);
   }
   //--------------------------------------------- CAN REPAIR -------------------------------------------------
   bool UnitImpl::canRepair(bool checkCommandibility) const

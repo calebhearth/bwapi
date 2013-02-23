@@ -1039,19 +1039,24 @@ namespace BWAPI
     /// Unit::canTargetUnit
     virtual bool canIssueCommand(UnitCommand command, bool checkCanUseTechUnitOnUnits = true, bool checkCanBuildUnitType = true, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const = 0;
 
-    /// Checks whether the unit is able to execute the given command as part of a unit group
-    /// (assuming that at least one of the units in the group is able to execute the command
+    /// Checks whether the unit is able to execute the given command as part of a Unitset
+    /// (assuming that at least one of the units in the Unitset is able to execute the command
     /// individually). The reason this function exists is because some commands are valid for an
-    /// individual unit but not for those individuals as a group (e.g. buildings) and some
-    /// commands are only valid for a unit if it is commanded as part of a unit group, e.g.:
-    ///   1. attackMove/attackUnit for a group of units, some of which can't attack (e.g. high
+    /// individual unit but not for those individuals as a group (e.g. buildings, critters) and
+    /// some commands are only valid for a unit if it is commanded as part of a unit group, e.g.:
+    ///   1. attackMove/attackUnit for a Unitset, some of which can't attack (e.g. high
     ///      templar). This is supported simply for consistency with BW's behaviour - you could
-    ///      issue move command(s) for them instead.
+    ///      issue move command(s) individually instead.
     ///   2. attackMove/move/patrol/rightClickPosition for air unit(s) + e.g. larva(e), as part of
-    ///      the air stacking technique.
-    ///   3. holdPosition for burrowed lurker(s) + e.g. overlord(s), for ambushes.
-    ///   4. stop for larva(e) + e.g. overlord(s), to move larva(e) to a different side of the
-    ///      hatchery/lair/hive (e.g. so that drones morphed later are nearer to minerals/gas).
+    ///      the air stacking technique. This is supported simply for consistency with BW's
+    ///      behaviour - you could issue move/patrol/rightClickPosition command(s) for them
+    ///     individually instead.
+    /// Note: BWAPI allows the following special cases to command a unit individually (rather than
+    /// only allowing it to be commanded as part of a Unitset). These commands are not available
+    /// to a user in BW when commanding units individually, but BWAPI allows them for convenience:
+    ///   - holdPosition for burrowed Zerg_Lurker, for ambushes.
+    ///   - stop for Zerg_Larva, to move it to a different side of the hatchery/lair/hive (e.g.
+    ///     so that drones morphed later are nearer to minerals/gas).
     ///
     /// @see UnitCommandTypes, Game::getLastError, Unit::canIssueCommand,
     /// Unit::canCommandGrouped, Unit::canIssueCommandTypeGrouped, Unit::canTargetUnit
@@ -1298,24 +1303,10 @@ namespace BWAPI
     /// @see Game::getLastError, Unit::canIssueCommand, Unit::holdPosition
     virtual bool canHoldPosition(bool checkCommandibility = true) const = 0;
 
-    /// Checks whether the unit is able to execute a holdPosition command, as part of a unit group
-    /// (assuming that at least one of the units in the group is able to execute the command
-    /// individually).
-    ///
-    /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canHoldPosition
-    virtual bool canHoldPositionGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
-
     /// Checks whether the unit is able to execute a stop command.
     ///
     /// @see Game::getLastError, Unit::canIssueCommand, Unit::stop
     virtual bool canStop(bool checkCommandibility = true) const = 0;
-
-    /// Checks whether the unit is able to execute a stop command, as part of a unit group
-    /// (assuming that at least one of the units in the group is able to execute the command
-    /// individually).
-    ///
-    /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canStop
-    virtual bool canStopGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
 
     /// Cheap checks for whether the unit is able to execute a repair command.
     ///
