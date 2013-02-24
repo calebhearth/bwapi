@@ -675,7 +675,6 @@ namespace BWAPI
   {
     std::vector< BWAPI::Unitset > groupsOf12;
     BWAPI::Unitset nextGroup(12);
-    bool canIssueIndividually = false;
 
     // Iterate the set of units
     foreach(UnitImpl* u, units)
@@ -696,45 +695,25 @@ namespace BWAPI
       if ( u->prepareIssueCommand(command) )
         continue;
 
-      if ( !canIssueIndividually && u->canIssueCommand(command) )
-        canIssueIndividually = true;
-
       // Insert the unit into the next group
       nextGroup.push_back(u);
 
       // Create a new group of 12
       if ( nextGroup.size() >= 12 )
       {
-        if ( canIssueIndividually )
-          groupsOf12.push_back(nextGroup);
-        else
-        {
-          // None of the units can issue the command individually, so force all units to try to issue it individually.
-          foreach(UnitImpl* unitGrouped, nextGroup)
-            unitGrouped->issueCommand(command);
-        }
+        groupsOf12.push_back(nextGroup);
         nextGroup.clear();
-        canIssueIndividually = false;
       }
     }
 
     // Insert the last group into the groups of 12, if it is an incomplete group
     if ( !nextGroup.empty() )
-    {
-      if ( canIssueIndividually )
-        groupsOf12.push_back(nextGroup);
-      else
-      {
-        // None of the units can issue the command individually, so force all units to issue it individually.
-        foreach(UnitImpl* unitGrouped, nextGroup)
-          unitGrouped->issueCommand(command);
-      }
-    }
+      groupsOf12.push_back(nextGroup);
 
     // Return if no units to command
     if ( groupsOf12.empty() )
       return false;
-    
+
     // Iterate our groups of 12
     for ( auto i = groupsOf12.begin(); i != groupsOf12.end(); ++i )
     {
