@@ -1040,10 +1040,10 @@ namespace BWAPI
     virtual bool canIssueCommand(UnitCommand command, bool checkCanUseTechUnitOnUnits = true, bool checkCanBuildUnitType = true, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute the given command as part of a Unitset
-    /// (assuming that at least one of the units in the Unitset is able to execute the command
-    /// individually). The reason this function exists is because some commands are valid for an
-    /// individual unit but not for those individuals as a group (e.g. buildings, critters) and
-    /// some commands are only valid for a unit if it is commanded as part of a unit group, e.g.:
+    /// (even if none of the units in the Unitset are able to execute the command individually).
+    /// The reason this function exists is because some commands are valid for an individual unit
+    /// but not for those individuals as a group (e.g. buildings, critters) and some commands are
+    /// only valid for a unit if it is commanded as part of a unit group, e.g.:
     ///   1. attackMove/attackUnit for a Unitset, some of which can't attack (e.g. high
     ///      templar). This is supported simply for consistency with BW's behaviour - you could
     ///      issue move command(s) individually instead.
@@ -1072,8 +1072,7 @@ namespace BWAPI
     virtual bool canCommand() const = 0;
 
     /// Performs some cheap checks to attempt to quickly detect whether the unit is unable to
-    /// execute any commands as part of a unit group (eg buildings) (assuming that at least one of
-    /// the units in the group is able to execute the command individually).
+    /// execute any commands as part of a Unitset (eg buildings, critters).
     ///
     /// @retval true if BWAPI was unable to determine whether the unit can be commanded grouped.
     /// @retval false if an error occurred and the unit can not be commanded grouped.
@@ -1099,8 +1098,7 @@ namespace BWAPI
 
     /// Performs some cheap checks to attempt to quickly detect whether the unit is unable to
     /// execute the given command type (i.e. regardless of what other possible command parameters
-    /// could be) as part of a unit group (assuming that at least one of
-    /// the units in the group is able to execute the command individually).
+    /// could be) as part of a Unitset.
     ///
     /// @param ct
     ///   A UnitCommandType.
@@ -1138,8 +1136,7 @@ namespace BWAPI
     virtual bool canAttackMove(bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute an attack command to attack-move, as part of a
-    /// unit group (assuming that at least one of the units in the group is able to execute the
-    /// command individually).
+    /// Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canAttackMove
     virtual bool canAttackMoveGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
@@ -1155,15 +1152,13 @@ namespace BWAPI
     virtual bool canAttackUnit(Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const = 0;
 
     /// Cheap checks for whether the unit is able to execute an attack command to attack a unit,
-    /// as part of a unit group (assuming that at least one of the units in the group is able to
-    /// execute the command individually).
+    /// as part of a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canAttackUnit
     virtual bool canAttackUnitGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute an attack command to attack a unit, as part of
-    /// a unit group (assuming that at least one of the units in the group is able to execute the
-    /// command individually).
+    /// a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canAttackUnit
     virtual bool canAttackUnitGrouped(Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
@@ -1254,9 +1249,7 @@ namespace BWAPI
     /// @see Game::getLastError, Unit::canIssueCommand, Unit::move
     virtual bool canMove(bool checkCommandibility = true) const = 0;
 
-    /// Checks whether the unit is able to execute a move command, as part of a unit group
-    /// (assuming that at least one of the units in the group is able to execute the command
-    /// individually).
+    /// Checks whether the unit is able to execute a move command, as part of a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canMove
     virtual bool canMoveGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
@@ -1266,9 +1259,7 @@ namespace BWAPI
     /// @see Game::getLastError, Unit::canIssueCommand, Unit::patrol
     virtual bool canPatrol(bool checkCommandibility = true) const = 0;
 
-    /// Checks whether the unit is able to execute a patrol command, as part of a unit group
-    /// (assuming that at least one of the units in the group is able to execute the command
-    /// individually).
+    /// Checks whether the unit is able to execute a patrol command, as part of a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canPatrol
     virtual bool canPatrolGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
@@ -1418,8 +1409,7 @@ namespace BWAPI
     virtual bool canRightClickPosition(bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute a rightClick command for a position, as part of
-    /// a unit group (assuming that at least one of the units in the group is able to execute the
-    /// command individually).
+    /// a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canRightClick
     virtual bool canRightClickPositionGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
@@ -1435,15 +1425,13 @@ namespace BWAPI
     virtual bool canRightClickUnit(Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibility = true) const = 0;
 
     /// Cheap checks for whether the unit is able to execute a rightClick command to a unit, as
-    /// part of a unit group (assuming that at least one of the units in the group is able to
-    /// execute the command individually).
+    /// part of a Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canRightClickUnit
     virtual bool canRightClickUnitGrouped(bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
 
     /// Checks whether the unit is able to execute a rightClick command to a unit, as part of a
-    /// unit group (assuming that at least one of the units in the group is able to execute the
-    /// command individually).
+    /// Unitset.
     ///
     /// @see Game::getLastError, Unit::canIssueCommandGrouped, Unit::canRightClickUnit
     virtual bool canRightClickUnitGrouped(Unit* targetUnit, bool checkCanTargetUnit = true, bool checkCanIssueCommandType = true, bool checkCommandibilityGrouped = true, bool checkCommandibility = true) const = 0;
